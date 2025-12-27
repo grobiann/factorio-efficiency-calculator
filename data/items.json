@@ -1,0 +1,102 @@
+{
+  "RocketPart": {
+    "name": {
+      "ko": "로켓 부품",
+      "en": "Rocket Part"
+    },
+    "type": "intermediate"
+  },
+
+  "LowDensityStructure": {
+    "name": {
+      "ko": "저밀도 구조물",
+      "en": "Low Density Structure"
+    },
+    "type": "intermediate"
+  },
+
+  "RocketControlUnit": {
+    "name": {
+      "ko": "로켓 제어 장치",
+      "en": "Rocket Control Unit"
+    },
+    "type": "intermediate"
+  },
+
+  "RocketFuel": {
+    "name": {
+      "ko": "로켓 연료",
+      "en": "Rocket Fuel"
+    },
+    "type": "fluid"
+  },
+
+  "BerylliumPlate": {
+    "name": {
+      "ko": "베릴륨 판",
+      "en": "Beryllium Plate"
+    },
+    "type": "resource",
+    "rarity": "rare"
+  }
+,
+  "IronOre": {
+    "name": { "ko": "철 광석", "en": "Iron Ore" },
+    "type": "resource"
+  },
+
+  "IronPlate": {
+    "name": { "ko": "철 판", "en": "Iron Plate" },
+    "type": "intermediate"
+  },
+
+  "CopperOre": {
+    "name": { "ko": "구리 광석", "en": "Copper Ore" },
+    "type": "resource"
+  },
+
+  "CopperPlate": {
+    "name": { "ko": "구리 판", "en": "Copper Plate" },
+    "type": "intermediate"
+  },
+
+  "IronGearWheel": {
+    "name": { "ko": "톱니바퀴", "en": "Iron Gear Wheel" },
+    "type": "intermediate"
+  },
+
+  "CopperCable": {
+    "name": { "ko": "구리 전선", "en": "Copper Cable" },
+    "type": "intermediate"
+  },
+
+  "ElectronicCircuit": {
+    "name": { "ko": "기초 회로", "en": "Electronic Circuit" },
+    "type": "intermediate"
+  },
+
+  "AdvancedCircuit": {
+    "name": { "ko": "고급 회로", "en": "Advanced Circuit" },
+    "type": "intermediate"
+  },
+
+  "SteelPlate": {
+    "name": { "ko": "강철 판", "en": "Steel Plate" },
+    "type": "intermediate"
+  },
+
+  "Slag": {
+    "name": { "ko": "슬래그", "en": "Slag" },
+    "type": "resource"
+  },
+
+  "Inserter": {
+    "name": { "ko": "인서터", "en": "Inserter" },
+    "type": "intermediate"
+  },
+
+  "TransportBelt": {
+    "name": { "ko": "컨베이어 벨트", "en": "Transport Belt" },
+    "type": "intermediate"
+  }
+}

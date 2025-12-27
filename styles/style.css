@@ -1,0 +1,300 @@
+/* ===== 기본 리셋 ===== */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+               Roboto, "Noto Sans KR", sans-serif;
+  background: #f7f7f7;
+  color: #222;
+  margin: 0;
+  padding: 24px;
+}
+
+/* ===== 제목 ===== */
+h1 {
+  margin-bottom: 16px;
+}
+
+/* ===== 설정 버튼 & 패널 ===== */
+.settings-btn {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  background: transparent;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.settings-btn:focus {
+  outline: 2px solid #88a;
+  border-radius: 4px;
+}
+
+.settings-panel {
+  position: absolute;
+  top: 56px;
+  right: 24px;
+  display: none;
+  background: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 10px;
+  z-index: 1000;
+  min-width: 160px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+}
+
+.settings-panel.open {
+  display: block;
+}
+
+.settings-panel label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 13px;
+}
+
+#langSelect {
+  width: 100%;
+  padding: 6px 8px;
+  font-size: 14px;
+}
+
+/* ===== 입력 영역 ===== */
+label {
+  font-weight: 500;
+}
+
+input[type="number"] {
+  width: 120px;
+  margin-left: 8px;
+  padding: 4px 6px;
+}
+
+/* ===== 버튼 ===== */
+button {
+  margin-top: 12px;
+  padding: 8px 14px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+/* ===== 결과 영역 ===== */
+#result {
+  margin-top: 24px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px;
+}
+
+/* ===== 레시피 비교 카드 ===== */
+.result-block {
+  background: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 12px;
+}
+
+.result-block h3 {
+  margin-top: 0;
+  font-size: 16px;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 6px;
+}
+
+/* ===== 재료 리스트 ===== */
+.result-block ul {
+  list-style: none;
+  padding: 0;
+  margin: 8px 0 0;
+}
+
+.result-block li {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  padding: 2px 0;
+}
+
+/* ===== 강조용 ===== */
+.rare {
+  color: #b00020;
+  font-weight: bold;
+}
+
+/* Results table style */
+.results-header, .recipe-row {
+  display: grid;
+  grid-template-columns: 220px 1fr 1fr;
+  gap: 12px;
+  align-items: start;
+  padding: 8px 0;
+  align-items: center;
+}
+
+.results-header {
+  font-weight: 600;
+  background: #f5f7fb;
+  border-bottom: 1px solid #e6e9ef;
+}
+
+.recipe-row .col {
+  word-break: keep-all;
+}
+
+.output-item, .input-item {
+  font-size: 13px;
+  padding: 2px 0;
+}
+
+/* Table wrapper */
+.results-table {
+  border: 1px solid #e6e6e6;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.results-header .col,
+.recipe-row .col {
+  padding: 10px 12px;
+}
+
+.results-header .col + .col,
+.recipe-row .col + .col {
+  border-left: 1px solid #eee;
+}
+
+.recipe-row {
+  background: #fff;
+  border-top: 1px solid #f1f1f1;
+}
+
+.recipe-row:nth-child(even) {
+  background: #fbfbfc;
+}
+
+.results-table .recipe-row:last-child {
+  border-bottom: none;
+}
+
+/* Columns & Summary tables share the same base styling */
+.recipe-compare-table,
+.summary-table {
+  display: block;
+  border: 1px solid #e6e6e6;
+  border-radius: 6px;
+  background: #ffffff;
+  overflow: hidden;
+  margin-bottom: 12px;
+}
+.recipe-compare-table .results-header,
+.summary-table .results-header {
+  background: #f5f7fb;
+  border-bottom: 1px solid #e6e9ef;
+}
+
+/* Summary content uses same column sizing as results */
+.summary-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.summary-col {
+  padding: 12px;
+  border-right: 1px solid #eee;
+}
+
+.summary-col:last-child {
+  border-right: none;
+}
+
+/* Section titles inside summary columns */
+.summary-section-title {
+  font-weight: 600;
+  margin-bottom: 6px;
+  font-size: 13px;
+}
+
+.recipe-compare-row {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
+}
+
+/* Make summary header and summary rows behave like recipe-compare rows so
+   cells are laid out as columns rather than stacked vertically. This fixes
+   the issue where the summary showed a single column even when multiple
+   columns exist. */
+.summary-header-row,
+.summary-row {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
+}
+
+/* Header row styles: applied to recipe compare header rows and summary headers */
+.recipe-compare-row.header,
+.summary-header-row {
+  border-bottom: 1px solid #e6e9ef;
+  background: #f5f7fb;
+}
+
+.recipe-compare-row.top-row {
+  background: #ffffff;
+  border-bottom: 1px solid #eaeef5;
+}
+
+.recipe-block.top {
+  border: 1px solid #eef1f6;
+  padding: 8px;
+  border-radius: 4px;
+  background: #fbfdff;
+}
+
+/* Summary row styling */
+.recipe-compare-row.summary-row {
+  background: #fff8f0;
+  border-bottom: 1px solid #f0e6da;
+}
+
+.summary-cell .summary-header {
+  font-weight: 600;
+  margin-bottom: 6px;
+  font-size: 13px;
+}
+
+.input-totals div, .outputs-totals div {
+  font-size: 13px;
+  padding: 2px 0;
+}
+
+.recipe-compare-cell {
+  padding: 12px;
+  border-right: 1px solid #eee;
+  min-height: 48px;
+}
+
+.recipe-compare-cell:last-child {
+  border-right: none;
+}
+
+.header-cell .recipe-name {
+  font-weight: 600;
+}
+
+.recipe-block {
+  margin-bottom: 8px;
+  padding-bottom: 6px;
+  border-bottom: 1px dashed #eee;
+}
+
+.recipe-block:last-child {
+  border-bottom: none;
+}
+
+.small-list div {
+  font-size: 12px;
+}

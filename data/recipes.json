@@ -1,0 +1,133 @@
+{
+  "recipes": [
+    {
+      "id": "rocket-part-standard",
+      "name": "기본 로켓 부품",
+      "time": 3,
+      "outputs": { "RocketPart": 1, "Slag": 0.5 },
+      "inputs": { "LowDensityStructure": 10, "RocketControlUnit": 10, "RocketFuel": 10 }
+    },
+    {
+      "id": "rocket-part-beryllium",
+      "name": "베릴륨 로켓 부품",
+      "time": 3,
+      "outputs": { "RocketPart": 1 },
+      "inputs": { "LowDensityStructure": 6, "RocketControlUnit": 6, "RocketFuel": 6, "BerylliumPlate": 2 }
+    },
+
+    {
+      "id": "low-density-structure-basic",
+      "name": "저밀도 구조물 (기본)",
+      "time": 6,
+      "outputs": { "LowDensityStructure": 1 },
+      "inputs": { "IronPlate": 9, "CopperPlate": 3 }
+    },
+    {
+      "id": "low-density-structure-light",
+      "name": "저밀도 구조물 (경량)",
+      "time": 5,
+      "outputs": { "LowDensityStructure": 1 },
+      "inputs": { "IronPlate": 6, "CopperPlate": 6 }
+    },
+
+    {
+      "id": "iron-plate-smelt",
+      "name": "철 판 (제련)",
+      "time": 3.5,
+      "outputs": { "IronPlate": 1 },
+      "inputs": { "IronOre": 1 }
+    },
+
+    {
+      "id": "copper-plate-smelt",
+      "name": "구리 판 (제련)",
+      "time": 3.5,
+      "outputs": { "CopperPlate": 1 },
+      "inputs": { "CopperOre": 1 }
+    },
+
+    {
+      "id": "iron-gear-wheel",
+      "name": "톱니바퀴",
+      "time": 0.5,
+      "outputs": { "IronGearWheel": 1 },
+      "inputs": { "IronPlate": 2 }
+    },
+
+    {
+      "id": "copper-cable-basic",
+      "name": "구리 전선 (기본)",
+      "time": 0.5,
+      "outputs": { "CopperCable": 2 },
+      "inputs": { "CopperPlate": 1 }
+    },
+    {
+      "id": "copper-cable-fast",
+      "name": "구리 전선 (고속)",
+      "time": 0.3,
+      "outputs": { "CopperCable": 2 },
+      "inputs": { "CopperPlate": 1 }
+    },
+
+    {
+      "id": "electronic-circuit-basic",
+      "name": "기초 회로 (기본)",
+      "time": 0.5,
+      "outputs": { "ElectronicCircuit": 1 },
+      "inputs": { "IronPlate": 1, "CopperCable": 3 }
+    },
+    {
+      "id": "electronic-circuit-fast",
+      "name": "기초 회로 (고속)",
+      "time": 0.3,
+      "outputs": { "ElectronicCircuit": 1 },
+      "inputs": { "IronPlate": 1, "CopperCable": 3 }
+    },
+
+    {
+      "id": "advanced-circuit",
+      "name": "고급 회로",
+      "time": 6,
+      "outputs": { "AdvancedCircuit": 1 },
+      "inputs": { "ElectronicCircuit": 2, "CopperCable": 4, "IronPlate": 2 }
+    },
+
+    {
+      "id": "steel-plate-basic",
+      "name": "강철 판 (기본)",
+      "time": 17.5,
+      "outputs": { "SteelPlate": 1, "Slag": 0.2 },
+      "inputs": { "IronPlate": 5 }
+    },
+    {
+      "id": "steel-plate-fast",
+      "name": "강철 판 (속도형)",
+      "time": 12,
+      "outputs": { "SteelPlate": 1 },
+      "inputs": { "IronPlate": 5 }
+    },
+
+    {
+      "id": "basic-inserter",
+      "name": "인서터 (기본)",
+      "time": 0.5,
+      "outputs": { "Inserter": 1 },
+      "inputs": { "IronPlate": 1, "IronGearWheel": 1, "ElectronicCircuit": 1 }
+    },
+    {
+      "id": "fast-inserter",
+      "name": "인서터 (고속)",
+      "time": 0.5,
+      "outputs": { "Inserter": 1 },
+      "inputs": { "IronPlate": 1, "IronGearWheel": 2, "AdvancedCircuit": 1 }
+    },
+
+    {
+      "id": "transport-belt-basic",
+      "name": "컨베이어 벨트 (기본)",
+      "time": 0.5,
+      "outputs": { "TransportBelt": 2 },
+      "inputs": { "IronPlate": 1, "IronGearWheel": 1 }
+    }
+  ]
+}
