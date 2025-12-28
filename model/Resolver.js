@@ -16,7 +16,7 @@ export class Resolver {
 
       // scaled ingredients for this recipe (direct inputs)
       const ingredientsScaled = {};
-      for (const [itemId, amount] of Object.entries(recipe.ingredients || {})) {
+      for (const [itemId, amount] of Object.entries(recipe.inputs || {})) {
         ingredientsScaled[itemId] = amount * craftsNeeded;
       }
 

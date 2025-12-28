@@ -1,14 +1,27 @@
 export class Locale {
-  constructor(items, lang = "ko") {
-    this.items = items;
+  constructor(itemNames = {}, recipeNames = {}, lang = "ko") {
+    this.itemNames = itemNames;
+    this.recipeNames = recipeNames;
     this.lang = lang;
   }
 
+  setItemNames(itemNames) {
+    this.itemNames = itemNames || {};
+  }
+
+  setRecipeNames(recipeNames) {
+    this.recipeNames = recipeNames || {};
+  }
+
   itemName(id) {
-    return this.items[id]?.name?.[this.lang] ?? id;
+    return this.itemNames[id] ?? id;
+  }
+
+  recipeName(id) {
+    return this.recipeNames[id] ?? id;
   }
 
   isRare(id) {
-    return this.items[id]?.rarity === "rare";
+    return false;
   }
 }

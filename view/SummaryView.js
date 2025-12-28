@@ -32,7 +32,7 @@ export function renderSummaryTable(productRecipes, productId, targetCount, recip
 
         const name = document.createElement("div");
         name.className = "recipe-name";
-        name.textContent = col.recipe.name;
+        name.textContent = (col.recipe && col.recipe.id) ? locale.recipeName(col.recipe.id) : (col.recipe?.name || "");
         headerCell.appendChild(name);
 
         const outList = document.createElement("div");

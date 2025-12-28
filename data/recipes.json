@@ -3,131 +3,1648 @@
     {
       "id": "rocket-part-standard",
       "name": "기본 로켓 부품",
-      "time": 3,
-      "outputs": { "RocketPart": 1, "Slag": 0.5 },
-      "inputs": { "LowDensityStructure": 10, "RocketControlUnit": 10, "RocketFuel": 10 }
+      "type": "recipe",
+      "energy_required": 3,
+      "results": [
+        { "type": "item", "name": "rocket-part", "amount": 1 },
+        { "type": "item", "name": "slag", "amount": 0.5 }
+      ],
+      "ingredients": [
+        { "type": "item", "name": "low-density-structure", "amount": 10 },
+        { "type": "item", "name": "rocket-control-unit", "amount": 10 },
+        { "type": "item", "name": "rocket-fuel", "amount": 10 }
+      ]
     },
     {
       "id": "rocket-part-beryllium",
       "name": "베릴륨 로켓 부품",
-      "time": 3,
-      "outputs": { "RocketPart": 1 },
-      "inputs": { "LowDensityStructure": 6, "RocketControlUnit": 6, "RocketFuel": 6, "BerylliumPlate": 2 }
+      "type": "recipe",
+      "energy_required": 3,
+      "results": [
+        { "type": "item", "name": "rocket-part", "amount": 1 }
+      ],
+      "ingredients": [
+        { "type": "item", "name": "low-density-structure", "amount": 6 },
+        { "type": "item", "name": "rocket-control-unit", "amount": 6 },
+        { "type": "item", "name": "rocket-fuel", "amount": 6 },
+        { "type": "item", "name": "beryllium-plate", "amount": 2 }
+      ]
     },
 
     {
       "id": "low-density-structure-basic",
       "name": "저밀도 구조물 (기본)",
-      "time": 6,
-      "outputs": { "LowDensityStructure": 1 },
-      "inputs": { "IronPlate": 9, "CopperPlate": 3 }
+      "type": "recipe",
+      "energy_required": 6,
+      "results": [
+        { "type": "item", "name": "low-density-structure", "amount": 1 }
+      ],
+      "ingredients": [
+        { "type": "item", "name": "iron-plate", "amount": 9 },
+        { "type": "item", "name": "copper-plate", "amount": 3 }
+      ]
     },
     {
       "id": "low-density-structure-light",
       "name": "저밀도 구조물 (경량)",
-      "time": 5,
-      "outputs": { "LowDensityStructure": 1 },
-      "inputs": { "IronPlate": 6, "CopperPlate": 6 }
+      "type": "recipe",
+      "energy_required": 5,
+      "results": [
+        { "type": "item", "name": "low-density-structure", "amount": 1 }
+      ],
+      "ingredients": [
+        { "type": "item", "name": "iron-plate", "amount": 6 },
+        { "type": "item", "name": "copper-plate", "amount": 6 }
+      ]
     },
 
     {
       "id": "iron-plate-smelt",
       "name": "철 판 (제련)",
-      "time": 3.5,
-      "outputs": { "IronPlate": 1 },
-      "inputs": { "IronOre": 1 }
+      "type": "recipe",
+      "energy_required": 3.5,
+      "results": [
+        { "type": "item", "name": "iron-plate", "amount": 1 }
+      ],
+      "ingredients": [
+        { "type": "item", "name": "iron-ore", "amount": 1 }
+      ]
     },
 
     {
       "id": "copper-plate-smelt",
       "name": "구리 판 (제련)",
-      "time": 3.5,
-      "outputs": { "CopperPlate": 1 },
-      "inputs": { "CopperOre": 1 }
+      "type": "recipe",
+      "energy_required": 3.5,
+      "results": [
+        { "type": "item", "name": "copper-plate", "amount": 1 }
+      ],
+      "ingredients": [
+        { "type": "item", "name": "copper-ore", "amount": 1 }
+      ]
     },
 
     {
       "id": "iron-gear-wheel",
       "name": "톱니바퀴",
-      "time": 0.5,
-      "outputs": { "IronGearWheel": 1 },
-      "inputs": { "IronPlate": 2 }
+      "type": "recipe",
+      "energy_required": 0.5,
+      "results": [
+        { "type": "item", "name": "iron-gear-wheel", "amount": 1 }
+      ],
+      "ingredients": [
+        { "type": "item", "name": "iron-plate", "amount": 2 }
+      ]
     },
 
     {
       "id": "copper-cable-basic",
       "name": "구리 전선 (기본)",
-      "time": 0.5,
-      "outputs": { "CopperCable": 2 },
-      "inputs": { "CopperPlate": 1 }
+      "type": "recipe",
+      "energy_required": 0.5,
+      "results": [
+        { "type": "item", "name": "copper-cable", "amount": 2 }
+      ],
+      "ingredients": [
+        { "type": "item", "name": "copper-plate", "amount": 1 }
+      ]
     },
     {
       "id": "copper-cable-fast",
       "name": "구리 전선 (고속)",
-      "time": 0.3,
-      "outputs": { "CopperCable": 2 },
-      "inputs": { "CopperPlate": 1 }
+      "type": "recipe",
+      "energy_required": 0.3,
+      "results": [
+        { "type": "item", "name": "copper-cable", "amount": 2 }
+      ],
+      "ingredients": [
+        { "type": "item", "name": "copper-plate", "amount": 1 }
+      ]
     },
 
     {
       "id": "electronic-circuit-basic",
       "name": "기초 회로 (기본)",
-      "time": 0.5,
-      "outputs": { "ElectronicCircuit": 1 },
-      "inputs": { "IronPlate": 1, "CopperCable": 3 }
+      "type": "recipe",
+      "energy_required": 0.5,
+      "results": [
+        { "type": "item", "name": "electronic-circuit", "amount": 1 }
+      ],
+      "ingredients": [
+        { "type": "item", "name": "iron-plate", "amount": 1 },
+        { "type": "item", "name": "copper-cable", "amount": 3 }
+      ]
     },
     {
       "id": "electronic-circuit-fast",
       "name": "기초 회로 (고속)",
-      "time": 0.3,
-      "outputs": { "ElectronicCircuit": 1 },
-      "inputs": { "IronPlate": 1, "CopperCable": 3 }
+      "type": "recipe",
+      "energy_required": 0.3,
+      "results": [
+        { "type": "item", "name": "electronic-circuit", "amount": 1 }
+      ],
+      "ingredients": [
+        { "type": "item", "name": "iron-plate", "amount": 1 },
+        { "type": "item", "name": "copper-cable", "amount": 3 }
+      ]
     },
 
     {
       "id": "advanced-circuit",
       "name": "고급 회로",
-      "time": 6,
-      "outputs": { "AdvancedCircuit": 1 },
-      "inputs": { "ElectronicCircuit": 2, "CopperCable": 4, "IronPlate": 2 }
+      "type": "recipe",
+      "energy_required": 6,
+      "results": [
+        { "type": "item", "name": "advanced-circuit", "amount": 1 }
+      ],
+      "ingredients": [
+        { "type": "item", "name": "electronic-circuit", "amount": 2 },
+        { "type": "item", "name": "copper-cable", "amount": 4 },
+        { "type": "item", "name": "iron-plate", "amount": 2 }
+      ]
     },
 
     {
       "id": "steel-plate-basic",
       "name": "강철 판 (기본)",
-      "time": 17.5,
-      "outputs": { "SteelPlate": 1, "Slag": 0.2 },
-      "inputs": { "IronPlate": 5 }
+      "type": "recipe",
+      "energy_required": 17.5,
+      "results": [
+        { "type": "item", "name": "steel-plate", "amount": 1 },
+        { "type": "item", "name": "slag", "amount": 0.2 }
+      ],
+      "ingredients": [
+        { "type": "item", "name": "iron-plate", "amount": 5 }
+      ]
     },
     {
       "id": "steel-plate-fast",
       "name": "강철 판 (속도형)",
-      "time": 12,
-      "outputs": { "SteelPlate": 1 },
-      "inputs": { "IronPlate": 5 }
+      "type": "recipe",
+      "energy_required": 12,
+      "results": [
+        { "type": "item", "name": "steel-plate", "amount": 1 }
+      ],
+      "ingredients": [
+        { "type": "item", "name": "iron-plate", "amount": 5 }
+      ]
     },
 
     {
       "id": "basic-inserter",
       "name": "인서터 (기본)",
-      "time": 0.5,
-      "outputs": { "Inserter": 1 },
-      "inputs": { "IronPlate": 1, "IronGearWheel": 1, "ElectronicCircuit": 1 }
+      "type": "recipe",
+      "energy_required": 0.5,
+      "results": [
+        { "type": "item", "name": "inserter", "amount": 1 }
+      ],
+      "ingredients": [
+        { "type": "item", "name": "iron-plate", "amount": 1 },
+        { "type": "item", "name": "iron-gear-wheel", "amount": 1 },
+        { "type": "item", "name": "electronic-circuit", "amount": 1 }
+      ]
     },
     {
       "id": "fast-inserter",
       "name": "인서터 (고속)",
-      "time": 0.5,
-      "outputs": { "Inserter": 1 },
-      "inputs": { "IronPlate": 1, "IronGearWheel": 2, "AdvancedCircuit": 1 }
+      "type": "recipe",
+      "energy_required": 0.5,
+      "results": [
+        { "type": "item", "name": "inserter", "amount": 1 }
+      ],
+      "ingredients": [
+        { "type": "item", "name": "iron-plate", "amount": 1 },
+        { "type": "item", "name": "iron-gear-wheel", "amount": 2 },
+        { "type": "item", "name": "advanced-circuit", "amount": 1 }
+      ]
     },
 
     {
       "id": "transport-belt-basic",
       "name": "컨베이어 벨트 (기본)",
-      "time": 0.5,
-      "outputs": { "TransportBelt": 2 },
-      "inputs": { "IronPlate": 1, "IronGearWheel": 1 }
+      "type": "recipe",
+      "energy_required": 0.5,
+      "results": [
+        { "type": "item", "name": "transport-belt", "amount": 2 }
+      ],
+      "ingredients": [
+        { "type": "item", "name": "iron-plate", "amount": 1 },
+        { "type": "item", "name": "iron-gear-wheel", "amount": 1 }
+      ]
+    },
+    
+    {
+      "id": "kr-electronic-components-with-lithium",
+      "name": "kr-electronic-components-with-lithium",
+      "type": "recipe",
+      "energy_required": 10,
+      "results": [
+        { "type": "item", "name": "kr-electronic-components", "amount": 10 }
+      ],
+      "ingredients": [
+        { "type": "item", "name": "kr-silicon", "amount": 3 },
+        { "type": "item", "name": "plastic-bar", "amount": 3 },
+        { "type": "item", "name": "kr-glass", "amount": 3 },
+        { "type": "item", "name": "kr-lithium", "amount": 3 },
+        { "type": "fluid", "name": "kr-nitric-acid", "amount": 20 }
+      ]
+    },
+    {
+      "id": "kr-air-cleaning",
+      "name": "kr-air-cleaning",
+      "type": "recipe",
+      "energy_required": 480,
+      "results": [
+        { "type": "item", "name": "kr-used-pollution-filter", "probability": 0.9, "amount": 1 }
+      ],
+      "ingredients": [
+        { "type": "item", "name": "kr-pollution-filter", "amount": 1 }
+      ]
+    },
+    {
+      "id": "kr-hydrogen",
+      "name": "kr-hydrogen",
+      "type": "recipe",
+      "energy_required": 20,
+      "results": [
+        { "type": "fluid", "name": "kr-hydrogen", "amount": 30 }
+      ],
+      "ingredients": []
+    },
+    {
+      "id": "kr-nitrogen",
+      "name": "kr-nitrogen",
+      "type": "recipe",
+      "energy_required": 30,
+      "results": [
+        { "type": "fluid", "name": "kr-nitrogen", "amount": 30 }
+      ],
+      "ingredients": []
+    },
+    {
+      "id": "kr-oxygen",
+      "name": "kr-oxygen",
+      "type": "recipe",
+      "energy_required": 5,
+      "results": [
+        { "type": "fluid", "name": "kr-oxygen", "amount": 30 }
+      ],
+      "ingredients": []
+    },
+    {
+      "id": "kr-water-from-atmosphere",
+      "name": "kr-water-from-atmosphere",
+      "type": "recipe",
+      "energy_required": 10,
+      "results": [
+        { "type": "fluid", "name": "water", "amount": 30 }
+      ],
+      "ingredients": []
+    },
+    {
+      "id": "kr-biomass",
+      "name": "kr-biomass",
+      "type": "recipe",
+      "energy_required": 60,
+      "results": [
+        { "type": "item", "name": "kr-biomass", "amount": 5 }
+      ],
+      "ingredients": [
+        { "type": "fluid", "name": "petroleum-gas", "amount": 50 },
+        { "type": "fluid", "name": "kr-oxygen", "amount": 50 },
+        { "type": "item", "name": "kr-biomass", "amount": 2 }
+      ]
+    },
+    {
+      "id": "kr-biter-virus",
+      "name": "kr-biter-virus",
+      "type": "recipe",
+      "energy_required": 600,
+      "results": [
+        { "type": "item", "name": "kr-biter-virus", "amount": 1 }
+      ],
+      "ingredients": [
+        { "type": "item", "name": "poison-capsule", "amount": 1 },
+        { "type": "item", "name": "kr-imersite-powder", "amount": 5 },
+        { "type": "fluid", "name": "kr-nitric-acid", "amount": 50 },
+        { "type": "fluid", "name": "kr-biomethanol", "amount": 50 }
+      ]
+    },
+    {
+      "id": "kr-pollution-filter",
+      "name": "kr-pollution-filter",
+      "type": "recipe",
+      "energy_required": 10,
+      "results": [
+        { "type": "item", "name": "kr-pollution-filter", "amount": 1 }
+      ],
+      "ingredients": [
+        { "type": "item", "name": "steel-plate", "amount": 2 },
+        { "type": "item", "name": "plastic-bar", "amount": 2 },
+        { "type": "item", "name": "kr-biomass", "amount": 5 }
+      ]
+    },
+    {
+      "id": "kr-restore-used-pollution-filter",
+      "name": "kr-restore-used-pollution-filter",
+      "type": "recipe",
+      "energy_required": 10,
+      "results": [
+        { "type": "item", "name": "kr-pollution-filter", "amount": 1 },
+        { "type": "fluid", "name": "kr-dirty-water", "amount": 50 }
+      ],
+      "ingredients": [
+        { "type": "item", "name": "kr-used-pollution-filter", "amount": 1 },
+        { "type": "item", "name": "kr-biomass", "amount": 5 },
+        { "type": "fluid", "name": "water", "amount": 50, "fluidbox_index": 1 }
+      ]
+    },
+    {
+      "id": "kr-tritium",
+      "name": "kr-tritium",
+      "type": "recipe",
+      "energy_required": 30,
+      "results": [
+        { "type": "item", "name": "kr-tritium", "amount": 5 }
+      ],
+      "ingredients": [
+        { "type": "item", "name": "kr-lithium", "amount": 30 },
+        { "type": "item", "name": "kr-rare-metals", "amount": 5 },
+        { "type": "item", "name": "uranium-235", "amount": 1 }
+      ]
+    },
+    {
+      "id": "kr-ammonia",
+      "name": "kr-ammonia",
+      "type": "recipe",
+      "energy_required": 5,
+      "results": [
+        { "type": "fluid", "name": "kr-ammonia", "amount": 50 }
+      ],
+      "ingredients": [
+        { "type": "fluid", "name": "kr-hydrogen", "amount": 50 },
+        { "type": "fluid", "name": "kr-nitrogen", "amount": 50 }
+      ]
+    },
+    {
+      "id": "kr-dt-fuel-cell",
+      "name": "kr-dt-fuel-cell",
+      "type": "recipe",
+      "energy_required": 5,
+      "results": [
+        { "type": "item", "name": "kr-dt-fuel-cell", "amount": 1 }
+      ],
+      "ingredients": [
+        { "type": "fluid", "name": "kr-heavy-water", "amount": 10 },
+        { "type": "item", "name": "kr-tritium", "amount": 1 },
+        { "type": "item", "name": "kr-empty-dt-fuel-cell", "amount": 1 }
+      ]
+    },
+    {
+      "id": "kr-enriched-copper",
+      "name": "kr-enriched-copper",
+      "type": "recipe",
+      "energy_required": 3,
+      "results": [
+        { "type": "item", "name": "kr-enriched-copper", "amount": 6 },
+        { "type": "fluid", "name": "kr-dirty-water", "amount": 25, "ignored_by_productivity": 25 }
+      ],
+      "ingredients": [
+        { "type": "fluid", "name": "sulfuric-acid", "amount": 3 },
+        { "type": "fluid", "name": "water", "amount": 25 },
+        { "type": "item", "name": "copper-ore", "amount": 9 }
+      ]
+    },
+    {
+      "id": "kr-enriched-iron",
+      "name": "kr-enriched-iron",
+      "type": "recipe",
+      "energy_required": 3,
+      "results": [
+        { "type": "item", "name": "kr-enriched-iron", "amount": 6 },
+        { "type": "fluid", "name": "kr-dirty-water", "amount": 25, "ignored_by_productivity": 25 }
+      ],
+      "ingredients": [
+        { "type": "fluid", "name": "sulfuric-acid", "amount": 3 },
+        { "type": "fluid", "name": "water", "amount": 25 },
+        { "type": "item", "name": "iron-ore", "amount": 9 }
+      ]
+    },
+    {
+      "id": "kr-enriched-rare-metals",
+      "name": "kr-enriched-rare-metals",
+      "type": "recipe",
+      "energy_required": 3,
+      "results": [
+        { "type": "item", "name": "kr-enriched-rare-metals", "amount": 6 },
+        { "type": "fluid", "name": "kr-dirty-water", "amount": 25, "ignored_by_productivity": 25 }
+      ],
+      "ingredients": [
+        { "type": "fluid", "name": "kr-hydrogen-chloride", "amount": 10 },
+        { "type": "fluid", "name": "water", "amount": 25 },
+        { "type": "item", "name": "kr-rare-metal-ore", "amount": 9 }
+      ]
+    },
+    {
+      "id": "kr-fertilizer",
+      "name": "kr-fertilizer",
+      "type": "recipe",
+      "energy_required": 10,
+      "results": [
+        { "type": "item", "name": "kr-fertilizer", "amount": 10 }
+      ],
+      "ingredients": [
+        { "type": "fluid", "name": "kr-nitric-acid", "amount": 10 },
+        { "type": "item", "name": "kr-biomass", "amount": 2 }
+      ]
+    },
+    {
+      "id": "kr-hydrogen-chloride",
+      "name": "kr-hydrogen-chloride",
+      "type": "recipe",
+      "energy_required": 5,
+      "results": [
+        { "type": "fluid", "name": "kr-hydrogen-chloride", "amount": 50 }
+      ],
+      "ingredients": [
+        { "type": "fluid", "name": "kr-chlorine", "amount": 50 },
+        { "type": "fluid", "name": "kr-hydrogen", "amount": 50 }
+      ]
+    },
+    {
+      "id": "kr-imersite-crystal",
+      "name": "kr-imersite-crystal",
+      "type": "recipe",
+      "energy_required": 30,
+      "results": [
+        { "type": "item", "name": "kr-imersite-crystal", "amount": 1 }
+      ],
+      "ingredients": [
+        { "type": "item", "name": "kr-imersite-powder", "amount": 6 },
+        { "type": "fluid", "name": "kr-nitric-acid", "amount": 10 },
+        { "type": "fluid", "name": "sulfuric-acid", "amount": 10 }
+      ]
+    },
+    {
+      "id": "kr-water",
+      "name": "kr-water",
+      "type": "recipe",
+      "energy_required": 5,
+      "results": [
+        { "type": "fluid", "name": "water", "amount": 50 }
+      ],
+      "ingredients": [
+        { "type": "fluid", "name": "kr-oxygen", "amount": 20 },
+        { "type": "fluid", "name": "kr-hydrogen", "amount": 30 }
+      ]
+    },
+    {
+      "id": "kr-lithium-chloride",
+      "name": "kr-lithium-chloride",
+      "type": "recipe",
+      "energy_required": 5,
+      "results": [
+        { "type": "item", "name": "kr-lithium-chloride", "amount": 5 }
+      ],
+      "ingredients": [
+        { "type": "fluid", "name": "kr-mineral-water", "amount": 50 },
+        { "type": "fluid", "name": "kr-hydrogen-chloride", "amount": 10 }
+      ]
+    },
+    {
+      "id": "kr-lithium-sulfur-battery",
+      "name": "kr-lithium-sulfur-battery",
+      "type": "recipe",
+      "energy_required": 4,
+      "results": [
+        { "type": "item", "name": "kr-lithium-sulfur-battery", "amount": 1 }
+      ],
+      "ingredients": [
+        { "type": "fluid", "name": "sulfuric-acid", "amount": 10 },
+        { "type": "item", "name": "kr-lithium", "amount": 1 },
+        { "type": "item", "name": "copper-plate", "amount": 1 }
+      ]
+    },
+    {
+      "id": "kr-nitric-acid",
+      "name": "kr-nitric-acid",
+      "type": "recipe",
+      "energy_required": 5,
+      "results": [
+        { "type": "fluid", "name": "kr-nitric-acid", "amount": 50 }
+      ],
+      "ingredients": [
+        { "type": "fluid", "name": "kr-ammonia", "amount": 50 },
+        { "type": "fluid", "name": "kr-mineral-water", "amount": 25 },
+        { "type": "item", "name": "kr-rare-metals", "amount": 1 }
+      ]
+    },
+    {
+      "id": "kr-ai-core",
+      "name": "kr-ai-core",
+      "type": "recipe",
+      "energy_required": 16,
+      "results": [
+        { "type": "item", "name": "kr-ai-core", "amount": 2 }
+      ],
+      "ingredients": [
+        { "type": "item", "name": "processing-unit", "amount": 2 },
+        { "type": "item", "name": "kr-imersite-crystal", "amount": 2 },
+        { "type": "fluid", "name": "kr-nitric-acid", "amount": 10 }
+      ]
+    },
+    {
+      "id": "kr-empty-antimatter-fuel-cell",
+      "name": "kr-empty-antimatter-fuel-cell",
+      "type": "recipe",
+      "energy_required": 10,
+      "results": [
+        { "type": "item", "name": "kr-empty-antimatter-fuel-cell", "amount": 1 }
+      ],
+      "ingredients": [
+        { "type": "fluid", "name": "kr-nitric-acid", "amount": 50 },
+        { "type": "item", "name": "kr-energy-control-unit", "amount": 10 },
+        { "type": "item", "name": "kr-imersium-plate", "amount": 8 },
+        { "type": "item", "name": "kr-matter-stabilizer", "amount": 2 }
+      ]
+    },
+    {
+      "id": "kr-landfill-with-sand",
+      "name": "kr-landfill-with-sand",
+      "type": "recipe",
+      "energy_required": 0.5,
+      "results": [
+        { "type": "item", "name": "landfill", "amount": 1 }
+      ],
+      "ingredients": [
+        { "type": "item", "name": "kr-sand", "amount": 50 },
+        { "type": "fluid", "name": "water", "amount": 50 }
+      ]
+    },
+    {
+      "id": "kr-antimatter-artillery-shell",
+      "name": "kr-antimatter-artillery-shell",
+      "type": "recipe",
+      "energy_required": 15,
+      "results": [
+        { "type": "item", "name": "kr-antimatter-artillery-shell", "amount": 1 }
+      ],
+      "ingredients": [
+        { "type": "item", "name": "kr-imersium-plate", "amount": 1 },
+        { "type": "item", "name": "artillery-shell", "amount": 1 },
+        { "type": "item", "name": "kr-charged-antimatter-fuel-cell", "amount": 1 },
+        { "type": "item", "name": "processing-unit", "amount": 1 }
+      ]
+    },
+    {
+      "id": "kr-antimatter-railgun-shell",
+      "name": "kr-antimatter-railgun-shell",
+      "type": "recipe",
+      "energy_required": 5,
+      "results": [
+        { "type": "item", "name": "kr-antimatter-railgun-shell", "amount": 1 }
+      ],
+      "ingredients": [
+        { "type": "item", "name": "kr-imersium-plate", "amount": 1 },
+        { "type": "item", "name": "kr-basic-railgun-shell", "amount": 1 },
+        { "type": "item", "name": "kr-charged-antimatter-fuel-cell", "amount": 1 },
+        { "type": "item", "name": "processing-unit", "amount": 1 }
+      ]
+    },
+    {
+      "id": "kr-antimatter-rocket",
+      "name": "kr-antimatter-rocket",
+      "type": "recipe",
+      "energy_required": 10,
+      "results": [
+        { "type": "item", "name": "kr-antimatter-rocket", "amount": 1 }
+      ],
+      "ingredients": [
+        { "type": "item", "name": "kr-imersium-plate", "amount": 2 },
+        { "type": "item", "name": "kr-heavy-rocket", "amount": 1 },
+        { "type": "item", "name": "kr-charged-antimatter-fuel-cell", "amount": 3 },
+        { "type": "item", "name": "processing-unit", "amount": 1 }
+      ]
+    },
+    {
+      "id": "kr-antimatter-turret-rocket",
+      "name": "kr-antimatter-turret-rocket",
+      "type": "recipe",
+      "energy_required": 5,
+      "results": [
+        { "type": "item", "name": "kr-antimatter-turret-rocket", "amount": 1 }
+      ],
+      "ingredients": [
+        { "type": "item", "name": "kr-imersium-plate", "amount": 1 },
+        { "type": "item", "name": "kr-explosive-turret-rocket", "amount": 1 },
+        { "type": "item", "name": "kr-charged-antimatter-fuel-cell", "amount": 1 },
+        { "type": "item", "name": "processing-unit", "amount": 1 }
+      ]
+    },
+    {
+      "id": "kr-automation-core",
+      "name": "kr-automation-core",
+      "type": "recipe",
+      "energy_required": 2,
+      "results": [
+        { "type": "item", "name": "kr-automation-core", "amount": 2 }
+      ],
+      "ingredients": [
+        { "type": "item", "name": "iron-gear-wheel", "amount": 4 },
+        { "type": "item", "name": "iron-stick", "amount": 4 },
+        { "type": "item", "name": "copper-plate", "amount": 6 }
+      ]
+    },
+    {
+      "id": "kr-basic-railgun-shell",
+      "name": "kr-basic-railgun-shell",
+      "type": "recipe",
+      "energy_required": 10,
+      "results": [
+        { "type": "item", "name": "kr-basic-railgun-shell", "amount": 1 }
+      ],
+      "ingredients": [
+        { "type": "item", "name": "steel-plate", "amount": 5 },
+        { "type": "item", "name": "advanced-circuit", "amount": 1 }
+      ]
+    },
+    {
+      "id": "kr-basic-tech-card",
+      "name": "kr-basic-tech-card",
+      "type": "recipe",
+      "energy_required": 20,
+      "results": [
+        { "type": "item", "name": "kr-basic-tech-card", "amount": 5 }
+      ],
+      "ingredients": [
+        { "type": "item", "name": "wood", "amount": 5 },
+        { "type": "item", "name": "copper-cable", "amount": 5 }
+      ]
+    },
+    {
+      "id": "kr-biter-research-data",
+      "name": "kr-biter-research-data",
+      "type": "recipe",
+      "energy_required": 40,
+      "results": [
+        { "type": "item", "name": "kr-biter-research-data", "amount": 5 }
+      ],
+      "ingredients": [
+        { "type": "item", "name": "kr-biomass", "amount": 10 },
+        { "type": "item", "name": "kr-coke", "amount": 5 },
+        { "type": "item", "name": "steel-plate", "amount": 5 }
+      ]
+    },
+    {
+      "id": "kr-blank-tech-card",
+      "name": "kr-blank-tech-card",
+      "type": "recipe",
+      "energy_required": 2,
+      "results": [
+        { "type": "item", "name": "kr-blank-tech-card", "amount": 5 }
+      ],
+      "ingredients": [
+        { "type": "item", "name": "iron-plate", "amount": 2 },
+        { "type": "item", "name": "copper-cable", "amount": 2 }
+      ]
+    },
+    {
+      "id": "kr-electronic-components",
+      "name": "kr-electronic-components",
+      "type": "recipe",
+      "energy_required": 4,
+      "results": [
+        { "type": "item", "name": "kr-electronic-components", "amount": 4 }
+      ],
+      "ingredients": [
+        { "type": "item", "name": "kr-silicon", "amount": 2 },
+        { "type": "item", "name": "plastic-bar", "amount": 2 },
+        { "type": "item", "name": "kr-glass", "amount": 2 }
+      ]
+    },
+    {
+      "id": "kr-empty-dt-fuel-cell",
+      "name": "kr-empty-dt-fuel-cell",
+      "type": "recipe",
+      "energy_required": 10,
+      "results": [
+        { "type": "item", "name": "kr-empty-dt-fuel-cell", "amount": 1 }
+      ],
+      "ingredients": [
+        { "type": "item", "name": "low-density-structure", "amount": 2 },
+        { "type": "item", "name": "kr-rare-metals", "amount": 1 }
+      ]
+    },
+    {
+      "id": "kr-energy-control-unit",
+      "name": "kr-energy-control-unit",
+      "type": "recipe",
+      "energy_required": 10,
+      "results": [
+        { "type": "item", "name": "kr-energy-control-unit", "amount": 1 }
+      ],
+      "ingredients": [
+        { "type": "item", "name": "low-density-structure", "amount": 6 },
+        { "type": "item", "name": "kr-imersite-crystal", "amount": 3 },
+        { "type": "item", "name": "kr-electronic-components", "amount": 9 },
+        { "type": "item", "name": "kr-lithium-sulfur-battery", "amount": 3 }
+      ]
+    },
+    {
+      "id": "kr-explosive-railgun-shell",
+      "name": "kr-explosive-railgun-shell",
+      "type": "recipe",
+      "energy_required": 10,
+      "results": [
+        { "type": "item", "name": "kr-explosive-railgun-shell", "amount": 1 }
+      ],
+      "ingredients": [
+        { "type": "item", "name": "kr-basic-railgun-shell", "amount": 1 },
+        { "type": "item", "name": "explosives", "amount": 3 }
+      ]
+    },
+    {
+      "id": "kr-explosive-turret-rocket",
+      "name": "kr-explosive-turret-rocket",
+      "type": "recipe",
+      "energy_required": 20,
+      "results": [
+        { "type": "item", "name": "kr-explosive-turret-rocket", "amount": 1 }
+      ],
+      "ingredients": [
+        { "type": "item", "name": "rocket-fuel", "amount": 10 },
+        { "type": "item", "name": "processing-unit", "amount": 1 },
+        { "type": "item", "name": "steel-plate", "amount": 5 },
+        { "type": "item", "name": "explosives", "amount": 5 }
+      ]
+    },
+    {
+      "id": "kr-first-aid-kit",
+      "name": "kr-first-aid-kit",
+      "type": "recipe",
+      "energy_required": 5,
+      "results": [
+        { "type": "item", "name": "kr-first-aid-kit", "amount": 1 }
+      ],
+      "ingredients": [
+        { "type": "item", "name": "kr-biomass", "amount": 1 },
+        { "type": "item", "name": "wood", "amount": 1 },
+        { "type": "item", "name": "iron-plate", "amount": 1 }
+      ]
+    },
+    {
+      "id": "kr-gps-satellite",
+      "name": "kr-gps-satellite",
+      "type": "recipe",
+      "energy_required": 5,
+      "results": [
+        { "type": "item", "name": "kr-gps-satellite", "amount": 1 }
+      ],
+      "ingredients": [
+        { "type": "item", "name": "satellite", "amount": 1 },
+        { "type": "item", "name": "processing-unit", "amount": 1 },
+        { "type": "item", "name": "kr-ai-core", "amount": 4 }
+      ]
+    },
+    {
+      "id": "kr-heavy-rocket",
+      "name": "kr-heavy-rocket",
+      "type": "recipe",
+      "energy_required": 10,
+      "results": [
+        { "type": "item", "name": "kr-heavy-rocket", "amount": 1 }
+      ],
+      "ingredients": [
+        { "type": "item", "name": "explosives", "amount": 10 },
+        { "type": "item", "name": "steel-plate", "amount": 5 },
+        { "type": "item", "name": "rocket-fuel", "amount": 10 },
+        { "type": "item", "name": "plastic-bar", "amount": 5 },
+        { "type": "item", "name": "processing-unit", "amount": 1 }
+      ]
+    },
+    {
+      "id": "kr-heavy-rocket-launcher",
+      "name": "kr-heavy-rocket-launcher",
+      "type": "recipe",
+      "energy_required": 60,
+      "results": [
+        { "type": "item", "name": "kr-heavy-rocket-launcher", "amount": 1 }
+      ],
+      "ingredients": [
+        { "type": "item", "name": "steel-plate", "amount": 5 },
+        { "type": "item", "name": "low-density-structure", "amount": 5 },
+        { "type": "item", "name": "kr-steel-gear-wheel", "amount": 1 },
+        { "type": "item", "name": "processing-unit", "amount": 1 }
+      ]
+    },
+    {
+      "id": "kr-imersite-rounds-magazine",
+      "name": "kr-imersite-rounds-magazine",
+      "type": "recipe",
+      "energy_required": 20,
+      "results": [
+        { "type": "item", "name": "kr-imersite-rounds-magazine", "amount": 1 }
+      ],
+      "ingredients": [
+        { "type": "item", "name": "kr-imersite-crystal", "amount": 2 },
+        { "type": "item", "name": "piercing-rounds-magazine", "amount": 1 }
+      ]
+    },
+    {
+      "id": "kr-imersium-beam",
+      "name": "kr-imersium-beam",
+      "type": "recipe",
+      "energy_required": 3,
+      "results": [
+        { "type": "item", "name": "kr-imersium-beam", "amount": 1 }
+      ],
+      "ingredients": [
+        { "type": "item", "name": "kr-imersium-plate", "amount": 2 }
+      ]
+    },
+    {
+      "id": "kr-imersium-gear-wheel",
+      "name": "kr-imersium-gear-wheel",
+      "type": "recipe",
+      "energy_required": 0.5,
+      "results": [
+        { "type": "item", "name": "kr-imersium-gear-wheel", "amount": 1 }
+      ],
+      "ingredients": [
+        { "type": "item", "name": "kr-imersium-plate", "amount": 1 }
+      ]
+    },
+    {
+      "id": "kr-impulse-rifle",
+      "name": "kr-impulse-rifle",
+      "type": "recipe",
+      "energy_required": 30,
+      "results": [
+        { "type": "item", "name": "kr-impulse-rifle", "amount": 1 }
+      ],
+      "ingredients": [
+        { "type": "item", "name": "steel-plate", "amount": 5 },
+        { "type": "item", "name": "low-density-structure", "amount": 5 },
+        { "type": "item", "name": "kr-imersite-crystal", "amount": 1 },
+        { "type": "item", "name": "kr-steel-gear-wheel", "amount": 1 }
+      ]
+    },
+    {
+      "id": "kr-impulse-rifle-ammo",
+      "name": "kr-impulse-rifle-ammo",
+      "type": "recipe",
+      "energy_required": 5,
+      "results": [
+        { "type": "item", "name": "kr-impulse-rifle-ammo", "amount": 1 }
+      ],
+      "ingredients": [
+        { "type": "item", "name": "kr-lithium-sulfur-battery", "amount": 1 },
+        { "type": "item", "name": "kr-imersite-crystal", "amount": 3 },
+        { "type": "item", "name": "plastic-bar", "amount": 1 }
+      ]
+    },
+    {
+      "id": "kr-inserter-parts",
+      "name": "kr-inserter-parts",
+      "type": "recipe",
+      "energy_required": 1,
+      "results": [
+        { "type": "item", "name": "kr-inserter-parts", "amount": 1 }
+      ],
+      "ingredients": [
+        { "type": "item", "name": "iron-stick", "amount": 2 },
+        { "type": "item", "name": "iron-gear-wheel", "amount": 2 }
+      ]
+    },
+    {
+      "id": "kr-iron-beam",
+      "name": "kr-iron-beam",
+      "type": "recipe",
+      "energy_required": 2,
+      "results": [
+        { "type": "item", "name": "kr-iron-beam", "amount": 1 }
+      ],
+      "ingredients": [
+        { "type": "item", "name": "iron-plate", "amount": 2 }
+      ]
+    },
+    {
+      "id": "kr-matter-stabilizer",
+      "name": "kr-matter-stabilizer",
+      "type": "recipe",
+      "energy_required": 5,
+      "results": [
+        { "type": "item", "name": "kr-matter-stabilizer", "amount": 1 }
+      ],
+      "ingredients": [
+        { "type": "item", "name": "kr-imersium-plate", "amount": 6 },
+        { "type": "item", "name": "kr-energy-control-unit", "amount": 3 },
+        { "type": "item", "name": "processing-unit", "amount": 3 }
+      ]
+    },
+    {
+      "id": "kr-nuclear-artillery-shell",
+      "name": "kr-nuclear-artillery-shell",
+      "type": "recipe",
+      "energy_required": 15,
+      "results": [
+        { "type": "item", "name": "kr-nuclear-artillery-shell", "amount": 1 }
+      ],
+      "ingredients": [
+        { "type": "item", "name": "processing-unit", "amount": 10 },
+        { "type": "item", "name": "steel-plate", "amount": 10 },
+        { "type": "item", "name": "artillery-shell", "amount": 1 },
+        { "type": "item", "name": "uranium-235", "amount": 10 }
+      ]
+    },
+    {
+      "id": "kr-nuclear-turret-rocket",
+      "name": "kr-nuclear-turret-rocket",
+      "type": "recipe",
+      "energy_required": 60,
+      "results": [
+        { "type": "item", "name": "kr-nuclear-turret-rocket", "amount": 1 }
+      ],
+      "ingredients": [
+        { "type": "item", "name": "kr-explosive-turret-rocket", "amount": 1 },
+        { "type": "item", "name": "steel-plate", "amount": 5 },
+        { "type": "item", "name": "uranium-235", "amount": 10 },
+        { "type": "item", "name": "processing-unit", "amount": 1 }
+      ]
+    },
+    {
+      "id": "kr-steel-beam",
+      "name": "kr-steel-beam",
+      "type": "recipe",
+      "energy_required": 2,
+      "results": [
+        { "type": "item", "name": "kr-steel-beam", "amount": 1 }
+      ],
+      "ingredients": [
+        { "type": "item", "name": "steel-plate", "amount": 2 }
+      ]
+    },
+    {
+      "id": "kr-steel-gear-wheel",
+      "name": "kr-steel-gear-wheel",
+      "type": "recipe",
+      "energy_required": 0.5,
+      "results": [
+        { "type": "item", "name": "kr-steel-gear-wheel", "amount": 1 }
+      ],
+      "ingredients": [
+        { "type": "item", "name": "steel-plate", "amount": 1 }
+      ]
+    },
+    {
+      "id": "kr-imersite-powder",
+      "name": "kr-imersite-powder",
+      "type": "recipe",
+      "energy_required": 3,
+      "results": [
+        { "type": "item", "name": "kr-imersite-powder", "amount": 3 },
+        { "type": "item", "name": "kr-sand", "amount": 3 }
+      ],
+      "ingredients": [
+        { "type": "item", "name": "kr-imersite", "amount": 3 }
+      ]
+    },
+    {
+      "id": "kr-sand",
+      "name": "kr-sand",
+      "type": "recipe",
+      "energy_required": 1,
+      "results": [
+        { "type": "item", "name": "kr-sand", "amount_min": 7, "amount_max": 8 }
+      ],
+      "ingredients": [
+        { "type": "item", "name": "stone", "amount": 3 }
+      ]
+    },
+    {
+      "id": "kr-heavy-water",
+      "name": "kr-heavy-water",
+      "type": "recipe",
+      "energy_required": 120,
+      "results": [
+        { "type": "fluid", "name": "kr-heavy-water", "amount": 20 }
+      ],
+      "ingredients": [
+        { "type": "fluid", "name": "water", "amount": 500 }
+      ]
+    },
+    {
+      "id": "kr-water-electrolysis",
+      "name": "kr-water-electrolysis",
+      "type": "recipe",
+      "energy_required": 3,
+      "results": [
+        { "type": "fluid", "name": "kr-chlorine", "amount": 20 },
+        { "type": "fluid", "name": "kr-hydrogen", "amount": 30 }
+      ],
+      "ingredients": [
+        { "type": "item", "name": "kr-sand", "amount": 10 },
+        { "type": "fluid", "name": "water", "amount": 40 }
+      ]
+    },
+    {
+      "id": "kr-water-separation",
+      "name": "kr-water-separation",
+      "type": "recipe",
+      "energy_required": 3,
+      "results": [
+        { "type": "fluid", "name": "kr-oxygen", "amount": 20 },
+        { "type": "fluid", "name": "kr-hydrogen", "amount": 30 }
+      ],
+      "ingredients": [
+        { "type": "fluid", "name": "water", "amount": 50 }
+      ]
+    },
+    {
+      "id": "kr-lithium",
+      "name": "kr-lithium",
+      "type": "recipe",
+      "energy_required": 25,
+      "results": [
+        { "type": "fluid", "name": "kr-chlorine", "amount": 10 },
+        { "type": "item", "name": "kr-lithium", "amount": 5 }
+      ],
+      "ingredients": [
+        { "type": "item", "name": "kr-lithium-chloride", "amount": 5 },
+        { "type": "fluid", "name": "water", "amount": 50 }
+      ]
+    },
+    {
+      "id": "kr-coal-filtration",
+      "name": "kr-coal-filtration",
+      "type": "recipe",
+      "energy_required": 2,
+      "results": [
+        { "type": "item", "name": "coal", "amount": 8 },
+        { "type": "fluid", "name": "water", "amount": 40 }
+      ],
+      "ingredients": [
+        { "type": "fluid", "name": "heavy-oil", "amount": 80 }
+      ]
+    },
+    {
+      "id": "kr-filter-iron-ore-from-dirty-water",
+      "name": "kr-filter-iron-ore-from-dirty-water",
+      "type": "recipe",
+      "energy_required": 2,
+      "results": [
+        { "type": "fluid", "name": "water", "amount": 100 },
+        { "type": "item", "name": "stone", "probability": 0.3, "amount": 1 },
+        { "type": "item", "name": "iron-ore", "probability": 0.1, "amount": 1 }
+      ],
+      "ingredients": [
+        { "type": "fluid", "name": "kr-dirty-water", "amount": 100 }
+      ]
+    },
+    {
+      "id": "kr-filter-copper-ore-from-dirty-water",
+      "name": "kr-filter-copper-ore-from-dirty-water",
+      "type": "recipe",
+      "energy_required": 2,
+      "results": [
+        { "type": "fluid", "name": "water", "amount": 100 },
+        { "type": "item", "name": "stone", "probability": 0.3, "amount": 1 },
+        { "type": "item", "name": "copper-ore", "probability": 0.1, "amount": 1 }
+      ],
+      "ingredients": [
+        { "type": "fluid", "name": "kr-dirty-water", "amount": 100 }
+      ]
+    },
+    {
+      "id": "kr-filter-rare-metal-ore-from-dirty-water",
+      "name": "kr-filter-rare-metal-ore-from-dirty-water",
+      "type": "recipe",
+      "energy_required": 2,
+      "results": [
+        { "type": "fluid", "name": "water", "amount": 100 },
+        { "type": "item", "name": "stone", "probability": 0.3, "amount": 1 },
+        { "type": "item", "name": "kr-rare-metal-ore", "probability": 0.05, "amount": 1 }
+      ],
+      "ingredients": [
+        { "type": "fluid", "name": "kr-dirty-water", "amount": 100 }
+      ]
+    },
+    {
+      "id": "kr-quartz",
+      "name": "kr-quartz",
+      "type": "recipe",
+      "energy_required": 2.1,
+      "results": [
+        { "type": "item", "name": "kr-quartz", "amount": 6 }
+      ],
+      "ingredients": [
+        { "type": "item", "name": "kr-sand", "amount": 10 },
+        { "type": "fluid", "name": "water", "amount": 10 }
+      ]
+    },
+    {
+      "id": "kr-advanced-fuel",
+      "name": "kr-advanced-fuel",
+      "type": "recipe",
+      "energy_required": 10,
+      "results": [
+        { "type": "item", "name": "kr-advanced-fuel", "amount": 10 }
+      ],
+      "ingredients": [
+        { "type": "item", "name": "kr-fuel", "amount": 10 },
+        { "type": "item", "name": "kr-imersite-powder", "amount": 6 }
+      ]
+    },
+    {
+      "id": "kr-biofuel",
+      "name": "kr-biofuel",
+      "type": "recipe",
+      "energy_required": 10,
+      "results": [
+        { "type": "item", "name": "kr-biofuel", "amount": 10 }
+      ],
+      "ingredients": [
+        { "type": "item", "name": "kr-fuel", "amount": 6 },
+        { "type": "fluid", "name": "kr-biomethanol", "amount": 50 }
+      ]
+    },
+    {
+      "id": "kr-biomethanol",
+      "name": "kr-biomethanol",
+      "type": "recipe",
+      "energy_required": 20,
+      "results": [
+        { "type": "fluid", "name": "kr-biomethanol", "amount": 120 }
+      ],
+      "ingredients": [
+        { "type": "item", "name": "wood", "amount": 5 },
+        { "type": "fluid", "name": "kr-oxygen", "amount": 60 },
+        { "type": "fluid", "name": "steam", "amount": 120 }
+      ]
+    },
+    {
+      "id": "kr-fuel-from-light-oil",
+      "name": "kr-fuel-from-light-oil",
+      "type": "recipe",
+      "energy_required": 10,
+      "results": [
+        { "type": "item", "name": "kr-fuel", "amount": 10 }
+      ],
+      "ingredients": [
+        { "type": "fluid", "name": "light-oil", "amount": 60 }
+      ]
+    },
+    {
+      "id": "kr-fuel-from-solid-fuel",
+      "name": "kr-fuel-from-solid-fuel",
+      "type": "recipe",
+      "energy_required": 10,
+      "results": [
+        { "type": "item", "name": "kr-fuel", "amount": 10 }
+      ],
+      "ingredients": [
+        { "type": "item", "name": "solid-fuel", "amount": 6 },
+        { "type": "fluid", "name": "kr-hydrogen", "amount": 50 }
+      ]
+    },
+    {
+      "id": "kr-rocket-fuel-with-ammonia",
+      "name": "kr-rocket-fuel-with-ammonia",
+      "type": "recipe",
+      "energy_required": 16,
+      "results": [
+        { "type": "item", "name": "rocket-fuel", "amount": 1 }
+      ],
+      "ingredients": [
+        { "type": "item", "name": "iron-plate", "amount": 1 },
+        { "type": "fluid", "name": "kr-ammonia", "amount": 50 },
+        { "type": "fluid", "name": "kr-oxygen", "amount": 50 }
+      ]
+    },
+    {
+      "id": "kr-rocket-fuel-with-hydrogen-chloride",
+      "name": "kr-rocket-fuel-with-hydrogen-chloride",
+      "type": "recipe",
+      "energy_required": 16,
+      "results": [
+        { "type": "item", "name": "rocket-fuel", "amount": 1 }
+      ],
+      "ingredients": [
+        { "type": "item", "name": "iron-plate", "amount": 1 },
+        { "type": "fluid", "name": "kr-hydrogen-chloride", "amount": 50 },
+        { "type": "fluid", "name": "kr-oxygen", "amount": 50 }
+      ]
+    },
+    {
+      "id": "wood",
+      "name": "wood",
+      "type": "recipe",
+      "energy_required": 60,
+      "results": [
+        { "type": "item", "name": "wood", "amount": 40 }
+      ],
+      "ingredients": [
+        { "type": "fluid", "name": "water", "amount": 200 }
+      ]
+    },
+    {
+      "id": "kr-wood-with-fertilizer",
+      "name": "kr-wood-with-fertilizer",
+      "type": "recipe",
+      "energy_required": 60,
+      "results": [
+        { "type": "item", "name": "wood", "amount": 80 }
+      ],
+      "ingredients": [
+        { "type": "fluid", "name": "water", "amount": 200 },
+        { "type": "item", "name": "kr-fertilizer", "amount": 1 }
+      ]
+    },
+    {
+      "id": "kr-charged-antimatter-fuel-cell",
+      "name": "kr-charged-antimatter-fuel-cell",
+      "type": "recipe",
+      "energy_required": 5,
+      "results": [
+        { "type": "item", "name": "kr-charged-antimatter-fuel-cell", "amount": 1 }
+      ],
+      "ingredients": [
+        { "type": "fluid", "name": "kr-matter", "amount": 1000 },
+        { "type": "item", "name": "kr-empty-antimatter-fuel-cell", "amount": 1 }
+      ]
+    },
+    {
+      "id": "kr-fusion",
+      "name": "kr-fusion",
+      "type": "recipe",
+      "energy_required": 5,
+      "results": [
+        { "type": "fluid", "name": "steam", "amount": 10000, "temperature": 975 },
+        { "type": "item", "name": "kr-empty-dt-fuel-cell", "amount": 1 }
+      ],
+      "ingredients": [
+        { "type": "fluid", "name": "water", "amount": 1000 },
+        { "type": "item", "name": "kr-dt-fuel-cell", "amount": 1 }
+      ]
+    },
+    {
+      "id": "kr-coke-liquefaction",
+      "name": "kr-coke-liquefaction",
+      "type": "recipe",
+      "energy_required": 5,
+      "results": [
+        { "type": "fluid", "name": "heavy-oil", "amount": 20 },
+        { "type": "fluid", "name": "light-oil", "amount": 90 },
+        { "type": "fluid", "name": "petroleum-gas", "amount": 10 }
+      ],
+      "ingredients": [
+        { "type": "item", "name": "kr-coke", "amount": 10 },
+        { "type": "fluid", "name": "light-oil", "amount": 25 },
+        { "type": "fluid", "name": "steam", "amount": 50 }
+      ]
+    },
+    {
+      "id": "kr-coke",
+      "name": "kr-coke",
+      "type": "recipe",
+      "energy_required": 16,
+      "results": [
+        { "type": "item", "name": "kr-coke", "amount": 6 }
+      ],
+      "ingredients": [
+        { "type": "item", "name": "coal", "amount": 6 },
+        { "type": "item", "name": "wood", "amount": 6 }
+      ]
+    },
+    {
+      "id": "kr-copper-plate-from-enriched-copper",
+      "name": "kr-copper-plate-from-enriched-copper",
+      "type": "recipe",
+      "energy_required": 16,
+      "results": [
+        { "type": "item", "name": "copper-plate", "amount": 5 }
+      ],
+      "ingredients": [
+        { "type": "item", "name": "kr-enriched-copper", "amount": 5 }
+      ]
+    },
+    {
+      "id": "kr-iron-plate-from-enriched-iron",
+      "name": "kr-iron-plate-from-enriched-iron",
+      "type": "recipe",
+      "energy_required": 16,
+      "results": [
+        { "type": "item", "name": "iron-plate", "amount": 5 }
+      ],
+      "ingredients": [
+        { "type": "item", "name": "kr-enriched-iron", "amount": 5 }
+      ]
+    },
+    {
+      "id": "kr-glass",
+      "name": "kr-glass",
+      "type": "recipe",
+      "energy_required": 16,
+      "results": [
+        { "type": "item", "name": "kr-glass", "amount": 8 }
+      ],
+      "ingredients": [
+        { "type": "item", "name": "kr-sand", "amount": 16 }
+      ]
+    },
+    {
+      "id": "kr-imersium-plate",
+      "name": "kr-imersium-plate",
+      "type": "recipe",
+      "energy_required": 32,
+      "results": [
+        { "type": "item", "name": "kr-imersium-plate", "amount": 3 }
+      ],
+      "ingredients": [
+        { "type": "item", "name": "kr-imersite-powder", "amount": 9 },
+        { "type": "item", "name": "kr-rare-metals", "amount": 6 }
+      ]
+    },
+    {
+      "id": "kr-rare-metals",
+      "name": "kr-rare-metals",
+      "type": "recipe",
+      "energy_required": 16,
+      "results": [
+        { "type": "item", "name": "kr-rare-metals", "amount": 5 }
+      ],
+      "ingredients": [
+        { "type": "item", "name": "kr-rare-metal-ore", "amount": 10 }
+      ]
+    },
+    {
+      "id": "kr-rare-metals-from-enriched-rare-metals",
+      "name": "kr-rare-metals-from-enriched-rare-metals",
+      "type": "recipe",
+      "energy_required": 16,
+      "results": [
+        { "type": "item", "name": "kr-rare-metals", "amount": 5 }
+      ],
+      "ingredients": [
+        { "type": "item", "name": "kr-enriched-rare-metals", "amount": 5 }
+      ]
+    },
+    {
+      "id": "kr-silicon",
+      "name": "kr-silicon",
+      "type": "recipe",
+      "energy_required": 16,
+      "results": [
+        { "type": "item", "name": "kr-silicon", "amount": 9 }
+      ],
+      "ingredients": [
+        { "type": "item", "name": "kr-quartz", "amount": 18 }
+      ]
+    },
+    {
+      "id": "kr-copper-cable-from-copper-ore",
+      "name": "kr-copper-cable-from-copper-ore",
+      "type": "recipe",
+      "energy_required": 1,
+      "results": [
+        { "type": "item", "name": "copper-cable", "amount": 2 }
+      ],
+      "ingredients": [
+        { "type": "item", "name": "copper-ore", "amount": 2 }
+      ]
+    },
+    {
+      "id": "kr-copper-cable-from-enriched-copper",
+      "name": "kr-copper-cable-from-enriched-copper",
+      "type": "recipe",
+      "energy_required": 1,
+      "results": [
+        { "type": "item", "name": "copper-cable", "amount": 2 }
+      ],
+      "ingredients": [
+        { "type": "item", "name": "kr-enriched-copper", "amount": 1 }
+      ]
+    },
+    {
+      "id": "kr-easy-electronic-components",
+      "name": "kr-easy-electronic-components",
+      "type": "recipe",
+      "energy_required": 12,
+      "results": [
+        { "type": "item", "name": "kr-electronic-components", "amount": 6 }
+      ],
+      "ingredients": [
+        { "type": "item", "name": "plastic-bar", "amount": 5 },
+        { "type": "item", "name": "stone", "amount": 12 },
+        { "type": "fluid", "name": "water", "amount": 20 }
+      ]
+    },
+    {
+      "id": "kr-easy-imersium-beam",
+      "name": "kr-easy-imersium-beam",
+      "type": "recipe",
+      "energy_required": 12,
+      "results": [
+        { "type": "item", "name": "kr-imersium-beam", "amount": 1 }
+      ],
+      "ingredients": [
+        { "type": "item", "name": "kr-imersite-powder", "amount": 6 },
+        { "type": "item", "name": "kr-rare-metals", "amount": 4 }
+      ]
+    },
+    {
+      "id": "kr-easy-imersium-gear-wheel",
+      "name": "kr-easy-imersium-gear-wheel",
+      "type": "recipe",
+      "energy_required": 2,
+      "results": [
+        { "type": "item", "name": "kr-imersium-gear-wheel", "amount": 1 }
+      ],
+      "ingredients": [
+        { "type": "item", "name": "kr-imersite-powder", "amount": 3 },
+        { "type": "item", "name": "kr-rare-metals", "amount": 2 }
+      ]
+    },
+    {
+      "id": "kr-iron-beam-from-iron-ore",
+      "name": "kr-iron-beam-from-iron-ore",
+      "type": "recipe",
+      "energy_required": 4,
+      "results": [
+        { "type": "item", "name": "kr-iron-beam", "amount": 1 }
+      ],
+      "ingredients": [
+        { "type": "item", "name": "iron-ore", "amount": 4 }
+      ]
+    },
+    {
+      "id": "kr-iron-beam-from-enriched-iron",
+      "name": "kr-iron-beam-from-enriched-iron",
+      "type": "recipe",
+      "energy_required": 4,
+      "results": [
+        { "type": "item", "name": "kr-iron-beam", "amount": 1 }
+      ],
+      "ingredients": [
+        { "type": "item", "name": "kr-enriched-iron", "amount": 2 }
+      ]
+    },
+    {
+      "id": "kr-iron-gear-wheel-from-iron-ore",
+      "name": "kr-iron-gear-wheel-from-iron-ore",
+      "type": "recipe",
+      "energy_required": 1,
+      "results": [
+        { "type": "item", "name": "iron-gear-wheel", "amount": 1 }
+      ],
+      "ingredients": [
+        { "type": "item", "name": "iron-ore", "amount": 2 }
+      ]
+    },
+    {
+      "id": "kr-iron-gear-wheel-from-enriched-iron",
+      "name": "kr-iron-gear-wheel-from-enriched-iron",
+      "type": "recipe",
+      "energy_required": 1,
+      "results": [
+        { "type": "item", "name": "iron-gear-wheel", "amount": 1 }
+      ],
+      "ingredients": [
+        { "type": "item", "name": "kr-enriched-iron", "amount": 1 }
+      ]
+    },
+    {
+      "id": "kr-iron-stick-from-iron-ore",
+      "name": "kr-iron-stick-from-iron-ore",
+      "type": "recipe",
+      "energy_required": 1,
+      "results": [
+        { "type": "item", "name": "iron-stick", "amount": 2 }
+      ],
+      "ingredients": [
+        { "type": "item", "name": "iron-ore", "amount": 2 }
+      ]
+    },
+    {
+      "id": "kr-iron-stick-from-enriched-iron",
+      "name": "kr-iron-stick-from-enriched-iron",
+      "type": "recipe",
+      "energy_required": 1,
+      "results": [
+        { "type": "item", "name": "iron-stick", "amount": 2 }
+      ],
+      "ingredients": [
+        { "type": "item", "name": "kr-enriched-iron", "amount": 1 }
+      ]
+    },
+    {
+      "id": "kr-easy-steel-beam",
+      "name": "kr-easy-steel-beam",
+      "type": "recipe",
+      "energy_required": 20,
+      "results": [
+        { "type": "item", "name": "kr-steel-beam", "amount": 5 }
+      ],
+      "ingredients": [
+        { "type": "item", "name": "iron-plate", "amount": 20 },
+        { "type": "item", "name": "kr-coke", "amount": 4 }
+      ]
+    },
+    {
+      "id": "kr-easy-steel-gear-wheel",
+      "name": "kr-easy-steel-gear-wheel",
+      "type": "recipe",
+      "energy_required": 5,
+      "results": [
+        { "type": "item", "name": "kr-steel-gear-wheel", "amount": 5 }
+      ],
+      "ingredients": [
+        { "type": "item", "name": "iron-plate", "amount": 10 },
+        { "type": "item", "name": "kr-coke", "amount": 1 }
+      ]
+    },
+    {
+      "id": "kr-charged-matter-stabilizer",
+      "name": "kr-charged-matter-stabilizer",
+      "type": "recipe",
+      "energy_required": 2,
+      "results": [
+        { "type": "item", "name": "kr-charged-matter-stabilizer", "amount": 1 }
+      ],
+      "ingredients": [
+        { "type": "item", "name": "kr-matter-stabilizer", "amount": 1 }
+      ]
+    },
+    {
+      "id": "kr-advanced-tech-card",
+      "name": "kr-advanced-tech-card",
+      "type": "recipe",
+      "energy_required": 20,
+      "results": [
+        { "type": "item", "name": "kr-advanced-tech-card", "amount": 5 }
+      ],
+      "ingredients": [
+        { "type": "item", "name": "kr-blank-tech-card", "amount": 15 },
+        { "type": "item", "name": "kr-imersium-gear-wheel", "amount": 20 },
+        { "type": "item", "name": "kr-lithium-sulfur-battery", "amount": 10 },
+        { "type": "item", "name": "electric-engine-unit", "amount": 5 }
+      ]
+    },
+    {
+      "id": "kr-matter-research-data",
+      "name": "kr-matter-research-data",
+      "type": "recipe",
+      "energy_required": 20,
+      "results": [
+        { "type": "item", "name": "kr-matter-research-data", "amount": 5 }
+      ],
+      "ingredients": [
+        { "type": "item", "name": "kr-imersite-crystal", "amount": 5 },
+        { "type": "item", "name": "kr-rare-metals", "amount": 5 },
+        { "type": "item", "name": "kr-lithium", "amount": 5 },
+        { "type": "item", "name": "plastic-bar", "amount": 5 }
+      ]
+    },
+    {
+      "id": "kr-matter-tech-card",
+      "name": "kr-matter-tech-card",
+      "type": "recipe",
+      "energy_required": 20,
+      "results": [
+        { "type": "item", "name": "kr-matter-tech-card", "amount": 5 }
+      ],
+      "ingredients": [
+        { "type": "item", "name": "kr-blank-tech-card", "amount": 15 },
+        { "type": "item", "name": "kr-matter-research-data", "amount": 5 },
+        { "type": "item", "name": "processing-unit", "amount": 5 }
+      ]
+    },
+    {
+      "id": "kr-singularity-tech-card",
+      "name": "kr-singularity-tech-card",
+      "type": "recipe",
+      "energy_required": 20,
+      "results": [
+        { "type": "item", "name": "kr-singularity-tech-card", "amount": 5 }
+      ],
+      "ingredients": [
+        { "type": "item", "name": "kr-blank-tech-card", "amount": 15 },
+        { "type": "item", "name": "kr-charged-matter-stabilizer", "amount": 5 },
+        { "type": "item", "name": "kr-ai-core", "amount": 5 }
+      ]
+    },
+    {
+      "id": "space-science-pack",
+      "name": "space-science-pack",
+      "type": "recipe",
+      "energy_required": 20,
+      "results": [
+        { "type": "item", "name": "space-science-pack", "amount": 5 }
+      ],
+      "ingredients": [
+        { "type": "item", "name": "kr-blank-tech-card", "amount": 10 },
+        { "type": "item", "name": "kr-space-research-data", "amount": 5 }
+      ]
     }
   ]
 }

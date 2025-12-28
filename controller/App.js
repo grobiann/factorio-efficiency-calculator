@@ -6,8 +6,15 @@ import { Locale } from "../model/Locale.js";
 
 export async function startApp() {
   const data = await fetch("data/recipes.json").then(r => r.json());
-  const items = await fetch("data/items.json").then(r => r.json());
-  const locale = new Locale(items, "ko");
+
+  async function loadLocale(lang) {
+    const items = await fetch(`locale/${lang}/items.json`).then(r => r.json()).catch(() => ({}));
+    const recipes = await fetch(`locale/${lang}/recipes.json`).then(r => r.json()).catch(() => ({}));
+    return { items, recipes };
+  }
+
+  const initialLocale = await loadLocale("ko");
+  const locale = new Locale(initialLocale.items, initialLocale.recipes, "ko");
   // Build a map productId => [Recipe]. Support recipes that list multiple outputs.
   const recipesByProduct = {};
   for (const [cat, recs] of Object.entries(data)) {
@@ -40,8 +47,11 @@ export async function startApp() {
   // Initialize language select
   if (langSelect) {
     langSelect.value = locale.lang;
-    langSelect.onchange = () => {
+    langSelect.onchange = async () => {
       locale.lang = langSelect.value;
+      const next = await loadLocale(locale.lang);
+      locale.setItemNames(next.items);
+      locale.setRecipeNames(next.recipes);
       // Refresh product labels and re-render results in the new language
       buildProductOptions();
       updateTitle();
@@ -163,6 +173,7 @@ export async function startApp() {
   // Auto-update as user types (debounced)
   const targetInput = document.getElementById("targetRate");
   if (targetInput) {
+    performCalculation(targetInput.value);
     targetInput.oninput = () => {
       if (inputTimeout) clearTimeout(inputTimeout);
       inputTimeout = setTimeout(() => {

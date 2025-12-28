@@ -1,102 +1,452 @@
-{
-  "RocketPart": {
-    "name": {
-      "ko": "로켓 부품",
-      "en": "Rocket Part"
+﻿[
+    {
+        "type":  "item",
+        "name":  "rocket-part",
+        "stack_size":  100
     },
-    "type": "intermediate"
-  },
-
-  "LowDensityStructure": {
-    "name": {
-      "ko": "저밀도 구조물",
-      "en": "Low Density Structure"
+    {
+        "type":  "item",
+        "name":  "low-density-structure",
+        "stack_size":  200
     },
-    "type": "intermediate"
-  },
-
-  "RocketControlUnit": {
-    "name": {
-      "ko": "로켓 제어 장치",
-      "en": "Rocket Control Unit"
+    {
+        "type":  "item",
+        "name":  "rocket-control-unit",
+        "stack_size":  100
     },
-    "type": "intermediate"
-  },
-
-  "RocketFuel": {
-    "name": {
-      "ko": "로켓 연료",
-      "en": "Rocket Fuel"
+    {
+        "type":  "item",
+        "name":  "rocket-fuel",
+        "stack_size":  200
     },
-    "type": "fluid"
-  },
-
-  "BerylliumPlate": {
-    "name": {
-      "ko": "베릴륨 판",
-      "en": "Beryllium Plate"
+    {
+        "type":  "item",
+        "name":  "beryllium-plate",
+        "stack_size":  100
     },
-    "type": "resource",
-    "rarity": "rare"
-  }
-,
-  "IronOre": {
-    "name": { "ko": "철 광석", "en": "Iron Ore" },
-    "type": "resource"
-  },
-
-  "IronPlate": {
-    "name": { "ko": "철 판", "en": "Iron Plate" },
-    "type": "intermediate"
-  },
-
-  "CopperOre": {
-    "name": { "ko": "구리 광석", "en": "Copper Ore" },
-    "type": "resource"
-  },
-
-  "CopperPlate": {
-    "name": { "ko": "구리 판", "en": "Copper Plate" },
-    "type": "intermediate"
-  },
-
-  "IronGearWheel": {
-    "name": { "ko": "톱니바퀴", "en": "Iron Gear Wheel" },
-    "type": "intermediate"
-  },
-
-  "CopperCable": {
-    "name": { "ko": "구리 전선", "en": "Copper Cable" },
-    "type": "intermediate"
-  },
-
-  "ElectronicCircuit": {
-    "name": { "ko": "기초 회로", "en": "Electronic Circuit" },
-    "type": "intermediate"
-  },
-
-  "AdvancedCircuit": {
-    "name": { "ko": "고급 회로", "en": "Advanced Circuit" },
-    "type": "intermediate"
-  },
-
-  "SteelPlate": {
-    "name": { "ko": "강철 판", "en": "Steel Plate" },
-    "type": "intermediate"
-  },
-
-  "Slag": {
-    "name": { "ko": "슬래그", "en": "Slag" },
-    "type": "resource"
-  },
-
-  "Inserter": {
-    "name": { "ko": "인서터", "en": "Inserter" },
-    "type": "intermediate"
-  },
-
-  "TransportBelt": {
-    "name": { "ko": "컨베이어 벨트", "en": "Transport Belt" },
-    "type": "intermediate"
-  }
-}
+    {
+        "type":  "item",
+        "name":  "iron-ore",
+        "stack_size":  200
+    },
+    {
+        "type":  "item",
+        "name":  "iron-plate",
+        "stack_size":  100
+    },
+    {
+        "type":  "item",
+        "name":  "copper-ore",
+        "stack_size":  200
+    },
+    {
+        "type":  "item",
+        "name":  "copper-plate",
+        "stack_size":  100
+    },
+    {
+        "type":  "item",
+        "name":  "iron-gear-wheel",
+        "stack_size":  200
+    },
+    {
+        "type":  "item",
+        "name":  "copper-cable",
+        "stack_size":  100
+    },
+    {
+        "type":  "item",
+        "name":  "electronic-circuit",
+        "stack_size":  200
+    },
+    {
+        "type":  "item",
+        "name":  "advanced-circuit",
+        "stack_size":  100
+    },
+    {
+        "type":  "item",
+        "name":  "steel-plate",
+        "stack_size":  200
+    },
+    {
+        "type":  "item",
+        "name":  "slag",
+        "stack_size":  100
+    },
+    {
+        "type":  "item",
+        "name":  "inserter",
+        "stack_size":  200
+    },
+    {
+        "type":  "item",
+        "name":  "transport-belt",
+        "stack_size":  100
+    },
+    {
+        "type":  "item",
+        "name":  "kr-imersite-rounds-magazine",
+        "stack_size":  200
+    },
+    {
+        "type":  "item",
+        "name":  "kr-antimatter-artillery-shell",
+        "stack_size":  25
+    },
+    {
+        "type":  "item",
+        "name":  "kr-impulse-rifle-ammo",
+        "stack_size":  200
+    },
+    {
+        "type":  "item",
+        "name":  "kr-heavy-rocket",
+        "stack_size":  50
+    },
+    {
+        "type":  "item",
+        "name":  "kr-antimatter-rocket",
+        "stack_size":  10
+    },
+    {
+        "type":  "item",
+        "name":  "kr-basic-railgun-shell",
+        "stack_size":  100
+    },
+    {
+        "type":  "item",
+        "name":  "kr-explosive-railgun-shell",
+        "stack_size":  100
+    },
+    {
+        "type":  "item",
+        "name":  "kr-antimatter-railgun-shell",
+        "stack_size":  100
+    },
+    {
+        "type":  "item",
+        "name":  "kr-explosive-turret-rocket",
+        "stack_size":  25
+    },
+    {
+        "type":  "item",
+        "name":  "kr-nuclear-turret-rocket",
+        "stack_size":  25
+    },
+    {
+        "type":  "item",
+        "name":  "kr-antimatter-turret-rocket",
+        "stack_size":  25
+    },
+    {
+        "type":  "item",
+        "name":  "kr-nuclear-artillery-shell",
+        "stack_size":  25
+    },
+    {
+        "type":  "item",
+        "name":  "kr-biter-virus",
+        "stack_size":  100
+    },
+    {
+        "type":  "item",
+        "name":  "kr-spoiled-potato",
+        "stack_size":  50
+    },
+    {
+        "type":  "item",
+        "name":  "kr-poop",
+        "stack_size":  50
+    },
+    {
+        "type":  "item",
+        "name":  "kr-first-aid-kit",
+        "stack_size":  50
+    },
+    {
+        "type":  "item",
+        "name":  "kr-potato",
+        "stack_size":  50
+    },
+    {
+        "type":  "item",
+        "name":  "kr-accelerator",
+        "stack_size":  1
+    },
+    {
+        "type":  "item",
+        "name":  "kr-dolphin-gun",
+        "stack_size":  1
+    },
+    {
+        "type":  "item",
+        "name":  "kr-heavy-rocket-launcher",
+        "stack_size":  5
+    },
+    {
+        "type":  "item",
+        "name":  "kr-impulse-rifle",
+        "stack_size":  10
+    },
+    {
+        "type":  "item",
+        "name":  "kr-biomass",
+        "stack_size":  200
+    },
+    {
+        "type":  "item",
+        "name":  "kr-fertilizer",
+        "stack_size":  200
+    },
+    {
+        "type":  "item",
+        "name":  "kr-note-1",
+        "stack_size":  50
+    },
+    {
+        "type":  "item",
+        "name":  "kr-automation-core",
+        "stack_size":  200
+    },
+    {
+        "type":  "item",
+        "name":  "kr-sand",
+        "stack_size":  200
+    },
+    {
+        "type":  "item",
+        "name":  "kr-glass",
+        "stack_size":  200
+    },
+    {
+        "type":  "item",
+        "name":  "kr-quartz",
+        "stack_size":  200
+    },
+    {
+        "type":  "item",
+        "name":  "kr-silicon",
+        "stack_size":  200
+    },
+    {
+        "type":  "item",
+        "name":  "kr-electronic-components",
+        "stack_size":  200
+    },
+    {
+        "type":  "item",
+        "name":  "kr-coke",
+        "stack_size":  200
+    },
+    {
+        "type":  "item",
+        "name":  "kr-fuel",
+        "stack_size":  200
+    },
+    {
+        "type":  "item",
+        "name":  "kr-biofuel",
+        "stack_size":  200
+    },
+    {
+        "type":  "item",
+        "name":  "kr-advanced-fuel",
+        "stack_size":  200
+    },
+    {
+        "type":  "item",
+        "name":  "kr-iron-beam",
+        "stack_size":  200
+    },
+    {
+        "type":  "item",
+        "name":  "kr-steel-gear-wheel",
+        "stack_size":  200
+    },
+    {
+        "type":  "item",
+        "name":  "kr-steel-beam",
+        "stack_size":  200
+    },
+    {
+        "type":  "item",
+        "name":  "kr-imersium-plate",
+        "stack_size":  200
+    },
+    {
+        "type":  "item",
+        "name":  "kr-imersium-gear-wheel",
+        "stack_size":  200
+    },
+    {
+        "type":  "item",
+        "name":  "kr-imersium-beam",
+        "stack_size":  200
+    },
+    {
+        "type":  "item",
+        "name":  "kr-rare-metals",
+        "stack_size":  200
+    },
+    {
+        "type":  "item",
+        "name":  "kr-enriched-iron",
+        "stack_size":  200
+    },
+    {
+        "type":  "item",
+        "name":  "kr-enriched-copper",
+        "stack_size":  200
+    },
+    {
+        "type":  "item",
+        "name":  "kr-enriched-rare-metals",
+        "stack_size":  200
+    },
+    {
+        "type":  "item",
+        "name":  "kr-lithium",
+        "stack_size":  200
+    },
+    {
+        "type":  "item",
+        "name":  "kr-lithium-chloride",
+        "stack_size":  200
+    },
+    {
+        "type":  "item",
+        "name":  "kr-imersite-powder",
+        "stack_size":  200
+    },
+    {
+        "type":  "item",
+        "name":  "kr-imersite-crystal",
+        "stack_size":  50
+    },
+    {
+        "type":  "item",
+        "name":  "kr-lithium-sulfur-battery",
+        "stack_size":  200
+    },
+    {
+        "type":  "item",
+        "name":  "kr-ai-core",
+        "stack_size":  200
+    },
+    {
+        "type":  "item",
+        "name":  "kr-pollution-filter",
+        "stack_size":  50
+    },
+    {
+        "type":  "item",
+        "name":  "kr-used-pollution-filter",
+        "stack_size":  50
+    },
+    {
+        "type":  "item",
+        "name":  "kr-tritium",
+        "stack_size":  200
+    },
+    {
+        "type":  "item",
+        "name":  "kr-empty-dt-fuel-cell",
+        "stack_size":  10
+    },
+    {
+        "type":  "item",
+        "name":  "kr-dt-fuel-cell",
+        "stack_size":  10
+    },
+    {
+        "type":  "item",
+        "name":  "kr-energy-control-unit",
+        "stack_size":  100
+    },
+    {
+        "type":  "item",
+        "name":  "kr-matter-stabilizer",
+        "stack_size":  100
+    },
+    {
+        "type":  "item",
+        "name":  "kr-charged-matter-stabilizer",
+        "stack_size":  100
+    },
+    {
+        "type":  "item",
+        "name":  "kr-matter-cube",
+        "stack_size":  200
+    },
+    {
+        "type":  "item",
+        "name":  "kr-empty-antimatter-fuel-cell",
+        "stack_size":  10
+    },
+    {
+        "type":  "item",
+        "name":  "kr-charged-antimatter-fuel-cell",
+        "stack_size":  10
+    },
+    {
+        "type":  "item",
+        "name":  "kr-inserter-parts",
+        "stack_size":  200
+    },
+    {
+        "type":  "item",
+        "name":  "kr-gps-satellite",
+        "stack_size":  1
+    },
+    {
+        "type":  "item",
+        "name":  "kr-teleportation-gps-module",
+        "stack_size":  10
+    },
+    {
+        "type":  "item",
+        "name":  "kr-jackhammer",
+        "stack_size":  1
+    },
+    {
+        "type":  "item",
+        "name":  "kr-blank-tech-card",
+        "stack_size":  200
+    },
+    {
+        "type":  "item",
+        "name":  "kr-biter-research-data",
+        "stack_size":  200
+    },
+    {
+        "type":  "item",
+        "name":  "kr-matter-research-data",
+        "stack_size":  200
+    },
+    {
+        "type":  "item",
+        "name":  "kr-space-research-data",
+        "stack_size":  1000
+    },
+    {
+        "type":  "item",
+        "name":  "kr-basic-tech-card",
+        "stack_size":  200
+    },
+    {
+        "type":  "item",
+        "name":  "kr-matter-tech-card",
+        "stack_size":  200
+    },
+    {
+        "type":  "item",
+        "name":  "kr-advanced-tech-card",
+        "stack_size":  200
+    },
+    {
+        "type":  "item",
+        "name":  "kr-singularity-tech-card",
+        "stack_size":  200
+    }
+]

@@ -8,7 +8,7 @@ export class Calculator {
     const scale = targetPerSecond / producedPerSecond;
     const result = {};
 
-    for (const [item, amount] of Object.entries(recipe.inputs)) {
+    for (const [item, amount] of Object.entries(recipe.inputs || {})) {
       result[item] = amount * scale;
     }
 
@@ -22,7 +22,7 @@ export class Calculator {
    */
   static calculateRecursivePerItem(productId, recipe, targetCount, recipesByProduct, visited = new Set()) {
     if (visited.has(productId)) {
-      console.warn(`Cycle detected while expanding ${productId}; stopping recursion.`);
+      //console.warn(`Cycle detected while expanding ${productId}; stopping recursion.`);
       return {};
     }
     const nextVisited = new Set(visited);
@@ -38,7 +38,7 @@ export class Calculator {
     const craftsNeeded = targetCount / producedPerCraft;
     const result = {};
 
-    for (const [itemId, amount] of Object.entries(recipe.inputs)) {
+    for (const [itemId, amount] of Object.entries(recipe.inputs || {})) {
       const required = amount * craftsNeeded;
 
       const subRecipes = recipesByProduct[itemId];

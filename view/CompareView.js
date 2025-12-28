@@ -40,7 +40,7 @@ export function renderRecipeTable(productRecipes, productId, targetCount, recipe
 
         const name = document.createElement("div");
         name.className = "recipe-name";
-        name.textContent = firstNode.name || "";
+        name.textContent = (firstNode.recipeId ? locale.recipeName(firstNode.recipeId) : firstNode.name) || "";
         headerCell.appendChild(name);
 
         const outList = document.createElement("div");
@@ -65,7 +65,7 @@ export function renderRecipeTable(productRecipes, productId, targetCount, recipe
 
             const rname = document.createElement("div");
             rname.className = "recipe-name small";
-            rname.textContent = node.name;
+            rname.textContent = (node.recipeId ? locale.recipeName(node.recipeId) : node.name) || "";
             block.appendChild(rname);
 
             const outList2 = document.createElement("div");
