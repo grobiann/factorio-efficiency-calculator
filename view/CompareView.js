@@ -4,10 +4,81 @@
 // and each level is an array of recipe result objects ({ recipeId, name, outputs, inputs, cost }).
 import { buildRecipeNodes } from "../model/NodeBuilder.js";
 
+// Helper: find icon path from loaded data
+function getIconPath(type, id, loadedData) {
+    try {
+        if (type === "items" && loadedData && loadedData.items) {
+            const item = loadedData.items.find(i => i.name === id);
+            if (item && item.icon) {
+                // __base__ is already in the correct folder structure
+                return item.icon;
+            }
+        } else if (type === "recipes" && loadedData && loadedData.recipes) {
+            // Search in all recipe categories
+            for (const category of Object.values(loadedData.recipes)) {
+                if (Array.isArray(category)) {
+                    const recipe = category.find(r => r.name === id || r.id === id);
+                    if (recipe && recipe.icon) {
+                        return recipe.icon;
+                    }
+                }
+            }
+        }
+    } catch (e) {
+        console.warn(`Error getting icon path for ${type}/${id}:`, e);
+    }
+    return null;
+}
+
+// Helper: create an icon element with tooltip
+function createIconWithTooltip(type, id, amount, locale, multiplier = 1, loadedData = null) {
+    const container = document.createElement("div");
+    container.className = "icon-container";
+    
+    const icon = document.createElement("img");
+    icon.className = "item-icon";
+    icon.alt = locale.itemName(id);
+    
+    // Start with default icon to avoid 404 errors
+    icon.src = "data/default-icon.svg";
+    
+    // Try to get icon path from data
+    const iconPath = getIconPath(type, id, loadedData);
+    
+    if (iconPath) {
+        const testImg = new Image();
+        testImg.onload = function() {
+            // Icon exists, use it
+            icon.src = iconPath;
+        };
+        testImg.onerror = function() {
+            // Icon doesn't exist, keep default and log warning
+            console.warn(`Icon not found at path: ${iconPath} for ${type}/${id}`);
+        };
+        testImg.src = iconPath;
+    } else {
+        console.warn(`No icon path found in data for ${type}/${id}`);
+    }
+    
+    const amountLabel = document.createElement("div");
+    amountLabel.className = "icon-amount";
+    amountLabel.textContent = (amount * multiplier).toFixed(2);
+    
+    const tooltip = document.createElement("div");
+    tooltip.className = "icon-tooltip";
+    tooltip.innerHTML = `<strong>${locale.itemName(id)}</strong><br>${(amount * multiplier).toFixed(2)}`;
+    
+    container.appendChild(icon);
+    container.appendChild(amountLabel);
+    container.appendChild(tooltip);
+    
+    return container;
+}
+
 // Render a recipe table. `productRecipes` is an array of top-level Recipe objects.
 // This function will build per-recipe expansion columns (levels) internally
-// using `Resolver.compare(..., "per_item")` and then render the grid.
-export function renderRecipeTable(productRecipes, productId, targetCount, recipesByProduct, locale, multiplier = 1) {
+// usinolver.compare(..., "per_item")` and then render the grid.
+export async function renderRecipeTable(productRecipes, productId, targetCount, recipesByProduct, locale, multiplier = 1, loadedData = null) {
     const container = document.getElementById("result");
     container.innerHTML = "";
 
@@ -40,16 +111,24 @@ export function renderRecipeTable(productRecipes, productId, targetCount, recipe
 
         const name = document.createElement("div");
         name.className = "recipe-name";
-        name.textContent = (firstNode.recipeId ? locale.recipeName(firstNode.recipeId) : firstNode.name) || "";
+        
+        // Recipe icon
+        if (firstNode.recipeId) {
+            const recipeIcon = createIconWithTooltip("recipes", firstNode.recipeId, 1, locale, 1, loadedData);
+            recipeIcon.classList.add("recipe-icon");
+            name.appendChild(recipeIcon);
+        }
+        
+        const nameText = document.createElement("span");
+        nameText.textContent = (firstNode.recipeId ? locale.recipeName(firstNode.recipeId) : firstNode.name) || "";
+        name.appendChild(nameText);
         headerCell.appendChild(name);
 
         const outList = document.createElement("div");
-        outList.className = "small-list outputs";
+        outList.className = "icon-list outputs-list";
         for (const [outId, amount] of Object.entries(firstNode.outputs || {})) {
-            const p = document.createElement("div");
-            p.textContent = `${locale.itemName(outId)}: ${(amount * multiplier).toFixed(2)}`;
-            if (locale.isRare(outId)) p.classList.add("rare");
-            outList.appendChild(p);
+            const iconEl = createIconWithTooltip("items", outId, amount, locale, multiplier, loadedData);
+            outList.appendChild(iconEl);
         }
         headerCell.appendChild(outList);
         headerRow.appendChild(headerCell);
@@ -65,26 +144,32 @@ export function renderRecipeTable(productRecipes, productId, targetCount, recipe
 
             const rname = document.createElement("div");
             rname.className = "recipe-name small";
-            rname.textContent = (node.recipeId ? locale.recipeName(node.recipeId) : node.name) || "";
+            
+            // Recipe icon for sub-recipes
+            if (node.recipeId) {
+                const recipeIcon = createIconWithTooltip("recipes", node.recipeId, 1, locale, 1, loadedData);
+                recipeIcon.classList.add("recipe-icon-small");
+                rname.appendChild(recipeIcon);
+            }
+            
+            const nameText = document.createElement("span");
+            nameText.textContent = (node.recipeId ? locale.recipeName(node.recipeId) : node.name) || "";
+            rname.appendChild(nameText);
             block.appendChild(rname);
 
             const outList2 = document.createElement("div");
-            outList2.className = "small-list outputs";
+            outList2.className = "icon-list outputs-list";
             for (const [outId, amount] of Object.entries(node.outputs || {})) {
-                const p = document.createElement("div");
-                p.textContent = `${locale.itemName(outId)}: ${(amount * multiplier).toFixed(2)}`;
-                if (locale.isRare(outId)) p.classList.add("rare");
-                outList2.appendChild(p);
+                const iconEl = createIconWithTooltip("items", outId, amount, locale, multiplier, loadedData);
+                outList2.appendChild(iconEl);
             }
             block.appendChild(outList2);
 
             const ingList = document.createElement("div");
-            ingList.className = "small-list inputs";
+            ingList.className = "icon-list inputs-list";
             for (const [inputId, amount] of Object.entries(node.inputs || {})) {
-                const p = document.createElement("div");
-                p.textContent = `${locale.itemName(inputId)}: ${(amount * multiplier).toFixed(2)}`;
-                if (locale.isRare(inputId)) p.classList.add("rare");
-                ingList.appendChild(p);
+                const iconEl = createIconWithTooltip("items", inputId, amount, locale, multiplier, loadedData);
+                ingList.appendChild(iconEl);
             }
             block.appendChild(ingList);
 

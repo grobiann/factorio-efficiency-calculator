@@ -378,3 +378,107 @@ button {
 .dataset-item input[type="checkbox"]:focus {
   outline: 2px solid #88a;
 }
+/* ===== Icon Display Styles ===== */
+.icon-container {
+  position: relative;
+  display: inline-block;
+  margin: 2px;
+  vertical-align: middle;
+}
+
+.item-icon {
+  width: 32px;
+  height: 32px;
+  display: block;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  background: #f5f5f5;
+}
+
+.icon-amount {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  font-size: 10px;
+  padding: 1px 3px;
+  border-radius: 2px;
+  pointer-events: none;
+}
+
+.icon-tooltip {
+  position: absolute;
+  display: none;
+  background: rgba(30, 30, 30, 0.95);
+  color: white;
+  padding: 8px 12px;
+  border-radius: 4px;
+  font-size: 12px;
+  white-space: nowrap;
+  z-index: 1000;
+  pointer-events: none;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-bottom: 5px;
+}
+
+.icon-tooltip::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 5px solid transparent;
+  border-top-color: rgba(30, 30, 30, 0.95);
+}
+
+.icon-container:hover .icon-tooltip {
+  display: block;
+}
+
+.icon-fallback {
+  display: inline-block;
+  padding: 4px 8px;
+  background: #eee;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  font-size: 11px;
+  color: #666;
+}
+
+/* Icon lists with backgrounds */
+.icon-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  padding: 6px;
+  border-radius: 4px;
+  margin: 4px 0;
+}
+
+.outputs-list {
+  background: #e3f2fd; /* Blue background for outputs */
+  border: 1px solid #90caf9;
+}
+
+.inputs-list {
+  background: #fff3e0; /* Sand/orange background for inputs */
+  border: 1px solid #ffcc80;
+}
+
+.recipe-icon {
+  margin-right: 8px;
+}
+
+.recipe-icon-small .item-icon {
+  width: 24px;
+  height: 24px;
+}
+
+.recipe-name {
+  display: flex;
+  align-items: center;
+}

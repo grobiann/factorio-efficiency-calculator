@@ -181,7 +181,7 @@ export async function startApp() {
     // Render summary and recipe table (views will build their own columns from recipes)
     const targetCount = (displayMode === "per_min") ? (target / 60) : target;
     renderSummaryTable(currentProductRecipes, currentProduct, targetCount, recipesByProduct, locale, multiplier);
-    renderRecipeTable(currentProductRecipes, currentProduct, targetCount, recipesByProduct, locale, multiplier);
+    renderRecipeTable(currentProductRecipes, currentProduct, targetCount, recipesByProduct, locale, multiplier, loadedData);
   }
 
   // (Column-building moved into the view layer: renderRecipeTable)
