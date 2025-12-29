@@ -1,0 +1,27 @@
+[
+    {
+        "type": "item",
+        "name": "iron-ore",
+        "stack_size": 200
+    },
+    {
+        "type": "item",
+        "name": "copper-ore",
+        "stack_size": 200
+    },
+    {
+        "type": "item",
+        "name": "iron-plate",
+        "stack_size": 200
+    },
+    {
+        "type": "item",
+        "name": "copper-plate",
+        "stack_size": 200
+    },
+    {
+        "type": "item",
+        "name": "steel-plate",
+        "stack_size": 200
+    }
+]

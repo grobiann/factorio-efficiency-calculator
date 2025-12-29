@@ -1,0 +1,16 @@
+{
+  "recipes": [
+    {
+      "id": "se-arcosphere",
+      "name": "Arcosphere",
+      "type": "recipe",
+      "energy_required": 10,
+      "results": [
+        { "type": "item", "name": "se-arcosphere", "amount": 1 }
+      ],
+      "ingredients": [
+        { "type": "item", "name": "se-naquium-plate", "amount": 1 }
+      ]
+    }
+  ]
+}

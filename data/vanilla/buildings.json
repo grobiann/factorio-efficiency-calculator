@@ -1,0 +1,60 @@
+[
+    {
+        "type": "item",
+        "name": "assembling-machine-1",
+        "stack_size": 50
+    },
+    {
+        "type": "item",
+        "name": "assembling-machine-2",
+        "stack_size": 50
+    },
+    {
+        "type": "item",
+        "name": "electric-furnace",
+        "stack_size": 50
+    },
+    {
+        "type": "recipe",
+        "id": "assembling-machine-1",
+        "name": "Assembling Machine 1",
+        "energy_required": 0.5,
+        "results": [
+            { "type": "item", "name": "assembling-machine-1", "amount": 1 }
+        ],
+        "ingredients": [
+            { "type": "item", "name": "electronic-circuit", "amount": 3 },
+            { "type": "item", "name": "iron-gear-wheel", "amount": 5 },
+            { "type": "item", "name": "iron-plate", "amount": 9 }
+        ]
+    },
+    {
+        "type": "recipe",
+        "id": "assembling-machine-2",
+        "name": "Assembling Machine 2",
+        "energy_required": 0.5,
+        "results": [
+            { "type": "item", "name": "assembling-machine-2", "amount": 1 }
+        ],
+        "ingredients": [
+            { "type": "item", "name": "assembling-machine-1", "amount": 1 },
+            { "type": "item", "name": "electronic-circuit", "amount": 3 },
+            { "type": "item", "name": "iron-gear-wheel", "amount": 5 },
+            { "type": "item", "name": "steel-plate", "amount": 2 }
+        ]
+    },
+    {
+        "type": "recipe",
+        "id": "electric-furnace",
+        "name": "Electric Furnace",
+        "energy_required": 5,
+        "results": [
+            { "type": "item", "name": "electric-furnace", "amount": 1 }
+        ],
+        "ingredients": [
+            { "type": "item", "name": "advanced-circuit", "amount": 5 },
+            { "type": "item", "name": "steel-plate", "amount": 10 },
+            { "type": "item", "name": "stone-brick", "amount": 10 }
+        ]
+    }
+]

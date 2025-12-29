@@ -1,0 +1,17 @@
+[
+    {
+        "type": "item",
+        "name": "se-space-science-pack",
+        "stack_size": 200
+    },
+    {
+        "type": "item",
+        "name": "se-arcosphere",
+        "stack_size": 200
+    },
+    {
+        "type": "item",
+        "name": "se-naquium-plate",
+        "stack_size": 100
+    }
+]

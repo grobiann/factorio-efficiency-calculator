@@ -43,8 +43,11 @@ h1 {
   border-radius: 6px;
   padding: 10px;
   z-index: 1000;
-  min-width: 160px;
+  min-width: 240px;
+  max-width: 400px;
   box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+  max-height: 70vh;
+  overflow-y: auto;
 }
 
 .settings-panel.open {
@@ -297,4 +300,47 @@ button {
 
 .small-list div {
   font-size: 12px;
+}
+
+/* ===== 데이터셋 설정 UI ===== */
+.dataset-config-section {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid #ddd;
+}
+
+.dataset-config-section h3 {
+  margin-top: 15px;
+  margin-bottom: 10px;
+  font-size: 15px;
+  color: #333;
+}
+
+.dataset-list {
+  margin: 10px 0;
+}
+
+.dataset-item {
+  margin-bottom: 8px;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: #f9f9f9;
+}
+
+.dataset-item label {
+  display: flex;
+  align-items: flex-start;
+  cursor: pointer;
+  margin-bottom: 0;
+}
+
+.dataset-item input[type="checkbox"] {
+  margin-right: 10px;
+  margin-top: 2px;
+  cursor: pointer;
+}
+
+.dataset-item input[type="checkbox"]:focus {
+  outline: 2px solid #88a;
 }

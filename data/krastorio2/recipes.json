@@ -1,0 +1,17 @@
+{
+  "recipes": [
+    {
+      "id": "imersium-plate",
+      "name": "Imersium Plate",
+      "type": "recipe",
+      "energy_required": 8,
+      "results": [
+        { "type": "item", "name": "imersium-plate", "amount": 1 }
+      ],
+      "ingredients": [
+        { "type": "item", "name": "rare-metals", "amount": 2 },
+        { "type": "item", "name": "imersite-crystal", "amount": 1 }
+      ]
+    }
+  ]
+}

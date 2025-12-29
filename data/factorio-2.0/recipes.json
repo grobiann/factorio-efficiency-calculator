@@ -1,0 +1,61 @@
+{
+  "recipes": [
+    {
+      "id": "rocket-part-standard",
+      "name": "Standard Rocket Part",
+      "type": "recipe",
+      "energy_required": 3,
+      "results": [
+        { "type": "item", "name": "rocket-part", "amount": 1 },
+        { "type": "item", "name": "slag", "amount": 0.5 }
+      ],
+      "ingredients": [
+        { "type": "item", "name": "low-density-structure", "amount": 10 },
+        { "type": "item", "name": "rocket-control-unit", "amount": 10 },
+        { "type": "item", "name": "rocket-fuel", "amount": 10 }
+      ]
+    },
+    {
+      "id": "rocket-part-beryllium",
+      "name": "Beryllium Rocket Part",
+      "type": "recipe",
+      "energy_required": 3,
+      "results": [
+        { "type": "item", "name": "rocket-part", "amount": 1 }
+      ],
+      "ingredients": [
+        { "type": "item", "name": "low-density-structure", "amount": 6 },
+        { "type": "item", "name": "rocket-control-unit", "amount": 6 },
+        { "type": "item", "name": "rocket-fuel", "amount": 6 },
+        { "type": "item", "name": "beryllium-plate", "amount": 2 }
+      ]
+    },
+    {
+      "id": "low-density-structure",
+      "name": "Low Density Structure",
+      "type": "recipe",
+      "energy_required": 20,
+      "results": [
+        { "type": "item", "name": "low-density-structure", "amount": 1 }
+      ],
+      "ingredients": [
+        { "type": "item", "name": "steel-plate", "amount": 2 },
+        { "type": "item", "name": "copper-plate", "amount": 20 },
+        { "type": "item", "name": "plastic-bar", "amount": 5 }
+      ]
+    },
+    {
+      "id": "rocket-control-unit",
+      "name": "Rocket Control Unit",
+      "type": "recipe",
+      "energy_required": 30,
+      "results": [
+        { "type": "item", "name": "rocket-control-unit", "amount": 1 }
+      ],
+      "ingredients": [
+        { "type": "item", "name": "processing-unit", "amount": 1 },
+        { "type": "item", "name": "speed-module", "amount": 1 }
+      ]
+    }
+  ]
+}

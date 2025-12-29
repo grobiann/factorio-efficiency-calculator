@@ -3,9 +3,17 @@ import { Resolver } from "../model/Resolver.js";
 import { renderRecipeTable } from "../view/CompareView.js";
 import { renderSummaryTable } from "../view/SummaryView.js";
 import { Locale } from "../model/Locale.js";
+import { DatasetManager } from "../model/DatasetManager.js";
+import { DatasetConfigView } from "../view/DatasetConfigView.js";
 
 export async function startApp() {
-  const data = await fetch("data/recipes.json").then(r => r.json());
+  // Initialize dataset manager
+  const datasetManager = new DatasetManager();
+  await datasetManager.loadDatasetConfig();
+  
+  // Load initial data from enabled datasets
+  let loadedData = await datasetManager.loadData();
+  let data = loadedData.recipes;
 
   async function loadLocale(lang) {
     const items = await fetch(`locale/${lang}/items.json`).then(r => r.json()).catch(() => ({}));
@@ -15,24 +23,56 @@ export async function startApp() {
 
   const initialLocale = await loadLocale("ko");
   const locale = new Locale(initialLocale.items, initialLocale.recipes, "ko");
-  // Build a map productId => [Recipe]. Support recipes that list multiple outputs.
-  const recipesByProduct = {};
-  for (const [cat, recs] of Object.entries(data)) {
-    for (const r of (recs || [])) {
-      const recipe = new Recipe(r);
-      // Determine which products this recipe produces
-      const outputIds = recipe.outputs ? Object.keys(recipe.outputs) : [cat];
-      outputIds.forEach(pid => {
-        if (!recipesByProduct[pid]) recipesByProduct[pid] = [];
-        recipesByProduct[pid].push(recipe);
-      });
+  
+  // Function to rebuild recipe map from data
+  function buildRecipeMap(recipeData) {
+    const recipesByProduct = {};
+    for (const [cat, recs] of Object.entries(recipeData)) {
+      for (const r of (recs || [])) {
+        const recipe = new Recipe(r);
+        // Determine which products this recipe produces
+        const outputIds = recipe.outputs ? Object.keys(recipe.outputs) : [cat];
+        outputIds.forEach(pid => {
+          if (!recipesByProduct[pid]) recipesByProduct[pid] = [];
+          recipesByProduct[pid].push(recipe);
+        });
+      }
     }
+    return recipesByProduct;
   }
 
+  // Build a map productId => [Recipe]. Support recipes that list multiple outputs.
+  let recipesByProduct = buildRecipeMap(data);
+
   // productsWithRecipes are all products that have at least one recipe
-  const productsWithRecipes = Object.keys(recipesByProduct);
+  let productsWithRecipes = Object.keys(recipesByProduct);
   let currentProduct = productsWithRecipes[0];
   let currentProductRecipes = (recipesByProduct[currentProduct] || []).slice();
+
+  // Function to reload data when datasets change
+  async function reloadDatasets() {
+    loadedData = await datasetManager.reloadData();
+    data = loadedData.recipes;
+    recipesByProduct = buildRecipeMap(data);
+    productsWithRecipes = Object.keys(recipesByProduct);
+    
+    // Reset current product if it no longer exists
+    if (!recipesByProduct[currentProduct]) {
+      currentProduct = productsWithRecipes[0];
+    }
+    
+    // Update UI
+    buildProductOptions();
+    updateCurrentRecipes();
+    updateTitle();
+    
+    // Recalculate if we had a previous calculation
+    if (lastRate !== null) {
+      performCalculation(lastRate);
+    } else {
+      document.getElementById("result").innerHTML = "";
+    }
+  }
 
   // Settings UI: toggle panel and allow language selection
   const settingsBtn = document.getElementById("settingsBtn");
@@ -168,6 +208,10 @@ export async function startApp() {
       const opened = settingsPanel.classList.toggle("open");
       settingsPanel.setAttribute("aria-hidden", !opened);
     };
+    
+    // Add dataset configuration UI to settings panel
+    const datasetConfigView = new DatasetConfigView(datasetManager, reloadDatasets);
+    datasetConfigView.render(settingsPanel);
   }
 
   // Auto-update as user types (debounced)

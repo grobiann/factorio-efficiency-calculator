@@ -1,0 +1,50 @@
+{
+  "datasets": [
+    {
+      "id": "vanilla",
+      "name": "Vanilla Factorio",
+      "description": "Basic Factorio items and recipes",
+      "enabled": true,
+      "order": 1,
+      "files": [
+        "vanilla/items.json",
+        "vanilla/recipes.json",
+        "vanilla/weapons.json",
+        "vanilla/buildings.json"
+      ]
+    },
+    {
+      "id": "factorio-2.0",
+      "name": "Factorio 2.0",
+      "description": "Space Age expansion content",
+      "enabled": true,
+      "order": 2,
+      "files": [
+        "factorio-2.0/items.json",
+        "factorio-2.0/recipes.json"
+      ]
+    },
+    {
+      "id": "krastorio2",
+      "name": "Krastorio 2",
+      "description": "Krastorio 2 mod items and recipes",
+      "enabled": false,
+      "order": 3,
+      "files": [
+        "krastorio2/items.json",
+        "krastorio2/recipes.json"
+      ]
+    },
+    {
+      "id": "space-exploration",
+      "name": "Space Exploration",
+      "description": "Space Exploration mod content",
+      "enabled": false,
+      "order": 4,
+      "files": [
+        "space-exploration/items.json",
+        "space-exploration/recipes.json"
+      ]
+    }
+  ]
+}
