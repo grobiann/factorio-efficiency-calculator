@@ -1,0 +1,122 @@
+[
+  {
+    "type": "artillery-projectile",
+    "name": "kr-antimatter-artillery-projectile",
+    "flags": {},
+    "hidden": true,
+    "acceleration": 0,
+    "direction_only": true,
+    "reveal_map": true,
+    "map_color": {
+      "r": 1,
+      "g": 1,
+      "b": 0
+    },
+    "picture": {
+      "filename": "__base__/graphics/entity/artillery-projectile/shell.png",
+      "width": 64,
+      "height": 64,
+      "scale": 0.5
+    },
+    "shadow": {
+      "filename": "__base__/graphics/entity/artillery-projectile/shell-shadow.png",
+      "width": 64,
+      "height": 64,
+      "scale": 0.5
+    },
+    "chart_picture": {
+      "filename": "__base__/graphics/entity/artillery-projectile/artillery-shoot-map-visualization.png",
+      "flags": {},
+      "frame_count": 1,
+      "width": 64,
+      "height": 64,
+      "priority": "high",
+      "scale": 0.25
+    },
+    "action": {
+      "type": "direct",
+      "action_delivery": {
+        "type": "instant",
+        "target_effects": {
+          "type": "nested-result",
+          "tile_name": "nuclear-ground",
+          "radius": 25,
+          "apply_projection": true,
+          "tile_collision_mask": {
+            "layers": {
+              "water_tile": true
+            }
+          },
+          "explosion": "explosion",
+          "entity_name": "huge-scorchmark",
+          "effect": "screen-burn",
+          "duration": 80,
+          "ease_in_duration": 5,
+          "ease_out_duration": 60,
+          "delay": 0,
+          "strength": 6,
+          "full_strength_max_distance": 150,
+          "max_distance": 1000,
+          "sound": "sounds.nuclear_explosion_aftershock(0.4)",
+          "play_on_target_position": false,
+          "damage": {
+            "amount": 3000,
+            "type": "kr-radioactive"
+          },
+          "scale": 4.5,
+          "check_buildability": true,
+          "repeat_count": 1,
+          "include_soft_decoratives": true,
+          "include_decals": true,
+          "invoke_decorative_trigger": true,
+          "decoratives_with_trigger_only": false,
+          "decorative": "nuclear-ground-patch",
+          "spawn_min_radius": 12.5,
+          "spawn_max_radius": 13.5,
+          "spawn_min": 80,
+          "spawn_max": 120,
+          "spread_evenly": true,
+          "action": {
+            "type": "area",
+            "show_in_tooltip": false,
+            "target_entities": false,
+            "trigger_from_target": true,
+            "repeat_count": 15,
+            "radius": 14,
+            "action_delivery": {
+              "type": "instant",
+              "target_effects": {
+                "type": "create-entity",
+                "entity_name": "nuclear-smouldering-smoke-source",
+                "tile_collision_mask": {
+                  "layers": {
+                    "water_tile": true
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "final_action": {
+      "type": "direct",
+      "action_delivery": {
+        "type": "instant",
+        "target_effects": {
+          "type": "create-entity",
+          "entity_name": "small-scorchmark",
+          "check_buildability": true
+        }
+      }
+    },
+    "animation": {
+      "filename": "__base__/graphics/entity/bullet/bullet.png",
+      "frame_count": 1,
+      "width": 3,
+      "height": 50,
+      "priority": "high"
+    },
+    "height_from_ground": "280 / 64"
+  }
+]

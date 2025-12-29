@@ -1,0 +1,237 @@
+[
+  {
+    "type": "tree",
+    "name": "name",
+    "localised_name": "localised_name",
+    "deconstruction_alternative": "deconstruction_alternative",
+    "factoriopedia_alternative": "factoriopedia_alternative",
+    "factoriopedia_simulation": "factoriopedia_simulation",
+    "icon": "__base__/graphics/icons/",
+    "flags": "tree_flags",
+    "minable": {
+      "mining_particle": "wooden-particle",
+      "mining_time": 0.55,
+      "result": "wood",
+      "count": 4,
+      "mining_trigger": {
+        "type": "direct",
+        "action_delivery": {
+          "type": "instant",
+          "target_effects": "leaf_sound_trigger"
+        }
+      }
+    },
+    "corpse": "type_name .. \"-stump\"",
+    "damaged_trigger_effect": "leaf_sound_trigger",
+    "mined_sound": "sounds.tree_mined",
+    "remains_when_mined": "type_name .. \"-stump\"",
+    "emissions_per_second": "tree_emissions",
+    "max_health": 50,
+    "map_generator_bounding_box": {},
+    "collision_box": {},
+    "selection_box": {},
+    "drawing_box_vertical_extension": "tree_data.drawing_box_vertical_extension or 1.8",
+    "subgroup": "trees",
+    "order": "a[tree]-a[nauvis]-a[regular]-",
+    "impact_category": "tree",
+    "autoplace": "tree_data.autoplace",
+    "variations": "tree_variations",
+    "variation_weights": "tree_data.variation_weights",
+    "colors": "tree_data.colors",
+    "darkness_of_burnt_tree": 0.5,
+    "ambient_sounds_group": "ambient_sounds_group",
+    "ambient_sounds": "ambient_sounds"
+  },
+  {
+    "type": "corpse",
+    "name": "type_name .. \"-stump\"",
+    "localised_name": {},
+    "icon": "__base__/graphics/icons/",
+    "flags": "tree_corpse_flags",
+    "hidden_in_factoriopedia": true,
+    "collision_box": {},
+    "selection_box": {},
+    "tile_width": 1,
+    "tile_height": 1,
+    "selectable_in_game": false,
+    "time_before_removed": "60 * 60 * 15",
+    "final_render_layer": "remnants",
+    "subgroup": "remnants",
+    "order": "d[remnants]-b[tree]-",
+    "animation": "stump_variations"
+  },
+  {
+    "type": "tree",
+    "name": "dry-tree",
+    "icon": "__base__/graphics/icons/dry-tree.png",
+    "flags": "tree_flags",
+    "minable": {
+      "count": 4,
+      "mining_particle": "wooden-particle",
+      "mining_time": 0.5,
+      "result": "wood"
+    },
+    "deconstruction_alternative": "tree-01",
+    "factoriopedia_alternative": "tree-01",
+    "emissions_per_second": "dead_tree_emissions",
+    "max_health": 20,
+    "collision_box": {},
+    "selection_box": {},
+    "drawing_box_vertical_extension": 0.3,
+    "subgroup": "trees",
+    "order": "a[tree]-a[nauvis]-c[dry-tree]",
+    "impact_category": "tree",
+    "autoplace": {
+      "control": "trees",
+      "order": "a[tree]-d[dead]-e[dry-tree]",
+      "probability_expression": "tree_dry",
+      "richness_expression": "clamp(random_penalty_at(6, 1), 0, 1)"
+    },
+    "pictures": {
+      "filename": "__base__/graphics/entity/tree/dry-tree/dry-tree-08.png",
+      "width": 138,
+      "height": 106,
+      "shift": "util.by_pixel(24.5, -10)",
+      "scale": 0.5
+    }
+  },
+  {
+    "type": "tree",
+    "name": "dead-tree-desert",
+    "icon": "__base__/graphics/icons/dead-tree.png",
+    "flags": "tree_flags",
+    "minable": {
+      "mining_particle": "wooden-particle",
+      "mining_time": 0.5,
+      "result": "wood",
+      "count": 2
+    },
+    "deconstruction_alternative": "tree-01",
+    "emissions_per_second": "dead_tree_emissions",
+    "max_health": 20,
+    "collision_box": {},
+    "selection_box": {},
+    "drawing_box_vertical_extension": 2.2,
+    "subgroup": "trees",
+    "order": "a[tree]-a[nauvis]-b[dead-tree]",
+    "impact_category": "tree",
+    "autoplace": {
+      "control": "trees",
+      "order": "a[tree]-d[dead]-a[desert]",
+      "probability_expression": "tree_dead_desert",
+      "richness_expression": "clamp(random_penalty_at(6, 1), 0, 1)"
+    },
+    "factoriopedia_simulation": "simulations.factoriopedia_dead_tree",
+    "pictures": {
+      "filename": "__base__/graphics/entity/tree/dead-tree-desert/dead-tree-desert-09.png",
+      "width": 399,
+      "height": 249,
+      "shift": "util.by_pixel(41.25, -16.75)",
+      "scale": 0.5
+    }
+  },
+  {
+    "type": "tree",
+    "name": "dead-grey-trunk",
+    "icon": "__base__/graphics/icons/dead-grey-trunk.png",
+    "flags": "tree_flags",
+    "minable": {
+      "mining_particle": "wooden-particle",
+      "mining_time": 0.5,
+      "result": "wood",
+      "count": 2
+    },
+    "deconstruction_alternative": "tree-01",
+    "factoriopedia_alternative": "dry-tree",
+    "emissions_per_second": "dead_tree_emissions",
+    "max_health": 20,
+    "collision_box": {},
+    "selection_box": {},
+    "drawing_box_vertical_extension": 0.4,
+    "subgroup": "trees",
+    "order": "a[tree]-a[nauvis]-b[dead-tree]",
+    "impact_category": "tree",
+    "autoplace": {
+      "control": "trees",
+      "order": "a[tree]-d[dead]-d[grey]",
+      "probability_expression": "tree_dead_grey_trunk",
+      "richness_expression": "clamp(random_penalty_at(6, 1), 0, 1)"
+    },
+    "pictures": {
+      "filename": "__base__/graphics/entity/tree/dead-grey-trunk/dead-grey-trunk-09.png",
+      "width": 231,
+      "height": 120,
+      "shift": "util.by_pixel(-4.75, -3)",
+      "scale": 0.5
+    }
+  },
+  {
+    "type": "tree",
+    "name": "dead-dry-hairy-tree",
+    "icon": "__base__/graphics/icons/dead-dry-hairy-tree.png",
+    "flags": "tree_flags",
+    "minable": {
+      "mining_particle": "wooden-particle",
+      "mining_time": 0.5,
+      "result": "wood",
+      "count": 2
+    },
+    "deconstruction_alternative": "tree-01",
+    "factoriopedia_alternative": "dry-tree",
+    "emissions_per_second": "dead_tree_emissions",
+    "max_health": 20,
+    "collision_box": {},
+    "selection_box": {},
+    "subgroup": "trees",
+    "order": "a[tree]-a[nauvis]-b[dead-tree]",
+    "impact_category": "tree",
+    "autoplace": {
+      "control": "trees",
+      "order": "a[tree]-d[dead]-c[dead-hairy]",
+      "probability_expression": "tree_dead_dry_hairy",
+      "richness_expression": "clamp(random_penalty_at(6, 1), 0, 1)"
+    },
+    "pictures": {
+      "filename": "__base__/graphics/entity/tree/dead-dry-hairy-tree/dead-dry-hairy-tree-11.png",
+      "width": 335,
+      "height": 238,
+      "shift": "util.by_pixel(-9, 10)",
+      "scale": 0.5
+    }
+  },
+  {
+    "type": "tree",
+    "name": "dry-hairy-tree",
+    "icon": "__base__/graphics/icons/dry-hairy-tree.png",
+    "flags": "tree_flags",
+    "minable": {
+      "mining_particle": "wooden-particle",
+      "mining_time": 0.5,
+      "result": "wood",
+      "count": 2
+    },
+    "deconstruction_alternative": "tree-01",
+    "factoriopedia_alternative": "dry-tree",
+    "emissions_per_second": "dead_tree_emissions",
+    "max_health": 20,
+    "collision_box": {},
+    "selection_box": {},
+    "drawing_box_vertical_extension": 2.7,
+    "subgroup": "trees",
+    "order": "a[tree]-a[nauvis]-b[dead-tree]",
+    "impact_category": "tree",
+    "autoplace": {
+      "control": "trees",
+      "order": "a[tree]-d[dead]-c[hairy]",
+      "probability_expression": "tree_dry_hairy",
+      "richness_expression": "clamp(random_penalty_at(6, 1), 0, 1)"
+    },
+    "pictures": {
+      "filename": "__base__/graphics/entity/tree/dry-hairy-tree/dry-hairy-tree-08.png",
+      "width": 429,
+      "height": 272,
+      "shift": "util.by_pixel(46.75, -52.5)",
+      "scale": 0.5
+    }
+  }
+]

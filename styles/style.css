@@ -17,25 +17,59 @@ h1 {
   margin-bottom: 16px;
 }
 
-/* ===== 설정 버튼 & 패널 ===== */
-.settings-btn {
+/* ===== 상단 우측 버튼들 ===== */
+.top-right-buttons {
   position: absolute;
   top: 24px;
   right: 24px;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.icon-btn {
   background: transparent;
   border: none;
   font-size: 20px;
   cursor: pointer;
+  padding: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #555;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  width: 32px;
+  height: 32px;
 }
 
-.settings-btn:focus {
+.icon-btn:hover {
+  background: #f0f0f0;
+  color: #222;
+}
+
+.icon-btn:focus {
   outline: 2px solid #88a;
   border-radius: 4px;
 }
 
+.github-btn svg {
+  display: block;
+  width: 20px;
+  height: 20px;
+}
+
+.settings-btn svg {
+  display: block;
+  width: 20px;
+  height: 20px;
+  margin-top: -10px;
+}
+
 .settings-panel {
   position: absolute;
-  top: 56px;
+  top: 60px;
   right: 24px;
   display: none;
   background: #ffffff;

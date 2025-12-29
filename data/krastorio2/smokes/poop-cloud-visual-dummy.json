@@ -1,0 +1,40 @@
+[
+  {
+    "type": "smoke-with-trigger",
+    "name": "kr-poop-cloud-visual-dummy",
+    "flags": {},
+    "hidden": true,
+    "show_when_smoke_off": true,
+    "particle_count": 24,
+    "particle_spread": {},
+    "particle_distance_scale_factor": 0.5,
+    "particle_scale_factor": {},
+    "particle_duration_variation": "60 * 3",
+    "wave_speed": {},
+    "wave_distance": {},
+    "spread_duration_variation": "300 - 20",
+    "render_layer": "object",
+    "affected_by_wind": false,
+    "cyclic": true,
+    "duration": "60 * 20 + 4 * 60",
+    "fade_away_duration": "3 * 60",
+    "spread_duration": "(300 - 20) / 2",
+    "color": {
+      "r": 0.5,
+      "g": 0.4,
+      "b": 0.35,
+      "a": 0.69
+    },
+    "animation": {
+      "width": 152,
+      "height": 120,
+      "line_length": 5,
+      "frame_count": 60,
+      "shift": {},
+      "priority": "high",
+      "animation_speed": 0.25,
+      "filename": "__base__/graphics/entity/smoke/smoke.png",
+      "flags": {}
+    }
+  }
+]

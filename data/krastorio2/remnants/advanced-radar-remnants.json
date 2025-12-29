@@ -1,0 +1,21 @@
+[
+  {
+    "type": "corpse",
+    "name": "kr-advanced-radar-remnants",
+    "localised_name": {},
+    "icon": "__Krastorio2Assets__/icons/entities/remnants-icon.png",
+    "icon_size": 32,
+    "flags": {},
+    "hidden_in_factoriopedia": true,
+    "selection_box": {},
+    "tile_width": 3,
+    "tile_height": 3,
+    "selectable_in_game": false,
+    "subgroup": "remnants",
+    "order": "d[remnants]-a[generic]-a[small]",
+    "time_before_removed": "60 * 60 * 20",
+    "final_render_layer": "remnants",
+    "remove_on_tile_placement": false,
+    "animation": "make_rotated_animation_variations_from_sheet(1, {\n      filename = \"__Krastorio2Assets__/remnants/advanced-radar-remnants.png\",\n      line_length = 1,\n      width = 282,\n      height = 212,\n      frame_count = 1,\n      variation_count = 1,\n      axially_symmetrical = false,\n      direction_count = 1,\n      shift = util.by_pixel(12, 4.5),\n      scale = 0.5,\n    })"
+  }
+]

@@ -1,0 +1,25 @@
+[
+  {
+    "type": "projectile",
+    "name": "kr-matter-wave",
+    "flags": {},
+    "hidden": true,
+    "acceleration": 0,
+    "action": {
+      "type": "area",
+      "action_delivery": {
+        "type": "instant",
+        "target_effects": {
+          "type": "damage",
+          "damage": {
+            "amount": 3000,
+            "type": "explosion"
+          }
+        }
+      },
+      "radius": 6
+    },
+    "animation": "util.empty_animation()",
+    "shadow": "util.empty_animation()"
+  }
+]

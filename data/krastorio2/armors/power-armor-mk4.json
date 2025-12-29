@@ -1,0 +1,36 @@
+[
+  {
+    "type": "recipe",
+    "name": "kr-power-armor-mk4",
+    "enabled": false,
+    "energy_required": 40,
+    "category": "crafting-with-fluid",
+    "ingredients": {
+      "type": "fluid",
+      "name": "kr-nitric-acid",
+      "amount": 50
+    },
+    "results": {
+      "type": "item",
+      "name": "kr-power-armor-mk4",
+      "amount": 1
+    },
+    "requester_paste_multiplier": 1
+  },
+  {
+    "type": "armor",
+    "name": "kr-power-armor-mk4",
+    "icon": "__Krastorio2Assets__/icons/armors/power-armor-mk4.png",
+    "resistances": {
+      "type": "kr-radioactive",
+      "decrease": 6,
+      "percent": 80
+    },
+    "subgroup": "armor",
+    "order": "g[power-armor-mk4]",
+    "stack_size": 1,
+    "infinite": true,
+    "equipment_grid": "kr-mk4-armor-grid",
+    "inventory_size_bonus": 50
+  }
+]

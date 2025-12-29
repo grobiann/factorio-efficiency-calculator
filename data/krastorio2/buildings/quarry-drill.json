@@ -1,0 +1,95 @@
+[
+  {
+    "type": "recipe",
+    "name": "kr-quarry-drill",
+    "energy_required": 60,
+    "enabled": false,
+    "ingredients": {
+      "type": "item",
+      "name": "processing-unit",
+      "amount": 20
+    },
+    "results": {
+      "type": "item",
+      "name": "kr-quarry-drill",
+      "amount": 1
+    }
+  },
+  {
+    "type": "item",
+    "name": "kr-quarry-drill",
+    "icon": "__Krastorio2Assets__/icons/entities/quarry-drill.png",
+    "subgroup": "extraction-machine",
+    "order": "a[items]-e[quarry-drill]",
+    "place_result": "kr-quarry-drill",
+    "stack_size": 50
+  },
+  {
+    "type": "mining-drill",
+    "name": "kr-quarry-drill",
+    "icon": "__Krastorio2Assets__/icons/entities/quarry-drill.png",
+    "flags": {},
+    "minable": {
+      "mining_time": 1,
+      "result": "kr-quarry-drill"
+    },
+    "fast_replaceable_group": "kr-quarry-drills",
+    "collision_box": {},
+    "selection_box": {},
+    "resource_categories": {},
+    "mining_speed": 10,
+    "resource_searching_radius": 0.49,
+    "vector_to_place_result": {},
+    "module_slots": 2,
+    "allowed_effects": {},
+    "energy_source": {
+      "type": "electric",
+      "usage_priority": "secondary-input",
+      "emissions_per_minute": {
+        "pollution": 100
+      }
+    },
+    "energy_usage": "2.5MW",
+    "max_health": 1000,
+    "corpse": "kr-big-random-pipes-remnants",
+    "dying_explosion": "big-explosion",
+    "damaged_trigger_effect": "hit_effects.entity()",
+    "resistances": {
+      "type": "impact",
+      "percent": 70
+    },
+    "vehicle_impact_sound": "sounds.generic_impact",
+    "working_sound": {
+      "sound": {
+        "filename": "__Krastorio2Assets__/sounds/buildings/quarry-drill.ogg",
+        "volume": 0.5
+      },
+      "idle_sound": {
+        "filename": "__base__/sound/idle1.ogg"
+      },
+      "max_sounds_per_prototype": 2
+    },
+    "graphics_set": {
+      "animation": {
+        "layers": {
+          "priority": "medium",
+          "filename": "__Krastorio2Assets__/buildings/quarry-drill/quarry-drill-sh.png",
+          "width": 500,
+          "height": 422,
+          "frame_count": 1,
+          "line_length": 10,
+          "shift": {},
+          "draw_as_light": true,
+          "blend_mode": "additive",
+          "flags": {},
+          "animation_speed": 0.3,
+          "scale": 0.52,
+          "repeat_count": 90,
+          "draw_as_shadow": true
+        }
+      }
+    },
+    "circuit_connector": "circuit_connector_definitions.create_vector(universal_connector_template, {\n      {\n        variation = 0,\n        main_offset = util.by_pixel(5, -118),\n        shadow_offset = util.by_pixel(7, -118),\n        show_shadow = true,\n      },\n      {\n        variation = 2,\n        main_offset = util.by_pixel(100, -22),\n        shadow_offset = util.by_pixel(102, -22),\n        show_shadow = true,\n      },\n      { variation = 4, main_offset = util.by_pixel(-4, 82), shadow_offset = util.by_pixel(-2, 82), show_shadow = true },\n      {\n        variation = 6,\n        main_offset = util.by_pixel(-100, -15),\n        shadow_offset = util.by_pixel(-98, -15),\n        show_shadow = true,\n      },\n    })",
+    "circuit_wire_max_distance": "default_circuit_wire_max_distance"
+  }
+]

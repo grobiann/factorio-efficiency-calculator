@@ -1,0 +1,60 @@
+[
+  {
+    "type": "recipe",
+    "name": "recipe_name",
+    "localised_name": {},
+    "icons": {
+      "icon": "__Krastorio2Assets__/icons/fluids/matter.png",
+      "scale": 0.28,
+      "shift": {}
+    },
+    "category": "kr-matter-conversion",
+    "subgroup": "kr-matter-conversion",
+    "hide_from_player_crafting": true,
+    "hide_from_signal_gui": false,
+    "enabled": false,
+    "energy_required": "def.energy_required or 2",
+    "ingredients": {
+      "type": "item",
+      "name": "kr-charged-matter-stabilizer",
+      "amount": 1
+    },
+    "results": {
+      "type": "item",
+      "name": "kr-matter-stabilizer",
+      "amount": 1,
+      "probability": 0.99
+    },
+    "main_product": "",
+    "allow_as_intermediate": false,
+    "allow_productivity": "def.allow_productivity"
+  },
+  {
+    "type": "recipe",
+    "name": "recipe_name",
+    "localised_name": {},
+    "icons": "flib_table.array_merge({\n        {\n          { icon = \"__Krastorio2Assets__/icons/arrows/arrow-i.png\" },\n          { icon = \"__Krastorio2Assets__/icons/fluids/matter.png\", scale = 0.28, shift = { 8, -6 } },\n        },\n        data_util.transform_icons(data_util.get_icons(prototype), { scale = 0.28, shift = { -4, 8 } }),\n      })",
+    "category": "kr-matter-deconversion",
+    "subgroup": "kr-matter-deconversion",
+    "hide_from_player_crafting": true,
+    "hide_from_signal_gui": false,
+    "enabled": false,
+    "energy_required": "def.energy_required or 2",
+    "ingredients": {
+      "type": "item",
+      "name": "kr-charged-matter-stabilizer",
+      "amount": 1
+    },
+    "results": {
+      "type": "item",
+      "name": "kr-matter-stabilizer",
+      "amount": 1,
+      "probability": 0.99
+    },
+    "main_product": "",
+    "allow_as_intermediate": false,
+    "allow_productivity": "def.allow_productivity",
+    "always_show_made_in": true,
+    "always_show_products": true
+  }
+]

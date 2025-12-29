@@ -1,0 +1,122 @@
+[
+  {
+    "type": "recipe",
+    "name": "kr-singularity-lab",
+    "energy_required": 120,
+    "enabled": false,
+    "ingredients": {
+      "type": "item",
+      "name": "processing-unit",
+      "amount": 100
+    },
+    "results": {
+      "type": "item",
+      "name": "kr-singularity-lab",
+      "amount": 1
+    }
+  },
+  {
+    "type": "item",
+    "name": "kr-singularity-lab",
+    "icon": "__Krastorio2Assets__/icons/entities/singularity-lab.png",
+    "subgroup": "production-machine",
+    "order": "g[lab]-g3[kr-singularity-lab]",
+    "place_result": "kr-singularity-lab",
+    "stack_size": 25
+  },
+  {
+    "type": "lab",
+    "name": "kr-singularity-lab",
+    "icon": "__Krastorio2Assets__/icons/entities/singularity-lab.png",
+    "flags": {},
+    "minable": {
+      "mining_time": 2,
+      "result": "kr-singularity-lab"
+    },
+    "fast_replaceable_group": "assembling-machine",
+    "collision_box": {},
+    "selection_box": {},
+    "researching_speed": 1,
+    "inputs": {},
+    "module_slots": 4,
+    "energy_source": {
+      "type": "electric",
+      "usage_priority": "secondary-input"
+    },
+    "energy_usage": "10MW",
+    "max_health": 2000,
+    "damaged_trigger_effect": "hit_effects.entity()",
+    "dying_explosion": "big-explosion",
+    "corpse": "kr-big-random-pipes-remnants",
+    "resistances": {
+      "type": "impact",
+      "percent": 90
+    },
+    "open_sound": {
+      "filename": "__Krastorio2Assets__/sounds/buildings/open.ogg",
+      "volume": 1
+    },
+    "close_sound": {
+      "filename": "__Krastorio2Assets__/sounds/buildings/close.ogg",
+      "volume": 1
+    },
+    "vehicle_impact_sound": "sounds.generic_impact",
+    "working_sound": {
+      "sound": {
+        "filename": "__Krastorio2Assets__/sounds/buildings/singularity-lab.ogg",
+        "volume": 0.5
+      },
+      "idle_sound": {
+        "filename": "__base__/sound/idle1.ogg",
+        "volume": 1
+      },
+      "max_sounds_per_prototype": 6
+    },
+    "on_animation": {
+      "layers": {
+        "filename": "__Krastorio2Assets__/buildings/singularity-lab/singularity-lab-sh.png",
+        "priority": "medium",
+        "width": 548,
+        "height": 482,
+        "shift": {},
+        "frame_count": 1,
+        "line_length": 10,
+        "scale": 0.5,
+        "animation_speed": 0.85,
+        "draw_as_light": true,
+        "blend_mode": "additive",
+        "repeat_count": 60,
+        "draw_as_shadow": true
+      }
+    },
+    "off_animation": {
+      "layers": {
+        "filename": "__Krastorio2Assets__/buildings/singularity-lab/singularity-lab-sh.png",
+        "priority": "high",
+        "width": 548,
+        "height": 482,
+        "shift": {},
+        "frame_count": 1,
+        "scale": 0.5,
+        "draw_as_shadow": true
+      }
+    },
+    "light": {
+      "intensity": 0.95,
+      "size": 5,
+      "shift": {},
+      "color": {
+        "r": 0,
+        "g": 0.917,
+        "b": 1
+      }
+    },
+    "icons_positioning": {
+      "inventory_index": "defines.inventory.lab_input",
+      "shift": {},
+      "max_icons_per_row": 3,
+      "separation_multiplier": "1 / 1.1",
+      "scale": 1.5
+    }
+  }
+]

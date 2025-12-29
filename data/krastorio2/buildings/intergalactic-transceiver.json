@@ -1,0 +1,181 @@
+[
+  {
+    "type": "recipe",
+    "name": "kr-intergalactic-transceiver",
+    "energy_required": 600,
+    "enabled": false,
+    "ingredients": {
+      "type": "item",
+      "name": "concrete",
+      "amount": 750
+    },
+    "results": {
+      "type": "item",
+      "name": "kr-intergalactic-transceiver",
+      "amount": 1
+    }
+  },
+  {
+    "type": "item",
+    "name": "kr-intergalactic-transceiver",
+    "icon": "__Krastorio2Assets__/icons/entities/intergalactic-transceiver.png",
+    "subgroup": "kr-radar",
+    "order": "zzzz[intergalactic-transceiver]",
+    "place_result": "kr-intergalactic-transceiver",
+    "stack_size": 1
+  },
+  {
+    "type": "accumulator",
+    "name": "kr-intergalactic-transceiver",
+    "icon": "__Krastorio2Assets__/icons/entities/intergalactic-transceiver.png",
+    "flags": {},
+    "map_color": {
+      "r": 0.37,
+      "g": 0.18,
+      "b": 0.47
+    },
+    "minable": {
+      "mining_time": 10,
+      "result": "kr-intergalactic-transceiver"
+    },
+    "placeable_by": {
+      "item": "kr-intergalactic-transceiver",
+      "count": 1
+    },
+    "collision_box": {},
+    "selection_box": {},
+    "drawing_box_vertical_extension": 1.25,
+    "max_health": 20000,
+    "corpse": "kr-big-random-pipes-remnants",
+    "dying_explosion": "nuclear-reactor-explosion",
+    "damaged_trigger_effect": "hit_effects.entity()",
+    "resistances": {
+      "type": "impact",
+      "percent": 75
+    },
+    "energy_source": {
+      "type": "electric",
+      "buffer_capacity": "30TJ",
+      "usage_priority": "tertiary",
+      "input_flow_limit": "60GW",
+      "output_flow_limit": "0W"
+    },
+    "open_sound": "sounds.machine_open",
+    "close_sound": "sounds.machine_close",
+    "vehicle_impact_sound": "sounds.generic_impact",
+    "working_sound": "working_sound",
+    "default_output_signal": {
+      "type": "virtual",
+      "name": "signal-I"
+    },
+    "chargable_graphics": {
+      "picture": "picture",
+      "charge_animation": "animation",
+      "charge_cooldown": 240,
+      "charge_light": {
+        "intensity": 0.75,
+        "size": 20,
+        "shift": {},
+        "color": {
+          "r": 1,
+          "g": 0.2,
+          "b": 1
+        }
+      },
+      "discharge_animation": "animation",
+      "discharge_cooldown": 240
+    }
+  },
+  {
+    "type": "electric-energy-interface",
+    "name": "kr-activated-intergalactic-transceiver",
+    "icon": "__Krastorio2Assets__/icons/entities/intergalactic-transceiver.png",
+    "flags": {},
+    "map_color": {
+      "r": 0.37,
+      "g": 0.18,
+      "b": 0.47
+    },
+    "minable": {
+      "mining_time": 10,
+      "result": "kr-intergalactic-transceiver"
+    },
+    "placeable_by": {
+      "item": "kr-intergalactic-transceiver",
+      "count": 1
+    },
+    "collision_box": {},
+    "selection_box": {},
+    "drawing_box_vertical_extension": 1.25,
+    "max_health": 10000,
+    "corpse": "kr-big-random-pipes-remnants",
+    "dying_explosion": "nuclear-reactor-explosion",
+    "damaged_trigger_effect": "hit_effects.entity()",
+    "resistances": {
+      "type": "impact",
+      "percent": 75
+    },
+    "energy_source": {
+      "type": "electric",
+      "buffer_capacity": "10GJ",
+      "usage_priority": "primary-output",
+      "render_no_power_icon": false
+    },
+    "energy_production": "10GW",
+    "energy_usage": "0kW",
+    "working_sound": "working_sound",
+    "continuous_animation": true,
+    "light": {
+      "intensity": 1.75,
+      "size": 30,
+      "shift": {},
+      "color": {
+        "r": 1,
+        "g": 0.2,
+        "b": 1
+      }
+    },
+    "animation": {
+      "layers": {
+        "filename": "__Krastorio2Assets__/buildings/intergalactic-transceiver/intergalactic-transceiver-charge-light.png",
+        "width": 800,
+        "height": 800,
+        "scale": 0.5,
+        "frame_count": 60,
+        "repeat_count": 60,
+        "animation_speed": 0.3447,
+        "shift": {},
+        "priority": "high",
+        "draw_as_shadow": true,
+        "line_length": 10,
+        "draw_as_glow": true,
+        "draw_as_light": true
+      }
+    }
+  },
+  {
+    "type": "simple-entity-with-owner",
+    "name": "kr-inactive-intergalactic-transceiver",
+    "localised_name": {},
+    "localised_description": {},
+    "icon": "__Krastorio2Assets__/icons/entities/intergalactic-transceiver.png",
+    "flags": {},
+    "hidden": true,
+    "minable": {
+      "mining_time": 10,
+      "result": "kr-intergalactic-transceiver"
+    },
+    "placeable_by": {
+      "item": "kr-intergalactic-transceiver",
+      "count": 1
+    },
+    "collision_box": {},
+    "selection_box": {},
+    "drawing_box_vertical_extension": 1.25,
+    "resistances": {
+      "type": "impact",
+      "percent": 75
+    },
+    "picture": "picture"
+  }
+]

@@ -1,0 +1,36 @@
+[
+  {
+    "type": "map-gen-presets",
+    "name": "default",
+    "default": {
+      "default": true,
+      "order": "a"
+    },
+    "order": "h",
+    "basic_settings": {
+      "property_expression_names": {
+        "elevation": "elevation_island",
+        "moisture": "moisture_basic",
+        "aux": "aux_basic",
+        "cliffiness": "cliffiness_basic",
+        "cliff_elevation": "cliff_elevation_from_elevation",
+        "trees_forest_path_cutout": 1
+      },
+      "cliff_settings": {
+        "cliff_smoothing": 1
+      },
+      "autoplace_controls": {
+        "frequency": 1,
+        "size": 0.5
+      }
+    },
+    "advanced_settings": {
+      "enemy_evolution": {
+        "time_factor": 2e-06
+      },
+      "enemy_expansion": {
+        "enabled": false
+      }
+    }
+  }
+]

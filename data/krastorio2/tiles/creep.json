@@ -1,0 +1,41 @@
+[
+  {
+    "type": "tile",
+    "name": "kr-creep",
+    "order": "b-a-a",
+    "needs_correction": false,
+    "can_be_part_of_blueprint": true,
+    "collision_mask": {
+      "layers": {
+        "ghost": true,
+        "ground_tile": true,
+        "floor": true
+      },
+      "not_colliding_with_itself": true
+    },
+    "minable": {
+      "mining_time": 15,
+      "result": "kr-biomass",
+      "probability": 0.35,
+      "amount": 1
+    },
+    "walking_speed_modifier": 0.35,
+    "layer": 200,
+    "transition_overlay_layer_offset": 3,
+    "decorative_removal_probability": 0.35,
+    "variants": "tile_variations_template(\n      \"__Krastorio2Assets__/tiles/creep/creep.png\",\n      \"__base__/graphics/terrain/masks/transition-1.png\",\n      {\n        max_size = 4,\n        [1] = {\n          weights = { 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05 },\n        },\n        [2] = {\n          probability = 1,\n          weights = { 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05 },\n        },\n        [4] = {\n          probability = 1,\n          weights = { 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05 },\n        },\n      }\n    )",
+    "map_color": {
+      "r": 80,
+      "g": 60,
+      "b": 65
+    },
+    "absorptions_per_second": {
+      "pollution": 0.005
+    },
+    "vehicle_friction_modifier": 175,
+    "mined_sound": "collect_creep_sound",
+    "walking_sound": "creep_walking_sound",
+    "transitions": "creep_transitions",
+    "transitions_between_transitions": "creep_transitions_between_transitions"
+  }
+]

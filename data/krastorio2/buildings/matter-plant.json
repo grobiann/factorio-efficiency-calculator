@@ -1,0 +1,129 @@
+[
+  {
+    "type": "recipe",
+    "name": "kr-matter-plant",
+    "energy_required": 30,
+    "enabled": false,
+    "ingredients": {
+      "type": "item",
+      "name": "kr-ai-core",
+      "amount": 5
+    },
+    "results": {
+      "type": "item",
+      "name": "kr-matter-plant",
+      "amount": 1
+    }
+  },
+  {
+    "type": "item",
+    "name": "kr-matter-plant",
+    "icon": "__Krastorio2Assets__/icons/entities/matter-plant.png",
+    "subgroup": "production-machine",
+    "order": "i[matter]-a[matter-plant]",
+    "place_result": "kr-matter-plant",
+    "stack_size": 10
+  },
+  {
+    "type": "assembling-machine",
+    "name": "kr-matter-plant",
+    "icon": "__Krastorio2Assets__/icons/entities/matter-plant.png",
+    "flags": {},
+    "minable": {
+      "mining_time": 1,
+      "result": "kr-matter-plant"
+    },
+    "collision_box": {},
+    "selection_box": {},
+    "fast_replaceable_group": "assembling-machine",
+    "crafting_categories": {},
+    "crafting_speed": 1.0,
+    "fluid_boxes": {
+      "production_type": "output",
+      "pipe_picture": "require(\"prototypes.buildings.pipe-picture\")",
+      "pipe_covers": "pipecoverspictures()",
+      "volume": 1000,
+      "pipe_connections": {
+        "flow_direction": "output",
+        "direction": "defines.direction.south",
+        "position": {}
+      }
+    },
+    "energy_source": {
+      "type": "electric",
+      "usage_priority": "secondary-input",
+      "emissions_per_minute": {
+        "pollution": 20
+      }
+    },
+    "energy_usage": "24.19MW",
+    "ingredient_count": 6,
+    "module_slots": 4,
+    "allowed_effects": {},
+    "max_health": 2000,
+    "damaged_trigger_effect": "hit_effects.entity()",
+    "corpse": "kr-matter-plant-remnants",
+    "dying_explosion": "kr-medium-matter-explosion",
+    "resistances": {
+      "type": "impact",
+      "percent": 70
+    },
+    "open_sound": {
+      "filename": "__Krastorio2Assets__/sounds/buildings/open.ogg",
+      "volume": 1
+    },
+    "close_sound": {
+      "filename": "__Krastorio2Assets__/sounds/buildings/close.ogg",
+      "volume": 1
+    },
+    "vehicle_impact_sound": "sounds.generic_impact",
+    "working_sound": {
+      "sound": {
+        "filename": "__Krastorio2Assets__/sounds/buildings/matter-plant.ogg"
+      },
+      "idle_sound": {
+        "filename": "__base__/sound/idle1.ogg"
+      }
+    },
+    "graphics_set": {
+      "animation": {
+        "layers": {
+          "filename": "__Krastorio2Assets__/buildings/matter-plant/matter-plant-sh.png",
+          "priority": "high",
+          "width": 504,
+          "height": 444,
+          "frame_count": 1,
+          "shift": {},
+          "scale": 0.5,
+          "draw_as_shadow": true
+        }
+      },
+      "working_visualisations": {
+        "draw_as_light": true,
+        "blend_mode": "additive-soft",
+        "animation": {
+          "filename": "__Krastorio2Assets__/buildings/matter-plant/matter-plant-working.png",
+          "width": 462,
+          "height": 500,
+          "frame_count": 30,
+          "line_length": 6,
+          "shift": {},
+          "scale": 0.5,
+          "animation_speed": 0.75
+        },
+        "draw_as_glow": true,
+        "synced_fadeout": true
+      }
+    },
+    "icon_draw_specification": {
+      "scale": 2,
+      "shift": {}
+    },
+    "icons_positioning": {
+      "inventory_index": "defines.inventory.assembling_machine_modules",
+      "shift": {}
+    },
+    "circuit_wire_max_distance": "default_circuit_wire_max_distance",
+    "circuit_connector": "circuit_connector_definitions.create_vector(universal_connector_template, {\n      {\n        variation = 2,\n        main_offset = util.by_pixel(100, -25),\n        shadow_offset = util.by_pixel(98, -25),\n        show_shadow = false,\n      },\n      {\n        variation = 2,\n        main_offset = util.by_pixel(100, -25),\n        shadow_offset = util.by_pixel(98, -25),\n        show_shadow = false,\n      },\n      {\n        variation = 2,\n        main_offset = util.by_pixel(100, -25),\n        shadow_offset = util.by_pixel(98, -25),\n        show_shadow = false,\n      },\n      {\n        variation = 2,\n        main_offset = util.by_pixel(100, -25),\n        shadow_offset = util.by_pixel(98, -25),\n        show_shadow = false,\n      },\n    })"
+  }
+]

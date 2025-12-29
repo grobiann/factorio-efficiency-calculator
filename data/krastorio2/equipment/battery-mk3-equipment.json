@@ -1,0 +1,61 @@
+[
+  {
+    "type": "recipe",
+    "name": "kr-battery-mk3-equipment",
+    "enabled": false,
+    "energy_required": 10,
+    "ingredients": {
+      "type": "item",
+      "name": "processing-unit",
+      "amount": 1
+    },
+    "results": {
+      "type": "item",
+      "name": "kr-battery-mk3-equipment",
+      "amount": 1
+    }
+  },
+  {
+    "type": "item",
+    "name": "kr-battery-mk3-equipment",
+    "icons": {
+      "icon": "__Krastorio2Assets__/icons/equipment/tier-3.png"
+    },
+    "pictures": {
+      "layers": {
+        "filename": "__Krastorio2Assets__/icons/equipment/battery-equipment-light.png",
+        "size": 64,
+        "scale": 0.5,
+        "draw_as_light": true
+      }
+    },
+    "place_as_equipment_result": "kr-battery-mk3-equipment",
+    "subgroup": "equipment",
+    "order": "b3[battery]-b5[battery-equipment]",
+    "stack_size": 20
+  },
+  {
+    "type": "battery-equipment",
+    "name": "kr-battery-mk3-equipment",
+    "sprite": {
+      "filename": "__Krastorio2Assets__/equipment/battery-mk3-equipment.png",
+      "width": 64,
+      "height": 128,
+      "priority": "medium",
+      "scale": 0.5
+    },
+    "shape": {
+      "type": "full",
+      "width": 1,
+      "height": 2
+    },
+    "energy_source": {
+      "type": "electric",
+      "buffer_capacity": "50MJ",
+      "input_flow_limit": "1MW",
+      "output_flow_limit": "2MW",
+      "usage_priority": "tertiary"
+    },
+    "categories": {}
+  }
+]

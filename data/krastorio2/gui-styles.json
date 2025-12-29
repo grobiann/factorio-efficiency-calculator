@@ -1,0 +1,10 @@
+[
+  {
+    "type": "font",
+    "name": "kr-planetary-teleporter-destination",
+    "from": "default-semibold",
+    "size": 14,
+    "border": true,
+    "border_color": {}
+  }
+]

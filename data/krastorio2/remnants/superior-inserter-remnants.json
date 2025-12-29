@@ -1,0 +1,20 @@
+[
+  {
+    "type": "corpse",
+    "name": "kr-superior-inserter-remnants",
+    "localised_name": {},
+    "icon": "__Krastorio2Assets__/icons/entities/superior-inserter.png",
+    "flags": {},
+    "hidden_in_factoriopedia": true,
+    "subgroup": "remnants",
+    "order": "d[remnants]-a[generic]-a[small]",
+    "selection_box": {},
+    "tile_width": 1,
+    "tile_height": 1,
+    "selectable_in_game": false,
+    "time_before_removed": "15 * minute",
+    "final_render_layer": "remnants",
+    "remove_on_tile_placement": false,
+    "animation": "make_rotated_animation_variations_from_sheet(3, {\n      filename = \"__Krastorio2Assets__/remnants/superior-inserter-remnants.png\",\n      line_length = 1,\n      width = 102,\n      height = 80,\n      frame_count = 1,\n      variation_count = 1,\n      axially_symmetrical = false,\n      direction_count = 1,\n      shift = util.by_pixel(0.5, 4.5),\n      scale = 0.5,\n    })"
+  }
+]

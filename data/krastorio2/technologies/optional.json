@@ -1,0 +1,54 @@
+[
+  {
+    "type": "technology",
+    "name": "kr-containers",
+    "icon": "__Krastorio2Assets__/technologies/containers.png",
+    "icon_size": 256,
+    "unit": {
+      "time": 30,
+      "count": 100,
+      "ingredients": {}
+    },
+    "prerequisites": {},
+    "effects": {
+      "type": "unlock-recipe",
+      "recipe": "kr-warehouse"
+    }
+  },
+  {
+    "type": "technology",
+    "name": "kr-logistic-containers-1",
+    "localised_name": {},
+    "localised_description": {},
+    "icon": "__Krastorio2Assets__/technologies/logistic-containers-1.png",
+    "icon_size": 256,
+    "unit": {
+      "time": 30,
+      "count": 250,
+      "ingredients": {}
+    },
+    "prerequisites": {},
+    "effects": {
+      "type": "unlock-recipe",
+      "recipe": "kr-storage-warehouse"
+    }
+  },
+  {
+    "type": "technology",
+    "name": "kr-logistic-containers-2",
+    "localised_name": {},
+    "localised_description": {},
+    "icon": "__Krastorio2Assets__/technologies/logistic-containers-2.png",
+    "icon_size": 256,
+    "unit": {
+      "time": 30,
+      "count": 500,
+      "ingredients": {}
+    },
+    "prerequisites": {},
+    "effects": {
+      "type": "unlock-recipe",
+      "recipe": "kr-requester-warehouse"
+    }
+  }
+]

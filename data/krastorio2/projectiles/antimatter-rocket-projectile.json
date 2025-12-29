@@ -1,0 +1,92 @@
+[
+  {
+    "type": "projectile",
+    "name": "kr-antimatter-rocket-projectile",
+    "hidden": true,
+    "reveal_map": true,
+    "map_color": {
+      "r": 1,
+      "g": 0,
+      "b": 0.8
+    },
+    "acceleration": 0.01,
+    "action": {
+      "type": "direct",
+      "action_delivery": {
+        "type": "instant",
+        "target_effects": {
+          "type": "nested-result",
+          "tile_name": "nuclear-ground",
+          "radius": 25,
+          "apply_projection": true,
+          "tile_collision_mask": {
+            "layers": {
+              "water_tile": true
+            }
+          },
+          "explosion": "explosion",
+          "entity_name": "huge-scorchmark",
+          "effect": "screen-burn",
+          "duration": 100,
+          "ease_in_duration": 5,
+          "ease_out_duration": 60,
+          "delay": 0,
+          "strength": 6,
+          "full_strength_max_distance": 200,
+          "max_distance": 1000,
+          "sound": "sounds.nuclear_explosion_aftershock(0.4)",
+          "play_on_target_position": false,
+          "damage": {
+            "amount": 3500,
+            "type": "kr-radioactive"
+          },
+          "scale": 5,
+          "check_buildability": true,
+          "repeat_count": 1,
+          "include_soft_decoratives": true,
+          "include_decals": true,
+          "invoke_decorative_trigger": true,
+          "decoratives_with_trigger_only": false,
+          "decorative": "nuclear-ground-patch",
+          "spawn_min_radius": 13.5,
+          "spawn_max_radius": 14.5,
+          "spawn_min": 100,
+          "spawn_max": 150,
+          "spread_evenly": true,
+          "action": {
+            "type": "area",
+            "show_in_tooltip": false,
+            "target_entities": false,
+            "trigger_from_target": true,
+            "repeat_count": 20,
+            "radius": 16,
+            "action_delivery": {
+              "type": "instant",
+              "target_effects": {
+                "type": "create-entity",
+                "entity_name": "nuclear-smouldering-smoke-source",
+                "tile_collision_mask": {
+                  "layers": {
+                    "water_tile": true
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "animation": "require(\"__base__.prototypes.entity.rocket-projectile-pictures\").animation({ 1, 0.8, 0.3 })",
+    "shadow": "require(\"__base__.prototypes.entity.rocket-projectile-pictures\").shadow",
+    "smoke": "require(\"__base__.prototypes.entity.rocket-projectile-pictures\").smoke",
+    "light": {
+      "intensity": 0.5,
+      "size": 10,
+      "color": {
+        "r": 0.9,
+        "g": 0.1,
+        "b": 1
+      }
+    }
+  }
+]

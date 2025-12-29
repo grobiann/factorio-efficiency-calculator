@@ -1,0 +1,24 @@
+[
+  {
+    "type": "tile-effect",
+    "name": "water",
+    "shader": "water",
+    "water": {
+      "textures": {
+        "filename": "__base__/graphics/terrain/effects/water-noise.png",
+        "width": 512,
+        "height": 512
+      },
+      "specular_lightness": {},
+      "foam_color": {},
+      "foam_color_multiplier": 2.47,
+      "animation_speed": 0.07,
+      "animation_scale": {},
+      "dark_threshold": {},
+      "reflection_threshold": {},
+      "specular_threshold": {},
+      "tick_scale": 0.09,
+      "near_zoom": 2
+    }
+  }
+]

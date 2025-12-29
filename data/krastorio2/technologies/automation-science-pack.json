@@ -1,0 +1,50 @@
+[
+  {
+    "type": "technology",
+    "name": "kr-fluids-chemistry",
+    "icon": "__Krastorio2Assets__/technologies/fluids-chemistry.png",
+    "icon_size": 256,
+    "unit": {
+      "time": 45,
+      "count": 100,
+      "ingredients": {}
+    },
+    "prerequisites": {},
+    "effects": {
+      "type": "unlock-recipe",
+      "recipe": "kr-water-electrolysis"
+    }
+  },
+  {
+    "type": "technology",
+    "name": "kr-sentinel",
+    "icon": "__Krastorio2Assets__/technologies/sentinel.png",
+    "icon_size": 256,
+    "unit": {
+      "time": 30,
+      "count": 100,
+      "ingredients": {}
+    },
+    "prerequisites": {},
+    "effects": {
+      "type": "unlock-recipe",
+      "recipe": "kr-sentinel"
+    }
+  },
+  {
+    "type": "technology",
+    "name": "kr-shelter",
+    "icon": "__Krastorio2Assets__/technologies/shelter.png",
+    "icon_size": 256,
+    "unit": {
+      "time": 30,
+      "count": 100,
+      "ingredients": {}
+    },
+    "prerequisites": {},
+    "effects": {
+      "type": "unlock-recipe",
+      "recipe": "kr-shelter"
+    }
+  }
+]

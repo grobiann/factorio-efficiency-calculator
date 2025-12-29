@@ -1,0 +1,62 @@
+[
+  {
+    "type": "recipe",
+    "name": "kr-ai-core",
+    "enabled": false,
+    "category": "crafting-with-fluid",
+    "energy_required": 16,
+    "ingredients": {
+      "type": "fluid",
+      "name": "kr-nitric-acid",
+      "amount": 10
+    },
+    "results": {
+      "type": "item",
+      "name": "kr-ai-core",
+      "amount": 2
+    },
+    "allow_productivity": true
+  },
+  {
+    "type": "recipe",
+    "name": "kr-empty-antimatter-fuel-cell",
+    "category": "crafting-with-fluid",
+    "enabled": false,
+    "energy_required": 10,
+    "ingredients": {
+      "type": "item",
+      "name": "kr-matter-stabilizer",
+      "amount": 2
+    },
+    "results": {
+      "type": "item",
+      "name": "kr-empty-antimatter-fuel-cell",
+      "amount": 1
+    },
+    "allow_as_intermediate": false,
+    "allow_productivity": true
+  },
+  {
+    "type": "recipe",
+    "name": "kr-landfill-with-sand",
+    "icons": {
+      "icon": "__Krastorio2Assets__/icons/items/sand.png",
+      "scale": 0.26,
+      "shift": {}
+    },
+    "enabled": false,
+    "category": "crafting-with-fluid",
+    "energy_required": 0.5,
+    "ingredients": {
+      "type": "fluid",
+      "name": "water",
+      "amount": 50
+    },
+    "results": {
+      "type": "item",
+      "name": "landfill",
+      "amount": 1
+    },
+    "allow_as_intermediate": false
+  }
+]

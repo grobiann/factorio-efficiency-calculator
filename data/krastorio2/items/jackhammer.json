@@ -1,0 +1,33 @@
+[
+  {
+    "type": "selection-tool",
+    "name": "kr-jackhammer",
+    "icon": "__Krastorio2Assets__/icons/items/jackhammer.png",
+    "flags": {},
+    "hidden": true,
+    "stack_size": 1,
+    "select": {
+      "border_color": {
+        "r": 0.55,
+        "g": 0.35,
+        "b": 0.22
+      },
+      "mode": {},
+      "cursor_box_type": "not-allowed",
+      "tile_filters": "default_tiles",
+      "tile_filter_mode": "whitelist"
+    },
+    "alt_select": {
+      "border_color": {
+        "r": 0.55,
+        "g": 0.35,
+        "b": 0.22
+      },
+      "mode": {},
+      "cursor_box_type": "not-allowed",
+      "tile_filters": "default_tiles",
+      "tile_filter_mode": "whitelist"
+    },
+    "always_include_tiles": true
+  }
+]

@@ -1,0 +1,30 @@
+[
+  {
+    "type": "equipment-grid",
+    "name": "kr-gunship-grid",
+    "width": 4,
+    "height": 6,
+    "equipment_categories": {}
+  },
+  {
+    "type": "equipment-grid",
+    "name": "kr-cargo-plane-grid",
+    "width": 4,
+    "height": 4,
+    "equipment_categories": {}
+  },
+  {
+    "type": "equipment-grid",
+    "name": "kr-jet-grid",
+    "width": 2,
+    "height": 4,
+    "equipment_categories": {}
+  },
+  {
+    "type": "equipment-grid",
+    "name": "kr-flying-fortress-grid",
+    "width": 6,
+    "height": 6,
+    "equipment_categories": {}
+  }
+]

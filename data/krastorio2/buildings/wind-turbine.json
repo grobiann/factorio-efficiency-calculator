@@ -1,0 +1,132 @@
+[
+  {
+    "type": "recipe",
+    "name": "kr-wind-turbine",
+    "energy_required": 5,
+    "enabled": true,
+    "ingredients": {
+      "type": "item",
+      "name": "copper-cable",
+      "amount": 6
+    },
+    "results": {
+      "type": "item",
+      "name": "kr-wind-turbine",
+      "amount": 1
+    }
+  },
+  {
+    "type": "item",
+    "name": "kr-wind-turbine",
+    "icon": "__Krastorio2Assets__/icons/entities/wind-turbine.png",
+    "subgroup": "energy",
+    "order": "00[solar-panel]-a[wind-turbine]",
+    "place_result": "kr-wind-turbine",
+    "stack_size": 50
+  },
+  {
+    "type": "solar-panel",
+    "name": "kr-wind-turbine",
+    "icon": "__Krastorio2Assets__/icons/entities/wind-turbine.png",
+    "flags": {},
+    "minable": {
+      "mining_time": 0.25,
+      "result": "kr-wind-turbine"
+    },
+    "fast_replaceable_group": "wind-turbine",
+    "collision_box": {},
+    "selection_box": {},
+    "collision_mask": {
+      "layers": {
+        "item": true,
+        "object": true,
+        "player": true,
+        "water_tile": true,
+        "kr_wind_turbine": true
+      }
+    },
+    "drawing_box_vertical_extension": 2,
+    "energy_source": {
+      "type": "electric",
+      "buffer_capacity": "20kJ",
+      "usage_priority": "solar",
+      "output_flow_limit": "20kW",
+      "render_no_power_icon": false
+    },
+    "performance_at_day": 1,
+    "performance_at_night": 1,
+    "production": "20kW",
+    "max_health": 200,
+    "corpse": "medium-remnants",
+    "damaged_trigger_effect": "hit_effects.entity()",
+    "resistances": {
+      "type": "impact",
+      "percent": 30
+    },
+    "working_sound": {
+      "sound": "persistent_sound",
+      "idle_sound": "persistent_sound",
+      "persistent": true
+    },
+    "stateless_visualisation": {
+      "animation": {
+        "layers": {
+          "filename": "__Krastorio2Assets__/buildings/wind-turbine/wind-turbine-shadow.png",
+          "priority": "medium",
+          "width": 242,
+          "height": 100,
+          "scale": 0.65,
+          "frame_count": 30,
+          "line_length": 6,
+          "animation_speed": 0.5,
+          "shift": {},
+          "draw_as_shadow": true
+        }
+      }
+    },
+    "draw_stateless_visualisations_in_ghost": true,
+    "radius_visualisation_specification": {
+      "sprite": {
+        "filename": "__Krastorio2Assets__/buildings/wind-turbine/wind-turbine-radius-visualisation.png",
+        "width": 12,
+        "height": 12
+      },
+      "distance": 4.4
+    },
+    "water_reflection": {
+      "pictures": {
+        "filename": "__Krastorio2Assets__/buildings/wind-turbine/wind-turbine-reflection.png",
+        "priority": "extra-high",
+        "width": 20,
+        "height": 25,
+        "shift": "util.by_pixel(0, 40)",
+        "variation_count": 1,
+        "scale": 5
+      },
+      "rotate": false,
+      "orientation_to_variation": false
+    }
+  },
+  {
+    "type": "simple-entity",
+    "name": "kr-wind-turbine-collision",
+    "localised_name": {},
+    "icon": "__Krastorio2Assets__/icons/entities/wind-turbine.png",
+    "hidden": true,
+    "collision_mask": {
+      "layers": {
+        "kr_wind_turbine": true
+      }
+    },
+    "collision_box": {},
+    "picture": {
+      "filename": "__core__/graphics/empty.png",
+      "size": 1
+    },
+    "flags": {}
+  },
+  {
+    "type": "collision-layer",
+    "name": "kr_wind_turbine"
+  }
+]

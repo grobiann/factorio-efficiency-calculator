@@ -1,0 +1,55 @@
+[
+  {
+    "type": "item",
+    "name": "name",
+    "icons": "data_util.create_icons(tree)",
+    "order": "a[",
+    "subgroup": "trees",
+    "stack_size": 10,
+    "place_result": "name"
+  },
+  {
+    "type": "recipe",
+    "name": "name",
+    "category": "kr-growing",
+    "energy_required": 30,
+    "enabled": false,
+    "hide_from_player_crafting": true,
+    "ingredients": {
+      "type": "fluid",
+      "name": "water",
+      "amount": 100
+    },
+    "results": {
+      "type": "item",
+      "name": "name",
+      "amount": 1
+    }
+  },
+  {
+    "type": "item",
+    "name": "name",
+    "icons": "data_util.create_icons(entity)",
+    "order": "b[",
+    "subgroup": "grass",
+    "stack_size": 10,
+    "place_result": "name"
+  },
+  {
+    "type": "recipe",
+    "name": "name",
+    "energy_required": 10,
+    "enabled": false,
+    "hide_from_player_crafting": true,
+    "ingredients": {
+      "type": "item",
+      "name": "stone",
+      "amount": 75
+    },
+    "results": {
+      "type": "item",
+      "name": "name",
+      "amount": 1
+    }
+  }
+]

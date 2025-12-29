@@ -1,0 +1,116 @@
+[
+  {
+    "type": "procession-layer-inheritance-group",
+    "name": "dummy-group",
+    "intermezzo_application": {
+      "offset": true,
+      "rotation": true
+    },
+    "arrival_application": {
+      "offset": true,
+      "pod_offset": true,
+      "rotation": true
+    }
+  },
+  {
+    "type": "procession",
+    "name": "default-a",
+    "usage": "departure",
+    "procession_style": "procession_style.default",
+    "timeline": {
+      "duration": 100,
+      "layers": {
+        "type": "pod-opacity",
+        "frames": {
+          "timestamp": 150,
+          "outside_opacity": 0
+        },
+        "lut": "__core__/graphics/color_luts/lut-day.png"
+      },
+      "audio_events": {}
+    }
+  },
+  {
+    "type": "procession",
+    "name": "default-rocket-a",
+    "usage": "departure",
+    "procession_style": "procession_style.default",
+    "timeline": {
+      "duration": 800,
+      "special_action_tick": 800,
+      "layers": {
+        "type": "pod-opacity",
+        "frames": {
+          "timestamp": 500,
+          "outside_opacity": 0
+        },
+        "lut": "__core__/graphics/color_luts/lut-day.png"
+      }
+    }
+  },
+  {
+    "type": "procession",
+    "name": "default-b",
+    "usage": "arrival",
+    "procession_style": "procession_style.default",
+    "timeline": {
+      "duration": "400 * scl",
+      "special_action_tick": "100 * scl",
+      "layers": {
+        "type": "single-graphic",
+        "frames": {
+          "timestamp": "400 * scl",
+          "opacity": 0.0,
+          "opacity_t": 0.0
+        },
+        "lut": "__core__/graphics/color_luts/lut-day.png",
+        "name": "hatch light",
+        "start_time": "250 * scl",
+        "end_time": 0,
+        "graphic": {
+          "type": "hatch-location-catalogue-index"
+        },
+        "timestamp": "400 * scl",
+        "frame": 0,
+        "opacity": 0,
+        "render_layer": "cargo-hatch",
+        "secondary_draw_order": -1,
+        "relative_to": "ground-origin"
+      },
+      "audio_events": {}
+    },
+    "ground_timeline": {
+      "duration": "400 * scl",
+      "special_action_tick": "100 * scl",
+      "layers": {
+        "type": "pod-animation",
+        "frames": {
+          "timestamp": "400 * scl",
+          "frame": 11
+        },
+        "lut": "__core__/graphics/color_luts/lut-day.png",
+        "name": "pod fold",
+        "start_time": 0,
+        "end_time": 400,
+        "graphic": {
+          "type": "pod-catalogue",
+          "catalogue_id": "procession_graphic_catalogue.pod_anim_landing"
+        },
+        "timestamp": "400 * scl",
+        "frame": 11,
+        "opacity": 0
+      },
+      "audio_events": {}
+    }
+  },
+  {
+    "type": "procession",
+    "name": "default-intermezzo",
+    "usage": "intermezzo",
+    "procession_style": "procession_style.default",
+    "timeline": {
+      "duration": 100,
+      "layers": {}
+    }
+  }
+]

@@ -1,0 +1,415 @@
+[
+  {
+    "type": "recipe",
+    "name": "kr-electric-mining-drill-mk2",
+    "energy_required": 5,
+    "enabled": false,
+    "ingredients": {
+      "type": "item",
+      "name": "kr-rare-metals",
+      "amount": 4
+    },
+    "results": {
+      "type": "item",
+      "name": "kr-electric-mining-drill-mk2",
+      "amount": 1
+    }
+  },
+  {
+    "type": "item",
+    "name": "kr-electric-mining-drill-mk2",
+    "icon": "__Krastorio2Assets__/icons/entities/electric-mining-drill-mk2.png",
+    "subgroup": "extraction-machine",
+    "order": "a[items]-c[electric-mining-drill-mk2]",
+    "place_result": "kr-electric-mining-drill-mk2",
+    "stack_size": 50
+  },
+  {
+    "type": "mining-drill",
+    "name": "kr-electric-mining-drill-mk2",
+    "icon": "__Krastorio2Assets__/icons/entities/electric-mining-drill-mk2.png",
+    "flags": {},
+    "minable": {
+      "mining_time": 0.5,
+      "result": "kr-electric-mining-drill-mk2"
+    },
+    "next_upgrade": "kr-electric-mining-drill-mk3",
+    "fast_replaceable_group": "electric-mining-drill",
+    "collision_box": {},
+    "selection_box": {},
+    "resource_categories": {},
+    "mining_speed": 0.75,
+    "resource_searching_radius": 3.49,
+    "vector_to_place_result": {},
+    "module_slots": 3,
+    "energy_source": {
+      "type": "electric",
+      "emissions_per_minute": {
+        "pollution": 10
+      },
+      "usage_priority": "secondary-input"
+    },
+    "energy_usage": "125kW",
+    "input_fluid_box": {
+      "pipe_picture": "assembler2pipepictures()",
+      "pipe_covers": "pipecoverspictures()",
+      "volume": 200,
+      "pipe_connections": {
+        "flow_direction": "input-output",
+        "direction": "defines.direction.south",
+        "position": {}
+      }
+    },
+    "max_health": 350,
+    "corpse": "electric-mining-drill-remnants",
+    "dying_explosion": "electric-mining-drill-explosion",
+    "damaged_trigger_effect": "hit_effects.entity()",
+    "resistances": {
+      "type": "impact",
+      "percent": 20
+    },
+    "open_sound": "sounds.machine_open",
+    "close_sound": "sounds.machine_close",
+    "vehicle_impact_sound": "sounds.generic_impact",
+    "working_sound": {
+      "sound": {
+        "audible_distance_modifier": 0.5,
+        "filename": "__Krastorio2Assets__/sounds/buildings/electric-mining-drill-mk2.ogg",
+        "volume": 0.8
+      },
+      "fade_in_ticks": 4,
+      "fade_out_ticks": 20
+    },
+    "graphics_set": {
+      "drilling_vertical_movement_duration": "10 / electric_drill_animation_speed",
+      "animation_progress": 1,
+      "min_animation_progress": 0,
+      "max_animation_progress": 30,
+      "status_colors": "electric_mining_drill_status_colors()",
+      "circuit_connector_layer": "object",
+      "circuit_connector_secondary_draw_order": {
+        "north": 14,
+        "east": 26,
+        "south": 26,
+        "west": 26
+      },
+      "animation": {
+        "north": {
+          "layers": {
+            "priority": "high",
+            "filename": "__Krastorio2Assets__/buildings/electric-mining-drill-mk2/electric-mining-drill-N-shadow.png",
+            "line_length": 1,
+            "width": 274,
+            "height": 206,
+            "frame_count": 1,
+            "animation_speed": "electric_drill_animation_speed",
+            "direction_count": 1,
+            "shift": "util.by_pixel(19, -3)",
+            "repeat_count": 5,
+            "scale": 0.5,
+            "draw_as_shadow": true
+          }
+        },
+        "east": {
+          "layers": {
+            "priority": "high",
+            "filename": "__Krastorio2Assets__/buildings/electric-mining-drill-mk2/electric-mining-drill-E-shadow.png",
+            "line_length": 1,
+            "width": 276,
+            "height": 170,
+            "frame_count": 1,
+            "animation_speed": "electric_drill_animation_speed",
+            "direction_count": 1,
+            "shift": "util.by_pixel(20, 6)",
+            "repeat_count": 5,
+            "scale": 0.5,
+            "draw_as_shadow": true
+          }
+        },
+        "south": {
+          "layers": {
+            "priority": "high",
+            "filename": "__Krastorio2Assets__/buildings/electric-mining-drill-mk2/electric-mining-drill-S-shadow.png",
+            "line_length": 1,
+            "width": 274,
+            "height": 204,
+            "frame_count": 1,
+            "animation_speed": "electric_drill_animation_speed",
+            "direction_count": 1,
+            "shift": "util.by_pixel(19, 2)",
+            "repeat_count": 5,
+            "scale": 0.5,
+            "draw_as_shadow": true
+          }
+        },
+        "west": {
+          "layers": {
+            "priority": "high",
+            "filename": "__Krastorio2Assets__/buildings/electric-mining-drill-mk2/electric-mining-drill-W-shadow.png",
+            "line_length": 1,
+            "width": 282,
+            "height": 170,
+            "frame_count": 1,
+            "animation_speed": "electric_drill_animation_speed",
+            "direction_count": 1,
+            "shift": "util.by_pixel(15, 6)",
+            "repeat_count": 5,
+            "scale": 0.5,
+            "draw_as_shadow": true
+          }
+        }
+      },
+      "shift_animation_waypoints": {
+        "north": {},
+        "east": {},
+        "south": {},
+        "west": {}
+      },
+      "shift_animation_waypoint_stop_duration": "195 / electric_drill_animation_speed",
+      "shift_animation_transition_duration": "30 / electric_drill_animation_speed",
+      "working_visualisations": {
+        "constant_speed": true,
+        "synced_fadeout": true,
+        "align_to_waypoint": true,
+        "apply_tint": "resource-color",
+        "animation": "electric_mining_drill_smoke_front()",
+        "north_position": {},
+        "east_position": {},
+        "south_position": {},
+        "west_position": {},
+        "fadeout": true,
+        "north_animation": null,
+        "east_animation": "graphics.horizontal_front_animation()",
+        "south_animation": {
+          "layers": {
+            "priority": "high",
+            "filename": "__Krastorio2Assets__/buildings/electric-mining-drill-mk2/electric-mining-drill-S-front.png",
+            "line_length": 1,
+            "width": 172,
+            "height": 42,
+            "frame_count": 1,
+            "animation_speed": "electric_drill_animation_speed",
+            "shift": "util.by_pixel(0, 13)",
+            "scale": 0.5,
+            "repeat_count": 5
+          }
+        },
+        "west_animation": "graphics.horizontal_front_animation()",
+        "animated_shift": true,
+        "always_draw": true,
+        "light": {
+          "intensity": 1,
+          "size": 2,
+          "color": {
+            "r": 1,
+            "g": 1,
+            "b": 1
+          }
+        }
+      }
+    },
+    "wet_mining_graphics_set": {
+      "drilling_vertical_movement_duration": "10 / electric_drill_animation_speed",
+      "animation_progress": 1,
+      "min_animation_progress": 0,
+      "max_animation_progress": 30,
+      "status_colors": "electric_mining_drill_status_colors()",
+      "circuit_connector_layer": "object",
+      "circuit_connector_secondary_draw_order": {
+        "north": 14,
+        "east": 44,
+        "south": 44,
+        "west": 44
+      },
+      "animation": {
+        "north": {
+          "layers": {
+            "priority": "high",
+            "filename": "__Krastorio2Assets__/buildings/electric-mining-drill-mk2/electric-mining-drill-N-wet-shadow.png",
+            "line_length": 1,
+            "width": 276,
+            "height": 222,
+            "frame_count": 1,
+            "animation_speed": "electric_drill_animation_speed",
+            "direction_count": 1,
+            "shift": "util.by_pixel(19, 1)",
+            "repeat_count": 5,
+            "scale": 0.5,
+            "draw_as_shadow": true
+          }
+        },
+        "west": {
+          "layers": {
+            "priority": "high",
+            "filename": "__Krastorio2Assets__/buildings/electric-mining-drill-mk2/electric-mining-drill-W-wet-shadow.png",
+            "line_length": 1,
+            "width": 284,
+            "height": 194,
+            "frame_count": 1,
+            "animation_speed": "electric_drill_animation_speed",
+            "direction_count": 1,
+            "shift": "util.by_pixel(15, 8)",
+            "repeat_count": 5,
+            "scale": 0.5,
+            "draw_as_shadow": true
+          }
+        },
+        "south": {
+          "layers": {
+            "priority": "high",
+            "filename": "__Krastorio2Assets__/buildings/electric-mining-drill-mk2/electric-mining-drill-S-wet-shadow.png",
+            "line_length": 1,
+            "width": 276,
+            "height": 204,
+            "frame_count": 1,
+            "animation_speed": "electric_drill_animation_speed",
+            "direction_count": 1,
+            "shift": "util.by_pixel(19, 2)",
+            "repeat_count": 5,
+            "scale": 0.5,
+            "draw_as_shadow": true
+          }
+        },
+        "east": {
+          "layers": {
+            "priority": "high",
+            "filename": "__Krastorio2Assets__/buildings/electric-mining-drill-mk2/electric-mining-drill-E-wet-shadow.png",
+            "line_length": 1,
+            "width": 276,
+            "height": 194,
+            "frame_count": 1,
+            "animation_speed": "electric_drill_animation_speed",
+            "direction_count": 1,
+            "shift": "util.by_pixel(20, 8)",
+            "repeat_count": 5,
+            "scale": 0.5,
+            "draw_as_shadow": true
+          }
+        }
+      },
+      "shift_animation_waypoints": "graphics.shift_animation_waypoints()",
+      "shift_animation_waypoint_stop_duration": "195 / electric_drill_animation_speed",
+      "shift_animation_transition_duration": "30 / electric_drill_animation_speed",
+      "working_visualisations": {
+        "constant_speed": true,
+        "synced_fadeout": true,
+        "align_to_waypoint": true,
+        "apply_tint": "input-fluid-flow-color",
+        "animation": "graphics.smoke_front()",
+        "north_position": {},
+        "east_position": {},
+        "south_position": {},
+        "west_position": {},
+        "fadeout": true,
+        "north_animation": {
+          "layers": {
+            "priority": "high",
+            "filename": "__Krastorio2Assets__/buildings/electric-mining-drill-mk2/electric-mining-drill-N-wet-front.png",
+            "line_length": 1,
+            "width": 162,
+            "height": 124,
+            "frame_count": 1,
+            "animation_speed": "electric_drill_animation_speed",
+            "direction_count": 1,
+            "shift": "util.by_pixel(-2, 20)",
+            "scale": 0.5
+          }
+        },
+        "east_animation": "graphics.horizontal_front_animation()",
+        "south_animation": {
+          "layers": {
+            "priority": "high",
+            "filename": "__Krastorio2Assets__/buildings/electric-mining-drill-mk2/electric-mining-drill-S-wet-front.png",
+            "line_length": 1,
+            "width": 192,
+            "height": 70,
+            "frame_count": 1,
+            "animation_speed": "electric_drill_animation_speed",
+            "shift": "util.by_pixel(0, 19)",
+            "scale": 0.5,
+            "repeat_count": 5
+          }
+        },
+        "west_animation": "graphics.horizontal_front_animation()",
+        "animated_shift": true,
+        "always_draw": true,
+        "secondary_draw_order": -47,
+        "light": {
+          "intensity": 1,
+          "size": 2,
+          "color": {
+            "r": 1,
+            "g": 1,
+            "b": 1
+          }
+        }
+      }
+    },
+    "integration_patch": {
+      "north": {
+        "priority": "high",
+        "filename": "__Krastorio2Assets__/buildings/electric-mining-drill-mk2/electric-mining-drill-N-integration.png",
+        "line_length": 1,
+        "width": 230,
+        "height": 236,
+        "frame_count": 1,
+        "animation_speed": "electric_drill_animation_speed",
+        "direction_count": 1,
+        "shift": "util.by_pixel(0, -2)",
+        "repeat_count": 5,
+        "scale": 0.5
+      },
+      "east": {
+        "priority": "high",
+        "filename": "__Krastorio2Assets__/buildings/electric-mining-drill-mk2/electric-mining-drill-E-integration.png",
+        "line_length": 1,
+        "width": 238,
+        "height": 204,
+        "frame_count": 1,
+        "animation_speed": "electric_drill_animation_speed",
+        "direction_count": 1,
+        "shift": "util.by_pixel(2, 5)",
+        "repeat_count": 5,
+        "scale": 0.5
+      },
+      "south": {
+        "priority": "high",
+        "filename": "__Krastorio2Assets__/buildings/electric-mining-drill-mk2/electric-mining-drill-S-integration.png",
+        "line_length": 1,
+        "width": 224,
+        "height": 228,
+        "frame_count": 1,
+        "animation_speed": "electric_drill_animation_speed",
+        "direction_count": 1,
+        "shift": "util.by_pixel(0, -2)",
+        "repeat_count": 5,
+        "scale": 0.5
+      },
+      "west": {
+        "priority": "high",
+        "filename": "__Krastorio2Assets__/buildings/electric-mining-drill-mk2/electric-mining-drill-W-integration.png",
+        "line_length": 1,
+        "width": 234,
+        "height": 202,
+        "frame_count": 1,
+        "animation_speed": "electric_drill_animation_speed",
+        "direction_count": 1,
+        "shift": "util.by_pixel(-3, 5)",
+        "repeat_count": 5,
+        "scale": 0.5
+      }
+    },
+    "radius_visualisation_picture": {
+      "filename": "__Krastorio2Assets__/buildings/electric-mining-drill-mk2/electric-mining-drill-radius-visualization.png",
+      "width": 10,
+      "height": 10
+    },
+    "monitor_visualization_tint": {
+      "r": 78,
+      "g": 173,
+      "b": 255
+    },
+    "circuit_connector": "circuit_connector_definitions[\"electric-mining-drill\"]",
+    "circuit_wire_max_distance": "default_circuit_wire_max_distance"
+  }
+]

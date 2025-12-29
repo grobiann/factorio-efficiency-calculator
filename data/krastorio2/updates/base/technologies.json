@@ -1,0 +1,466 @@
+[
+  {
+    "type": "technology",
+    "name": "mining-productivity-11",
+    "icons": {
+      "icon": "__core__/graphics/icons/technology/constants/constant-mining-productivity.png",
+      "icon_size": 128,
+      "shift": {},
+      "scale": 0.5,
+      "floating": true
+    },
+    "icon_size": 256,
+    "order": "c-k-f-w",
+    "max_level": 15,
+    "upgrade": true,
+    "unit": {
+      "time": 60,
+      "count_formula": "(L^2)*200",
+      "ingredients": {}
+    },
+    "prerequisites": {},
+    "effects": {
+      "type": "mining-drill-productivity-bonus",
+      "modifier": 0.1
+    }
+  },
+  {
+    "type": "technology",
+    "name": "mining-productivity-16",
+    "icons": {
+      "icon": "__core__/graphics/icons/technology/constants/constant-mining-productivity.png",
+      "icon_size": 128,
+      "shift": {},
+      "scale": 0.5,
+      "floating": true
+    },
+    "icon_size": 256,
+    "order": "c-k-f-z",
+    "upgrade": true,
+    "max_level": "infinite",
+    "unit": {
+      "time": 60,
+      "count_formula": "(L^2)*200",
+      "ingredients": {}
+    },
+    "prerequisites": {},
+    "effects": {
+      "type": "mining-drill-productivity-bonus",
+      "modifier": 0.1
+    }
+  },
+  {
+    "type": "technology",
+    "name": "worker-robots-speed-7",
+    "icons": {
+      "icon": "__core__/graphics/icons/technology/constants/constant-movement-speed.png",
+      "icon_size": 128,
+      "shift": {},
+      "scale": 0.5,
+      "floating": true
+    },
+    "icon_size": 256,
+    "order": "c-k-f-w",
+    "upgrade": true,
+    "max_level": 8,
+    "unit": {
+      "time": 60,
+      "count_formula": "((L-6)^2)*5000",
+      "ingredients": {}
+    },
+    "prerequisites": {},
+    "effects": {
+      "type": "worker-robot-speed",
+      "modifier": 0.6
+    }
+  },
+  {
+    "type": "technology",
+    "name": "worker-robots-speed-9",
+    "icons": {
+      "icon": "__core__/graphics/icons/technology/constants/constant-movement-speed.png",
+      "icon_size": 128,
+      "shift": {},
+      "scale": 0.5,
+      "floating": true
+    },
+    "icon_size": 256,
+    "order": "c-k-f-z",
+    "upgrade": true,
+    "max_level": "infinite",
+    "unit": {
+      "time": 60,
+      "count_formula": "((L-8)^2)*5000",
+      "ingredients": {}
+    },
+    "prerequisites": {},
+    "effects": {
+      "type": "worker-robot-speed",
+      "modifier": 0.375
+    }
+  },
+  {
+    "type": "technology",
+    "name": "follower-robot-count-6",
+    "icons": {
+      "icon": "__core__/graphics/icons/technology/constants/constant-count.png",
+      "icon_size": 128,
+      "shift": {},
+      "scale": 0.5,
+      "floating": true
+    },
+    "icon_size": 256,
+    "order": "c-k-f-w",
+    "upgrade": true,
+    "max_level": 8,
+    "unit": {
+      "time": 60,
+      "count_formula": "((L-5)^2)*5000",
+      "ingredients": {}
+    },
+    "prerequisites": {},
+    "effects": {
+      "type": "maximum-following-robots-count",
+      "modifier": 15
+    }
+  },
+  {
+    "type": "technology",
+    "name": "follower-robot-count-9",
+    "icons": {
+      "icon": "__core__/graphics/icons/technology/constants/constant-count.png",
+      "icon_size": 128,
+      "shift": {},
+      "scale": 0.5,
+      "floating": true
+    },
+    "icon_size": 256,
+    "order": "c-k-f-z",
+    "upgrade": true,
+    "max_level": "infinite",
+    "unit": {
+      "time": 60,
+      "count_formula": "((L-8)^2)*5000",
+      "ingredients": {}
+    },
+    "prerequisites": {},
+    "effects": {
+      "type": "maximum-following-robots-count",
+      "modifier": 15
+    }
+  },
+  {
+    "type": "technology",
+    "name": "physical-projectile-damage-11",
+    "icons": {
+      "icon": "__core__/graphics/icons/technology/constants/constant-damage.png",
+      "icon_size": 128,
+      "shift": {},
+      "scale": 0.5,
+      "floating": true
+    },
+    "icon_size": 256,
+    "order": "c-k-f-w",
+    "upgrade": true,
+    "max_level": 15,
+    "unit": {
+      "time": 60,
+      "count_formula": "((L-10)^2)*3000",
+      "ingredients": {}
+    },
+    "prerequisites": {},
+    "effects": {
+      "type": "ammo-damage",
+      "ammo_category": "cannon-shell",
+      "modifier": 0.1,
+      "turret_id": "gun-turret"
+    }
+  },
+  {
+    "type": "technology",
+    "name": "physical-projectile-damage-16",
+    "icons": {
+      "icon": "__core__/graphics/icons/technology/constants/constant-damage.png",
+      "icon_size": 128,
+      "shift": {},
+      "scale": 0.5,
+      "floating": true
+    },
+    "icon_size": 256,
+    "order": "c-k-f-z",
+    "upgrade": true,
+    "max_level": "infinite",
+    "unit": {
+      "time": 60,
+      "count_formula": "((L-15)^2)*3000",
+      "ingredients": {}
+    },
+    "prerequisites": {},
+    "effects": {
+      "type": "ammo-damage",
+      "ammo_category": "cannon-shell",
+      "modifier": 0.1,
+      "turret_id": "gun-turret"
+    }
+  },
+  {
+    "type": "technology",
+    "name": "stronger-explosives-11",
+    "icons": {
+      "icon": "__core__/graphics/icons/technology/constants/constant-damage.png",
+      "icon_size": 128,
+      "shift": {},
+      "scale": 0.5,
+      "floating": true
+    },
+    "icon_size": 256,
+    "order": "c-k-f-w",
+    "upgrade": true,
+    "max_level": 15,
+    "unit": {
+      "time": 60,
+      "count_formula": "((L-10)^2)*3000",
+      "ingredients": {}
+    },
+    "prerequisites": {},
+    "effects": {
+      "type": "ammo-damage",
+      "ammo_category": "landmine",
+      "modifier": 0.1
+    }
+  },
+  {
+    "type": "technology",
+    "name": "stronger-explosives-16",
+    "icons": {
+      "icon": "__core__/graphics/icons/technology/constants/constant-damage.png",
+      "icon_size": 128,
+      "shift": {},
+      "scale": 0.5,
+      "floating": true
+    },
+    "icon_size": 256,
+    "order": "c-k-f-z",
+    "upgrade": true,
+    "max_level": "infinite",
+    "unit": {
+      "time": 60,
+      "count_formula": "((L-15)^2)*3000",
+      "ingredients": {}
+    },
+    "prerequisites": {},
+    "effects": {
+      "type": "ammo-damage",
+      "ammo_category": "landmine",
+      "modifier": 0.1
+    }
+  },
+  {
+    "type": "technology",
+    "name": "refined-flammables-11",
+    "icons": {
+      "icon": "__core__/graphics/icons/technology/constants/constant-damage.png",
+      "icon_size": 128,
+      "shift": {},
+      "scale": 0.5,
+      "floating": true
+    },
+    "icon_size": 256,
+    "order": "c-k-f-w",
+    "upgrade": true,
+    "max_level": 15,
+    "unit": {
+      "time": 60,
+      "count_formula": "((L-10)^2)*3000",
+      "ingredients": {}
+    },
+    "prerequisites": {},
+    "effects": {
+      "type": "turret-attack",
+      "ammo_category": "flamethrower",
+      "modifier": 0.1,
+      "turret_id": "flamethrower-turret"
+    }
+  },
+  {
+    "type": "technology",
+    "name": "refined-flammables-16",
+    "icons": {
+      "icon": "__core__/graphics/icons/technology/constants/constant-damage.png",
+      "icon_size": 128,
+      "shift": {},
+      "scale": 0.5,
+      "floating": true
+    },
+    "icon_size": 256,
+    "order": "c-k-f-z",
+    "upgrade": true,
+    "max_level": "infinite",
+    "unit": {
+      "time": 60,
+      "count_formula": "((L-15)^2)*3000",
+      "ingredients": {}
+    },
+    "prerequisites": {},
+    "effects": {
+      "type": "turret-attack",
+      "ammo_category": "flamethrower",
+      "modifier": 0.1,
+      "turret_id": "flamethrower-turret"
+    }
+  },
+  {
+    "type": "technology",
+    "name": "laser-weapons-damage-11",
+    "icons": {
+      "icon": "__core__/graphics/icons/technology/constants/constant-damage.png",
+      "icon_size": 128,
+      "shift": {},
+      "scale": 0.5,
+      "floating": true
+    },
+    "icon_size": 256,
+    "order": "c-k-f-w",
+    "upgrade": true,
+    "max_level": 15,
+    "unit": {
+      "time": 60,
+      "count_formula": "((L-10)^2)*3000",
+      "ingredients": {}
+    },
+    "prerequisites": {},
+    "effects": {
+      "type": "ammo-damage",
+      "ammo_category": "laser",
+      "modifier": 0.1
+    }
+  },
+  {
+    "type": "technology",
+    "name": "laser-weapons-damage-16",
+    "icons": {
+      "icon": "__core__/graphics/icons/technology/constants/constant-damage.png",
+      "icon_size": 128,
+      "shift": {},
+      "scale": 0.5,
+      "floating": true
+    },
+    "icon_size": 256,
+    "order": "c-k-f-z",
+    "upgrade": true,
+    "max_level": "infinite",
+    "unit": {
+      "time": 60,
+      "count_formula": "((L-15)^2)*3000",
+      "ingredients": {}
+    },
+    "prerequisites": {},
+    "effects": {
+      "type": "ammo-damage",
+      "ammo_category": "laser",
+      "modifier": 0.1
+    }
+  },
+  {
+    "type": "technology",
+    "name": "artillery-shell-range-3",
+    "icons": {
+      "icon": "__core__/graphics/icons/technology/constants/constant-range.png",
+      "icon_size": 128,
+      "shift": {},
+      "scale": 0.5,
+      "floating": true
+    },
+    "icon_size": 256,
+    "order": "c-k-f-w",
+    "upgrade": true,
+    "max_level": 4,
+    "unit": {
+      "time": 60,
+      "count_formula": "((L-2)^2)*3500",
+      "ingredients": {}
+    },
+    "prerequisites": {},
+    "effects": {
+      "type": "artillery-range",
+      "modifier": 0.3
+    }
+  },
+  {
+    "type": "technology",
+    "name": "artillery-shell-range-5",
+    "icons": {
+      "icon": "__core__/graphics/icons/technology/constants/constant-range.png",
+      "icon_size": 128,
+      "shift": {},
+      "scale": 0.5,
+      "floating": true
+    },
+    "icon_size": 256,
+    "order": "c-k-f-z",
+    "upgrade": true,
+    "max_level": "infinite",
+    "unit": {
+      "time": 60,
+      "count_formula": "((L-4)^2)*3500",
+      "ingredients": {}
+    },
+    "prerequisites": {},
+    "effects": {
+      "type": "artillery-range",
+      "modifier": 0.2
+    }
+  },
+  {
+    "type": "technology",
+    "name": "artillery-shell-speed-3",
+    "icons": {
+      "icon": "__core__/graphics/icons/technology/constants/constant-speed.png",
+      "icon_size": 128,
+      "shift": {},
+      "scale": 0.5,
+      "floating": true
+    },
+    "icon_size": 256,
+    "order": "c-k-f-w",
+    "upgrade": true,
+    "max_level": 4,
+    "unit": {
+      "time": 60,
+      "count_formula": "((L-2)^2)*3500",
+      "ingredients": {}
+    },
+    "prerequisites": {},
+    "effects": {
+      "type": "gun-speed",
+      "ammo_category": "artillery-shell",
+      "modifier": 0.1
+    }
+  },
+  {
+    "type": "technology",
+    "name": "artillery-shell-speed-5",
+    "icons": {
+      "icon": "__core__/graphics/icons/technology/constants/constant-speed.png",
+      "icon_size": 128,
+      "shift": {},
+      "scale": 0.5,
+      "floating": true
+    },
+    "icon_size": 256,
+    "order": "c-k-f-z",
+    "upgrade": true,
+    "max_level": "infinite",
+    "unit": {
+      "time": 60,
+      "count_formula": "((L-4)^2)*3500",
+      "ingredients": {}
+    },
+    "prerequisites": {},
+    "effects": {
+      "type": "gun-speed",
+      "ammo_category": "artillery-shell",
+      "modifier": 0.1
+    }
+  }
+]

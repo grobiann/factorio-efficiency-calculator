@@ -1,0 +1,72 @@
+[
+  {
+    "type": "projectile",
+    "name": "kr-intergalactic-transceiver-wave",
+    "hidden": true,
+    "reveal_map": true,
+    "map_color": {
+      "r": 1,
+      "g": 0,
+      "b": 0.8
+    },
+    "acceleration": 0.01,
+    "action": {
+      "type": "direct",
+      "action_delivery": {
+        "type": "instant",
+        "target_effects": {
+          "type": "nested-result",
+          "entity_name": "kr-small-matter-explosion",
+          "effect": "screen-burn",
+          "duration": 250,
+          "ease_in_duration": 25,
+          "ease_out_duration": 150,
+          "delay": 10,
+          "strength": 8,
+          "full_strength_max_distance": 20000,
+          "max_distance": 50000,
+          "sound": "sounds.nuclear_explosion_aftershock(0.4)",
+          "play_on_target_position": false,
+          "scale": 200,
+          "repeat_count": 1,
+          "include_soft_decoratives": true,
+          "include_decals": true,
+          "invoke_decorative_trigger": true,
+          "decoratives_with_trigger_only": false,
+          "radius": 22,
+          "action": {
+            "type": "area",
+            "show_in_tooltip": false,
+            "target_entities": false,
+            "trigger_from_target": true,
+            "repeat_count": 3000,
+            "radius": 200,
+            "action_delivery": {
+              "type": "instant",
+              "target_effects": {
+                "type": "create-entity",
+                "entity_name": "nuclear-smouldering-smoke-source",
+                "tile_collision_mask": {
+                  "layers": {
+                    "water_tile": true
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "animation": "util.empty_animation()",
+    "shadow": "util.empty_animation()",
+    "light": {
+      "intensity": 0.5,
+      "size": 10,
+      "color": {
+        "r": 0.9,
+        "g": 0.1,
+        "b": 1
+      }
+    }
+  }
+]

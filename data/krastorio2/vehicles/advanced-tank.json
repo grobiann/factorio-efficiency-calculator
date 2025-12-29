@@ -1,0 +1,321 @@
+[
+  {
+    "type": "recipe",
+    "name": "kr-advanced-tank",
+    "energy_required": 200,
+    "enabled": false,
+    "allow_productivity": true,
+    "ingredients": {
+      "type": "item",
+      "name": "kr-rare-metals",
+      "amount": 50
+    },
+    "results": {
+      "type": "item",
+      "name": "kr-advanced-tank",
+      "amount": 1
+    }
+  },
+  {
+    "type": "item-with-entity-data",
+    "name": "kr-advanced-tank",
+    "icon": "__Krastorio2Assets__/icons/vehicles/advanced-tank.png",
+    "subgroup": "transport",
+    "order": "b[personal-transport]-b[z-advanced-tank]",
+    "place_result": "kr-advanced-tank",
+    "stack_size": 1
+  },
+  {
+    "type": "car",
+    "name": "kr-advanced-tank",
+    "icon": "__Krastorio2Assets__/icons/vehicles/advanced-tank.png",
+    "flags": {},
+    "minable": {
+      "mining_time": 10,
+      "result": "kr-advanced-tank"
+    },
+    "collision_box": {},
+    "selection_box": {},
+    "energy_per_hit_point": 0.5,
+    "effectivity": 1,
+    "terrain_friction_modifier": 0.2,
+    "friction": 0.002,
+    "braking_power": "12MW",
+    "rotation_speed": 0.0035,
+    "tank_driving": true,
+    "weight": 150000,
+    "inventory_size": 130,
+    "guns": {},
+    "equipment_grid": "kr-tank-grid-2",
+    "trash_inventory_size": 20,
+    "energy_source": {
+      "type": "burner",
+      "fuel_categories": {},
+      "emissions_per_minute": {
+        "pollution": 25
+      },
+      "effectivity": 1,
+      "fuel_inventory_size": 3,
+      "smoke": {
+        "name": "turbine-smoke",
+        "deviation": {},
+        "frequency": 30,
+        "position": {},
+        "starting_frame": 0,
+        "starting_vertical_speed": 0.1,
+        "slow_down_factor": 1,
+        "starting_frame_deviation": 60
+      }
+    },
+    "consumption": "5MW",
+    "max_health": 5000,
+    "corpse": "kr-advanced-tank-remnants",
+    "damaged_trigger_effect": "hit_effects.entity()",
+    "dying_explosion": "big-explosion",
+    "resistances": {
+      "type": "acid",
+      "decrease": 50,
+      "percent": 95
+    },
+    "immune_to_rock_impacts": true,
+    "immune_to_tree_impacts": true,
+    "open_sound": {
+      "filename": "__Krastorio2Assets__/sounds/buildings/open.ogg",
+      "volume": 1
+    },
+    "close_sound": {
+      "filename": "__Krastorio2Assets__/sounds/buildings/close.ogg",
+      "volume": 1
+    },
+    "mined_sound": {
+      "filename": "__core__/sound/deconstruct-medium.ogg"
+    },
+    "sound_no_fuel": {
+      "filename": "__base__/sound/fight/tank-no-fuel-1.ogg",
+      "volume": 0.8
+    },
+    "vehicle_impact_sound": "sounds.generic_impact",
+    "working_sound": {
+      "sound": {
+        "filename": "__Krastorio2Assets__/sounds/vehicles/advanced-tank-engine.ogg",
+        "volume": 1
+      },
+      "activate_sound": {
+        "filename": "__Krastorio2Assets__/sounds/vehicles/advanced-tank-engine-start.ogg",
+        "volume": 1
+      },
+      "deactivate_sound": {
+        "filename": "__base__/sound/fight/tank-engine-stop.ogg",
+        "volume": 0.8
+      },
+      "match_speed_to_activity": true
+    },
+    "light": {
+      "type": "oriented",
+      "minimum_darkness": 0.3,
+      "picture": {
+        "filename": "__core__/graphics/light-cone.png",
+        "priority": "extra-high",
+        "flags": {},
+        "scale": 2,
+        "width": 200,
+        "height": 200
+      },
+      "shift": {},
+      "size": 3,
+      "intensity": 0.75,
+      "color": {
+        "r": 0.75,
+        "g": 0.75,
+        "b": 1.0
+      }
+    },
+    "animation": {
+      "layers": {
+        "width": 416,
+        "height": 416,
+        "frame_count": 2,
+        "direction_count": 64,
+        "shift": {},
+        "animation_speed": 8,
+        "max_advance": 0.2,
+        "line_length": 8,
+        "scale": 0.525,
+        "stripes": {
+          "filename": "__Krastorio2Assets__/buildings/advanced-tank/advanced-tank-base-shadow.png",
+          "width_in_frames": 16,
+          "height_in_frames": 8
+        },
+        "apply_runtime_tint": true,
+        "draw_as_shadow": true
+      }
+    },
+    "turret_animation": {
+      "layers": {
+        "width": 516,
+        "height": 516,
+        "frame_count": 1,
+        "direction_count": 64,
+        "shift": {},
+        "scale": 0.525,
+        "animation_speed": 6,
+        "max_advance": 0.2,
+        "line_length": 16,
+        "stripes": {
+          "filename": "__Krastorio2Assets__/buildings/advanced-tank/advanced-tank-turret-shadow.png",
+          "width_in_frames": 8,
+          "height_in_frames": 8
+        },
+        "apply_runtime_tint": true,
+        "draw_as_shadow": true
+      }
+    },
+    "turret_rotation_speed": "0.3 / 60",
+    "turret_return_timeout": 300,
+    "track_particle_triggers": "require(\"prototypes.buildings.advanced-tank-movement-triggers\")",
+    "water_reflection": "car_reflection(2.0)",
+    "alert_icon_shift": "util.by_pixel(-4, -13)",
+    "allow_remote_driving": true
+  },
+  {
+    "type": "gun",
+    "name": "kr-advanced-tank-cannon-a",
+    "icon": "__Krastorio2Assets__/icons/guns/advanced-tank-cannon-a.png",
+    "subgroup": "gun",
+    "order": "z[tank]-a[cannon-a]",
+    "hidden": true,
+    "stack_size": 1,
+    "attack_parameters": {
+      "type": "projectile",
+      "ammo_category": "kr-railgun-shell",
+      "damage_modifier": 0.5,
+      "cooldown": 80,
+      "movement_slow_down_factor": 0.5,
+      "projectile_creation_distance": 4.5,
+      "projectile_center": {},
+      "min_range": 15,
+      "range": 60,
+      "sound": {
+        "filename": "__Krastorio2Assets__/sounds/weapons/railgun.ogg",
+        "volume": 1.0
+      }
+    }
+  },
+  {
+    "type": "gun",
+    "name": "kr-advanced-tank-cannon-b",
+    "icon": "__Krastorio2Assets__/icons/guns/advanced-tank-cannon-b.png",
+    "subgroup": "gun",
+    "order": "z[tank]-a[cannon-b]",
+    "hidden": true,
+    "stack_size": 1,
+    "attack_parameters": {
+      "type": "projectile",
+      "ammo_category": "kr-railgun-shell",
+      "damage_modifier": 0.5,
+      "cooldown": 80,
+      "movement_slow_down_factor": 0,
+      "projectile_creation_distance": 4.5,
+      "projectile_center": {},
+      "min_range": 15,
+      "range": 60,
+      "sound": {
+        "filename": "__Krastorio2Assets__/sounds/weapons/railgun.ogg",
+        "volume": 1.0
+      }
+    }
+  },
+  {
+    "type": "gun",
+    "name": "kr-advanced-tank-cannon-c",
+    "icon": "__Krastorio2Assets__/icons/guns/advanced-tank-cannon-c.png",
+    "subgroup": "gun",
+    "order": "z[tank]-a[cannon-c]",
+    "hidden": true,
+    "stack_size": 1,
+    "attack_parameters": {
+      "type": "projectile",
+      "ammo_category": "kr-railgun-shell",
+      "cooldown": 160,
+      "movement_slow_down_factor": 0,
+      "projectile_creation_distance": 4.5,
+      "projectile_center": {},
+      "min_range": 20,
+      "range": 120,
+      "sound": {
+        "filename": "__Krastorio2Assets__/sounds/weapons/railgun.ogg",
+        "volume": 1.5
+      }
+    }
+  },
+  {
+    "type": "gun",
+    "name": "kr-advanced-tank-laser-cannon",
+    "icon": "__Krastorio2Assets__/icons/guns/advanced-tank-laser-cannon.png",
+    "subgroup": "gun",
+    "order": "z[tank]-b[laser-cannon]",
+    "hidden": true,
+    "stack_size": 1,
+    "attack_parameters": {
+      "type": "projectile",
+      "ammo_category": "kr-impulse-rifle",
+      "damage_modifier": 1.5,
+      "cooldown": 30,
+      "movement_slow_down_factor": 0.25,
+      "projectile_creation_distance": 1.75,
+      "projectile_center": {},
+      "range": 60,
+      "sound": {
+        "variations": {
+          "filename": "__Krastorio2Assets__/sounds/weapons/heavy-impulse-shot-3.ogg",
+          "volume": 0.85
+        },
+        "aggregation": {
+          "max_count": 2,
+          "remove": false,
+          "count_already_playing": true
+        }
+      }
+    }
+  },
+  {
+    "type": "gun",
+    "name": "kr-advanced-tank-machine-gun",
+    "icon": "__Krastorio2Assets__/icons/guns/advanced-tank-machine-gun.png",
+    "subgroup": "gun",
+    "order": "z[tank]-a[tank-machine-gun]",
+    "hidden": true,
+    "stack_size": 1,
+    "attack_parameters": {
+      "type": "projectile",
+      "ammo_category": "bullet",
+      "damage_modifier": 1.5,
+      "cooldown": 6,
+      "movement_slow_down_factor": 0.25,
+      "shell_particle": {
+        "name": "shell-particle",
+        "direction_deviation": 0.1,
+        "speed": 0.1,
+        "speed_deviation": 0.03,
+        "center": {},
+        "creation_distance": -0.6875,
+        "starting_frame_speed": 0.4,
+        "starting_frame_speed_deviation": 0.1
+      },
+      "projectile_center": {},
+      "projectile_creation_distance": 1.75,
+      "range": 30,
+      "sound": {
+        "variations": {
+          "filename": "__Krastorio2Assets__/sounds/weapons/advanced-tank-anti-material-rifle-2.ogg",
+          "volume": 0.85
+        },
+        "aggregation": {
+          "max_count": 2,
+          "remove": false,
+          "count_already_playing": true
+        }
+      }
+    }
+  }
+]

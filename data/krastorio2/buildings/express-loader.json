@@ -1,0 +1,70 @@
+[
+  {
+    "type": "recipe",
+    "name": "kr-express-loader",
+    "energy_required": 2,
+    "enabled": false,
+    "ingredients": {
+      "type": "item",
+      "name": "kr-steel-gear-wheel",
+      "amount": 10
+    },
+    "results": {
+      "type": "item",
+      "name": "kr-express-loader",
+      "amount": 1
+    }
+  },
+  {
+    "type": "item",
+    "name": "kr-express-loader",
+    "icon": "__Krastorio2Assets__/icons/entities/express-loader.png",
+    "subgroup": "belt",
+    "order": "d[loader]-a3[kr-express-loader]",
+    "place_result": "kr-express-loader",
+    "stack_size": 50
+  },
+  {
+    "type": "loader-1x1",
+    "name": "kr-express-loader",
+    "icon": "__Krastorio2Assets__/icons/entities/express-loader.png",
+    "flags": {},
+    "minable": {
+      "mining_time": 0.25,
+      "result": "kr-express-loader"
+    },
+    "placeable_by": {
+      "item": "kr-express-loader",
+      "count": 1
+    },
+    "fast_replaceable_group": "transport-belt",
+    "next_upgrade": "kr-advanced-loader",
+    "collision_box": {},
+    "selection_box": {},
+    "speed": "data.raw[\"transport-belt\"][\"express-transport-belt\"].speed",
+    "container_distance": 0.75,
+    "filter_count": 5,
+    "energy_source": {
+      "type": "electric",
+      "usage_priority": "secondary-input",
+      "drain": "500W"
+    },
+    "energy_per_item": "9kJ",
+    "max_health": 300,
+    "corpse": "small-remnants",
+    "resistances": {
+      "type": "fire",
+      "percent": 90
+    },
+    "open_sound": "sounds.machine_open",
+    "close_sound": "sounds.machine_close",
+    "belt_animation_set": "data.raw[\"transport-belt\"][\"express-transport-belt\"].belt_animation_set",
+    "animation_speed_coefficient": 32,
+    "icon_draw_specification": {
+      "scale": 0.7
+    },
+    "structure": "graphics.structure({ 90, 190, 220 })",
+    "structure_render_layer": "graphics.structure_render_layer",
+    "circuit_wire_max_distance": "default_circuit_wire_max_distance"
+  }
+]

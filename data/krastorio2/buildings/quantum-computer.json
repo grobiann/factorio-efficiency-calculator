@@ -1,0 +1,139 @@
+[
+  {
+    "type": "recipe",
+    "name": "kr-quantum-computer",
+    "energy_required": 120,
+    "enabled": false,
+    "ingredients": {
+      "type": "item",
+      "name": "processing-unit",
+      "amount": 100
+    },
+    "results": {
+      "type": "item",
+      "name": "kr-quantum-computer",
+      "amount": 1
+    }
+  },
+  {
+    "type": "item",
+    "name": "kr-quantum-computer",
+    "icon": "__Krastorio2Assets__/icons/entities/quantum-computer.png",
+    "subgroup": "production-machine",
+    "order": "f3[research-servers]-b1[quantum-computer]",
+    "place_result": "kr-quantum-computer",
+    "stack_size": 50
+  },
+  {
+    "type": "assembling-machine",
+    "name": "kr-quantum-computer",
+    "icon": "__Krastorio2Assets__/icons/entities/quantum-computer.png",
+    "flags": {},
+    "minable": {
+      "mining_time": 1,
+      "result": "kr-quantum-computer"
+    },
+    "fast_replaceable_group": "assembling-machine",
+    "collision_box": {},
+    "selection_box": {},
+    "forced_symmetry": "horizontal",
+    "crafting_categories": {},
+    "crafting_speed": 3,
+    "module_slots": 4,
+    "allowed_effects": {},
+    "fluid_boxes": {
+      "production_type": "output",
+      "pipe_picture": "pipe_pictures",
+      "pipe_covers": "pipecoverspictures()",
+      "volume": 1000,
+      "pipe_connections": {
+        "flow_direction": "output",
+        "direction": "defines.direction.south",
+        "position": {}
+      },
+      "secondary_draw_orders": {
+        "north": -1
+      }
+    },
+    "fluid_boxes_off_when_no_fluid_recipe": true,
+    "energy_source": {
+      "type": "electric",
+      "usage_priority": "secondary-input",
+      "emissions_per_minute": {
+        "pollution": 5
+      }
+    },
+    "energy_usage": "1MW",
+    "max_health": 1000,
+    "corpse": "kr-medium-random-pipes-remnants",
+    "dying_explosion": "medium-explosion",
+    "damaged_trigger_effect": "hit_effects.entity()",
+    "resistances": {
+      "type": "impact",
+      "percent": 70
+    },
+    "open_sound": {
+      "filename": "__Krastorio2Assets__/sounds/buildings/open.ogg",
+      "volume": 1
+    },
+    "close_sound": {
+      "filename": "__Krastorio2Assets__/sounds/buildings/close.ogg",
+      "volume": 1
+    },
+    "vehicle_impact_sound": "sounds.generic_impact",
+    "working_sound": {
+      "sound": {
+        "filename": "__Krastorio2Assets__/sounds/buildings/quantum-computer.ogg",
+        "volume": 0.75
+      },
+      "idle_sound": {
+        "filename": "__base__/sound/idle1.ogg"
+      }
+    },
+    "graphics_set": {
+      "animation": {
+        "layers": {
+          "filename": "__Krastorio2Assets__/buildings/quantum-computer/quantum-computer-sh.png",
+          "priority": "medium",
+          "width": 402,
+          "height": 362,
+          "shift": {},
+          "frame_count": 1,
+          "line_length": 8,
+          "animation_speed": 0.25,
+          "scale": 0.5,
+          "repeat_count": 48,
+          "draw_as_shadow": true
+        }
+      },
+      "working_visualisations": {
+        "draw_as_light": true,
+        "animation": {
+          "filename": "__Krastorio2Assets__/buildings/quantum-computer/quantum-computer-glow.png",
+          "priority": "extra-high",
+          "width": 400,
+          "height": 420,
+          "shift": {},
+          "frame_count": 48,
+          "line_length": 8,
+          "animation_speed": 0.25,
+          "scale": 0.5
+        },
+        "draw_as_glow": true,
+        "blend_mode": "additive-soft",
+        "light": {
+          "intensity": 0.85,
+          "size": 5,
+          "shift": {},
+          "color": {
+            "r": 0.35,
+            "g": 0.75,
+            "b": 1
+          }
+        }
+      }
+    },
+    "circuit_wire_max_distance": "default_circuit_wire_max_distance",
+    "circuit_connector": "circuit_connector_definitions.create_vector(universal_connector_template, {\n      {\n        variation = 2,\n        main_offset = util.by_pixel(0, -69),\n        shadow_offset = util.by_pixel(-2, -69),\n        show_shadow = false,\n      },\n      {\n        variation = 2,\n        main_offset = util.by_pixel(0, -69),\n        shadow_offset = util.by_pixel(-2, -69),\n        show_shadow = false,\n      },\n      {\n        variation = 2,\n        main_offset = util.by_pixel(0, -69),\n        shadow_offset = util.by_pixel(-2, -69),\n        show_shadow = false,\n      },\n      {\n        variation = 2,\n        main_offset = util.by_pixel(0, -69),\n        shadow_offset = util.by_pixel(-2, -69),\n        show_shadow = false,\n      },\n    })"
+  }
+]

@@ -1,0 +1,447 @@
+[
+  {
+    "type": "recipe",
+    "name": "kr-steel-pump",
+    "energy_required": 2,
+    "enabled": false,
+    "ingredients": {
+      "type": "item",
+      "name": "kr-steel-pipe",
+      "amount": 1
+    },
+    "results": {
+      "type": "item",
+      "name": "kr-steel-pump",
+      "amount": 1
+    }
+  },
+  {
+    "type": "item",
+    "name": "kr-steel-pump",
+    "icon": "__Krastorio2Assets__/icons/entities/steel-pump.png",
+    "subgroup": "energy-pipe-distribution",
+    "order": "b[pipe]-ca[steel-pump]",
+    "place_result": "kr-steel-pump",
+    "stack_size": 50
+  },
+  {
+    "type": "pump",
+    "name": "kr-steel-pump",
+    "icon": "__Krastorio2Assets__/icons/entities/steel-pump.png",
+    "icon_draw_specification": {
+      "scale": 0.5
+    },
+    "flags": {},
+    "minable": {
+      "mining_time": 0.2,
+      "result": "kr-steel-pump"
+    },
+    "fast_replaceable_group": "pump",
+    "collision_box": {},
+    "selection_box": {},
+    "pumping_speed": 50,
+    "fluid_box": {
+      "volume": 500,
+      "pipe_covers": "require(\"prototypes.buildings.steel-pipe-covers\")",
+      "pipe_connections": {
+        "flow_direction": "input",
+        "direction": "defines.direction.south",
+        "position": {}
+      }
+    },
+    "energy_source": {
+      "type": "electric",
+      "usage_priority": "secondary-input"
+    },
+    "energy_usage": "50kW",
+    "max_health": 180,
+    "resistances": {
+      "type": "impact",
+      "percent": 30
+    },
+    "corpse": "1x2-remnants",
+    "open_sound": "sounds.machine_open",
+    "close_sound": "sounds.machine_close",
+    "working_sound": "data.raw.pump.pump.working_sound",
+    "vehicle_impact_sound": {
+      "filename": "__base__/sound/car-metal-impact.ogg",
+      "volume": 0.65
+    },
+    "animations": {
+      "north": {
+        "filename": "__Krastorio2Assets__/buildings/steel-pump/steel-pump-north.png",
+        "width": 103,
+        "height": 164,
+        "scale": 0.5,
+        "line_length": 8,
+        "frame_count": 32,
+        "animation_speed": 0.5,
+        "shift": "util.by_pixel(8, 3.5)"
+      },
+      "east": {
+        "filename": "__Krastorio2Assets__/buildings/steel-pump/steel-pump-east.png",
+        "width": 130,
+        "height": 109,
+        "scale": 0.5,
+        "line_length": 8,
+        "frame_count": 32,
+        "animation_speed": 0.5,
+        "shift": "util.by_pixel(-0.5, 1.75)"
+      },
+      "south": {
+        "filename": "__Krastorio2Assets__/buildings/steel-pump/steel-pump-south.png",
+        "width": 114,
+        "height": 160,
+        "scale": 0.5,
+        "line_length": 8,
+        "frame_count": 32,
+        "animation_speed": 0.5,
+        "shift": "util.by_pixel(12.5, -8)"
+      },
+      "west": {
+        "filename": "__Krastorio2Assets__/buildings/steel-pump/steel-pump-west.png",
+        "width": 131,
+        "height": 111,
+        "scale": 0.5,
+        "line_length": 8,
+        "frame_count": 32,
+        "animation_speed": 0.5,
+        "shift": "util.by_pixel(-0.25, 1.25)"
+      }
+    },
+    "fluid_wagon_connector_frame_count": 35,
+    "fluid_wagon_connector_alignment_tolerance": "2.0 / 32.0",
+    "fluid_wagon_connector_graphics": {
+      "load_animations": {
+        "west": {
+          "standup_base": {
+            "filename": "__Krastorio2Assets__/buildings/steel-pump/connector/V-R-246-load-standup-base.png",
+            "width": 110,
+            "height": 148,
+            "scale": 0.5,
+            "line_length": 1,
+            "frame_count": 20,
+            "shift": "util.by_pixel(-23.5, -21.5)"
+          },
+          "standup_shadow": {
+            "filename": "__base__/graphics/entity/pump/connector/V-R-6-load-standup-shadow.png",
+            "width": 170,
+            "height": 162,
+            "scale": 0.5,
+            "line_length": 1,
+            "frame_count": 20,
+            "shift": "util.by_pixel(-7, -13.5)"
+          },
+          "connector_shadow": {
+            "filename": "__base__/graphics/entity/pump/connector/V-R-6-load-connect-shadow.png",
+            "width": 174,
+            "height": 131,
+            "scale": 0.5,
+            "line_length": 1,
+            "frame_count": 16,
+            "shift": "util.by_pixel(-27, -16.75)"
+          }
+        },
+        "north": {
+          "standup_base": {
+            "filename": "__Krastorio2Assets__/buildings/steel-pump/connector/H-B-123456-load-standup-base.png",
+            "width": 91,
+            "height": 160,
+            "scale": 0.5,
+            "line_length": 1,
+            "frame_count": 20,
+            "shift": "util.by_pixel(-0.25, -62)"
+          },
+          "standup_shadow": {
+            "filename": "__base__/graphics/entity/pump/connector/H-B-6-load-standup-shadow.png",
+            "width": 133,
+            "height": 182,
+            "scale": 0.5,
+            "line_length": 1,
+            "frame_count": 20,
+            "shift": "util.by_pixel(16.75, -48)"
+          },
+          "connector_shadow": {
+            "filename": "__base__/graphics/entity/pump/connector/H-B-6-load-connect-shadow.png",
+            "width": 143,
+            "height": 178,
+            "scale": 0.5,
+            "line_length": 1,
+            "frame_count": 16,
+            "shift": "util.by_pixel(16.25, -65)"
+          }
+        },
+        "east": {
+          "standup_base": {
+            "filename": "__Krastorio2Assets__/buildings/steel-pump/connector/V-L-135-load-standup-base.png",
+            "width": 110,
+            "height": 127,
+            "scale": 0.5,
+            "line_length": 1,
+            "frame_count": 20,
+            "shift": "util.by_pixel(23.5, -16.25)"
+          }
+        },
+        "south": {}
+      },
+      "unload_animations": {
+        "west": {
+          "standup_top": {
+            "filename": "__Krastorio2Assets__/buildings/steel-pump/connector/V-L-246-unload-standup-top.png",
+            "width": 121,
+            "height": 110,
+            "scale": 0.5,
+            "line_length": 1,
+            "frame_count": 19,
+            "shift": "util.by_pixel(18.75, -41.5)"
+          },
+          "standup_shadow": {
+            "filename": "__base__/graphics/entity/pump/connector/V-L-6-unload-standup-shadow.png",
+            "width": 145,
+            "height": 161,
+            "scale": 0.5,
+            "line_length": 1,
+            "frame_count": 20,
+            "shift": "util.by_pixel(43.25, -16.25)"
+          },
+          "connector": {
+            "filename": "__Krastorio2Assets__/buildings/steel-pump/connector/V-L-6-unload-connect.png",
+            "width": 107,
+            "height": 70,
+            "scale": 0.5,
+            "line_length": 1,
+            "frame_count": 16,
+            "shift": "util.by_pixel(45.25, -55)"
+          },
+          "connector_shadow": {
+            "filename": "__base__/graphics/entity/pump/connector/V-L-6-unload-connect-shadow.png",
+            "width": 86,
+            "height": 132,
+            "scale": 0.5,
+            "line_length": 1,
+            "frame_count": 18,
+            "shift": "util.by_pixel(55.5, -17.5)"
+          },
+          "standup_base": {
+            "filename": "__Krastorio2Assets__/buildings/steel-pump/connector/V-L-246-unload-standup-base.png",
+            "width": 110,
+            "height": 148,
+            "scale": 0.5,
+            "line_length": 1,
+            "frame_count": 20,
+            "shift": "util.by_pixel(23.5, -24.5)"
+          }
+        },
+        "north": {
+          "standup_base": {
+            "filename": "__Krastorio2Assets__/buildings/steel-pump/connector/H-T-123456-unload-standup-base.png",
+            "width": 91,
+            "height": 107,
+            "scale": 0.5,
+            "line_length": 1,
+            "frame_count": 20,
+            "shift": "util.by_pixel(-0.25, 15.75)"
+          },
+          "standup_top": {
+            "filename": "__Krastorio2Assets__/buildings/steel-pump/connector/H-T-123456-unload-standup-top.png",
+            "width": 46,
+            "height": 109,
+            "scale": 0.5,
+            "line_length": 1,
+            "frame_count": 19,
+            "shift": "util.by_pixel(0, 0.75)"
+          },
+          "standup_shadow": {
+            "filename": "__base__/graphics/entity/pump/connector/H-T-6-unload-standup-shadow.png",
+            "width": 134,
+            "height": 115,
+            "scale": 0.5,
+            "line_length": 1,
+            "frame_count": 20,
+            "shift": "util.by_pixel(16.5, 0.25)"
+          },
+          "connector": {
+            "filename": "__Krastorio2Assets__/buildings/steel-pump/connector/H-T-246-unload-connect.png",
+            "width": 76,
+            "height": 99,
+            "scale": 0.5,
+            "line_length": 1,
+            "frame_count": 16,
+            "shift": "util.by_pixel(-1.5, 0.75)"
+          },
+          "connector_shadow": {
+            "filename": "__base__/graphics/entity/pump/connector/H-T-6-unload-connect-shadow.png",
+            "width": 81,
+            "height": 66,
+            "scale": 0.5,
+            "line_length": 1,
+            "frame_count": 16,
+            "shift": "util.by_pixel(1.25, -12)"
+          }
+        },
+        "east": {
+          "standup_base": {
+            "filename": "__Krastorio2Assets__/buildings/steel-pump/connector/V-R-246-unload-standup-base.png",
+            "width": 110,
+            "height": 148,
+            "scale": 0.5,
+            "line_length": 1,
+            "frame_count": 20,
+            "shift": "util.by_pixel(-23.5, -21.5)"
+          },
+          "standup_top": {
+            "filename": "__Krastorio2Assets__/buildings/steel-pump/connector/V-R-246-unload-standup-top.png",
+            "width": 121,
+            "height": 110,
+            "scale": 0.5,
+            "line_length": 1,
+            "frame_count": 19,
+            "shift": "util.by_pixel(-18.75, -39)"
+          },
+          "connector": {
+            "filename": "__Krastorio2Assets__/buildings/steel-pump/connector/V-R-6-unload-connect.png",
+            "width": 106,
+            "height": 63,
+            "scale": 0.5,
+            "line_length": 1,
+            "frame_count": 16,
+            "shift": "util.by_pixel(-44, -53.75)"
+          },
+          "connector_shadow": {
+            "filename": "__base__/graphics/entity/pump/connector/V-R-6-unload-connect-shadow.png",
+            "width": 174,
+            "height": 133,
+            "scale": 0.5,
+            "line_length": 1,
+            "frame_count": 16,
+            "shift": "util.by_pixel(-27, -16.25)"
+          },
+          "standup_shadow": {
+            "filename": "__base__/graphics/entity/pump/connector/V-R-6-unload-standup-shadow.png",
+            "width": 165,
+            "height": 162,
+            "scale": 0.5,
+            "line_length": 1,
+            "frame_count": 20,
+            "shift": "util.by_pixel(-8.25, -13.5)"
+          }
+        },
+        "south": {
+          "standup_base": {
+            "filename": "__Krastorio2Assets__/buildings/steel-pump/connector/H-B-123456-unload-standup-base.png",
+            "width": 91,
+            "height": 160,
+            "scale": 0.5,
+            "line_length": 1,
+            "frame_count": 20,
+            "shift": "util.by_pixel(-0.25, -62)"
+          },
+          "standup_top": {
+            "filename": "__Krastorio2Assets__/buildings/steel-pump/connector/H-B-123456-unload-standup-top.png",
+            "width": 46,
+            "height": 146,
+            "scale": 0.5,
+            "line_length": 1,
+            "frame_count": 19,
+            "shift": "util.by_pixel(0, -72.5)"
+          },
+          "standup_shadow": {
+            "filename": "__base__/graphics/entity/pump/connector/H-B-6-unload-standup-shadow.png",
+            "width": 134,
+            "height": 174,
+            "scale": 0.5,
+            "line_length": 1,
+            "frame_count": 20,
+            "shift": "util.by_pixel(17, -50)"
+          },
+          "connector": {
+            "filename": "__Krastorio2Assets__/buildings/steel-pump/connector/H-B-246-unload-connect.png",
+            "width": 74,
+            "height": 95,
+            "scale": 0.5,
+            "line_length": 1,
+            "frame_count": 16,
+            "shift": "util.by_pixel(-3.5, -103.25)"
+          },
+          "connector_shadow": {
+            "filename": "__base__/graphics/entity/pump/connector/H-B-6-unload-connect-shadow.png",
+            "width": 144,
+            "height": 178,
+            "scale": 0.5,
+            "line_length": 1,
+            "frame_count": 16,
+            "shift": "util.by_pixel(16.5, -65)"
+          }
+        }
+      }
+    },
+    "fluid_animation": {
+      "north": {
+        "filename": "__base__/graphics/entity/pump/pump-north-liquid.png",
+        "apply_runtime_tint": true,
+        "width": 38,
+        "height": 22,
+        "scale": 0.5,
+        "line_length": 8,
+        "frame_count": 32,
+        "shift": "util.by_pixel(-0.250, -16.750)"
+      },
+      "east": {
+        "filename": "__base__/graphics/entity/pump/pump-east-liquid.png",
+        "width": 35,
+        "height": 46,
+        "scale": 0.5,
+        "line_length": 8,
+        "frame_count": 32,
+        "shift": "util.by_pixel(6.250, -8.500)"
+      },
+      "south": {
+        "filename": "__base__/graphics/entity/pump/pump-south-liquid.png",
+        "width": 38,
+        "height": 45,
+        "scale": 0.5,
+        "line_length": 8,
+        "frame_count": 32,
+        "shift": "util.by_pixel(0.500, -9.250)"
+      },
+      "west": {
+        "filename": "__base__/graphics/entity/pump/pump-west-liquid.png",
+        "width": 35,
+        "height": 47,
+        "scale": 0.5,
+        "line_length": 8,
+        "frame_count": 32,
+        "shift": "util.by_pixel(-6.500, -9.500)"
+      }
+    },
+    "glass_pictures": {
+      "north": {
+        "filename": "__base__/graphics/entity/pump/pump-north-glass.png",
+        "width": 64,
+        "height": 128,
+        "scale": 0.5
+      },
+      "east": {
+        "filename": "__base__/graphics/entity/pump/pump-east-glass.png",
+        "width": 128,
+        "height": 192,
+        "scale": 0.5
+      },
+      "south": {
+        "filename": "__base__/graphics/entity/pump/pump-south-glass.png",
+        "width": 64,
+        "height": 128,
+        "scale": 0.5
+      },
+      "west": {
+        "filename": "__base__/graphics/entity/pump/pump-west-glass.png",
+        "width": 192,
+        "height": 192,
+        "scale": 0.5,
+        "shift": "util.by_pixel(-16.000, 0.000)"
+      }
+    },
+    "circuit_wire_max_distance": "default_circuit_wire_max_distance",
+    "circuit_connector": "circuit_connector_definitions[\"pump\"]"
+  }
+]

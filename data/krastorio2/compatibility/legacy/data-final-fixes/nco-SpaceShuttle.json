@@ -1,0 +1,9 @@
+[
+  {
+    "type": "equipment-grid",
+    "name": "kr-space-shuttle-grid",
+    "width": 6,
+    "height": 6,
+    "equipment_categories": {}
+  }
+]
