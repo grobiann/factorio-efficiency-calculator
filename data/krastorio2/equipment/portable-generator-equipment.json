@@ -4,23 +4,42 @@
     "name": "kr-portable-generator-equipment",
     "energy_required": 20,
     "enabled": false,
-    "ingredients": {
-      "type": "item",
-      "name": "kr-small-portable-generator-equipment",
-      "amount": 2
-    },
-    "results": {
-      "type": "item",
-      "name": "kr-portable-generator-equipment",
-      "amount": 1
-    }
+    "ingredients": [
+      {
+        "type": "item",
+        "name": "kr-iron-beam",
+        "amount": 2
+      },
+      {
+        "type": "item",
+        "name": "engine-unit",
+        "amount": 2
+      },
+      {
+        "type": "item",
+        "name": "kr-small-portable-generator-equipment",
+        "amount": 2
+      }
+    ],
+    "results": [
+      {
+        "type": "item",
+        "name": "kr-portable-generator-equipment",
+        "amount": 1
+      }
+    ]
   },
   {
     "type": "item",
     "name": "kr-portable-generator-equipment",
-    "icons": {
-      "icon": "__Krastorio2Assets__/icons/equipment/tier-2.png"
-    },
+    "icons": [
+      {
+        "icon": "__Krastorio2Assets__/icons/equipment/portable-generator-equipment.png"
+      },
+      {
+        "icon": "__Krastorio2Assets__/icons/equipment/tier-2.png"
+      }
+    ],
     "place_as_equipment_result": "kr-portable-generator-equipment",
     "subgroup": "equipment",
     "order": "a2[energy-source]-a3[k-generator]",
@@ -43,24 +62,38 @@
     },
     "burner": {
       "type": "burner",
-      "fuel_categories": {},
+      "fuel_categories": [
+        "chemical",
+        "kr-vehicle-fuel"
+      ],
       "effectivity": 2,
       "fuel_inventory_size": 2,
       "burnt_inventory_size": 1,
-      "smoke": {
-        "name": "smoke",
-        "deviation": {},
-        "frequency": 1,
-        "position": {},
-        "height": 1.25,
-        "starting_frame_deviation": 60
-      }
+      "smoke": [
+        {
+          "name": "smoke",
+          "deviation": [
+            -0.25,
+            -0.25
+          ],
+          "frequency": 1,
+          "position": [
+            0,
+            0.5
+          ],
+          "height": 1.25,
+          "starting_frame_deviation": 60
+        }
+      ]
     },
     "energy_source": {
       "type": "electric",
       "usage_priority": "primary-output"
     },
     "power": "540kW",
-    "categories": {}
+    "categories": [
+      "armor",
+      "kr-vehicle"
+    ]
   }
 ]

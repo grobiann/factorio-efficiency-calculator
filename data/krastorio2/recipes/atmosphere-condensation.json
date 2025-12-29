@@ -12,11 +12,13 @@
     "hide_from_player_crafting": true,
     "energy_required": 20,
     "ingredients": {},
-    "results": {
-      "type": "fluid",
-      "name": "kr-hydrogen",
-      "amount": 30
-    }
+    "results": [
+      {
+        "type": "fluid",
+        "name": "kr-hydrogen",
+        "amount": 30
+      }
+    ]
   },
   {
     "type": "recipe",
@@ -31,11 +33,13 @@
     "hide_from_player_crafting": true,
     "energy_required": 30,
     "ingredients": {},
-    "results": {
-      "type": "fluid",
-      "name": "kr-nitrogen",
-      "amount": 30
-    }
+    "results": [
+      {
+        "type": "fluid",
+        "name": "kr-nitrogen",
+        "amount": 30
+      }
+    ]
   },
   {
     "type": "recipe",
@@ -50,11 +54,13 @@
     "hide_from_player_crafting": true,
     "energy_required": 5,
     "ingredients": {},
-    "results": {
-      "type": "fluid",
-      "name": "kr-oxygen",
-      "amount": 30
-    }
+    "results": [
+      {
+        "type": "fluid",
+        "name": "kr-oxygen",
+        "amount": 30
+      }
+    ]
   },
   {
     "type": "recipe",
@@ -69,10 +75,12 @@
     "hide_from_player_crafting": true,
     "energy_required": 10,
     "ingredients": {},
-    "results": {
-      "type": "fluid",
-      "name": "water",
-      "amount": 30
-    }
+    "results": [
+      {
+        "type": "fluid",
+        "name": "water",
+        "amount": 30
+      }
+    ]
   }
 ]

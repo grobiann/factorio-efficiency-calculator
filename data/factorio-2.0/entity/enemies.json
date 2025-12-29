@@ -3,15 +3,39 @@
     "type": "unit",
     "name": "small-biter",
     "icon": "__base__/graphics/icons/small-biter.png",
-    "flags": {},
+    "flags": [
+      "placeable-player",
+      "placeable-enemy",
+      "placeable-off-grid",
+      "not-repairable",
+      "breaths-air"
+    ],
     "max_health": 15,
     "order": "b-a-a",
     "subgroup": "enemies",
     "factoriopedia_simulation": "simulations.factoriopedia_small_biter",
     "resistances": {},
     "healing_per_tick": 0.01,
-    "collision_box": {},
-    "selection_box": {},
+    "collision_box": [
+      [
+        -0.2,
+        -0.2
+      ],
+      [
+        0.2,
+        0.2
+      ]
+    ],
+    "selection_box": [
+      [
+        -0.4,
+        -0.7
+      ],
+      [
+        0.4,
+        0.4
+      ]
+    ],
     "damaged_trigger_effect": "hit_effects.biter()",
     "attack_parameters": {
       "type": "projectile",
@@ -39,7 +63,9 @@
     "dying_sound": "sounds.biter_dying(0.5)",
     "working_sound": "sounds.biter_calls(0.4, 0.75)",
     "run_animation": "biterrunanimation(small_biter_scale, small_biter_tint1, small_biter_tint2)",
-    "running_sound_animation_positions": {},
+    "running_sound_animation_positions": [
+      2
+    ],
     "walking_sound": "sounds.biter_walk(0, 0.3)",
     "ai_settings": "biter_ai_settings",
     "water_reflection": "biter_water_reflection(small_biter_scale)"
@@ -48,26 +74,56 @@
     "type": "corpse",
     "name": "small-biter-corpse",
     "icon": "__base__/graphics/icons/small-biter-corpse.png",
-    "selection_box": {},
+    "selection_box": [
+      [
+        -0.8,
+        -0.8
+      ],
+      [
+        0.8,
+        0.8
+      ]
+    ],
     "selectable_in_game": false,
     "hidden_in_factoriopedia": true,
     "subgroup": "corpses",
     "order": "c[corpse]-a[biter]-a[small]",
-    "flags": {}
+    "flags": [
+      "placeable-neutral",
+      "placeable-off-grid",
+      "building-direction-8-way",
+      "not-repairable",
+      "not-on-map"
+    ]
   },
   {
     "type": "unit-spawner",
     "name": "biter-spawner",
     "icon": "__base__/graphics/icons/biter-spawner.png",
-    "flags": {},
+    "flags": [
+      "placeable-player",
+      "placeable-enemy",
+      "not-repairable"
+    ],
     "max_health": 350,
     "order": "b-d-a",
     "subgroup": "enemies",
-    "resistances": {
-      "type": "fire",
-      "decrease": 3,
-      "percent": 60
-    },
+    "resistances": [
+      {
+        "type": "physical",
+        "decrease": 2,
+        "percent": 15
+      },
+      {
+        "type": "explosion",
+        "decrease": 5
+      },
+      {
+        "type": "fire",
+        "decrease": 3,
+        "percent": 60
+      }
+    ],
     "working_sound": {
       "sound": {
         "category": "enemy",
@@ -86,9 +142,36 @@
       }
     },
     "healing_per_tick": 0.02,
-    "collision_box": {},
-    "map_generator_bounding_box": {},
-    "selection_box": {},
+    "collision_box": [
+      [
+        -2.2,
+        -2.2
+      ],
+      [
+        2.2,
+        2.2
+      ]
+    ],
+    "map_generator_bounding_box": [
+      [
+        -3.7,
+        -3.2
+      ],
+      [
+        3.7,
+        3.2
+      ]
+    ],
+    "selection_box": [
+      [
+        -2.5,
+        -2.5
+      ],
+      [
+        2.5,
+        2.5
+      ]
+    ],
     "damaged_trigger_effect": "hit_effects.biter()",
     "impact_category": "organic",
     "absorptions_per_second": {
@@ -102,10 +185,18 @@
     "max_count_of_owned_units": 7,
     "max_friends_around_to_spawn": 5,
     "graphics_set": {
-      "animations": {}
+      "animations": [
+        "spawner_idle_animation(0, biter_spawner_tint)",
+        "spawner_idle_animation(1, biter_spawner_tint)",
+        "spawner_idle_animation(2, biter_spawner_tint)",
+        "spawner_idle_animation(3, biter_spawner_tint)"
+      ]
     },
     "result_units": "(function()\n                     local res = {}\n                     res[1] = {\"small-biter\", {{0.0, 0.3}, {0.6, 0.0}}}\n                     if not data.is_demo then\n                       -- from evolution_factor 0.3 the weight for medium-biter is linearly rising from 0 to 0.3\n                       -- this means for example that when the evolution_factor is 0.45 the probability of spawning\n                       -- a small biter is 66% while probability for medium biter is 33%.\n                       res[2] = {\"medium-biter\", {{0.2, 0.0}, {0.6, 0.3}, {0.7, 0.1}}}\n                       -- for evolution factor of 1 the spawning probabilities are: small-biter 0%, medium-biter 1/8, big-biter 4/8, behemoth biter 3/8\n                       res[3] = {\"big-biter\", {{0.5, 0.0}, {1.0, 0.4}}}\n                       res[4] = {\"behemoth-biter\", {{0.9, 0.0}, {1.0, 0.3}}}\n                     end\n                     return res\n                   end)()",
-    "spawning_cooldown": {},
+    "spawning_cooldown": [
+      360,
+      150
+    ],
     "spawning_radius": 10,
     "spawning_spacing": 3,
     "max_spawn_shift": 0,
@@ -114,30 +205,106 @@
     "call_for_help_radius": 50,
     "time_to_capture": "60 * 20",
     "spawn_decorations_on_expansion": true,
-    "spawn_decoration": {
-      "decorative": "red-pita",
-      "spawn_min": 1,
-      "spawn_max": 5,
-      "spawn_min_radius": 3,
-      "spawn_max_radius": 6,
-      "radius_curve": 0.9
-    }
+    "spawn_decoration": [
+      {
+        "decorative": "light-mud-decal",
+        "spawn_min": 0,
+        "spawn_max": 2,
+        "spawn_min_radius": 2,
+        "spawn_max_radius": 5
+      },
+      {
+        "decorative": "dark-mud-decal",
+        "spawn_min": 0,
+        "spawn_max": 3,
+        "spawn_min_radius": 2,
+        "spawn_max_radius": 6
+      },
+      {
+        "decorative": "enemy-decal",
+        "spawn_min": 3,
+        "spawn_max": 5,
+        "spawn_min_radius": 2,
+        "spawn_max_radius": 7
+      },
+      {
+        "decorative": "enemy-decal-transparent",
+        "spawn_min": 4,
+        "spawn_max": 20,
+        "spawn_min_radius": 2,
+        "spawn_max_radius": 14,
+        "radius_curve": 0.9
+      },
+      {
+        "decorative": "muddy-stump",
+        "spawn_min": 2,
+        "spawn_max": 5,
+        "spawn_min_radius": 3,
+        "spawn_max_radius": 6
+      },
+      {
+        "decorative": "red-croton",
+        "spawn_min": 2,
+        "spawn_max": 8,
+        "spawn_min_radius": 3,
+        "spawn_max_radius": 6
+      },
+      {
+        "decorative": "red-pita",
+        "spawn_min": 1,
+        "spawn_max": 5,
+        "spawn_min_radius": 3,
+        "spawn_max_radius": 6
+      }
+    ]
   },
   {
     "type": "corpse",
     "name": "biter-spawner-corpse",
     "hidden_in_factoriopedia": true,
-    "flags": {},
+    "flags": [
+      "placeable-neutral",
+      "placeable-off-grid",
+      "not-on-map"
+    ],
     "icon": "__base__/graphics/icons/biter-spawner-corpse.png",
-    "collision_box": {},
-    "selection_box": {},
+    "collision_box": [
+      [
+        -2,
+        -2
+      ],
+      [
+        2,
+        2
+      ]
+    ],
+    "selection_box": [
+      [
+        -2,
+        -2
+      ],
+      [
+        2,
+        2
+      ]
+    ],
     "selectable_in_game": false,
     "dying_speed": 0.015,
     "time_before_removed": "15 * 60 * 60",
     "subgroup": "corpses",
     "order": "c[corpse]-b[biter-spawner]",
-    "animation": {},
-    "decay_animation": {},
+    "animation": [
+      "spawner_die_animation(0, biter_spawner_tint)",
+      "spawner_die_animation(1, biter_spawner_tint)",
+      "spawner_die_animation(2, biter_spawner_tint)",
+      "spawner_die_animation(3, biter_spawner_tint)"
+    ],
+    "decay_animation": [
+      "spawner_decay_animation(0, biter_spawner_tint)",
+      "spawner_decay_animation(1, biter_spawner_tint)",
+      "spawner_decay_animation(2, biter_spawner_tint)",
+      "spawner_decay_animation(3, biter_spawner_tint)"
+    ],
     "decay_frame_transition_duration": "6 * 60",
     "final_render_layer": "lower-object-above-shadow"
   },
@@ -145,22 +312,61 @@
     "type": "unit",
     "name": "medium-biter",
     "icon": "__base__/graphics/icons/medium-biter.png",
-    "flags": {},
+    "flags": [
+      "placeable-player",
+      "placeable-enemy",
+      "placeable-off-grid",
+      "breaths-air",
+      "not-repairable"
+    ],
     "max_health": 75,
     "order": "b-a-b",
     "subgroup": "enemies",
     "factoriopedia_simulation": "simulations.factoriopedia_medium_biter",
-    "resistances": {
-      "type": "explosion",
-      "decrease": 4,
-      "percent": 10
-    },
+    "resistances": [
+      {
+        "type": "physical",
+        "decrease": 4,
+        "percent": 10
+      },
+      {
+        "type": "explosion",
+        "percent": 10
+      }
+    ],
     "impact_category": "organic",
     "healing_per_tick": 0.01,
-    "collision_box": {},
-    "selection_box": {},
+    "collision_box": [
+      [
+        -0.3,
+        -0.3
+      ],
+      [
+        0.3,
+        0.3
+      ]
+    ],
+    "selection_box": [
+      [
+        -0.7,
+        -1.5
+      ],
+      [
+        0.7,
+        0.3
+      ]
+    ],
     "damaged_trigger_effect": "hit_effects.biter()",
-    "sticker_box": {},
+    "sticker_box": [
+      [
+        -0.3,
+        -0.5
+      ],
+      [
+        0.3,
+        0.1
+      ]
+    ],
     "distraction_cooldown": 300,
     "min_pursue_time": "10 * 60",
     "max_pursue_distance": 50,
@@ -186,7 +392,9 @@
     "working_sound": "sounds.biter_calls(0.4, 0.9)",
     "dying_sound": "sounds.biter_dying(0.6)",
     "run_animation": "biterrunanimation(medium_biter_scale, medium_biter_tint1, medium_biter_tint2)",
-    "running_sound_animation_positions": {},
+    "running_sound_animation_positions": [
+      2
+    ],
     "walking_sound": "sounds.biter_walk(0.1, 0.4)",
     "ai_settings": "biter_ai_settings",
     "water_reflection": "biter_water_reflection(medium_biter_scale)"
@@ -196,22 +404,61 @@
     "name": "big-biter",
     "order": "b-a-c",
     "icon": "__base__/graphics/icons/big-biter.png",
-    "flags": {},
+    "flags": [
+      "placeable-player",
+      "placeable-enemy",
+      "placeable-off-grid",
+      "breaths-air",
+      "not-repairable"
+    ],
     "max_health": 375,
     "subgroup": "enemies",
     "factoriopedia_simulation": "simulations.factoriopedia_big_biter",
     "impact_category": "organic",
-    "resistances": {
-      "type": "explosion",
-      "decrease": 8,
-      "percent": 10
-    },
+    "resistances": [
+      {
+        "type": "physical",
+        "decrease": 8,
+        "percent": 10
+      },
+      {
+        "type": "explosion",
+        "percent": 10
+      }
+    ],
     "spawning_time_modifier": 3,
     "healing_per_tick": 0.02,
-    "collision_box": {},
-    "selection_box": {},
+    "collision_box": [
+      [
+        -0.4,
+        -0.4
+      ],
+      [
+        0.4,
+        0.4
+      ]
+    ],
+    "selection_box": [
+      [
+        -0.7,
+        -1.5
+      ],
+      [
+        0.7,
+        0.3
+      ]
+    ],
     "damaged_trigger_effect": "hit_effects.biter()",
-    "sticker_box": {},
+    "sticker_box": [
+      [
+        -0.6,
+        -0.8
+      ],
+      [
+        0.6,
+        0
+      ]
+    ],
     "distraction_cooldown": 300,
     "min_pursue_time": "10 * 60",
     "max_pursue_distance": 50,
@@ -237,7 +484,9 @@
     "working_sound": "sounds.biter_calls_big(0.4, 0.7)",
     "dying_sound": "sounds.biter_dying_big(0.45)",
     "run_animation": "biterrunanimation(big_biter_scale, big_biter_tint1, big_biter_tint2)",
-    "running_sound_animation_positions": {},
+    "running_sound_animation_positions": [
+      2
+    ],
     "walking_sound": "sounds.biter_walk_big(0.6, 0.7)",
     "ai_settings": "biter_ai_settings",
     "water_reflection": "biter_water_reflection(big_biter_scale)"
@@ -247,22 +496,62 @@
     "name": "behemoth-biter",
     "order": "b-a-d",
     "icon": "__base__/graphics/icons/behemoth-biter.png",
-    "flags": {},
+    "flags": [
+      "placeable-player",
+      "placeable-enemy",
+      "placeable-off-grid",
+      "breaths-air",
+      "not-repairable"
+    ],
     "max_health": 3000,
     "subgroup": "enemies",
     "factoriopedia_simulation": "simulations.factoriopedia_behemoth_biter",
-    "resistances": {
-      "type": "explosion",
-      "decrease": 12,
-      "percent": 10
-    },
+    "resistances": [
+      {
+        "type": "physical",
+        "decrease": 12,
+        "percent": 10
+      },
+      {
+        "type": "explosion",
+        "decrease": 12,
+        "percent": 10
+      }
+    ],
     "impact_category": "organic",
     "spawning_time_modifier": 12,
     "healing_per_tick": 0.1,
-    "collision_box": {},
-    "selection_box": {},
+    "collision_box": [
+      [
+        -0.4,
+        -0.4
+      ],
+      [
+        0.4,
+        0.4
+      ]
+    ],
+    "selection_box": [
+      [
+        -0.7,
+        -1.5
+      ],
+      [
+        0.7,
+        0.3
+      ]
+    ],
     "damaged_trigger_effect": "hit_effects.biter()",
-    "sticker_box": {},
+    "sticker_box": [
+      [
+        -0.6,
+        -0.8
+      ],
+      [
+        0.6,
+        0
+      ]
+    ],
     "distraction_cooldown": 300,
     "min_pursue_time": "10 * 60",
     "max_pursue_distance": 50,
@@ -288,7 +577,9 @@
     "working_sound": "sounds.biter_calls_behemoth(0.5, 0.9)",
     "dying_sound": "sounds.biter_dying_big(0.52)",
     "run_animation": "biterrunanimation(behemoth_biter_scale, behemoth_biter_tint1, behemoth_biter_tint2)",
-    "running_sound_animation_positions": {},
+    "running_sound_animation_positions": [
+      2
+    ],
     "walking_sound": "sounds.biter_walk_big(0.6, 0.8)",
     "ai_settings": "biter_ai_settings",
     "water_reflection": "biter_water_reflection(behemoth_biter_scale)"
@@ -297,7 +588,13 @@
     "type": "unit",
     "name": "small-spitter",
     "icon": "__base__/graphics/icons/small-spitter.png",
-    "flags": {},
+    "flags": [
+      "placeable-player",
+      "placeable-enemy",
+      "placeable-off-grid",
+      "breaths-air",
+      "not-repairable"
+    ],
     "max_health": 10,
     "order": "b-b-a",
     "subgroup": "enemies",
@@ -305,10 +602,37 @@
     "impact_category": "organic",
     "resistances": {},
     "healing_per_tick": 0.01,
-    "collision_box": {},
-    "selection_box": {},
+    "collision_box": [
+      [
+        -0.3,
+        -0.3
+      ],
+      [
+        0.3,
+        0.3
+      ]
+    ],
+    "selection_box": [
+      [
+        -0.4,
+        -0.4
+      ],
+      [
+        0.4,
+        0.4
+      ]
+    ],
     "damaged_trigger_effect": "hit_effects.biter()",
-    "sticker_box": {},
+    "sticker_box": [
+      [
+        -0.3,
+        -0.5
+      ],
+      [
+        0.3,
+        0.1
+      ]
+    ],
     "distraction_cooldown": 300,
     "min_pursue_time": "10 * 60",
     "max_pursue_distance": 50,
@@ -325,7 +649,9 @@
     "working_sound": "sounds.spitter_calls(0.1, 0.44)",
     "dying_sound": "sounds.spitter_dying(0.45)",
     "run_animation": "spitterrunanimation(scale_spitter_small, tint_1_spitter_small, tint_2_spitter_small)",
-    "running_sound_animation_positions": {},
+    "running_sound_animation_positions": [
+      2
+    ],
     "walking_sound": "sounds.spitter_walk(0, 0.3)",
     "ai_settings": "biter_ai_settings",
     "water_reflection": "spitter_water_reflection(scale_spitter_small)"
@@ -334,21 +660,56 @@
     "type": "unit",
     "name": "medium-spitter",
     "icon": "__base__/graphics/icons/medium-spitter.png",
-    "flags": {},
+    "flags": [
+      "placeable-player",
+      "placeable-enemy",
+      "placeable-off-grid",
+      "breaths-air",
+      "not-repairable"
+    ],
     "max_health": 50,
     "order": "b-b-b",
     "subgroup": "enemies",
     "factoriopedia_simulation": "simulations.factoriopedia_medium_spitter",
     "impact_category": "organic",
-    "resistances": {
-      "type": "explosion",
-      "percent": 10
-    },
+    "resistances": [
+      {
+        "type": "explosion",
+        "percent": 10
+      }
+    ],
     "healing_per_tick": 0.01,
-    "collision_box": {},
-    "selection_box": {},
+    "collision_box": [
+      [
+        -0.4,
+        -0.4
+      ],
+      [
+        0.4,
+        0.4
+      ]
+    ],
+    "selection_box": [
+      [
+        -0.5,
+        -0.7
+      ],
+      [
+        0.5,
+        0.7
+      ]
+    ],
     "damaged_trigger_effect": "hit_effects.biter()",
-    "sticker_box": {},
+    "sticker_box": [
+      [
+        -0.3,
+        -0.5
+      ],
+      [
+        0.3,
+        0.1
+      ]
+    ],
     "distraction_cooldown": 300,
     "min_pursue_time": "10 * 60",
     "max_pursue_distance": 50,
@@ -365,7 +726,9 @@
     "working_sound": "sounds.spitter_calls_med(0.2, 0.53)",
     "dying_sound": "sounds.spitter_dying_mid(0.65)",
     "run_animation": "spitterrunanimation(scale_spitter_medium, tint_1_spitter_medium, tint_2_spitter_medium)",
-    "running_sound_animation_positions": {},
+    "running_sound_animation_positions": [
+      2
+    ],
     "walking_sound": "sounds.spitter_walk(0.1, 0.4)",
     "ai_settings": "biter_ai_settings",
     "water_reflection": "spitter_water_reflection(scale_spitter_medium)"
@@ -374,22 +737,57 @@
     "type": "unit",
     "name": "big-spitter",
     "icon": "__base__/graphics/icons/big-spitter.png",
-    "flags": {},
+    "flags": [
+      "placeable-player",
+      "placeable-enemy",
+      "placeable-off-grid",
+      "breaths-air",
+      "not-repairable"
+    ],
     "max_health": 200,
     "order": "b-b-c",
     "subgroup": "enemies",
     "factoriopedia_simulation": "simulations.factoriopedia_big_spitter",
     "impact_category": "organic",
-    "resistances": {
-      "type": "explosion",
-      "percent": 15
-    },
+    "resistances": [
+      {
+        "type": "explosion",
+        "percent": 15
+      }
+    ],
     "spawning_time_modifier": 3,
     "healing_per_tick": 0.01,
-    "collision_box": {},
-    "selection_box": {},
+    "collision_box": [
+      [
+        -0.4,
+        -0.4
+      ],
+      [
+        0.4,
+        0.4
+      ]
+    ],
+    "selection_box": [
+      [
+        -0.7,
+        -1.0
+      ],
+      [
+        0.7,
+        1.0
+      ]
+    ],
     "damaged_trigger_effect": "hit_effects.biter()",
-    "sticker_box": {},
+    "sticker_box": [
+      [
+        -0.3,
+        -0.5
+      ],
+      [
+        0.3,
+        0.1
+      ]
+    ],
     "distraction_cooldown": 300,
     "min_pursue_time": "10 * 60",
     "max_pursue_distance": 50,
@@ -406,7 +804,9 @@
     "working_sound": "sounds.spitter_calls_big(0.2, 0.46)",
     "dying_sound": "sounds.spitter_dying_big(0.71)",
     "run_animation": "spitterrunanimation(scale_spitter_big, tint_1_spitter_big, tint_2_spitter_big)",
-    "running_sound_animation_positions": {},
+    "running_sound_animation_positions": [
+      2
+    ],
     "walking_sound": "sounds.spitter_walk_big(0.2, 0.5)",
     "ai_settings": "biter_ai_settings",
     "water_reflection": "spitter_water_reflection(scale_spitter_big)"
@@ -415,22 +815,57 @@
     "type": "unit",
     "name": "behemoth-spitter",
     "icon": "__base__/graphics/icons/behemoth-spitter.png",
-    "flags": {},
+    "flags": [
+      "placeable-player",
+      "placeable-enemy",
+      "placeable-off-grid",
+      "breaths-air",
+      "not-repairable"
+    ],
     "max_health": 1500,
     "order": "b-b-d",
     "subgroup": "enemies",
     "factoriopedia_simulation": "simulations.factoriopedia_behemoth_spitter",
     "impact_category": "organic",
-    "resistances": {
-      "type": "explosion",
-      "percent": 30
-    },
+    "resistances": [
+      {
+        "type": "explosion",
+        "percent": 30
+      }
+    ],
     "spawning_time_modifier": 12,
     "healing_per_tick": 0.1,
-    "collision_box": {},
-    "selection_box": {},
+    "collision_box": [
+      [
+        -0.4,
+        -0.4
+      ],
+      [
+        0.4,
+        0.4
+      ]
+    ],
+    "selection_box": [
+      [
+        -0.7,
+        -1.0
+      ],
+      [
+        0.7,
+        1.0
+      ]
+    ],
     "damaged_trigger_effect": "hit_effects.biter()",
-    "sticker_box": {},
+    "sticker_box": [
+      [
+        -0.3,
+        -0.5
+      ],
+      [
+        0.3,
+        0.1
+      ]
+    ],
     "distraction_cooldown": 300,
     "min_pursue_time": "10 * 60",
     "max_pursue_distance": 50,
@@ -447,7 +882,9 @@
     "working_sound": "sounds.spitter_calls_big(0.4, 0.6)",
     "dying_sound": "sounds.spitter_dying_behemoth(0.70)",
     "run_animation": "spitterrunanimation(scale_spitter_behemoth, tint_1_spitter_behemoth, tint_2_spitter_behemoth)",
-    "running_sound_animation_positions": {},
+    "running_sound_animation_positions": [
+      2
+    ],
     "walking_sound": "sounds.spitter_walk_big(0.3, 0.6)",
     "ai_settings": "biter_ai_settings",
     "water_reflection": "spitter_water_reflection(scale_spitter_behemoth)"
@@ -457,83 +894,185 @@
     "name": "medium-biter-corpse",
     "icon": "__base__/graphics/icons/medium-biter-corpse.png",
     "selectable_in_game": false,
-    "selection_box": {},
+    "selection_box": [
+      [
+        -1,
+        -1
+      ],
+      [
+        1,
+        1
+      ]
+    ],
     "subgroup": "corpses",
     "order": "c[corpse]-a[biter]-b[medium]",
     "hidden_in_factoriopedia": true,
-    "flags": {}
+    "flags": [
+      "placeable-neutral",
+      "placeable-off-grid",
+      "building-direction-8-way",
+      "not-on-map"
+    ]
   },
   {
     "type": "corpse",
     "name": "big-biter-corpse",
     "icon": "__base__/graphics/icons/big-biter-corpse.png",
     "selectable_in_game": false,
-    "selection_box": {},
+    "selection_box": [
+      [
+        -1,
+        -1
+      ],
+      [
+        1,
+        1
+      ]
+    ],
     "subgroup": "corpses",
     "order": "c[corpse]-a[biter]-c[big]",
     "hidden_in_factoriopedia": true,
-    "flags": {}
+    "flags": [
+      "placeable-neutral",
+      "placeable-off-grid",
+      "building-direction-8-way",
+      "not-on-map"
+    ]
   },
   {
     "type": "corpse",
     "name": "behemoth-biter-corpse",
     "icon": "__base__/graphics/icons/behemoth-biter-corpse.png",
     "selectable_in_game": false,
-    "selection_box": {},
+    "selection_box": [
+      [
+        -1,
+        -1
+      ],
+      [
+        1,
+        1
+      ]
+    ],
     "subgroup": "corpses",
     "order": "c[corpse]-a[biter]-d[behemoth]",
     "hidden_in_factoriopedia": true,
-    "flags": {}
+    "flags": [
+      "placeable-neutral",
+      "placeable-off-grid",
+      "building-direction-8-way",
+      "not-on-map"
+    ]
   },
   {
     "type": "corpse",
     "name": "small-spitter-corpse",
     "icon": "__base__/graphics/icons/small-spitter-corpse.png",
     "selectable_in_game": false,
-    "selection_box": {},
+    "selection_box": [
+      [
+        -1,
+        -1
+      ],
+      [
+        1,
+        1
+      ]
+    ],
     "subgroup": "corpses",
     "order": "c[corpse]-b[spitter]-a[small]",
     "hidden_in_factoriopedia": true,
-    "flags": {}
+    "flags": [
+      "placeable-neutral",
+      "placeable-off-grid",
+      "building-direction-8-way",
+      "not-on-map"
+    ]
   },
   {
     "type": "corpse",
     "name": "medium-spitter-corpse",
     "icon": "__base__/graphics/icons/medium-spitter-corpse.png",
     "selectable_in_game": false,
-    "selection_box": {},
+    "selection_box": [
+      [
+        -1,
+        -1
+      ],
+      [
+        1,
+        1
+      ]
+    ],
     "subgroup": "corpses",
     "order": "c[corpse]-b[spitter]-b[medium]",
     "hidden_in_factoriopedia": true,
-    "flags": {}
+    "flags": [
+      "placeable-neutral",
+      "placeable-off-grid",
+      "building-direction-8-way",
+      "not-on-map"
+    ]
   },
   {
     "type": "corpse",
     "name": "big-spitter-corpse",
     "icon": "__base__/graphics/icons/big-spitter-corpse.png",
     "selectable_in_game": false,
-    "selection_box": {},
+    "selection_box": [
+      [
+        -1,
+        -1
+      ],
+      [
+        1,
+        1
+      ]
+    ],
     "subgroup": "corpses",
     "order": "c[corpse]-b[spitter]-c[big]",
     "hidden_in_factoriopedia": true,
-    "flags": {}
+    "flags": [
+      "placeable-neutral",
+      "placeable-off-grid",
+      "building-direction-8-way",
+      "not-on-map"
+    ]
   },
   {
     "type": "corpse",
     "name": "behemoth-spitter-corpse",
     "icon": "__base__/graphics/icons/behemoth-spitter-corpse.png",
     "selectable_in_game": false,
-    "selection_box": {},
+    "selection_box": [
+      [
+        -1,
+        -1
+      ],
+      [
+        1,
+        1
+      ]
+    ],
     "subgroup": "corpses",
     "order": "c[corpse]-b[spitter]-d[behemoth]",
     "hidden_in_factoriopedia": true,
-    "flags": {}
+    "flags": [
+      "placeable-neutral",
+      "placeable-off-grid",
+      "building-direction-8-way",
+      "not-on-map"
+    ]
   },
   {
     "type": "unit-spawner",
     "name": "spitter-spawner",
     "icon": "__base__/graphics/icons/spitter-spawner.png",
-    "flags": {},
+    "flags": [
+      "placeable-player",
+      "placeable-enemy",
+      "not-repairable"
+    ],
     "max_health": 350,
     "order": "b-d-b",
     "subgroup": "enemies",
@@ -555,15 +1094,53 @@
       }
     },
     "impact_category": "organic",
-    "resistances": {
-      "type": "fire",
-      "decrease": 3,
-      "percent": 60
-    },
+    "resistances": [
+      {
+        "type": "physical",
+        "decrease": 2,
+        "percent": 15
+      },
+      {
+        "type": "explosion",
+        "decrease": 5
+      },
+      {
+        "type": "fire",
+        "decrease": 3,
+        "percent": 60
+      }
+    ],
     "healing_per_tick": 0.02,
-    "collision_box": {},
-    "map_generator_bounding_box": {},
-    "selection_box": {},
+    "collision_box": [
+      [
+        -2.2,
+        -2.2
+      ],
+      [
+        2.2,
+        2.2
+      ]
+    ],
+    "map_generator_bounding_box": [
+      [
+        -3.7,
+        -3.2
+      ],
+      [
+        3.7,
+        3.2
+      ]
+    ],
+    "selection_box": [
+      [
+        -2.5,
+        -2.5
+      ],
+      [
+        2.5,
+        2.5
+      ]
+    ],
     "damaged_trigger_effect": "hit_effects.biter()",
     "absorptions_per_second": {
       "pollution": {
@@ -576,10 +1153,92 @@
     "max_count_of_owned_units": 7,
     "max_friends_around_to_spawn": 5,
     "graphics_set": {
-      "animations": {}
+      "animations": [
+        "spawner_idle_animation(0, spitter_spawner_tint)",
+        "spawner_idle_animation(1, spitter_spawner_tint)",
+        "spawner_idle_animation(2, spitter_spawner_tint)",
+        "spawner_idle_animation(3, spitter_spawner_tint)"
+      ]
     },
-    "result_units": {},
-    "spawning_cooldown": {},
+    "result_units": [
+      [
+        "small-biter",
+        [
+          [
+            0.0,
+            0.3
+          ],
+          [
+            0.35,
+            0
+          ]
+        ]
+      ],
+      [
+        "small-spitter",
+        [
+          [
+            0.25,
+            0.0
+          ],
+          [
+            0.5,
+            0.3
+          ],
+          [
+            0.7,
+            0.0
+          ]
+        ]
+      ],
+      [
+        "medium-spitter",
+        [
+          [
+            0.4,
+            0.0
+          ],
+          [
+            0.7,
+            0.3
+          ],
+          [
+            0.9,
+            0.1
+          ]
+        ]
+      ],
+      [
+        "big-spitter",
+        [
+          [
+            0.5,
+            0.0
+          ],
+          [
+            1.0,
+            0.4
+          ]
+        ]
+      ],
+      [
+        "behemoth-spitter",
+        [
+          [
+            0.9,
+            0.0
+          ],
+          [
+            1.0,
+            0.3
+          ]
+        ]
+      ]
+    ],
+    "spawning_cooldown": [
+      360,
+      150
+    ],
     "spawning_radius": 10,
     "spawning_spacing": 3,
     "max_spawn_shift": 0,
@@ -588,30 +1247,113 @@
     "call_for_help_radius": 50,
     "time_to_capture": "60 * 30",
     "spawn_decorations_on_expansion": true,
-    "spawn_decoration": {
-      "decorative": "lichen-decal",
-      "spawn_min": 1,
-      "spawn_max": 2,
-      "spawn_min_radius": 2,
-      "spawn_max_radius": 7,
-      "radius_curve": 0.9
-    }
+    "spawn_decoration": [
+      {
+        "decorative": "light-mud-decal",
+        "spawn_min": 0,
+        "spawn_max": 2,
+        "spawn_min_radius": 2,
+        "spawn_max_radius": 5
+      },
+      {
+        "decorative": "dark-mud-decal",
+        "spawn_min": 0,
+        "spawn_max": 3,
+        "spawn_min_radius": 2,
+        "spawn_max_radius": 6
+      },
+      {
+        "decorative": "enemy-decal",
+        "spawn_min": 3,
+        "spawn_max": 5,
+        "spawn_min_radius": 2,
+        "spawn_max_radius": 7
+      },
+      {
+        "decorative": "enemy-decal-transparent",
+        "spawn_min": 4,
+        "spawn_max": 20,
+        "spawn_min_radius": 2,
+        "spawn_max_radius": 14,
+        "radius_curve": 0.9
+      },
+      {
+        "decorative": "muddy-stump",
+        "spawn_min": 2,
+        "spawn_max": 5,
+        "spawn_min_radius": 3,
+        "spawn_max_radius": 6
+      },
+      {
+        "decorative": "red-croton",
+        "spawn_min": 2,
+        "spawn_max": 8,
+        "spawn_min_radius": 3,
+        "spawn_max_radius": 6
+      },
+      {
+        "decorative": "red-pita",
+        "spawn_min": 1,
+        "spawn_max": 5,
+        "spawn_min_radius": 3,
+        "spawn_max_radius": 6
+      },
+      {
+        "decorative": "lichen-decal",
+        "spawn_min": 1,
+        "spawn_max": 2,
+        "spawn_min_radius": 2,
+        "spawn_max_radius": 7
+      }
+    ]
   },
   {
     "type": "corpse",
     "name": "spitter-spawner-corpse",
     "hidden_in_factoriopedia": true,
-    "flags": {},
+    "flags": [
+      "placeable-neutral",
+      "placeable-off-grid",
+      "not-on-map"
+    ],
     "icon": "__base__/graphics/icons/spitter-spawner-corpse.png",
-    "collision_box": {},
-    "selection_box": {},
+    "collision_box": [
+      [
+        -2,
+        -2
+      ],
+      [
+        2,
+        2
+      ]
+    ],
+    "selection_box": [
+      [
+        -2,
+        -2
+      ],
+      [
+        2,
+        2
+      ]
+    ],
     "selectable_in_game": false,
     "dying_speed": 0.015,
     "time_before_removed": "15 * 60 * 60",
     "subgroup": "corpses",
     "order": "c[corpse]-c[spitter-spawner]",
-    "animation": {},
-    "decay_animation": {},
+    "animation": [
+      "spawner_die_animation(0, spitter_spawner_tint)",
+      "spawner_die_animation(1, spitter_spawner_tint)",
+      "spawner_die_animation(2, spitter_spawner_tint)",
+      "spawner_die_animation(3, spitter_spawner_tint)"
+    ],
+    "decay_animation": [
+      "spawner_decay_animation(0, spitter_spawner_tint)",
+      "spawner_decay_animation(1, spitter_spawner_tint)",
+      "spawner_decay_animation(2, spitter_spawner_tint)",
+      "spawner_decay_animation(3, spitter_spawner_tint)"
+    ],
     "decay_frame_transition_duration": "6 * 60",
     "final_render_layer": "lower-object-above-shadow"
   },
@@ -620,13 +1362,42 @@
     "name": "dummy-spider-unit",
     "localised_name": "dummy",
     "hidden": true,
-    "icons": {
-      "icon": "__core__/graphics/icons/unknown.png"
-    },
-    "flags": {},
+    "icons": [
+      {
+        "icon": "__base__/graphics/icons/spidertron.png"
+      },
+      {
+        "icon": "__core__/graphics/icons/unknown.png"
+      }
+    ],
+    "flags": [
+      "placeable-player",
+      "placeable-enemy",
+      "placeable-off-grid",
+      "breaths-air",
+      "not-repairable"
+    ],
     "max_health": 1,
-    "collision_box": {},
-    "selection_box": {},
+    "collision_box": [
+      [
+        -1,
+        -1
+      ],
+      [
+        1,
+        1
+      ]
+    ],
+    "selection_box": [
+      [
+        -1,
+        -1
+      ],
+      [
+        1,
+        1
+      ]
+    ],
     "graphics_set": {},
     "distraction_cooldown": 1,
     "attack_parameters": {
@@ -649,12 +1420,20 @@
     },
     "height": 1,
     "spider_engine": {
-      "legs": {
-        "leg": "spidertron-leg-1",
-        "mount_position": {},
-        "ground_position": {},
-        "walking_group": 1
-      }
+      "legs": [
+        {
+          "leg": "spidertron-leg-1",
+          "mount_position": [
+            0,
+            0
+          ],
+          "ground_position": [
+            0,
+            0
+          ],
+          "walking_group": 1
+        }
+      ]
     }
   }
 ]

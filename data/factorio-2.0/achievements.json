@@ -101,7 +101,16 @@
     "name": "it-stinks-and-they-dont-like-it",
     "order": "b[exploration]-a[it-stinks-and-they-dont-like-it]",
     "amount": 1,
-    "entities": {},
+    "entities": [
+      "small-biter",
+      "medium-biter",
+      "big-biter",
+      "behemoth-biter",
+      "small-spitter",
+      "medium-spitter",
+      "big-spitter",
+      "behemoth-spitter"
+    ],
     "attack_type": "autonomous",
     "allowed_without_fight": false,
     "icon": "__base__/graphics/achievement/it-stinks-and-they-dont-like-it.png",
@@ -324,7 +333,10 @@
     "type": "dont-use-entity-in-energy-production-achievement",
     "name": "solaris",
     "order": "d[production]-g[solaris]",
-    "excluded": {},
+    "excluded": [
+      "steam-engine",
+      "steam-turbine"
+    ],
     "included": "solar-panel",
     "minimum_energy_produced": "10GJ",
     "last_hour_only": true,
@@ -399,7 +411,10 @@
     "type": "kill-achievement",
     "name": "pest-control",
     "order": "f[kill]-a[pest-control]",
-    "to_kill": {},
+    "to_kill": [
+      "biter-spawner",
+      "spitter-spawner"
+    ],
     "personally": false,
     "amount": 1,
     "icon": "__base__/graphics/achievement/pest-control.png",
@@ -472,7 +487,10 @@
     "name": "art-of-siege",
     "order": "f[kill]-h[art-of-siege]",
     "type_to_kill": "unit-spawner",
-    "damage_dealer": {},
+    "damage_dealer": [
+      "artillery-turret",
+      "artillery-wagon"
+    ],
     "amount": 1,
     "icon": "__base__/graphics/achievement/art-of-siege.png",
     "icon_size": 128
@@ -520,8 +538,14 @@
     "name": "logistic-network-embargo",
     "order": "h[limitation]-d[logistic-network-embargo]",
     "objective_condition": "late-research",
-    "research_with": {},
-    "dont_build": {},
+    "research_with": [
+      "space-science-pack"
+    ],
+    "dont_build": [
+      "active-provider-chest",
+      "requester-chest",
+      "buffer-chest"
+    ],
     "icon": "__base__/graphics/achievement/logistic-network-embargo.png",
     "icon_size": 128
   },

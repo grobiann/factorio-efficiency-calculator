@@ -4,21 +4,37 @@
     "name": "kr-energy-absorber-equipment",
     "energy_required": 3,
     "enabled": false,
-    "ingredients": {
-      "type": "item",
-      "name": "battery",
-      "amount": 6
-    },
-    "results": {
-      "type": "item",
-      "name": "kr-energy-absorber-equipment",
-      "amount": 1
-    }
+    "ingredients": [
+      {
+        "type": "item",
+        "name": "copper-plate",
+        "amount": 6
+      },
+      {
+        "type": "item",
+        "name": "copper-cable",
+        "amount": 12
+      },
+      {
+        "type": "item",
+        "name": "battery",
+        "amount": 6
+      }
+    ],
+    "results": [
+      {
+        "type": "item",
+        "name": "kr-energy-absorber-equipment",
+        "amount": 1
+      }
+    ]
   },
   {
     "type": "item",
     "name": "kr-energy-absorber-equipment",
-    "localised_description": {},
+    "localised_description": [
+      "equipment-description.energy-absorber-equipment"
+    ],
     "icon": "__Krastorio2Assets__/icons/equipment/energy-absorber-equipment.png",
     "place_as_equipment_result": "kr-energy-absorber-equipment",
     "subgroup": "equipment",
@@ -47,6 +63,9 @@
       "output_flow_limit": "12MW",
       "usage_priority": "primary-output"
     },
-    "categories": {}
+    "categories": [
+      "armor",
+      "kr-vehicle"
+    ]
   }
 ]

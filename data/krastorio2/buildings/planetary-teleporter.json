@@ -4,16 +4,35 @@
     "name": "kr-planetary-teleporter",
     "energy_required": 20,
     "enabled": false,
-    "ingredients": {
-      "type": "item",
-      "name": "kr-teleportation-gps-module",
-      "amount": 1
-    },
-    "results": {
-      "type": "item",
-      "name": "kr-planetary-teleporter",
-      "amount": 1
-    }
+    "ingredients": [
+      {
+        "type": "item",
+        "name": "kr-imersium-beam",
+        "amount": 10
+      },
+      {
+        "type": "item",
+        "name": "kr-imersite-crystal",
+        "amount": 4
+      },
+      {
+        "type": "item",
+        "name": "kr-energy-control-unit",
+        "amount": 8
+      },
+      {
+        "type": "item",
+        "name": "kr-teleportation-gps-module",
+        "amount": 1
+      }
+    ],
+    "results": [
+      {
+        "type": "item",
+        "name": "kr-planetary-teleporter",
+        "amount": 1
+      }
+    ]
   },
   {
     "type": "item",
@@ -27,9 +46,22 @@
   {
     "type": "accumulator",
     "name": "kr-planetary-teleporter",
-    "factoriopedia_description": {},
+    "factoriopedia_description": [
+      "",
+      [
+        "entity-description.kr-planetary-teleporter"
+      ],
+      "\\n\\n",
+      [
+        "factoriopedia-description.kr-planetary-teleporter"
+      ]
+    ],
     "icon": "__Krastorio2Assets__/icons/entities/planetary-teleporter.png",
-    "flags": {},
+    "flags": [
+      "placeable-neutral",
+      "placeable-player",
+      "player-creation"
+    ],
     "map_color": {
       "r": 0.337,
       "g": 0.011,
@@ -39,8 +71,26 @@
       "mining_time": 10,
       "result": "kr-planetary-teleporter"
     },
-    "collision_box": {},
-    "selection_box": {},
+    "collision_box": [
+      [
+        -2.65,
+        -1.9
+      ],
+      [
+        2.65,
+        3.2
+      ]
+    ],
+    "selection_box": [
+      [
+        -3,
+        -2
+      ],
+      [
+        3,
+        3.4
+      ]
+    ],
     "drawing_box_vertical_extension": 1,
     "collision_mask": {
       "layers": {
@@ -53,10 +103,20 @@
     "corpse": "big-remnants",
     "dying_explosion": "big-explosion",
     "damaged_trigger_effect": "hit_effects.entity()",
-    "resistances": {
-      "type": "impact",
-      "percent": 75
-    },
+    "resistances": [
+      {
+        "type": "physical",
+        "percent": 75
+      },
+      {
+        "type": "fire",
+        "percent": 75
+      },
+      {
+        "type": "impact",
+        "percent": 75
+      }
+    ],
     "default_output_signal": {
       "type": "virtual",
       "name": "signal-P"
@@ -88,50 +148,170 @@
     },
     "chargable_graphics": {
       "picture": {
-        "layers": {
-          "filename": "__Krastorio2Assets__/buildings/planetary-teleporter/teleporter-forward-towers-light.png",
-          "priority": "extra-high",
-          "width": 400,
-          "height": 475,
-          "scale": 0.5,
-          "frame_count": 20,
-          "repeat_count": 20,
-          "draw_as_shadow": true,
-          "animation_speed": 0.5,
-          "shift": {},
-          "line_length": 5,
-          "draw_as_glow": true,
-          "fadeout": true,
-          "blend_mode": "additive-soft",
-          "draw_as_light": true
-        }
+        "layers": [
+          {
+            "filename": "__Krastorio2Assets__/buildings/planetary-teleporter/planetary-teleporter-shadow.png",
+            "priority": "low",
+            "width": 531,
+            "height": 292,
+            "scale": 0.5,
+            "frame_count": 1,
+            "repeat_count": 20,
+            "draw_as_shadow": true,
+            "animation_speed": 0.5,
+            "shift": [
+              1.9,
+              1.2
+            ]
+          },
+          {
+            "filename": "__Krastorio2Assets__/buildings/planetary-teleporter/teleporter-base-combined.png",
+            "priority": "medium",
+            "width": 400,
+            "height": 475,
+            "scale": 0.5,
+            "frame_count": 20,
+            "line_length": 5,
+            "animation_speed": 0.5
+          },
+          {
+            "filename": "__Krastorio2Assets__/buildings/planetary-teleporter/teleporter-under-forward-towers.png",
+            "priority": "medium",
+            "width": 400,
+            "height": 475,
+            "scale": 0.5,
+            "repeat_count": 20,
+            "animation_speed": 0.5
+          },
+          {
+            "filename": "__Krastorio2Assets__/buildings/planetary-teleporter/teleporter-base-combined-glow.png",
+            "priority": "high",
+            "width": 400,
+            "height": 475,
+            "scale": 0.5,
+            "frame_count": 20,
+            "line_length": 5,
+            "animation_speed": 0.5,
+            "draw_as_glow": true,
+            "fadeout": true,
+            "blend_mode": "additive-soft"
+          },
+          {
+            "filename": "__Krastorio2Assets__/buildings/planetary-teleporter/teleporter-base-combined-glow.png",
+            "priority": "extra-high",
+            "width": 400,
+            "height": 475,
+            "scale": 0.5,
+            "frame_count": 20,
+            "line_length": 5,
+            "animation_speed": 0.5,
+            "draw_as_light": true,
+            "blend_mode": "additive-soft"
+          },
+          {
+            "filename": "__Krastorio2Assets__/buildings/planetary-teleporter/teleporter-forward-towers-light.png",
+            "priority": "extra-high",
+            "width": 400,
+            "height": 475,
+            "scale": 0.5,
+            "frame_count": 20,
+            "line_length": 5,
+            "animation_speed": 0.5
+          }
+        ]
       },
       "charge_animation": {
-        "layers": {
-          "filename": "__Krastorio2Assets__/buildings/planetary-teleporter/teleporter-forward-towers-light.png",
-          "priority": "extra-high",
-          "width": 400,
-          "height": 475,
-          "scale": 0.5,
-          "frame_count": 20,
-          "repeat_count": 20,
-          "draw_as_shadow": true,
-          "animation_speed": 0.5,
-          "shift": {},
-          "line_length": 5,
-          "flags": {},
-          "apply_runtime_tint": true,
-          "tint": {
-            "r": 1,
-            "g": 0,
-            "b": 0,
-            "a": 1
+        "layers": [
+          {
+            "filename": "__Krastorio2Assets__/buildings/planetary-teleporter/planetary-teleporter-shadow.png",
+            "priority": "low",
+            "width": 531,
+            "height": 292,
+            "scale": 0.5,
+            "frame_count": 1,
+            "repeat_count": 20,
+            "draw_as_shadow": true,
+            "animation_speed": 0.5,
+            "shift": [
+              1.9,
+              1.2
+            ]
           },
-          "draw_as_glow": true,
-          "fadeout": true,
-          "blend_mode": "additive-soft",
-          "draw_as_light": true
-        }
+          {
+            "filename": "__Krastorio2Assets__/buildings/planetary-teleporter/teleporter-base-combined.png",
+            "priority": "medium",
+            "width": 400,
+            "height": 475,
+            "scale": 0.5,
+            "frame_count": 20,
+            "line_length": 5,
+            "animation_speed": 0.5
+          },
+          {
+            "filename": "__Krastorio2Assets__/buildings/planetary-teleporter/teleporter-under-forward-towers.png",
+            "priority": "medium",
+            "width": 400,
+            "height": 475,
+            "scale": 0.5,
+            "repeat_count": 20,
+            "animation_speed": 0.5
+          },
+          {
+            "filename": "__Krastorio2Assets__/buildings/planetary-teleporter/teleporter-base-combined-glow-red.png",
+            "flags": [
+              "mask"
+            ],
+            "priority": "extra-high",
+            "width": 400,
+            "height": 475,
+            "scale": 0.5,
+            "frame_count": 20,
+            "line_length": 5,
+            "animation_speed": 0.5,
+            "apply_runtime_tint": true,
+            "tint": {
+              "r": 1,
+              "g": 0,
+              "b": 0,
+              "a": 1
+            }
+          },
+          {
+            "filename": "__Krastorio2Assets__/buildings/planetary-teleporter/teleporter-base-combined-glow-red.png",
+            "priority": "high",
+            "width": 400,
+            "height": 475,
+            "scale": 0.5,
+            "frame_count": 20,
+            "line_length": 5,
+            "animation_speed": 0.5,
+            "draw_as_glow": true,
+            "fadeout": true,
+            "blend_mode": "additive-soft"
+          },
+          {
+            "filename": "__Krastorio2Assets__/buildings/planetary-teleporter/teleporter-base-combined-glow-red.png",
+            "priority": "extra-high",
+            "width": 400,
+            "height": 475,
+            "scale": 0.5,
+            "frame_count": 20,
+            "line_length": 5,
+            "animation_speed": 0.5,
+            "draw_as_light": true,
+            "blend_mode": "additive-soft"
+          },
+          {
+            "filename": "__Krastorio2Assets__/buildings/planetary-teleporter/teleporter-forward-towers-light.png",
+            "priority": "extra-high",
+            "width": 400,
+            "height": 475,
+            "scale": 0.5,
+            "frame_count": 20,
+            "line_length": 5,
+            "animation_speed": 0.5
+          }
+        ]
       },
       "charge_cooldown": 10,
       "discharge_cooldown": 10
@@ -140,7 +320,11 @@
   {
     "type": "simple-entity",
     "name": "kr-planetary-teleporter-front-layer",
-    "flags": {},
+    "flags": [
+      "not-on-map",
+      "not-selectable-in-game",
+      "placeable-off-grid"
+    ],
     "hidden": true,
     "collision_mask": {
       "layers": {}
@@ -156,10 +340,25 @@
   {
     "type": "simple-entity",
     "name": "kr-planetary-teleporter-collision-1",
-    "localised_name": {},
-    "flags": {},
+    "localised_name": [
+      "entity-name.kr-planetary-teleporter"
+    ],
+    "flags": [
+      "not-on-map",
+      "not-selectable-in-game",
+      "placeable-off-grid"
+    ],
     "hidden": true,
-    "collision_box": {},
+    "collision_box": [
+      [
+        -1.5,
+        -1
+      ],
+      [
+        1.5,
+        0.4
+      ]
+    ],
     "collision_mask": {
       "layers": {
         "player": true
@@ -169,10 +368,25 @@
   {
     "type": "simple-entity",
     "name": "kr-planetary-teleporter-collision-2",
-    "localised_name": {},
-    "flags": {},
+    "localised_name": [
+      "entity-name.kr-planetary-teleporter"
+    ],
+    "flags": [
+      "not-on-map",
+      "not-selectable-in-game",
+      "placeable-off-grid"
+    ],
     "hidden": true,
-    "collision_box": {},
+    "collision_box": [
+      [
+        -0.8,
+        -1
+      ],
+      [
+        1.4,
+        1.2
+      ]
+    ],
     "collision_mask": {
       "layers": {
         "player": true
@@ -182,10 +396,25 @@
   {
     "type": "simple-entity",
     "name": "kr-planetary-teleporter-collision-3",
-    "localised_name": {},
-    "flags": {},
+    "localised_name": [
+      "entity-name.kr-planetary-teleporter"
+    ],
+    "flags": [
+      "not-on-map",
+      "not-selectable-in-game",
+      "placeable-off-grid"
+    ],
     "hidden": true,
-    "collision_box": {},
+    "collision_box": [
+      [
+        -1.4,
+        -1
+      ],
+      [
+        0.8,
+        1.2
+      ]
+    ],
     "collision_mask": {
       "layers": {
         "player": true
@@ -196,7 +425,11 @@
     "type": "turret",
     "name": "kr-planetary-teleporter-turret",
     "icon": "__Krastorio2Assets__/icons/entities/planetary-teleporter.png",
-    "flags": {},
+    "flags": [
+      "not-on-map",
+      "not-selectable-in-game",
+      "placeable-off-grid"
+    ],
     "hidden": true,
     "collision_mask": {
       "layers": {}
@@ -220,24 +453,30 @@
           "type": "direct",
           "action_delivery": {
             "type": "instant",
-            "source_effects": {
-              "type": "nested-result",
-              "affects_target": true,
-              "action": {
-                "type": "area",
-                "radius": 0.75,
-                "collision_mode": "distance-from-center",
-                "ignore_collision_condition": true,
-                "trigger_target_mask": {},
-                "action_delivery": {
-                  "type": "instant",
-                  "target_effects": {
-                    "type": "script",
-                    "effect_id": "kr-planetary-teleporter-character-trigger"
+            "source_effects": [
+              {
+                "type": "nested-result",
+                "affects_target": true,
+                "action": {
+                  "type": "area",
+                  "radius": 0.75,
+                  "collision_mode": "distance-from-center",
+                  "ignore_collision_condition": true,
+                  "trigger_target_mask": [
+                    "character"
+                  ],
+                  "action_delivery": {
+                    "type": "instant",
+                    "target_effects": [
+                      {
+                        "type": "script",
+                        "effect_id": "kr-planetary-teleporter-character-trigger"
+                      }
+                    ]
                   }
                 }
               }
-            }
+            ]
           }
         }
       }

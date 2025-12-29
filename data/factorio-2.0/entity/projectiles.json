@@ -2,9 +2,20 @@
   {
     "type": "projectile",
     "name": "shotgun-pellet",
-    "flags": {},
+    "flags": [
+      "not-on-map"
+    ],
     "hidden": true,
-    "collision_box": {},
+    "collision_box": [
+      [
+        -0.05,
+        -0.25
+      ],
+      [
+        0.05,
+        0.25
+      ]
+    ],
     "acceleration": 0,
     "direction_only": true,
     "action": {
@@ -31,24 +42,64 @@
   {
     "type": "projectile",
     "name": "grenade",
-    "flags": {},
+    "flags": [
+      "not-on-map"
+    ],
     "hidden": true,
     "acceleration": 0.005,
-    "action": {
-      "type": "area",
-      "action_delivery": {
-        "type": "instant",
-        "target_effects": {
-          "type": "create-entity",
-          "damage": {
-            "amount": 35,
-            "type": "explosion"
-          },
-          "entity_name": "explosion"
+    "action": [
+      {
+        "type": "direct",
+        "action_delivery": {
+          "type": "instant",
+          "target_effects": [
+            {
+              "type": "create-entity",
+              "entity_name": "grenade-explosion"
+            },
+            {
+              "type": "create-entity",
+              "entity_name": "small-scorchmark-tintable",
+              "check_buildability": true
+            },
+            {
+              "type": "invoke-tile-trigger",
+              "repeat_count": 1
+            },
+            {
+              "type": "destroy-decoratives",
+              "from_render_layer": "decorative",
+              "to_render_layer": "object",
+              "include_soft_decoratives": true,
+              "include_decals": false,
+              "invoke_decorative_trigger": true,
+              "decoratives_with_trigger_only": false,
+              "radius": "2.25 -- large radius for demostrative purposes"
+            }
+          ]
         }
       },
-      "radius": 6.5
-    },
+      {
+        "type": "area",
+        "radius": 6.5,
+        "action_delivery": {
+          "type": "instant",
+          "target_effects": [
+            {
+              "type": "damage",
+              "damage": {
+                "amount": 35,
+                "type": "explosion"
+              }
+            },
+            {
+              "type": "create-entity",
+              "entity_name": "explosion"
+            }
+          ]
+        }
+      }
+    ],
     "light": {
       "intensity": 0.5,
       "size": 4
@@ -81,18 +132,22 @@
   {
     "type": "projectile",
     "name": "defender-capsule",
-    "flags": {},
+    "flags": [
+      "not-on-map"
+    ],
     "hidden": true,
     "acceleration": 0.005,
     "action": {
       "type": "direct",
       "action_delivery": {
         "type": "instant",
-        "target_effects": {
-          "type": "create-entity",
-          "show_in_tooltip": true,
-          "entity_name": "defender"
-        }
+        "target_effects": [
+          {
+            "type": "create-entity",
+            "show_in_tooltip": true,
+            "entity_name": "defender"
+          }
+        ]
       }
     },
     "light": {
@@ -101,18 +156,33 @@
     },
     "enable_drawing_with_mask": true,
     "animation": {
-      "layers": {
-        "filename": "__base__/graphics/entity/combat-robot-capsule/defender-capsule-mask.png",
-        "flags": {},
-        "width": 28,
-        "height": 20,
-        "priority": "high",
-        "apply_runtime_tint": true
-      }
+      "layers": [
+        {
+          "filename": "__base__/graphics/entity/combat-robot-capsule/defender-capsule.png",
+          "flags": [
+            "no-crop"
+          ],
+          "width": 28,
+          "height": 20,
+          "priority": "high"
+        },
+        {
+          "filename": "__base__/graphics/entity/combat-robot-capsule/defender-capsule-mask.png",
+          "flags": [
+            "no-crop"
+          ],
+          "width": 28,
+          "height": 20,
+          "priority": "high",
+          "apply_runtime_tint": true
+        }
+      ]
     },
     "shadow": {
       "filename": "__base__/graphics/entity/combat-robot-capsule/defender-capsule-shadow.png",
-      "flags": {},
+      "flags": [
+        "no-crop"
+      ],
       "width": 26,
       "height": 20,
       "priority": "high"
@@ -122,21 +192,28 @@
   {
     "type": "projectile",
     "name": "laser",
-    "flags": {},
+    "flags": [
+      "not-on-map"
+    ],
     "hidden": true,
     "acceleration": 0.03,
     "action": {
       "type": "direct",
       "action_delivery": {
         "type": "instant",
-        "target_effects": {
-          "type": "damage",
-          "entity_name": "laser-bubble",
-          "damage": {
-            "amount": 5,
-            "type": "laser"
+        "target_effects": [
+          {
+            "type": "create-entity",
+            "entity_name": "laser-bubble"
+          },
+          {
+            "type": "damage",
+            "damage": {
+              "amount": 5,
+              "type": "laser"
+            }
           }
-        }
+        ]
       }
     },
     "animation": {
@@ -156,21 +233,28 @@
   {
     "type": "projectile",
     "name": "blue-laser",
-    "flags": {},
+    "flags": [
+      "not-on-map"
+    ],
     "hidden": true,
     "acceleration": 0.02,
     "action": {
       "type": "direct",
       "action_delivery": {
         "type": "instant",
-        "target_effects": {
-          "type": "damage",
-          "entity_name": "laser-bubble",
-          "damage": {
-            "amount": 10,
-            "type": "laser"
+        "target_effects": [
+          {
+            "type": "create-entity",
+            "entity_name": "laser-bubble"
+          },
+          {
+            "type": "damage",
+            "damage": {
+              "amount": 10,
+              "type": "laser"
+            }
           }
-        }
+        ]
       }
     },
     "animation": {
@@ -184,7 +268,9 @@
   {
     "type": "projectile",
     "name": "rocket",
-    "flags": {},
+    "flags": [
+      "not-on-map"
+    ],
     "hidden": true,
     "acceleration": 0.01,
     "turn_speed": 0.003,
@@ -193,24 +279,39 @@
       "type": "direct",
       "action_delivery": {
         "type": "instant",
-        "target_effects": {
-          "type": "destroy-decoratives",
-          "entity_name": "small-scorchmark-tintable",
-          "only_when_visible": true,
-          "damage": {
-            "amount": 200,
-            "type": "explosion"
+        "target_effects": [
+          {
+            "type": "create-entity",
+            "entity_name": "explosion",
+            "only_when_visible": true
           },
-          "check_buildability": true,
-          "repeat_count": 1,
-          "from_render_layer": "decorative",
-          "to_render_layer": "object",
-          "include_soft_decoratives": true,
-          "include_decals": false,
-          "invoke_decorative_trigger": true,
-          "decoratives_with_trigger_only": false,
-          "radius": "1.5 -- large radius for demostrative purposes"
-        }
+          {
+            "type": "damage",
+            "damage": {
+              "amount": 200,
+              "type": "explosion"
+            }
+          },
+          {
+            "type": "create-entity",
+            "entity_name": "small-scorchmark-tintable",
+            "check_buildability": true
+          },
+          {
+            "type": "invoke-tile-trigger",
+            "repeat_count": 1
+          },
+          {
+            "type": "destroy-decoratives",
+            "from_render_layer": "decorative",
+            "to_render_layer": "object",
+            "include_soft_decoratives": true,
+            "include_decals": false,
+            "invoke_decorative_trigger": true,
+            "decoratives_with_trigger_only": false,
+            "radius": "1.5 -- large radius for demostrative purposes"
+          }
+        ]
       }
     },
     "animation": "require(\"__base__.prototypes.entity.rocket-projectile-pictures\").animation({1, 0.8, 0.3})",
@@ -220,7 +321,9 @@
   {
     "type": "projectile",
     "name": "explosive-rocket",
-    "flags": {},
+    "flags": [
+      "not-on-map"
+    ],
     "hidden": true,
     "acceleration": 0.01,
     "turn_speed": 0.003,
@@ -229,40 +332,63 @@
       "type": "direct",
       "action_delivery": {
         "type": "instant",
-        "target_effects": {
-          "type": "nested-result",
-          "entity_name": "medium-scorchmark-tintable",
-          "only_when_visible": true,
-          "damage": {
-            "amount": 50,
-            "type": "explosion"
+        "target_effects": [
+          {
+            "type": "create-entity",
+            "entity_name": "big-explosion",
+            "only_when_visible": true
           },
-          "check_buildability": true,
-          "repeat_count": 1,
-          "from_render_layer": "decorative",
-          "to_render_layer": "object",
-          "include_soft_decoratives": true,
-          "include_decals": false,
-          "invoke_decorative_trigger": true,
-          "decoratives_with_trigger_only": false,
-          "radius": "3.5 -- large radius for demostrative purposes",
-          "action": {
-            "type": "area",
-            "radius": 6.5,
-            "action_delivery": {
-              "type": "instant",
-              "target_effects": {
-                "type": "create-entity",
-                "damage": {
-                  "amount": 100,
-                  "type": "explosion"
-                },
-                "entity_name": "explosion",
-                "only_when_visible": true
+          {
+            "type": "damage",
+            "damage": {
+              "amount": 50,
+              "type": "explosion"
+            }
+          },
+          {
+            "type": "create-entity",
+            "entity_name": "medium-scorchmark-tintable",
+            "check_buildability": true
+          },
+          {
+            "type": "invoke-tile-trigger",
+            "repeat_count": 1
+          },
+          {
+            "type": "destroy-decoratives",
+            "from_render_layer": "decorative",
+            "to_render_layer": "object",
+            "include_soft_decoratives": true,
+            "include_decals": false,
+            "invoke_decorative_trigger": true,
+            "decoratives_with_trigger_only": false,
+            "radius": "3.5 -- large radius for demostrative purposes"
+          },
+          {
+            "type": "nested-result",
+            "action": {
+              "type": "area",
+              "radius": 6.5,
+              "action_delivery": {
+                "type": "instant",
+                "target_effects": [
+                  {
+                    "type": "damage",
+                    "damage": {
+                      "amount": 100,
+                      "type": "explosion"
+                    }
+                  },
+                  {
+                    "type": "create-entity",
+                    "entity_name": "explosion",
+                    "only_when_visible": true
+                  }
+                ]
               }
             }
           }
-        }
+        ]
       }
     },
     "animation": "require(\"__base__.prototypes.entity.rocket-projectile-pictures\").animation({1, 0.2, 0.2})",
@@ -272,9 +398,20 @@
   {
     "type": "projectile",
     "name": "piercing-shotgun-pellet",
-    "flags": {},
+    "flags": [
+      "not-on-map"
+    ],
     "hidden": true,
-    "collision_box": {},
+    "collision_box": [
+      [
+        -0.05,
+        -0.25
+      ],
+      [
+        0.05,
+        0.25
+      ]
+    ],
     "acceleration": 0,
     "direction_only": true,
     "action": {
@@ -301,9 +438,20 @@
   {
     "type": "projectile",
     "name": "cannon-projectile",
-    "flags": {},
+    "flags": [
+      "not-on-map"
+    ],
     "hidden": true,
-    "collision_box": {},
+    "collision_box": [
+      [
+        -0.3,
+        -1.1
+      ],
+      [
+        0.3,
+        1.1
+      ]
+    ],
     "acceleration": 0,
     "direction_only": true,
     "piercing_damage": 1000,
@@ -311,25 +459,39 @@
       "type": "direct",
       "action_delivery": {
         "type": "instant",
-        "target_effects": {
-          "type": "create-entity",
-          "damage": {
-            "amount": 100,
-            "type": "explosion"
+        "target_effects": [
+          {
+            "type": "damage",
+            "damage": {
+              "amount": 1000,
+              "type": "physical"
+            }
           },
-          "entity_name": "explosion"
-        }
+          {
+            "type": "damage",
+            "damage": {
+              "amount": 100,
+              "type": "explosion"
+            }
+          },
+          {
+            "type": "create-entity",
+            "entity_name": "explosion"
+          }
+        ]
       }
     },
     "final_action": {
       "type": "direct",
       "action_delivery": {
         "type": "instant",
-        "target_effects": {
-          "type": "create-entity",
-          "entity_name": "small-scorchmark-tintable",
-          "check_buildability": true
-        }
+        "target_effects": [
+          {
+            "type": "create-entity",
+            "entity_name": "small-scorchmark-tintable",
+            "check_buildability": true
+          }
+        ]
       }
     },
     "animation": {
@@ -343,10 +505,16 @@
   {
     "type": "artillery-projectile",
     "name": "artillery-projectile",
-    "flags": {},
+    "flags": [
+      "not-on-map"
+    ],
     "hidden": true,
     "reveal_map": true,
-    "map_color": {},
+    "map_color": [
+      1,
+      1,
+      0
+    ],
     "picture": {
       "filename": "__base__/graphics/entity/artillery-projectile/shell.png",
       "draw_as_glow": true,
@@ -362,7 +530,9 @@
     },
     "chart_picture": {
       "filename": "__base__/graphics/entity/artillery-projectile/artillery-shoot-map-visualization.png",
-      "flags": {},
+      "flags": [
+        "icon"
+      ],
       "width": 64,
       "height": 64,
       "priority": "high",
@@ -372,51 +542,88 @@
       "type": "direct",
       "action_delivery": {
         "type": "instant",
-        "target_effects": {
-          "type": "show-explosion-on-chart",
-          "action": {
-            "type": "area",
-            "radius": 4.0,
-            "action_delivery": {
-              "type": "instant",
-              "target_effects": {
-                "type": "damage",
-                "damage": {
-                  "amount": 1000,
-                  "type": "explosion"
-                }
+        "target_effects": [
+          {
+            "type": "nested-result",
+            "action": {
+              "type": "area",
+              "radius": 4.0,
+              "action_delivery": {
+                "type": "instant",
+                "target_effects": [
+                  {
+                    "type": "damage",
+                    "damage": {
+                      "amount": 1000,
+                      "type": "physical"
+                    }
+                  },
+                  {
+                    "type": "damage",
+                    "damage": {
+                      "amount": 1000,
+                      "type": "explosion"
+                    }
+                  }
+                ]
               }
             }
           },
-          "smoke_name": "artillery-smoke",
-          "initial_height": 0,
-          "speed_from_center": 0.05,
-          "speed_from_center_deviation": 0.005,
-          "offset_deviation": {},
-          "max_radius": 3.5,
-          "repeat_count": "4 * 4 * 15",
-          "entity_name": "big-artillery-explosion",
-          "scale": "8/32"
-        }
+          {
+            "type": "create-trivial-smoke",
+            "smoke_name": "artillery-smoke",
+            "initial_height": 0,
+            "speed_from_center": 0.05,
+            "speed_from_center_deviation": 0.005,
+            "offset_deviation": [
+              [
+                -4,
+                -4
+              ],
+              [
+                4,
+                4
+              ]
+            ],
+            "max_radius": 3.5,
+            "repeat_count": "4 * 4 * 15"
+          },
+          {
+            "type": "create-entity",
+            "entity_name": "big-artillery-explosion"
+          },
+          {
+            "type": "show-explosion-on-chart",
+            "scale": "8/32"
+          }
+        ]
       }
     },
     "final_action": {
       "type": "direct",
       "action_delivery": {
         "type": "instant",
-        "target_effects": {
-          "type": "destroy-decoratives",
-          "entity_name": "medium-scorchmark-tintable",
-          "check_buildability": true,
-          "repeat_count": 1,
-          "from_render_layer": "decorative",
-          "to_render_layer": "object",
-          "include_soft_decoratives": true,
-          "include_decals": false,
-          "invoke_decorative_trigger": true,
-          "decoratives_with_trigger_only": false,
-          "radius": "3.5 -- large radius for demostrative purposes"
-        }
+        "target_effects": [
+          {
+            "type": "create-entity",
+            "entity_name": "medium-scorchmark-tintable",
+            "check_buildability": true
+          },
+          {
+            "type": "invoke-tile-trigger",
+            "repeat_count": 1
+          },
+          {
+            "type": "destroy-decoratives",
+            "from_render_layer": "decorative",
+            "to_render_layer": "object",
+            "include_soft_decoratives": true,
+            "include_decals": false,
+            "invoke_decorative_trigger": true,
+            "decoratives_with_trigger_only": false,
+            "radius": "3.5 -- large radius for demostrative purposes"
+          }
+        ]
       }
     },
     "height_from_ground": "280 / 64"
@@ -424,9 +631,20 @@
   {
     "type": "projectile",
     "name": "uranium-cannon-projectile",
-    "flags": {},
+    "flags": [
+      "not-on-map"
+    ],
     "hidden": true,
-    "collision_box": {},
+    "collision_box": [
+      [
+        -0.3,
+        -1.1
+      ],
+      [
+        0.3,
+        1.1
+      ]
+    ],
     "acceleration": 0,
     "direction_only": true,
     "piercing_damage": 2200,
@@ -434,25 +652,39 @@
       "type": "direct",
       "action_delivery": {
         "type": "instant",
-        "target_effects": {
-          "type": "create-entity",
-          "damage": {
-            "amount": 200,
-            "type": "explosion"
+        "target_effects": [
+          {
+            "type": "damage",
+            "damage": {
+              "amount": 2000,
+              "type": "physical"
+            }
           },
-          "entity_name": "uranium-cannon-explosion"
-        }
+          {
+            "type": "damage",
+            "damage": {
+              "amount": 200,
+              "type": "explosion"
+            }
+          },
+          {
+            "type": "create-entity",
+            "entity_name": "uranium-cannon-explosion"
+          }
+        ]
       }
     },
     "final_action": {
       "type": "direct",
       "action_delivery": {
         "type": "instant",
-        "target_effects": {
-          "type": "create-entity",
-          "entity_name": "small-scorchmark-tintable",
-          "check_buildability": true
-        }
+        "target_effects": [
+          {
+            "type": "create-entity",
+            "entity_name": "small-scorchmark-tintable",
+            "check_buildability": true
+          }
+        ]
       }
     },
     "animation": {
@@ -466,57 +698,93 @@
   {
     "type": "projectile",
     "name": "explosive-uranium-cannon-projectile",
-    "flags": {},
+    "flags": [
+      "not-on-map"
+    ],
     "hidden": true,
-    "collision_box": {},
+    "collision_box": [
+      [
+        -0.3,
+        -1.1
+      ],
+      [
+        0.3,
+        1.1
+      ]
+    ],
     "acceleration": 0,
     "piercing_damage": 150,
     "action": {
       "type": "direct",
       "action_delivery": {
         "type": "instant",
-        "target_effects": {
-          "type": "create-entity",
-          "damage": {
-            "amount": 350,
-            "type": "physical"
+        "target_effects": [
+          {
+            "type": "damage",
+            "damage": {
+              "amount": 350,
+              "type": "physical"
+            }
           },
-          "entity_name": "uranium-cannon-explosion"
-        }
+          {
+            "type": "create-entity",
+            "entity_name": "uranium-cannon-explosion"
+          }
+        ]
       }
     },
     "final_action": {
       "type": "direct",
       "action_delivery": {
         "type": "instant",
-        "target_effects": {
-          "type": "destroy-decoratives",
-          "entity_name": "medium-scorchmark-tintable",
-          "action": {
-            "type": "area",
-            "radius": 4.25,
-            "action_delivery": {
-              "type": "instant",
-              "target_effects": {
-                "type": "create-entity",
-                "damage": {
-                  "amount": 315,
-                  "type": "explosion"
-                },
-                "entity_name": "uranium-cannon-explosion"
+        "target_effects": [
+          {
+            "type": "create-entity",
+            "entity_name": "uranium-cannon-shell-explosion"
+          },
+          {
+            "type": "nested-result",
+            "action": {
+              "type": "area",
+              "radius": 4.25,
+              "action_delivery": {
+                "type": "instant",
+                "target_effects": [
+                  {
+                    "type": "damage",
+                    "damage": {
+                      "amount": 315,
+                      "type": "explosion"
+                    }
+                  },
+                  {
+                    "type": "create-entity",
+                    "entity_name": "uranium-cannon-explosion"
+                  }
+                ]
               }
             }
           },
-          "check_buildability": true,
-          "repeat_count": 1,
-          "from_render_layer": "decorative",
-          "to_render_layer": "object",
-          "include_soft_decoratives": true,
-          "include_decals": false,
-          "invoke_decorative_trigger": true,
-          "decoratives_with_trigger_only": false,
-          "radius": "3.25 -- large radius for demostrative purposes"
-        }
+          {
+            "type": "create-entity",
+            "entity_name": "medium-scorchmark-tintable",
+            "check_buildability": true
+          },
+          {
+            "type": "invoke-tile-trigger",
+            "repeat_count": 1
+          },
+          {
+            "type": "destroy-decoratives",
+            "from_render_layer": "decorative",
+            "to_render_layer": "object",
+            "include_soft_decoratives": true,
+            "include_decals": false,
+            "invoke_decorative_trigger": true,
+            "decoratives_with_trigger_only": false,
+            "radius": "3.25 -- large radius for demostrative purposes"
+          }
+        ]
       }
     },
     "animation": {
@@ -530,57 +798,93 @@
   {
     "type": "projectile",
     "name": "explosive-cannon-projectile",
-    "flags": {},
+    "flags": [
+      "not-on-map"
+    ],
     "hidden": true,
-    "collision_box": {},
+    "collision_box": [
+      [
+        -0.3,
+        -1.1
+      ],
+      [
+        0.3,
+        1.1
+      ]
+    ],
     "acceleration": 0,
     "piercing_damage": 100,
     "action": {
       "type": "direct",
       "action_delivery": {
         "type": "instant",
-        "target_effects": {
-          "type": "create-entity",
-          "damage": {
-            "amount": 180,
-            "type": "physical"
+        "target_effects": [
+          {
+            "type": "damage",
+            "damage": {
+              "amount": 180,
+              "type": "physical"
+            }
           },
-          "entity_name": "explosion"
-        }
+          {
+            "type": "create-entity",
+            "entity_name": "explosion"
+          }
+        ]
       }
     },
     "final_action": {
       "type": "direct",
       "action_delivery": {
         "type": "instant",
-        "target_effects": {
-          "type": "destroy-decoratives",
-          "entity_name": "medium-scorchmark-tintable",
-          "action": {
-            "type": "area",
-            "radius": 4,
-            "action_delivery": {
-              "type": "instant",
-              "target_effects": {
-                "type": "create-entity",
-                "damage": {
-                  "amount": 300,
-                  "type": "explosion"
-                },
-                "entity_name": "explosion"
+        "target_effects": [
+          {
+            "type": "create-entity",
+            "entity_name": "big-explosion"
+          },
+          {
+            "type": "nested-result",
+            "action": {
+              "type": "area",
+              "radius": 4,
+              "action_delivery": {
+                "type": "instant",
+                "target_effects": [
+                  {
+                    "type": "damage",
+                    "damage": {
+                      "amount": 300,
+                      "type": "explosion"
+                    }
+                  },
+                  {
+                    "type": "create-entity",
+                    "entity_name": "explosion"
+                  }
+                ]
               }
             }
           },
-          "check_buildability": true,
-          "repeat_count": 1,
-          "from_render_layer": "decorative",
-          "to_render_layer": "object",
-          "include_soft_decoratives": true,
-          "include_decals": false,
-          "invoke_decorative_trigger": true,
-          "decoratives_with_trigger_only": false,
-          "radius": "2 -- large radius for demostrative purposes"
-        }
+          {
+            "type": "create-entity",
+            "entity_name": "medium-scorchmark-tintable",
+            "check_buildability": true
+          },
+          {
+            "type": "invoke-tile-trigger",
+            "repeat_count": 1
+          },
+          {
+            "type": "destroy-decoratives",
+            "from_render_layer": "decorative",
+            "to_render_layer": "object",
+            "include_soft_decoratives": true,
+            "include_decals": false,
+            "invoke_decorative_trigger": true,
+            "decoratives_with_trigger_only": false,
+            "radius": "2 -- large radius for demostrative purposes"
+          }
+        ]
       }
     },
     "animation": {
@@ -594,22 +898,43 @@
   {
     "type": "projectile",
     "name": "cluster-grenade",
-    "flags": {},
+    "flags": [
+      "not-on-map"
+    ],
     "hidden": true,
     "acceleration": 0.005,
-    "action": {
-      "type": "cluster",
-      "action_delivery": {
-        "type": "projectile",
-        "projectile": "grenade",
-        "direction_deviation": 0.6,
-        "starting_speed": 0.25,
-        "starting_speed_deviation": 0.3
+    "action": [
+      {
+        "type": "direct",
+        "action_delivery": {
+          "type": "instant",
+          "target_effects": [
+            {
+              "type": "create-entity",
+              "entity_name": "grenade-explosion"
+            },
+            {
+              "type": "create-entity",
+              "entity_name": "small-scorchmark-tintable",
+              "check_buildability": true
+            }
+          ]
+        }
       },
-      "cluster_count": 7,
-      "distance": 4,
-      "distance_deviation": 3
-    },
+      {
+        "type": "cluster",
+        "cluster_count": 7,
+        "distance": 4,
+        "distance_deviation": 3,
+        "action_delivery": {
+          "type": "projectile",
+          "projectile": "grenade",
+          "direction_deviation": 0.6,
+          "starting_speed": 0.25,
+          "starting_speed_deviation": 0.3
+        }
+      }
+    ],
     "animation": {
       "filename": "__base__/graphics/entity/cluster-grenade/cluster-grenade.png",
       "draw_as_glow": true,
@@ -638,35 +963,67 @@
   {
     "type": "projectile",
     "name": "distractor-capsule",
-    "flags": {},
+    "flags": [
+      "not-on-map"
+    ],
     "hidden": true,
     "acceleration": 0.005,
     "action": {
       "type": "direct",
       "action_delivery": {
         "type": "instant",
-        "target_effects": {
-          "type": "create-entity",
-          "show_in_tooltip": true,
-          "entity_name": "distractor",
-          "offsets": {}
-        }
+        "target_effects": [
+          {
+            "type": "create-entity",
+            "show_in_tooltip": true,
+            "entity_name": "distractor",
+            "offsets": [
+              [
+                0.5,
+                -0.5
+              ],
+              [
+                -0.5,
+                -0.5
+              ],
+              [
+                0,
+                0.5
+              ]
+            ]
+          }
+        ]
       }
     },
     "enable_drawing_with_mask": true,
     "animation": {
-      "layers": {
-        "filename": "__base__/graphics/entity/combat-robot-capsule/distractor-capsule-mask.png",
-        "flags": {},
-        "width": 36,
-        "height": 30,
-        "priority": "high",
-        "apply_runtime_tint": true
-      }
+      "layers": [
+        {
+          "filename": "__base__/graphics/entity/combat-robot-capsule/distractor-capsule.png",
+          "flags": [
+            "no-crop"
+          ],
+          "width": 36,
+          "height": 30,
+          "priority": "high"
+        },
+        {
+          "filename": "__base__/graphics/entity/combat-robot-capsule/distractor-capsule-mask.png",
+          "flags": [
+            "no-crop"
+          ],
+          "width": 36,
+          "height": 30,
+          "priority": "high",
+          "apply_runtime_tint": true
+        }
+      ]
     },
     "shadow": {
       "filename": "__base__/graphics/entity/combat-robot-capsule/distractor-capsule-shadow.png",
-      "flags": {},
+      "flags": [
+        "no-crop"
+      ],
       "width": 40,
       "height": 26,
       "priority": "high"
@@ -676,7 +1033,9 @@
   {
     "type": "projectile",
     "name": "destroyer-capsule",
-    "flags": {},
+    "flags": [
+      "not-on-map"
+    ],
     "hidden": true,
     "acceleration": 0.005,
     "action": {
@@ -687,24 +1046,60 @@
           "type": "create-entity",
           "show_in_tooltip": true,
           "entity_name": "destroyer",
-          "offsets": {}
+          "offsets": [
+            [
+              -0.7,
+              -0.7
+            ],
+            [
+              -0.7,
+              0.7
+            ],
+            [
+              0.7,
+              -0.7
+            ],
+            [
+              0.7,
+              0.7
+            ],
+            [
+              0,
+              0
+            ]
+          ]
         }
       }
     },
     "enable_drawing_with_mask": true,
     "animation": {
-      "layers": {
-        "filename": "__base__/graphics/entity/combat-robot-capsule/destroyer-capsule-mask.png",
-        "flags": {},
-        "width": 42,
-        "height": 34,
-        "priority": "high",
-        "apply_runtime_tint": true
-      }
+      "layers": [
+        {
+          "filename": "__base__/graphics/entity/combat-robot-capsule/destroyer-capsule.png",
+          "flags": [
+            "no-crop"
+          ],
+          "width": 42,
+          "height": 34,
+          "priority": "high"
+        },
+        {
+          "filename": "__base__/graphics/entity/combat-robot-capsule/destroyer-capsule-mask.png",
+          "flags": [
+            "no-crop"
+          ],
+          "width": 42,
+          "height": 34,
+          "priority": "high",
+          "apply_runtime_tint": true
+        }
+      ]
     },
     "shadow": {
       "filename": "__base__/graphics/entity/combat-robot-capsule/destroyer-capsule-shadow.png",
-      "flags": {},
+      "flags": [
+        "no-crop"
+      ],
       "width": 48,
       "height": 32,
       "priority": "high"
@@ -714,28 +1109,47 @@
   {
     "type": "projectile",
     "name": "poison-capsule",
-    "flags": {},
+    "flags": [
+      "not-on-map"
+    ],
     "hidden": true,
     "acceleration": 0.005,
-    "action": {
-      "type": "direct",
-      "action_delivery": {
-        "type": "instant",
-        "target_effects": {
-          "type": "create-particle",
-          "show_in_tooltip": true,
-          "entity_name": "poison-cloud",
-          "initial_height": 1,
-          "particle_name": "poison-capsule-metal-particle",
-          "repeat_count": 8,
-          "initial_vertical_speed": 0.1,
-          "initial_vertical_speed_deviation": 0.05,
-          "offset_deviation": {},
-          "speed_from_center": 0.05,
-          "speed_from_center_deviation": 0.01
+    "action": [
+      {
+        "type": "direct",
+        "action_delivery": {
+          "type": "instant",
+          "target_effects": [
+            {
+              "type": "create-smoke",
+              "show_in_tooltip": true,
+              "entity_name": "poison-cloud",
+              "initial_height": 0
+            },
+            {
+              "type": "create-particle",
+              "particle_name": "poison-capsule-metal-particle",
+              "repeat_count": 8,
+              "initial_height": 1,
+              "initial_vertical_speed": 0.1,
+              "initial_vertical_speed_deviation": 0.05,
+              "offset_deviation": [
+                [
+                  -0.1,
+                  -0.1
+                ],
+                [
+                  0.1,
+                  0.1
+                ]
+              ],
+              "speed_from_center": 0.05,
+              "speed_from_center_deviation": 0.01
+            }
+          ]
         }
       }
-    },
+    ],
     "animation": {
       "filename": "__base__/graphics/entity/poison-capsule/poison-capsule.png",
       "draw_as_glow": true,
@@ -760,34 +1174,60 @@
       "draw_as_shadow": true,
       "scale": 0.5
     },
-    "smoke": {
-      "name": "poison-capsule-smoke",
-      "deviation": {},
-      "frequency": 1,
-      "position": {},
-      "starting_frame": 3,
-      "starting_frame_deviation": 5
-    }
+    "smoke": [
+      {
+        "name": "poison-capsule-smoke",
+        "deviation": [
+          0.15,
+          0.15
+        ],
+        "frequency": 1,
+        "position": [
+          0,
+          0
+        ],
+        "starting_frame": 3,
+        "starting_frame_deviation": 5
+      }
+    ]
   },
   {
     "type": "projectile",
     "name": "slowdown-capsule",
-    "flags": {},
+    "flags": [
+      "not-on-map"
+    ],
     "hidden": true,
     "acceleration": 0.005,
-    "action": {
-      "type": "area",
-      "action_delivery": {
-        "type": "instant",
-        "target_effects": {
-          "type": "create-sticker",
-          "sticker": "slowdown-sticker",
-          "show_in_tooltip": true
+    "action": [
+      {
+        "type": "direct",
+        "action_delivery": {
+          "type": "instant",
+          "target_effects": [
+            {
+              "type": "create-entity",
+              "entity_name": "slowdown-capsule-explosion"
+            }
+          ]
         }
       },
-      "radius": 9,
-      "force": "enemy"
-    },
+      {
+        "type": "area",
+        "radius": 9,
+        "force": "enemy",
+        "action_delivery": {
+          "type": "instant",
+          "target_effects": [
+            {
+              "type": "create-sticker",
+              "sticker": "slowdown-sticker",
+              "show_in_tooltip": true
+            }
+          ]
+        }
+      }
+    ],
     "animation": {
       "filename": "__base__/graphics/entity/slowdown-capsule/slowdown-capsule.png",
       "draw_as_glow": true,
@@ -817,29 +1257,49 @@
   {
     "type": "projectile",
     "name": "cliff-explosives",
-    "flags": {},
+    "flags": [
+      "not-on-map"
+    ],
     "hidden": true,
     "acceleration": 0.005,
-    "action": {
-      "type": "direct",
-      "action_delivery": {
-        "type": "instant",
-        "target_effects": {
-          "type": "destroy-decoratives",
-          "entity_name": "small-scorchmark-tintable",
-          "check_buildability": true,
-          "radius": "2 -- large radius for demostrative purposes",
-          "explosion_at_trigger": "explosion",
-          "repeat_count": 1,
-          "from_render_layer": "decorative",
-          "to_render_layer": "object",
-          "include_soft_decoratives": true,
-          "include_decals": false,
-          "invoke_decorative_trigger": true,
-          "decoratives_with_trigger_only": false
+    "action": [
+      {
+        "type": "direct",
+        "action_delivery": {
+          "type": "instant",
+          "target_effects": [
+            {
+              "type": "create-entity",
+              "entity_name": "ground-explosion"
+            },
+            {
+              "type": "create-entity",
+              "entity_name": "small-scorchmark-tintable",
+              "check_buildability": true
+            },
+            {
+              "type": "destroy-cliffs",
+              "radius": 1.5,
+              "explosion_at_trigger": "explosion"
+            },
+            {
+              "type": "invoke-tile-trigger",
+              "repeat_count": 1
+            },
+            {
+              "type": "destroy-decoratives",
+              "from_render_layer": "decorative",
+              "to_render_layer": "object",
+              "include_soft_decoratives": true,
+              "include_decals": false,
+              "invoke_decorative_trigger": true,
+              "decoratives_with_trigger_only": false,
+              "radius": "2 -- large radius for demostrative purposes"
+            }
+          ]
         }
       }
-    },
+    ],
     "animation": {
       "filename": "__base__/graphics/entity/cliff-explosives/cliff-explosives.png",
       "draw_as_glow": true,

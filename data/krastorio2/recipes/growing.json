@@ -5,16 +5,20 @@
     "enabled": false,
     "category": "kr-growing",
     "energy_required": 60,
-    "ingredients": {
-      "type": "fluid",
-      "name": "water",
-      "amount": 200
-    },
-    "results": {
-      "type": "item",
-      "name": "wood",
-      "amount": 40
-    }
+    "ingredients": [
+      {
+        "type": "fluid",
+        "name": "water",
+        "amount": 200
+      }
+    ],
+    "results": [
+      {
+        "type": "item",
+        "name": "wood",
+        "amount": 40
+      }
+    ]
   },
   {
     "type": "recipe",
@@ -25,16 +29,25 @@
     "enabled": false,
     "category": "kr-growing",
     "energy_required": 60,
-    "ingredients": {
-      "type": "item",
-      "name": "kr-fertilizer",
-      "amount": 1
-    },
-    "results": {
-      "type": "item",
-      "name": "wood",
-      "amount": 80
-    },
+    "ingredients": [
+      {
+        "type": "fluid",
+        "name": "water",
+        "amount": 200
+      },
+      {
+        "type": "item",
+        "name": "kr-fertilizer",
+        "amount": 1
+      }
+    ],
+    "results": [
+      {
+        "type": "item",
+        "name": "wood",
+        "amount": 80
+      }
+    ],
     "main_product": ""
   }
 ]

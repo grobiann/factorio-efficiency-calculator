@@ -6,11 +6,13 @@
     "subgroup": "terrain",
     "order": "z[black-reinforced-plate]-a1[black-reinforced-plate]",
     "place_as_tile": {
-      "results": {
-        "type": "item",
-        "name": "kr-black-reinforced-plate-l",
-        "amount": 1
-      },
+      "results": [
+        {
+          "type": "item",
+          "name": "kr-black-reinforced-plate-l",
+          "amount": 1
+        }
+      ],
       "condition_size": 1,
       "condition": {
         "layers": {
@@ -27,11 +29,13 @@
     "subgroup": "terrain",
     "order": "z[white-reinforced-plate]-a2[white-reinforced-plate]",
     "place_as_tile": {
-      "results": {
-        "type": "item",
-        "name": "kr-white-reinforced-plate-l",
-        "amount": 1
-      },
+      "results": [
+        {
+          "type": "item",
+          "name": "kr-white-reinforced-plate-l",
+          "amount": 1
+        }
+      ],
       "condition_size": 1,
       "condition": {
         "layers": {
@@ -46,45 +50,65 @@
     "name": "kr-black-reinforced-plate-l",
     "energy_required": 5,
     "enabled": false,
-    "ingredients": {
-      "type": "item",
-      "name": "kr-steel-beam",
-      "amount": 5
-    },
-    "results": {
-      "type": "item",
-      "name": "kr-black-reinforced-plate-l",
-      "amount": 10
-    }
+    "ingredients": [
+      {
+        "type": "item",
+        "name": "refined-concrete",
+        "amount": 20
+      },
+      {
+        "type": "item",
+        "name": "kr-steel-beam",
+        "amount": 5
+      }
+    ],
+    "results": [
+      {
+        "type": "item",
+        "name": "kr-black-reinforced-plate-l",
+        "amount": 10
+      }
+    ]
   },
   {
     "type": "recipe",
     "name": "kr-white-reinforced-plate-l",
     "energy_required": 5,
     "enabled": false,
-    "ingredients": {
-      "type": "item",
-      "name": "kr-steel-beam",
-      "amount": 5
-    },
-    "results": {
-      "type": "item",
-      "name": "kr-white-reinforced-plate-l",
-      "amount": 10
-    }
+    "ingredients": [
+      {
+        "type": "item",
+        "name": "refined-concrete",
+        "amount": 20
+      },
+      {
+        "type": "item",
+        "name": "kr-steel-beam",
+        "amount": 5
+      }
+    ],
+    "results": [
+      {
+        "type": "item",
+        "name": "kr-white-reinforced-plate-l",
+        "amount": 10
+      }
+    ]
   },
   {
     "type": "tile",
     "name": "kr-white-reinforced-plate-l",
     "needs_correction": false,
-    "minables": {
-      "type": "item",
-      "name": {
-        "mining_time": 0.05,
-        "result": "kr-white-reinforced-plate-l"
-      },
-      "amount": 1
-    },
+    "minables": [
+      {
+        "type": "item",
+        "name": {
+          "mining_time": 0.05,
+          "result": "kr-white-reinforced-plate-l"
+        },
+        "amount": 1
+      }
+    ],
     "mined_sound": {
       "filename": "__base__/sound/deconstruct-bricks.ogg"
     },
@@ -98,12 +122,20 @@
     "transition_overlay_layer_offset": 5,
     "decorative_removal_probability": 1,
     "variants": {
-      "main": {
-        "picture": "__Krastorio2Assets__/tiles/reinforced-plates-kl/reinforced-plate.png",
-        "count": 16,
-        "scale": 0.5,
-        "size": 1
-      },
+      "main": [
+        {
+          "picture": "__Krastorio2Assets__/tiles/reinforced-plates-kl/reinforced-plate.png",
+          "count": 16,
+          "scale": 0.5,
+          "size": 4
+        },
+        {
+          "picture": "__Krastorio2Assets__/tiles/reinforced-plates-kl/reinforced-plate.png",
+          "count": 16,
+          "scale": 0.5,
+          "size": 1
+        }
+      ],
       "transition": {
         "overlay_layout": {
           "inner_corner": {
@@ -138,10 +170,24 @@
         }
       }
     },
-    "walking_sound": {
-      "filename": "__base__/sound/walking/concrete-4.ogg",
-      "volume": 1.0
-    },
+    "walking_sound": [
+      {
+        "filename": "__base__/sound/walking/concrete-1.ogg",
+        "volume": 1.0
+      },
+      {
+        "filename": "__base__/sound/walking/concrete-2.ogg",
+        "volume": 1.0
+      },
+      {
+        "filename": "__base__/sound/walking/concrete-3.ogg",
+        "volume": 1.0
+      },
+      {
+        "filename": "__base__/sound/walking/concrete-4.ogg",
+        "volume": 1.0
+      }
+    ],
     "map_color": {
       "r": 175,
       "g": 175,
@@ -153,14 +199,16 @@
     "type": "tile",
     "name": "kr-black-reinforced-plate-l",
     "needs_correction": false,
-    "minables": {
-      "type": "item",
-      "name": {
-        "mining_time": 0.05,
-        "result": "kr-black-reinforced-plate-l"
-      },
-      "amount": 1
-    },
+    "minables": [
+      {
+        "type": "item",
+        "name": {
+          "mining_time": 0.05,
+          "result": "kr-black-reinforced-plate-l"
+        },
+        "amount": 1
+      }
+    ],
     "mined_sound": {
       "filename": "__base__/sound/deconstruct-bricks.ogg"
     },
@@ -174,12 +222,20 @@
     "transition_overlay_layer_offset": 6,
     "decorative_removal_probability": 1,
     "variants": {
-      "main": {
-        "picture": "__Krastorio2Assets__/tiles/reinforced-plates-kl/black-reinforced-plate.png",
-        "count": 16,
-        "scale": 0.5,
-        "size": 1
-      },
+      "main": [
+        {
+          "picture": "__Krastorio2Assets__/tiles/reinforced-plates-kl/black-reinforced-plate.png",
+          "count": 16,
+          "scale": 0.5,
+          "size": 4
+        },
+        {
+          "picture": "__Krastorio2Assets__/tiles/reinforced-plates-kl/black-reinforced-plate.png",
+          "count": 16,
+          "scale": 0.5,
+          "size": 1
+        }
+      ],
       "overlay_layout": {
         "inner_corner": {
           "spritesheet": "__Krastorio2Assets__/tiles/reinforced-plates-kl/plate-inner-corner.png",
@@ -212,10 +268,24 @@
         }
       }
     },
-    "walking_sound": {
-      "filename": "__base__/sound/walking/concrete-4.ogg",
-      "volume": 1.0
-    },
+    "walking_sound": [
+      {
+        "filename": "__base__/sound/walking/concrete-1.ogg",
+        "volume": 1.0
+      },
+      {
+        "filename": "__base__/sound/walking/concrete-2.ogg",
+        "volume": 1.0
+      },
+      {
+        "filename": "__base__/sound/walking/concrete-3.ogg",
+        "volume": 1.0
+      },
+      {
+        "filename": "__base__/sound/walking/concrete-4.ogg",
+        "volume": 1.0
+      }
+    ],
     "map_color": {
       "r": 50,
       "g": 50,

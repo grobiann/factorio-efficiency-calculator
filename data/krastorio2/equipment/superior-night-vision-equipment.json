@@ -5,23 +5,52 @@
     "enabled": false,
     "energy_required": 10,
     "category": "crafting-with-fluid",
-    "ingredients": {
-      "type": "fluid",
-      "name": "kr-nitric-acid",
-      "amount": 25
-    },
-    "results": {
-      "type": "item",
-      "name": "kr-superior-night-vision-equipment",
-      "amount": 1
-    }
+    "ingredients": [
+      {
+        "type": "item",
+        "name": "night-vision-equipment",
+        "amount": 1
+      },
+      {
+        "type": "item",
+        "name": "low-density-structure",
+        "amount": 10
+      },
+      {
+        "type": "item",
+        "name": "advanced-circuit",
+        "amount": 10
+      },
+      {
+        "type": "item",
+        "name": "kr-imersite-crystal",
+        "amount": 5
+      },
+      {
+        "type": "fluid",
+        "name": "kr-nitric-acid",
+        "amount": 25
+      }
+    ],
+    "results": [
+      {
+        "type": "item",
+        "name": "kr-superior-night-vision-equipment",
+        "amount": 1
+      }
+    ]
   },
   {
     "type": "item",
     "name": "kr-superior-night-vision-equipment",
-    "icons": {
-      "icon": "__Krastorio2Assets__/icons/equipment/tier-2.png"
-    },
+    "icons": [
+      {
+        "icon": "__Krastorio2Assets__/icons/equipment/superior-night-vision-equipment.png"
+      },
+      {
+        "icon": "__Krastorio2Assets__/icons/equipment/tier-2.png"
+      }
+    ],
     "place_as_equipment_result": "kr-superior-night-vision-equipment",
     "subgroup": "kr-character-equipment",
     "order": "f[night-vision]-b[superior-night-vision-equipment]",
@@ -48,9 +77,16 @@
       "input_flow_limit": "360kW",
       "usage_priority": "primary-input"
     },
-    "categories": {},
+    "categories": [
+      "armor"
+    ],
     "energy_input": "15kW",
     "darkness_to_turn_on": 0.45,
-    "color_lookup": {}
+    "color_lookup": [
+      [
+        0.75,
+        "__Krastorio2Assets__/luts/superior-nightvision-equipment.png"
+      ]
+    ]
   }
 ]

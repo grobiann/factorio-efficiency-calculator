@@ -4,16 +4,35 @@
     "name": "kr-energy-storage",
     "energy_required": 30,
     "enabled": false,
-    "ingredients": {
-      "type": "item",
-      "name": "kr-energy-control-unit",
-      "amount": 50
-    },
-    "results": {
-      "type": "item",
-      "name": "kr-energy-storage",
-      "amount": 1
-    }
+    "ingredients": [
+      {
+        "type": "item",
+        "name": "kr-steel-beam",
+        "amount": 10
+      },
+      {
+        "type": "item",
+        "name": "processing-unit",
+        "amount": 10
+      },
+      {
+        "type": "item",
+        "name": "kr-rare-metals",
+        "amount": 50
+      },
+      {
+        "type": "item",
+        "name": "kr-energy-control-unit",
+        "amount": 50
+      }
+    ],
+    "results": [
+      {
+        "type": "item",
+        "name": "kr-energy-storage",
+        "amount": 1
+      }
+    ]
   },
   {
     "type": "item",
@@ -28,7 +47,11 @@
     "type": "accumulator",
     "name": "kr-energy-storage",
     "icon": "__Krastorio2Assets__/icons/entities/energy-storage.png",
-    "flags": {},
+    "flags": [
+      "placeable-neutral",
+      "placeable-player",
+      "player-creation"
+    ],
     "minable": {
       "mining_time": 1,
       "result": "kr-energy-storage"
@@ -37,13 +60,41 @@
     "corpse": "big-remnants",
     "dying_explosion": "big-explosion",
     "damaged_trigger_effect": "hit_effects.entity()",
-    "collision_box": {},
-    "selection_box": {},
+    "collision_box": [
+      [
+        -2.75,
+        -2.75
+      ],
+      [
+        2.75,
+        2.75
+      ]
+    ],
+    "selection_box": [
+      [
+        -3,
+        -3
+      ],
+      [
+        3,
+        3
+      ]
+    ],
     "drawing_box_vertical_extension": 0.25,
-    "resistances": {
-      "type": "impact",
-      "percent": 50
-    },
+    "resistances": [
+      {
+        "type": "physical",
+        "percent": 25
+      },
+      {
+        "type": "fire",
+        "percent": 25
+      },
+      {
+        "type": "impact",
+        "percent": 50
+      }
+    ],
     "charge_cooldown": 5,
     "discharge_cooldown": 5,
     "default_output_signal": {
@@ -73,47 +124,149 @@
     },
     "chargable_graphics": {
       "picture": {
-        "layers": {
-          "filename": "__Krastorio2Assets__/buildings/energy-storage/energy-storage-sh.png",
-          "width": 414,
-          "height": 270,
-          "scale": 0.55,
-          "frame_count": 1,
-          "shift": {},
-          "draw_as_shadow": true
-        }
+        "layers": [
+          {
+            "filename": "__Krastorio2Assets__/buildings/energy-storage/energy-storage.png",
+            "width": 380,
+            "height": 380,
+            "scale": 0.55,
+            "frame_count": 1,
+            "shift": [
+              0,
+              -0.4
+            ]
+          },
+          {
+            "filename": "__Krastorio2Assets__/buildings/energy-storage/energy-storage-sh.png",
+            "width": 414,
+            "height": 270,
+            "scale": 0.55,
+            "frame_count": 1,
+            "draw_as_shadow": true,
+            "shift": [
+              0.72,
+              0.56
+            ]
+          }
+        ]
       },
       "charge_animation": {
-        "layers": {
-          "filename": "__Krastorio2Assets__/buildings/energy-storage/energy-storage-light.png",
-          "width": 380,
-          "height": 380,
-          "scale": 0.55,
-          "frame_count": 1,
-          "repeat_count": 2,
-          "animation_speed": 0.06,
-          "shift": {},
-          "draw_as_shadow": true,
-          "line_length": 2,
-          "draw_as_glow": true,
-          "draw_as_light": true
-        }
+        "layers": [
+          {
+            "filename": "__Krastorio2Assets__/buildings/energy-storage/energy-storage.png",
+            "width": 380,
+            "height": 380,
+            "scale": 0.55,
+            "frame_count": 1,
+            "repeat_count": 2,
+            "animation_speed": 0.03,
+            "shift": [
+              0,
+              -0.4
+            ]
+          },
+          {
+            "filename": "__Krastorio2Assets__/buildings/energy-storage/energy-storage-sh.png",
+            "width": 414,
+            "height": 270,
+            "scale": 0.55,
+            "frame_count": 1,
+            "repeat_count": 2,
+            "animation_speed": 0.03,
+            "draw_as_shadow": true,
+            "shift": [
+              0.72,
+              0.56
+            ]
+          },
+          {
+            "filename": "__Krastorio2Assets__/buildings/energy-storage/energy-storage-charge.png",
+            "width": 380,
+            "height": 380,
+            "scale": 0.55,
+            "frame_count": 2,
+            "line_length": 2,
+            "animation_speed": 0.03,
+            "shift": [
+              0,
+              -0.4
+            ],
+            "draw_as_glow": true
+          },
+          {
+            "filename": "__Krastorio2Assets__/buildings/energy-storage/energy-storage-light.png",
+            "width": 380,
+            "height": 380,
+            "scale": 0.55,
+            "frame_count": 1,
+            "repeat_count": 2,
+            "animation_speed": 0.06,
+            "shift": [
+              0,
+              -0.4
+            ],
+            "draw_as_light": true
+          }
+        ]
       },
       "discharge_animation": {
-        "layers": {
-          "filename": "__Krastorio2Assets__/buildings/energy-storage/energy-storage-light.png",
-          "width": 380,
-          "height": 380,
-          "scale": 0.55,
-          "frame_count": 1,
-          "repeat_count": 2,
-          "animation_speed": 0.06,
-          "shift": {},
-          "draw_as_shadow": true,
-          "line_length": 2,
-          "draw_as_glow": true,
-          "draw_as_light": true
-        }
+        "layers": [
+          {
+            "filename": "__Krastorio2Assets__/buildings/energy-storage/energy-storage.png",
+            "width": 380,
+            "height": 380,
+            "scale": 0.55,
+            "frame_count": 1,
+            "repeat_count": 2,
+            "animation_speed": 0.06,
+            "shift": [
+              0,
+              -0.4
+            ]
+          },
+          {
+            "filename": "__Krastorio2Assets__/buildings/energy-storage/energy-storage-sh.png",
+            "width": 414,
+            "height": 270,
+            "scale": 0.55,
+            "frame_count": 1,
+            "repeat_count": 2,
+            "animation_speed": 0.06,
+            "draw_as_shadow": true,
+            "shift": [
+              0.72,
+              0.56
+            ]
+          },
+          {
+            "filename": "__Krastorio2Assets__/buildings/energy-storage/energy-storage-discharge.png",
+            "width": 380,
+            "height": 380,
+            "scale": 0.55,
+            "frame_count": 2,
+            "line_length": 2,
+            "animation_speed": 0.06,
+            "shift": [
+              0,
+              -0.4
+            ],
+            "draw_as_glow": true
+          },
+          {
+            "filename": "__Krastorio2Assets__/buildings/energy-storage/energy-storage-light.png",
+            "width": 380,
+            "height": 380,
+            "scale": 0.55,
+            "frame_count": 1,
+            "repeat_count": 2,
+            "animation_speed": 0.06,
+            "shift": [
+              0,
+              -0.4
+            ],
+            "draw_as_light": true
+          }
+        ]
       }
     },
     "water_reflection": {

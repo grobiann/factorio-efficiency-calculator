@@ -4,16 +4,35 @@
     "name": "kr-sentinel",
     "energy_required": 5,
     "enabled": false,
-    "ingredients": {
-      "type": "item",
-      "name": "kr-automation-core",
-      "amount": 1
-    },
-    "results": {
-      "type": "item",
-      "name": "kr-sentinel",
-      "amount": 1
-    }
+    "ingredients": [
+      {
+        "type": "item",
+        "name": "kr-glass",
+        "amount": 1
+      },
+      {
+        "type": "item",
+        "name": "iron-plate",
+        "amount": 2
+      },
+      {
+        "type": "item",
+        "name": "copper-cable",
+        "amount": 1
+      },
+      {
+        "type": "item",
+        "name": "kr-automation-core",
+        "amount": 1
+      }
+    ],
+    "results": [
+      {
+        "type": "item",
+        "name": "kr-sentinel",
+        "amount": 1
+      }
+    ]
   },
   {
     "type": "item",
@@ -28,13 +47,34 @@
     "type": "radar",
     "name": "kr-sentinel",
     "icon": "__Krastorio2Assets__/icons/entities/sentinel.png",
-    "flags": {},
+    "flags": [
+      "placeable-player",
+      "player-creation"
+    ],
     "minable": {
       "mining_time": 0.1,
       "result": "kr-sentinel"
     },
-    "collision_box": {},
-    "selection_box": {},
+    "collision_box": [
+      [
+        -0.25,
+        -0.25
+      ],
+      [
+        0.25,
+        0.25
+      ]
+    ],
+    "selection_box": [
+      [
+        -0.5,
+        -0.5
+      ],
+      [
+        0.5,
+        0.5
+      ]
+    ],
     "energy_per_sector": "1YJ",
     "energy_per_nearby_scan": "1J",
     "max_distance_of_sector_revealed": 0,
@@ -47,10 +87,16 @@
     "max_health": 75,
     "corpse": "small-remnants",
     "damaged_trigger_effect": "hit_effects.entity()",
-    "resistances": {
-      "type": "impact",
-      "percent": 10
-    },
+    "resistances": [
+      {
+        "type": "fire",
+        "percent": 50
+      },
+      {
+        "type": "impact",
+        "percent": 10
+      }
+    ],
     "vehicle_impact_sound": "sounds.generic_impact",
     "working_sound": {
       "sound": {
@@ -58,17 +104,22 @@
       }
     },
     "pictures": {
-      "layers": {
-        "filename": "__Krastorio2Assets__/buildings/sentinel/sentinel.png",
-        "priority": "low",
-        "width": 128,
-        "height": 128,
-        "apply_projection": false,
-        "direction_count": 120,
-        "line_length": 12,
-        "shift": {},
-        "scale": 0.35
-      }
+      "layers": [
+        {
+          "filename": "__Krastorio2Assets__/buildings/sentinel/sentinel.png",
+          "priority": "low",
+          "width": 128,
+          "height": 128,
+          "apply_projection": false,
+          "direction_count": 120,
+          "line_length": 12,
+          "shift": [
+            0.21,
+            -0.2
+          ],
+          "scale": 0.35
+        }
+      ]
     },
     "radius_minimap_visualisation_color": {
       "r": 0.059,

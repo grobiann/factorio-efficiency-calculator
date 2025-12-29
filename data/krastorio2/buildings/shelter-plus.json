@@ -11,18 +11,40 @@
   {
     "type": "electric-energy-interface",
     "name": "kr-shelter-plus",
-    "localised_description": {},
+    "localised_description": [
+      "entity-description.kr-shelter-plus"
+    ],
     "icon": "__Krastorio2Assets__/icons/entities/shelter-plus.png",
     "allow_copy_paste": false,
-    "flags": {},
+    "flags": [
+      "not-on-map"
+    ],
     "hidden": true,
     "fast_replaceable_group": "kr-shelter-plus",
     "minable": {
       "mining_time": 0.5,
       "result": "kr-shelter-plus"
     },
-    "collision_box": {},
-    "selection_box": {},
+    "collision_box": [
+      [
+        -2.72,
+        -2.72
+      ],
+      [
+        2.72,
+        2.72
+      ]
+    ],
+    "selection_box": [
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ]
+    ],
     "energy_source": {
       "type": "electric",
       "buffer_capacity": "250kJ",
@@ -37,10 +59,17 @@
   {
     "type": "container",
     "name": "kr-shelter-plus-container",
-    "localised_name": {},
-    "localised_description": {},
+    "localised_name": [
+      "entity-name.kr-shelter-plus"
+    ],
+    "localised_description": [
+      "entity-description.kr-shelter-plus"
+    ],
     "icon": "__Krastorio2Assets__/icons/entities/shelter-plus.png",
-    "flags": {},
+    "flags": [
+      "not-blueprintable",
+      "player-creation"
+    ],
     "minable": {
       "mining_time": 0.5,
       "result": "kr-shelter-plus"
@@ -49,12 +78,40 @@
     "inventory_size": 200,
     "max_health": 5000,
     "corpse": "kr-medium-random-pipes-remnants",
-    "collision_box": {},
-    "selection_box": {},
-    "resistances": {
-      "type": "impact",
-      "percent": 75
-    },
+    "collision_box": [
+      [
+        -2.75,
+        -2.75
+      ],
+      [
+        2.75,
+        2.75
+      ]
+    ],
+    "selection_box": [
+      [
+        -3,
+        -3
+      ],
+      [
+        3,
+        3
+      ]
+    ],
+    "resistances": [
+      {
+        "type": "physical",
+        "percent": 50
+      },
+      {
+        "type": "fire",
+        "percent": 75
+      },
+      {
+        "type": "impact",
+        "percent": 75
+      }
+    ],
     "open_sound": {
       "filename": "__Krastorio2Assets__/sounds/buildings/open.ogg",
       "volume": 1
@@ -85,14 +142,38 @@
   {
     "type": "lamp",
     "name": "kr-shelter-plus-light",
-    "localised_name": {},
-    "localised_description": {},
+    "localised_name": [
+      "entity-name.kr-shelter-plus"
+    ],
+    "localised_description": [
+      "entity-description.kr-shelter-plus"
+    ],
     "icon": "__Krastorio2Assets__/icons/entities/shelter-plus.png",
     "allow_copy_paste": false,
-    "flags": {},
+    "flags": [
+      "not-on-map"
+    ],
     "hidden": true,
-    "collision_box": {},
-    "selection_box": {},
+    "collision_box": [
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ]
+    ],
+    "selection_box": [
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ]
+    ],
     "energy_source": {
       "type": "void"
     },
@@ -102,7 +183,10 @@
     "light": {
       "intensity": 0.8,
       "size": 12,
-      "shift": {},
+      "shift": [
+        0.0,
+        1.75
+      ],
       "color": {
         "r": 0.95,
         "g": 0.88,
@@ -126,13 +210,35 @@
   {
     "type": "simple-entity-with-owner",
     "name": "kr-inactive-shelter-plus",
-    "localised_name": {},
-    "localised_description": {},
+    "localised_name": [
+      "entity-name.kr-shelter-plus"
+    ],
+    "localised_description": [
+      "entity-description.kr-shelter-plus"
+    ],
     "icon": "__Krastorio2Assets__/icons/entities/shelter.png",
     "flags": {},
     "hidden": true,
-    "collision_box": {},
-    "selection_box": {},
+    "collision_box": [
+      [
+        -2.75,
+        -2.75
+      ],
+      [
+        2.75,
+        2.75
+      ]
+    ],
+    "selection_box": [
+      [
+        -3,
+        -3
+      ],
+      [
+        3,
+        3.2
+      ]
+    ],
     "minable": {
       "mining_time": 10,
       "result": "kr-shelter-plus"
@@ -141,10 +247,20 @@
       "item": "kr-shelter-plus",
       "count": 1
     },
-    "resistances": {
-      "type": "impact",
-      "percent": 75
-    },
+    "resistances": [
+      {
+        "type": "physical",
+        "percent": 50
+      },
+      {
+        "type": "fire",
+        "percent": 75
+      },
+      {
+        "type": "impact",
+        "percent": 75
+      }
+    ],
     "picture": "animation"
   }
 ]

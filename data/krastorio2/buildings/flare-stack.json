@@ -4,16 +4,30 @@
     "name": "kr-flare-stack",
     "energy_required": 5,
     "enabled": false,
-    "ingredients": {
-      "type": "item",
-      "name": "electronic-circuit",
-      "amount": 3
-    },
-    "results": {
-      "type": "item",
-      "name": "kr-flare-stack",
-      "amount": 1
-    }
+    "ingredients": [
+      {
+        "type": "item",
+        "name": "kr-steel-beam",
+        "amount": 10
+      },
+      {
+        "type": "item",
+        "name": "steel-plate",
+        "amount": 20
+      },
+      {
+        "type": "item",
+        "name": "electronic-circuit",
+        "amount": 3
+      }
+    ],
+    "results": [
+      {
+        "type": "item",
+        "name": "kr-flare-stack",
+        "amount": 1
+      }
+    ]
   },
   {
     "type": "item",
@@ -28,7 +42,11 @@
     "type": "furnace",
     "name": "kr-flare-stack",
     "icon": "__Krastorio2Assets__/icons/entities/flare-stack.png",
-    "flags": {},
+    "flags": [
+      "placeable-neutral",
+      "placeable-player",
+      "player-creation"
+    ],
     "minable": {
       "mining_time": 0.5,
       "result": "kr-flare-stack"
@@ -36,29 +54,66 @@
     "max_health": 250,
     "corpse": "medium-remnants",
     "dying_explosion": "medium-explosion",
-    "resistances": {
-      "type": "fire",
-      "percent": 95
-    },
-    "fluid_boxes": {
-      "production_type": "input",
-      "pipe_covers": "pipecoverspictures()",
-      "pipe_picture": "require(\"prototypes.buildings.pipe-picture\")",
-      "volume": 500,
-      "pipe_connections": {
-        "flow_direction": "input",
-        "direction": "defines.direction.south",
-        "position": {}
+    "resistances": [
+      {
+        "type": "physical",
+        "percent": 50
+      },
+      {
+        "type": "fire",
+        "percent": 95
       }
-    },
-    "collision_box": {},
-    "selection_box": {},
-    "crafting_categories": {},
+    ],
+    "fluid_boxes": [
+      {
+        "production_type": "input",
+        "pipe_covers": "pipecoverspictures()",
+        "pipe_picture": "require(\"prototypes.buildings.pipe-picture\")",
+        "volume": 500,
+        "pipe_connections": [
+          {
+            "flow_direction": "input",
+            "direction": "defines.direction.south",
+            "position": [
+              0.5,
+              0.5
+            ]
+          }
+        ]
+      }
+    ],
+    "collision_box": [
+      [
+        -0.9,
+        -0.9
+      ],
+      [
+        0.9,
+        0.9
+      ]
+    ],
+    "selection_box": [
+      [
+        -1,
+        -1
+      ],
+      [
+        1,
+        1
+      ]
+    ],
+    "crafting_categories": [
+      "kr-fuel-burning"
+    ],
     "crafting_speed": 1.0,
     "source_inventory_size": 1,
     "result_inventory_size": 1,
     "module_slots": 1,
-    "allowed_effects": {},
+    "allowed_effects": [
+      "speed",
+      "pollution",
+      "consumption"
+    ],
     "energy_source": {
       "type": "electric",
       "usage_priority": "secondary-input",
@@ -86,78 +141,152 @@
     "graphics_set": {
       "animation": {
         "north": {
-          "layers": {
-            "filename": "__Krastorio2Assets__/buildings/flare-stack/flare-stack-sh.png",
-            "width": 258,
-            "height": 94,
-            "scale": 0.5,
-            "frame_count": 1,
-            "shift": {},
-            "priority": "high",
-            "draw_as_shadow": true
-          }
+          "layers": [
+            {
+              "filename": "__Krastorio2Assets__/buildings/flare-stack/flare-stack-n.png",
+              "width": 150,
+              "height": 300,
+              "scale": 0.5,
+              "frame_count": 1,
+              "shift": [
+                0,
+                -1
+              ]
+            },
+            {
+              "filename": "__Krastorio2Assets__/buildings/flare-stack/flare-stack-sh.png",
+              "priority": "high",
+              "width": 258,
+              "height": 94,
+              "shift": [
+                1.1,
+                0.25
+              ],
+              "frame_count": 1,
+              "draw_as_shadow": true,
+              "scale": 0.5
+            }
+          ]
         },
         "east": {
-          "layers": {
-            "filename": "__Krastorio2Assets__/buildings/flare-stack/flare-stack-sh.png",
-            "width": 258,
-            "height": 94,
-            "scale": 0.5,
-            "frame_count": 1,
-            "shift": {},
-            "priority": "high",
-            "draw_as_shadow": true
-          }
+          "layers": [
+            {
+              "filename": "__Krastorio2Assets__/buildings/flare-stack/flare-stack-e.png",
+              "width": 150,
+              "height": 300,
+              "scale": 0.5,
+              "frame_count": 1,
+              "shift": [
+                0,
+                -1
+              ]
+            },
+            {
+              "filename": "__Krastorio2Assets__/buildings/flare-stack/flare-stack-sh.png",
+              "priority": "high",
+              "width": 258,
+              "height": 94,
+              "shift": [
+                1.1,
+                0.25
+              ],
+              "frame_count": 1,
+              "draw_as_shadow": true,
+              "scale": 0.5
+            }
+          ]
         },
         "south": {
-          "layers": {
-            "filename": "__Krastorio2Assets__/buildings/flare-stack/flare-stack-sh.png",
-            "width": 258,
-            "height": 94,
-            "scale": 0.5,
-            "frame_count": 1,
-            "shift": {},
-            "priority": "high",
-            "draw_as_shadow": true
-          }
+          "layers": [
+            {
+              "filename": "__Krastorio2Assets__/buildings/flare-stack/flare-stack-s.png",
+              "width": 150,
+              "height": 300,
+              "scale": 0.5,
+              "frame_count": 1,
+              "shift": [
+                0,
+                -1
+              ]
+            },
+            {
+              "filename": "__Krastorio2Assets__/buildings/flare-stack/flare-stack-sh.png",
+              "priority": "high",
+              "width": 258,
+              "height": 94,
+              "shift": [
+                1.1,
+                0.25
+              ],
+              "frame_count": 1,
+              "draw_as_shadow": true,
+              "scale": 0.5
+            }
+          ]
         },
         "west": {
-          "layers": {
-            "filename": "__Krastorio2Assets__/buildings/flare-stack/flare-stack-sh.png",
-            "width": 258,
-            "height": 94,
+          "layers": [
+            {
+              "filename": "__Krastorio2Assets__/buildings/flare-stack/flare-stack-w.png",
+              "width": 150,
+              "height": 300,
+              "scale": 0.5,
+              "frame_count": 1,
+              "shift": [
+                0,
+                -1
+              ]
+            },
+            {
+              "filename": "__Krastorio2Assets__/buildings/flare-stack/flare-stack-sh.png",
+              "priority": "high",
+              "width": 258,
+              "height": 94,
+              "shift": [
+                1.1,
+                0.25
+              ],
+              "frame_count": 1,
+              "draw_as_shadow": true,
+              "scale": 0.5
+            }
+          ]
+        }
+      },
+      "working_visualisations": [
+        {
+          "apply_recipe_tint": "quaternary",
+          "fadeout": true,
+          "animation": {
+            "filename": "__Krastorio2Assets__/buildings/flare-stack/flare-stack-fire.png",
+            "line_length": 10,
+            "width": 40,
+            "height": 81,
+            "frame_count": 60,
+            "animation_speed": 0.75,
             "scale": 0.5,
-            "frame_count": 1,
-            "shift": {},
-            "priority": "high",
-            "draw_as_shadow": true
+            "shift": [
+              0,
+              -3.25
+            ]
           }
-        }
-      },
-      "working_visualisations": {
-        "apply_recipe_tint": "quaternary",
-        "fadeout": true,
-        "animation": {
-          "filename": "__Krastorio2Assets__/buildings/flare-stack/flare-stack-fire.png",
-          "line_length": 10,
-          "width": 40,
-          "height": 81,
-          "frame_count": 60,
-          "animation_speed": 0.75,
-          "scale": 0.5,
-          "shift": {}
         },
-        "light": {
-          "intensity": 0.75,
-          "size": 25,
-          "shift": {},
-          "color": {
-            "r": 1,
-            "g": 0.95,
-            "b": 0.75
+        {
+          "light": {
+            "intensity": 0.75,
+            "size": 25,
+            "shift": [
+              0,
+              0
+            ],
+            "color": {
+              "r": 1,
+              "g": 0.95,
+              "b": 0.75
+            }
           }
         }
-      },
+      ],
       "water_reflection": {
         "pictures": {
           "filename": "__Krastorio2Assets__/buildings/flare-stack/flare-stack-reflection.png",

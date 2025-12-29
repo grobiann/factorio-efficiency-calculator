@@ -4,23 +4,42 @@
     "name": "kr-energy-shield-mk4-equipment",
     "energy_required": 80,
     "enabled": false,
-    "ingredients": {
-      "type": "item",
-      "name": "kr-imersium-plate",
-      "amount": 10
-    },
-    "results": {
-      "type": "item",
-      "name": "kr-energy-shield-mk4-equipment",
-      "amount": 1
-    }
+    "ingredients": [
+      {
+        "type": "item",
+        "name": "kr-energy-shield-mk3-equipment",
+        "amount": 5
+      },
+      {
+        "type": "item",
+        "name": "kr-ai-core",
+        "amount": 5
+      },
+      {
+        "type": "item",
+        "name": "kr-imersium-plate",
+        "amount": 10
+      }
+    ],
+    "results": [
+      {
+        "type": "item",
+        "name": "kr-energy-shield-mk4-equipment",
+        "amount": 1
+      }
+    ]
   },
   {
     "type": "item",
     "name": "kr-energy-shield-mk4-equipment",
-    "icons": {
-      "icon": "__Krastorio2Assets__/icons/equipment/tier-4.png"
-    },
+    "icons": [
+      {
+        "icon": "__Krastorio2Assets__/icons/equipment/energy-shield-mk4-equipment.png"
+      },
+      {
+        "icon": "__Krastorio2Assets__/icons/equipment/tier-4.png"
+      }
+    ],
     "place_as_equipment_result": "kr-energy-shield-mk4-equipment",
     "subgroup": "equipment",
     "order": "b[shield]-c[energy-shield-equipment-mk4]",
@@ -49,6 +68,9 @@
       "buffer_capacity": "405kJ",
       "input_flow_limit": "810kW"
     },
-    "categories": {}
+    "categories": [
+      "armor",
+      "kr-vehicle"
+    ]
   }
 ]

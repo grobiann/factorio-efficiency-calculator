@@ -5,27 +5,73 @@
     "enabled": false,
     "energy_required": 40,
     "category": "crafting-with-fluid",
-    "ingredients": {
-      "type": "fluid",
-      "name": "kr-nitric-acid",
-      "amount": 50
-    },
-    "results": {
-      "type": "item",
-      "name": "kr-power-armor-mk4",
-      "amount": 1
-    },
+    "ingredients": [
+      {
+        "type": "item",
+        "name": "kr-power-armor-mk3",
+        "amount": 1
+      },
+      {
+        "type": "item",
+        "name": "kr-ai-core",
+        "amount": 40
+      },
+      {
+        "type": "item",
+        "name": "kr-imersium-plate",
+        "amount": 40
+      },
+      {
+        "type": "item",
+        "name": "kr-imersite-crystal",
+        "amount": 10
+      },
+      {
+        "type": "fluid",
+        "name": "kr-nitric-acid",
+        "amount": 50
+      }
+    ],
+    "results": [
+      {
+        "type": "item",
+        "name": "kr-power-armor-mk4",
+        "amount": 1
+      }
+    ],
     "requester_paste_multiplier": 1
   },
   {
     "type": "armor",
     "name": "kr-power-armor-mk4",
     "icon": "__Krastorio2Assets__/icons/armors/power-armor-mk4.png",
-    "resistances": {
-      "type": "kr-radioactive",
-      "decrease": 6,
-      "percent": 80
-    },
+    "resistances": [
+      {
+        "type": "physical",
+        "decrease": 30,
+        "percent": 60
+      },
+      {
+        "type": "acid",
+        "decrease": 30,
+        "percent": 80
+      },
+      {
+        "type": "explosion",
+        "decrease": 50,
+        "percent": 80
+      },
+      {
+        "type": "fire",
+        "decrease": 30,
+        "percent": 90
+      },
+      {
+        "type": "kr-radioactive",
+        "decrease": 6,
+        "percent": 80
+      }
+    ],
     "subgroup": "armor",
     "order": "g[power-armor-mk4]",
     "stack_size": 1,

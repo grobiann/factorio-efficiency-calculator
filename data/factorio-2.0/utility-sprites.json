@@ -6,7 +6,9 @@
     "priority": "extra-high-no-scale",
     "width": 40,
     "height": 40,
-    "flags": {},
+    "flags": [
+      "gui-icon"
+    ],
     "mipmap_count": 2,
     "scale": 0.5
   },
@@ -17,7 +19,9 @@
     "priority": "extra-high-no-scale",
     "width": 40,
     "height": 40,
-    "flags": {},
+    "flags": [
+      "gui-icon"
+    ],
     "mipmap_count": 2,
     "scale": 0.5
   },
@@ -28,7 +32,9 @@
     "priority": "extra-high-no-scale",
     "width": 40,
     "height": 40,
-    "flags": {},
+    "flags": [
+      "gui-icon"
+    ],
     "mipmap_count": 2,
     "scale": 0.5
   },
@@ -39,7 +45,9 @@
     "priority": "extra-high-no-scale",
     "width": 40,
     "height": 40,
-    "flags": {},
+    "flags": [
+      "gui-icon"
+    ],
     "mipmap_count": 2,
     "scale": 0.5
   },
@@ -50,7 +58,9 @@
     "priority": "extra-high-no-scale",
     "width": 40,
     "height": 40,
-    "flags": {},
+    "flags": [
+      "gui-icon"
+    ],
     "mipmap_count": 2,
     "scale": 0.5
   }

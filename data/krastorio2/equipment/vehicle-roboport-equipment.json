@@ -4,16 +4,30 @@
     "name": "kr-vehicle-roboport-equipment",
     "enabled": false,
     "energy_required": 10,
-    "ingredients": {
-      "type": "item",
-      "name": "advanced-circuit",
-      "amount": 1
-    },
-    "results": {
-      "type": "item",
-      "name": "kr-vehicle-roboport-equipment",
-      "amount": 1
-    }
+    "ingredients": [
+      {
+        "type": "item",
+        "name": "personal-roboport-equipment",
+        "amount": 2
+      },
+      {
+        "type": "item",
+        "name": "steel-plate",
+        "amount": 4
+      },
+      {
+        "type": "item",
+        "name": "advanced-circuit",
+        "amount": 1
+      }
+    ],
+    "results": [
+      {
+        "type": "item",
+        "name": "kr-vehicle-roboport-equipment",
+        "amount": 1
+      }
+    ]
   },
   {
     "type": "item",
@@ -64,11 +78,19 @@
       "intensity": 0.4,
       "size": 5
     },
-    "stationing_offset": {},
-    "charging_station_shift": {},
+    "stationing_offset": [
+      0,
+      -0.6
+    ],
+    "charging_station_shift": [
+      0,
+      0.5
+    ],
     "charging_station_count": 12,
     "charging_distance": 2,
     "charging_threshold_distance": 6,
-    "categories": {}
+    "categories": [
+      "kr-vehicle-roboport"
+    ]
   }
 ]

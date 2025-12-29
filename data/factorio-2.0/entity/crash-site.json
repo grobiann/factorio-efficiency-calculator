@@ -3,7 +3,10 @@
     "type": "container",
     "name": "crash-site-chest-1",
     "icon": "__base__/graphics/icons/crash-site-chest.png",
-    "flags": {},
+    "flags": [
+      "placeable-neutral",
+      "player-creation"
+    ],
     "hidden": true,
     "max_health": 350,
     "minable": {
@@ -12,12 +15,36 @@
     "corpse": "small-remnants",
     "open_sound": "sounds.metallic_chest_open",
     "close_sound": "sounds.metallic_chest_close",
-    "resistances": {
-      "type": "impact",
-      "percent": 60
-    },
-    "collision_box": {},
-    "selection_box": {},
+    "resistances": [
+      {
+        "type": "fire",
+        "percent": 90
+      },
+      {
+        "type": "impact",
+        "percent": 60
+      }
+    ],
+    "collision_box": [
+      [
+        -0.35,
+        -0.35
+      ],
+      [
+        0.35,
+        0.35
+      ]
+    ],
+    "selection_box": [
+      [
+        -0.5,
+        -0.5
+      ],
+      [
+        0.5,
+        0.5
+      ]
+    ],
     "fast_replaceable_group": "container",
     "inventory_size": 48,
     "integration_patch": {
@@ -29,15 +56,25 @@
       "scale": 0.5
     },
     "picture": {
-      "layers": {
-        "filename": "__base__/graphics/entity/crash-site-chests/crash-site-chest-1-shadow.png",
-        "priority": "extra-high",
-        "width": 210,
-        "height": 128,
-        "shift": "util.by_pixel(-2, 3)",
-        "scale": 0.5,
-        "draw_as_shadow": true
-      }
+      "layers": [
+        {
+          "filename": "__base__/graphics/entity/crash-site-chests/crash-site-chest-1.png",
+          "priority": "extra-high",
+          "width": 120,
+          "height": 76,
+          "shift": "util.by_pixel(2, 8)",
+          "scale": 0.5
+        },
+        {
+          "filename": "__base__/graphics/entity/crash-site-chests/crash-site-chest-1-shadow.png",
+          "priority": "extra-high",
+          "width": 210,
+          "height": 128,
+          "shift": "util.by_pixel(-2, 3)",
+          "draw_as_shadow": true,
+          "scale": 0.5
+        }
+      ]
     },
     "circuit_connector": "circuit_connector_definitions[\"chest\"]",
     "circuit_wire_max_distance": "default_circuit_wire_max_distance"
@@ -46,18 +83,46 @@
     "type": "container",
     "name": "crash-site-chest-2",
     "icon": "__base__/graphics/icons/crash-site-chest.png",
-    "flags": {},
+    "flags": [
+      "not-deconstructable",
+      "placeable-neutral",
+      "player-creation"
+    ],
     "hidden": true,
     "max_health": 350,
     "corpse": "small-remnants",
     "open_sound": "sounds.metallic_chest_open",
     "close_sound": "sounds.metallic_chest_close",
-    "resistances": {
-      "type": "impact",
-      "percent": 60
-    },
-    "collision_box": {},
-    "selection_box": {},
+    "resistances": [
+      {
+        "type": "fire",
+        "percent": 90
+      },
+      {
+        "type": "impact",
+        "percent": 60
+      }
+    ],
+    "collision_box": [
+      [
+        -0.35,
+        -0.35
+      ],
+      [
+        0.35,
+        0.35
+      ]
+    ],
+    "selection_box": [
+      [
+        -0.5,
+        -0.5
+      ],
+      [
+        0.5,
+        0.5
+      ]
+    ],
     "fast_replaceable_group": "container",
     "inventory_size": 48,
     "integration_patch": {
@@ -69,15 +134,25 @@
       "scale": 0.5
     },
     "picture": {
-      "layers": {
-        "filename": "__base__/graphics/entity/crash-site-chests/crash-site-chest-2-shadow.png",
-        "priority": "extra-high",
-        "width": 188,
-        "height": 126,
-        "shift": "util.by_pixel(0, 5)",
-        "scale": 0.5,
-        "draw_as_shadow": true
-      }
+      "layers": [
+        {
+          "filename": "__base__/graphics/entity/crash-site-chests/crash-site-chest-2.png",
+          "priority": "extra-high",
+          "width": 116,
+          "height": 88,
+          "shift": "util.by_pixel(0, 8)",
+          "scale": 0.5
+        },
+        {
+          "filename": "__base__/graphics/entity/crash-site-chests/crash-site-chest-2-shadow.png",
+          "priority": "extra-high",
+          "width": 188,
+          "height": 126,
+          "shift": "util.by_pixel(0, 5)",
+          "draw_as_shadow": true,
+          "scale": 0.5
+        }
+      ]
     },
     "circuit_connector": "circuit_connector_definitions[\"chest\"]",
     "circuit_wire_max_distance": "default_circuit_wire_max_distance"
@@ -100,17 +175,37 @@
     "default_status": "broken",
     "open_sound": "sounds.metal_large_open",
     "close_sound": "sounds.metal_large_close",
-    "resistances": {
-      "type": "fire",
-      "percent": 100
-    },
+    "resistances": [
+      {
+        "type": "fire",
+        "percent": 100
+      }
+    ],
     "inventory_size": 5,
     "inventory_type": "normal",
     "minable": {
       "mining_time": 2.3
     },
-    "collision_box": {},
-    "selection_box": {},
+    "collision_box": [
+      [
+        -8.7,
+        -3.3
+      ],
+      [
+        6.9,
+        4.5
+      ]
+    ],
+    "selection_box": [
+      [
+        -8.7,
+        -3.3
+      ],
+      [
+        6.9,
+        4.5
+      ]
+    ],
     "dying_explosion": "nuke-explosion",
     "integration_patch_render_layer": "decals",
     "integration_patch": {
@@ -124,23 +219,37 @@
       "scale": 0.5
     },
     "picture": {
-      "layers": {
-        "filename": "__base__/graphics/entity/crash-site-spaceship/spaceship-shadow.png",
-        "priority": "very-low",
-        "width": 1340,
-        "height": 842,
-        "shift": "util.by_pixel(-23, 50)",
-        "dice_x": 5,
-        "dice_y": 4,
-        "scale": 0.5,
-        "draw_as_shadow": true
-      }
+      "layers": [
+        {
+          "filename": "__base__/graphics/entity/crash-site-spaceship/spaceship.png",
+          "priority": "very-low",
+          "width": 1228,
+          "height": 790,
+          "shift": "util.by_pixel(-13, 34)",
+          "dice_x": 4,
+          "dice_y": 3,
+          "scale": 0.5
+        },
+        {
+          "filename": "__base__/graphics/entity/crash-site-spaceship/spaceship-shadow.png",
+          "priority": "very-low",
+          "width": 1340,
+          "height": 842,
+          "shift": "util.by_pixel(-23, 50)",
+          "scale": 0.5,
+          "dice_x": 5,
+          "dice_y": 4,
+          "draw_as_shadow": true
+        }
+      ]
     }
   },
   {
     "type": "container",
     "name": "crash-site-spaceship-wreck-big-1",
-    "localised_name": {},
+    "localised_name": [
+      "entity-name.crash-site-spaceship-wreck-big"
+    ],
     "icon": "__base__/graphics/icons/crash-site-spaceship-wreck-big-1.png",
     "default_status": "broken",
     "open_sound": "sounds.metal_large_open",
@@ -156,17 +265,37 @@
     "max_health": 150,
     "alert_when_damaged": false,
     "allow_copy_paste": false,
-    "resistances": {
-      "type": "fire",
-      "percent": 100
-    },
+    "resistances": [
+      {
+        "type": "fire",
+        "percent": 100
+      }
+    ],
     "inventory_size": 2,
     "inventory_type": "normal",
     "minable": {
       "mining_time": 1.25
     },
-    "collision_box": {},
-    "selection_box": {},
+    "collision_box": [
+      [
+        -0.9,
+        -0.1
+      ],
+      [
+        1.4,
+        1.2
+      ]
+    ],
+    "selection_box": [
+      [
+        -0.9,
+        -0.1
+      ],
+      [
+        1.4,
+        1.2
+      ]
+    ],
     "drawing_box_vertical_extension": 1.9,
     "dying_explosion": "big-explosion",
     "integration_patch_render_layer": "decals",
@@ -179,20 +308,31 @@
       "scale": 0.5
     },
     "picture": {
-      "layers": {
-        "filename": "__base__/graphics/entity/crash-site-spaceship/spaceship-wreck-big-1-shadow.png",
-        "width": 256,
-        "height": 44,
-        "shift": "util.by_pixel(37, 26)",
-        "scale": 0.5,
-        "draw_as_shadow": true
-      }
+      "layers": [
+        {
+          "filename": "__base__/graphics/entity/crash-site-spaceship/spaceship-wreck-big-1.png",
+          "width": 234,
+          "height": 280,
+          "shift": "util.by_pixel(-7, -8)",
+          "scale": 0.5
+        },
+        {
+          "filename": "__base__/graphics/entity/crash-site-spaceship/spaceship-wreck-big-1-shadow.png",
+          "width": 256,
+          "height": 44,
+          "shift": "util.by_pixel(37, 26)",
+          "scale": 0.5,
+          "draw_as_shadow": true
+        }
+      ]
     }
   },
   {
     "type": "container",
     "name": "crash-site-spaceship-wreck-big-2",
-    "localised_name": {},
+    "localised_name": [
+      "entity-name.crash-site-spaceship-wreck-big"
+    ],
     "icon": "__base__/graphics/icons/crash-site-spaceship-wreck-big-2.png",
     "default_status": "broken",
     "open_sound": "sounds.metal_large_open",
@@ -208,17 +348,37 @@
     "max_health": 150,
     "alert_when_damaged": false,
     "allow_copy_paste": false,
-    "resistances": {
-      "type": "fire",
-      "percent": 100
-    },
+    "resistances": [
+      {
+        "type": "fire",
+        "percent": 100
+      }
+    ],
     "inventory_size": 2,
     "inventory_type": "normal",
     "minable": {
       "mining_time": 1.25
     },
-    "collision_box": {},
-    "selection_box": {},
+    "collision_box": [
+      [
+        -1.6,
+        -1.6
+      ],
+      [
+        1.3,
+        1.3
+      ]
+    ],
+    "selection_box": [
+      [
+        -1.6,
+        -1.6
+      ],
+      [
+        1.3,
+        1.3
+      ]
+    ],
     "drawing_box_vertical_extension": 0.4,
     "dying_explosion": "big-explosion",
     "integration_patch_render_layer": "decals",
@@ -231,20 +391,31 @@
       "scale": 0.5
     },
     "picture": {
-      "layers": {
-        "filename": "__base__/graphics/entity/crash-site-spaceship/spaceship-wreck-big-2-shadow.png",
-        "width": 294,
-        "height": 228,
-        "shift": "util.by_pixel(27, -12)",
-        "scale": 0.5,
-        "draw_as_shadow": true
-      }
+      "layers": [
+        {
+          "filename": "__base__/graphics/entity/crash-site-spaceship/spaceship-wreck-big-2.png",
+          "width": 242,
+          "height": 258,
+          "shift": "util.by_pixel(-13, -7)",
+          "scale": 0.5
+        },
+        {
+          "filename": "__base__/graphics/entity/crash-site-spaceship/spaceship-wreck-big-2-shadow.png",
+          "width": 294,
+          "height": 228,
+          "shift": "util.by_pixel(27, -12)",
+          "scale": 0.5,
+          "draw_as_shadow": true
+        }
+      ]
     }
   },
   {
     "type": "container",
     "name": "crash-site-spaceship-wreck-medium-1",
-    "localised_name": {},
+    "localised_name": [
+      "entity-name.crash-site-spaceship-wreck-medium"
+    ],
     "icon": "__base__/graphics/icons/crash-site-spaceship-wreck-medium-1.png",
     "default_status": "broken",
     "open_sound": "sounds.metal_small_open",
@@ -260,17 +431,37 @@
     "max_health": 100,
     "alert_when_damaged": false,
     "allow_copy_paste": false,
-    "resistances": {
-      "type": "fire",
-      "percent": 100
-    },
+    "resistances": [
+      {
+        "type": "fire",
+        "percent": 100
+      }
+    ],
     "inventory_size": 1,
     "inventory_type": "normal",
     "minable": {
       "mining_time": 1
     },
-    "collision_box": {},
-    "selection_box": {},
+    "collision_box": [
+      [
+        -1.2,
+        -1.0
+      ],
+      [
+        1.2,
+        0.7
+      ]
+    ],
+    "selection_box": [
+      [
+        -1.2,
+        -1.0
+      ],
+      [
+        1.2,
+        0.7
+      ]
+    ],
     "dying_explosion": "big-explosion",
     "integration_patch_render_layer": "decals",
     "integration_patch": {
@@ -282,20 +473,31 @@
       "scale": 0.5
     },
     "picture": {
-      "layers": {
-        "filename": "__base__/graphics/entity/crash-site-spaceship/spaceship-wreck-medium-1-shadow.png",
-        "width": 206,
-        "height": 114,
-        "shift": "util.by_pixel(16, -1)",
-        "scale": 0.5,
-        "draw_as_shadow": true
-      }
+      "layers": [
+        {
+          "filename": "__base__/graphics/entity/crash-site-spaceship/spaceship-wreck-medium-1.png",
+          "width": 228,
+          "height": 120,
+          "shift": "util.by_pixel(-14, -4)",
+          "scale": 0.5
+        },
+        {
+          "filename": "__base__/graphics/entity/crash-site-spaceship/spaceship-wreck-medium-1-shadow.png",
+          "width": 206,
+          "height": 114,
+          "shift": "util.by_pixel(16, -1)",
+          "scale": 0.5,
+          "draw_as_shadow": true
+        }
+      ]
     }
   },
   {
     "type": "container",
     "name": "crash-site-spaceship-wreck-medium-2",
-    "localised_name": {},
+    "localised_name": [
+      "entity-name.crash-site-spaceship-wreck-medium"
+    ],
     "icon": "__base__/graphics/icons/crash-site-spaceship-wreck-medium-2.png",
     "default_status": "broken",
     "open_sound": "sounds.metal_small_open",
@@ -311,17 +513,37 @@
     "max_health": 100,
     "alert_when_damaged": false,
     "allow_copy_paste": false,
-    "resistances": {
-      "type": "fire",
-      "percent": 100
-    },
+    "resistances": [
+      {
+        "type": "fire",
+        "percent": 100
+      }
+    ],
     "inventory_size": 1,
     "inventory_type": "normal",
     "minable": {
       "mining_time": 1
     },
-    "collision_box": {},
-    "selection_box": {},
+    "collision_box": [
+      [
+        -1.1,
+        -0.6
+      ],
+      [
+        1.0,
+        1.0
+      ]
+    ],
+    "selection_box": [
+      [
+        -1.1,
+        -0.6
+      ],
+      [
+        1.0,
+        1.0
+      ]
+    ],
     "dying_explosion": "big-explosion",
     "integration_patch_render_layer": "decals",
     "integration_patch": {
@@ -333,20 +555,31 @@
       "scale": 0.5
     },
     "picture": {
-      "layers": {
-        "filename": "__base__/graphics/entity/crash-site-spaceship/spaceship-wreck-medium-2-shadow.png",
-        "width": 196,
-        "height": 114,
-        "shift": "util.by_pixel(22, 15)",
-        "scale": 0.5,
-        "draw_as_shadow": true
-      }
+      "layers": [
+        {
+          "filename": "__base__/graphics/entity/crash-site-spaceship/spaceship-wreck-medium-2.png",
+          "width": 194,
+          "height": 150,
+          "shift": "util.by_pixel(-15, 8)",
+          "scale": 0.5
+        },
+        {
+          "filename": "__base__/graphics/entity/crash-site-spaceship/spaceship-wreck-medium-2-shadow.png",
+          "width": 196,
+          "height": 114,
+          "shift": "util.by_pixel(22, 15)",
+          "scale": 0.5,
+          "draw_as_shadow": true
+        }
+      ]
     }
   },
   {
     "type": "container",
     "name": "crash-site-spaceship-wreck-medium-3",
-    "localised_name": {},
+    "localised_name": [
+      "entity-name.crash-site-spaceship-wreck-medium"
+    ],
     "icon": "__base__/graphics/icons/crash-site-spaceship-wreck-medium-3.png",
     "default_status": "broken",
     "open_sound": "sounds.metal_small_open",
@@ -362,17 +595,37 @@
     "max_health": 100,
     "alert_when_damaged": false,
     "allow_copy_paste": false,
-    "resistances": {
-      "type": "fire",
-      "percent": 100
-    },
+    "resistances": [
+      {
+        "type": "fire",
+        "percent": 100
+      }
+    ],
     "inventory_size": 1,
     "inventory_type": "normal",
     "minable": {
       "mining_time": 1
     },
-    "collision_box": {},
-    "selection_box": {},
+    "collision_box": [
+      [
+        -0.8,
+        -1.4
+      ],
+      [
+        0.7,
+        1.4
+      ]
+    ],
+    "selection_box": [
+      [
+        -0.8,
+        -1.4
+      ],
+      [
+        0.7,
+        1.4
+      ]
+    ],
     "dying_explosion": "big-explosion",
     "integration_patch_render_layer": "decals",
     "integration_patch": {
@@ -384,20 +637,31 @@
       "scale": 0.5
     },
     "picture": {
-      "layers": {
-        "filename": "__base__/graphics/entity/crash-site-spaceship/spaceship-wreck-medium-3-shadow.png",
-        "width": 104,
-        "height": 178,
-        "shift": "util.by_pixel(6, 0)",
-        "scale": 0.5,
-        "draw_as_shadow": true
-      }
+      "layers": [
+        {
+          "filename": "__base__/graphics/entity/crash-site-spaceship/spaceship-wreck-medium-3.png",
+          "width": 224,
+          "height": 236,
+          "shift": "util.by_pixel(-30, 4)",
+          "scale": 0.5
+        },
+        {
+          "filename": "__base__/graphics/entity/crash-site-spaceship/spaceship-wreck-medium-3-shadow.png",
+          "width": 104,
+          "height": 178,
+          "shift": "util.by_pixel(6, 0)",
+          "scale": 0.5,
+          "draw_as_shadow": true
+        }
+      ]
     }
   },
   {
     "type": "simple-entity-with-owner",
     "name": "crash-site-spaceship-wreck-small-1",
-    "localised_name": {},
+    "localised_name": [
+      "entity-name.crash-site-spaceship-wreck-small"
+    ],
     "icon": "__base__/graphics/icons/crash-site-spaceship-wreck-small-1.png",
     "flags": "wreck_flags",
     "hidden": true,
@@ -410,15 +674,35 @@
     "max_health": 50,
     "alert_when_damaged": false,
     "allow_copy_paste": false,
-    "resistances": {
-      "type": "fire",
-      "percent": 100
-    },
+    "resistances": [
+      {
+        "type": "fire",
+        "percent": 100
+      }
+    ],
     "minable": {
       "mining_time": 0.75
     },
-    "collision_box": {},
-    "selection_box": {},
+    "collision_box": [
+      [
+        -1.0,
+        -1.0
+      ],
+      [
+        0.8,
+        0.8
+      ]
+    ],
+    "selection_box": [
+      [
+        -1.0,
+        -1.0
+      ],
+      [
+        0.8,
+        0.8
+      ]
+    ],
     "dying_explosion": "medium-explosion",
     "integration_patch_render_layer": "decals",
     "integration_patch": {
@@ -430,20 +714,31 @@
       "scale": 0.5
     },
     "picture": {
-      "layers": {
-        "filename": "__base__/graphics/entity/crash-site-spaceship/spaceship-wreck-small-1-shadow.png",
-        "width": 178,
-        "height": 122,
-        "shift": "util.by_pixel(8, -3)",
-        "scale": 0.5,
-        "draw_as_shadow": true
-      }
+      "layers": [
+        {
+          "filename": "__base__/graphics/entity/crash-site-spaceship/spaceship-wreck-small-1.png",
+          "width": 156,
+          "height": 152,
+          "shift": "util.by_pixel(-9, -1)",
+          "scale": 0.5
+        },
+        {
+          "filename": "__base__/graphics/entity/crash-site-spaceship/spaceship-wreck-small-1-shadow.png",
+          "width": 178,
+          "height": 122,
+          "shift": "util.by_pixel(8, -3)",
+          "scale": 0.5,
+          "draw_as_shadow": true
+        }
+      ]
     }
   },
   {
     "type": "simple-entity-with-owner",
     "name": "crash-site-spaceship-wreck-small-2",
-    "localised_name": {},
+    "localised_name": [
+      "entity-name.crash-site-spaceship-wreck-small"
+    ],
     "icon": "__base__/graphics/icons/crash-site-spaceship-wreck-small-2.png",
     "flags": "wreck_flags",
     "hidden": true,
@@ -456,15 +751,35 @@
     "max_health": 50,
     "alert_when_damaged": false,
     "allow_copy_paste": false,
-    "resistances": {
-      "type": "fire",
-      "percent": 100
-    },
+    "resistances": [
+      {
+        "type": "fire",
+        "percent": 100
+      }
+    ],
     "minable": {
       "mining_time": 0.75
     },
-    "collision_box": {},
-    "selection_box": {},
+    "collision_box": [
+      [
+        -0.7,
+        0.0
+      ],
+      [
+        0.7,
+        0.8
+      ]
+    ],
+    "selection_box": [
+      [
+        -0.7,
+        0.0
+      ],
+      [
+        0.7,
+        0.8
+      ]
+    ],
     "dying_explosion": "medium-explosion",
     "integration_patch_render_layer": "decals",
     "integration_patch": {
@@ -476,20 +791,31 @@
       "scale": 0.5
     },
     "picture": {
-      "layers": {
-        "filename": "__base__/graphics/entity/crash-site-spaceship/spaceship-wreck-small-2-shadow.png",
-        "width": 92,
-        "height": 76,
-        "shift": "util.by_pixel(7, 19)",
-        "scale": 0.5,
-        "draw_as_shadow": true
-      }
+      "layers": [
+        {
+          "filename": "__base__/graphics/entity/crash-site-spaceship/spaceship-wreck-small-2.png",
+          "width": 146,
+          "height": 102,
+          "shift": "util.by_pixel(-8, 16)",
+          "scale": 0.5
+        },
+        {
+          "filename": "__base__/graphics/entity/crash-site-spaceship/spaceship-wreck-small-2-shadow.png",
+          "width": 92,
+          "height": 76,
+          "shift": "util.by_pixel(7, 19)",
+          "scale": 0.5,
+          "draw_as_shadow": true
+        }
+      ]
     }
   },
   {
     "type": "simple-entity-with-owner",
     "name": "crash-site-spaceship-wreck-small-3",
-    "localised_name": {},
+    "localised_name": [
+      "entity-name.crash-site-spaceship-wreck-small"
+    ],
     "icon": "__base__/graphics/icons/crash-site-spaceship-wreck-small-3.png",
     "flags": "wreck_flags",
     "hidden": true,
@@ -502,15 +828,35 @@
     "max_health": 50,
     "alert_when_damaged": false,
     "allow_copy_paste": false,
-    "resistances": {
-      "type": "fire",
-      "percent": 100
-    },
+    "resistances": [
+      {
+        "type": "fire",
+        "percent": 100
+      }
+    ],
     "minable": {
       "mining_time": 0.75
     },
-    "collision_box": {},
-    "selection_box": {},
+    "collision_box": [
+      [
+        -0.7,
+        -0.8
+      ],
+      [
+        1.2,
+        0.6
+      ]
+    ],
+    "selection_box": [
+      [
+        -0.7,
+        -0.8
+      ],
+      [
+        1.2,
+        0.6
+      ]
+    ],
     "dying_explosion": "medium-explosion",
     "integration_patch_render_layer": "decals",
     "integration_patch": {
@@ -522,20 +868,31 @@
       "scale": 0.5
     },
     "picture": {
-      "layers": {
-        "filename": "__base__/graphics/entity/crash-site-spaceship/spaceship-wreck-small-3-shadow.png",
-        "width": 156,
-        "height": 114,
-        "shift": "util.by_pixel(9, -1)",
-        "scale": 0.5,
-        "draw_as_shadow": true
-      }
+      "layers": [
+        {
+          "filename": "__base__/graphics/entity/crash-site-spaceship/spaceship-wreck-small-3.png",
+          "width": 164,
+          "height": 148,
+          "shift": "util.by_pixel(5, -1)",
+          "scale": 0.5
+        },
+        {
+          "filename": "__base__/graphics/entity/crash-site-spaceship/spaceship-wreck-small-3-shadow.png",
+          "width": 156,
+          "height": 114,
+          "shift": "util.by_pixel(9, -1)",
+          "scale": 0.5,
+          "draw_as_shadow": true
+        }
+      ]
     }
   },
   {
     "type": "simple-entity-with-owner",
     "name": "crash-site-spaceship-wreck-small-4",
-    "localised_name": {},
+    "localised_name": [
+      "entity-name.crash-site-spaceship-wreck-small"
+    ],
     "icon": "__base__/graphics/icons/crash-site-spaceship-wreck-small-4.png",
     "flags": "wreck_flags",
     "hidden": true,
@@ -548,15 +905,35 @@
     "max_health": 50,
     "alert_when_damaged": false,
     "allow_copy_paste": false,
-    "resistances": {
-      "type": "fire",
-      "percent": 100
-    },
+    "resistances": [
+      {
+        "type": "fire",
+        "percent": 100
+      }
+    ],
     "minable": {
       "mining_time": 0.75
     },
-    "collision_box": {},
-    "selection_box": {},
+    "collision_box": [
+      [
+        -0.9,
+        -0.8
+      ],
+      [
+        1.1,
+        0.6
+      ]
+    ],
+    "selection_box": [
+      [
+        -0.9,
+        -0.8
+      ],
+      [
+        1.1,
+        0.6
+      ]
+    ],
     "dying_explosion": "medium-explosion",
     "integration_patch_render_layer": "decals",
     "integration_patch": {
@@ -568,20 +945,31 @@
       "scale": 0.5
     },
     "picture": {
-      "layers": {
-        "filename": "__base__/graphics/entity/crash-site-spaceship/spaceship-wreck-small-4-shadow.png",
-        "width": 164,
-        "height": 100,
-        "shift": "util.by_pixel(19, -5)",
-        "scale": 0.5,
-        "draw_as_shadow": true
-      }
+      "layers": [
+        {
+          "filename": "__base__/graphics/entity/crash-site-spaceship/spaceship-wreck-small-4.png",
+          "width": 168,
+          "height": 142,
+          "shift": "util.by_pixel(1, -3)",
+          "scale": 0.5
+        },
+        {
+          "filename": "__base__/graphics/entity/crash-site-spaceship/spaceship-wreck-small-4-shadow.png",
+          "width": 164,
+          "height": 100,
+          "shift": "util.by_pixel(19, -5)",
+          "scale": 0.5,
+          "draw_as_shadow": true
+        }
+      ]
     }
   },
   {
     "type": "simple-entity-with-owner",
     "name": "crash-site-spaceship-wreck-small-5",
-    "localised_name": {},
+    "localised_name": [
+      "entity-name.crash-site-spaceship-wreck-small"
+    ],
     "icon": "__base__/graphics/icons/crash-site-spaceship-wreck-small-5.png",
     "flags": "wreck_flags",
     "hidden": true,
@@ -594,15 +982,35 @@
     "max_health": 50,
     "alert_when_damaged": false,
     "allow_copy_paste": false,
-    "resistances": {
-      "type": "fire",
-      "percent": 100
-    },
+    "resistances": [
+      {
+        "type": "fire",
+        "percent": 100
+      }
+    ],
     "minable": {
       "mining_time": 0.75
     },
-    "collision_box": {},
-    "selection_box": {},
+    "collision_box": [
+      [
+        -0.8,
+        -0.6
+      ],
+      [
+        0.9,
+        0.2
+      ]
+    ],
+    "selection_box": [
+      [
+        -0.8,
+        -0.6
+      ],
+      [
+        0.9,
+        0.2
+      ]
+    ],
     "dying_explosion": "medium-explosion",
     "integration_patch_render_layer": "decals",
     "integration_patch": {
@@ -614,20 +1022,31 @@
       "scale": 0.5
     },
     "picture": {
-      "layers": {
-        "filename": "__base__/graphics/entity/crash-site-spaceship/spaceship-wreck-small-5-shadow.png",
-        "width": 148,
-        "height": 78,
-        "shift": "util.by_pixel(11, -10)",
-        "scale": 0.5,
-        "draw_as_shadow": true
-      }
+      "layers": [
+        {
+          "filename": "__base__/graphics/entity/crash-site-spaceship/spaceship-wreck-small-5.png",
+          "width": 164,
+          "height": 120,
+          "shift": "util.by_pixel(-6, -6)",
+          "scale": 0.5
+        },
+        {
+          "filename": "__base__/graphics/entity/crash-site-spaceship/spaceship-wreck-small-5-shadow.png",
+          "width": 148,
+          "height": 78,
+          "shift": "util.by_pixel(11, -10)",
+          "scale": 0.5,
+          "draw_as_shadow": true
+        }
+      ]
     }
   },
   {
     "type": "simple-entity-with-owner",
     "name": "crash-site-spaceship-wreck-small-6",
-    "localised_name": {},
+    "localised_name": [
+      "entity-name.crash-site-spaceship-wreck-small"
+    ],
     "icon": "__base__/graphics/icons/crash-site-spaceship-wreck-small-6.png",
     "flags": "wreck_flags",
     "hidden": true,
@@ -640,15 +1059,35 @@
     "max_health": 50,
     "alert_when_damaged": false,
     "allow_copy_paste": false,
-    "resistances": {
-      "type": "fire",
-      "percent": 100
-    },
+    "resistances": [
+      {
+        "type": "fire",
+        "percent": 100
+      }
+    ],
     "minable": {
       "mining_time": 0.75
     },
-    "collision_box": {},
-    "selection_box": {},
+    "collision_box": [
+      [
+        -0.4,
+        -0.2
+      ],
+      [
+        1.5,
+        0.8
+      ]
+    ],
+    "selection_box": [
+      [
+        -0.4,
+        -0.2
+      ],
+      [
+        1.5,
+        0.8
+      ]
+    ],
     "dying_explosion": "medium-explosion",
     "integration_patch_render_layer": "decals",
     "integration_patch": {
@@ -660,14 +1099,23 @@
       "scale": 0.5
     },
     "picture": {
-      "layers": {
-        "filename": "__base__/graphics/entity/crash-site-spaceship/spaceship-wreck-small-6-shadow.png",
-        "width": 160,
-        "height": 104,
-        "shift": "util.by_pixel(27, 11)",
-        "scale": 0.5,
-        "draw_as_shadow": true
-      }
+      "layers": [
+        {
+          "filename": "__base__/graphics/entity/crash-site-spaceship/spaceship-wreck-small-6.png",
+          "width": 166,
+          "height": 114,
+          "shift": "util.by_pixel(10, 9)",
+          "scale": 0.5
+        },
+        {
+          "filename": "__base__/graphics/entity/crash-site-spaceship/spaceship-wreck-small-6-shadow.png",
+          "width": 160,
+          "height": 104,
+          "shift": "util.by_pixel(27, 11)",
+          "scale": 0.5,
+          "draw_as_shadow": true
+        }
+      ]
     }
   }
 ]

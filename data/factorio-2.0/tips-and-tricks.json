@@ -76,10 +76,20 @@
     },
     "skip_trigger": {
       "type": "and",
-      "triggers": {
-        "type": "stack-transfer",
-        "transfer": "whole-inventory"
-      }
+      "triggers": [
+        {
+          "type": "stack-transfer",
+          "transfer": "stack"
+        },
+        {
+          "type": "stack-transfer",
+          "transfer": "inventory"
+        },
+        {
+          "type": "stack-transfer",
+          "transfer": "whole-inventory"
+        }
+      ]
     },
     "tutorial": "stack-transfers",
     "simulation": "simulations.stack_transfers"
@@ -96,12 +106,20 @@
     },
     "skip_trigger": {
       "type": "and",
-      "triggers": {
-        "type": "entity-transfer",
-        "transfer": "out"
-      }
+      "triggers": [
+        {
+          "type": "entity-transfer",
+          "transfer": "in"
+        },
+        {
+          "type": "entity-transfer",
+          "transfer": "out"
+        }
+      ]
     },
-    "dependencies": {},
+    "dependencies": [
+      "stack-transfers"
+    ],
     "tutorial": "entity-transfers",
     "simulation": "simulations.entity_transfers"
   },
@@ -116,13 +134,22 @@
     },
     "skip_trigger": {
       "type": "and",
-      "triggers": {
-        "type": "drop-item",
-        "drop_into_entity": true,
-        "count": 15
-      }
+      "triggers": [
+        {
+          "type": "drop-item",
+          "drop_into_entity": false,
+          "count": 5
+        },
+        {
+          "type": "drop-item",
+          "drop_into_entity": true,
+          "count": 15
+        }
+      ]
     },
-    "dependencies": {},
+    "dependencies": [
+      "entity-transfers"
+    ],
     "simulation": "simulations.z_drop"
   },
   {
@@ -133,17 +160,28 @@
     "order": "h",
     "trigger": {
       "type": "or",
-      "triggers": {
-        "type": "time-elapsed",
-        "ticks": "135 * minute"
-      }
+      "triggers": [
+        {
+          "type": "group-attack"
+        },
+        {
+          "type": "time-elapsed",
+          "ticks": "135 * minute"
+        }
+      ]
     },
     "skip_trigger": {
       "type": "and",
-      "triggers": {
-        "type": "shoot",
-        "target": "entity"
-      }
+      "triggers": [
+        {
+          "type": "shoot",
+          "target": "enemy"
+        },
+        {
+          "type": "shoot",
+          "target": "entity"
+        }
+      ]
     },
     "simulation": "simulations.shoot_targeting"
   },
@@ -175,19 +213,33 @@
     "order": "j",
     "trigger": {
       "type": "or",
-      "triggers": {
-        "type": "set-recipe",
-        "uses_fluid": true,
-        "machine": "assembling-machine-3"
-      }
+      "triggers": [
+        {
+          "type": "set-recipe",
+          "uses_fluid": true,
+          "machine": "assembling-machine-2"
+        },
+        {
+          "type": "set-recipe",
+          "uses_fluid": true,
+          "machine": "assembling-machine-3"
+        }
+      ]
     },
     "skip_trigger": {
       "type": "or",
-      "triggers": {
-        "type": "rotate-entity",
-        "entity": "assembling-machine-3",
-        "count": 3
-      }
+      "triggers": [
+        {
+          "type": "rotate-entity",
+          "entity": "assembling-machine-2",
+          "count": 3
+        },
+        {
+          "type": "rotate-entity",
+          "entity": "assembling-machine-3",
+          "count": 3
+        }
+      ]
     },
     "simulation": "simulations.rotating_assemblers"
   },
@@ -217,19 +269,35 @@
     "order": "l",
     "trigger": {
       "type": "sequence",
-      "triggers": {
-        "type": "time-since-last-tip-activation",
-        "technology": "circuit-network",
-        "ticks": "15 * minute"
-      }
+      "triggers": [
+        {
+          "type": "research",
+          "technology": "circuit-network"
+        },
+        {
+          "type": "time-elapsed",
+          "ticks": "30 * minute"
+        },
+        {
+          "type": "time-since-last-tip-activation",
+          "ticks": "15 * minute"
+        }
+      ]
     },
     "skip_trigger": {
       "type": "or",
-      "triggers": {
-        "type": "manual-wire-drag",
-        "wire_type": "green",
-        "count": 5
-      }
+      "triggers": [
+        {
+          "type": "manual-wire-drag",
+          "wire_type": "red",
+          "count": 5
+        },
+        {
+          "type": "manual-wire-drag",
+          "wire_type": "green",
+          "count": 5
+        }
+      ]
     },
     "simulation": "simulations.circuit_network"
   },
@@ -241,22 +309,42 @@
     "order": "m",
     "trigger": {
       "type": "sequence",
-      "triggers": {
-        "type": "time-since-last-tip-activation",
-        "entity": "spidertron",
-        "count": 1,
-        "ticks": "15 * minute"
-      }
+      "triggers": [
+        {
+          "type": "build-entity",
+          "entity": "spidertron",
+          "count": 1
+        },
+        {
+          "type": "time-elapsed",
+          "ticks": "30 * minute"
+        },
+        {
+          "type": "time-since-last-tip-activation",
+          "ticks": "15 * minute"
+        }
+      ]
     },
     "skip_trigger": {
       "type": "and",
-      "triggers": {
-        "type": "send-spidertron",
-        "vehicle": "spidertron",
-        "match_type_only": true,
-        "count": 5,
-        "append": false
-      }
+      "triggers": [
+        {
+          "type": "enter-vehicle",
+          "vehicle": "spidertron",
+          "match_type_only": true,
+          "count": 1
+        },
+        {
+          "type": "send-spidertron",
+          "append": true,
+          "count": 5
+        },
+        {
+          "type": "send-spidertron",
+          "append": false,
+          "count": 5
+        }
+      ]
     },
     "simulation": "simulations.spidertron_control"
   },
@@ -274,12 +362,20 @@
     },
     "skip_trigger": {
       "type": "and",
-      "triggers": {
-        "type": "build-entity",
-        "entity": "inserter",
-        "match_type_only": true,
-        "count": 40
-      }
+      "triggers": [
+        {
+          "type": "build-entity",
+          "entity": "transport-belt",
+          "match_type_only": true,
+          "count": 400
+        },
+        {
+          "type": "build-entity",
+          "entity": "inserter",
+          "match_type_only": true,
+          "count": 40
+        }
+      ]
     },
     "simulation": "simulations.belt_lanes"
   },
@@ -291,13 +387,18 @@
     "order": "o",
     "trigger": {
       "type": "and",
-      "triggers": {
-        "type": "build-entity",
-        "technology": "logistics",
-        "entity": "transport-belt",
-        "match_type_only": true,
-        "count": 200
-      }
+      "triggers": [
+        {
+          "type": "research",
+          "technology": "logistics"
+        },
+        {
+          "type": "build-entity",
+          "entity": "transport-belt",
+          "match_type_only": true,
+          "count": 200
+        }
+      ]
     },
     "skip_trigger": {
       "type": "set-filter",
@@ -348,7 +449,9 @@
       "match_type_only": true,
       "count": 50
     },
-    "dependencies": {},
+    "dependencies": [
+      "inserters"
+    ],
     "simulation": "simulations.burner_inserter_refueling"
   },
   {
@@ -367,7 +470,9 @@
       "entity": "long-handed-inserter",
       "count": 15
     },
-    "dependencies": {},
+    "dependencies": [
+      "inserters"
+    ],
     "simulation": "simulations.long_inserters"
   },
   {
@@ -387,7 +492,9 @@
       "entity": "lab",
       "count": 12
     },
-    "dependencies": {},
+    "dependencies": [
+      "inserters"
+    ],
     "simulation": "simulations.move_between_labs"
   },
   {
@@ -405,15 +512,22 @@
     },
     "skip_trigger": {
       "type": "sequence",
-      "triggers": {
-        "type": "time-elapsed",
-        "entity": "assembling-machine-1",
-        "match_type_only": true,
-        "count": 10,
-        "ticks": "180 * minute"
-      }
+      "triggers": [
+        {
+          "type": "build-entity",
+          "entity": "assembling-machine-1",
+          "match_type_only": true,
+          "count": 10
+        },
+        {
+          "type": "time-elapsed",
+          "ticks": "180 * minute"
+        }
+      ]
     },
-    "dependencies": {},
+    "dependencies": [
+      "inserters"
+    ],
     "simulation": "simulations.insertion_limits"
   },
   {
@@ -425,18 +539,28 @@
     "indent": 1,
     "trigger": {
       "type": "and",
-      "triggers": {
-        "type": "build-entity",
-        "entity": "inserter",
-        "match_type_only": true,
-        "count": 4
-      }
+      "triggers": [
+        {
+          "type": "build-entity",
+          "entity": "wooden-chest",
+          "match_type_only": true,
+          "count": 4
+        },
+        {
+          "type": "build-entity",
+          "entity": "inserter",
+          "match_type_only": true,
+          "count": 4
+        }
+      ]
     },
     "skip_trigger": {
       "type": "limit-chest",
       "count": 2
     },
-    "dependencies": {},
+    "dependencies": [
+      "inserters"
+    ],
     "simulation": "simulations.limit_chest"
   },
   {
@@ -452,19 +576,54 @@
     "is_title": true,
     "trigger": {
       "type": "or",
-      "triggers": {
-        "type": "craft-item",
-        "triggers": {
-          "type": "time-since-last-tip-activation",
-          "triggers": {
-            "type": "unlock-recipe",
-            "recipe": "boiler"
-          },
-          "ticks": "15 * minute"
+      "triggers": [
+        {
+          "type": "sequence",
+          "triggers": [
+            {
+              "type": "and",
+              "triggers": [
+                {
+                  "type": "unlock-recipe",
+                  "recipe": "steam-engine"
+                },
+                {
+                  "type": "unlock-recipe",
+                  "recipe": "boiler"
+                }
+              ]
+            },
+            {
+              "type": "time-elapsed",
+              "ticks": "15 * minute"
+            },
+            {
+              "type": "time-since-last-tip-activation",
+              "ticks": "15 * minute"
+            }
+          ]
         },
-        "item": "offshore-pump",
-        "event_type": "crafting-finished"
-      }
+        {
+          "type": "craft-item",
+          "item": "small-electric-pole",
+          "event_type": "crafting-finished"
+        },
+        {
+          "type": "craft-item",
+          "item": "steam-engine",
+          "event_type": "crafting-finished"
+        },
+        {
+          "type": "craft-item",
+          "item": "boiler",
+          "event_type": "crafting-finished"
+        },
+        {
+          "type": "craft-item",
+          "item": "offshore-pump",
+          "event_type": "crafting-finished"
+        }
+      ]
     },
     "skip_trigger": {
       "type": "generating-power",
@@ -483,7 +642,9 @@
       "type": "generating-power",
       "count": "25 -- checked once per 12 seconds (in total 5 minutes)"
     },
-    "dependencies": {},
+    "dependencies": [
+      "electric-network"
+    ],
     "simulation": "simulations.steam_power"
   },
   {
@@ -495,20 +656,27 @@
     "indent": 1,
     "trigger": {
       "type": "sequence",
-      "triggers": {
-        "type": "build-entity",
-        "ticks": "240 * minute",
-        "entity": "small-electric-pole",
-        "match_type_only": true,
-        "count": 15
-      }
+      "triggers": [
+        {
+          "type": "time-elapsed",
+          "ticks": "240 * minute"
+        },
+        {
+          "type": "build-entity",
+          "entity": "small-electric-pole",
+          "match_type_only": true,
+          "count": 15
+        }
+      ]
     },
     "skip_trigger": {
       "type": "manual-wire-drag",
       "wire_type": "copper",
       "count": 5
     },
-    "dependencies": {},
+    "dependencies": [
+      "electric-network"
+    ],
     "simulation": "simulations.electric_pole_connections"
   },
   {
@@ -524,13 +692,20 @@
     },
     "skip_trigger": {
       "type": "sequence",
-      "triggers": {
-        "type": "time-elapsed",
-        "count": "3 -- checked once per 12 seconds",
-        "ticks": "180 * minute"
-      }
+      "triggers": [
+        {
+          "type": "low-power",
+          "count": "3 -- checked once per 12 seconds"
+        },
+        {
+          "type": "time-elapsed",
+          "ticks": "180 * minute"
+        }
+      ]
     },
-    "dependencies": {},
+    "dependencies": [
+      "electric-network"
+    ],
     "simulation": "simulations.low_power"
   },
   {
@@ -546,15 +721,24 @@
     },
     "skip_trigger": {
       "type": "or",
-      "triggers": {
-        "type": "manual-wire-drag",
-        "wire_type": "copper",
-        "source": "power-switch",
-        "count": 1,
-        "target": "power-switch"
-      }
+      "triggers": [
+        {
+          "type": "manual-wire-drag",
+          "wire_type": "copper",
+          "source": "power-switch",
+          "count": 1
+        },
+        {
+          "type": "manual-wire-drag",
+          "wire_type": "copper",
+          "target": "power-switch",
+          "count": 1
+        }
+      ]
     },
-    "dependencies": {},
+    "dependencies": [
+      "electric-network"
+    ],
     "simulation": "simulations.power_switch_connections"
   },
   {
@@ -593,14 +777,36 @@
     },
     "skip_trigger": {
       "type": "or",
-      "triggers": {
-        "type": "paste-entity-settings",
-        "source": "train-stop",
-        "target": "locomotive",
-        "count": 1
-      }
+      "triggers": [
+        {
+          "type": "paste-entity-settings",
+          "source": "locomotive",
+          "target": "locomotive",
+          "count": 1
+        },
+        {
+          "type": "paste-entity-settings",
+          "source": "train-stop",
+          "target": "train-stop",
+          "count": 1
+        },
+        {
+          "type": "paste-entity-settings",
+          "source": "locomotive",
+          "target": "train-stop",
+          "count": 1
+        },
+        {
+          "type": "paste-entity-settings",
+          "source": "train-stop",
+          "target": "locomotive",
+          "count": 1
+        }
+      ]
     },
-    "dependencies": {},
+    "dependencies": [
+      "copy-entity-settings"
+    ],
     "simulation": "simulations.copy_paste_trains"
   },
   {
@@ -617,14 +823,36 @@
     },
     "skip_trigger": {
       "type": "or",
-      "triggers": {
-        "type": "paste-entity-settings",
-        "source": "cargo-wagon",
-        "target": "cargo-wagon",
-        "count": 1
-      }
+      "triggers": [
+        {
+          "type": "paste-entity-settings",
+          "source": "fast-inserter",
+          "target": "fast-inserter",
+          "count": 1
+        },
+        {
+          "type": "paste-entity-settings",
+          "source": "splitter",
+          "target": "splitter",
+          "count": 1
+        },
+        {
+          "type": "paste-entity-settings",
+          "source": "requester-chest",
+          "target": "requester-chest",
+          "count": 1
+        },
+        {
+          "type": "paste-entity-settings",
+          "source": "cargo-wagon",
+          "target": "cargo-wagon",
+          "count": 1
+        }
+      ]
     },
-    "dependencies": {},
+    "dependencies": [
+      "copy-entity-settings"
+    ],
     "simulation": "simulations.copy_paste_filters"
   },
   {
@@ -636,13 +864,19 @@
     "indent": 1,
     "trigger": {
       "type": "sequence",
-      "triggers": {
-        "type": "set-logistic-request",
-        "entity": "requester-chest",
-        "match_type_only": true,
-        "count": 20,
-        "logistic_chest_only": true
-      }
+      "triggers": [
+        {
+          "type": "build-entity",
+          "entity": "requester-chest",
+          "match_type_only": true,
+          "count": 10
+        },
+        {
+          "type": "set-logistic-request",
+          "logistic_chest_only": true,
+          "count": 20
+        }
+      ]
     },
     "skip_trigger": {
       "type": "paste-entity-settings",
@@ -651,7 +885,9 @@
       "match_type_only": true,
       "count": 2
     },
-    "dependencies": {},
+    "dependencies": [
+      "copy-entity-settings"
+    ],
     "simulation": "simulations.copy_paste_requester_chest"
   },
   {
@@ -672,7 +908,9 @@
       "target": "spidertron",
       "count": 1
     },
-    "dependencies": {},
+    "dependencies": [
+      "copy-entity-settings"
+    ],
     "simulation": "simulations.copy_paste_spidertron"
   },
   {
@@ -726,7 +964,9 @@
       "linear_power_pole_line": true,
       "count": 3
     },
-    "dependencies": {},
+    "dependencies": [
+      "drag-building"
+    ],
     "simulation": "simulations.drag_building_poles"
   },
   {
@@ -738,12 +978,19 @@
     "indent": 1,
     "skip_trigger": {
       "type": "sequence",
-      "triggers": {
-        "type": "time-elapsed",
-        "ticks": "180 * minute"
-      }
+      "triggers": [
+        {
+          "type": "dependencies-met"
+        },
+        {
+          "type": "time-elapsed",
+          "ticks": "180 * minute"
+        }
+      ]
     },
-    "dependencies": {},
+    "dependencies": [
+      "drag-building-poles"
+    ],
     "simulation": "simulations.pole_dragging_coverage"
   },
   {
@@ -766,7 +1013,9 @@
       "build_by_dragging": true,
       "count": 3
     },
-    "dependencies": {},
+    "dependencies": [
+      "drag-building"
+    ],
     "simulation": "simulations.drag_building_underground"
   },
   {
@@ -787,7 +1036,9 @@
       "type": "fast-belt-bend",
       "count": 3
     },
-    "dependencies": {},
+    "dependencies": [
+      "drag-building"
+    ],
     "simulation": "simulations.smart_belt_building"
   },
   {
@@ -799,19 +1050,30 @@
     "indent": 1,
     "trigger": {
       "type": "and",
-      "triggers": {
-        "type": "build-entity",
-        "entity": "underground-belt",
-        "match_type_only": true,
-        "build_by_dragging": true,
-        "count": 20
-      }
+      "triggers": [
+        {
+          "type": "build-entity",
+          "entity": "transport-belt",
+          "match_type_only": true,
+          "build_by_dragging": true,
+          "count": 200
+        },
+        {
+          "type": "build-entity",
+          "entity": "underground-belt",
+          "match_type_only": true,
+          "build_by_dragging": true,
+          "count": 20
+        }
+      ]
     },
     "skip_trigger": {
       "type": "belt-traverse",
       "count": 3
     },
-    "dependencies": {},
+    "dependencies": [
+      "drag-building"
+    ],
     "simulation": "simulations.fast_obstacle_traversing"
   },
   {
@@ -846,12 +1108,17 @@
     "indent": 1,
     "trigger": {
       "type": "or",
-      "triggers": {
-        "type": "build-entity",
-        "item": "rail",
-        "event_type": "crafting-finished",
-        "entity": "straight-rail"
-      }
+      "triggers": [
+        {
+          "type": "craft-item",
+          "item": "rail",
+          "event_type": "crafting-finished"
+        },
+        {
+          "type": "build-entity",
+          "entity": "straight-rail"
+        }
+      ]
     },
     "skip_trigger": {
       "type": "use-rail-planner",
@@ -869,16 +1136,26 @@
     "indent": 1,
     "trigger": {
       "type": "or",
-      "triggers": {
-        "type": "and",
-        "entity": "train-stop",
-        "triggers": {
+      "triggers": [
+        {
           "type": "build-entity",
-          "technology": "automated-rail-transportation",
-          "entity": "straight-rail",
-          "count": 20
+          "entity": "train-stop"
+        },
+        {
+          "type": "and",
+          "triggers": [
+            {
+              "type": "research",
+              "technology": "automated-rail-transportation"
+            },
+            {
+              "type": "build-entity",
+              "entity": "straight-rail",
+              "count": 20
+            }
+          ]
         }
-      }
+      ]
     },
     "skip_trigger": {
       "type": "plan-train-path",
@@ -896,17 +1173,27 @@
     "indent": 1,
     "trigger": {
       "type": "or",
-      "triggers": {
-        "type": "and",
-        "entity": "rail-signal",
-        "count": 1,
-        "triggers": {
+      "triggers": [
+        {
           "type": "build-entity",
-          "technology": "automated-rail-transportation",
-          "entity": "locomotive",
-          "count": 2
+          "entity": "rail-signal",
+          "count": 1
+        },
+        {
+          "type": "and",
+          "triggers": [
+            {
+              "type": "research",
+              "technology": "automated-rail-transportation"
+            },
+            {
+              "type": "build-entity",
+              "entity": "locomotive",
+              "count": 2
+            }
+          ]
         }
-      }
+      ]
     },
     "skip_trigger": {
       "type": "build-entity",
@@ -925,18 +1212,26 @@
     "indent": 1,
     "trigger": {
       "type": "or",
-      "triggers": {
-        "type": "build-entity",
-        "entity": "rail-chain-signal",
-        "count": 30
-      }
+      "triggers": [
+        {
+          "type": "build-entity",
+          "entity": "rail-signal",
+          "count": 30
+        },
+        {
+          "type": "build-entity",
+          "entity": "rail-chain-signal"
+        }
+      ]
     },
     "skip_trigger": {
       "type": "build-entity",
       "entity": "rail-chain-signal",
       "count": 20
     },
-    "dependencies": {},
+    "dependencies": [
+      "rail-signals-basic"
+    ],
     "tutorial": "trains-advanced-signals",
     "simulation": "simulations.rail_signals_advanced"
   },
@@ -949,12 +1244,22 @@
     "indent": 1,
     "trigger": {
       "type": "and",
-      "triggers": {
-        "type": "research",
-        "entity": "stone-wall",
-        "count": 50,
-        "technology": "gate"
-      }
+      "triggers": [
+        {
+          "type": "build-entity",
+          "entity": "straight-rail",
+          "count": 60
+        },
+        {
+          "type": "build-entity",
+          "entity": "stone-wall",
+          "count": 50
+        },
+        {
+          "type": "research",
+          "technology": "gate"
+        }
+      ]
     },
     "skip_trigger": {
       "type": "gate-over-rail-build",
@@ -971,17 +1276,27 @@
     "indent": 1,
     "trigger": {
       "type": "and",
-      "triggers": {
-        "type": "or",
-        "entity": "train-stop",
-        "count": 2,
-        "triggers": {
+      "triggers": [
+        {
           "type": "build-entity",
-          "item": "fluid-wagon",
-          "event_type": "crafting-finished",
-          "entity": "fluid-wagon"
+          "entity": "train-stop",
+          "count": 2
+        },
+        {
+          "type": "or",
+          "triggers": [
+            {
+              "type": "craft-item",
+              "item": "fluid-wagon",
+              "event_type": "crafting-finished"
+            },
+            {
+              "type": "build-entity",
+              "entity": "fluid-wagon"
+            }
+          ]
         }
-      }
+      ]
     },
     "skip_trigger": {
       "type": "build-entity",
@@ -1022,24 +1337,47 @@
     "is_title": true,
     "trigger": {
       "type": "or",
-      "triggers": {
-        "type": "research",
-        "technology": "logistic-robotics"
-      }
+      "triggers": [
+        {
+          "type": "research",
+          "technology": "construction-robotics"
+        },
+        {
+          "type": "research",
+          "technology": "logistic-robotics"
+        }
+      ]
     },
     "skip_trigger": {
       "type": "and",
-      "triggers": {
-        "type": "or",
-        "entity": "roboport",
-        "count": 5,
-        "triggers": {
-          "type": "set-logistic-request",
-          "item": "construction-robot",
-          "event_type": "crafting-finished",
-          "count": 6
+      "triggers": [
+        {
+          "type": "build-entity",
+          "entity": "roboport",
+          "count": 5
+        },
+        {
+          "type": "or",
+          "triggers": [
+            {
+              "type": "craft-item",
+              "item": "logistic-robot",
+              "event_type": "crafting-finished",
+              "count": 5
+            },
+            {
+              "type": "craft-item",
+              "item": "construction-robot",
+              "event_type": "crafting-finished",
+              "count": 5
+            },
+            {
+              "type": "set-logistic-request",
+              "count": 6
+            }
+          ]
         }
-      }
+      ]
     },
     "simulation": "simulations.logistic_network"
   },
@@ -1056,17 +1394,34 @@
     },
     "skip_trigger": {
       "type": "and",
-      "triggers": {
-        "type": "or",
-        "count": 1,
-        "triggers": {
-          "type": "build-entity",
-          "entity": "storage-chest",
+      "triggers": [
+        {
+          "type": "dependencies-met"
+        },
+        {
+          "type": "set-logistic-request",
           "count": 1
+        },
+        {
+          "type": "or",
+          "triggers": [
+            {
+              "type": "build-entity",
+              "entity": "passive-provider-chest",
+              "count": 1
+            },
+            {
+              "type": "build-entity",
+              "entity": "storage-chest",
+              "count": 1
+            }
+          ]
         }
-      }
+      ]
     },
-    "dependencies": {},
+    "dependencies": [
+      "logistic-network"
+    ],
     "simulation": "simulations.personal_logistics"
   },
   {
@@ -1082,12 +1437,20 @@
     },
     "skip_trigger": {
       "type": "and",
-      "triggers": {
-        "type": "build-entity-by-robot",
-        "count": 1
-      }
+      "triggers": [
+        {
+          "type": "mine-item-by-robot",
+          "count": 1
+        },
+        {
+          "type": "build-entity-by-robot",
+          "count": 1
+        }
+      ]
     },
-    "dependencies": {},
+    "dependencies": [
+      "logistic-network"
+    ],
     "simulation": "simulations.construction_robots"
   },
   {
@@ -1102,7 +1465,9 @@
       "entity": "passive-provider-chest",
       "count": 10
     },
-    "dependencies": {},
+    "dependencies": [
+      "logistic-network"
+    ],
     "simulation": "simulations.personal_logistics"
   },
   {
@@ -1117,7 +1482,9 @@
       "entity": "storage-chest",
       "count": 10
     },
-    "dependencies": {},
+    "dependencies": [
+      "logistic-network"
+    ],
     "simulation": "simulations.construction_robots"
   },
   {
@@ -1136,7 +1503,9 @@
       "entity": "requester-chest",
       "count": 10
     },
-    "dependencies": {},
+    "dependencies": [
+      "logistic-network"
+    ],
     "simulation": "simulations.requester_chest"
   },
   {
@@ -1155,7 +1524,9 @@
       "entity": "active-provider-chest",
       "count": 10
     },
-    "dependencies": {},
+    "dependencies": [
+      "logistic-network"
+    ],
     "simulation": "simulations.active_provider_chest"
   },
   {
@@ -1174,7 +1545,9 @@
       "entity": "buffer-chest",
       "count": 10
     },
-    "dependencies": {},
+    "dependencies": [
+      "logistic-network"
+    ],
     "simulation": "simulations.buffer_chest"
   },
   {
@@ -1194,11 +1567,16 @@
     },
     "skip_trigger": {
       "type": "and",
-      "triggers": {
-        "type": "research",
-        "count": 5,
-        "technology": "construction-robotics"
-      }
+      "triggers": [
+        {
+          "type": "alternative-build",
+          "count": 5
+        },
+        {
+          "type": "research",
+          "technology": "construction-robotics"
+        }
+      ]
     },
     "simulation": "simulations.ghost_building"
   },
@@ -1211,26 +1589,42 @@
     "indent": 1,
     "trigger": {
       "type": "sequence",
-      "triggers": {
-        "type": "build-entity",
-        "triggers": {
-          "type": "place-equipment",
-          "entity": "roboport",
-          "match_type_only": true,
-          "item": "personal-roboport-equipment",
-          "event_type": "crafting-finished",
-          "equipment": "personal-roboport-equipment"
+      "triggers": [
+        {
+          "type": "or",
+          "triggers": [
+            {
+              "type": "build-entity",
+              "entity": "roboport",
+              "match_type_only": true
+            },
+            {
+              "type": "craft-item",
+              "item": "personal-roboport-equipment",
+              "event_type": "crafting-finished"
+            },
+            {
+              "type": "place-equipment",
+              "equipment": "personal-roboport-equipment"
+            }
+          ]
         },
-        "entity": "straight-rail",
-        "count": 100
-      }
+        {
+          "type": "build-entity",
+          "entity": "straight-rail",
+          "count": 100
+        }
+      ]
     },
     "skip_trigger": {
       "type": "use-rail-planner",
       "build_mode": "forced",
       "count": 5
     },
-    "dependencies": {},
+    "dependencies": [
+      "ghost-building",
+      "rail-building"
+    ],
     "simulation": "simulations.ghost_rail_building"
   },
   {
@@ -1242,19 +1636,35 @@
     "indent": 1,
     "trigger": {
       "type": "sequence",
-      "triggers": {
-        "type": "time-since-last-tip-activation",
-        "ticks": "15 * minute"
-      }
+      "triggers": [
+        {
+          "type": "dependencies-met"
+        },
+        {
+          "type": "time-elapsed",
+          "ticks": "120 * minute"
+        },
+        {
+          "type": "time-since-last-tip-activation",
+          "ticks": "15 * minute"
+        }
+      ]
     },
     "skip_trigger": {
       "type": "sequence",
-      "triggers": {
-        "type": "activate-paste",
-        "count": 5
-      }
+      "triggers": [
+        {
+          "type": "dependencies-met"
+        },
+        {
+          "type": "activate-paste",
+          "count": 5
+        }
+      ]
     },
-    "dependencies": {},
+    "dependencies": [
+      "ghost-building"
+    ],
     "simulation": "simulations.copy_paste"
   },
   {
@@ -1270,11 +1680,23 @@
     "is_title": true,
     "trigger": {
       "type": "or",
-      "triggers": {
-        "type": "build-entity",
-        "entity": "assembling-machine-3",
-        "count": 10
-      }
+      "triggers": [
+        {
+          "type": "build-entity",
+          "entity": "steel-furnace",
+          "count": 10
+        },
+        {
+          "type": "build-entity",
+          "entity": "assembling-machine-2",
+          "count": 10
+        },
+        {
+          "type": "build-entity",
+          "entity": "assembling-machine-3",
+          "count": 10
+        }
+      ]
     },
     "skip_trigger": {
       "type": "fast-replace",
@@ -1300,7 +1722,9 @@
       "target": "transport-belt",
       "count": 4
     },
-    "dependencies": {},
+    "dependencies": [
+      "belt-lanes"
+    ],
     "simulation": "simulations.fast_replace_direction"
   },
   {
@@ -1318,15 +1742,26 @@
     },
     "skip_trigger": {
       "type": "or",
-      "triggers": {
-        "type": "fast-replace",
-        "source": "transport-belt",
-        "target": "splitter",
-        "match_type_only": true,
-        "count": 2
-      }
+      "triggers": [
+        {
+          "type": "fast-replace",
+          "source": "splitter",
+          "target": "transport-belt",
+          "match_type_only": true,
+          "count": 2
+        },
+        {
+          "type": "fast-replace",
+          "source": "transport-belt",
+          "target": "splitter",
+          "match_type_only": true,
+          "count": 2
+        }
+      ]
     },
-    "dependencies": {},
+    "dependencies": [
+      "fast-replace"
+    ],
     "simulation": "simulations.fast_replace_belt_splitter"
   },
   {
@@ -1344,15 +1779,26 @@
     },
     "skip_trigger": {
       "type": "or",
-      "triggers": {
-        "type": "fast-replace",
-        "source": "transport-belt",
-        "target": "underground-belt",
-        "match_type_only": true,
-        "count": 4
-      }
+      "triggers": [
+        {
+          "type": "fast-replace",
+          "source": "underground-belt",
+          "target": "transport-belt",
+          "match_type_only": true,
+          "count": 4
+        },
+        {
+          "type": "fast-replace",
+          "source": "transport-belt",
+          "target": "underground-belt",
+          "match_type_only": true,
+          "count": 4
+        }
+      ]
     },
-    "dependencies": {},
+    "dependencies": [
+      "fast-replace"
+    ],
     "simulation": "simulations.fast_replace_belt_underground"
   }
 ]

@@ -2,7 +2,10 @@
   {
     "type": "recipe",
     "name": "kr-burn-",
-    "localised_name": {},
+    "localised_name": [
+      "recipe-name.kr-burn",
+      "fluid.localised_name or { \"fluid-name.\" .. fluid_name }"
+    ],
     "icons": "flib_table.array_merge({\n        {\n          { icon = \"__Krastorio2Assets__/icons/burn-recipes-background/burn-recipe-corner.png\" },\n          {\n            icon = \"__Krastorio2Assets__/icons/burn-recipes-background/burn-recipe-corner-mask.png\",\n            tint = with_alpha(fluid.base_color, 0.9),\n          },\n        },\n        data_util.transform_icons(data_util.get_icons(fluid), { scale = 0.34 }),\n      })",
     "subgroup": "kr-flare-stack",
     "order": "fluid.order",
@@ -10,11 +13,13 @@
     "enabled": false,
     "category": "kr-fuel-burning",
     "energy_required": 2,
-    "ingredients": {
-      "type": "fluid",
-      "name": "fluid_name",
-      "amount": 100
-    },
+    "ingredients": [
+      {
+        "type": "fluid",
+        "name": "fluid_name",
+        "amount": 100
+      }
+    ],
     "results": "byproducts",
     "emissions_multiplier": "fluid_emissions_multiplier",
     "always_show_products": "byproducts and true or false",

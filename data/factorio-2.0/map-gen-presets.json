@@ -19,10 +19,9 @@
       "cliff_settings": {
         "cliff_smoothing": 1
       },
-      "autoplace_controls": {
-        "frequency": 1,
-        "size": 0.5
-      }
+      "autoplace_controls": [
+        "[\"trees\"] =\n          {\n            frequency = 1,\n            size = 0.5\n          }"
+      ]
     },
     "advanced_settings": {
       "enemy_evolution": {

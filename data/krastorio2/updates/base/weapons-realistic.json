@@ -2,18 +2,25 @@
   {
     "type": "explosion",
     "name": "kr-explosion-hit-p",
-    "flags": {},
+    "flags": [
+      "not-on-map"
+    ],
     "hidden": true,
     "subgroup": "explosions",
-    "animations": {
-      "filename": "__base__/graphics/entity/explosion-hit/explosion-hit.png",
-      "priority": "extra-high",
-      "width": 34,
-      "height": 38,
-      "frame_count": 13,
-      "animation_speed": 1.5,
-      "shift": {}
-    },
+    "animations": [
+      {
+        "filename": "__base__/graphics/entity/explosion-hit/explosion-hit.png",
+        "priority": "extra-high",
+        "width": 34,
+        "height": 38,
+        "frame_count": 13,
+        "animation_speed": 1.5,
+        "shift": [
+          0,
+          -0.3125
+        ]
+      }
+    ],
     "light": {
       "intensity": 1,
       "size": 9,
@@ -30,18 +37,25 @@
   {
     "type": "explosion",
     "name": "kr-explosion-hit-u",
-    "flags": {},
+    "flags": [
+      "not-on-map"
+    ],
     "hidden": true,
     "subgroup": "explosions",
-    "animations": {
-      "filename": "__base__/graphics/entity/explosion-hit/explosion-hit.png",
-      "priority": "extra-high",
-      "width": 34,
-      "height": 38,
-      "frame_count": 13,
-      "animation_speed": 1.5,
-      "shift": {}
-    },
+    "animations": [
+      {
+        "filename": "__base__/graphics/entity/explosion-hit/explosion-hit.png",
+        "priority": "extra-high",
+        "width": 34,
+        "height": 38,
+        "frame_count": 13,
+        "animation_speed": 1.5,
+        "shift": [
+          0,
+          -0.3125
+        ]
+      }
+    ],
     "light": {
       "intensity": 1,
       "size": 9,
@@ -58,18 +72,25 @@
   {
     "type": "explosion",
     "name": "kr-explosion-hit-i",
-    "flags": {},
+    "flags": [
+      "not-on-map"
+    ],
     "hidden": true,
     "subgroup": "explosions",
-    "animations": {
-      "filename": "__base__/graphics/entity/explosion-hit/explosion-hit.png",
-      "priority": "extra-high",
-      "width": 34,
-      "height": 38,
-      "frame_count": 13,
-      "animation_speed": 1.5,
-      "shift": {}
-    },
+    "animations": [
+      {
+        "filename": "__base__/graphics/entity/explosion-hit/explosion-hit.png",
+        "priority": "extra-high",
+        "width": 34,
+        "height": 38,
+        "frame_count": 13,
+        "animation_speed": 1.5,
+        "shift": [
+          0,
+          -0.3125
+        ]
+      }
+    ],
     "light": {
       "intensity": 1.5,
       "size": 10,
@@ -86,7 +107,9 @@
   {
     "type": "projectile",
     "name": "kr-firearm-magazine-projectile",
-    "flags": {},
+    "flags": [
+      "not-on-map"
+    ],
     "hidden": true,
     "collision_box": "bullets_collision_box",
     "acceleration": -0.015,
@@ -94,14 +117,19 @@
       "type": "direct",
       "action_delivery": {
         "type": "instant",
-        "target_effects": {
-          "type": "damage",
-          "entity_name": "explosion-hit",
-          "damage": {
-            "amount": 8,
-            "type": "physical"
+        "target_effects": [
+          {
+            "type": "create-entity",
+            "entity_name": "explosion-hit"
+          },
+          {
+            "type": "damage",
+            "damage": {
+              "amount": 8,
+              "type": "physical"
+            }
           }
-        }
+        ]
       }
     },
     "animation": {
@@ -133,7 +161,9 @@
   {
     "type": "projectile",
     "name": "kr-piercing-rounds-magazine-projectile",
-    "flags": {},
+    "flags": [
+      "not-on-map"
+    ],
     "hidden": true,
     "collision_box": "bullets_collision_box",
     "acceleration": -0.015,
@@ -141,14 +171,19 @@
       "type": "direct",
       "action_delivery": {
         "type": "instant",
-        "target_effects": {
-          "type": "damage",
-          "entity_name": "kr-explosion-hit-p",
-          "damage": {
-            "amount": 12,
-            "type": "physical"
+        "target_effects": [
+          {
+            "type": "create-entity",
+            "entity_name": "kr-explosion-hit-p"
+          },
+          {
+            "type": "damage",
+            "damage": {
+              "amount": 12,
+              "type": "physical"
+            }
           }
-        }
+        ]
       }
     },
     "animation": {
@@ -181,30 +216,38 @@
     "type": "ammo",
     "name": "kr-rifle-magazine",
     "icon": "__Krastorio2Assets__/icons/ammo/rifle-magazine.png",
-    "pictures": {
-      "filename": "__Krastorio2Assets__/icons/ammo/rifle-magazine.png",
-      "size": 64,
-      "scale": 0.5
-    },
+    "pictures": [
+      {
+        "filename": "__Krastorio2Assets__/icons/ammo/rifle-magazine.png",
+        "size": 64,
+        "scale": 0.5
+      }
+    ],
     "ammo_category": "bullet",
     "ammo_type": {
       "cooldown_modifier": 0.8,
       "target_type": "k_target_type",
-      "action": {
-        "type": "direct",
-        "action_delivery": {
-          "type": "projectile",
-          "projectile": "kr-rifle-magazine-projectile",
-          "starting_speed": 1.5,
-          "direction_deviation": 0.15,
-          "range_deviation": 0.15,
-          "max_range": "rifle_range",
-          "source_effects": {
-            "type": "create-explosion",
-            "entity_name": "explosion-gunshot"
-          }
+      "action": [
+        {
+          "type": "direct",
+          "action_delivery": [
+            {
+              "type": "projectile",
+              "projectile": "kr-rifle-magazine-projectile",
+              "starting_speed": 1.5,
+              "direction_deviation": 0.15,
+              "range_deviation": 0.15,
+              "max_range": "rifle_range",
+              "source_effects": [
+                {
+                  "type": "create-explosion",
+                  "entity_name": "explosion-gunshot"
+                }
+              ]
+            }
+          ]
         }
-      }
+      ]
     },
     "magazine_size": 30,
     "subgroup": "ammo",
@@ -214,7 +257,9 @@
   {
     "type": "projectile",
     "name": "kr-rifle-magazine-projectile",
-    "flags": {},
+    "flags": [
+      "not-on-map"
+    ],
     "hidden": true,
     "collision_box": "bullets_collision_box",
     "acceleration": -0.018,
@@ -222,14 +267,19 @@
       "type": "direct",
       "action_delivery": {
         "type": "instant",
-        "target_effects": {
-          "type": "damage",
-          "entity_name": "explosion-hit",
-          "damage": {
-            "amount": 10,
-            "type": "physical"
+        "target_effects": [
+          {
+            "type": "create-entity",
+            "entity_name": "explosion-hit"
+          },
+          {
+            "type": "damage",
+            "damage": {
+              "amount": 10,
+              "type": "physical"
+            }
           }
-        }
+        ]
       }
     },
     "animation": {
@@ -263,44 +313,66 @@
     "name": "kr-rifle-magazine",
     "energy_required": 1,
     "enabled": false,
-    "ingredients": {
-      "type": "item",
-      "name": "copper-plate",
-      "amount": 1
-    },
-    "results": {
-      "type": "item",
-      "name": "kr-rifle-magazine",
-      "amount": 1
-    }
+    "ingredients": [
+      {
+        "type": "item",
+        "name": "coal",
+        "amount": 2
+      },
+      {
+        "type": "item",
+        "name": "iron-plate",
+        "amount": 1
+      },
+      {
+        "type": "item",
+        "name": "copper-plate",
+        "amount": 1
+      }
+    ],
+    "results": [
+      {
+        "type": "item",
+        "name": "kr-rifle-magazine",
+        "amount": 1
+      }
+    ]
   },
   {
     "type": "ammo",
     "name": "kr-armor-piercing-rifle-magazine",
     "icon": "__Krastorio2Assets__/icons/ammo/armor-piercing-rifle-magazine.png",
-    "pictures": {
-      "size": 64,
-      "filename": "__Krastorio2Assets__/icons/ammo/armor-piercing-rifle-magazine.png",
-      "scale": 0.5
-    },
+    "pictures": [
+      {
+        "size": 64,
+        "filename": "__Krastorio2Assets__/icons/ammo/armor-piercing-rifle-magazine.png",
+        "scale": 0.5
+      }
+    ],
     "ammo_category": "bullet",
     "ammo_type": {
       "target_type": "k_target_type",
-      "action": {
-        "type": "direct",
-        "action_delivery": {
-          "type": "projectile",
-          "projectile": "kr-armor-piercing-rifle-magazine-projectile",
-          "starting_speed": 1.75,
-          "direction_deviation": 0.15,
-          "range_deviation": 0.15,
-          "max_range": "rifle_range",
-          "source_effects": {
-            "type": "create-explosion",
-            "entity_name": "explosion-gunshot"
-          }
+      "action": [
+        {
+          "type": "direct",
+          "action_delivery": [
+            {
+              "type": "projectile",
+              "projectile": "kr-armor-piercing-rifle-magazine-projectile",
+              "starting_speed": 1.75,
+              "direction_deviation": 0.15,
+              "range_deviation": 0.15,
+              "max_range": "rifle_range",
+              "source_effects": [
+                {
+                  "type": "create-explosion",
+                  "entity_name": "explosion-gunshot"
+                }
+              ]
+            }
+          ]
         }
-      }
+      ]
     },
     "magazine_size": 30,
     "subgroup": "ammo",
@@ -310,7 +382,9 @@
   {
     "type": "projectile",
     "name": "kr-armor-piercing-rifle-magazine-projectile",
-    "flags": {},
+    "flags": [
+      "not-on-map"
+    ],
     "hidden": true,
     "collision_box": "bullets_collision_box",
     "acceleration": -0.02,
@@ -318,14 +392,19 @@
       "type": "direct",
       "action_delivery": {
         "type": "instant",
-        "target_effects": {
-          "type": "damage",
-          "entity_name": "kr-explosion-hit-p",
-          "damage": {
-            "amount": 14,
-            "type": "physical"
+        "target_effects": [
+          {
+            "type": "create-entity",
+            "entity_name": "kr-explosion-hit-p"
+          },
+          {
+            "type": "damage",
+            "damage": {
+              "amount": 14,
+              "type": "physical"
+            }
           }
-        }
+        ]
       }
     },
     "animation": {
@@ -359,44 +438,61 @@
     "name": "kr-armor-piercing-rifle-magazine",
     "energy_required": 2,
     "enabled": false,
-    "ingredients": {
-      "type": "item",
-      "name": "steel-plate",
-      "amount": 2
-    },
-    "results": {
-      "type": "item",
-      "name": "kr-armor-piercing-rifle-magazine",
-      "amount": 1
-    }
+    "ingredients": [
+      {
+        "type": "item",
+        "name": "kr-rifle-magazine",
+        "amount": 1
+      },
+      {
+        "type": "item",
+        "name": "steel-plate",
+        "amount": 2
+      }
+    ],
+    "results": [
+      {
+        "type": "item",
+        "name": "kr-armor-piercing-rifle-magazine",
+        "amount": 1
+      }
+    ]
   },
   {
     "type": "ammo",
     "name": "kr-uranium-rifle-magazine",
     "icon": "__Krastorio2Assets__/icons/ammo/uranium-rifle-magazine.png",
-    "pictures": {
-      "filename": "__Krastorio2Assets__/icons/ammo/uranium-rifle-magazine.png",
-      "size": 64,
-      "scale": 0.5
-    },
+    "pictures": [
+      {
+        "filename": "__Krastorio2Assets__/icons/ammo/uranium-rifle-magazine.png",
+        "size": 64,
+        "scale": 0.5
+      }
+    ],
     "ammo_category": "bullet",
     "ammo_type": {
       "target_type": "k_target_type",
-      "action": {
-        "type": "direct",
-        "action_delivery": {
-          "type": "projectile",
-          "projectile": "kr-uranium-rifle-magazine-projectile",
-          "starting_speed": 1.75,
-          "direction_deviation": 0.15,
-          "range_deviation": 0.15,
-          "max_range": "rifle_range",
-          "source_effects": {
-            "type": "create-explosion",
-            "entity_name": "explosion-gunshot"
-          }
+      "action": [
+        {
+          "type": "direct",
+          "action_delivery": [
+            {
+              "type": "projectile",
+              "projectile": "kr-uranium-rifle-magazine-projectile",
+              "starting_speed": 1.75,
+              "direction_deviation": 0.15,
+              "range_deviation": 0.15,
+              "max_range": "rifle_range",
+              "source_effects": [
+                {
+                  "type": "create-explosion",
+                  "entity_name": "explosion-gunshot"
+                }
+              ]
+            }
+          ]
         }
-      }
+      ]
     },
     "magazine_size": 30,
     "subgroup": "ammo",
@@ -406,7 +502,9 @@
   {
     "type": "projectile",
     "name": "kr-uranium-rifle-magazine-projectile",
-    "flags": {},
+    "flags": [
+      "not-on-map"
+    ],
     "hidden": true,
     "collision_box": "bullets_collision_box",
     "acceleration": -0.02,
@@ -414,14 +512,26 @@
       "type": "direct",
       "action_delivery": {
         "type": "instant",
-        "target_effects": {
-          "type": "damage",
-          "entity_name": "kr-explosion-hit-u",
-          "damage": {
-            "amount": 6,
-            "type": "kr-radioactive"
+        "target_effects": [
+          {
+            "type": "create-entity",
+            "entity_name": "kr-explosion-hit-u"
+          },
+          {
+            "type": "damage",
+            "damage": {
+              "amount": 14,
+              "type": "physical"
+            }
+          },
+          {
+            "type": "damage",
+            "damage": {
+              "amount": 6,
+              "type": "kr-radioactive"
+            }
           }
-        }
+        ]
       }
     },
     "animation": {
@@ -455,44 +565,61 @@
     "name": "kr-uranium-rifle-magazine",
     "energy_required": 3,
     "enabled": false,
-    "ingredients": {
-      "type": "item",
-      "name": "uranium-238",
-      "amount": 2
-    },
-    "results": {
-      "type": "item",
-      "name": "kr-uranium-rifle-magazine",
-      "amount": 1
-    }
+    "ingredients": [
+      {
+        "type": "item",
+        "name": "kr-armor-piercing-rifle-magazine",
+        "amount": 1
+      },
+      {
+        "type": "item",
+        "name": "uranium-238",
+        "amount": 2
+      }
+    ],
+    "results": [
+      {
+        "type": "item",
+        "name": "kr-uranium-rifle-magazine",
+        "amount": 1
+      }
+    ]
   },
   {
     "type": "ammo",
     "name": "kr-imersite-rifle-magazine",
     "icon": "__Krastorio2Assets__/icons/ammo/imersite-rifle-magazine.png",
-    "pictures": {
-      "size": 64,
-      "filename": "__Krastorio2Assets__/icons/ammo/imersite-rifle-magazine.png",
-      "scale": 0.5
-    },
+    "pictures": [
+      {
+        "size": 64,
+        "filename": "__Krastorio2Assets__/icons/ammo/imersite-rifle-magazine.png",
+        "scale": 0.5
+      }
+    ],
     "ammo_category": "bullet",
     "ammo_type": {
       "target_type": "k_target_type",
-      "action": {
-        "type": "direct",
-        "action_delivery": {
-          "type": "projectile",
-          "projectile": "kr-imersite-rifle-magazine-projectile",
-          "starting_speed": 2.25,
-          "direction_deviation": 0.1,
-          "range_deviation": 0.1,
-          "max_range": "rifle_range",
-          "source_effects": {
-            "type": "create-explosion",
-            "entity_name": "explosion-gunshot"
-          }
+      "action": [
+        {
+          "type": "direct",
+          "action_delivery": [
+            {
+              "type": "projectile",
+              "projectile": "kr-imersite-rifle-magazine-projectile",
+              "starting_speed": 2.25,
+              "direction_deviation": 0.1,
+              "range_deviation": 0.1,
+              "max_range": "rifle_range",
+              "source_effects": [
+                {
+                  "type": "create-explosion",
+                  "entity_name": "explosion-gunshot"
+                }
+              ]
+            }
+          ]
         }
-      }
+      ]
     },
     "magazine_size": 30,
     "subgroup": "ammo",
@@ -502,7 +629,9 @@
   {
     "type": "projectile",
     "name": "kr-imersite-rifle-magazine-projectile",
-    "flags": {},
+    "flags": [
+      "not-on-map"
+    ],
     "hidden": true,
     "collision_box": "bullets_collision_box",
     "acceleration": -0.02,
@@ -510,14 +639,26 @@
       "type": "direct",
       "action_delivery": {
         "type": "instant",
-        "target_effects": {
-          "type": "damage",
-          "entity_name": "kr-explosion-hit-i",
-          "damage": {
-            "amount": 10,
-            "type": "laser"
+        "target_effects": [
+          {
+            "type": "create-entity",
+            "entity_name": "kr-explosion-hit-i"
+          },
+          {
+            "type": "damage",
+            "damage": {
+              "amount": 14,
+              "type": "physical"
+            }
+          },
+          {
+            "type": "damage",
+            "damage": {
+              "amount": 10,
+              "type": "laser"
+            }
           }
-        }
+        ]
       }
     },
     "animation": {
@@ -551,16 +692,25 @@
     "name": "kr-imersite-rifle-magazine",
     "energy_required": 4,
     "enabled": false,
-    "ingredients": {
-      "type": "item",
-      "name": "kr-imersite-crystal",
-      "amount": 2
-    },
-    "results": {
-      "type": "item",
-      "name": "kr-imersite-rifle-magazine",
-      "amount": 1
-    }
+    "ingredients": [
+      {
+        "type": "item",
+        "name": "kr-uranium-rifle-magazine",
+        "amount": 1
+      },
+      {
+        "type": "item",
+        "name": "kr-imersite-crystal",
+        "amount": 2
+      }
+    ],
+    "results": [
+      {
+        "type": "item",
+        "name": "kr-imersite-rifle-magazine",
+        "amount": 1
+      }
+    ]
   },
   {
     "type": "gun",
@@ -578,7 +728,10 @@
         "direction_deviation": 0.1,
         "speed": 0.1,
         "speed_deviation": 0.03,
-        "center": {},
+        "center": [
+          0,
+          0.1
+        ],
         "creation_distance": -0.5,
         "starting_frame_speed": 0.4,
         "starting_frame_speed_deviation": 0.1
@@ -586,10 +739,12 @@
       "projectile_creation_distance": 1.125,
       "min_range": "k_s_rifle_min_range",
       "range": "sniper_range",
-      "sound": {
-        "filename": "__Krastorio2Assets__/sounds/weapons/anti-materiel-rifle.ogg",
-        "volume": 0.5
-      }
+      "sound": [
+        {
+          "filename": "__Krastorio2Assets__/sounds/weapons/anti-materiel-rifle.ogg",
+          "volume": 0.5
+        }
+      ]
     },
     "stack_size": 10
   },
@@ -598,46 +753,63 @@
     "name": "kr-anti-materiel-rifle",
     "energy_required": 10,
     "enabled": false,
-    "ingredients": {
-      "type": "item",
-      "name": "steel-plate",
-      "amount": 4
-    },
-    "results": {
-      "type": "item",
-      "name": "kr-anti-materiel-rifle",
-      "amount": 1
-    }
+    "ingredients": [
+      {
+        "type": "item",
+        "name": "submachine-gun",
+        "amount": 2
+      },
+      {
+        "type": "item",
+        "name": "steel-plate",
+        "amount": 4
+      }
+    ],
+    "results": [
+      {
+        "type": "item",
+        "name": "kr-anti-materiel-rifle",
+        "amount": 1
+      }
+    ]
   },
   {
     "type": "ammo",
     "name": "kr-anti-materiel-rifle-magazine",
     "icon": "__Krastorio2Assets__/icons/ammo/anti-materiel-rifle-magazine.png",
-    "pictures": {
-      "filename": "__Krastorio2Assets__/icons/ammo/anti-materiel-rifle-magazine.png",
-      "size": 64,
-      "scale": 0.5
-    },
+    "pictures": [
+      {
+        "filename": "__Krastorio2Assets__/icons/ammo/anti-materiel-rifle-magazine.png",
+        "size": 64,
+        "scale": 0.5
+      }
+    ],
     "ammo_category": "kr-anti-materiel-rifle-ammo",
     "ammo_type": {
       "cooldown_modifier": 0.8,
       "target_type": "k_target_type",
-      "action": {
-        "type": "direct",
-        "action_delivery": {
-          "type": "projectile",
-          "projectile": "kr-anti-materiel-rifle-magazine-projectile",
-          "starting_speed": 3,
-          "direction_deviation": 0.02,
-          "range_deviation": 0.02,
-          "max_range": "sniper_range",
-          "source_effects": {
-            "type": "create-explosion",
-            "entity_name": "explosion-gunshot"
-          }
-        },
-        "force": "not-same"
-      }
+      "action": [
+        {
+          "type": "direct",
+          "action_delivery": [
+            {
+              "type": "projectile",
+              "projectile": "kr-anti-materiel-rifle-magazine-projectile",
+              "starting_speed": 3,
+              "direction_deviation": 0.02,
+              "range_deviation": 0.02,
+              "max_range": "sniper_range",
+              "source_effects": [
+                {
+                  "type": "create-explosion",
+                  "entity_name": "explosion-gunshot"
+                }
+              ]
+            }
+          ],
+          "force": "not-same"
+        }
+      ]
     },
     "magazine_size": 7,
     "subgroup": "ammo",
@@ -647,7 +819,9 @@
   {
     "type": "projectile",
     "name": "kr-anti-materiel-rifle-magazine-projectile",
-    "flags": {},
+    "flags": [
+      "not-on-map"
+    ],
     "hidden": true,
     "collision_box": "bullets_collision_box",
     "acceleration": -0.025,
@@ -655,25 +829,32 @@
       "type": "direct",
       "action_delivery": {
         "type": "instant",
-        "target_effects": {
-          "type": "nested-result",
-          "entity_name": "explosion-hit",
-          "action": {
-            "type": "area",
-            "radius": "k_d_radius + 0.25",
-            "action_delivery": {
-              "type": "instant",
-              "target_effects": {
-                "type": "damage",
-                "damage": {
-                  "amount": 80,
-                  "type": "physical"
-                }
-              }
-            },
-            "force": "not-same"
+        "target_effects": [
+          {
+            "type": "create-entity",
+            "entity_name": "explosion-hit"
+          },
+          {
+            "type": "nested-result",
+            "action": {
+              "type": "area",
+              "radius": "k_d_radius + 0.25",
+              "action_delivery": {
+                "type": "instant",
+                "target_effects": [
+                  {
+                    "type": "damage",
+                    "damage": {
+                      "amount": 80,
+                      "type": "physical"
+                    }
+                  }
+                ]
+              },
+              "force": "not-same"
+            }
           }
-        }
+        ]
       }
     },
     "animation": {
@@ -707,45 +888,67 @@
     "name": "kr-anti-materiel-rifle-magazine",
     "energy_required": 2,
     "enabled": false,
-    "ingredients": {
-      "type": "item",
-      "name": "copper-plate",
-      "amount": 1
-    },
-    "results": {
-      "type": "item",
-      "name": "kr-anti-materiel-rifle-magazine",
-      "amount": 1
-    }
+    "ingredients": [
+      {
+        "type": "item",
+        "name": "coal",
+        "amount": 3
+      },
+      {
+        "type": "item",
+        "name": "iron-plate",
+        "amount": 2
+      },
+      {
+        "type": "item",
+        "name": "copper-plate",
+        "amount": 1
+      }
+    ],
+    "results": [
+      {
+        "type": "item",
+        "name": "kr-anti-materiel-rifle-magazine",
+        "amount": 1
+      }
+    ]
   },
   {
     "type": "ammo",
     "name": "kr-armor-piercing-anti-materiel-rifle-magazine",
     "icon": "__Krastorio2Assets__/icons/ammo/armor-piercing-anti-materiel-rifle-magazine.png",
-    "pictures": {
-      "filename": "__Krastorio2Assets__/icons/ammo/armor-piercing-anti-materiel-rifle-magazine.png",
-      "size": 64,
-      "scale": 0.5
-    },
+    "pictures": [
+      {
+        "filename": "__Krastorio2Assets__/icons/ammo/armor-piercing-anti-materiel-rifle-magazine.png",
+        "size": 64,
+        "scale": 0.5
+      }
+    ],
     "ammo_category": "kr-anti-materiel-rifle-ammo",
     "ammo_type": {
       "target_type": "k_target_type",
-      "action": {
-        "type": "direct",
-        "action_delivery": {
-          "type": "projectile",
-          "projectile": "kr-armor-piercing-anti-materiel-rifle-magazine-projectile",
-          "starting_speed": 3,
-          "direction_deviation": 0.02,
-          "range_deviation": 0.02,
-          "max_range": "sniper_range",
-          "source_effects": {
-            "type": "create-explosion",
-            "entity_name": "explosion-gunshot"
-          }
-        },
-        "force": "not-same"
-      }
+      "action": [
+        {
+          "type": "direct",
+          "action_delivery": [
+            {
+              "type": "projectile",
+              "projectile": "kr-armor-piercing-anti-materiel-rifle-magazine-projectile",
+              "starting_speed": 3,
+              "direction_deviation": 0.02,
+              "range_deviation": 0.02,
+              "max_range": "sniper_range",
+              "source_effects": [
+                {
+                  "type": "create-explosion",
+                  "entity_name": "explosion-gunshot"
+                }
+              ]
+            }
+          ],
+          "force": "not-same"
+        }
+      ]
     },
     "magazine_size": 7,
     "subgroup": "ammo",
@@ -755,7 +958,9 @@
   {
     "type": "projectile",
     "name": "kr-armor-piercing-anti-materiel-rifle-magazine-projectile",
-    "flags": {},
+    "flags": [
+      "not-on-map"
+    ],
     "hidden": true,
     "collision_box": "bullets_collision_box",
     "acceleration": -0.025,
@@ -763,25 +968,32 @@
       "type": "direct",
       "action_delivery": {
         "type": "instant",
-        "target_effects": {
-          "type": "nested-result",
-          "entity_name": "kr-explosion-hit-p",
-          "action": {
-            "type": "area",
-            "radius": "k_d_radius + 0.25",
-            "action_delivery": {
-              "type": "instant",
-              "target_effects": {
-                "type": "damage",
-                "damage": {
-                  "amount": 125,
-                  "type": "physical"
-                }
-              }
-            },
-            "force": "not-same"
+        "target_effects": [
+          {
+            "type": "create-entity",
+            "entity_name": "kr-explosion-hit-p"
+          },
+          {
+            "type": "nested-result",
+            "action": {
+              "type": "area",
+              "radius": "k_d_radius + 0.25",
+              "action_delivery": {
+                "type": "instant",
+                "target_effects": [
+                  {
+                    "type": "damage",
+                    "damage": {
+                      "amount": 125,
+                      "type": "physical"
+                    }
+                  }
+                ]
+              },
+              "force": "not-same"
+            }
           }
-        }
+        ]
       },
       "force": "not-same"
     },
@@ -816,45 +1028,62 @@
     "name": "kr-armor-piercing-anti-materiel-rifle-magazine",
     "energy_required": 3,
     "enabled": false,
-    "ingredients": {
-      "type": "item",
-      "name": "steel-plate",
-      "amount": 3
-    },
-    "results": {
-      "type": "item",
-      "name": "kr-armor-piercing-anti-materiel-rifle-magazine",
-      "amount": 1
-    }
+    "ingredients": [
+      {
+        "type": "item",
+        "name": "kr-anti-materiel-rifle-magazine",
+        "amount": 1
+      },
+      {
+        "type": "item",
+        "name": "steel-plate",
+        "amount": 3
+      }
+    ],
+    "results": [
+      {
+        "type": "item",
+        "name": "kr-armor-piercing-anti-materiel-rifle-magazine",
+        "amount": 1
+      }
+    ]
   },
   {
     "type": "ammo",
     "name": "kr-uranium-anti-materiel-rifle-magazine",
     "icon": "__Krastorio2Assets__/icons/ammo/uranium-anti-materiel-rifle-magazine.png",
-    "pictures": {
-      "filename": "__Krastorio2Assets__/icons/ammo/uranium-anti-materiel-rifle-magazine.png",
-      "size": 64,
-      "scale": 0.5
-    },
+    "pictures": [
+      {
+        "filename": "__Krastorio2Assets__/icons/ammo/uranium-anti-materiel-rifle-magazine.png",
+        "size": 64,
+        "scale": 0.5
+      }
+    ],
     "ammo_category": "kr-anti-materiel-rifle-ammo",
     "ammo_type": {
       "target_type": "k_target_type",
-      "action": {
-        "type": "direct",
-        "action_delivery": {
-          "type": "projectile",
-          "projectile": "kr-uranium-anti-materiel-rifle-magazine-projectile",
-          "starting_speed": 3,
-          "direction_deviation": 0.02,
-          "range_deviation": 0.02,
-          "max_range": "sniper_range",
-          "source_effects": {
-            "type": "create-explosion",
-            "entity_name": "explosion-gunshot"
-          }
-        },
-        "force": "not-same"
-      }
+      "action": [
+        {
+          "type": "direct",
+          "action_delivery": [
+            {
+              "type": "projectile",
+              "projectile": "kr-uranium-anti-materiel-rifle-magazine-projectile",
+              "starting_speed": 3,
+              "direction_deviation": 0.02,
+              "range_deviation": 0.02,
+              "max_range": "sniper_range",
+              "source_effects": [
+                {
+                  "type": "create-explosion",
+                  "entity_name": "explosion-gunshot"
+                }
+              ]
+            }
+          ],
+          "force": "not-same"
+        }
+      ]
     },
     "magazine_size": 7,
     "subgroup": "ammo",
@@ -864,7 +1093,9 @@
   {
     "type": "projectile",
     "name": "kr-uranium-anti-materiel-rifle-magazine-projectile",
-    "flags": {},
+    "flags": [
+      "not-on-map"
+    ],
     "hidden": true,
     "collision_box": "bullets_collision_box",
     "acceleration": -0.025,
@@ -872,25 +1103,39 @@
       "type": "direct",
       "action_delivery": {
         "type": "instant",
-        "target_effects": {
-          "type": "nested-result",
-          "entity_name": "kr-explosion-hit-u",
-          "action": {
-            "type": "area",
-            "radius": "k_d_radius + 0.25",
-            "action_delivery": {
-              "type": "instant",
-              "target_effects": {
-                "type": "damage",
-                "damage": {
-                  "amount": 75,
-                  "type": "kr-radioactive"
-                }
-              }
-            },
-            "force": "not-same"
+        "target_effects": [
+          {
+            "type": "create-entity",
+            "entity_name": "kr-explosion-hit-u"
+          },
+          {
+            "type": "nested-result",
+            "action": {
+              "type": "area",
+              "radius": "k_d_radius + 0.25",
+              "action_delivery": {
+                "type": "instant",
+                "target_effects": [
+                  {
+                    "type": "damage",
+                    "damage": {
+                      "amount": 125,
+                      "type": "physical"
+                    }
+                  },
+                  {
+                    "type": "damage",
+                    "damage": {
+                      "amount": 75,
+                      "type": "kr-radioactive"
+                    }
+                  }
+                ]
+              },
+              "force": "not-same"
+            }
           }
-        }
+        ]
       },
       "force": "not-same"
     },
@@ -925,45 +1170,62 @@
     "name": "kr-uranium-anti-materiel-rifle-magazine",
     "energy_required": 4,
     "enabled": false,
-    "ingredients": {
-      "type": "item",
-      "name": "uranium-238",
-      "amount": 3
-    },
-    "results": {
-      "type": "item",
-      "name": "kr-uranium-anti-materiel-rifle-magazine",
-      "amount": 1
-    }
+    "ingredients": [
+      {
+        "type": "item",
+        "name": "kr-anti-materiel-rifle-magazine",
+        "amount": 1
+      },
+      {
+        "type": "item",
+        "name": "uranium-238",
+        "amount": 3
+      }
+    ],
+    "results": [
+      {
+        "type": "item",
+        "name": "kr-uranium-anti-materiel-rifle-magazine",
+        "amount": 1
+      }
+    ]
   },
   {
     "type": "ammo",
     "name": "kr-imersite-anti-materiel-rifle-magazine",
     "icon": "__Krastorio2Assets__/icons/ammo/imersite-anti-materiel-rifle-magazine.png",
-    "pictures": {
-      "filename": "__Krastorio2Assets__/icons/ammo/imersite-anti-materiel-rifle-magazine.png",
-      "size": 64,
-      "scale": 0.5
-    },
+    "pictures": [
+      {
+        "filename": "__Krastorio2Assets__/icons/ammo/imersite-anti-materiel-rifle-magazine.png",
+        "size": 64,
+        "scale": 0.5
+      }
+    ],
     "ammo_category": "kr-anti-materiel-rifle-ammo",
     "ammo_type": {
       "target_type": "k_target_type",
-      "action": {
-        "type": "direct",
-        "action_delivery": {
-          "type": "projectile",
-          "projectile": "kr-imersite-anti-materiel-rifle-magazine-projectile",
-          "starting_speed": 5,
-          "direction_deviation": 0.02,
-          "range_deviation": 0.02,
-          "max_range": "sniper_range",
-          "source_effects": {
-            "type": "create-explosion",
-            "entity_name": "explosion-gunshot"
-          }
-        },
-        "force": "not-same"
-      }
+      "action": [
+        {
+          "type": "direct",
+          "action_delivery": [
+            {
+              "type": "projectile",
+              "projectile": "kr-imersite-anti-materiel-rifle-magazine-projectile",
+              "starting_speed": 5,
+              "direction_deviation": 0.02,
+              "range_deviation": 0.02,
+              "max_range": "sniper_range",
+              "source_effects": [
+                {
+                  "type": "create-explosion",
+                  "entity_name": "explosion-gunshot"
+                }
+              ]
+            }
+          ],
+          "force": "not-same"
+        }
+      ]
     },
     "magazine_size": 7,
     "subgroup": "ammo",
@@ -973,7 +1235,9 @@
   {
     "type": "projectile",
     "name": "kr-imersite-anti-materiel-rifle-magazine-projectile",
-    "flags": {},
+    "flags": [
+      "not-on-map"
+    ],
     "hidden": true,
     "collision_box": "bullets_collision_box",
     "acceleration": -0.02,
@@ -981,25 +1245,46 @@
       "type": "direct",
       "action_delivery": {
         "type": "instant",
-        "target_effects": {
-          "type": "nested-result",
-          "entity_name": "kr-explosion-hit-i",
-          "action": {
-            "type": "area",
-            "radius": "k_d_radius + 0.25",
-            "action_delivery": {
-              "type": "instant",
-              "target_effects": {
-                "type": "damage",
-                "damage": {
-                  "amount": 25,
-                  "type": "kr-radioactive"
-                }
-              }
-            },
-            "force": "not-same"
+        "target_effects": [
+          {
+            "type": "create-entity",
+            "entity_name": "kr-explosion-hit-i"
+          },
+          {
+            "type": "nested-result",
+            "action": {
+              "type": "area",
+              "radius": "k_d_radius + 0.25",
+              "action_delivery": {
+                "type": "instant",
+                "target_effects": [
+                  {
+                    "type": "damage",
+                    "damage": {
+                      "amount": 125,
+                      "type": "physical"
+                    }
+                  },
+                  {
+                    "type": "damage",
+                    "damage": {
+                      "amount": 50,
+                      "type": "laser"
+                    }
+                  },
+                  {
+                    "type": "damage",
+                    "damage": {
+                      "amount": 25,
+                      "type": "kr-radioactive"
+                    }
+                  }
+                ]
+              },
+              "force": "not-same"
+            }
           }
-        }
+        ]
       }
     },
     "animation": {
@@ -1033,15 +1318,24 @@
     "name": "kr-imersite-anti-materiel-rifle-magazine",
     "energy_required": 5,
     "enabled": false,
-    "ingredients": {
-      "type": "item",
-      "name": "kr-imersite-crystal",
-      "amount": 3
-    },
-    "results": {
-      "type": "item",
-      "name": "kr-imersite-anti-materiel-rifle-magazine",
-      "amount": 1
-    }
+    "ingredients": [
+      {
+        "type": "item",
+        "name": "kr-anti-materiel-rifle-magazine",
+        "amount": 1
+      },
+      {
+        "type": "item",
+        "name": "kr-imersite-crystal",
+        "amount": 3
+      }
+    ],
+    "results": [
+      {
+        "type": "item",
+        "name": "kr-imersite-anti-materiel-rifle-magazine",
+        "amount": 1
+      }
+    ]
   }
 ]

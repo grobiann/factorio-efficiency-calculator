@@ -2,39 +2,46 @@
   {
     "type": "projectile",
     "name": "kr-beacon-wave",
-    "flags": {},
+    "flags": [
+      "not-on-map"
+    ],
     "hidden": true,
     "acceleration": 0,
-    "speed_modifier": {},
-    "action": {
-      "type": "area",
-      "radius": 2,
-      "ignore_collision_condition": true,
-      "action_delivery": {
-        "type": "damage",
-        "target_effects": {
+    "speed_modifier": [
+      1.0,
+      0.707
+    ],
+    "action": [
+      {
+        "type": "area",
+        "radius": 2,
+        "ignore_collision_condition": true,
+        "action_delivery": {
           "type": "damage",
+          "target_effects": {
+            "type": "damage",
+            "vaporize": false,
+            "lower_distance_threshold": 0,
+            "upper_distance_threshold": 100,
+            "lower_damage_modifier": 1,
+            "upper_damage_modifier": 0.25,
+            "damage": {
+              "amount": 1,
+              "type": "kr-radioactive"
+            }
+          },
           "vaporize": false,
           "lower_distance_threshold": 0,
           "upper_distance_threshold": 100,
           "lower_damage_modifier": 1,
-          "upper_damage_modifier": 0.25,
+          "upper_damage_modifier": 0.1,
           "damage": {
             "amount": 1,
-            "type": "kr-radioactive"
+            "type": "kr-explosion"
           }
-        },
-        "vaporize": false,
-        "lower_distance_threshold": 0,
-        "upper_distance_threshold": 100,
-        "lower_damage_modifier": 1,
-        "upper_damage_modifier": 0.1,
-        "damage": {
-          "amount": 1,
-          "type": "kr-explosion"
         }
       }
-    },
+    ],
     "animation": null,
     "shadow": null
   }

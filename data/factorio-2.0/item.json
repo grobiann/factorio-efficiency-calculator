@@ -3,7 +3,10 @@
     "type": "item",
     "name": "parameter-",
     "icon": "__base__/graphics/icons/parameter/parameter-",
-    "localised_name": {},
+    "localised_name": [
+      "parameter-x",
+      "tostring(number)"
+    ],
     "subgroup": "parameters",
     "order": "a",
     "parameter": true,
@@ -48,12 +51,32 @@
     "name": "coal",
     "icon": "__base__/graphics/icons/coal.png",
     "dark_background_icon": "__base__/graphics/icons/coal-dark-background.png",
-    "pictures": {
-      "size": 64,
-      "filename": "__base__/graphics/icons/coal-3.png",
-      "scale": 0.5,
-      "mipmap_count": 4
-    },
+    "pictures": [
+      {
+        "size": 64,
+        "filename": "__base__/graphics/icons/coal.png",
+        "scale": 0.5,
+        "mipmap_count": 4
+      },
+      {
+        "size": 64,
+        "filename": "__base__/graphics/icons/coal-1.png",
+        "scale": 0.5,
+        "mipmap_count": 4
+      },
+      {
+        "size": 64,
+        "filename": "__base__/graphics/icons/coal-2.png",
+        "scale": 0.5,
+        "mipmap_count": 4
+      },
+      {
+        "size": 64,
+        "filename": "__base__/graphics/icons/coal-3.png",
+        "scale": 0.5,
+        "mipmap_count": 4
+      }
+    ],
     "fuel_category": "chemical",
     "fuel_value": "4MJ",
     "subgroup": "raw-resource",
@@ -69,12 +92,32 @@
     "type": "item",
     "name": "stone",
     "icon": "__base__/graphics/icons/stone.png",
-    "pictures": {
-      "size": 64,
-      "filename": "__base__/graphics/icons/stone-3.png",
-      "scale": 0.5,
-      "mipmap_count": 4
-    },
+    "pictures": [
+      {
+        "size": 64,
+        "filename": "__base__/graphics/icons/stone.png",
+        "scale": 0.5,
+        "mipmap_count": 4
+      },
+      {
+        "size": 64,
+        "filename": "__base__/graphics/icons/stone-1.png",
+        "scale": 0.5,
+        "mipmap_count": 4
+      },
+      {
+        "size": 64,
+        "filename": "__base__/graphics/icons/stone-2.png",
+        "scale": 0.5,
+        "mipmap_count": 4
+      },
+      {
+        "size": 64,
+        "filename": "__base__/graphics/icons/stone-3.png",
+        "scale": 0.5,
+        "mipmap_count": 4
+      }
+    ],
     "subgroup": "raw-resource",
     "order": "d[stone]",
     "inventory_move_sound": "item_sounds.resource_inventory_move",
@@ -87,12 +130,32 @@
     "type": "item",
     "name": "iron-ore",
     "icon": "__base__/graphics/icons/iron-ore.png",
-    "pictures": {
-      "size": 64,
-      "filename": "__base__/graphics/icons/iron-ore-3.png",
-      "scale": 0.5,
-      "mipmap_count": 4
-    },
+    "pictures": [
+      {
+        "size": 64,
+        "filename": "__base__/graphics/icons/iron-ore.png",
+        "scale": 0.5,
+        "mipmap_count": 4
+      },
+      {
+        "size": 64,
+        "filename": "__base__/graphics/icons/iron-ore-1.png",
+        "scale": 0.5,
+        "mipmap_count": 4
+      },
+      {
+        "size": 64,
+        "filename": "__base__/graphics/icons/iron-ore-2.png",
+        "scale": 0.5,
+        "mipmap_count": 4
+      },
+      {
+        "size": 64,
+        "filename": "__base__/graphics/icons/iron-ore-3.png",
+        "scale": 0.5,
+        "mipmap_count": 4
+      }
+    ],
     "subgroup": "raw-resource",
     "color_hint": {
       "text": "I"
@@ -108,12 +171,32 @@
     "type": "item",
     "name": "copper-ore",
     "icon": "__base__/graphics/icons/copper-ore.png",
-    "pictures": {
-      "size": 64,
-      "filename": "__base__/graphics/icons/copper-ore-3.png",
-      "scale": 0.5,
-      "mipmap_count": 4
-    },
+    "pictures": [
+      {
+        "size": 64,
+        "filename": "__base__/graphics/icons/copper-ore.png",
+        "scale": 0.5,
+        "mipmap_count": 4
+      },
+      {
+        "size": 64,
+        "filename": "__base__/graphics/icons/copper-ore-1.png",
+        "scale": 0.5,
+        "mipmap_count": 4
+      },
+      {
+        "size": 64,
+        "filename": "__base__/graphics/icons/copper-ore-2.png",
+        "scale": 0.5,
+        "mipmap_count": 4
+      },
+      {
+        "size": 64,
+        "filename": "__base__/graphics/icons/copper-ore-3.png",
+        "scale": 0.5,
+        "mipmap_count": 4
+      }
+    ],
     "subgroup": "raw-resource",
     "color_hint": {
       "text": "C"
@@ -455,7 +538,11 @@
     "name": "red-wire",
     "icon": "__base__/graphics/icons/shortcut-toolbar/mip/new-red-wire-x56.png",
     "icon_size": 56,
-    "flags": {},
+    "flags": [
+      "only-in-cursor",
+      "not-stackable",
+      "spawnable"
+    ],
     "auto_recycle": false,
     "subgroup": "spawnables",
     "color_hint": {
@@ -471,7 +558,11 @@
     "name": "green-wire",
     "icon": "__base__/graphics/icons/shortcut-toolbar/mip/new-green-wire-x56.png",
     "icon_size": 56,
-    "flags": {},
+    "flags": [
+      "only-in-cursor",
+      "not-stackable",
+      "spawnable"
+    ],
     "auto_recycle": false,
     "subgroup": "spawnables",
     "color_hint": {
@@ -487,7 +578,11 @@
     "name": "copper-wire",
     "icon": "__base__/graphics/icons/shortcut-toolbar/mip/new-copper-wire-x56.png",
     "icon_size": 56,
-    "flags": {},
+    "flags": [
+      "only-in-cursor",
+      "not-stackable",
+      "spawnable"
+    ],
     "auto_recycle": false,
     "subgroup": "spawnables",
     "color_hint": {
@@ -502,7 +597,9 @@
     "type": "item",
     "name": "no-item",
     "icon": "__core__/graphics/icons/mip/no-item.png",
-    "flags": {},
+    "flags": [
+      "not-stackable"
+    ],
     "hidden": true,
     "auto_recycle": false,
     "subgroup": "other",
@@ -530,15 +627,20 @@
             "type": "direct",
             "action_delivery": {
               "type": "instant",
-              "target_effects": {
-                "type": "play-sound",
-                "damage": {
-                  "type": "physical",
-                  "amount": -80
+              "target_effects": [
+                {
+                  "type": "damage",
+                  "damage": {
+                    "type": "physical",
+                    "amount": -80
+                  },
+                  "use_substitute": false
                 },
-                "use_substitute": false,
-                "sound": "sounds.eat_fish"
-              }
+                {
+                  "type": "play-sound",
+                  "sound": "sounds.eat_fish"
+                }
+              ]
             }
           }
         }
@@ -594,7 +696,11 @@
     "type": "copy-paste-tool",
     "name": "copy-paste-tool",
     "icon": "__base__/graphics/icons/copy-paste-tool.png",
-    "flags": {},
+    "flags": [
+      "only-in-cursor",
+      "not-stackable",
+      "spawnable"
+    ],
     "auto_recycle": false,
     "hidden": true,
     "subgroup": "tool",
@@ -602,8 +708,16 @@
     "stack_size": 1,
     "draw_label_for_cursor_render": true,
     "select": {
-      "border_color": {},
-      "mode": {},
+      "border_color": [
+        1,
+        1,
+        1
+      ],
+      "mode": [
+        "blueprint",
+        "avoid-rolling-stock",
+        "avoid-vehicle"
+      ],
       "cursor_box_type": "copy",
       "started_sound": {
         "filename": "__core__/sound/blueprint-select.ogg"
@@ -613,8 +727,14 @@
       }
     },
     "alt_select": {
-      "border_color": {},
-      "mode": {},
+      "border_color": [
+        0,
+        1,
+        1
+      ],
+      "mode": [
+        "blueprint"
+      ],
       "cursor_box_type": "copy",
       "started_sound": {
         "filename": "__core__/sound/blueprint-select.ogg"
@@ -629,7 +749,11 @@
     "type": "copy-paste-tool",
     "name": "cut-paste-tool",
     "icon": "__base__/graphics/icons/cut-paste-tool.png",
-    "flags": {},
+    "flags": [
+      "only-in-cursor",
+      "not-stackable",
+      "spawnable"
+    ],
     "auto_recycle": false,
     "hidden": true,
     "subgroup": "tool",
@@ -637,8 +761,17 @@
     "stack_size": 1,
     "draw_label_for_cursor_render": true,
     "select": {
-      "border_color": {},
-      "mode": {},
+      "border_color": [
+        1,
+        1,
+        1
+      ],
+      "mode": [
+        "blueprint",
+        "deconstruct",
+        "avoid-rolling-stock",
+        "avoid-vehicle"
+      ],
       "cursor_box_type": "copy",
       "started_sound": {
         "filename": "__core__/sound/blueprint-select.ogg"
@@ -648,8 +781,15 @@
       }
     },
     "alt_select": {
-      "border_color": {},
-      "mode": {},
+      "border_color": [
+        1,
+        1,
+        1
+      ],
+      "mode": [
+        "blueprint",
+        "deconstruct"
+      ],
       "cursor_box_type": "copy",
       "started_sound": {
         "filename": "__core__/sound/blueprint-select.ogg"
@@ -665,7 +805,10 @@
     "type": "blueprint",
     "name": "blueprint",
     "icon": "__base__/graphics/icons/blueprint.png",
-    "flags": {},
+    "flags": [
+      "not-stackable",
+      "spawnable"
+    ],
     "subgroup": "tool",
     "order": "c[automated-construction]-a[blueprint]",
     "inventory_move_sound": "item_sounds.planner_inventory_move",
@@ -674,9 +817,19 @@
     "stack_size": 1,
     "draw_label_for_cursor_render": true,
     "select": {
-      "border_color": {},
-      "count_button_color": {},
-      "mode": {},
+      "border_color": [
+        57,
+        156,
+        251
+      ],
+      "count_button_color": [
+        43,
+        113,
+        180
+      ],
+      "mode": [
+        "blueprint"
+      ],
       "cursor_box_type": "copy",
       "started_sound": {
         "filename": "__core__/sound/blueprint-select.ogg"
@@ -686,9 +839,19 @@
       }
     },
     "alt_select": {
-      "border_color": {},
-      "count_button_color": {},
-      "mode": {},
+      "border_color": [
+        0.3,
+        0.8,
+        1
+      ],
+      "count_button_color": [
+        0.3,
+        0.8,
+        1
+      ],
+      "mode": [
+        "blueprint"
+      ],
       "cursor_box_type": "copy",
       "started_sound": {
         "filename": "__core__/sound/blueprint-select.ogg"
@@ -703,7 +866,9 @@
   {
     "type": "tool",
     "name": "automation-science-pack",
-    "localised_description": {},
+    "localised_description": [
+      "item-description.science-pack"
+    ],
     "icon": "__base__/graphics/icons/automation-science-pack.png",
     "subgroup": "science-pack",
     "color_hint": {
@@ -724,7 +889,9 @@
   {
     "type": "tool",
     "name": "logistic-science-pack",
-    "localised_description": {},
+    "localised_description": [
+      "item-description.science-pack"
+    ],
     "icon": "__base__/graphics/icons/logistic-science-pack.png",
     "subgroup": "science-pack",
     "color_hint": {
@@ -877,16 +1044,32 @@
         "range": 15,
         "ammo_type": {
           "target_type": "position",
-          "action": {
-            "type": "direct",
-            "action_delivery": {
-              "type": "instant",
-              "target_effects": {
-                "type": "play-sound",
-                "sound": "sounds.throw_grenade"
+          "action": [
+            {
+              "type": "direct",
+              "action_delivery": {
+                "type": "projectile",
+                "projectile": "grenade",
+                "starting_speed": 0.3
+              }
+            },
+            {
+              "type": "direct",
+              "action_delivery": {
+                "type": "instant",
+                "target_effects": [
+                  {
+                    "type": "play-sound",
+                    "sound": "sounds.throw_projectile"
+                  },
+                  {
+                    "type": "play-sound",
+                    "sound": "sounds.throw_grenade"
+                  }
+                ]
               }
             }
-          }
+          ]
         }
       }
     },
@@ -975,7 +1158,9 @@
     "type": "rail-planner",
     "name": "rail",
     "icon": "__base__/graphics/icons/rail.png",
-    "localised_name": {},
+    "localised_name": [
+      "item-name.rail"
+    ],
     "subgroup": "train-transport",
     "order": "a[rail]-a[rail]",
     "inventory_move_sound": "item_sounds.train_inventory_move",
@@ -983,7 +1168,12 @@
     "drop_sound": "item_sounds.train_inventory_move",
     "place_result": "straight-rail",
     "stack_size": 100,
-    "rails": {},
+    "rails": [
+      "straight-rail",
+      "curved-rail-a",
+      "curved-rail-b",
+      "half-diagonal-rail"
+    ],
     "manual_length_limit": "22.5 -- 2*(Curved-A) + 2*(Curved-B) + their planner penalty + margin"
   },
   {
@@ -1128,7 +1318,14 @@
           "ground_tile": true
         }
       },
-      "tile_condition": {}
+      "tile_condition": [
+        "water",
+        "deepwater",
+        "water-green",
+        "deepwater-green",
+        "water-shallow",
+        "water-mud"
+      ]
     },
     "random_tint_color": "item_tints.organic_green"
   },
@@ -1148,17 +1345,100 @@
     "type": "item",
     "name": "uranium-ore",
     "icon": "__base__/graphics/icons/uranium-ore.png",
-    "pictures": {
-      "layers": {
-        "filename": "__base__/graphics/icons/uranium-ore-3.png",
-        "size": 64,
-        "scale": 0.5,
-        "mipmap_count": 4,
-        "blend_mode": "additive",
-        "draw_as_light": true,
-        "tint": {}
+    "pictures": [
+      {
+        "layers": [
+          {
+            "filename": "__base__/graphics/icons/uranium-ore.png",
+            "size": 64,
+            "scale": 0.5,
+            "mipmap_count": 4
+          },
+          {
+            "filename": "__base__/graphics/icons/uranium-ore.png",
+            "blend_mode": "additive",
+            "draw_as_light": true,
+            "tint": [
+              0.3,
+              0.3,
+              0.3,
+              0.3
+            ],
+            "size": 64,
+            "scale": 0.5
+          }
+        ]
+      },
+      {
+        "layers": [
+          {
+            "filename": "__base__/graphics/icons/uranium-ore-1.png",
+            "size": 64,
+            "scale": 0.5,
+            "mipmap_count": 4
+          },
+          {
+            "filename": "__base__/graphics/icons/uranium-ore-1.png",
+            "blend_mode": "additive",
+            "draw_as_light": true,
+            "tint": [
+              0.3,
+              0.3,
+              0.3,
+              0.3
+            ],
+            "size": 64,
+            "scale": 0.5
+          }
+        ]
+      },
+      {
+        "layers": [
+          {
+            "filename": "__base__/graphics/icons/uranium-ore-2.png",
+            "size": 64,
+            "scale": 0.5,
+            "mipmap_count": 4
+          },
+          {
+            "filename": "__base__/graphics/icons/uranium-ore-2.png",
+            "blend_mode": "additive",
+            "draw_as_light": true,
+            "tint": [
+              0.3,
+              0.3,
+              0.3,
+              0.3
+            ],
+            "size": 64,
+            "scale": 0.5
+          }
+        ]
+      },
+      {
+        "layers": [
+          {
+            "filename": "__base__/graphics/icons/uranium-ore-3.png",
+            "size": 64,
+            "scale": 0.5,
+            "mipmap_count": 4
+          },
+          {
+            "filename": "__base__/graphics/icons/uranium-ore-3.png",
+            "blend_mode": "additive",
+            "draw_as_light": true,
+            "tint": [
+              0.3,
+              0.3,
+              0.3,
+              0.3
+            ],
+            "size": 64,
+            "scale": 0.5
+          }
+        ]
       }
-    },
+    ],
     "subgroup": "raw-resource",
     "order": "g[uranium-ore]",
     "inventory_move_sound": "item_sounds.nuclear_inventory_move",
@@ -1182,16 +1462,28 @@
         "range": 20,
         "ammo_type": {
           "target_type": "position",
-          "action": {
-            "type": "direct",
-            "action_delivery": {
-              "type": "instant",
-              "target_effects": {
-                "type": "play-sound",
-                "sound": "sounds.throw_projectile"
+          "action": [
+            {
+              "type": "direct",
+              "action_delivery": {
+                "type": "projectile",
+                "projectile": "defender-capsule",
+                "starting_speed": 0.3
+              }
+            },
+            {
+              "type": "direct",
+              "action_delivery": {
+                "type": "instant",
+                "target_effects": [
+                  {
+                    "type": "play-sound",
+                    "sound": "sounds.throw_projectile"
+                  }
+                ]
               }
             }
-          }
+          ]
         }
       }
     },
@@ -1318,7 +1610,9 @@
   {
     "type": "tool",
     "name": "chemical-science-pack",
-    "localised_description": {},
+    "localised_description": [
+      "item-description.science-pack"
+    ],
     "icon": "__base__/graphics/icons/chemical-science-pack.png",
     "subgroup": "science-pack",
     "color_hint": {
@@ -1339,7 +1633,9 @@
   {
     "type": "tool",
     "name": "military-science-pack",
-    "localised_description": {},
+    "localised_description": [
+      "item-description.science-pack"
+    ],
     "icon": "__base__/graphics/icons/military-science-pack.png",
     "subgroup": "science-pack",
     "color_hint": {
@@ -1360,7 +1656,9 @@
   {
     "type": "tool",
     "name": "production-science-pack",
-    "localised_description": {},
+    "localised_description": [
+      "item-description.science-pack"
+    ],
     "icon": "__base__/graphics/icons/production-science-pack.png",
     "subgroup": "science-pack",
     "color_hint": {
@@ -1381,7 +1679,9 @@
   {
     "type": "tool",
     "name": "utility-science-pack",
-    "localised_description": {},
+    "localised_description": [
+      "item-description.science-pack"
+    ],
     "icon": "__base__/graphics/icons/utility-science-pack.png",
     "subgroup": "science-pack",
     "color_hint": {
@@ -1484,11 +1784,19 @@
   {
     "type": "item",
     "name": "lane-splitter",
-    "icons": {
-      "icon": "__base__/graphics/icons/signal/signal_1.png",
-      "scale": 0.25,
-      "shift": {}
-    },
+    "icons": [
+      {
+        "icon": "__base__/graphics/icons/splitter.png"
+      },
+      {
+        "icon": "__base__/graphics/icons/signal/signal_1.png",
+        "scale": 0.25,
+        "shift": [
+          8,
+          -8
+        ]
+      }
+    ],
     "hidden": true,
     "subgroup": "other",
     "order": "b[items]-b[lane-splitter]",
@@ -1816,7 +2124,9 @@
     "type": "upgrade-item",
     "name": "upgrade-planner",
     "icon": "__base__/graphics/icons/upgrade-planner.png",
-    "flags": {},
+    "flags": [
+      "spawnable"
+    ],
     "subgroup": "tool",
     "order": "c[automated-construction]-c[upgrade-planner]",
     "inventory_move_sound": "item_sounds.planner_inventory_move",
@@ -1824,8 +2134,14 @@
     "drop_sound": "item_sounds.planner_inventory_move",
     "stack_size": 1,
     "select": {
-      "border_color": {},
-      "mode": {},
+      "border_color": [
+        71,
+        255,
+        73
+      ],
+      "mode": [
+        "upgrade"
+      ],
       "cursor_box_type": "not-allowed",
       "started_sound": {
         "filename": "__core__/sound/upgrade-select-start.ogg"
@@ -1835,8 +2151,14 @@
       }
     },
     "alt_select": {
-      "border_color": {},
-      "mode": {},
+      "border_color": [
+        239,
+        153,
+        34
+      ],
+      "mode": [
+        "cancel-upgrade"
+      ],
       "cursor_box_type": "not-allowed",
       "started_sound": {
         "filename": "__core__/sound/upgrade-cancel-start.ogg"
@@ -1846,8 +2168,14 @@
       }
     },
     "reverse_select": {
-      "border_color": {},
-      "mode": {},
+      "border_color": [
+        246,
+        255,
+        0
+      ],
+      "mode": [
+        "downgrade"
+      ],
       "cursor_box_type": "not-allowed",
       "started_sound": {
         "filename": "__core__/sound/upgrade-select-start.ogg"
@@ -1864,7 +2192,9 @@
     "type": "deconstruction-item",
     "name": "deconstruction-planner",
     "icon": "__base__/graphics/icons/deconstruction-planner.png",
-    "flags": {},
+    "flags": [
+      "spawnable"
+    ],
     "subgroup": "tool",
     "order": "c[automated-construction]-b[deconstruction-planner]",
     "inventory_move_sound": "item_sounds.planner_inventory_move",
@@ -1874,9 +2204,19 @@
     "entity_filter_count": 30,
     "tile_filter_count": 30,
     "select": {
-      "border_color": {},
-      "count_button_color": {},
-      "mode": {},
+      "border_color": [
+        255,
+        24,
+        24
+      ],
+      "count_button_color": [
+        195,
+        52,
+        52
+      ],
+      "mode": [
+        "deconstruct"
+      ],
       "cursor_box_type": "not-allowed",
       "started_sound": {
         "filename": "__core__/sound/deconstruct-select-start.ogg"
@@ -1886,9 +2226,19 @@
       }
     },
     "super_forced_select": {
-      "border_color": {},
-      "count_button_color": {},
-      "mode": {},
+      "border_color": [
+        255,
+        24,
+        24
+      ],
+      "count_button_color": [
+        195,
+        52,
+        52
+      ],
+      "mode": [
+        "deconstruct"
+      ],
       "cursor_box_type": "not-allowed",
       "started_sound": {
         "filename": "__core__/sound/deconstruct-select-start.ogg"
@@ -1898,9 +2248,19 @@
       }
     },
     "alt_select": {
-      "border_color": {},
-      "count_button_color": {},
-      "mode": {},
+      "border_color": [
+        239,
+        153,
+        34
+      ],
+      "count_button_color": [
+        255,
+        176,
+        66
+      ],
+      "mode": [
+        "cancel-deconstruct"
+      ],
       "cursor_box_type": "not-allowed",
       "started_sound": {
         "filename": "__core__/sound/deconstruct-cancel-start.ogg"
@@ -1917,7 +2277,9 @@
     "type": "blueprint-book",
     "name": "blueprint-book",
     "icon": "__base__/graphics/icons/blueprint-book.png",
-    "flags": {},
+    "flags": [
+      "spawnable"
+    ],
     "subgroup": "tool",
     "order": "c[automated-construction]-d[blueprint-book]",
     "inventory_move_sound": "item_sounds.blueprint_inventory_move",
@@ -2065,13 +2427,20 @@
     "name": "nuclear-fuel",
     "icon": "__base__/graphics/icons/nuclear-fuel.png",
     "pictures": {
-      "layers": {
-        "size": 64,
-        "filename": "__base__/graphics/icons/nuclear-fuel-light.png",
-        "scale": 0.5,
-        "mipmap_count": 4,
-        "draw_as_light": true
-      }
+      "layers": [
+        {
+          "size": 64,
+          "filename": "__base__/graphics/icons/nuclear-fuel.png",
+          "scale": 0.5,
+          "mipmap_count": 4
+        },
+        {
+          "draw_as_light": true,
+          "size": 64,
+          "filename": "__base__/graphics/icons/nuclear-fuel-light.png",
+          "scale": 0.5
+        }
+      ]
     },
     "fuel_category": "chemical",
     "fuel_value": "1.21GJ",
@@ -2110,11 +2479,13 @@
     "drop_sound": "item_sounds.mechanical_inventory_move",
     "stack_size": 1,
     "weight": "1 * tons",
-    "rocket_launch_products": {
-      "type": "item",
-      "name": "space-science-pack",
-      "amount": 1000
-    },
+    "rocket_launch_products": [
+      {
+        "type": "item",
+        "name": "space-science-pack",
+        "amount": 1000
+      }
+    ],
     "send_to_orbit_mode": "automated"
   },
   {
@@ -2137,7 +2508,11 @@
     "name": "spidertron-remote",
     "icon": "__base__/graphics/icons/spidertron-remote.png",
     "icon_color_indicator_mask": "__base__/graphics/icons/spidertron-remote-mask.png",
-    "flags": {},
+    "flags": [
+      "not-stackable",
+      "only-in-cursor",
+      "spawnable"
+    ],
     "auto_recycle": false,
     "subgroup": "spawnables",
     "inventory_move_sound": "item_sounds.spidertron_inventory_move",
@@ -2145,18 +2520,36 @@
     "drop_sound": "item_sounds.mechanical_inventory_move",
     "stack_size": 1,
     "select": {
-      "border_color": {},
-      "mode": {},
+      "border_color": [
+        71,
+        255,
+        73
+      ],
+      "mode": [
+        "controllable"
+      ],
       "cursor_box_type": "spidertron-remote-to-be-selected"
     },
     "alt_select": {
-      "border_color": {},
-      "mode": {},
+      "border_color": [
+        239,
+        153,
+        34
+      ],
+      "mode": [
+        "controllable-add"
+      ],
       "cursor_box_type": "spidertron-remote-to-be-selected"
     },
     "reverse_select": {
-      "border_color": {},
-      "mode": {},
+      "border_color": [
+        246,
+        255,
+        0
+      ],
+      "mode": [
+        "controllable-remove"
+      ],
       "cursor_box_type": "not-allowed"
     }
   },
@@ -2164,7 +2557,10 @@
     "type": "selection-tool",
     "name": "selection-tool",
     "icon": "__base__/graphics/icons/blueprint.png",
-    "flags": {},
+    "flags": [
+      "not-stackable",
+      "spawnable"
+    ],
     "hidden": true,
     "subgroup": "other",
     "order": "e[automated-construction]-a[blueprint]",
@@ -2173,23 +2569,42 @@
     "drop_sound": "item_sounds.planner_inventory_move",
     "stack_size": 1,
     "select": {
-      "border_color": {},
-      "mode": {},
+      "border_color": [
+        1,
+        1,
+        1
+      ],
+      "mode": [
+        "blueprint"
+      ],
       "cursor_box_type": "copy"
     },
     "alt_select": {
-      "border_color": {},
-      "mode": {},
+      "border_color": [
+        0,
+        1,
+        0
+      ],
+      "mode": [
+        "blueprint"
+      ],
       "cursor_box_type": "copy"
     }
   },
   {
     "type": "item",
     "name": "electric-energy-interface",
-    "icons": {
-      "icon": "__base__/graphics/icons/accumulator.png",
-      "tint": {}
-    },
+    "icons": [
+      {
+        "icon": "__base__/graphics/icons/accumulator.png",
+        "tint": [
+          1,
+          0.8,
+          1,
+          1
+        ]
+      }
+    ],
     "hidden": true,
     "subgroup": "other",
     "order": "a[electric-energy-interface]-b[electric-energy-interface]",
@@ -2230,15 +2645,27 @@
     "name": "uranium-235",
     "icon": "__base__/graphics/icons/uranium-235.png",
     "pictures": {
-      "layers": {
-        "size": 64,
-        "filename": "__base__/graphics/icons/uranium-235.png",
-        "scale": 0.5,
-        "mipmap_count": 4,
-        "draw_as_light": true,
-        "blend_mode": "additive",
-        "tint": {}
-      }
+      "layers": [
+        {
+          "size": 64,
+          "filename": "__base__/graphics/icons/uranium-235.png",
+          "scale": 0.5,
+          "mipmap_count": 4
+        },
+        {
+          "draw_as_light": true,
+          "blend_mode": "additive",
+          "size": 64,
+          "filename": "__base__/graphics/icons/uranium-235.png",
+          "scale": 0.5,
+          "tint": [
+            0.3,
+            0.3,
+            0.3,
+            0.3
+          ]
+        }
+      ]
     },
     "subgroup": "uranium-processing",
     "color_hint": {
@@ -2281,13 +2708,20 @@
     "name": "uranium-fuel-cell",
     "icon": "__base__/graphics/icons/uranium-fuel-cell.png",
     "pictures": {
-      "layers": {
-        "size": 64,
-        "filename": "__base__/graphics/icons/uranium-fuel-cell-light.png",
-        "scale": 0.5,
-        "mipmap_count": 4,
-        "draw_as_light": true
-      }
+      "layers": [
+        {
+          "size": 64,
+          "filename": "__base__/graphics/icons/uranium-fuel-cell.png",
+          "scale": 0.5,
+          "mipmap_count": 4
+        },
+        {
+          "draw_as_light": true,
+          "size": 64,
+          "filename": "__base__/graphics/icons/uranium-fuel-cell-light.png",
+          "scale": 0.5
+        }
+      ]
     },
     "subgroup": "uranium-processing",
     "order": "b[uranium-products]-a[uranium-fuel-cell]",
@@ -2394,14 +2828,16 @@
   {
     "type": "item",
     "name": "infinity-cargo-wagon",
-    "icons": {
-      "icon": "__base__/graphics/icons/cargo-wagon.png",
-      "tint": {
-        "r": 0.5,
-        "g": 0.5,
-        "b": 1
+    "icons": [
+      {
+        "icon": "__base__/graphics/icons/cargo-wagon.png",
+        "tint": {
+          "r": 0.5,
+          "g": 0.5,
+          "b": 1
+        }
       }
-    },
+    ],
     "hidden": true,
     "subgroup": "other",
     "order": "c[item]-o[infinity-cargo-wagon]",
@@ -2414,14 +2850,16 @@
   {
     "type": "item",
     "name": "infinity-pipe",
-    "icons": {
-      "icon": "__base__/graphics/icons/pipe.png",
-      "tint": {
-        "r": 0.5,
-        "g": 0.5,
-        "b": 1
+    "icons": [
+      {
+        "icon": "__base__/graphics/icons/pipe.png",
+        "tint": {
+          "r": 0.5,
+          "g": 0.5,
+          "b": 1
+        }
       }
-    },
+    ],
     "hidden": true,
     "subgroup": "other",
     "order": "d[item]-o[infinity-pipe]",
@@ -2461,10 +2899,16 @@
   {
     "type": "item",
     "name": "proxy-container",
-    "icons": {
-      "icon": "__base__/graphics/icons/linked-chest-icon.png",
-      "tint": {}
-    },
+    "icons": [
+      {
+        "icon": "__base__/graphics/icons/linked-chest-icon.png",
+        "tint": [
+          0.8,
+          0.1,
+          0.3
+        ]
+      }
+    ],
     "hidden": true,
     "subgroup": "other",
     "order": "a[items]-a[proxy-container]",
@@ -2477,10 +2921,16 @@
   {
     "type": "item",
     "name": "bottomless-chest",
-    "icons": {
-      "icon": "__base__/graphics/icons/steel-chest.png",
-      "tint": {}
-    },
+    "icons": [
+      {
+        "icon": "__base__/graphics/icons/steel-chest.png",
+        "tint": [
+          0.4,
+          0.4,
+          0.4
+        ]
+      }
+    ],
     "hidden": true,
     "subgroup": "other",
     "order": "a[items]-c[bottomless-chest]",
@@ -2545,7 +2995,9 @@
   {
     "type": "module",
     "name": "speed-module",
-    "localised_description": {},
+    "localised_description": [
+      "item-description.speed-module"
+    ],
     "icon": "__base__/graphics/icons/speed-module.png",
     "subgroup": "module",
     "color_hint": {
@@ -2565,8 +3017,18 @@
       "quality": -0.1
     },
     "beacon_tint": {
-      "primary": {},
-      "secondary": {}
+      "primary": [
+        0.441,
+        0.714,
+        1.0,
+        1.0
+      ],
+      "secondary": [
+        0.388,
+        0.976,
+        1.0,
+        1.0
+      ]
     },
     "art_style": "vanilla",
     "requires_beacon_alt_mode": false
@@ -2574,7 +3036,9 @@
   {
     "type": "module",
     "name": "speed-module-2",
-    "localised_description": {},
+    "localised_description": [
+      "item-description.speed-module"
+    ],
     "icon": "__base__/graphics/icons/speed-module-2.png",
     "subgroup": "module",
     "category": "speed",
@@ -2594,8 +3058,18 @@
       "quality": -0.15
     },
     "beacon_tint": {
-      "primary": {},
-      "secondary": {}
+      "primary": [
+        0.441,
+        0.714,
+        1.0,
+        1.0
+      ],
+      "secondary": [
+        0.388,
+        0.976,
+        1.0,
+        1.0
+      ]
     },
     "art_style": "vanilla",
     "requires_beacon_alt_mode": false
@@ -2603,7 +3077,9 @@
   {
     "type": "module",
     "name": "speed-module-3",
-    "localised_description": {},
+    "localised_description": [
+      "item-description.speed-module"
+    ],
     "icon": "__base__/graphics/icons/speed-module-3.png",
     "subgroup": "module",
     "color_hint": {
@@ -2623,8 +3099,18 @@
       "quality": -0.25
     },
     "beacon_tint": {
-      "primary": {},
-      "secondary": {}
+      "primary": [
+        0.441,
+        0.714,
+        1.0,
+        1.0
+      ],
+      "secondary": [
+        0.388,
+        0.976,
+        1.0,
+        1.0
+      ]
     },
     "art_style": "vanilla",
     "requires_beacon_alt_mode": false
@@ -2632,7 +3118,9 @@
   {
     "type": "module",
     "name": "efficiency-module",
-    "localised_description": {},
+    "localised_description": [
+      "item-description.efficiency-module"
+    ],
     "icon": "__base__/graphics/icons/efficiency-module.png",
     "subgroup": "module",
     "color_hint": {
@@ -2650,8 +3138,17 @@
       "consumption": -0.3
     },
     "beacon_tint": {
-      "primary": {},
-      "secondary": {}
+      "primary": [
+        0,
+        1,
+        0
+      ],
+      "secondary": [
+        0.37,
+        1.0,
+        0.37,
+        1.0
+      ]
     },
     "art_style": "vanilla",
     "requires_beacon_alt_mode": false
@@ -2659,7 +3156,9 @@
   {
     "type": "module",
     "name": "efficiency-module-2",
-    "localised_description": {},
+    "localised_description": [
+      "item-description.efficiency-module"
+    ],
     "icon": "__base__/graphics/icons/efficiency-module-2.png",
     "subgroup": "module",
     "color_hint": {
@@ -2677,8 +3176,17 @@
       "consumption": -0.4
     },
     "beacon_tint": {
-      "primary": {},
-      "secondary": {}
+      "primary": [
+        0,
+        1,
+        0
+      ],
+      "secondary": [
+        0.37,
+        1.0,
+        0.37,
+        1.0
+      ]
     },
     "art_style": "vanilla",
     "requires_beacon_alt_mode": false
@@ -2686,7 +3194,9 @@
   {
     "type": "module",
     "name": "efficiency-module-3",
-    "localised_description": {},
+    "localised_description": [
+      "item-description.efficiency-module"
+    ],
     "icon": "__base__/graphics/icons/efficiency-module-3.png",
     "subgroup": "module",
     "color_hint": {
@@ -2704,8 +3214,17 @@
       "consumption": -0.5
     },
     "beacon_tint": {
-      "primary": {},
-      "secondary": {}
+      "primary": [
+        0,
+        1,
+        0
+      ],
+      "secondary": [
+        0.37,
+        1.0,
+        0.37,
+        1.0
+      ]
     },
     "art_style": "vanilla",
     "requires_beacon_alt_mode": false
@@ -2713,7 +3232,9 @@
   {
     "type": "module",
     "name": "productivity-module",
-    "localised_description": {},
+    "localised_description": [
+      "item-description.productivity-module"
+    ],
     "icon": "__base__/graphics/icons/productivity-module.png",
     "subgroup": "module",
     "color_hint": {
@@ -2737,7 +3258,9 @@
   {
     "type": "module",
     "name": "productivity-module-2",
-    "localised_description": {},
+    "localised_description": [
+      "item-description.productivity-module"
+    ],
     "icon": "__base__/graphics/icons/productivity-module-2.png",
     "subgroup": "module",
     "color_hint": {
@@ -2761,7 +3284,9 @@
   {
     "type": "module",
     "name": "productivity-module-3",
-    "localised_description": {},
+    "localised_description": [
+      "item-description.productivity-module"
+    ],
     "icon": "__base__/graphics/icons/productivity-module-3.png",
     "subgroup": "module",
     "color_hint": {
@@ -2785,9 +3310,13 @@
   {
     "type": "item",
     "name": "empty-module-slot",
-    "localised_description": {},
+    "localised_description": [
+      "item-description.empty-module-slot"
+    ],
     "icon": "__core__/graphics/icons/mip/empty-module-slot.png",
-    "flags": {},
+    "flags": [
+      "not-stackable"
+    ],
     "hidden": true,
     "subgroup": "module",
     "order": "z[meta]-a[empty-module-slot]",
@@ -2801,13 +3330,20 @@
     "name": "uranium-rounds-magazine",
     "icon": "__base__/graphics/icons/uranium-rounds-magazine.png",
     "pictures": {
-      "layers": {
-        "size": 64,
-        "filename": "__base__/graphics/icons/uranium-rounds-magazine-light.png",
-        "scale": 0.5,
-        "mipmap_count": 4,
-        "draw_as_light": true
-      }
+      "layers": [
+        {
+          "size": 64,
+          "filename": "__base__/graphics/icons/uranium-rounds-magazine.png",
+          "scale": 0.5,
+          "mipmap_count": 4
+        },
+        {
+          "draw_as_light": true,
+          "size": 64,
+          "filename": "__base__/graphics/icons/uranium-rounds-magazine-light.png",
+          "scale": 0.5
+        }
+      ]
     },
     "ammo_category": "bullet",
     "ammo_type": {
@@ -2819,17 +3355,39 @@
             "type": "create-explosion",
             "entity_name": "explosion-gunshot"
           },
-          "target_effects": {
-            "type": "activate-impact",
-            "entity_name": "explosion-hit",
-            "offsets": {},
-            "offset_deviation": {},
-            "damage": {
-              "amount": 24,
-              "type": "physical"
+          "target_effects": [
+            {
+              "type": "create-entity",
+              "entity_name": "explosion-hit",
+              "offsets": [
+                [
+                  0,
+                  1
+                ]
+              ],
+              "offset_deviation": [
+                [
+                  -0.5,
+                  -0.5
+                ],
+                [
+                  0.5,
+                  0.5
+                ]
+              ]
             },
-            "deliver_category": "bullet"
-          }
+            {
+              "type": "damage",
+              "damage": {
+                "amount": 24,
+                "type": "physical"
+              }
+            },
+            {
+              "type": "activate-impact",
+              "deliver_category": "bullet"
+            }
+          ]
         }
       }
     },
@@ -2847,19 +3405,33 @@
     "name": "flamethrower-ammo",
     "icon": "__base__/graphics/icons/flamethrower-ammo.png",
     "ammo_category": "flamethrower",
-    "ammo_type": {
-      "source_type": "vehicle",
-      "target_type": "position",
-      "clamp_position": true,
-      "action": {
-        "type": "direct",
-        "action_delivery": {
-          "type": "stream",
-          "stream": "tank-flamethrower-fire-stream"
+    "ammo_type": [
+      {
+        "source_type": "default",
+        "target_type": "position",
+        "clamp_position": true,
+        "action": {
+          "type": "direct",
+          "action_delivery": {
+            "type": "stream",
+            "stream": "handheld-flamethrower-fire-stream"
+          }
         }
       },
-      "consumption_modifier": 1.125
-    },
+      {
+        "source_type": "vehicle",
+        "consumption_modifier": 1.125,
+        "target_type": "position",
+        "clamp_position": true,
+        "action": {
+          "type": "direct",
+          "action_delivery": {
+            "type": "stream",
+            "stream": "tank-flamethrower-fire-stream"
+          }
+        }
+      }
+    ],
     "magazine_size": 100,
     "subgroup": "ammo",
     "order": "e[flamethrower]",
@@ -2930,13 +3502,20 @@
     "name": "atomic-bomb",
     "icon": "__base__/graphics/icons/atomic-bomb.png",
     "pictures": {
-      "layers": {
-        "size": 64,
-        "filename": "__base__/graphics/icons/atomic-bomb-light.png",
-        "scale": 0.5,
-        "mipmap_count": 4,
-        "draw_as_light": true
-      }
+      "layers": [
+        {
+          "size": 64,
+          "filename": "__base__/graphics/icons/atomic-bomb.png",
+          "scale": 0.5,
+          "mipmap_count": 4
+        },
+        {
+          "draw_as_light": true,
+          "size": 64,
+          "filename": "__base__/graphics/icons/atomic-bomb-light.png",
+          "scale": 0.5
+        }
+      ]
     },
     "ammo_category": "rocket",
     "ammo_type": {
@@ -2972,19 +3551,33 @@
     "ammo_type": {
       "target_type": "direction",
       "clamp_position": true,
-      "action": {
-        "type": "direct",
-        "action_delivery": {
-          "type": "projectile",
-          "projectile": "piercing-shotgun-pellet",
-          "starting_speed": 1,
-          "starting_speed_deviation": 0.1,
-          "direction_deviation": 0.3,
-          "range_deviation": 0.3,
-          "max_range": 15
+      "action": [
+        {
+          "type": "direct",
+          "action_delivery": {
+            "type": "instant",
+            "source_effects": [
+              {
+                "type": "create-explosion",
+                "entity_name": "explosion-gunshot"
+              }
+            ]
+          }
         },
-        "repeat_count": 16
-      }
+        {
+          "type": "direct",
+          "repeat_count": 16,
+          "action_delivery": {
+            "type": "projectile",
+            "projectile": "piercing-shotgun-pellet",
+            "starting_speed": 1,
+            "starting_speed_deviation": 0.1,
+            "direction_deviation": 0.3,
+            "range_deviation": 0.3,
+            "max_range": 15
+          }
+        }
+      ]
     },
     "magazine_size": 10,
     "subgroup": "ammo",
@@ -3065,13 +3658,20 @@
     "name": "uranium-cannon-shell",
     "icon": "__base__/graphics/icons/uranium-cannon-shell.png",
     "pictures": {
-      "layers": {
-        "size": 64,
-        "filename": "__base__/graphics/icons/uranium-cannon-shell-light.png",
-        "scale": 0.5,
-        "mipmap_count": 4,
-        "draw_as_light": true
-      }
+      "layers": [
+        {
+          "size": 64,
+          "filename": "__base__/graphics/icons/uranium-cannon-shell.png",
+          "scale": 0.5,
+          "mipmap_count": 4
+        },
+        {
+          "draw_as_light": true,
+          "size": 64,
+          "filename": "__base__/graphics/icons/uranium-cannon-shell-light.png",
+          "scale": 0.5
+        }
+      ]
     },
     "ammo_category": "cannon-shell",
     "ammo_type": {
@@ -3107,13 +3707,20 @@
     "name": "explosive-uranium-cannon-shell",
     "icon": "__base__/graphics/icons/explosive-uranium-cannon-shell.png",
     "pictures": {
-      "layers": {
-        "size": 64,
-        "filename": "__base__/graphics/icons/uranium-cannon-shell-light.png",
-        "scale": 0.5,
-        "mipmap_count": 4,
-        "draw_as_light": true
-      }
+      "layers": [
+        {
+          "size": 64,
+          "filename": "__base__/graphics/icons/explosive-uranium-cannon-shell.png",
+          "scale": 0.5,
+          "mipmap_count": 4
+        },
+        {
+          "draw_as_light": true,
+          "size": 64,
+          "filename": "__base__/graphics/icons/uranium-cannon-shell-light.png",
+          "scale": 0.5
+        }
+      ]
     },
     "ammo_category": "cannon-shell",
     "ammo_type": {
@@ -3188,7 +3795,10 @@
       "cooldown": 1,
       "movement_slow_down_factor": 0.4,
       "gun_barrel_length": 0.8,
-      "gun_center_shift": {},
+      "gun_center_shift": [
+        0,
+        -1
+      ],
       "range": 15,
       "min_range": 3,
       "cyclic_sound": {
@@ -3229,12 +3839,18 @@
         "direction_deviation": 0.1,
         "speed": 0.1,
         "speed_deviation": 0.03,
-        "center": {},
+        "center": [
+          0,
+          0
+        ],
         "creation_distance": -0.6875,
         "starting_frame_speed": 0.4,
         "starting_frame_speed_deviation": 0.1
       },
-      "projectile_center": {},
+      "projectile_center": [
+        -0.15625,
+        -0.07812
+      ],
       "projectile_creation_distance": 1,
       "range": 20,
       "sound": "sounds.heavy_gunshot"
@@ -3254,7 +3870,10 @@
       "ammo_category": "flamethrower",
       "cooldown": 1,
       "gun_barrel_length": 1.4,
-      "gun_center_shift": {},
+      "gun_center_shift": [
+        -0.17,
+        -1.15
+      ],
       "range": 9,
       "min_range": 3,
       "cyclic_sound": {
@@ -3302,7 +3921,10 @@
       "cooldown": 60,
       "projectile_creation_distance": 0.6,
       "range": 36,
-      "projectile_center": {},
+      "projectile_center": [
+        -0.17,
+        0
+      ],
       "sound": {
         "filename": "__base__/sound/fight/rocket-launcher.ogg",
         "volume": 0.7,
@@ -3349,7 +3971,10 @@
       "cooldown": 90,
       "movement_slow_down_factor": 0,
       "projectile_creation_distance": 1.6,
-      "projectile_center": {},
+      "projectile_center": [
+        -0.15625,
+        -0.07812
+      ],
       "range": 30,
       "sound": "sounds.tank_gunshot"
     },
@@ -3372,7 +3997,10 @@
       "cooldown": 200,
       "movement_slow_down_factor": 0,
       "projectile_creation_distance": 1.6,
-      "projectile_center": {},
+      "projectile_center": [
+        -0.15625,
+        -0.07812
+      ],
       "range": "7 * 32",
       "min_range": "1 * 32",
       "projectile_creation_parameters": "require(\"prototypes.entity.artillery-cannon-muzzle-flash-shifting\")",
@@ -3398,7 +4026,10 @@
         "speed_deviation": 0.1,
         "vertical_speed": 0.05,
         "vertical_speed_deviation": 0.01,
-        "center": {},
+        "center": [
+          0,
+          -0.5
+        ],
         "creation_distance": 0.5,
         "creation_distance_orientation": 0.4,
         "starting_frame_speed": 0.5,
@@ -3413,7 +4044,9 @@
   {
     "type": "gun",
     "name": "spidertron-rocket-launcher-1",
-    "localised_name": {},
+    "localised_name": [
+      "item-name.spidertron-rocket-launcher"
+    ],
     "icon": "__base__/graphics/icons/rocket-launcher.png",
     "subgroup": "gun",
     "hidden": true,
@@ -3428,7 +4061,10 @@
       "cooldown": 60,
       "range": 36,
       "projectile_creation_distance": -0.5,
-      "projectile_center": {},
+      "projectile_center": [
+        0,
+        0.3
+      ],
       "projectile_orientation_offset": -0.0625,
       "sound": "sounds.spidertron_rocket_launcher"
     },
@@ -3437,7 +4073,9 @@
   {
     "type": "gun",
     "name": "spidertron-rocket-launcher-2",
-    "localised_name": {},
+    "localised_name": [
+      "item-name.spidertron-rocket-launcher"
+    ],
     "icon": "__base__/graphics/icons/rocket-launcher.png",
     "subgroup": "gun",
     "hidden": true,
@@ -3453,7 +4091,10 @@
       "range": 36,
       "projectile_creation_distance": -0.5,
       "projectile_orientation_offset": -0.03125,
-      "projectile_center": {},
+      "projectile_center": [
+        0,
+        0.3
+      ],
       "sound": "sounds.spidertron_rocket_launcher"
     },
     "stack_size": 1
@@ -3461,7 +4102,9 @@
   {
     "type": "gun",
     "name": "spidertron-rocket-launcher-3",
-    "localised_name": {},
+    "localised_name": [
+      "item-name.spidertron-rocket-launcher"
+    ],
     "icon": "__base__/graphics/icons/rocket-launcher.png",
     "subgroup": "gun",
     "hidden": true,
@@ -3476,7 +4119,10 @@
       "cooldown": 60,
       "range": 36,
       "projectile_creation_distance": -0.5,
-      "projectile_center": {},
+      "projectile_center": [
+        0,
+        0.3
+      ],
       "projectile_orientation_offset": 0.03125,
       "sound": "sounds.spidertron_rocket_launcher"
     },
@@ -3485,7 +4131,9 @@
   {
     "type": "gun",
     "name": "spidertron-rocket-launcher-4",
-    "localised_name": {},
+    "localised_name": [
+      "item-name.spidertron-rocket-launcher"
+    ],
     "icon": "__base__/graphics/icons/rocket-launcher.png",
     "subgroup": "gun",
     "hidden": true,
@@ -3500,7 +4148,10 @@
       "cooldown": 60,
       "range": 36,
       "projectile_creation_distance": -0.5,
-      "projectile_center": {},
+      "projectile_center": [
+        0,
+        0.3
+      ],
       "projectile_orientation_offset": 0.0625,
       "sound": "sounds.spidertron_rocket_launcher"
     },
@@ -3510,11 +4161,28 @@
     "type": "armor",
     "name": "modular-armor",
     "icon": "__base__/graphics/icons/modular-armor.png",
-    "resistances": {
-      "type": "fire",
-      "decrease": 0,
-      "percent": 40
-    },
+    "resistances": [
+      {
+        "type": "physical",
+        "decrease": 6,
+        "percent": 30
+      },
+      {
+        "type": "acid",
+        "decrease": 0,
+        "percent": 50
+      },
+      {
+        "type": "explosion",
+        "decrease": 30,
+        "percent": 35
+      },
+      {
+        "type": "fire",
+        "decrease": 0,
+        "percent": 40
+      }
+    ],
     "subgroup": "armor",
     "order": "c[modular-armor]",
     "factoriopedia_simulation": "simulations.factoriopedia_modular_armor",
@@ -3532,11 +4200,28 @@
     "type": "armor",
     "name": "power-armor",
     "icon": "__base__/graphics/icons/power-armor.png",
-    "resistances": {
-      "type": "fire",
-      "decrease": 0,
-      "percent": 60
-    },
+    "resistances": [
+      {
+        "type": "physical",
+        "decrease": 8,
+        "percent": 30
+      },
+      {
+        "type": "acid",
+        "decrease": 0,
+        "percent": 60
+      },
+      {
+        "type": "explosion",
+        "decrease": 40,
+        "percent": 40
+      },
+      {
+        "type": "fire",
+        "decrease": 0,
+        "percent": 60
+      }
+    ],
     "subgroup": "armor",
     "order": "d[power-armor]",
     "factoriopedia_simulation": "simulations.factoriopedia_power_armor",
@@ -3554,11 +4239,28 @@
     "type": "armor",
     "name": "power-armor-mk2",
     "icon": "__base__/graphics/icons/power-armor-mk2.png",
-    "resistances": {
-      "type": "fire",
-      "decrease": 0,
-      "percent": 70
-    },
+    "resistances": [
+      {
+        "type": "physical",
+        "decrease": 10,
+        "percent": 40
+      },
+      {
+        "type": "acid",
+        "decrease": 0,
+        "percent": 70
+      },
+      {
+        "type": "explosion",
+        "decrease": 60,
+        "percent": 50
+      },
+      {
+        "type": "fire",
+        "decrease": 0,
+        "percent": 70
+      }
+    ],
     "subgroup": "armor",
     "order": "e[power-armor-mk2]",
     "factoriopedia_simulation": "simulations.factoriopedia_power_armor_mk2",
@@ -3588,16 +4290,32 @@
         "range": 20,
         "ammo_type": {
           "target_type": "position",
-          "action": {
-            "type": "direct",
-            "action_delivery": {
-              "type": "instant",
-              "target_effects": {
-                "type": "play-sound",
-                "sound": "sounds.throw_grenade"
+          "action": [
+            {
+              "type": "direct",
+              "action_delivery": {
+                "type": "projectile",
+                "projectile": "cluster-grenade",
+                "starting_speed": 0.3
+              }
+            },
+            {
+              "type": "direct",
+              "action_delivery": {
+                "type": "instant",
+                "target_effects": [
+                  {
+                    "type": "play-sound",
+                    "sound": "sounds.throw_projectile"
+                  },
+                  {
+                    "type": "play-sound",
+                    "sound": "sounds.throw_grenade"
+                  }
+                ]
               }
             }
-          }
+          ]
         }
       }
     },
@@ -3624,16 +4342,28 @@
         "range": 25,
         "ammo_type": {
           "target_type": "position",
-          "action": {
-            "type": "direct",
-            "action_delivery": {
-              "type": "instant",
-              "target_effects": {
-                "type": "play-sound",
-                "sound": "sounds.throw_projectile"
+          "action": [
+            {
+              "type": "direct",
+              "action_delivery": {
+                "type": "projectile",
+                "projectile": "poison-capsule",
+                "starting_speed": 0.3
+              }
+            },
+            {
+              "type": "direct",
+              "action_delivery": {
+                "type": "instant",
+                "target_effects": [
+                  {
+                    "type": "play-sound",
+                    "sound": "sounds.throw_projectile"
+                  }
+                ]
               }
             }
-          }
+          ]
         }
       }
     },
@@ -3660,16 +4390,28 @@
         "range": 25,
         "ammo_type": {
           "target_type": "position",
-          "action": {
-            "type": "direct",
-            "action_delivery": {
-              "type": "instant",
-              "target_effects": {
-                "type": "play-sound",
-                "sound": "sounds.throw_projectile"
+          "action": [
+            {
+              "type": "direct",
+              "action_delivery": {
+                "type": "projectile",
+                "projectile": "slowdown-capsule",
+                "starting_speed": 0.3
+              }
+            },
+            {
+              "type": "direct",
+              "action_delivery": {
+                "type": "instant",
+                "target_effects": [
+                  {
+                    "type": "play-sound",
+                    "sound": "sounds.throw_projectile"
+                  }
+                ]
               }
             }
-          }
+          ]
         }
       }
     },
@@ -3696,16 +4438,28 @@
         "range": 25,
         "ammo_type": {
           "target_type": "position",
-          "action": {
-            "type": "direct",
-            "action_delivery": {
-              "type": "instant",
-              "target_effects": {
-                "type": "play-sound",
-                "sound": "sounds.throw_projectile"
+          "action": [
+            {
+              "type": "direct",
+              "action_delivery": {
+                "type": "projectile",
+                "projectile": "distractor-capsule",
+                "starting_speed": 0.3
+              }
+            },
+            {
+              "type": "direct",
+              "action_delivery": {
+                "type": "instant",
+                "target_effects": [
+                  {
+                    "type": "play-sound",
+                    "sound": "sounds.throw_projectile"
+                  }
+                ]
               }
             }
-          }
+          ]
         }
       }
     },
@@ -3732,16 +4486,28 @@
         "range": 25,
         "ammo_type": {
           "target_type": "position",
-          "action": {
-            "type": "direct",
-            "action_delivery": {
-              "type": "instant",
-              "target_effects": {
-                "type": "play-sound",
-                "sound": "sounds.throw_projectile"
+          "action": [
+            {
+              "type": "direct",
+              "action_delivery": {
+                "type": "projectile",
+                "projectile": "destroyer-capsule",
+                "starting_speed": 0.3
+              }
+            },
+            {
+              "type": "direct",
+              "action_delivery": {
+                "type": "instant",
+                "target_effects": [
+                  {
+                    "type": "play-sound",
+                    "sound": "sounds.throw_projectile"
+                  }
+                ]
               }
             }
-          }
+          ]
         }
       }
     },
@@ -3757,7 +4523,9 @@
     "type": "capsule",
     "name": "cliff-explosives",
     "icon": "__base__/graphics/icons/cliff-explosives.png",
-    "flags": {},
+    "flags": [
+      "hide-from-bonus-gui"
+    ],
     "capsule_action": {
       "type": "destroy-cliffs",
       "radius": 1.5,
@@ -3794,29 +4562,57 @@
     "icon": "__base__/graphics/icons/firearm-magazine.png",
     "ammo_category": "bullet",
     "ammo_type": {
-      "action": {
-        "type": "direct",
-        "action_delivery": {
-          "type": "instant",
-          "source_effects": {
-            "type": "create-explosion",
-            "entity_name": "explosion-gunshot",
-            "only_when_visible": true
-          },
-          "target_effects": {
-            "type": "activate-impact",
-            "entity_name": "explosion-hit",
-            "offsets": {},
-            "offset_deviation": {},
-            "only_when_visible": true,
-            "damage": {
-              "amount": 5,
-              "type": "physical"
-            },
-            "deliver_category": "bullet"
-          }
+      "action": [
+        {
+          "type": "direct",
+          "action_delivery": [
+            {
+              "type": "instant",
+              "source_effects": [
+                {
+                  "type": "create-explosion",
+                  "entity_name": "explosion-gunshot",
+                  "only_when_visible": true
+                }
+              ],
+              "target_effects": [
+                {
+                  "type": "create-entity",
+                  "entity_name": "explosion-hit",
+                  "offsets": [
+                    [
+                      0,
+                      1
+                    ]
+                  ],
+                  "offset_deviation": [
+                    [
+                      -0.5,
+                      -0.5
+                    ],
+                    [
+                      0.5,
+                      0.5
+                    ]
+                  ],
+                  "only_when_visible": true
+                },
+                {
+                  "type": "damage",
+                  "damage": {
+                    "amount": 5,
+                    "type": "physical"
+                  }
+                },
+                {
+                  "type": "activate-impact",
+                  "deliver_category": "bullet"
+                }
+              ]
+            }
+          ]
         }
-      }
+      ]
     },
     "magazine_size": 10,
     "subgroup": "ammo",
@@ -3842,18 +4638,40 @@
             "entity_name": "explosion-gunshot",
             "only_when_visible": true
           },
-          "target_effects": {
-            "type": "activate-impact",
-            "entity_name": "explosion-hit",
-            "offsets": {},
-            "offset_deviation": {},
-            "only_when_visible": true,
-            "damage": {
-              "amount": 8,
-              "type": "physical"
+          "target_effects": [
+            {
+              "type": "create-entity",
+              "entity_name": "explosion-hit",
+              "offsets": [
+                [
+                  0,
+                  1
+                ]
+              ],
+              "offset_deviation": [
+                [
+                  -0.5,
+                  -0.5
+                ],
+                [
+                  0.5,
+                  0.5
+                ]
+              ],
+              "only_when_visible": true
             },
-            "deliver_category": "bullet"
-          }
+            {
+              "type": "damage",
+              "damage": {
+                "amount": 8,
+                "type": "physical"
+              }
+            },
+            {
+              "type": "activate-impact",
+              "deliver_category": "bullet"
+            }
+          ]
         }
       }
     },
@@ -3874,19 +4692,33 @@
     "ammo_type": {
       "target_type": "direction",
       "clamp_position": true,
-      "action": {
-        "type": "direct",
-        "action_delivery": {
-          "type": "projectile",
-          "projectile": "shotgun-pellet",
-          "starting_speed": 1,
-          "starting_speed_deviation": 0.1,
-          "direction_deviation": 0.3,
-          "range_deviation": 0.3,
-          "max_range": 15
+      "action": [
+        {
+          "type": "direct",
+          "action_delivery": {
+            "type": "instant",
+            "source_effects": [
+              {
+                "type": "create-explosion",
+                "entity_name": "explosion-gunshot"
+              }
+            ]
+          }
         },
-        "repeat_count": 12
-      }
+        {
+          "type": "direct",
+          "repeat_count": 12,
+          "action_delivery": {
+            "type": "projectile",
+            "projectile": "shotgun-pellet",
+            "starting_speed": 1,
+            "starting_speed_deviation": 0.1,
+            "direction_deviation": 0.3,
+            "range_deviation": 0.3,
+            "max_range": 15
+          }
+        }
+      ]
     },
     "magazine_size": 10,
     "subgroup": "ammo",
@@ -3901,11 +4733,28 @@
     "type": "armor",
     "name": "light-armor",
     "icon": "__base__/graphics/icons/light-armor.png",
-    "resistances": {
-      "type": "fire",
-      "decrease": 0,
-      "percent": 10
-    },
+    "resistances": [
+      {
+        "type": "physical",
+        "decrease": 3,
+        "percent": 20
+      },
+      {
+        "type": "acid",
+        "decrease": 0,
+        "percent": 20
+      },
+      {
+        "type": "explosion",
+        "decrease": 2,
+        "percent": 20
+      },
+      {
+        "type": "fire",
+        "decrease": 0,
+        "percent": 10
+      }
+    ],
     "subgroup": "armor",
     "order": "a[light-armor]",
     "factoriopedia_simulation": "simulations.factoriopedia_light_armor",
@@ -3919,11 +4768,28 @@
     "type": "armor",
     "name": "heavy-armor",
     "icon": "__base__/graphics/icons/heavy-armor.png",
-    "resistances": {
-      "type": "fire",
-      "decrease": 0,
-      "percent": 30
-    },
+    "resistances": [
+      {
+        "type": "physical",
+        "decrease": 6,
+        "percent": 30
+      },
+      {
+        "type": "explosion",
+        "decrease": 20,
+        "percent": 30
+      },
+      {
+        "type": "acid",
+        "decrease": 0,
+        "percent": 40
+      },
+      {
+        "type": "fire",
+        "decrease": 0,
+        "percent": 30
+      }
+    ],
     "subgroup": "armor",
     "order": "b[heavy-armor]",
     "factoriopedia_simulation": "simulations.factoriopedia_heavy_armor",
@@ -3937,7 +4803,9 @@
     "type": "gun",
     "name": "pistol",
     "icon": "__base__/graphics/icons/pistol.png",
-    "flags": {},
+    "flags": [
+      "always-show"
+    ],
     "subgroup": "gun",
     "order": "a[basic-clips]-a[pistol]",
     "inventory_move_sound": "item_sounds.weapon_small_inventory_move",
@@ -3953,7 +4821,10 @@
         "direction_deviation": 0.1,
         "speed": 0.1,
         "speed_deviation": 0.03,
-        "center": {},
+        "center": [
+          0,
+          0.1
+        ],
         "creation_distance": -0.5,
         "starting_frame_speed": 0.4,
         "starting_frame_speed_deviation": 0.1
@@ -3983,7 +4854,10 @@
         "direction_deviation": 0.1,
         "speed": 0.1,
         "speed_deviation": 0.03,
-        "center": {},
+        "center": [
+          0,
+          0.1
+        ],
         "creation_distance": -0.5,
         "starting_frame_speed": 0.4,
         "starting_frame_speed_deviation": 0.1
@@ -4015,7 +4889,10 @@
         "direction_deviation": 0.1,
         "speed": 0.1,
         "speed_deviation": 0.03,
-        "center": {},
+        "center": [
+          0,
+          0
+        ],
         "creation_distance": -0.6875,
         "starting_frame_speed": 0.4,
         "starting_frame_speed_deviation": 0.1
@@ -4087,7 +4964,9 @@
   {
     "type": "item",
     "name": "battery-mk2-equipment",
-    "localised_description": {},
+    "localised_description": [
+      "item-description.battery-equipment"
+    ],
     "icon": "__base__/graphics/icons/battery-mk2-equipment.png",
     "place_as_equipment_result": "battery-mk2-equipment",
     "subgroup": "equipment",
@@ -4137,7 +5016,9 @@
   {
     "type": "item",
     "name": "personal-roboport-mk2-equipment",
-    "localised_description": {},
+    "localised_description": [
+      "item-description.personal-roboport-equipment"
+    ],
     "icon": "__base__/graphics/icons/personal-roboport-mk2-equipment.png",
     "place_as_equipment_result": "personal-roboport-mk2-equipment",
     "subgroup": "utility-equipment",
@@ -4174,7 +5055,9 @@
   {
     "type": "item",
     "name": "energy-shield-mk2-equipment",
-    "localised_description": {},
+    "localised_description": [
+      "item-description.energy-shield-equipment"
+    ],
     "icon": "__base__/graphics/icons/energy-shield-mk2-equipment.png",
     "place_as_equipment_result": "energy-shield-mk2-equipment",
     "subgroup": "military-equipment",
@@ -4214,7 +5097,11 @@
     "type": "capsule",
     "name": "discharge-defense-remote",
     "icon": "__base__/graphics/icons/discharge-defense-equipment-controller.png",
-    "flags": {},
+    "flags": [
+      "only-in-cursor",
+      "not-stackable",
+      "spawnable"
+    ],
     "auto_recycle": false,
     "capsule_action": {
       "type": "equipment-remote",
@@ -4282,7 +5169,11 @@
     "type": "capsule",
     "name": "artillery-targeting-remote",
     "icon": "__base__/graphics/icons/artillery-targeting-remote.png",
-    "flags": {},
+    "flags": [
+      "only-in-cursor",
+      "not-stackable",
+      "spawnable"
+    ],
     "auto_recycle": false,
     "capsule_action": {
       "type": "artillery-remote",

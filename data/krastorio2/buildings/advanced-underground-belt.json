@@ -4,16 +4,25 @@
     "name": "kr-advanced-underground-belt",
     "energy_required": 2,
     "enabled": false,
-    "ingredients": {
-      "type": "item",
-      "name": "kr-advanced-transport-belt",
-      "amount": 30
-    },
-    "results": {
-      "type": "item",
-      "name": "kr-advanced-underground-belt",
-      "amount": 2
-    }
+    "ingredients": [
+      {
+        "type": "item",
+        "name": "express-underground-belt",
+        "amount": 2
+      },
+      {
+        "type": "item",
+        "name": "kr-advanced-transport-belt",
+        "amount": 30
+      }
+    ],
+    "results": [
+      {
+        "type": "item",
+        "name": "kr-advanced-underground-belt",
+        "amount": 2
+      }
+    ]
   },
   {
     "type": "item",
@@ -28,23 +37,50 @@
     "type": "underground-belt",
     "name": "kr-advanced-underground-belt",
     "icon": "__Krastorio2Assets__/icons/entities/advanced-underground-belt.png",
-    "flags": {},
+    "flags": [
+      "placeable-neutral",
+      "player-creation"
+    ],
     "fast_replaceable_group": "transport-belt",
     "next_upgrade": "kr-superior-underground-belt",
     "minable": {
       "mining_time": 0.2,
       "result": "kr-advanced-underground-belt"
     },
-    "collision_box": {},
-    "selection_box": {},
+    "collision_box": [
+      [
+        -0.4,
+        -0.4
+      ],
+      [
+        0.4,
+        0.4
+      ]
+    ],
+    "selection_box": [
+      [
+        -0.5,
+        -0.5
+      ],
+      [
+        0.5,
+        0.5
+      ]
+    ],
     "max_distance": 30,
     "speed": 0.125,
     "max_health": 200,
     "corpse": "kr-advanced-underground-belt-remnants",
-    "resistances": {
-      "type": "impact",
-      "percent": 30
-    },
+    "resistances": [
+      {
+        "type": "fire",
+        "percent": 50
+      },
+      {
+        "type": "impact",
+        "percent": 30
+      }
+    ],
     "belt_animation_set": "require(\"prototypes.buildings.advanced-belt-animation-set\")",
     "structure": {
       "direction_in": {

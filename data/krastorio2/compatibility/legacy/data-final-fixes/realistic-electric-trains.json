@@ -4,6 +4,11 @@
     "name": "ret-electric-locomotive-grid",
     "width": 12,
     "height": 12,
-    "equipment_categories": {}
+    "equipment_categories": [
+      "universal-equipment",
+      "vehicle-equipment",
+      "kr-vehicle-motor",
+      "electric-loco-modules"
+    ]
   }
 ]

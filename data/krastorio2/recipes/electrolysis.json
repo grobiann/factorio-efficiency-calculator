@@ -7,16 +7,20 @@
     "enabled": false,
     "energy_required": 120,
     "category": "kr-electrolysis",
-    "ingredients": {
-      "type": "fluid",
-      "name": "water",
-      "amount": 500
-    },
-    "results": {
-      "type": "fluid",
-      "name": "kr-heavy-water",
-      "amount": 20
-    },
+    "ingredients": [
+      {
+        "type": "fluid",
+        "name": "water",
+        "amount": 500
+      }
+    ],
+    "results": [
+      {
+        "type": "fluid",
+        "name": "kr-heavy-water",
+        "amount": 20
+      }
+    ],
     "allow_productivity": true,
     "always_show_made_in": true,
     "always_show_products": true,
@@ -57,16 +61,30 @@
     "enabled": false,
     "category": "kr-electrolysis",
     "energy_required": 3,
-    "ingredients": {
-      "type": "fluid",
-      "name": "water",
-      "amount": 40
-    },
-    "results": {
-      "type": "fluid",
-      "name": "kr-hydrogen",
-      "amount": 30
-    },
+    "ingredients": [
+      {
+        "type": "item",
+        "name": "kr-sand",
+        "amount": 10
+      },
+      {
+        "type": "fluid",
+        "name": "water",
+        "amount": 40
+      }
+    ],
+    "results": [
+      {
+        "type": "fluid",
+        "name": "kr-chlorine",
+        "amount": 20
+      },
+      {
+        "type": "fluid",
+        "name": "kr-hydrogen",
+        "amount": 30
+      }
+    ],
     "always_show_made_in": true,
     "always_show_products": true,
     "crafting_machine_tint": {
@@ -88,16 +106,25 @@
     "enabled": false,
     "category": "kr-electrolysis",
     "energy_required": 3,
-    "ingredients": {
-      "type": "fluid",
-      "name": "water",
-      "amount": 50
-    },
-    "results": {
-      "type": "fluid",
-      "name": "kr-hydrogen",
-      "amount": 30
-    },
+    "ingredients": [
+      {
+        "type": "fluid",
+        "name": "water",
+        "amount": 50
+      }
+    ],
+    "results": [
+      {
+        "type": "fluid",
+        "name": "kr-oxygen",
+        "amount": 20
+      },
+      {
+        "type": "fluid",
+        "name": "kr-hydrogen",
+        "amount": 30
+      }
+    ],
     "always_show_made_in": true,
     "always_show_products": true,
     "crafting_machine_tint": {
@@ -118,16 +145,30 @@
     "enabled": false,
     "category": "kr-electrolysis",
     "energy_required": 25,
-    "ingredients": {
-      "type": "fluid",
-      "name": "water",
-      "amount": 50
-    },
-    "results": {
-      "type": "item",
-      "name": "kr-lithium",
-      "amount": 5
-    },
+    "ingredients": [
+      {
+        "type": "item",
+        "name": "kr-lithium-chloride",
+        "amount": 5
+      },
+      {
+        "type": "fluid",
+        "name": "water",
+        "amount": 50
+      }
+    ],
+    "results": [
+      {
+        "type": "fluid",
+        "name": "kr-chlorine",
+        "amount": 10
+      },
+      {
+        "type": "item",
+        "name": "kr-lithium",
+        "amount": 5
+      }
+    ],
     "allow_productivity": true,
     "always_show_made_in": true,
     "always_show_products": true,

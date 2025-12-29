@@ -17,17 +17,22 @@
         "direction_deviation": 0.1,
         "speed": 0.1,
         "speed_deviation": 0.03,
-        "center": {},
+        "center": [
+          0,
+          0.1
+        ],
         "creation_distance": -0.5,
         "starting_frame_speed": 0.4,
         "starting_frame_speed_deviation": 0.1
       },
       "projectile_creation_distance": 1.125,
       "range": 22,
-      "sound": {
-        "filename": "__Krastorio2Assets__/sounds/weapons/accelerator.ogg",
-        "volume": 0.3
-      }
+      "sound": [
+        {
+          "filename": "__Krastorio2Assets__/sounds/weapons/accelerator.ogg",
+          "volume": 0.3
+        }
+      ]
     }
   },
   {
@@ -44,11 +49,16 @@
       "cooldown": 90,
       "projectile_creation_distance": 0.6,
       "range": 100,
-      "projectile_center": {},
-      "sound": {
-        "filename": "__Krastorio2Assets__/sounds/weapons/dolphin-gun.ogg",
-        "volume": 1
-      }
+      "projectile_center": [
+        -0.17,
+        0
+      ],
+      "sound": [
+        {
+          "filename": "__Krastorio2Assets__/sounds/weapons/dolphin-gun.ogg",
+          "volume": 1
+        }
+      ]
     }
   },
   {
@@ -65,11 +75,16 @@
       "cooldown": 180,
       "projectile_creation_distance": 0.6,
       "range": 90,
-      "projectile_center": {},
-      "sound": {
-        "filename": "__Krastorio2Assets__/sounds/weapons/rocket-launch.ogg",
-        "volume": 1
-      }
+      "projectile_center": [
+        -0.17,
+        0
+      ],
+      "sound": [
+        {
+          "filename": "__Krastorio2Assets__/sounds/weapons/rocket-launch.ogg",
+          "volume": 1
+        }
+      ]
     }
   },
   {
@@ -88,10 +103,20 @@
       "fire_penalty": 1,
       "range": 50,
       "sound": {
-        "variations": {
-          "filename": "__Krastorio2Assets__/sounds/weapons/impulse-shot-3.ogg",
-          "volume": 0.85
-        },
+        "variations": [
+          {
+            "filename": "__Krastorio2Assets__/sounds/weapons/impulse-shot-1.ogg",
+            "volume": 0.85
+          },
+          {
+            "filename": "__Krastorio2Assets__/sounds/weapons/impulse-shot-2.ogg",
+            "volume": 0.85
+          },
+          {
+            "filename": "__Krastorio2Assets__/sounds/weapons/impulse-shot-3.ogg",
+            "volume": 0.85
+          }
+        ],
         "aggregation": {
           "max_count": 2,
           "remove": false,

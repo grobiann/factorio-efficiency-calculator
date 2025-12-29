@@ -7,13 +7,30 @@
     "unit": {
       "time": 45,
       "count": 150,
-      "ingredients": {}
+      "ingredients": [
+        [
+          "kr-basic-tech-card",
+          1
+        ],
+        [
+          "automation-science-pack",
+          1
+        ],
+        [
+          "logistic-science-pack",
+          1
+        ]
+      ]
     },
-    "prerequisites": {},
-    "effects": {
-      "type": "unlock-recipe",
-      "recipe": "kr-flare-stack"
-    }
+    "prerequisites": [
+      "kr-fluids-chemistry"
+    ],
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "kr-flare-stack"
+      }
+    ]
   },
   {
     "type": "technology",
@@ -23,13 +40,38 @@
     "unit": {
       "time": 45,
       "count": 125,
-      "ingredients": {}
+      "ingredients": [
+        [
+          "kr-basic-tech-card",
+          1
+        ],
+        [
+          "automation-science-pack",
+          1
+        ],
+        [
+          "logistic-science-pack",
+          1
+        ]
+      ]
     },
-    "prerequisites": {},
-    "effects": {
-      "type": "unlock-recipe",
-      "recipe": "kr-fuel-from-solid-fuel"
-    }
+    "prerequisites": [
+      "oil-processing"
+    ],
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "kr-fuel-refinery"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "kr-fuel-from-light-oil"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "kr-fuel-from-solid-fuel"
+      }
+    ]
   },
   {
     "type": "technology",
@@ -39,13 +81,30 @@
     "unit": {
       "time": 30,
       "count": 250,
-      "ingredients": {}
+      "ingredients": [
+        [
+          "kr-basic-tech-card",
+          1
+        ],
+        [
+          "automation-science-pack",
+          1
+        ],
+        [
+          "logistic-science-pack",
+          1
+        ]
+      ]
     },
-    "prerequisites": {},
-    "effects": {
-      "type": "unlock-recipe",
-      "recipe": "kr-gas-power-station"
-    }
+    "prerequisites": [
+      "oil-processing"
+    ],
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "kr-gas-power-station"
+      }
+    ]
   },
   {
     "type": "technology",
@@ -56,13 +115,39 @@
     "unit": {
       "time": 30,
       "count": 125,
-      "ingredients": {}
+      "ingredients": [
+        [
+          "kr-basic-tech-card",
+          1
+        ],
+        [
+          "automation-science-pack",
+          1
+        ],
+        [
+          "logistic-science-pack",
+          1
+        ]
+      ]
     },
-    "prerequisites": {},
-    "effects": {
-      "type": "unlock-recipe",
-      "recipe": "kr-quartz"
-    }
+    "prerequisites": [
+      "kr-fluids-chemistry",
+      "automation-2"
+    ],
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "kr-filtration-plant"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "kr-silicon"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "kr-quartz"
+      }
+    ]
   },
   {
     "type": "technology",
@@ -72,13 +157,39 @@
     "unit": {
       "time": 30,
       "count": 100,
-      "ingredients": {}
+      "ingredients": [
+        [
+          "kr-basic-tech-card",
+          1
+        ],
+        [
+          "automation-science-pack",
+          1
+        ],
+        [
+          "logistic-science-pack",
+          1
+        ]
+      ]
     },
-    "prerequisites": {},
-    "effects": {
-      "type": "unlock-recipe",
-      "recipe": "kr-steel-pump"
-    }
+    "prerequisites": [
+      "steel-processing",
+      "fluid-handling"
+    ],
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "kr-steel-pipe"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "kr-steel-pipe-to-ground"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "kr-steel-pump"
+      }
+    ]
   },
   {
     "type": "technology",
@@ -88,12 +199,33 @@
     "unit": {
       "time": 30,
       "count": 120,
-      "ingredients": {}
+      "ingredients": [
+        [
+          "kr-basic-tech-card",
+          1
+        ],
+        [
+          "automation-science-pack",
+          1
+        ],
+        [
+          "logistic-science-pack",
+          1
+        ]
+      ]
     },
-    "prerequisites": {},
-    "effects": {
-      "type": "unlock-recipe",
-      "recipe": "kr-huge-storage-tank"
-    }
+    "prerequisites": [
+      "kr-steel-fluid-handling"
+    ],
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "kr-big-storage-tank"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "kr-huge-storage-tank"
+      }
+    ]
   }
 ]

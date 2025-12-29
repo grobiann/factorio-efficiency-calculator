@@ -7,30 +7,111 @@
     "unit": {
       "time": 60,
       "count": 2500,
-      "ingredients": {}
+      "ingredients": [
+        [
+          "production-science-pack",
+          1
+        ],
+        [
+          "utility-science-pack",
+          1
+        ],
+        [
+          "kr_optimization_tech_card_name",
+          1
+        ],
+        [
+          "kr-matter-tech-card",
+          1
+        ],
+        [
+          "kr-advanced-tech-card",
+          1
+        ],
+        [
+          "kr-singularity-tech-card",
+          1
+        ]
+      ]
     },
-    "prerequisites": {},
-    "effects": {
-      "type": "unlock-recipe",
-      "recipe": "kr-antimatter-railgun-shell"
-    }
+    "prerequisites": [
+      "kr-antimatter-reactor",
+      "kr-laser-artillery-turret",
+      "kr-rocket-turret"
+    ],
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "kr-antimatter-turret-rocket"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "kr-antimatter-artillery-shell"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "kr-antimatter-rocket"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "kr-antimatter-railgun-shell"
+      }
+    ]
   },
   {
     "type": "technology",
     "name": "kr-antimatter-reactor",
     "icon": "__Krastorio2Assets__/technologies/antimatter-reactor.png",
     "icon_size": 256,
-    "prerequisites": {},
+    "prerequisites": [
+      "kr-fusion-energy",
+      "kr-singularity-tech-card"
+    ],
     "unit": {
       "time": 60,
       "count": 2000,
-      "ingredients": {}
+      "ingredients": [
+        [
+          "production-science-pack",
+          1
+        ],
+        [
+          "utility-science-pack",
+          1
+        ],
+        [
+          "kr_optimization_tech_card_name",
+          1
+        ],
+        [
+          "kr-matter-tech-card",
+          1
+        ],
+        [
+          "kr-advanced-tech-card",
+          1
+        ],
+        [
+          "kr-singularity-tech-card",
+          1
+        ]
+      ]
     },
     "order": "g-f-z",
-    "effects": {
-      "type": "unlock-recipe",
-      "recipe": "kr-charged-antimatter-fuel-cell"
-    }
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "kr-antimatter-reactor"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "kr-empty-antimatter-fuel-cell"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "kr-charged-antimatter-fuel-cell"
+      }
+    ]
   },
   {
     "type": "technology",
@@ -40,13 +121,43 @@
     "unit": {
       "time": 45,
       "count": 500,
-      "ingredients": {}
+      "ingredients": [
+        [
+          "production-science-pack",
+          1
+        ],
+        [
+          "utility-science-pack",
+          1
+        ],
+        [
+          "kr_optimization_tech_card_name",
+          1
+        ],
+        [
+          "kr-matter-tech-card",
+          1
+        ],
+        [
+          "kr-advanced-tech-card",
+          1
+        ],
+        [
+          "kr-singularity-tech-card",
+          1
+        ]
+      ]
     },
-    "prerequisites": {},
-    "effects": {
-      "type": "unlock-recipe",
-      "recipe": "kr-antimatter-reactor-equipment"
-    }
+    "prerequisites": [
+      "kr-fusion-reactor-equipment",
+      "kr-antimatter-reactor"
+    ],
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "kr-antimatter-reactor-equipment"
+      }
+    ]
   },
   {
     "type": "technology",
@@ -56,13 +167,42 @@
     "unit": {
       "time": 60,
       "count": 3000,
-      "ingredients": {}
+      "ingredients": [
+        [
+          "production-science-pack",
+          1
+        ],
+        [
+          "utility-science-pack",
+          1
+        ],
+        [
+          "kr_optimization_tech_card_name",
+          1
+        ],
+        [
+          "kr-matter-tech-card",
+          1
+        ],
+        [
+          "kr-advanced-tech-card",
+          1
+        ],
+        [
+          "kr-singularity-tech-card",
+          1
+        ]
+      ]
     },
-    "prerequisites": {},
-    "effects": {
-      "type": "unlock-recipe",
-      "recipe": "kr-intergalactic-transceiver"
-    }
+    "prerequisites": [
+      "kr-singularity-tech-card"
+    ],
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "kr-intergalactic-transceiver"
+      }
+    ]
   },
   {
     "type": "technology",
@@ -73,13 +213,42 @@
     "unit": {
       "time": 60,
       "count": 666000,
-      "ingredients": {}
+      "ingredients": [
+        [
+          "production-science-pack",
+          1
+        ],
+        [
+          "utility-science-pack",
+          1
+        ],
+        [
+          "kr_optimization_tech_card_name",
+          1
+        ],
+        [
+          "kr-matter-tech-card",
+          1
+        ],
+        [
+          "kr-advanced-tech-card",
+          1
+        ],
+        [
+          "kr-singularity-tech-card",
+          1
+        ]
+      ]
     },
-    "prerequisites": {},
-    "effects": {
-      "type": "unlock-recipe",
-      "recipe": "kr-logo"
-    }
+    "prerequisites": [
+      "kr-intergalactic-transceiver"
+    ],
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "kr-logo"
+      }
+    ]
   },
   {
     "type": "technology",
@@ -90,9 +259,36 @@
     "unit": {
       "time": 60,
       "count": 500,
-      "ingredients": {}
+      "ingredients": [
+        [
+          "production-science-pack",
+          1
+        ],
+        [
+          "utility-science-pack",
+          1
+        ],
+        [
+          "kr_optimization_tech_card_name",
+          1
+        ],
+        [
+          "kr-matter-tech-card",
+          1
+        ],
+        [
+          "kr-advanced-tech-card",
+          1
+        ],
+        [
+          "kr-singularity-tech-card",
+          1
+        ]
+      ]
     },
-    "prerequisites": {},
+    "prerequisites": [
+      "kr-singularity-tech-card"
+    ],
     "effects": {}
   },
   {
@@ -104,13 +300,35 @@
     "unit": {
       "time": 90,
       "count": 500,
-      "ingredients": {}
+      "ingredients": [
+        [
+          "utility-science-pack",
+          1
+        ],
+        [
+          "kr_optimization_tech_card_name",
+          1
+        ],
+        [
+          "kr-advanced-tech-card",
+          1
+        ],
+        [
+          "kr-singularity-tech-card",
+          1
+        ]
+      ]
     },
-    "prerequisites": {},
-    "effects": {
-      "type": "unlock-recipe",
-      "recipe": "kr-personal-laser-defense-mk4-equipment"
-    }
+    "prerequisites": [
+      "kr-personal-laser-defense-mk3-equipment",
+      "kr-singularity-tech-card"
+    ],
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "kr-personal-laser-defense-mk4-equipment"
+      }
+    ]
   },
   {
     "type": "technology",
@@ -120,13 +338,47 @@
     "unit": {
       "time": 60,
       "count": 500,
-      "ingredients": {}
+      "ingredients": [
+        [
+          "production-science-pack",
+          1
+        ],
+        [
+          "utility-science-pack",
+          1
+        ],
+        [
+          "kr_optimization_tech_card_name",
+          1
+        ],
+        [
+          "kr-matter-tech-card",
+          1
+        ],
+        [
+          "kr-advanced-tech-card",
+          1
+        ],
+        [
+          "kr-singularity-tech-card",
+          1
+        ]
+      ]
     },
-    "prerequisites": {},
-    "effects": {
-      "type": "unlock-recipe",
-      "recipe": "kr-gps-satellite"
-    }
+    "prerequisites": [
+      "effect-transmission",
+      "kr-singularity-tech-card"
+    ],
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "kr-planetary-teleporter"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "kr-gps-satellite"
+      }
+    ]
   },
   {
     "type": "technology",
@@ -137,13 +389,35 @@
     "unit": {
       "time": 90,
       "count": 750,
-      "ingredients": {}
+      "ingredients": [
+        [
+          "utility-science-pack",
+          1
+        ],
+        [
+          "kr_optimization_tech_card_name",
+          1
+        ],
+        [
+          "kr-advanced-tech-card",
+          1
+        ],
+        [
+          "kr-singularity-tech-card",
+          1
+        ]
+      ]
     },
-    "prerequisites": {},
-    "effects": {
-      "type": "unlock-recipe",
-      "recipe": "kr-power-armor-mk4"
-    }
+    "prerequisites": [
+      "kr-power-armor-mk3",
+      "kr-singularity-tech-card"
+    ],
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "kr-power-armor-mk4"
+      }
+    ]
   },
   {
     "type": "technology",
@@ -153,12 +427,42 @@
     "unit": {
       "time": 60,
       "count": 1000,
-      "ingredients": {}
+      "ingredients": [
+        [
+          "production-science-pack",
+          1
+        ],
+        [
+          "utility-science-pack",
+          1
+        ],
+        [
+          "kr_optimization_tech_card_name",
+          1
+        ],
+        [
+          "kr-matter-tech-card",
+          1
+        ],
+        [
+          "kr-advanced-tech-card",
+          1
+        ],
+        [
+          "kr-singularity-tech-card",
+          1
+        ]
+      ]
     },
-    "prerequisites": {},
-    "effects": {
-      "type": "unlock-recipe",
-      "recipe": "kr-singularity-beacon"
-    }
+    "prerequisites": [
+      "effect-transmission",
+      "kr-singularity-tech-card"
+    ],
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "kr-singularity-beacon"
+      }
+    ]
   }
 ]

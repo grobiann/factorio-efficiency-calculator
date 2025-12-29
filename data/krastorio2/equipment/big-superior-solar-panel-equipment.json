@@ -4,23 +4,37 @@
     "name": "kr-big-superior-solar-panel-equipment",
     "energy_required": 20,
     "enabled": false,
-    "ingredients": {
-      "type": "item",
-      "name": "kr-electronic-components",
-      "amount": 40
-    },
-    "results": {
-      "type": "item",
-      "name": "kr-big-superior-solar-panel-equipment",
-      "amount": 1
-    }
+    "ingredients": [
+      {
+        "type": "item",
+        "name": "kr-superior-solar-panel-equipment",
+        "amount": 4
+      },
+      {
+        "type": "item",
+        "name": "kr-electronic-components",
+        "amount": 40
+      }
+    ],
+    "results": [
+      {
+        "type": "item",
+        "name": "kr-big-superior-solar-panel-equipment",
+        "amount": 1
+      }
+    ]
   },
   {
     "type": "item",
     "name": "kr-big-superior-solar-panel-equipment",
-    "icons": {
-      "icon": "__Krastorio2Assets__/icons/equipment/tier-2.png"
-    },
+    "icons": [
+      {
+        "icon": "__Krastorio2Assets__/icons/equipment/big-superior-solar-panel-equipment.png"
+      },
+      {
+        "icon": "__Krastorio2Assets__/icons/equipment/tier-2.png"
+      }
+    ],
     "place_as_equipment_result": "kr-big-superior-solar-panel-equipment",
     "subgroup": "equipment",
     "order": "a[energy-source]-a5[superior-solar-panel-equipment]",
@@ -46,6 +60,9 @@
       "usage_priority": "primary-output"
     },
     "power": "384kW",
-    "categories": {}
+    "categories": [
+      "armor",
+      "kr-vehicle"
+    ]
   }
 ]

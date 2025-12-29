@@ -146,8 +146,9 @@ export class DatasetManager {
       if (recipeObj.recipes && Array.isArray(recipeObj.recipes)) {
         // Handle recipes array format
         for (const recipe of recipeObj.recipes) {
-          if (recipe.id) {
-            recipeMap.set(recipe.id, recipe);
+          const recipeId = recipe.id || recipe.name;
+          if (recipeId) {
+            recipeMap.set(recipeId, recipe);
           }
         }
       } else {
@@ -158,8 +159,9 @@ export class DatasetManager {
               result[category] = [];
             }
             for (const recipe of recipes) {
-              if (recipe.id) {
-                recipeMap.set(recipe.id, { ...recipe, category });
+              const recipeId = recipe.id || recipe.name;
+              if (recipeId) {
+                recipeMap.set(recipeId, { ...recipe, category });
               }
             }
           }

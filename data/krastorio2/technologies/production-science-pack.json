@@ -7,13 +7,35 @@
     "unit": {
       "time": 30,
       "count": 250,
-      "ingredients": {}
+      "ingredients": [
+        [
+          "automation-science-pack",
+          1
+        ],
+        [
+          "logistic-science-pack",
+          1
+        ],
+        [
+          "chemical-science-pack",
+          1
+        ],
+        [
+          "production-science-pack",
+          1
+        ]
+      ]
     },
-    "prerequisites": {},
-    "effects": {
-      "type": "unlock-recipe",
-      "recipe": "kr-advanced-fuel"
-    }
+    "prerequisites": [
+      "kr-quarry-minerals-extraction",
+      "kr-fuel"
+    ],
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "kr-advanced-fuel"
+      }
+    ]
   },
   {
     "type": "technology",
@@ -23,13 +45,35 @@
     "unit": {
       "time": 45,
       "count": 500,
-      "ingredients": {}
+      "ingredients": [
+        [
+          "automation-science-pack",
+          1
+        ],
+        [
+          "logistic-science-pack",
+          1
+        ],
+        [
+          "chemical-science-pack",
+          1
+        ],
+        [
+          "production-science-pack",
+          1
+        ]
+      ]
     },
-    "prerequisites": {},
-    "effects": {
-      "type": "unlock-recipe",
-      "recipe": "kr-advanced-solar-panel"
-    }
+    "prerequisites": [
+      "solar-energy",
+      "kr-quarry-minerals-extraction"
+    ],
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "kr-advanced-solar-panel"
+      }
+    ]
   },
   {
     "type": "technology",
@@ -39,14 +83,41 @@
     "upgrade": false,
     "unit": {
       "count": 500,
-      "ingredients": {},
+      "ingredients": [
+        [
+          "automation-science-pack",
+          1
+        ],
+        [
+          "logistic-science-pack",
+          1
+        ],
+        [
+          "chemical-science-pack",
+          1
+        ],
+        [
+          "production-science-pack",
+          1
+        ]
+      ],
       "time": 60
     },
-    "prerequisites": {},
-    "effects": {
-      "type": "unlock-recipe",
-      "recipe": "kr-big-battery-mk3-equipment"
-    }
+    "prerequisites": [
+      "kr-quarry-minerals-extraction",
+      "kr-lithium-sulfur-battery",
+      "battery-mk2-equipment"
+    ],
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "kr-battery-mk3-equipment"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "kr-big-battery-mk3-equipment"
+      }
+    ]
   },
   {
     "type": "technology",
@@ -56,13 +127,35 @@
     "unit": {
       "time": 60,
       "count": 500,
-      "ingredients": {}
+      "ingredients": [
+        [
+          "automation-science-pack",
+          1
+        ],
+        [
+          "logistic-science-pack",
+          1
+        ],
+        [
+          "chemical-science-pack",
+          1
+        ],
+        [
+          "production-science-pack",
+          1
+        ]
+      ]
     },
-    "prerequisites": {},
-    "effects": {
-      "type": "unlock-recipe",
-      "recipe": "kr-nuclear-locomotive"
-    }
+    "prerequisites": [
+      "nuclear-power",
+      "production-science-pack"
+    ],
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "kr-nuclear-locomotive"
+      }
+    ]
   },
   {
     "type": "technology",
@@ -73,12 +166,44 @@
     "unit": {
       "time": 60,
       "count": 350,
-      "ingredients": {}
+      "ingredients": [
+        [
+          "automation-science-pack",
+          1
+        ],
+        [
+          "logistic-science-pack",
+          1
+        ],
+        [
+          "chemical-science-pack",
+          1
+        ],
+        [
+          "production-science-pack",
+          1
+        ]
+      ]
     },
-    "prerequisites": {},
-    "effects": {
-      "type": "unlock-recipe",
-      "recipe": "kr-imersite-crystal"
-    }
+    "prerequisites": [
+      "electric-engine",
+      "kr-advanced-chemistry",
+      "processing-unit",
+      "production-science-pack"
+    ],
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "kr-quarry-drill"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "kr-imersite-powder"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "kr-imersite-crystal"
+      }
+    ]
   }
 ]

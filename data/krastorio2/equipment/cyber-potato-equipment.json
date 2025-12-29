@@ -2,15 +2,19 @@
   {
     "type": "item",
     "name": "kr-cyber-potato-equipment",
-    "localised_description": {},
+    "localised_description": [
+      "equipment-description.cyber-potato-equipment"
+    ],
     "icon": "__Krastorio2Assets__/icons/equipment/cyber-potato-equipment.png",
     "place_as_equipment_result": "kr-cyber-potato-equipment",
     "send_to_orbit_mode": "manual",
-    "rocket_launch_products": {
-      "type": "item",
-      "name": "kr-spoiled-potato",
-      "amount": 1
-    },
+    "rocket_launch_products": [
+      {
+        "type": "item",
+        "name": "kr-spoiled-potato",
+        "amount": 1
+      }
+    ],
     "subgroup": "other",
     "hidden": true,
     "stack_size": 10,
@@ -36,6 +40,9 @@
       "usage_priority": "primary-output"
     },
     "power": "5.0MW",
-    "categories": {}
+    "categories": [
+      "armor",
+      "kr-vehicle"
+    ]
   }
 ]

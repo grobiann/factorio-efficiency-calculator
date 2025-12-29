@@ -4,16 +4,30 @@
     "name": "kr-loader",
     "energy_required": 2,
     "enabled": false,
-    "ingredients": {
-      "type": "item",
-      "name": "kr-iron-beam",
-      "amount": 2
-    },
-    "results": {
-      "type": "item",
-      "name": "kr-loader",
-      "amount": 1
-    }
+    "ingredients": [
+      {
+        "type": "item",
+        "name": "transport-belt",
+        "amount": 1
+      },
+      {
+        "type": "item",
+        "name": "iron-gear-wheel",
+        "amount": 10
+      },
+      {
+        "type": "item",
+        "name": "kr-iron-beam",
+        "amount": 2
+      }
+    ],
+    "results": [
+      {
+        "type": "item",
+        "name": "kr-loader",
+        "amount": 1
+      }
+    ]
   },
   {
     "type": "item",
@@ -28,7 +42,10 @@
     "type": "loader-1x1",
     "name": "kr-loader",
     "icon": "__Krastorio2Assets__/icons/entities/loader.png",
-    "flags": {},
+    "flags": [
+      "placeable-neutral",
+      "player-creation"
+    ],
     "minable": {
       "mining_time": 0.25,
       "result": "kr-loader"
@@ -39,8 +56,26 @@
     },
     "fast_replaceable_group": "transport-belt",
     "next_upgrade": "kr-fast-loader",
-    "collision_box": {},
-    "selection_box": {},
+    "collision_box": [
+      [
+        -0.4,
+        -0.45
+      ],
+      [
+        0.4,
+        0.45
+      ]
+    ],
+    "selection_box": [
+      [
+        -0.5,
+        -0.5
+      ],
+      [
+        0.5,
+        0.5
+      ]
+    ],
     "speed": "data.raw[\"transport-belt\"][\"transport-belt\"].speed",
     "container_distance": 0.75,
     "filter_count": 5,
@@ -52,10 +87,12 @@
     "energy_per_item": "9kJ",
     "max_health": 300,
     "corpse": "small-remnants",
-    "resistances": {
-      "type": "fire",
-      "percent": 90
-    },
+    "resistances": [
+      {
+        "type": "fire",
+        "percent": 90
+      }
+    ],
     "open_sound": "sounds.machine_open",
     "close_sound": "sounds.machine_close",
     "belt_animation_set": "data.raw[\"transport-belt\"][\"transport-belt\"].belt_animation_set",

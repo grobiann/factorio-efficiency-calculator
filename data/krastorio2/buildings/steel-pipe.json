@@ -3,16 +3,20 @@
     "type": "recipe",
     "name": "kr-steel-pipe",
     "enabled": false,
-    "ingredients": {
-      "type": "item",
-      "name": "steel-plate",
-      "amount": 1
-    },
-    "results": {
-      "type": "item",
-      "name": "kr-steel-pipe",
-      "amount": 1
-    }
+    "ingredients": [
+      {
+        "type": "item",
+        "name": "steel-plate",
+        "amount": 1
+      }
+    ],
+    "results": [
+      {
+        "type": "item",
+        "name": "kr-steel-pipe",
+        "amount": 1
+      }
+    ]
   },
   {
     "type": "item",
@@ -27,21 +31,71 @@
     "type": "pipe",
     "name": "kr-steel-pipe",
     "icon": "__Krastorio2Assets__/icons/entities/steel-pipe.png",
-    "flags": {},
+    "flags": [
+      "placeable-neutral",
+      "player-creation"
+    ],
     "minable": {
       "mining_time": 0.1,
       "result": "kr-steel-pipe"
     },
     "fast_replaceable_group": "pipe",
-    "collision_box": {},
-    "selection_box": {},
+    "collision_box": [
+      [
+        -0.29,
+        -0.29
+      ],
+      [
+        0.29,
+        0.29
+      ]
+    ],
+    "selection_box": [
+      [
+        -0.5,
+        -0.5
+      ],
+      [
+        0.5,
+        0.5
+      ]
+    ],
     "fluid_box": {
       "volume": 100,
-      "pipe_connections": {
-        "direction": "defines.direction.west",
-        "position": {},
-        "connection_category": "kr-steel-pipe"
-      },
+      "pipe_connections": [
+        {
+          "direction": "defines.direction.north",
+          "position": [
+            0,
+            0
+          ],
+          "connection_category": "kr-steel-pipe"
+        },
+        {
+          "direction": "defines.direction.east",
+          "position": [
+            0,
+            0
+          ],
+          "connection_category": "kr-steel-pipe"
+        },
+        {
+          "direction": "defines.direction.south",
+          "position": [
+            0,
+            0
+          ],
+          "connection_category": "kr-steel-pipe"
+        },
+        {
+          "direction": "defines.direction.west",
+          "position": [
+            0,
+            0
+          ],
+          "connection_category": "kr-steel-pipe"
+        }
+      ],
       "hide_connection_info": true
     },
     "max_health": 200,
@@ -49,10 +103,16 @@
     "icon_draw_specification": {
       "scale": 0.5
     },
-    "resistances": {
-      "type": "impact",
-      "percent": 50
-    },
+    "resistances": [
+      {
+        "type": "fire",
+        "percent": 90
+      },
+      {
+        "type": "impact",
+        "percent": 50
+      }
+    ],
     "vehicle_impact_sound": {
       "filename": "__base__/sound/car-metal-impact.ogg",
       "volume": 0.65
@@ -271,7 +331,25 @@
         "direction_count": 1
       }
     },
-    "horizontal_window_bounding_box": {},
-    "vertical_window_bounding_box": {}
+    "horizontal_window_bounding_box": [
+      [
+        -0.25,
+        -0.28125
+      ],
+      [
+        0.25,
+        0.15625
+      ]
+    ],
+    "vertical_window_bounding_box": [
+      [
+        -0.28125,
+        -0.5
+      ],
+      [
+        0.03125,
+        0.125
+      ]
+    ]
   }
 ]

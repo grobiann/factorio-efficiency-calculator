@@ -4,16 +4,35 @@
     "name": "kr-gas-power-station",
     "energy_required": 10,
     "enabled": false,
-    "ingredients": {
-      "type": "item",
-      "name": "pipe",
-      "amount": 4
-    },
-    "results": {
-      "type": "item",
-      "name": "kr-gas-power-station",
-      "amount": 1
-    }
+    "ingredients": [
+      {
+        "type": "item",
+        "name": "kr-steel-beam",
+        "amount": 10
+      },
+      {
+        "type": "item",
+        "name": "engine-unit",
+        "amount": 20
+      },
+      {
+        "type": "item",
+        "name": "electronic-circuit",
+        "amount": 4
+      },
+      {
+        "type": "item",
+        "name": "pipe",
+        "amount": 4
+      }
+    ],
+    "results": [
+      {
+        "type": "item",
+        "name": "kr-gas-power-station",
+        "amount": 1
+      }
+    ]
   },
   {
     "type": "item",
@@ -28,7 +47,10 @@
     "type": "generator",
     "name": "kr-gas-power-station",
     "icon": "__Krastorio2Assets__/icons/entities/gas-power-station.png",
-    "flags": {},
+    "flags": [
+      "placeable-neutral",
+      "player-creation"
+    ],
     "minable": {
       "mining_time": 1,
       "result": "kr-gas-power-station"
@@ -36,22 +58,79 @@
     "max_health": 750,
     "corpse": "kr-medium-random-pipes-remnants",
     "dying_explosion": "medium-explosion",
-    "collision_box": {},
-    "selection_box": {},
+    "collision_box": [
+      [
+        -2.3,
+        -2.3
+      ],
+      [
+        2.3,
+        2.3
+      ]
+    ],
+    "selection_box": [
+      [
+        -2.5,
+        -2.5
+      ],
+      [
+        2.5,
+        2.5
+      ]
+    ],
     "damaged_trigger_effect": "hit_effects.entity()",
-    "resistances": {
-      "type": "impact",
-      "percent": 50
-    },
+    "resistances": [
+      {
+        "type": "physical",
+        "percent": 25
+      },
+      {
+        "type": "fire",
+        "percent": 75
+      },
+      {
+        "type": "impact",
+        "percent": 50
+      }
+    ],
     "fluid_box": {
       "pipe_covers": "pipecoverspictures()",
       "pipe_picture": "require(\"prototypes.buildings.pipe-picture\")",
       "volume": 200,
-      "pipe_connections": {
-        "flow_direction": "input-output",
-        "direction": "defines.direction.north",
-        "position": {}
-      },
+      "pipe_connections": [
+        {
+          "flow_direction": "input-output",
+          "direction": "defines.direction.east",
+          "position": [
+            2,
+            0
+          ]
+        },
+        {
+          "flow_direction": "input-output",
+          "direction": "defines.direction.west",
+          "position": [
+            -2,
+            0
+          ]
+        },
+        {
+          "flow_direction": "input-output",
+          "direction": "defines.direction.south",
+          "position": [
+            0,
+            2
+          ]
+        },
+        {
+          "flow_direction": "input-output",
+          "direction": "defines.direction.north",
+          "position": [
+            0,
+            -2
+          ]
+        }
+      ],
       "production_type": "input-output",
       "minimum_temperature": 25.0
     },
@@ -75,10 +154,16 @@
     },
     "working_sound": {
       "sound": {
-        "variations": {
-          "filename": "__Krastorio2Assets__/sounds/buildings/gas-power-station-2.ogg",
-          "volume": 0.75
-        },
+        "variations": [
+          {
+            "filename": "__Krastorio2Assets__/sounds/buildings/gas-power-station-1.ogg",
+            "volume": 0.8
+          },
+          {
+            "filename": "__Krastorio2Assets__/sounds/buildings/gas-power-station-2.ogg",
+            "volume": 0.75
+          }
+        ],
         "aggregation": {
           "max_count": 3,
           "remove": false,
@@ -94,17 +179,19 @@
     "performance_to_sound_speedup": 0.5,
     "horizontal_animation": "animation",
     "vertical_animation": "animation",
-    "smoke": {
-      "name": "kr-gas-power-station-smoke",
-      "north_position": "util.by_pixel(47, -88)",
-      "south_position": "util.by_pixel(47, -88)",
-      "east_position": "util.by_pixel(47, -88)",
-      "west_position": "util.by_pixel(47, -88)",
-      "frequency": 0.35,
-      "starting_vertical_speed": 0.05,
-      "slow_down_factor": 1,
-      "starting_frame_deviation": 60
-    },
+    "smoke": [
+      {
+        "name": "kr-gas-power-station-smoke",
+        "north_position": "util.by_pixel(47, -88)",
+        "south_position": "util.by_pixel(47, -88)",
+        "east_position": "util.by_pixel(47, -88)",
+        "west_position": "util.by_pixel(47, -88)",
+        "frequency": 0.35,
+        "starting_vertical_speed": 0.05,
+        "slow_down_factor": 1,
+        "starting_frame_deviation": 60
+      }
+    ],
     "water_reflection": {
       "pictures": {
         "filename": "__Krastorio2Assets__/buildings/gas-power-station/gas-power-station-reflection.png",
@@ -141,11 +228,16 @@
       "height": 120,
       "line_length": 5,
       "frame_count": 60,
-      "shift": {},
+      "shift": [
+        -0.53125,
+        -0.4375
+      ],
       "priority": "high",
       "animation_speed": 0.25,
       "filename": "__base__/graphics/entity/smoke/smoke.png",
-      "flags": {}
+      "flags": [
+        "smoke"
+      ]
     }
   }
 ]

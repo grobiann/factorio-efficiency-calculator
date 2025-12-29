@@ -3,16 +3,48 @@
     "type": "turret",
     "name": "small-worm-turret",
     "icon": "__base__/graphics/icons/small-worm.png",
-    "flags": {},
+    "flags": [
+      "placeable-enemy",
+      "placeable-off-grid",
+      "not-repairable",
+      "breaths-air"
+    ],
     "order": "b-c-a",
     "max_health": 200,
     "subgroup": "enemies",
     "impact_category": "organic",
     "resistances": {},
     "healing_per_tick": 0.01,
-    "collision_box": {},
-    "map_generator_bounding_box": {},
-    "selection_box": {},
+    "collision_box": [
+      [
+        -0.9,
+        -0.8
+      ],
+      [
+        0.9,
+        0.8
+      ]
+    ],
+    "map_generator_bounding_box": [
+      [
+        -1.9,
+        -1.8
+      ],
+      [
+        1.9,
+        1.8
+      ]
+    ],
+    "selection_box": [
+      [
+        -0.9,
+        -0.8
+      ],
+      [
+        0.9,
+        0.8
+      ]
+    ],
     "damaged_trigger_effect": "hit_effects.biter()",
     "shooting_cursor_size": 3,
     "corpse": "small-worm-corpse",
@@ -72,7 +104,10 @@
           "action_delivery": {
             "type": "stream",
             "stream": "acid-stream-worm-small",
-            "source_offset": {}
+            "source_offset": [
+              0.15,
+              -0.5
+            ]
           }
         }
       }
@@ -80,19 +115,45 @@
     "autoplace": "enemy_autoplace.enemy_worm_autoplace(\"enemy_autoplace_base(0, 2)\")",
     "call_for_help_radius": 40,
     "spawn_decorations_on_expansion": true,
-    "spawn_decoration": {
-      "decorative": "enemy-decal-transparent",
-      "spawn_min": 2,
-      "spawn_max": 4,
-      "spawn_min_radius": 1,
-      "spawn_max_radius": 2
-    }
+    "spawn_decoration": [
+      {
+        "decorative": "worms-decal",
+        "spawn_min": 0,
+        "spawn_max": 2,
+        "spawn_min_radius": 1,
+        "spawn_max_radius": 2
+      },
+      {
+        "decorative": "shroom-decal",
+        "spawn_min": 1,
+        "spawn_max": 1,
+        "spawn_min_radius": 1,
+        "spawn_max_radius": 2
+      },
+      {
+        "decorative": "enemy-decal",
+        "spawn_min": 1,
+        "spawn_max": 2,
+        "spawn_min_radius": 0,
+        "spawn_max_radius": 1
+      },
+      {
+        "decorative": "enemy-decal-transparent",
+        "spawn_min": 2,
+        "spawn_max": 4,
+        "spawn_min_radius": 1,
+        "spawn_max_radius": 2
+      }
+    ]
   },
   {
     "type": "ammo-turret",
     "name": "gun-turret",
     "icon": "__base__/graphics/icons/gun-turret.png",
-    "flags": {},
+    "flags": [
+      "placeable-player",
+      "player-creation"
+    ],
     "minable": {
       "mining_time": 0.5,
       "result": "gun-turret"
@@ -101,8 +162,26 @@
     "max_health": 400,
     "corpse": "gun-turret-remnants",
     "dying_explosion": "gun-turret-explosion",
-    "collision_box": {},
-    "selection_box": {},
+    "collision_box": [
+      [
+        -0.7,
+        -0.7
+      ],
+      [
+        0.7,
+        0.7
+      ]
+    ],
+    "selection_box": [
+      [
+        -1,
+        -1
+      ],
+      [
+        1,
+        1
+      ]
+    ],
     "drawing_box_vertical_extension": 0.2,
     "damaged_trigger_effect": "hit_effects.entity()",
     "rotation_speed": 0.015,
@@ -121,40 +200,64 @@
     "icon_draw_specification": {
       "scale": 0.7
     },
-    "icons_positioning": {
-      "inventory_index": "defines.inventory.turret_ammo",
-      "shift": {}
-    },
-    "folded_animation": {
-      "layers": {
-        "frame_count": 1,
-        "line_length": 1
+    "icons_positioning": [
+      {
+        "inventory_index": "defines.inventory.turret_ammo",
+        "shift": [
+          0,
+          -0.25
+        ]
       }
+    ],
+    "folded_animation": {
+      "layers": [
+        "gun_turret_extension{frame_count=1, line_length = 1}",
+        "gun_turret_extension_mask{frame_count=1, line_length = 1}",
+        "gun_turret_extension_shadow{frame_count=1, line_length = 1}"
+      ]
     },
     "preparing_animation": {
-      "layers": {}
+      "layers": [
+        "gun_turret_extension{}",
+        "gun_turret_extension_mask{}",
+        "gun_turret_extension_shadow{}"
+      ]
     },
     "prepared_animation": "gun_turret_attack{frame_count=1}",
     "attacking_animation": "gun_turret_attack{}",
     "folding_animation": {
-      "layers": {
-        "run_mode": "backward"
-      }
+      "layers": [
+        "gun_turret_extension{run_mode = \"backward\"}",
+        "gun_turret_extension_mask{run_mode = \"backward\"}",
+        "gun_turret_extension_shadow{run_mode = \"backward\"}"
+      ]
     },
     "graphics_set": {
       "base_visualisation": {
         "animation": {
-          "layers": {
-            "filename": "__base__/graphics/entity/gun-turret/gun-turret-base-mask.png",
-            "priority": "high",
-            "width": 122,
-            "height": 102,
-            "shift": "util.by_pixel(0, -4.5)",
-            "scale": 0.5,
-            "flags": {},
-            "line_length": 1,
-            "apply_runtime_tint": true
-          }
+          "layers": [
+            {
+              "filename": "__base__/graphics/entity/gun-turret/gun-turret-base.png",
+              "priority": "high",
+              "width": 150,
+              "height": 118,
+              "shift": "util.by_pixel(0.5, -1)",
+              "scale": 0.5
+            },
+            {
+              "filename": "__base__/graphics/entity/gun-turret/gun-turret-base-mask.png",
+              "flags": [
+                "mask",
+                "low-object"
+              ],
+              "line_length": 1,
+              "width": 122,
+              "height": 102,
+              "shift": "util.by_pixel(0, -4.5)",
+              "apply_runtime_tint": true,
+              "scale": 0.5
+            }
+          ]
         }
       }
     },
@@ -164,13 +267,19 @@
       "health_penalty": 1,
       "cooldown": 6,
       "projectile_creation_distance": 1.39375,
-      "projectile_center": {},
+      "projectile_center": [
+        0,
+        -0.0875
+      ],
       "shell_particle": {
         "name": "shell-particle",
         "direction_deviation": 0.1,
         "speed": 0.1,
         "speed_deviation": 0.03,
-        "center": {},
+        "center": [
+          -0.0625,
+          0
+        ],
         "creation_distance": -1.925,
         "starting_frame_speed": 0.2,
         "starting_frame_speed_deviation": 0.1
@@ -197,15 +306,37 @@
     "type": "electric-turret",
     "name": "laser-turret",
     "icon": "__base__/graphics/icons/laser-turret.png",
-    "flags": {},
+    "flags": [
+      "placeable-player",
+      "placeable-enemy",
+      "player-creation"
+    ],
     "minable": {
       "mining_time": 0.5,
       "result": "laser-turret"
     },
     "fast_replaceable_group": "laser-turret",
     "max_health": 1000,
-    "collision_box": {},
-    "selection_box": {},
+    "collision_box": [
+      [
+        -0.7,
+        -0.7
+      ],
+      [
+        0.7,
+        0.7
+      ]
+    ],
+    "selection_box": [
+      [
+        -1,
+        -1
+      ],
+      [
+        1,
+        1
+      ]
+    ],
     "drawing_box_vertical_extension": 0.3,
     "damaged_trigger_effect": "hit_effects.entity()",
     "circuit_connector": "circuit_connector_definitions[\"laser-turret\"]",
@@ -227,37 +358,57 @@
       "usage_priority": "primary-input"
     },
     "folded_animation": {
-      "layers": {
-        "frame_count": 1,
-        "line_length": 1
-      }
+      "layers": [
+        "laser_turret_extension{frame_count=1, line_length = 1}",
+        "laser_turret_extension_shadow{frame_count=1, line_length=1}",
+        "laser_turret_extension_mask{frame_count=1, line_length=1}"
+      ]
     },
     "preparing_animation": {
-      "layers": {}
+      "layers": [
+        "laser_turret_extension{}",
+        "laser_turret_extension_shadow{}",
+        "laser_turret_extension_mask{}"
+      ]
     },
     "prepared_animation": {
-      "layers": {}
+      "layers": [
+        "laser_turret_shooting()",
+        "laser_turret_shooting_shadow()",
+        "laser_turret_shooting_mask()"
+      ]
     },
     "energy_glow_animation": "laser_turret_shooting_glow()",
     "glow_light_intensity": 0.5,
     "folding_animation": {
-      "layers": {
-        "run_mode": "backward"
-      }
+      "layers": [
+        "laser_turret_extension{run_mode = \"backward\"}",
+        "laser_turret_extension_shadow{run_mode = \"backward\"}",
+        "laser_turret_extension_mask{run_mode = \"backward\"}"
+      ]
     },
     "graphics_set": {
       "base_visualisation": {
         "animation": {
-          "layers": {
-            "filename": "__base__/graphics/entity/laser-turret/laser-turret-base-shadow.png",
-            "priority": "high",
-            "width": 132,
-            "height": 82,
-            "shift": "util.by_pixel(6, 3)",
-            "scale": 0.5,
-            "line_length": 1,
-            "draw_as_shadow": true
-          }
+          "layers": [
+            {
+              "filename": "__base__/graphics/entity/laser-turret/laser-turret-base.png",
+              "priority": "high",
+              "width": 138,
+              "height": 104,
+              "shift": "util.by_pixel(-0.5, 2)",
+              "scale": 0.5
+            },
+            {
+              "filename": "__base__/graphics/entity/laser-turret/laser-turret-base-shadow.png",
+              "line_length": 1,
+              "width": 132,
+              "height": 82,
+              "draw_as_shadow": true,
+              "shift": "util.by_pixel(6, 3)",
+              "scale": 0.5
+            }
+          ]
         }
       }
     },
@@ -267,7 +418,10 @@
       "range": 24,
       "range_mode": "center-to-bounding-box",
       "source_direction_count": 64,
-      "source_offset": {},
+      "source_offset": [
+        0,
+        "-3.423489 / 4"
+      ],
       "damage_modifier": 2,
       "ammo_category": "laser",
       "ammo_type": {
@@ -279,7 +433,10 @@
             "beam": "laser-beam",
             "max_length": 24,
             "duration": 40,
-            "source_offset": {}
+            "source_offset": [
+              0,
+              -1.31439
+            ]
           }
         }
       }
@@ -303,7 +460,11 @@
     "type": "artillery-turret",
     "name": "artillery-turret",
     "icon": "__base__/graphics/icons/artillery-turret.png",
-    "flags": {},
+    "flags": [
+      "placeable-neutral",
+      "placeable-player",
+      "player-creation"
+    ],
     "inventory_size": 1,
     "ammo_stack_limit": 15,
     "automated_ammo_count": 5,
@@ -328,8 +489,26 @@
     "max_health": 2000,
     "corpse": "artillery-turret-remnants",
     "dying_explosion": "artillery-turret-explosion",
-    "collision_box": {},
-    "selection_box": {},
+    "collision_box": [
+      [
+        -1.2,
+        -1.2
+      ],
+      [
+        1.2,
+        1.2
+      ]
+    ],
+    "selection_box": [
+      [
+        -1.5,
+        -1.5
+      ],
+      [
+        1.5,
+        1.5
+      ]
+    ],
     "drawing_box_vertical_extension": 3.5,
     "damaged_trigger_effect": "hit_effects.entity()",
     "circuit_connector": "circuit_connector_definitions[\"artillery-turret\"]",
@@ -340,47 +519,240 @@
     "cannon_parking_frame_count": 8,
     "cannon_parking_speed": 0.25,
     "manual_range_modifier": 2.5,
-    "resistances": {
-      "type": "acid",
-      "decrease": 3,
-      "percent": 20
-    },
+    "resistances": [
+      {
+        "type": "fire",
+        "decrease": 15,
+        "percent": 50
+      },
+      {
+        "type": "physical",
+        "decrease": 15,
+        "percent": 30
+      },
+      {
+        "type": "impact",
+        "decrease": 50,
+        "percent": 50
+      },
+      {
+        "type": "explosion",
+        "decrease": 15,
+        "percent": 30
+      },
+      {
+        "type": "acid",
+        "decrease": 3,
+        "percent": 20
+      }
+    ],
     "base_picture_render_layer": "lower-object-above-shadow",
     "base_picture": {
-      "layers": {
-        "filename": "__base__/graphics/entity/artillery-turret/artillery-turret-base-shadow.png",
-        "priority": "high",
-        "line_length": 1,
-        "width": 277,
-        "height": 149,
-        "scale": 0.5,
-        "shift": "util.by_pixel(18, 16)",
-        "draw_as_shadow": true
-      }
+      "layers": [
+        {
+          "filename": "__base__/graphics/entity/artillery-turret/artillery-turret-base.png",
+          "priority": "high",
+          "line_length": 1,
+          "width": 207,
+          "height": 199,
+          "scale": 0.5
+        },
+        {
+          "filename": "__base__/graphics/entity/artillery-turret/artillery-turret-base-shadow.png",
+          "priority": "high",
+          "line_length": 1,
+          "width": 277,
+          "height": 149,
+          "shift": "util.by_pixel(18, 16)",
+          "draw_as_shadow": true,
+          "scale": 0.5
+        }
+      ]
     },
-    "cannon_base_shift": {},
+    "cannon_base_shift": [
+      0.0,
+      0.0,
+      0.9722
+    ],
     "cannon_barrel_pictures": {
-      "layers": {
-        "dice": 4,
-        "priority": "very-low",
-        "allow_low_quality_rotation": true,
-        "direction_count": 256,
-        "scale": 0.5,
-        "draw_as_shadow": true
-      }
+      "layers": [
+        "util.sprite_load(\"__base__/graphics/entity/artillery-wagon/artillery-wagon-cannon-barrel\",\n          {\n            dice = 4,\n            priority = \"very-low\",\n            allow_low_quality_rotation = true,\n            direction_count = 256,\n            scale = 0.5\n          }\n        )",
+        "util.sprite_load(\"__base__/graphics/entity/artillery-wagon/artillery-wagon-cannon-barrel-shadow\",\n          {\n            dice = 4,\n            priority = \"very-low\",\n            allow_low_quality_rotation = true,\n            draw_as_shadow = true,\n            direction_count = 256,\n            scale = 0.5\n          }\n        )"
+      ]
     },
     "cannon_base_pictures": {
-      "layers": {
-        "dice": 4,
-        "priority": "very-low",
-        "allow_low_quality_rotation": true,
-        "direction_count": 256,
-        "scale": 0.5,
-        "draw_as_shadow": true
-      }
+      "layers": [
+        "util.sprite_load(\"__base__/graphics/entity/artillery-wagon/artillery-wagon-cannon-base\",\n          {\n            dice = 4,\n            priority = \"very-low\",\n            allow_low_quality_rotation = true,\n            direction_count = 256,\n            scale = 0.5\n          }\n        )",
+        "util.sprite_load(\"__base__/graphics/entity/artillery-wagon/artillery-wagon-cannon-base-shadow\",\n          {\n            dice = 4,\n            priority = \"very-low\",\n            allow_low_quality_rotation = true,\n            draw_as_shadow = true,\n            direction_count = 256,\n            scale = 0.5\n          }\n        )"
+      ]
     },
-    "cannon_barrel_recoil_shiftings": {},
-    "cannon_barrel_light_direction": {},
+    "cannon_barrel_recoil_shiftings": [
+      [
+        0.01,
+        -0.0,
+        -0.0
+      ],
+      [
+        0.0093,
+        -0.1973,
+        -0.0878
+      ],
+      [
+        0.0088,
+        -0.3945,
+        -0.1755
+      ],
+      [
+        0.0083,
+        -0.5918,
+        -0.2635
+      ],
+      [
+        0.0078,
+        -0.7888,
+        -0.3513
+      ],
+      [
+        0.007,
+        -0.986,
+        -0.439
+      ],
+      [
+        0.007,
+        -0.9828,
+        -0.4375
+      ],
+      [
+        0.007,
+        -0.9753,
+        -0.4343
+      ],
+      [
+        0.0073,
+        -0.9635,
+        -0.429
+      ],
+      [
+        0.0073,
+        -0.9475,
+        -0.422
+      ],
+      [
+        0.0073,
+        -0.9278,
+        -0.413
+      ],
+      [
+        0.0073,
+        -0.9043,
+        -0.4025
+      ],
+      [
+        0.0075,
+        -0.877,
+        -0.3905
+      ],
+      [
+        0.0075,
+        -0.8463,
+        -0.3768
+      ],
+      [
+        0.0075,
+        -0.8123,
+        -0.3618
+      ],
+      [
+        0.0078,
+        -0.7755,
+        -0.3453
+      ],
+      [
+        0.0078,
+        -0.736,
+        -0.3278
+      ],
+      [
+        0.008,
+        -0.694,
+        -0.309
+      ],
+      [
+        0.008,
+        -0.6498,
+        -0.2893
+      ],
+      [
+        0.0083,
+        -0.604,
+        -0.269
+      ],
+      [
+        0.0083,
+        -0.5565,
+        -0.2478
+      ],
+      [
+        0.0085,
+        -0.508,
+        -0.2263
+      ],
+      [
+        0.0085,
+        -0.4588,
+        -0.2043
+      ],
+      [
+        0.0088,
+        -0.4088,
+        -0.182
+      ],
+      [
+        0.0088,
+        -0.359,
+        -0.1598
+      ],
+      [
+        0.009,
+        -0.3095,
+        -0.1378
+      ],
+      [
+        0.0093,
+        -0.2605,
+        -0.116
+      ],
+      [
+        0.0093,
+        -0.2128,
+        -0.0948
+      ],
+      [
+        0.0095,
+        -0.1663,
+        -0.074
+      ],
+      [
+        0.0095,
+        -0.1213,
+        -0.054
+      ],
+      [
+        0.0098,
+        -0.0785,
+        -0.035
+      ],
+      [
+        0.0098,
+        -0.038,
+        -0.017
+      ]
+    ],
+    "cannon_barrel_light_direction": [
+      0.5976251,
+      -0.0242053,
+      -0.8014102
+    ],
     "water_reflection": {
       "pictures": {
         "filename": "__base__/graphics/entity/artillery-turret/artillery-turret-reflection.png",
@@ -399,20 +771,68 @@
     "type": "turret",
     "name": "medium-worm-turret",
     "icon": "__base__/graphics/icons/medium-worm.png",
-    "flags": {},
+    "flags": [
+      "placeable-player",
+      "placeable-enemy",
+      "placeable-off-grid",
+      "not-repairable",
+      "breaths-air"
+    ],
     "order": "b-c-b",
     "subgroup": "enemies",
     "max_health": 500,
     "impact_category": "organic",
-    "resistances": {
-      "type": "laser",
-      "decrease": 2,
-      "percent": 20
-    },
+    "resistances": [
+      {
+        "type": "physical",
+        "decrease": 5
+      },
+      {
+        "type": "explosion",
+        "decrease": 5,
+        "percent": 15
+      },
+      {
+        "type": "fire",
+        "decrease": 2,
+        "percent": 50
+      },
+      {
+        "type": "laser",
+        "percent": 20
+      }
+    ],
     "healing_per_tick": 0.015,
-    "collision_box": {},
-    "map_generator_bounding_box": {},
-    "selection_box": {},
+    "collision_box": [
+      [
+        -1.1,
+        -1.0
+      ],
+      [
+        1.1,
+        1.0
+      ]
+    ],
+    "map_generator_bounding_box": [
+      [
+        -2.1,
+        -2.0
+      ],
+      [
+        2.1,
+        2.0
+      ]
+    ],
+    "selection_box": [
+      [
+        -1.1,
+        -1.0
+      ],
+      [
+        1.1,
+        1.0
+      ]
+    ],
     "damaged_trigger_effect": "hit_effects.biter()",
     "shooting_cursor_size": 3.5,
     "rotation_speed": 1,
@@ -473,7 +893,10 @@
           "action_delivery": {
             "type": "stream",
             "stream": "acid-stream-worm-medium",
-            "source_offset": {}
+            "source_offset": [
+              0.15,
+              -0.5
+            ]
           }
         }
       }
@@ -482,32 +905,103 @@
     "autoplace": "enemy_autoplace.enemy_worm_autoplace(\"enemy_autoplace_base(2, 3)\")",
     "call_for_help_radius": 40,
     "spawn_decorations_on_expansion": true,
-    "spawn_decoration": {
-      "decorative": "enemy-decal-transparent",
-      "spawn_min": 2,
-      "spawn_max": 4,
-      "spawn_min_radius": 1,
-      "spawn_max_radius": 3
-    }
+    "spawn_decoration": [
+      {
+        "decorative": "worms-decal",
+        "spawn_min": 1,
+        "spawn_max": 2,
+        "spawn_min_radius": 1,
+        "spawn_max_radius": 3
+      },
+      {
+        "decorative": "shroom-decal",
+        "spawn_min": 1,
+        "spawn_max": 2,
+        "spawn_min_radius": 1,
+        "spawn_max_radius": 2
+      },
+      {
+        "decorative": "enemy-decal",
+        "spawn_min": 1,
+        "spawn_max": 3,
+        "spawn_min_radius": 0,
+        "spawn_max_radius": 3
+      },
+      {
+        "decorative": "enemy-decal-transparent",
+        "spawn_min": 2,
+        "spawn_max": 4,
+        "spawn_min_radius": 1,
+        "spawn_max_radius": 3
+      }
+    ]
   },
   {
     "type": "turret",
     "name": "big-worm-turret",
     "icon": "__base__/graphics/icons/big-worm.png",
-    "flags": {},
+    "flags": [
+      "placeable-player",
+      "placeable-enemy",
+      "placeable-off-grid",
+      "not-repairable",
+      "breaths-air"
+    ],
     "max_health": 1500,
     "order": "b-c-c",
     "subgroup": "enemies",
     "impact_category": "organic",
-    "resistances": {
-      "type": "laser",
-      "decrease": 3,
-      "percent": 50
-    },
+    "resistances": [
+      {
+        "type": "physical",
+        "decrease": 10
+      },
+      {
+        "type": "explosion",
+        "decrease": 10,
+        "percent": 30
+      },
+      {
+        "type": "fire",
+        "decrease": 3,
+        "percent": 70
+      },
+      {
+        "type": "laser",
+        "percent": 50
+      }
+    ],
     "healing_per_tick": 0.02,
-    "collision_box": {},
-    "map_generator_bounding_box": {},
-    "selection_box": {},
+    "collision_box": [
+      [
+        -1.4,
+        -1.2
+      ],
+      [
+        1.4,
+        1.2
+      ]
+    ],
+    "map_generator_bounding_box": [
+      [
+        -2.4,
+        -2.2
+      ],
+      [
+        2.4,
+        2.2
+      ]
+    ],
+    "selection_box": [
+      [
+        -1.4,
+        -1.2
+      ],
+      [
+        1.4,
+        1.2
+      ]
+    ],
     "damaged_trigger_effect": "hit_effects.biter()",
     "shooting_cursor_size": 4,
     "rotation_speed": 1,
@@ -568,7 +1062,10 @@
           "action_delivery": {
             "type": "stream",
             "stream": "acid-stream-worm-big",
-            "source_offset": {}
+            "source_offset": [
+              0.15,
+              -0.5
+            ]
           }
         }
       }
@@ -577,32 +1074,103 @@
     "autoplace": "enemy_autoplace.enemy_worm_autoplace(\"enemy_autoplace_base(5, 4)\")",
     "call_for_help_radius": 40,
     "spawn_decorations_on_expansion": true,
-    "spawn_decoration": {
-      "decorative": "enemy-decal-transparent",
-      "spawn_min": 3,
-      "spawn_max": 5,
-      "spawn_min_radius": 1,
-      "spawn_max_radius": 4
-    }
+    "spawn_decoration": [
+      {
+        "decorative": "worms-decal",
+        "spawn_min": 1,
+        "spawn_max": 2,
+        "spawn_min_radius": 1,
+        "spawn_max_radius": 4
+      },
+      {
+        "decorative": "shroom-decal",
+        "spawn_min": 1,
+        "spawn_max": 2,
+        "spawn_min_radius": 1,
+        "spawn_max_radius": 2
+      },
+      {
+        "decorative": "enemy-decal",
+        "spawn_min": 1,
+        "spawn_max": 4,
+        "spawn_min_radius": 1,
+        "spawn_max_radius": 3
+      },
+      {
+        "decorative": "enemy-decal-transparent",
+        "spawn_min": 3,
+        "spawn_max": 5,
+        "spawn_min_radius": 1,
+        "spawn_max_radius": 4
+      }
+    ]
   },
   {
     "type": "turret",
     "name": "behemoth-worm-turret",
     "icon": "__base__/graphics/icons/behemoth-worm.png",
-    "flags": {},
+    "flags": [
+      "placeable-player",
+      "placeable-enemy",
+      "placeable-off-grid",
+      "not-repairable",
+      "breaths-air"
+    ],
     "max_health": 3000,
     "order": "b-c-d",
     "subgroup": "enemies",
     "impact_category": "organic",
-    "resistances": {
-      "type": "laser",
-      "decrease": 3,
-      "percent": 80
-    },
+    "resistances": [
+      {
+        "type": "physical",
+        "decrease": 10
+      },
+      {
+        "type": "explosion",
+        "decrease": 10,
+        "percent": 30
+      },
+      {
+        "type": "fire",
+        "decrease": 3,
+        "percent": 70
+      },
+      {
+        "type": "laser",
+        "percent": 80
+      }
+    ],
     "healing_per_tick": 0.02,
-    "collision_box": {},
-    "map_generator_bounding_box": {},
-    "selection_box": {},
+    "collision_box": [
+      [
+        -1.4,
+        -1.2
+      ],
+      [
+        1.4,
+        1.2
+      ]
+    ],
+    "map_generator_bounding_box": [
+      [
+        -2.4,
+        -2.2
+      ],
+      [
+        2.4,
+        2.2
+      ]
+    ],
+    "selection_box": [
+      [
+        -1.4,
+        -1.2
+      ],
+      [
+        1.4,
+        1.2
+      ]
+    ],
     "damaged_trigger_effect": "hit_effects.biter()",
     "shooting_cursor_size": 4,
     "rotation_speed": 1,
@@ -663,7 +1231,10 @@
           "action_delivery": {
             "type": "stream",
             "stream": "acid-stream-worm-behemoth",
-            "source_offset": {}
+            "source_offset": [
+              0.15,
+              -0.5
+            ]
           }
         }
       }
@@ -672,12 +1243,35 @@
     "autoplace": "enemy_autoplace.enemy_worm_autoplace(\"enemy_autoplace_base(8, 5)\")",
     "call_for_help_radius": 80,
     "spawn_decorations_on_expansion": true,
-    "spawn_decoration": {
-      "decorative": "enemy-decal-transparent",
-      "spawn_min": 3,
-      "spawn_max": 5,
-      "spawn_min_radius": 1,
-      "spawn_max_radius": 4
-    }
+    "spawn_decoration": [
+      {
+        "decorative": "worms-decal",
+        "spawn_min": 1,
+        "spawn_max": 3,
+        "spawn_min_radius": 1,
+        "spawn_max_radius": 5
+      },
+      {
+        "decorative": "shroom-decal",
+        "spawn_min": 1,
+        "spawn_max": 2,
+        "spawn_min_radius": 1,
+        "spawn_max_radius": 2
+      },
+      {
+        "decorative": "enemy-decal",
+        "spawn_min": 1,
+        "spawn_max": 4,
+        "spawn_min_radius": 1,
+        "spawn_max_radius": 4
+      },
+      {
+        "decorative": "enemy-decal-transparent",
+        "spawn_min": 3,
+        "spawn_max": 5,
+        "spawn_min_radius": 1,
+        "spawn_max_radius": 4
+      }
+    ]
   }
 ]

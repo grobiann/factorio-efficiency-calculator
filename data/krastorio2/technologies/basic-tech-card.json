@@ -7,13 +7,20 @@
     "unit": {
       "time": 10,
       "count": 10,
-      "ingredients": {}
+      "ingredients": [
+        [
+          "kr-basic-tech-card",
+          1
+        ]
+      ]
     },
     "prerequisites": {},
-    "effects": {
-      "type": "unlock-recipe",
-      "recipe": "kr-automation-core"
-    },
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "kr-automation-core"
+      }
+    ],
     "ignore_tech_cost_multiplier": true
   },
   {
@@ -24,13 +31,22 @@
     "unit": {
       "time": 30,
       "count": 30,
-      "ingredients": {}
+      "ingredients": [
+        [
+          "kr-basic-tech-card",
+          1
+        ]
+      ]
     },
-    "prerequisites": {},
-    "effects": {
-      "type": "unlock-recipe",
-      "recipe": "kr-crusher"
-    },
+    "prerequisites": [
+      "kr-automation-core"
+    ],
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "kr-crusher"
+      }
+    ],
     "ignore_tech_cost_multiplier": true
   },
   {
@@ -41,9 +57,16 @@
     "unit": {
       "time": 30,
       "count": 30,
-      "ingredients": {}
+      "ingredients": [
+        [
+          "kr-basic-tech-card",
+          1
+        ]
+      ]
     },
-    "prerequisites": {},
+    "prerequisites": [
+      "kr-greenhouse"
+    ],
     "effects": {}
   },
   {
@@ -54,13 +77,22 @@
     "unit": {
       "time": 10,
       "count": 15,
-      "ingredients": {}
+      "ingredients": [
+        [
+          "kr-basic-tech-card",
+          1
+        ]
+      ]
     },
-    "prerequisites": {},
-    "effects": {
-      "type": "unlock-recipe",
-      "recipe": "lab"
-    },
+    "prerequisites": [
+      "kr-automation-core"
+    ],
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "lab"
+      }
+    ],
     "ignore_tech_cost_multiplier": true
   },
   {
@@ -71,13 +103,27 @@
     "unit": {
       "time": 45,
       "count": 40,
-      "ingredients": {}
+      "ingredients": [
+        [
+          "kr-basic-tech-card",
+          1
+        ]
+      ]
     },
-    "prerequisites": {},
-    "effects": {
-      "type": "unlock-recipe",
-      "recipe": "wood"
-    },
+    "prerequisites": [
+      "kr-stone-processing",
+      "steam-power"
+    ],
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "kr-greenhouse"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "wood"
+      }
+    ],
     "ignore_tech_cost_multiplier": true
   },
   {
@@ -88,13 +134,20 @@
     "unit": {
       "time": 30,
       "count": 25,
-      "ingredients": {}
+      "ingredients": [
+        [
+          "kr-basic-tech-card",
+          1
+        ]
+      ]
     },
     "prerequisites": {},
-    "effects": {
-      "type": "character-mining-speed",
-      "modifier": 0.5
-    }
+    "effects": [
+      {
+        "type": "character-mining-speed",
+        "modifier": 0.5
+      }
+    ]
   },
   {
     "type": "technology",
@@ -104,13 +157,26 @@
     "unit": {
       "time": 30,
       "count": 50,
-      "ingredients": {}
+      "ingredients": [
+        [
+          "kr-basic-tech-card",
+          1
+        ]
+      ]
     },
-    "prerequisites": {},
-    "effects": {
-      "type": "unlock-recipe",
-      "recipe": "kr-glass"
-    },
+    "prerequisites": [
+      "kr-crusher"
+    ],
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "kr-sand"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "kr-glass"
+      }
+    ],
     "ignore_tech_cost_multiplier": true
   },
   {
@@ -121,12 +187,21 @@
     "unit": {
       "time": 20,
       "count": 50,
-      "ingredients": {}
+      "ingredients": [
+        [
+          "kr-basic-tech-card",
+          1
+        ]
+      ]
     },
-    "prerequisites": {},
-    "effects": {
-      "type": "unlock-recipe",
-      "recipe": "light-armor"
-    }
+    "prerequisites": [
+      "military"
+    ],
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "light-armor"
+      }
+    ]
   }
 ]

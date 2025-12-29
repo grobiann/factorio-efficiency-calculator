@@ -15,16 +15,25 @@
     "energy_required": 30,
     "enabled": false,
     "hide_from_player_crafting": true,
-    "ingredients": {
-      "type": "fluid",
-      "name": "water",
-      "amount": 100
-    },
-    "results": {
-      "type": "item",
-      "name": "name",
-      "amount": 1
-    }
+    "ingredients": [
+      {
+        "type": "item",
+        "name": "wood",
+        "amount": 40
+      },
+      {
+        "type": "fluid",
+        "name": "water",
+        "amount": 100
+      }
+    ],
+    "results": [
+      {
+        "type": "item",
+        "name": "name",
+        "amount": 1
+      }
+    ]
   },
   {
     "type": "item",
@@ -41,15 +50,24 @@
     "energy_required": 10,
     "enabled": false,
     "hide_from_player_crafting": true,
-    "ingredients": {
-      "type": "item",
-      "name": "stone",
-      "amount": 75
-    },
-    "results": {
-      "type": "item",
-      "name": "name",
-      "amount": 1
-    }
+    "ingredients": [
+      {
+        "type": "item",
+        "name": "coal",
+        "amount": 50
+      },
+      {
+        "type": "item",
+        "name": "stone",
+        "amount": 75
+      }
+    ],
+    "results": [
+      {
+        "type": "item",
+        "name": "name",
+        "amount": 1
+      }
+    ]
   }
 ]

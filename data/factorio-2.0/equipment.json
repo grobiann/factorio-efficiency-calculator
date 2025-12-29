@@ -21,7 +21,9 @@
       "usage_priority": "primary-input"
     },
     "energy_input": "10kW",
-    "categories": {},
+    "categories": [
+      "armor"
+    ],
     "activate_sound": {
       "filename": "__base__/sound/nightvision-on.ogg",
       "volume": 0.5
@@ -31,7 +33,12 @@
       "volume": 0.5
     },
     "darkness_to_turn_on": 0.5,
-    "color_lookup": {}
+    "color_lookup": [
+      [
+        0.5,
+        "__core__/graphics/color_luts/nightvision.png"
+      ]
+    ]
   },
   {
     "type": "energy-shield-equipment",
@@ -56,7 +63,9 @@
       "usage_priority": "primary-input"
     },
     "energy_per_shield": "20kJ",
-    "categories": {}
+    "categories": [
+      "armor"
+    ]
   },
   {
     "type": "energy-shield-equipment",
@@ -81,7 +90,9 @@
       "usage_priority": "primary-input"
     },
     "energy_per_shield": "30kJ",
-    "categories": {}
+    "categories": [
+      "armor"
+    ]
   },
   {
     "type": "battery-equipment",
@@ -103,7 +114,9 @@
       "buffer_capacity": "20MJ",
       "usage_priority": "tertiary"
     },
-    "categories": {}
+    "categories": [
+      "armor"
+    ]
   },
   {
     "type": "battery-equipment",
@@ -125,7 +138,9 @@
       "buffer_capacity": "100MJ",
       "usage_priority": "tertiary"
     },
-    "categories": {}
+    "categories": [
+      "armor"
+    ]
   },
   {
     "type": "solar-panel-equipment",
@@ -147,6 +162,8 @@
       "usage_priority": "primary-output"
     },
     "power": "30kW",
-    "categories": {}
+    "categories": [
+      "armor"
+    ]
   }
 ]

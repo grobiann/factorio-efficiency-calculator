@@ -4,21 +4,37 @@
     "name": "kr-advanced-splitter",
     "energy_required": 2,
     "enabled": false,
-    "ingredients": {
-      "type": "item",
-      "name": "advanced-circuit",
-      "amount": 1
-    },
-    "results": {
-      "type": "item",
-      "name": "kr-advanced-splitter",
-      "amount": 1
-    }
+    "ingredients": [
+      {
+        "type": "item",
+        "name": "express-splitter",
+        "amount": 1
+      },
+      {
+        "type": "item",
+        "name": "kr-steel-gear-wheel",
+        "amount": 4
+      },
+      {
+        "type": "item",
+        "name": "advanced-circuit",
+        "amount": 1
+      }
+    ],
+    "results": [
+      {
+        "type": "item",
+        "name": "kr-advanced-splitter",
+        "amount": 1
+      }
+    ]
   },
   {
     "type": "item",
     "name": "kr-advanced-splitter",
-    "localised_description": {},
+    "localised_description": [
+      "entity-description.splitter"
+    ],
     "icon": "__Krastorio2Assets__/icons/entities/advanced-splitter.png",
     "subgroup": "belt",
     "order": "c[splitter]-d[advanced-splitter]",
@@ -28,15 +44,38 @@
   {
     "type": "splitter",
     "name": "kr-advanced-splitter",
-    "localised_description": {},
+    "localised_description": [
+      "entity-description.splitter"
+    ],
     "icon": "__Krastorio2Assets__/icons/entities/advanced-splitter.png",
-    "flags": {},
+    "flags": [
+      "placeable-neutral",
+      "player-creation"
+    ],
     "minable": {
       "mining_time": 0.2,
       "result": "kr-advanced-splitter"
     },
-    "collision_box": {},
-    "selection_box": {},
+    "collision_box": [
+      [
+        -0.9,
+        -0.4
+      ],
+      [
+        0.9,
+        0.4
+      ]
+    ],
+    "selection_box": [
+      [
+        -0.9,
+        -0.5
+      ],
+      [
+        0.9,
+        0.5
+      ]
+    ],
     "fast_replaceable_group": "transport-belt",
     "next_upgrade": "kr-superior-splitter",
     "speed": 0.125,
@@ -45,10 +84,12 @@
     "icon_draw_specification": {
       "scale": 0.5
     },
-    "resistances": {
-      "type": "fire",
-      "percent": 50
-    },
+    "resistances": [
+      {
+        "type": "fire",
+        "percent": 50
+      }
+    ],
     "belt_animation_set": "require(\"prototypes.buildings.advanced-belt-animation-set\")",
     "structure": {
       "north": {

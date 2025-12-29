@@ -2,48 +2,72 @@
   {
     "type": "projectile",
     "name": "kr-laser-projectile",
-    "flags": {},
+    "flags": [
+      "not-on-map"
+    ],
     "hidden": true,
     "acceleration": 0,
     "action": {
       "type": "direct",
       "action_delivery": {
         "type": "instant",
-        "target_effects": {
-          "type": "create-entity",
-          "damage": {
-            "amount": 1000,
-            "type": "laser"
+        "target_effects": [
+          {
+            "type": "damage",
+            "damage": {
+              "amount": 1000,
+              "type": "laser"
+            }
           },
-          "entity_name": "kr-laser-explosion"
-        }
+          {
+            "type": "create-entity",
+            "entity_name": "kr-laser-explosion"
+          }
+        ]
       }
     },
     "final_action": {
       "type": "direct",
       "action_delivery": {
         "type": "instant",
-        "target_effects": {
-          "type": "nested-result",
-          "entity_name": "small-scorchmark",
-          "scale": 1,
-          "check_buildability": true,
-          "action": {
-            "type": "area",
-            "radius": 4,
-            "action_delivery": {
-              "type": "instant",
-              "target_effects": {
-                "type": "create-entity",
-                "damage": {
-                  "amount": 250,
-                  "type": "kr-explosion"
-                },
-                "entity_name": "explosion"
+        "target_effects": [
+          {
+            "type": "create-entity",
+            "entity_name": "big-explosion"
+          },
+          {
+            "type": "show-explosion-on-chart",
+            "scale": 1
+          },
+          {
+            "type": "create-entity",
+            "entity_name": "small-scorchmark",
+            "check_buildability": true
+          },
+          {
+            "type": "nested-result",
+            "action": {
+              "type": "area",
+              "radius": 4,
+              "action_delivery": {
+                "type": "instant",
+                "target_effects": [
+                  {
+                    "type": "damage",
+                    "damage": {
+                      "amount": 250,
+                      "type": "kr-explosion"
+                    }
+                  },
+                  {
+                    "type": "create-entity",
+                    "entity_name": "explosion"
+                  }
+                ]
               }
             }
           }
-        }
+        ]
       }
     },
     "animation": {

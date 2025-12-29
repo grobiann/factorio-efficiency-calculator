@@ -4,7 +4,9 @@
     "name": "toggle-alt-mode",
     "order": "a[alt-mode]",
     "action": "toggle-alt-mode",
-    "localised_name": {},
+    "localised_name": [
+      "shortcut.alt-mode"
+    ],
     "associated_control_input": "show-info",
     "icon": "__base__/graphics/icons/shortcut-toolbar/mip/alt-mode-x56.png",
     "icon_size": 56,
@@ -16,7 +18,9 @@
     "name": "undo",
     "order": "b[blueprints]-a[undo]",
     "action": "undo",
-    "localised_name": {},
+    "localised_name": [
+      "shortcut.undo"
+    ],
     "associated_control_input": "undo",
     "technology_to_unlock": "construction-robotics",
     "icon": "__base__/graphics/icons/shortcut-toolbar/mip/undo-x56.png",
@@ -29,7 +33,9 @@
     "name": "redo",
     "order": "b[blueprints]-b[redo]",
     "action": "redo",
-    "localised_name": {},
+    "localised_name": [
+      "shortcut.redo"
+    ],
     "associated_control_input": "redo",
     "technology_to_unlock": "construction-robotics",
     "icon": "__base__/graphics/icons/shortcut-toolbar/mip/redo-x56.png",
@@ -43,7 +49,9 @@
     "order": "b[blueprints]-c[copy]",
     "action": "spawn-item",
     "item_to_spawn": "copy-paste-tool",
-    "localised_name": {},
+    "localised_name": [
+      "shortcut.copy"
+    ],
     "associated_control_input": "copy",
     "technology_to_unlock": "construction-robotics",
     "icon": "__base__/graphics/icons/shortcut-toolbar/mip/copy-x56.png",
@@ -57,7 +65,9 @@
     "order": "b[blueprints]-d[cut]",
     "action": "spawn-item",
     "item_to_spawn": "cut-paste-tool",
-    "localised_name": {},
+    "localised_name": [
+      "shortcut.cut"
+    ],
     "associated_control_input": "cut",
     "technology_to_unlock": "construction-robotics",
     "icon": "__base__/graphics/icons/shortcut-toolbar/mip/cut-x56.png",
@@ -70,7 +80,9 @@
     "name": "paste",
     "order": "b[blueprints]-e[paste]",
     "action": "paste",
-    "localised_name": {},
+    "localised_name": [
+      "shortcut.paste"
+    ],
     "associated_control_input": "paste",
     "technology_to_unlock": "construction-robotics",
     "icon": "__base__/graphics/icons/shortcut-toolbar/mip/paste-x56.png",
@@ -83,7 +95,9 @@
     "name": "import-string",
     "order": "b[blueprints]-f[import]",
     "action": "import-string",
-    "localised_name": {},
+    "localised_name": [
+      "shortcut.import-string"
+    ],
     "technology_to_unlock": "construction-robotics",
     "icon": "__base__/graphics/icons/shortcut-toolbar/mip/import-string-x56.png",
     "icon_size": 56,
@@ -95,7 +109,9 @@
     "name": "give-blueprint",
     "order": "b[blueprints]-g[blueprint]",
     "action": "spawn-item",
-    "localised_name": {},
+    "localised_name": [
+      "shortcut.make-blueprint"
+    ],
     "associated_control_input": "give-blueprint",
     "technology_to_unlock": "construction-robotics",
     "item_to_spawn": "blueprint",
@@ -110,7 +126,9 @@
     "name": "give-blueprint-book",
     "order": "b[blueprints]-h[book]",
     "action": "spawn-item",
-    "localised_name": {},
+    "localised_name": [
+      "shortcut.make-blueprint-book"
+    ],
     "associated_control_input": "give-blueprint-book",
     "technology_to_unlock": "construction-robotics",
     "item_to_spawn": "blueprint-book",
@@ -125,7 +143,9 @@
     "name": "give-deconstruction-planner",
     "order": "b[blueprints]-i[deconstruction-planner]",
     "action": "spawn-item",
-    "localised_name": {},
+    "localised_name": [
+      "shortcut.make-deconstruction-planner"
+    ],
     "associated_control_input": "give-deconstruction-planner",
     "technology_to_unlock": "construction-robotics",
     "item_to_spawn": "deconstruction-planner",
@@ -140,7 +160,9 @@
     "name": "give-upgrade-planner",
     "order": "b[blueprints]-j[upgrade-planner]",
     "action": "spawn-item",
-    "localised_name": {},
+    "localised_name": [
+      "shortcut.make-upgrade-planner"
+    ],
     "associated_control_input": "give-upgrade-planner",
     "technology_to_unlock": "construction-robotics",
     "item_to_spawn": "upgrade-planner",
@@ -155,7 +177,9 @@
     "name": "toggle-personal-roboport",
     "order": "c[toggles]-a[roboport]",
     "action": "toggle-personal-roboport",
-    "localised_name": {},
+    "localised_name": [
+      "shortcut.toggle-personal-roboport"
+    ],
     "associated_control_input": "toggle-personal-roboport",
     "technology_to_unlock": "personal-roboport-equipment",
     "icon": "__base__/graphics/icons/shortcut-toolbar/mip/toggle-personal-roboport-x56.png",
@@ -168,7 +192,9 @@
     "name": "toggle-equipment-movement-bonus",
     "order": "c[toggles]-b[exoskeleton]",
     "action": "toggle-equipment-movement-bonus",
-    "localised_name": {},
+    "localised_name": [
+      "shortcut.toggle-equipment-movement-bonus"
+    ],
     "associated_control_input": "toggle-equipment-movement-bonus",
     "technology_to_unlock": "exoskeleton-equipment",
     "icon": "__base__/graphics/icons/shortcut-toolbar/mip/toggle-exoskeleton-x56.png",
@@ -181,7 +207,9 @@
     "name": "give-copper-wire",
     "order": "d[wires]-a[copper-wire]",
     "action": "spawn-item",
-    "localised_name": {},
+    "localised_name": [
+      "shortcut.make-copper-wire"
+    ],
     "associated_control_input": "give-copper-wire",
     "technology_to_unlock": "electronics",
     "item_to_spawn": "copper-wire",
@@ -195,7 +223,9 @@
     "name": "give-red-wire",
     "order": "d[wires]-b[red-wire]",
     "action": "spawn-item",
-    "localised_name": {},
+    "localised_name": [
+      "shortcut.make-red-wire"
+    ],
     "associated_control_input": "give-red-wire",
     "technology_to_unlock": "circuit-network",
     "item_to_spawn": "red-wire",
@@ -209,7 +239,9 @@
     "name": "give-green-wire",
     "order": "d[wires]-a[green-wire]",
     "action": "spawn-item",
-    "localised_name": {},
+    "localised_name": [
+      "shortcut.make-green-wire"
+    ],
     "associated_control_input": "give-green-wire",
     "technology_to_unlock": "circuit-network",
     "item_to_spawn": "green-wire",
@@ -223,7 +255,9 @@
     "name": "give-spidertron-remote",
     "order": "e[spidertron-remote]",
     "action": "spawn-item",
-    "localised_name": {},
+    "localised_name": [
+      "shortcut.make-spidertron-remote"
+    ],
     "associated_control_input": "give-spidertron-remote",
     "technology_to_unlock": "spidertron",
     "unavailable_until_unlocked": true,
@@ -238,7 +272,9 @@
     "name": "give-discharge-defense-remote",
     "order": "e[spidertron-remote]",
     "action": "spawn-item",
-    "localised_name": {},
+    "localised_name": [
+      "shortcut.make-discharge-defense-remote"
+    ],
     "associated_control_input": "give-discharge-defense-remote",
     "technology_to_unlock": "discharge-defense-equipment",
     "unavailable_until_unlocked": true,
@@ -253,7 +289,9 @@
     "name": "give-artillery-targeting-remote",
     "order": "e[spidertron-remote]",
     "action": "spawn-item",
-    "localised_name": {},
+    "localised_name": [
+      "shortcut.make-artillery-targeting-remote"
+    ],
     "associated_control_input": "give-artillery-targeting-remote",
     "technology_to_unlock": "artillery",
     "unavailable_until_unlocked": true,

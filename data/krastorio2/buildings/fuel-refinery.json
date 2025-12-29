@@ -4,16 +4,35 @@
     "name": "kr-fuel-refinery",
     "energy_required": 5,
     "enabled": false,
-    "ingredients": {
-      "type": "item",
-      "name": "pipe",
-      "amount": 5
-    },
-    "results": {
-      "type": "item",
-      "name": "kr-fuel-refinery",
-      "amount": 1
-    }
+    "ingredients": [
+      {
+        "type": "item",
+        "name": "steel-plate",
+        "amount": 5
+      },
+      {
+        "type": "item",
+        "name": "iron-gear-wheel",
+        "amount": 5
+      },
+      {
+        "type": "item",
+        "name": "electronic-circuit",
+        "amount": 5
+      },
+      {
+        "type": "item",
+        "name": "pipe",
+        "amount": 5
+      }
+    ],
+    "results": [
+      {
+        "type": "item",
+        "name": "kr-fuel-refinery",
+        "amount": 1
+      }
+    ]
   },
   {
     "type": "item",
@@ -28,7 +47,11 @@
     "type": "assembling-machine",
     "name": "kr-fuel-refinery",
     "icon": "__Krastorio2Assets__/icons/entities/fuel-refinery.png",
-    "flags": {},
+    "flags": [
+      "placeable-neutral",
+      "placeable-player",
+      "player-creation"
+    ],
     "minable": {
       "hardness": 0.5,
       "mining_time": 0.5,
@@ -37,24 +60,102 @@
     "max_health": 300,
     "corpse": "big-remnants",
     "dying_explosion": "medium-explosion",
-    "collision_box": {},
-    "selection_box": {},
+    "collision_box": [
+      [
+        -1.2,
+        -1.2
+      ],
+      [
+        1.2,
+        1.2
+      ]
+    ],
+    "selection_box": [
+      [
+        -1.5,
+        -1.5
+      ],
+      [
+        1.5,
+        1.5
+      ]
+    ],
     "drawing_box_vertical_extension": 0.4,
     "module_slots": 3,
-    "allowed_effects": {},
+    "allowed_effects": [
+      "consumption",
+      "speed",
+      "productivity",
+      "pollution",
+      "quality"
+    ],
     "crafting_speed": 1,
     "ingredient_count": 4,
-    "crafting_categories": {},
-    "fluid_boxes": {
-      "production_type": "output",
-      "pipe_covers": "pipecoverspictures()",
-      "volume": 1000,
-      "pipe_connections": {
-        "flow_direction": "output",
-        "direction": "defines.direction.south",
-        "position": {}
+    "crafting_categories": [
+      "kr-fuel-refinery"
+    ],
+    "fluid_boxes": [
+      {
+        "production_type": "input",
+        "pipe_covers": "pipecoverspictures()",
+        "volume": 1000,
+        "pipe_connections": [
+          {
+            "flow_direction": "input",
+            "direction": "defines.direction.north",
+            "position": [
+              -1,
+              -1
+            ]
+          }
+        ]
+      },
+      {
+        "production_type": "input",
+        "pipe_covers": "pipecoverspictures()",
+        "volume": 1000,
+        "pipe_connections": [
+          {
+            "flow_direction": "input",
+            "direction": "defines.direction.north",
+            "position": [
+              1,
+              -1
+            ]
+          }
+        ]
+      },
+      {
+        "production_type": "output",
+        "pipe_covers": "pipecoverspictures()",
+        "volume": 1000,
+        "pipe_connections": [
+          {
+            "flow_direction": "output",
+            "direction": "defines.direction.south",
+            "position": [
+              -1,
+              1
+            ]
+          }
+        ]
+      },
+      {
+        "production_type": "output",
+        "pipe_covers": "pipecoverspictures()",
+        "volume": 1000,
+        "pipe_connections": [
+          {
+            "flow_direction": "output",
+            "direction": "defines.direction.south",
+            "position": [
+              1,
+              1
+            ]
+          }
+        ]
       }
-    },
+    ],
     "energy_source": {
       "type": "electric",
       "usage_priority": "secondary-input",
@@ -76,48 +177,84 @@
     },
     "graphics_set": {
       "animation": "make_4way_animation_from_spritesheet({\n        layers = {\n          {\n            filename = \"__Krastorio2Assets__/buildings/fuel-refinery/fuel-refinery.png\",\n            width = 244,\n            height = 268,\n            frame_count = 1,\n            shift = util.by_pixel(-5, -4.5),\n            scale = 0.5,\n          },\n          {\n            filename = \"__Krastorio2Assets__/buildings/fuel-refinery/fuel-refinery-shadow.png\",\n            width = 350,\n            height = 219,\n            frame_count = 1,\n            shift = util.by_pixel(31.5, 10.75),\n            draw_as_shadow = true,\n            scale = 0.5,\n          },\n        },\n      })",
-      "working_visualisations": {
-        "north_position": {},
-        "west_position": {},
-        "south_position": {},
-        "east_position": {},
-        "apply_recipe_tint": "tertiary",
-        "animation": {
-          "filename": "__Krastorio2Assets__/buildings/fuel-refinery/boiling-green-patch-mask.png",
-          "frame_count": 32,
-          "width": 30,
-          "height": 20,
-          "animation_speed": 0.5,
-          "scale": 0.5
+      "working_visualisations": [
+        {
+          "north_position": "util.by_pixel(30, -24)",
+          "west_position": "util.by_pixel(1, -49.5)",
+          "south_position": "util.by_pixel(-30, -48)",
+          "east_position": "util.by_pixel(-11, -1)",
+          "apply_recipe_tint": "primary",
+          "animation": {
+            "filename": "__Krastorio2Assets__/buildings/fuel-refinery/boiling-green-patch.png",
+            "frame_count": 32,
+            "width": 30,
+            "height": 20,
+            "animation_speed": 0.5,
+            "scale": 0.5
+          }
         },
-        "north_animation": {
-          "filename": "__Krastorio2Assets__/buildings/fuel-refinery/boiling-window-green-patch.png",
-          "x": 0,
-          "frame_count": 1,
-          "width": 174,
-          "height": 119,
-          "shift": "util.by_pixel(0, -5.25)",
-          "scale": 0.5
+        {
+          "north_position": "util.by_pixel(30, -24)",
+          "west_position": "util.by_pixel(1, -49.5)",
+          "south_position": "util.by_pixel(-30, -48)",
+          "east_position": "util.by_pixel(-11, -1)",
+          "apply_recipe_tint": "secondary",
+          "animation": {
+            "filename": "__Krastorio2Assets__/buildings/fuel-refinery/boiling-green-patch-mask.png",
+            "frame_count": 32,
+            "width": 30,
+            "height": 20,
+            "animation_speed": 0.5,
+            "scale": 0.5
+          }
         },
-        "east_animation": {
-          "filename": "__Krastorio2Assets__/buildings/fuel-refinery/boiling-window-green-patch.png",
-          "x": 174,
-          "frame_count": 1,
-          "width": 174,
-          "height": 119,
-          "shift": "util.by_pixel(0, -5.25)",
-          "scale": 0.5
-        },
-        "south_animation": {
-          "filename": "__Krastorio2Assets__/buildings/fuel-refinery/boiling-window-green-patch.png",
-          "x": 348,
-          "frame_count": 1,
-          "width": 174,
-          "height": 119,
-          "shift": "util.by_pixel(0, -5.25)",
-          "scale": 0.5
+        {
+          "apply_recipe_tint": "tertiary",
+          "north_position": [
+            0,
+            0
+          ],
+          "west_position": [
+            0,
+            0
+          ],
+          "south_position": [
+            0,
+            0
+          ],
+          "east_position": [
+            0,
+            0
+          ],
+          "north_animation": {
+            "filename": "__Krastorio2Assets__/buildings/fuel-refinery/boiling-window-green-patch.png",
+            "x": 0,
+            "frame_count": 1,
+            "width": 174,
+            "height": 119,
+            "shift": "util.by_pixel(0, -5.25)",
+            "scale": 0.5
+          },
+          "east_animation": {
+            "filename": "__Krastorio2Assets__/buildings/fuel-refinery/boiling-window-green-patch.png",
+            "x": 174,
+            "frame_count": 1,
+            "width": 174,
+            "height": 119,
+            "shift": "util.by_pixel(0, -5.25)",
+            "scale": 0.5
+          },
+          "south_animation": {
+            "filename": "__Krastorio2Assets__/buildings/fuel-refinery/boiling-window-green-patch.png",
+            "x": 348,
+            "frame_count": 1,
+            "width": 174,
+            "height": 119,
+            "shift": "util.by_pixel(0, -5.25)",
+            "scale": 0.5
+          }
         }
-      },
+      ],
       "water_reflection": {
         "pictures": {
           "filename": "__Krastorio2Assets__/buildings/fuel-refinery/fuel-refinery-reflection.png",

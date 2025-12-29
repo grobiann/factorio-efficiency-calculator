@@ -4,30 +4,56 @@
     "name": "kr-antimatter-reactor-equipment",
     "energy_required": 60,
     "enabled": false,
-    "ingredients": {
-      "type": "item",
-      "name": "kr-ai-core",
-      "amount": 25
-    },
-    "results": {
-      "type": "item",
-      "name": "kr-antimatter-reactor-equipment",
-      "amount": 1
-    }
+    "ingredients": [
+      {
+        "type": "item",
+        "name": "kr-energy-control-unit",
+        "amount": 25
+      },
+      {
+        "type": "item",
+        "name": "kr-imersium-plate",
+        "amount": 100
+      },
+      {
+        "type": "item",
+        "name": "kr-ai-core",
+        "amount": 25
+      }
+    ],
+    "results": [
+      {
+        "type": "item",
+        "name": "kr-antimatter-reactor-equipment",
+        "amount": 1
+      }
+    ]
   },
   {
     "type": "item",
     "name": "kr-antimatter-reactor-equipment",
-    "icons": {
-      "icon": "__Krastorio2Assets__/icons/equipment/tier-3.png"
-    },
-    "pictures": {
-      "layers": {
-        "filename": "__Krastorio2Assets__/icons/equipment/antimatter-reactor-equipment-light.png",
-        "size": 64,
-        "scale": 0.5,
-        "draw_as_light": true
+    "icons": [
+      {
+        "icon": "__Krastorio2Assets__/icons/equipment/antimatter-reactor-equipment.png"
+      },
+      {
+        "icon": "__Krastorio2Assets__/icons/equipment/tier-3.png"
       }
+    ],
+    "pictures": {
+      "layers": [
+        {
+          "filename": "__Krastorio2Assets__/icons/equipment/antimatter-reactor-equipment.png",
+          "size": 64,
+          "scale": 0.5
+        },
+        {
+          "filename": "__Krastorio2Assets__/icons/equipment/antimatter-reactor-equipment-light.png",
+          "size": 64,
+          "scale": 0.5,
+          "draw_as_light": true
+        }
+      ]
     },
     "place_as_equipment_result": "kr-antimatter-reactor-equipment",
     "subgroup": "equipment",
@@ -51,7 +77,9 @@
     },
     "burner": {
       "type": "burner",
-      "fuel_categories": {},
+      "fuel_categories": [
+        "kr-antimatter-fuel"
+      ],
       "effectivity": 2,
       "fuel_inventory_size": 1,
       "burnt_inventory_size": 1
@@ -61,6 +89,9 @@
       "usage_priority": "primary-output"
     },
     "power": "4.0MW",
-    "categories": {}
+    "categories": [
+      "armor",
+      "kr-vehicle"
+    ]
   }
 ]

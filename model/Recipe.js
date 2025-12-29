@@ -1,6 +1,6 @@
 export class Recipe {
   constructor(data) {
-    this.id = data.id;
+    this.id = data.id || data.name;  // Use 'name' as fallback for id
     this.name = data.name;
     this.type = data.type || "recipe";
     this.time = data.energy_required;
@@ -8,10 +8,13 @@ export class Recipe {
     this.input = data.input;
 
     // Factorio-style schema support:
-    // - ingredients: [ { type: "item"|"fluid", name: "id", amount: n }, ... ]
-    // - results:     [ { type: "item"|"fluid", name: "id", amount: n }, ... ]
-    this.ingredients = Array.isArray(data.ingredients) ? data.ingredients : null;
-    this.results = Array.isArray(data.results) ? data.results : null;
+    // - ingredients: [ { type: "item"|"fluid", name: "id", amount: n }, ... ] or single object
+    // - results:     [ { type: "item"|"fluid", name: "id", amount: n }, ... ] or single object
+    // Normalize single objects to arrays
+    this.ingredients = data.ingredients ? 
+      (Array.isArray(data.ingredients) ? data.ingredients : [data.ingredients]) : null;
+    this.results = data.results ? 
+      (Array.isArray(data.results) ? data.results : [data.results]) : null;
 
     // Normalize to maps used internally by the calculator/views.
     // Backwards-compatible: accept legacy `inputs`/`outputs` maps.

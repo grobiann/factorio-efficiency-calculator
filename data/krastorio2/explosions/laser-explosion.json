@@ -3,7 +3,9 @@
     "type": "explosion",
     "name": "kr-laser-explosion",
     "icon": "__base__/graphics/item-group/effects.png",
-    "flags": {},
+    "flags": [
+      "not-on-map"
+    ],
     "hidden": true,
     "subgroup": "explosions",
     "animations": {
@@ -12,7 +14,10 @@
       "height": 300,
       "frame_count": 47,
       "line_length": 8,
-      "shift": {},
+      "shift": [
+        0.1875,
+        -0.75
+      ],
       "draw_as_glow": true,
       "animation_speed": 0.55
     },
@@ -22,10 +27,16 @@
         "remove": true
       },
       "audible_distance_modifier": 1.95,
-      "variations": {
-        "filename": "__base__/sound/fight/large-explosion-2.ogg",
-        "volume": 0.75
-      }
+      "variations": [
+        {
+          "filename": "__base__/sound/fight/large-explosion-1.ogg",
+          "volume": 0.75
+        },
+        {
+          "filename": "__base__/sound/fight/large-explosion-2.ogg",
+          "volume": 0.75
+        }
+      ]
     }
   }
 ]

@@ -4,23 +4,47 @@
     "name": "kr-personal-laser-defense-mk4-equipment",
     "energy_required": 10,
     "enabled": false,
-    "ingredients": {
-      "type": "item",
-      "name": "kr-energy-control-unit",
-      "amount": 10
-    },
-    "results": {
-      "type": "item",
-      "name": "kr-personal-laser-defense-mk4-equipment",
-      "amount": 1
-    }
+    "ingredients": [
+      {
+        "type": "item",
+        "name": "kr-personal-laser-defense-mk3-equipment",
+        "amount": 1
+      },
+      {
+        "type": "item",
+        "name": "kr-ai-core",
+        "amount": 10
+      },
+      {
+        "type": "item",
+        "name": "kr-lithium-sulfur-battery",
+        "amount": 20
+      },
+      {
+        "type": "item",
+        "name": "kr-energy-control-unit",
+        "amount": 10
+      }
+    ],
+    "results": [
+      {
+        "type": "item",
+        "name": "kr-personal-laser-defense-mk4-equipment",
+        "amount": 1
+      }
+    ]
   },
   {
     "type": "item",
     "name": "kr-personal-laser-defense-mk4-equipment",
-    "icons": {
-      "icon": "__Krastorio2Assets__/icons/equipment/tier-4.png"
-    },
+    "icons": [
+      {
+        "icon": "__Krastorio2Assets__/icons/equipment/personal-laser-defense-mk4-equipment.png"
+      },
+      {
+        "icon": "__Krastorio2Assets__/icons/equipment/tier-4.png"
+      }
+    ],
     "subgroup": "equipment",
     "order": "d[active-defense]-b4[personal-laser-defense-mk4-equipment]",
     "place_as_equipment_result": "kr-personal-laser-defense-mk4-equipment",
@@ -48,7 +72,10 @@
       "input_flow_limit": "7.5MW"
     },
     "automatic": true,
-    "categories": {},
+    "categories": [
+      "armor",
+      "kr-vehicle"
+    ],
     "attack_parameters": {
       "type": "beam",
       "damage_modifier": 6,
@@ -60,13 +87,18 @@
         "energy_consumption": "0.75MJ",
         "action": {
           "type": "direct",
-          "action_delivery": {
-            "type": "beam",
-            "beam": "laser-beam",
-            "max_length": 23,
-            "duration": 3,
-            "source_offset": {}
-          }
+          "action_delivery": [
+            {
+              "type": "beam",
+              "beam": "laser-beam",
+              "max_length": 23,
+              "duration": 3,
+              "source_offset": [
+                0,
+                -1.31439
+              ]
+            }
+          ]
         }
       }
     }

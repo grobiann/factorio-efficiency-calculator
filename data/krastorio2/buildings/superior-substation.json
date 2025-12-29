@@ -4,16 +4,40 @@
     "name": "kr-superior-substation",
     "energy_required": 1,
     "enabled": false,
-    "ingredients": {
-      "type": "item",
-      "name": "small-lamp",
-      "amount": 2
-    },
-    "results": {
-      "type": "item",
-      "name": "kr-superior-substation",
-      "amount": 1
-    }
+    "ingredients": [
+      {
+        "type": "item",
+        "name": "kr-imersium-beam",
+        "amount": 3
+      },
+      {
+        "type": "item",
+        "name": "kr-rare-metals",
+        "amount": 6
+      },
+      {
+        "type": "item",
+        "name": "substation",
+        "amount": 1
+      },
+      {
+        "type": "item",
+        "name": "processing-unit",
+        "amount": 2
+      },
+      {
+        "type": "item",
+        "name": "small-lamp",
+        "amount": 2
+      }
+    ],
+    "results": [
+      {
+        "type": "item",
+        "name": "kr-superior-substation",
+        "amount": 1
+      }
+    ]
   },
   {
     "type": "item",
@@ -28,7 +52,10 @@
     "type": "electric-pole",
     "name": "kr-superior-substation",
     "icon": "__Krastorio2Assets__/icons/entities/superior-substation.png",
-    "flags": {},
+    "flags": [
+      "placeable-neutral",
+      "player-creation"
+    ],
     "minable": {
       "mining_time": 0.1,
       "result": "kr-superior-substation"
@@ -38,12 +65,32 @@
     "dying_explosion": "substation-explosion",
     "fast_replaceable_group": "substation",
     "track_coverage_during_build_by_moving": true,
-    "resistances": {
-      "type": "fire",
-      "percent": 90
-    },
-    "collision_box": {},
-    "selection_box": {},
+    "resistances": [
+      {
+        "type": "fire",
+        "percent": 90
+      }
+    ],
+    "collision_box": [
+      [
+        -0.7,
+        -0.7
+      ],
+      [
+        0.7,
+        0.7
+      ]
+    ],
+    "selection_box": [
+      [
+        -1,
+        -1
+      ],
+      [
+        1,
+        1
+      ]
+    ],
     "drawing_box_vertical_extension": 2,
     "damaged_trigger_effect": "hit_effects.entity({ { -0.5, -2.5 }, { 0.5, 0.5 } })",
     "maximum_wire_distance": 24.25,
@@ -60,29 +107,78 @@
       "use_doppler_shift": false
     },
     "vehicle_impact_sound": "sounds.generic_impact",
-    "connection_points": {
-      "shadow": {
-        "copper": "util.by_pixel(133, 9)",
-        "green": "util.by_pixel(111, 20)",
-        "red": "util.by_pixel(144, -3)"
+    "connection_points": [
+      {
+        "shadow": {
+          "copper": "util.by_pixel(136, 8)",
+          "green": "util.by_pixel(124, 8)",
+          "red": "util.by_pixel(151, 9)"
+        },
+        "wire": {
+          "copper": "util.by_pixel(0, -86)",
+          "green": "util.by_pixel(-21, -82)",
+          "red": "util.by_pixel(22, -81)"
+        }
       },
-      "wire": {
-        "copper": "util.by_pixel(0, -86)",
-        "green": "util.by_pixel(-15, -71)",
-        "red": "util.by_pixel(15, -92)"
+      {
+        "shadow": {
+          "copper": "util.by_pixel(133, 9)",
+          "green": "util.by_pixel(144, 21)",
+          "red": "util.by_pixel(110, -3)"
+        },
+        "wire": {
+          "copper": "util.by_pixel(0, -85)",
+          "green": "util.by_pixel(15, -70)",
+          "red": "util.by_pixel(-15, -92)"
+        }
+      },
+      {
+        "shadow": {
+          "copper": "util.by_pixel(133, 9)",
+          "green": "util.by_pixel(127, 26)",
+          "red": "util.by_pixel(127, -8)"
+        },
+        "wire": {
+          "copper": "util.by_pixel(0, -85)",
+          "green": "util.by_pixel(0, -66)",
+          "red": "util.by_pixel(0, -97)"
+        }
+      },
+      {
+        "shadow": {
+          "copper": "util.by_pixel(133, 9)",
+          "green": "util.by_pixel(111, 20)",
+          "red": "util.by_pixel(144, -3)"
+        },
+        "wire": {
+          "copper": "util.by_pixel(0, -86)",
+          "green": "util.by_pixel(-15, -71)",
+          "red": "util.by_pixel(15, -92)"
+        }
       }
-    },
+    ],
     "pictures": {
-      "layers": {
-        "filename": "__base__/graphics/entity/substation/substation-shadow.png",
-        "priority": "high",
-        "width": 370,
-        "height": 104,
-        "direction_count": 4,
-        "shift": "util.by_pixel(62, 42 - 32)",
-        "scale": 0.5,
-        "draw_as_shadow": true
-      }
+      "layers": [
+        {
+          "filename": "__Krastorio2Assets__/buildings/superior-substation/superior-substation.png",
+          "priority": "high",
+          "width": 138,
+          "height": 270,
+          "direction_count": 4,
+          "shift": "util.by_pixel(0, 1 - 32)",
+          "scale": 0.5
+        },
+        {
+          "filename": "__base__/graphics/entity/substation/substation-shadow.png",
+          "priority": "high",
+          "width": 370,
+          "height": 104,
+          "direction_count": 4,
+          "shift": "util.by_pixel(62, 42 - 32)",
+          "draw_as_shadow": true,
+          "scale": 0.5
+        }
+      ]
     },
     "active_picture": {
       "filename": "__Krastorio2Assets__/buildings/superior-substation/superior-substation-light.png",
@@ -96,7 +192,11 @@
     "light": {
       "intensity": 0.9,
       "size": 65,
-      "color": {}
+      "color": [
+        1,
+        1,
+        0.75
+      ]
     },
     "radius_visualisation_picture": {
       "filename": "__base__/graphics/entity/small-electric-pole/electric-pole-radius-visualization.png",

@@ -19,10 +19,15 @@
     "order": "b",
     "trigger": {
       "type": "or",
-      "triggers": {
-        "type": "time-elapsed",
-        "ticks": "135 * minute"
-      }
+      "triggers": [
+        {
+          "type": "group-attack"
+        },
+        {
+          "type": "time-elapsed",
+          "ticks": "135 * minute"
+        }
+      ]
     },
     "category": "kr-about-k2",
     "indent": 1,
@@ -34,11 +39,23 @@
     "order": "h",
     "trigger": {
       "type": "or",
-      "triggers": {
-        "type": "build-entity",
-        "entity": "kr-big-roboport",
-        "count": 1
-      }
+      "triggers": [
+        {
+          "type": "build-entity",
+          "entity": "roboport",
+          "count": 1
+        },
+        {
+          "type": "build-entity",
+          "entity": "kr-small-roboport",
+          "count": 1
+        },
+        {
+          "type": "build-entity",
+          "entity": "kr-big-roboport",
+          "count": 1
+        }
+      ]
     },
     "category": "kr-about-k2",
     "indent": 1,

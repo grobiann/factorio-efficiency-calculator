@@ -6,16 +6,25 @@
     "enabled": false,
     "category": "kr-crushing",
     "energy_required": 3,
-    "ingredients": {
-      "type": "item",
-      "name": "kr-imersite",
-      "amount": 3
-    },
-    "results": {
-      "type": "item",
-      "name": "kr-sand",
-      "amount": 3
-    },
+    "ingredients": [
+      {
+        "type": "item",
+        "name": "kr-imersite",
+        "amount": 3
+      }
+    ],
+    "results": [
+      {
+        "type": "item",
+        "name": "kr-imersite-powder",
+        "amount": 3
+      },
+      {
+        "type": "item",
+        "name": "kr-sand",
+        "amount": 3
+      }
+    ],
     "main_product": "kr-imersite-powder",
     "allow_productivity": true
   },
@@ -25,17 +34,21 @@
     "enabled": false,
     "category": "kr-crushing",
     "energy_required": 1,
-    "ingredients": {
-      "type": "item",
-      "name": "stone",
-      "amount": 3
-    },
-    "results": {
-      "type": "item",
-      "name": "kr-sand",
-      "amount_min": 7,
-      "amount_max": 8
-    },
+    "ingredients": [
+      {
+        "type": "item",
+        "name": "stone",
+        "amount": 3
+      }
+    ],
+    "results": [
+      {
+        "type": "item",
+        "name": "kr-sand",
+        "amount_min": 7,
+        "amount_max": 8
+      }
+    ],
     "allow_productivity": true
   }
 ]

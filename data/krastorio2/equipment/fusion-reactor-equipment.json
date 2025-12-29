@@ -4,30 +4,51 @@
     "name": "kr-fusion-reactor-equipment",
     "energy_required": 60,
     "enabled": false,
-    "ingredients": {
-      "type": "item",
-      "name": "low-density-structure",
-      "amount": 50
-    },
-    "results": {
-      "type": "item",
-      "name": "kr-fusion-reactor-equipment",
-      "amount": 1
-    }
+    "ingredients": [
+      {
+        "type": "item",
+        "name": "processing-unit",
+        "amount": 200
+      },
+      {
+        "type": "item",
+        "name": "low-density-structure",
+        "amount": 50
+      }
+    ],
+    "results": [
+      {
+        "type": "item",
+        "name": "kr-fusion-reactor-equipment",
+        "amount": 1
+      }
+    ]
   },
   {
     "type": "item",
     "name": "kr-fusion-reactor-equipment",
-    "icons": {
-      "icon": "__Krastorio2Assets__/icons/equipment/tier-2.png"
-    },
-    "pictures": {
-      "layers": {
-        "filename": "__Krastorio2Assets__/icons/equipment/fusion-reactor-equipment-light.png",
-        "size": 64,
-        "scale": 0.5,
-        "draw_as_light": true
+    "icons": [
+      {
+        "icon": "__Krastorio2Assets__/icons/equipment/fusion-reactor-equipment.png"
+      },
+      {
+        "icon": "__Krastorio2Assets__/icons/equipment/tier-2.png"
       }
+    ],
+    "pictures": {
+      "layers": [
+        {
+          "filename": "__Krastorio2Assets__/icons/equipment/fusion-reactor-equipment.png",
+          "size": 64,
+          "scale": 0.5
+        },
+        {
+          "filename": "__Krastorio2Assets__/icons/equipment/fusion-reactor-equipment-light.png",
+          "size": 64,
+          "scale": 0.5,
+          "draw_as_light": true
+        }
+      ]
     },
     "place_as_equipment_result": "kr-fusion-reactor-equipment",
     "subgroup": "equipment",
@@ -51,7 +72,9 @@
     },
     "burner": {
       "type": "burner",
-      "fuel_categories": {},
+      "fuel_categories": [
+        "kr-fusion-fuel"
+      ],
       "effectivity": 2,
       "fuel_inventory_size": 1,
       "burnt_inventory_size": 1
@@ -61,6 +84,9 @@
       "usage_priority": "primary-output"
     },
     "power": "3.2MW",
-    "categories": {}
+    "categories": [
+      "armor",
+      "kr-vehicle"
+    ]
   }
 ]

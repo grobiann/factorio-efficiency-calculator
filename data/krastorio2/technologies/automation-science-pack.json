@@ -7,13 +7,37 @@
     "unit": {
       "time": 45,
       "count": 100,
-      "ingredients": {}
+      "ingredients": [
+        [
+          "kr-basic-tech-card",
+          1
+        ],
+        [
+          "automation-science-pack",
+          1
+        ]
+      ]
     },
-    "prerequisites": {},
-    "effects": {
-      "type": "unlock-recipe",
-      "recipe": "kr-water-electrolysis"
-    }
+    "prerequisites": [
+      "steam-power",
+      "steel-processing",
+      "kr-stone-processing",
+      "engine"
+    ],
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "kr-electrolysis-plant"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "chemical-plant"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "kr-water-electrolysis"
+      }
+    ]
   },
   {
     "type": "technology",
@@ -23,13 +47,26 @@
     "unit": {
       "time": 30,
       "count": 100,
-      "ingredients": {}
+      "ingredients": [
+        [
+          "kr-basic-tech-card",
+          1
+        ],
+        [
+          "automation-science-pack",
+          1
+        ]
+      ]
     },
-    "prerequisites": {},
-    "effects": {
-      "type": "unlock-recipe",
-      "recipe": "kr-sentinel"
-    }
+    "prerequisites": [
+      "lamp"
+    ],
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "kr-sentinel"
+      }
+    ]
   },
   {
     "type": "technology",
@@ -39,12 +76,25 @@
     "unit": {
       "time": 30,
       "count": 100,
-      "ingredients": {}
+      "ingredients": [
+        [
+          "kr-basic-tech-card",
+          1
+        ],
+        [
+          "automation-science-pack",
+          1
+        ]
+      ]
     },
-    "prerequisites": {},
-    "effects": {
-      "type": "unlock-recipe",
-      "recipe": "kr-shelter"
-    }
+    "prerequisites": [
+      "automation-science-pack"
+    ],
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "kr-shelter"
+      }
+    ]
   }
 ]

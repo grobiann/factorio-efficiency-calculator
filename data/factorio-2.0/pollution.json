@@ -14,7 +14,9 @@
       "size": 64,
       "mipmap_count": 2,
       "y": "3 * 64",
-      "flags": {}
+      "flags": [
+        "gui-icon"
+      ]
     },
     "affects_evolution": true,
     "affects_water_tint": true

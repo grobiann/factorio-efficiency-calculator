@@ -2,23 +2,54 @@
   {
     "type": "projectile",
     "name": "kr-matter-wave",
-    "flags": {},
+    "flags": [
+      "not-on-map"
+    ],
     "hidden": true,
     "acceleration": 0,
-    "action": {
-      "type": "area",
-      "action_delivery": {
-        "type": "instant",
-        "target_effects": {
-          "type": "damage",
-          "damage": {
-            "amount": 3000,
-            "type": "explosion"
-          }
+    "action": [
+      {
+        "type": "direct",
+        "action_delivery": {
+          "type": "instant",
+          "target_effects": [
+            {
+              "type": "create-entity",
+              "entity_name": "kr-small-matter-explosion"
+            },
+            {
+              "type": "destroy-cliffs",
+              "radius": 1.5,
+              "explosion": "explosion"
+            },
+            {
+              "type": "destroy-decoratives",
+              "from_render_layer": "decorative",
+              "to_render_layer": "object",
+              "include_soft_decoratives": true,
+              "include_decals": false,
+              "invoke_decorative_trigger": true,
+              "decoratives_with_trigger_only": false,
+              "radius": 2
+            }
+          ]
         }
       },
-      "radius": 6
-    },
+      {
+        "type": "area",
+        "radius": 6,
+        "action_delivery": {
+          "type": "instant",
+          "target_effects": {
+            "type": "damage",
+            "damage": {
+              "amount": 3000,
+              "type": "explosion"
+            }
+          }
+        }
+      }
+    ],
     "animation": "util.empty_animation()",
     "shadow": "util.empty_animation()"
   }

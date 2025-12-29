@@ -4,16 +4,25 @@
     "name": "kr-black-reinforced-plate",
     "enabled": false,
     "energy_required": 5,
-    "ingredients": {
-      "type": "item",
-      "name": "kr-steel-beam",
-      "amount": 5
-    },
-    "results": {
-      "type": "item",
-      "name": "kr-black-reinforced-plate",
-      "amount": 10
-    }
+    "ingredients": [
+      {
+        "type": "item",
+        "name": "refined-concrete",
+        "amount": 20
+      },
+      {
+        "type": "item",
+        "name": "kr-steel-beam",
+        "amount": 5
+      }
+    ],
+    "results": [
+      {
+        "type": "item",
+        "name": "kr-black-reinforced-plate",
+        "amount": 10
+      }
+    ]
   },
   {
     "type": "item",

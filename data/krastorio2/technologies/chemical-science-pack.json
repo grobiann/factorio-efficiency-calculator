@@ -8,13 +8,52 @@
     "unit": {
       "time": 60,
       "count": 275,
-      "ingredients": {}
+      "ingredients": [
+        [
+          "automation-science-pack",
+          1
+        ],
+        [
+          "logistic-science-pack",
+          1
+        ],
+        [
+          "chemical-science-pack",
+          1
+        ]
+      ]
     },
-    "prerequisites": {},
-    "effects": {
-      "type": "unlock-recipe",
-      "recipe": "kr-biomethanol"
-    }
+    "prerequisites": [
+      "kr-atmosphere-condensation",
+      "kr-mineral-water-gathering",
+      "kr-rare-metal-processing"
+    ],
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "kr-water"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "kr-water-separation"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "kr-ammonia"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "kr-nitric-acid"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "kr-hydrogen-chloride"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "kr-biomethanol"
+      }
+    ]
   },
   {
     "type": "technology",
@@ -24,13 +63,34 @@
     "unit": {
       "time": 30,
       "count": 300,
-      "ingredients": {}
+      "ingredients": [
+        [
+          "kr-basic-tech-card",
+          1
+        ],
+        [
+          "automation-science-pack",
+          1
+        ],
+        [
+          "logistic-science-pack",
+          1
+        ],
+        [
+          "chemical-science-pack",
+          1
+        ]
+      ]
     },
-    "prerequisites": {},
-    "effects": {
-      "type": "unlock-recipe",
-      "recipe": "kr-advanced-lab"
-    }
+    "prerequisites": [
+      "chemical-science-pack"
+    ],
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "kr-advanced-lab"
+      }
+    ]
   },
   {
     "type": "technology",
@@ -41,13 +101,47 @@
     "unit": {
       "time": 45,
       "count": 275,
-      "ingredients": {}
+      "ingredients": [
+        [
+          "automation-science-pack",
+          1
+        ],
+        [
+          "logistic-science-pack",
+          1
+        ],
+        [
+          "military-science-pack",
+          1
+        ],
+        [
+          "chemical-science-pack",
+          1
+        ]
+      ]
     },
-    "prerequisites": {},
-    "effects": {
-      "type": "unlock-recipe",
-      "recipe": "kr-restore-used-pollution-filter"
-    }
+    "prerequisites": [
+      "kr-advanced-chemistry",
+      "kr-bio-processing"
+    ],
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "kr-air-purifier"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "kr-pollution-filter"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "kr-air-cleaning"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "kr-restore-used-pollution-filter"
+      }
+    ]
   },
   {
     "type": "technology",
@@ -57,13 +151,46 @@
     "unit": {
       "time": 45,
       "count": 175,
-      "ingredients": {}
+      "ingredients": [
+        [
+          "automation-science-pack",
+          1
+        ],
+        [
+          "logistic-science-pack",
+          1
+        ],
+        [
+          "chemical-science-pack",
+          1
+        ]
+      ]
     },
-    "prerequisites": {},
-    "effects": {
-      "type": "unlock-recipe",
-      "recipe": "kr-water-from-atmosphere"
-    }
+    "prerequisites": [
+      "chemical-science-pack"
+    ],
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "kr-atmospheric-condenser"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "kr-hydrogen"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "kr-oxygen"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "kr-nitrogen"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "kr-water-from-atmosphere"
+      }
+    ]
   },
   {
     "type": "technology",
@@ -73,13 +200,31 @@
     "unit": {
       "time": 30,
       "count": 200,
-      "ingredients": {}
+      "ingredients": [
+        [
+          "automation-science-pack",
+          1
+        ],
+        [
+          "logistic-science-pack",
+          1
+        ],
+        [
+          "chemical-science-pack",
+          1
+        ]
+      ]
     },
-    "prerequisites": {},
-    "effects": {
-      "type": "unlock-recipe",
-      "recipe": "kr-biofuel"
-    }
+    "prerequisites": [
+      "kr-fuel",
+      "kr-advanced-chemistry"
+    ],
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "kr-biofuel"
+      }
+    ]
   },
   {
     "type": "technology",
@@ -89,13 +234,52 @@
     "unit": {
       "time": 45,
       "count": 150,
-      "ingredients": {}
+      "ingredients": [
+        [
+          "automation-science-pack",
+          1
+        ],
+        [
+          "logistic-science-pack",
+          1
+        ],
+        [
+          "military-science-pack",
+          1
+        ],
+        [
+          "chemical-science-pack",
+          1
+        ]
+      ]
     },
-    "prerequisites": {},
-    "effects": {
-      "type": "unlock-recipe",
-      "recipe": "kr-wood-with-fertilizer"
-    },
+    "prerequisites": [
+      "kr-advanced-chemistry",
+      "kr-greenhouse",
+      "military-science-pack"
+    ],
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "kr-bio-lab"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "kr-biomass"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "kr-first-aid-kit"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "kr-fertilizer"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "kr-wood-with-fertilizer"
+      }
+    ],
     "ignore_tech_cost_multiplier": true
   },
   {
@@ -106,13 +290,31 @@
     "unit": {
       "time": 45,
       "count": 300,
-      "ingredients": {}
+      "ingredients": [
+        [
+          "automation-science-pack",
+          1
+        ],
+        [
+          "logistic-science-pack",
+          1
+        ],
+        [
+          "chemical-science-pack",
+          1
+        ]
+      ]
     },
-    "prerequisites": {},
-    "effects": {
-      "type": "unlock-recipe",
-      "recipe": "kr-electric-mining-drill-mk2"
-    }
+    "prerequisites": [
+      "electric-mining-drill",
+      "kr-rare-metal-processing"
+    ],
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "kr-electric-mining-drill-mk2"
+      }
+    ]
   },
   {
     "type": "technology",
@@ -122,13 +324,62 @@
     "unit": {
       "time": 60,
       "count": 275,
-      "ingredients": {}
+      "ingredients": [
+        [
+          "automation-science-pack",
+          1
+        ],
+        [
+          "logistic-science-pack",
+          1
+        ],
+        [
+          "chemical-science-pack",
+          1
+        ]
+      ]
     },
-    "prerequisites": {},
-    "effects": {
-      "type": "unlock-recipe",
-      "recipe": "kr-filter-rare-metal-ore-from-dirty-water"
-    }
+    "prerequisites": [
+      "kr-advanced-chemistry"
+    ],
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "kr-enriched-iron"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "kr-enriched-copper"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "kr-enriched-rare-metals"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "kr-iron-plate-from-enriched-iron"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "kr-copper-plate-from-enriched-copper"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "kr-rare-metals-from-enriched-rare-metals"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "kr-filter-iron-ore-from-dirty-water"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "kr-filter-copper-ore-from-dirty-water"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "kr-filter-rare-metal-ore-from-dirty-water"
+      }
+    ]
   },
   {
     "type": "technology",
@@ -138,13 +389,34 @@
     "unit": {
       "time": 60,
       "count": 275,
-      "ingredients": {}
+      "ingredients": [
+        [
+          "automation-science-pack",
+          1
+        ],
+        [
+          "logistic-science-pack",
+          1
+        ],
+        [
+          "chemical-science-pack",
+          1
+        ]
+      ]
     },
-    "prerequisites": {},
-    "effects": {
-      "type": "unlock-recipe",
-      "recipe": "kr-lithium-chloride"
-    }
+    "prerequisites": [
+      "kr-advanced-chemistry"
+    ],
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "kr-lithium"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "kr-lithium-chloride"
+      }
+    ]
   },
   {
     "type": "technology",
@@ -154,13 +426,30 @@
     "unit": {
       "time": 30,
       "count": 200,
-      "ingredients": {}
+      "ingredients": [
+        [
+          "automation-science-pack",
+          1
+        ],
+        [
+          "logistic-science-pack",
+          1
+        ],
+        [
+          "chemical-science-pack",
+          1
+        ]
+      ]
     },
-    "prerequisites": {},
-    "effects": {
-      "type": "unlock-recipe",
-      "recipe": "kr-lithium-sulfur-battery"
-    }
+    "prerequisites": [
+      "kr-lithium-processing"
+    ],
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "kr-lithium-sulfur-battery"
+      }
+    ]
   },
   {
     "type": "technology",
@@ -170,13 +459,39 @@
     "unit": {
       "time": 60,
       "count": 250,
-      "ingredients": {}
+      "ingredients": [
+        [
+          "automation-science-pack",
+          1
+        ],
+        [
+          "logistic-science-pack",
+          1
+        ],
+        [
+          "chemical-science-pack",
+          1
+        ],
+        [
+          "military-science-pack",
+          1
+        ],
+        [
+          "utility-science-pack",
+          1
+        ]
+      ]
     },
-    "prerequisites": {},
-    "effects": {
-      "type": "unlock-recipe",
-      "recipe": "kr-fusion-reactor-equipment"
-    }
+    "prerequisites": [
+      "fission-reactor-equipment",
+      "kr-fusion-energy"
+    ],
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "kr-fusion-reactor-equipment"
+      }
+    ]
   },
   {
     "type": "technology",
@@ -186,9 +501,24 @@
     "unit": {
       "time": 30,
       "count": 50,
-      "ingredients": {}
+      "ingredients": [
+        [
+          "automation-science-pack",
+          1
+        ],
+        [
+          "logistic-science-pack",
+          1
+        ],
+        [
+          "chemical-science-pack",
+          1
+        ]
+      ]
     },
-    "prerequisites": {},
+    "prerequisites": [
+      "chemical-science-pack"
+    ],
     "effects": {}
   },
   {
@@ -199,13 +529,31 @@
     "unit": {
       "time": 60,
       "count": 50,
-      "ingredients": {}
+      "ingredients": [
+        [
+          "automation-science-pack",
+          1
+        ],
+        [
+          "logistic-science-pack",
+          1
+        ],
+        [
+          "chemical-science-pack",
+          1
+        ]
+      ]
     },
-    "prerequisites": {},
-    "effects": {
-      "type": "unlock-recipe",
-      "recipe": "kr-portable-generator-equipment"
-    }
+    "prerequisites": [
+      "battery-equipment",
+      "chemical-science-pack"
+    ],
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "kr-portable-generator-equipment"
+      }
+    ]
   },
   {
     "type": "technology",
@@ -215,9 +563,24 @@
     "unit": {
       "time": 30,
       "count": 50,
-      "ingredients": {}
+      "ingredients": [
+        [
+          "automation-science-pack",
+          1
+        ],
+        [
+          "logistic-science-pack",
+          1
+        ],
+        [
+          "chemical-science-pack",
+          1
+        ]
+      ]
     },
-    "prerequisites": {},
+    "prerequisites": [
+      "chemical-science-pack"
+    ],
     "effects": {}
   },
   {
@@ -229,11 +592,15 @@
       "type": "mine-entity",
       "entity": "kr-rare-metal-ore"
     },
-    "prerequisites": {},
-    "effects": {
-      "type": "unlock-recipe",
-      "recipe": "kr-rare-metals"
-    }
+    "prerequisites": [
+      "kr-rare-metal-mining"
+    ],
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "kr-rare-metals"
+      }
+    ]
   },
   {
     "type": "technology",
@@ -243,13 +610,35 @@
     "unit": {
       "time": 30,
       "count": 200,
-      "ingredients": {}
+      "ingredients": [
+        [
+          "automation-science-pack",
+          1
+        ],
+        [
+          "logistic-science-pack",
+          1
+        ],
+        [
+          "chemical-science-pack",
+          1
+        ]
+      ]
     },
-    "prerequisites": {},
-    "effects": {
-      "type": "unlock-recipe",
-      "recipe": "kr-white-reinforced-plate"
-    }
+    "prerequisites": [
+      "chemical-science-pack",
+      "concrete"
+    ],
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "kr-black-reinforced-plate"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "kr-white-reinforced-plate"
+      }
+    ]
   },
   {
     "type": "technology",
@@ -259,13 +648,30 @@
     "unit": {
       "time": 30,
       "count": 350,
-      "ingredients": {}
+      "ingredients": [
+        [
+          "automation-science-pack",
+          1
+        ],
+        [
+          "logistic-science-pack",
+          1
+        ],
+        [
+          "chemical-science-pack",
+          1
+        ]
+      ]
     },
-    "prerequisites": {},
-    "effects": {
-      "type": "unlock-recipe",
-      "recipe": "kr-research-server"
-    }
+    "prerequisites": [
+      "chemical-science-pack"
+    ],
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "kr-research-server"
+      }
+    ]
   },
   {
     "type": "technology",
@@ -275,13 +681,31 @@
     "unit": {
       "time": 30,
       "count": 500,
-      "ingredients": {}
+      "ingredients": [
+        [
+          "automation-science-pack",
+          1
+        ],
+        [
+          "logistic-science-pack",
+          1
+        ],
+        [
+          "chemical-science-pack",
+          1
+        ]
+      ]
     },
-    "prerequisites": {},
-    "effects": {
-      "type": "worker-robot-battery",
-      "modifier": 0.4
-    }
+    "prerequisites": [
+      "kr-lithium-sulfur-battery",
+      "robotics"
+    ],
+    "effects": [
+      {
+        "type": "worker-robot-battery",
+        "modifier": 0.4
+      }
+    ]
   },
   {
     "type": "technology",
@@ -292,12 +716,34 @@
     "unit": {
       "time": 60,
       "count": 500,
-      "ingredients": {}
+      "ingredients": [
+        [
+          "automation-science-pack",
+          1
+        ],
+        [
+          "logistic-science-pack",
+          1
+        ],
+        [
+          "chemical-science-pack",
+          1
+        ]
+      ]
     },
-    "prerequisites": {},
-    "effects": {
-      "type": "unlock-recipe",
-      "recipe": "kr-energy-absorber-equipment"
-    }
+    "prerequisites": [
+      "battery-equipment",
+      "power-armor"
+    ],
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "kr-tesla-coil"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "kr-energy-absorber-equipment"
+      }
+    ]
   }
 ]

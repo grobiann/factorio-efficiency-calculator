@@ -4,16 +4,35 @@
     "name": "kr-advanced-radar",
     "energy_required": 20,
     "enabled": false,
-    "ingredients": {
-      "type": "item",
-      "name": "kr-rare-metals",
-      "amount": 5
-    },
-    "results": {
-      "type": "item",
-      "name": "kr-advanced-radar",
-      "amount": 1
-    }
+    "ingredients": [
+      {
+        "type": "item",
+        "name": "radar",
+        "amount": 1
+      },
+      {
+        "type": "item",
+        "name": "kr-steel-beam",
+        "amount": 5
+      },
+      {
+        "type": "item",
+        "name": "advanced-circuit",
+        "amount": 5
+      },
+      {
+        "type": "item",
+        "name": "kr-rare-metals",
+        "amount": 5
+      }
+    ],
+    "results": [
+      {
+        "type": "item",
+        "name": "kr-advanced-radar",
+        "amount": 1
+      }
+    ]
   },
   {
     "type": "item",
@@ -28,14 +47,35 @@
     "type": "radar",
     "name": "kr-advanced-radar",
     "icon": "__Krastorio2Assets__/icons/entities/advanced-radar.png",
-    "flags": {},
+    "flags": [
+      "placeable-player",
+      "player-creation"
+    ],
     "minable": {
       "mining_time": 0.1,
       "result": "kr-advanced-radar"
     },
     "fast_replaceable_group": "radar",
-    "collision_box": {},
-    "selection_box": {},
+    "collision_box": [
+      [
+        -1.2,
+        -1.2
+      ],
+      [
+        1.2,
+        1.2
+      ]
+    ],
+    "selection_box": [
+      [
+        -1.5,
+        -1.5
+      ],
+      [
+        1.5,
+        1.5
+      ]
+    ],
     "energy_per_sector": "2MJ",
     "max_distance_of_sector_revealed": 20,
     "max_distance_of_nearby_sector_revealed": 8,
@@ -47,14 +87,22 @@
     "energy_usage": "2MW",
     "corpse": "kr-advanced-radar-remnants",
     "max_health": 350,
-    "resistances": {
-      "type": "impact",
-      "percent": 50
-    },
-    "working_sound": {
-      "sound": {
-        "filename": "__base__/sound/radar.ogg"
+    "resistances": [
+      {
+        "type": "fire",
+        "percent": 80
+      },
+      {
+        "type": "impact",
+        "percent": 50
       }
+    ],
+    "working_sound": {
+      "sound": [
+        {
+          "filename": "__base__/sound/radar.ogg"
+        }
+      ]
     },
     "vehicle_impact_sound": {
       "filename": "__base__/sound/car-metal-impact.ogg",
@@ -70,18 +118,31 @@
       "scale": 0.5
     },
     "pictures": {
-      "layers": {
-        "filename": "__Krastorio2Assets__/buildings/advanced-radar/radar-shadow.png",
-        "priority": "low",
-        "width": 343,
-        "height": 186,
-        "apply_projection": false,
-        "direction_count": 64,
-        "line_length": 8,
-        "shift": "util.by_pixel(39.25, 3)",
-        "scale": 0.5,
-        "draw_as_shadow": true
-      }
+      "layers": [
+        {
+          "filename": "__Krastorio2Assets__/buildings/advanced-radar/radar.png",
+          "priority": "low",
+          "width": 196,
+          "height": 254,
+          "apply_projection": false,
+          "direction_count": 64,
+          "line_length": 8,
+          "shift": "util.by_pixel(1, -16)",
+          "scale": 0.5
+        },
+        {
+          "filename": "__Krastorio2Assets__/buildings/advanced-radar/radar-shadow.png",
+          "priority": "low",
+          "width": 343,
+          "height": 186,
+          "apply_projection": false,
+          "direction_count": 64,
+          "line_length": 8,
+          "shift": "util.by_pixel(39.25, 3)",
+          "draw_as_shadow": true,
+          "scale": 0.5
+        }
+      ]
     },
     "radius_minimap_visualisation_color": {
       "r": 0.059,

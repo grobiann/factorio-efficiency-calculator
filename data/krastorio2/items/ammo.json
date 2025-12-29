@@ -17,24 +17,36 @@
             "type": "create-explosion",
             "entity_name": "explosion-gunshot"
           },
-          "target_effects": {
-            "type": "damage",
-            "entity_name": "explosion-hit",
-            "damage": {
-              "amount": 28,
-              "type": "physical"
+          "target_effects": [
+            {
+              "type": "create-entity",
+              "entity_name": "explosion-hit"
+            },
+            {
+              "type": "damage",
+              "damage": {
+                "amount": 28,
+                "type": "physical"
+              }
             }
-          }
+          ]
         }
       }
     },
     "pictures": {
-      "layers": {
-        "filename": "__Krastorio2Assets__/icons/ammo/imersite-rounds-magazine-light.png",
-        "size": 64,
-        "scale": 0.5,
-        "draw_as_light": true
-      }
+      "layers": [
+        {
+          "filename": "__Krastorio2Assets__/icons/ammo/imersite-rounds-magazine.png",
+          "size": 64,
+          "scale": 0.5
+        },
+        {
+          "filename": "__Krastorio2Assets__/icons/ammo/imersite-rounds-magazine-light.png",
+          "size": 64,
+          "scale": 0.5,
+          "draw_as_light": true
+        }
+      ]
     }
   },
   {
@@ -63,12 +75,19 @@
       }
     },
     "pictures": {
-      "layers": {
-        "filename": "__Krastorio2Assets__/icons/ammo/antimatter-artillery-shell-light.png",
-        "size": 64,
-        "scale": 0.5,
-        "draw_as_light": true
-      }
+      "layers": [
+        {
+          "filename": "__Krastorio2Assets__/icons/ammo/antimatter-artillery-shell.png",
+          "size": 64,
+          "scale": 0.5
+        },
+        {
+          "filename": "__Krastorio2Assets__/icons/ammo/antimatter-artillery-shell-light.png",
+          "size": 64,
+          "scale": 0.5,
+          "draw_as_light": true
+        }
+      ]
     }
   },
   {
@@ -104,12 +123,19 @@
       }
     },
     "pictures": {
-      "layers": {
-        "filename": "__Krastorio2Assets__/icons/ammo/impulse-rifle-ammo-light.png",
-        "size": 64,
-        "scale": 0.5,
-        "draw_as_light": true
-      }
+      "layers": [
+        {
+          "filename": "__Krastorio2Assets__/icons/ammo/impulse-rifle-ammo.png",
+          "size": 64,
+          "scale": 0.5
+        },
+        {
+          "filename": "__Krastorio2Assets__/icons/ammo/impulse-rifle-ammo-light.png",
+          "size": 64,
+          "scale": 0.5,
+          "draw_as_light": true
+        }
+      ]
     }
   },
   {
@@ -168,12 +194,19 @@
       }
     },
     "pictures": {
-      "layers": {
-        "filename": "__Krastorio2Assets__/icons/ammo/antimatter-rocket-light.png",
-        "size": 64,
-        "scale": 0.5,
-        "draw_as_light": true
-      }
+      "layers": [
+        {
+          "filename": "__Krastorio2Assets__/icons/ammo/antimatter-rocket.png",
+          "size": 64,
+          "scale": 0.5
+        },
+        {
+          "filename": "__Krastorio2Assets__/icons/ammo/antimatter-rocket-light.png",
+          "size": 64,
+          "scale": 0.5,
+          "draw_as_light": true
+        }
+      ]
     }
   },
   {
@@ -260,12 +293,19 @@
       }
     },
     "pictures": {
-      "layers": {
-        "size": 64,
-        "filename": "__Krastorio2Assets__/icons/ammo/antimatter-railgun-shell-light.png",
-        "scale": 0.5,
-        "draw_as_light": true
-      }
+      "layers": [
+        {
+          "size": 64,
+          "filename": "__Krastorio2Assets__/icons/ammo/antimatter-railgun-shell.png",
+          "scale": 0.5
+        },
+        {
+          "draw_as_light": true,
+          "size": 64,
+          "filename": "__Krastorio2Assets__/icons/ammo/antimatter-railgun-shell-light.png",
+          "scale": 0.5
+        }
+      ]
     }
   },
   {
@@ -324,12 +364,19 @@
       }
     },
     "pictures": {
-      "layers": {
-        "size": 64,
-        "filename": "__Krastorio2Assets__/icons/ammo/nuclear-turret-rocket-light.png",
-        "scale": 0.5,
-        "draw_as_light": true
-      }
+      "layers": [
+        {
+          "size": 64,
+          "filename": "__Krastorio2Assets__/icons/ammo/nuclear-turret-rocket.png",
+          "scale": 0.5
+        },
+        {
+          "draw_as_light": true,
+          "size": 64,
+          "filename": "__Krastorio2Assets__/icons/ammo/nuclear-turret-rocket-light.png",
+          "scale": 0.5
+        }
+      ]
     }
   },
   {
@@ -360,12 +407,19 @@
       }
     },
     "pictures": {
-      "layers": {
-        "size": 64,
-        "filename": "__Krastorio2Assets__/icons/ammo/antimatter-rocket-for-turret-light.png",
-        "scale": 0.5,
-        "draw_as_light": true
-      }
+      "layers": [
+        {
+          "size": 64,
+          "filename": "__Krastorio2Assets__/icons/ammo/antimatter-rocket-for-turret.png",
+          "scale": 0.5
+        },
+        {
+          "draw_as_light": true,
+          "size": 64,
+          "filename": "__Krastorio2Assets__/icons/ammo/antimatter-rocket-for-turret-light.png",
+          "scale": 0.5
+        }
+      ]
     }
   },
   {
@@ -394,12 +448,19 @@
       }
     },
     "pictures": {
-      "layers": {
-        "size": 64,
-        "filename": "__Krastorio2Assets__/icons/ammo/nuclear-artillery-shell-light.png",
-        "scale": 0.5,
-        "draw_as_light": true
-      }
+      "layers": [
+        {
+          "size": 64,
+          "filename": "__Krastorio2Assets__/icons/ammo/nuclear-artillery-shell.png",
+          "scale": 0.5
+        },
+        {
+          "draw_as_light": true,
+          "size": 64,
+          "filename": "__Krastorio2Assets__/icons/ammo/nuclear-artillery-shell-light.png",
+          "scale": 0.5
+        }
+      ]
     }
   }
 ]

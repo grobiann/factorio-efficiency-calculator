@@ -19,14 +19,61 @@
     "procession_style": "procession_style.default",
     "timeline": {
       "duration": 100,
-      "layers": {
-        "type": "pod-opacity",
-        "frames": {
-          "timestamp": 150,
-          "outside_opacity": 0
+      "layers": [
+        {
+          "type": "pod-movement",
+          "frames": [
+            {
+              "timestamp": 0,
+              "tilt": 0.0,
+              "tilt_t": 0.0,
+              "offset": [
+                0,
+                0
+              ],
+              "offset_t": [
+                0,
+                -40
+              ]
+            },
+            {
+              "timestamp": 100,
+              "offset": [
+                0,
+                -70
+              ],
+              "offset_t": [
+                0,
+                0
+              ]
+            },
+            {
+              "timestamp": 0,
+              "offset_rate": 0,
+              "offset_rate_t": 0
+            },
+            {
+              "timestamp": 100,
+              "offset_rate": 0,
+              "offset_rate_t": 1
+            }
+          ]
         },
-        "lut": "__core__/graphics/color_luts/lut-day.png"
-      },
+        {
+          "type": "pod-opacity",
+          "lut": "__core__/graphics/color_luts/lut-day.png",
+          "frames": [
+            {
+              "timestamp": 100,
+              "outside_opacity": 1
+            },
+            {
+              "timestamp": 150,
+              "outside_opacity": 0
+            }
+          ]
+        }
+      ],
       "audio_events": {}
     }
   },
@@ -38,14 +85,51 @@
     "timeline": {
       "duration": 800,
       "special_action_tick": 800,
-      "layers": {
-        "type": "pod-opacity",
-        "frames": {
-          "timestamp": 500,
-          "outside_opacity": 0
+      "layers": [
+        {
+          "type": "pod-movement",
+          "frames": [
+            {
+              "timestamp": 0,
+              "tilt": 0.0,
+              "tilt_t": 0.0,
+              "offset": [
+                0,
+                0
+              ],
+              "offset_t": [
+                0,
+                -40
+              ]
+            },
+            {
+              "timestamp": 100,
+              "offset": [
+                0,
+                -700
+              ],
+              "offset_t": [
+                0,
+                0
+              ]
+            }
+          ]
         },
-        "lut": "__core__/graphics/color_luts/lut-day.png"
-      }
+        {
+          "type": "pod-opacity",
+          "lut": "__core__/graphics/color_luts/lut-day.png",
+          "frames": [
+            {
+              "timestamp": 300,
+              "outside_opacity": 1
+            },
+            {
+              "timestamp": 500,
+              "outside_opacity": 0
+            }
+          ]
+        }
+      ]
     }
   },
   {
@@ -56,51 +140,212 @@
     "timeline": {
       "duration": "400 * scl",
       "special_action_tick": "100 * scl",
-      "layers": {
-        "type": "single-graphic",
-        "frames": {
-          "timestamp": "400 * scl",
-          "opacity": 0.0,
-          "opacity_t": 0.0
+      "layers": [
+        {
+          "type": "pod-movement",
+          "frames": [
+            {
+              "timestamp": 0,
+              "tilt": 0.0,
+              "tilt_t": 0,
+              "offset": [
+                0,
+                -70
+              ],
+              "offset_t": [
+                0,
+                40
+              ]
+            },
+            {
+              "timestamp": "400 * scl",
+              "offset": [
+                0,
+                0
+              ],
+              "offset_t": [
+                0,
+                0
+              ]
+            },
+            {
+              "timestamp": 0,
+              "offset_rate": 0,
+              "offset_rate_t": 0
+            },
+            {
+              "timestamp": "400 * scl",
+              "offset_rate": 1.8,
+              "offset_rate_t": -0.8
+            }
+          ]
         },
-        "lut": "__core__/graphics/color_luts/lut-day.png",
-        "name": "hatch light",
-        "start_time": "250 * scl",
-        "end_time": 0,
-        "graphic": {
-          "type": "hatch-location-catalogue-index"
+        {
+          "type": "pod-opacity",
+          "lut": "__core__/graphics/color_luts/lut-day.png",
+          "frames": [
+            {
+              "timestamp": 0,
+              "outside_opacity": 0
+            },
+            {
+              "timestamp": "50 * scl",
+              "outside_opacity": 1
+            }
+          ]
         },
-        "timestamp": "400 * scl",
-        "frame": 0,
-        "opacity": 0,
-        "render_layer": "cargo-hatch",
-        "secondary_draw_order": -1,
-        "relative_to": "ground-origin"
-      },
-      "audio_events": {}
+        {
+          "type": "pod-animation",
+          "name": "pod fold",
+          "start_time": 0,
+          "end_time": 0,
+          "graphic": {
+            "type": "pod-catalogue",
+            "catalogue_id": "procession_graphic_catalogue.pod_anim_opening"
+          },
+          "frames": [
+            {
+              "timestamp": "250 * scl",
+              "frame": 33
+            },
+            {
+              "timestamp": "400 * scl",
+              "frame": 0
+            }
+          ]
+        },
+        "make_pod_overlay(\"podjet\", procession_graphic_catalogue.thruster_flames_loop, -1, 0, 140 * scl, false, {})",
+        "make_pod_overlay(\"podjet\", procession_graphic_catalogue.thruster_flames_start, -1, 140 * scl, 150 * scl, true,\n        {\n          { timestamp = 140 * scl, frame = 9 },\n          { timestamp = 150 * scl, frame = 0 }\n        })",
+        "make_pod_overlay(\"podjet_emission\", procession_graphic_catalogue.pod_open_emission, 1, 0, 150 * scl, false,\n        {\n          { timestamp = 140 * scl, opacity = 1 },\n          { timestamp = 150 * scl, opacity = 0 }\n        })",
+        "make_pod_overlay(\"podjet\", procession_graphic_catalogue.thruster_flames_start, -1, 230 * scl, 240 * scl, true,\n        {\n          { timestamp = 230 * scl, frame = 0 },\n          { timestamp = 240 * scl, frame = 9 }\n        })",
+        "make_pod_overlay(\"podjet\", procession_graphic_catalogue.thruster_flames_loop, -1, 240 * scl, 390 * scl, false, {})",
+        "make_pod_overlay(\"podjet\", procession_graphic_catalogue.thruster_flames_start, -1, 390 * scl, 0, true,\n        {\n          { timestamp = 390 * scl, frame = 9 },\n          { timestamp = 400 * scl, frame = 0 }\n        })",
+        "make_pod_overlay(\"podjet_emission\", procession_graphic_catalogue.pod_open_emission, 1, 230 * scl, 250 * scl, false,\n        {\n          { timestamp = 230 * scl, opacity = 0 },\n          { timestamp = 250 * scl, opacity = 1 }\n        })",
+        "make_pod_overlay(\"podjet_emission\", procession_graphic_catalogue.pod_anim_opening_emission, 1, 250 * scl, 0, true,\n        {\n          { timestamp=250 * scl, frame = 33 },\n          { timestamp=400 * scl, frame = 0 },\n          { timestamp=390 * scl, opacity = 1 },\n          { timestamp=400 * scl, opacity = 0 }\n        })",
+        {
+          "type": "single-graphic",
+          "name": "hatch light",
+          "render_layer": "cargo-hatch",
+          "secondary_draw_order": -1,
+          "relative_to": "ground-origin",
+          "graphic": {
+            "type": "hatch-location-catalogue-index"
+          },
+          "start_time": "250 * scl",
+          "frames": [
+            {
+              "timestamp": "250 * scl",
+              "opacity": 0.0,
+              "opacity_t": 0.0
+            },
+            {
+              "timestamp": "390 * scl",
+              "opacity": 2.0,
+              "opacity_t": -1.0
+            },
+            {
+              "timestamp": "400 * scl",
+              "opacity": 0.0,
+              "opacity_t": 0.0
+            }
+          ]
+        }
+      ],
+      "audio_events": [
+        "playSound(100 * scl, procession_audio_catalogue.pod_thruster_burst_2)",
+        "playSound(230 * scl, procession_audio_catalogue.pod_thruster_burst_3)"
+      ]
     },
     "ground_timeline": {
       "duration": "400 * scl",
       "special_action_tick": "100 * scl",
-      "layers": {
-        "type": "pod-animation",
-        "frames": {
-          "timestamp": "400 * scl",
-          "frame": 11
+      "layers": [
+        {
+          "type": "pod-movement",
+          "frames": [
+            {
+              "timestamp": 0,
+              "tilt": 0.0,
+              "tilt_t": 0,
+              "offset": [
+                0,
+                -70
+              ],
+              "offset_t": [
+                0,
+                40
+              ]
+            },
+            {
+              "timestamp": "400 * scl",
+              "offset": [
+                0,
+                0
+              ],
+              "offset_t": [
+                0,
+                0
+              ]
+            },
+            {
+              "timestamp": 0,
+              "offset_rate": 0,
+              "offset_rate_t": 0
+            },
+            {
+              "timestamp": "400 * scl",
+              "offset_rate": 1.8,
+              "offset_rate_t": -0.8
+            }
+          ]
         },
-        "lut": "__core__/graphics/color_luts/lut-day.png",
-        "name": "pod fold",
-        "start_time": 0,
-        "end_time": 400,
-        "graphic": {
-          "type": "pod-catalogue",
-          "catalogue_id": "procession_graphic_catalogue.pod_anim_landing"
+        {
+          "type": "pod-opacity",
+          "lut": "__core__/graphics/color_luts/lut-day.png",
+          "frames": [
+            {
+              "timestamp": 0,
+              "outside_opacity": 0
+            },
+            {
+              "timestamp": "50 * scl",
+              "outside_opacity": 1
+            }
+          ]
         },
-        "timestamp": "400 * scl",
-        "frame": 11,
-        "opacity": 0
-      },
-      "audio_events": {}
+        {
+          "type": "pod-animation",
+          "name": "pod fold",
+          "start_time": 0,
+          "end_time": 400,
+          "graphic": {
+            "type": "pod-catalogue",
+            "catalogue_id": "procession_graphic_catalogue.pod_anim_landing"
+          },
+          "frames": [
+            {
+              "timestamp": "250 * scl",
+              "frame": 0
+            },
+            {
+              "timestamp": "400 * scl",
+              "frame": 11
+            }
+          ]
+        },
+        "make_pod_overlay(\"podjet\", procession_graphic_catalogue.thruster_flames_loop, -1, 0, 140 * scl, false, {})",
+        "make_pod_overlay(\"podjet\", procession_graphic_catalogue.thruster_flames_start, -1, 140 * scl, 150 * scl, true,\n        {\n          { timestamp = 140 * scl, frame = 9 },\n          { timestamp = 150 * scl, frame = 0 }\n        })",
+        "make_pod_overlay(\"podjet_emission\", procession_graphic_catalogue.pod_open_emission, 1, 0, 150 * scl, false,\n        {\n          { timestamp = 140 * scl, opacity = 1 },\n          { timestamp = 150 * scl, opacity = 0 }\n        })",
+        "make_pod_overlay(\"podjet\", procession_graphic_catalogue.thruster_flames_start, -1, 230 * scl, 240 * scl, true,\n        {\n          { timestamp = 230 * scl, frame = 0 },\n          { timestamp = 240 * scl, frame = 9 }\n        })",
+        "make_pod_overlay(\"podjet\", procession_graphic_catalogue.thruster_flames_loop, -1, 240 * scl, 390 * scl, false, {})",
+        "make_pod_overlay(\"podjet\", procession_graphic_catalogue.thruster_flames_start, -1, 390 * scl, 0, true,\n        {\n          { timestamp = 390 * scl, frame = 9 },\n          { timestamp = 400 * scl, frame = 0 }\n        })",
+        "make_pod_overlay(\"podjet_emission\", procession_graphic_catalogue.pod_open_emission, 1, 230 * scl, 250 * scl, false,\n        {\n          { timestamp = 230 * scl, opacity = 0 },\n          { timestamp = 250 * scl, opacity = 1 }\n        })",
+        "make_pod_overlay(\"podjet_emission\", procession_graphic_catalogue.pod_anim_landing_emission, 1, 250 * scl, 0, true,\n        {\n          { timestamp=250 * scl, frame = 0 },\n          { timestamp=400 * scl, frame = 11 },\n          { timestamp=390 * scl, opacity = 1 },\n          { timestamp=400 * scl, opacity = 0 }\n        })"
+      ],
+      "audio_events": [
+        "playSound(100 * scl, procession_audio_catalogue.pod_thruster_burst_2)",
+        "playSound(230 * scl, procession_audio_catalogue.pod_thruster_burst_3)"
+      ]
     }
   },
   {

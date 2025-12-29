@@ -4,23 +4,42 @@
     "name": "kr-additional-engine-equipment",
     "energy_required": 20,
     "enabled": false,
-    "ingredients": {
-      "type": "item",
-      "name": "steel-plate",
-      "amount": 5
-    },
-    "results": {
-      "type": "item",
-      "name": "kr-additional-engine-equipment",
-      "amount": 1
-    }
+    "ingredients": [
+      {
+        "type": "item",
+        "name": "electric-engine-unit",
+        "amount": 2
+      },
+      {
+        "type": "item",
+        "name": "electronic-circuit",
+        "amount": 5
+      },
+      {
+        "type": "item",
+        "name": "steel-plate",
+        "amount": 5
+      }
+    ],
+    "results": [
+      {
+        "type": "item",
+        "name": "kr-additional-engine-equipment",
+        "amount": 1
+      }
+    ]
   },
   {
     "type": "item",
     "name": "kr-additional-engine-equipment",
-    "icons": {
-      "icon": "__Krastorio2Assets__/icons/equipment/tier-1.png"
-    },
+    "icons": [
+      {
+        "icon": "__Krastorio2Assets__/icons/equipment/additional-engine-equipment.png"
+      },
+      {
+        "icon": "__Krastorio2Assets__/icons/equipment/tier-1.png"
+      }
+    ],
     "place_as_equipment_result": "kr-additional-engine-equipment",
     "subgroup": "kr-vehicle-motor",
     "order": "e[additional-engines]-e1[advanced-additional-engine-equipment]",
@@ -47,6 +66,8 @@
     },
     "energy_consumption": "100kW",
     "movement_bonus": 0.3,
-    "categories": {}
+    "categories": [
+      "kr-vehicle-motor"
+    ]
   }
 ]

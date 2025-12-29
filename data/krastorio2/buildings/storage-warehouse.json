@@ -4,16 +4,25 @@
     "name": "kr-storage-warehouse",
     "energy_required": 1,
     "enabled": false,
-    "ingredients": {
-      "type": "item",
-      "name": "advanced-circuit",
-      "amount": 5
-    },
-    "results": {
-      "type": "item",
-      "name": "kr-storage-warehouse",
-      "amount": 1
-    }
+    "ingredients": [
+      {
+        "type": "item",
+        "name": "kr-warehouse",
+        "amount": 1
+      },
+      {
+        "type": "item",
+        "name": "advanced-circuit",
+        "amount": 5
+      }
+    ],
+    "results": [
+      {
+        "type": "item",
+        "name": "kr-storage-warehouse",
+        "amount": 1
+      }
+    ]
   },
   {
     "type": "item",
@@ -28,24 +37,55 @@
     "type": "logistic-container",
     "name": "kr-storage-warehouse",
     "icon": "__Krastorio2Assets__/icons/entities/storage-warehouse.png",
-    "flags": {},
+    "flags": [
+      "placeable-player",
+      "player-creation"
+    ],
     "fast_replaceable_group": "container",
     "minable": {
       "mining_time": 1,
       "result": "kr-storage-warehouse"
     },
-    "collision_box": {},
-    "selection_box": {},
+    "collision_box": [
+      [
+        -2.75,
+        -2.75
+      ],
+      [
+        2.75,
+        2.75
+      ]
+    ],
+    "selection_box": [
+      [
+        -3,
+        -3
+      ],
+      [
+        3,
+        3
+      ]
+    ],
     "inventory_size": 500,
     "logistic_mode": "storage",
     "max_logistic_slots": 1,
     "max_health": 1500,
     "corpse": "kr-big-random-pipes-remnants",
     "damaged_trigger_effect": "hit_effects.entity()",
-    "resistances": {
-      "type": "impact",
-      "percent": 75
-    },
+    "resistances": [
+      {
+        "type": "physical",
+        "percent": 50
+      },
+      {
+        "type": "fire",
+        "percent": 75
+      },
+      {
+        "type": "impact",
+        "percent": 75
+      }
+    ],
     "open_sound": "sounds.machine_open",
     "close_sound": "sounds.machine_close",
     "vehicle_impact_sound": "sounds.generic_impact",

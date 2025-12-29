@@ -4,16 +4,30 @@
     "name": "kr-huge-storage-tank",
     "energy_required": 10,
     "enabled": false,
-    "ingredients": {
-      "type": "item",
-      "name": "kr-steel-pipe",
-      "amount": 12
-    },
-    "results": {
-      "type": "item",
-      "name": "kr-huge-storage-tank",
-      "amount": 1
-    }
+    "ingredients": [
+      {
+        "type": "item",
+        "name": "kr-steel-beam",
+        "amount": 20
+      },
+      {
+        "type": "item",
+        "name": "steel-plate",
+        "amount": 60
+      },
+      {
+        "type": "item",
+        "name": "kr-steel-pipe",
+        "amount": 12
+      }
+    ],
+    "results": [
+      {
+        "type": "item",
+        "name": "kr-huge-storage-tank",
+        "amount": 1
+      }
+    ]
   },
   {
     "type": "item",
@@ -28,29 +42,153 @@
     "type": "storage-tank",
     "name": "kr-huge-storage-tank",
     "icon": "__Krastorio2Assets__/icons/entities/huge-storage-tank.png",
-    "flags": {},
+    "flags": [
+      "placeable-player",
+      "player-creation"
+    ],
     "minable": {
       "mining_time": 1,
       "result": "kr-huge-storage-tank"
     },
-    "collision_box": {},
-    "selection_box": {},
+    "collision_box": [
+      [
+        -2.35,
+        -2.35
+      ],
+      [
+        2.35,
+        2.35
+      ]
+    ],
+    "selection_box": [
+      [
+        -2.5,
+        -2.5
+      ],
+      [
+        2.5,
+        2.5
+      ]
+    ],
     "flow_length_in_ticks": 360,
     "fluid_box": {
       "volume": 200000,
       "pipe_covers": "pipecoverspictures()",
-      "pipe_connections": {
-        "flow_direction": "input-output",
-        "direction": "defines.direction.south",
-        "position": {}
-      }
+      "pipe_connections": [
+        {
+          "flow_direction": "input-output",
+          "direction": "defines.direction.west",
+          "position": [
+            -2,
+            -1
+          ]
+        },
+        {
+          "flow_direction": "input-output",
+          "direction": "defines.direction.west",
+          "position": [
+            -2,
+            0
+          ]
+        },
+        {
+          "flow_direction": "input-output",
+          "direction": "defines.direction.west",
+          "position": [
+            -2,
+            1
+          ]
+        },
+        {
+          "flow_direction": "input-output",
+          "direction": "defines.direction.north",
+          "position": [
+            -1,
+            -2
+          ]
+        },
+        {
+          "flow_direction": "input-output",
+          "direction": "defines.direction.north",
+          "position": [
+            0,
+            -2
+          ]
+        },
+        {
+          "flow_direction": "input-output",
+          "direction": "defines.direction.north",
+          "position": [
+            1,
+            -2
+          ]
+        },
+        {
+          "flow_direction": "input-output",
+          "direction": "defines.direction.east",
+          "position": [
+            2,
+            -1
+          ]
+        },
+        {
+          "flow_direction": "input-output",
+          "direction": "defines.direction.east",
+          "position": [
+            2,
+            0
+          ]
+        },
+        {
+          "flow_direction": "input-output",
+          "direction": "defines.direction.east",
+          "position": [
+            2,
+            1
+          ]
+        },
+        {
+          "flow_direction": "input-output",
+          "direction": "defines.direction.south",
+          "position": [
+            -1,
+            2
+          ]
+        },
+        {
+          "flow_direction": "input-output",
+          "direction": "defines.direction.south",
+          "position": [
+            0,
+            2
+          ]
+        },
+        {
+          "flow_direction": "input-output",
+          "direction": "defines.direction.south",
+          "position": [
+            1,
+            2
+          ]
+        }
+      ]
     },
     "max_health": 2000,
     "corpse": "kr-medium-random-pipes-remnants",
-    "resistances": {
-      "type": "impact",
-      "percent": 80
-    },
+    "resistances": [
+      {
+        "type": "physical",
+        "percent": 50
+      },
+      {
+        "type": "fire",
+        "percent": 80
+      },
+      {
+        "type": "impact",
+        "percent": 80
+      }
+    ],
     "vehicle_impact_sound": {
       "filename": "__base__/sound/car-metal-impact.ogg",
       "volume": 0.65
@@ -64,15 +202,25 @@
     },
     "pictures": {
       "picture": {
-        "sheets": {
-          "filename": "__Krastorio2Assets__/buildings/huge-storage-tank/huge-storage-tank-sh.png",
-          "priority": "extra-high",
-          "frames": 1,
-          "scale": 0.5,
-          "width": 426,
-          "height": 426,
-          "draw_as_shadow": true
-        }
+        "sheets": [
+          {
+            "filename": "__Krastorio2Assets__/buildings/huge-storage-tank/huge-storage-tank.png",
+            "priority": "extra-high",
+            "frames": 1,
+            "scale": 0.5,
+            "width": 426,
+            "height": 426
+          },
+          {
+            "filename": "__Krastorio2Assets__/buildings/huge-storage-tank/huge-storage-tank-sh.png",
+            "priority": "extra-high",
+            "frames": 1,
+            "scale": 0.5,
+            "width": 426,
+            "height": 426,
+            "draw_as_shadow": true
+          }
+        ]
       },
       "fluid_background": {
         "filename": "__base__/graphics/entity/storage-tank/fluid-background.png",
@@ -104,7 +252,16 @@
         "direction_count": 1
       }
     },
-    "window_bounding_box": {},
+    "window_bounding_box": [
+      [
+        -0.125,
+        0.6875
+      ],
+      [
+        0.1875,
+        1.1875
+      ]
+    ],
     "water_reflection": {
       "pictures": {
         "filename": "__Krastorio2Assets__/buildings/huge-storage-tank/huge-storage-tank-reflection.png",

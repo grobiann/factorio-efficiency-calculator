@@ -4,6 +4,12 @@
     "name": "kr-space-shuttle-grid",
     "width": 6,
     "height": 6,
-    "equipment_categories": {}
+    "equipment_categories": [
+      "universal-equipment",
+      "vehicle-equipment",
+      "kr-vehicle-roboport",
+      "kr-vehicle-motor",
+      "aircraft-equipment"
+    ]
   }
 ]

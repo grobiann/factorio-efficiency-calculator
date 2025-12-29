@@ -5,23 +5,47 @@
     "energy_required": 20,
     "enabled": false,
     "category": "crafting-with-fluid",
-    "ingredients": {
-      "type": "item",
-      "name": "processing-unit",
-      "amount": 1
-    },
-    "results": {
-      "type": "item",
-      "name": "kr-superior-solar-panel-equipment",
-      "amount": 1
-    }
+    "ingredients": [
+      {
+        "type": "item",
+        "name": "solar-panel-equipment",
+        "amount": 1
+      },
+      {
+        "type": "item",
+        "name": "kr-imersite-crystal",
+        "amount": 5
+      },
+      {
+        "type": "fluid",
+        "name": "kr-nitric-acid",
+        "amount": 25
+      },
+      {
+        "type": "item",
+        "name": "processing-unit",
+        "amount": 1
+      }
+    ],
+    "results": [
+      {
+        "type": "item",
+        "name": "kr-superior-solar-panel-equipment",
+        "amount": 1
+      }
+    ]
   },
   {
     "type": "item",
     "name": "kr-superior-solar-panel-equipment",
-    "icons": {
-      "icon": "__Krastorio2Assets__/icons/equipment/tier-2.png"
-    },
+    "icons": [
+      {
+        "icon": "__Krastorio2Assets__/icons/equipment/superior-solar-panel-equipment.png"
+      },
+      {
+        "icon": "__Krastorio2Assets__/icons/equipment/tier-2.png"
+      }
+    ],
     "place_as_equipment_result": "kr-superior-solar-panel-equipment",
     "subgroup": "equipment",
     "order": "a[energy-source]-a4[superior-solar-panel-equipment]",
@@ -47,6 +71,9 @@
       "usage_priority": "primary-output"
     },
     "power": "80kW",
-    "categories": {}
+    "categories": [
+      "armor",
+      "kr-vehicle"
+    ]
   }
 ]

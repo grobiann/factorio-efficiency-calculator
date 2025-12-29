@@ -4,23 +4,42 @@
     "name": "kr-personal-laser-defense-mk2-equipment",
     "energy_required": 10,
     "enabled": false,
-    "ingredients": {
-      "type": "item",
-      "name": "advanced-circuit",
-      "amount": 10
-    },
-    "results": {
-      "type": "item",
-      "name": "kr-personal-laser-defense-mk2-equipment",
-      "amount": 1
-    }
+    "ingredients": [
+      {
+        "type": "item",
+        "name": "personal-laser-defense-equipment",
+        "amount": 1
+      },
+      {
+        "type": "item",
+        "name": "kr-lithium-sulfur-battery",
+        "amount": 5
+      },
+      {
+        "type": "item",
+        "name": "advanced-circuit",
+        "amount": 10
+      }
+    ],
+    "results": [
+      {
+        "type": "item",
+        "name": "kr-personal-laser-defense-mk2-equipment",
+        "amount": 1
+      }
+    ]
   },
   {
     "type": "item",
     "name": "kr-personal-laser-defense-mk2-equipment",
-    "icons": {
-      "icon": "__Krastorio2Assets__/icons/equipment/tier-2.png"
-    },
+    "icons": [
+      {
+        "icon": "__Krastorio2Assets__/icons/equipment/personal-laser-defense-mk2-equipment.png"
+      },
+      {
+        "icon": "__Krastorio2Assets__/icons/equipment/tier-2.png"
+      }
+    ],
     "subgroup": "equipment",
     "order": "d[active-defense]-b2[personal-laser-defense-mk2-equipment]",
     "place_as_equipment_result": "kr-personal-laser-defense-mk2-equipment",
@@ -47,7 +66,10 @@
       "buffer_capacity": "40MJ",
       "input_flow_limit": "4MW"
     },
-    "categories": {},
+    "categories": [
+      "armor",
+      "kr-vehicle"
+    ],
     "automatic": true,
     "attack_parameters": {
       "type": "beam",
@@ -60,17 +82,27 @@
         "energy_consumption": "0.35MJ",
         "action": {
           "type": "direct",
-          "action_delivery": {
-            "type": "beam",
-            "target_effects": {
-              "type": "create-entity",
-              "entity_name": "explosion-hit"
+          "action_delivery": [
+            {
+              "type": "instant",
+              "target_effects": [
+                {
+                  "type": "create-entity",
+                  "entity_name": "explosion-hit"
+                }
+              ]
             },
-            "beam": "laser-beam",
-            "max_length": 29,
-            "duration": 3,
-            "source_offset": {}
-          }
+            {
+              "type": "beam",
+              "beam": "laser-beam",
+              "max_length": 29,
+              "duration": 3,
+              "source_offset": [
+                0,
+                -1.31439
+              ]
+            }
+          ]
         }
       }
     }

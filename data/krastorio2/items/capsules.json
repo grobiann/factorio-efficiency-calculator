@@ -7,12 +7,19 @@
     "order": "c[poison-capsule]",
     "stack_size": 100,
     "pictures": {
-      "layers": {
-        "filename": "__Krastorio2Assets__/icons/capsules/biter-virus-light.png",
-        "size": 64,
-        "scale": 0.5,
-        "draw_as_light": true
-      }
+      "layers": [
+        {
+          "filename": "__Krastorio2Assets__/icons/capsules/biter-virus.png",
+          "size": 64,
+          "scale": 0.5
+        },
+        {
+          "filename": "__Krastorio2Assets__/icons/capsules/biter-virus-light.png",
+          "size": 64,
+          "scale": 0.5,
+          "draw_as_light": true
+        }
+      ]
     },
     "capsule_action": {
       "type": "throw",
@@ -26,16 +33,28 @@
         "ammo_type": {
           "category": "capsule",
           "target_type": "position",
-          "action": {
-            "type": "direct",
-            "action_delivery": {
-              "type": "instant",
-              "target_effects": {
-                "type": "play-sound",
-                "sound": "sounds.throw_projectile"
+          "action": [
+            {
+              "type": "direct",
+              "action_delivery": {
+                "type": "projectile",
+                "projectile": "kr-virus-capsule-projectile",
+                "starting_speed": 0.3
+              }
+            },
+            {
+              "type": "direct",
+              "action_delivery": {
+                "type": "instant",
+                "target_effects": [
+                  {
+                    "type": "play-sound",
+                    "sound": "sounds.throw_projectile"
+                  }
+                ]
               }
             }
-          }
+          ]
         }
       }
     }
@@ -49,11 +68,13 @@
     "stack_size": 50,
     "weight": "1000000 / 50",
     "send_to_orbit_mode": "manual",
-    "rocket_launch_products": {
-      "type": "item",
-      "name": "kr-poop",
-      "amount": 1
-    },
+    "rocket_launch_products": [
+      {
+        "type": "item",
+        "name": "kr-poop",
+        "amount": 1
+      }
+    ],
     "capsule_action": {
       "type": "use-on-self",
       "attack_parameters": {
@@ -91,11 +112,13 @@
     "stack_size": 50,
     "weight": "1000000 / 50",
     "send_to_orbit_mode": "manual",
-    "rocket_launch_products": {
-      "type": "item",
-      "name": "kr-note-1",
-      "amount": 1
-    },
+    "rocket_launch_products": [
+      {
+        "type": "item",
+        "name": "kr-note-1",
+        "amount": 1
+      }
+    ],
     "capsule_action": {
       "type": "throw",
       "attack_parameters": {
@@ -108,16 +131,28 @@
         "ammo_type": {
           "category": "capsule",
           "target_type": "position",
-          "action": {
-            "type": "direct",
-            "action_delivery": {
-              "type": "instant",
-              "target_effects": {
-                "type": "play-sound",
-                "sound": "sounds.throw_projectile"
+          "action": [
+            {
+              "type": "direct",
+              "action_delivery": {
+                "type": "projectile",
+                "projectile": "kr-poop-projectile",
+                "starting_speed": 0.3
+              }
+            },
+            {
+              "type": "direct",
+              "action_delivery": {
+                "type": "instant",
+                "target_effects": [
+                  {
+                    "type": "play-sound",
+                    "sound": "sounds.throw_projectile"
+                  }
+                ]
               }
             }
-          }
+          ]
         }
       }
     }
@@ -165,11 +200,13 @@
     "stack_size": 50,
     "weight": "1000000 / 50",
     "send_to_orbit_mode": "manual",
-    "rocket_launch_products": {
-      "type": "item",
-      "name": "kr-cyber-potato-equipment",
-      "amount": 1
-    },
+    "rocket_launch_products": [
+      {
+        "type": "item",
+        "name": "kr-cyber-potato-equipment",
+        "amount": 1
+      }
+    ],
     "capsule_action": {
       "type": "use-on-self",
       "attack_parameters": {

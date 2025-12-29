@@ -5,9 +5,22 @@
     "order": "c[legacy-rail]-a[legacy-straight-rail]",
     "deconstruction_alternative": "straight-rail",
     "icon": "__base__/graphics/icons/legacy-rail.png",
-    "collision_box": {},
+    "collision_box": [
+      [
+        -1,
+        -1
+      ],
+      [
+        1,
+        1
+      ]
+    ],
     "hidden": true,
-    "flags": {},
+    "flags": [
+      "placeable-neutral",
+      "player-creation",
+      "building-direction-8-way"
+    ],
     "fast_replaceable_group": "",
     "minable": {
       "mining_time": 0.2,
@@ -16,11 +29,26 @@
     "max_health": 100,
     "corpse": "legacy-straight-rail-remnants",
     "dying_explosion": "rail-explosion",
-    "resistances": {
-      "type": "acid",
-      "percent": 80
-    },
-    "selection_box": {},
+    "resistances": [
+      {
+        "type": "fire",
+        "percent": 100
+      },
+      {
+        "type": "acid",
+        "percent": 80
+      }
+    ],
+    "selection_box": [
+      [
+        -0.7,
+        -0.8
+      ],
+      [
+        0.7,
+        0.8
+      ]
+    ],
     "damaged_trigger_effect": "hit_effects.wall()",
     "pictures": "legacy_rail_pictures(\"legacy_straight_rail\")",
     "placeable_by": {
@@ -28,7 +56,32 @@
       "count": 1
     },
     "walking_sound": "tile_sounds.walking.rails",
-    "deconstruction_marker_positions": {}
+    "deconstruction_marker_positions": [
+      [
+        0.0,
+        0.0
+      ],
+      [
+        0.5,
+        -0.5
+      ],
+      [
+        0.0,
+        0.0
+      ],
+      [
+        0.5,
+        0.5
+      ],
+      [
+        -0.5,
+        0.5
+      ],
+      [
+        -0.5,
+        -0.5
+      ]
+    ]
   },
   {
     "type": "legacy-curved-rail",
@@ -36,8 +89,21 @@
     "order": "c[legacy-rail]-b[legacy-curved-rail]",
     "deconstruction_alternative": "straight-rail",
     "icon": "__base__/graphics/icons/legacy-curved-rail.png",
-    "collision_box": {},
-    "flags": {},
+    "collision_box": [
+      [
+        -2,
+        -2
+      ],
+      [
+        2,
+        2
+      ]
+    ],
+    "flags": [
+      "placeable-neutral",
+      "player-creation",
+      "building-direction-8-way"
+    ],
     "hidden": true,
     "fast_replaceable_group": "",
     "minable": {
@@ -47,15 +113,45 @@
     },
     "max_health": 200,
     "corpse": "legacy-curved-rail-remnants",
-    "dying_explosion": {
-      "name": "rail-explosion",
-      "offset": {}
-    },
-    "resistances": {
-      "type": "acid",
-      "percent": 80
-    },
-    "selection_box": {},
+    "dying_explosion": [
+      {
+        "name": "rail-explosion",
+        "offset": [
+          0.9,
+          2.2
+        ]
+      },
+      {
+        "name": "rail-explosion"
+      },
+      {
+        "name": "rail-explosion",
+        "offset": [
+          -1.2,
+          -2
+        ]
+      }
+    ],
+    "resistances": [
+      {
+        "type": "fire",
+        "percent": 100
+      },
+      {
+        "type": "acid",
+        "percent": 80
+      }
+    ],
+    "selection_box": [
+      [
+        -1.7,
+        -0.8
+      ],
+      [
+        1.7,
+        0.8
+      ]
+    ],
     "damaged_trigger_effect": "hit_effects.wall()",
     "pictures": "legacy_rail_pictures(\"legacy_curved_rail\")",
     "ending_shifts": "curved_rail_ending_shifts()",
@@ -70,8 +166,21 @@
     "name": "straight-rail",
     "order": "a[ground-rail]-a[straight-rail]",
     "icon": "__base__/graphics/icons/rail.png",
-    "collision_box": {},
-    "flags": {},
+    "collision_box": [
+      [
+        -1,
+        -1
+      ],
+      [
+        1,
+        1
+      ]
+    ],
+    "flags": [
+      "placeable-neutral",
+      "player-creation",
+      "building-direction-8-way"
+    ],
     "minable": {
       "mining_time": 0.2,
       "result": "rail",
@@ -82,11 +191,26 @@
     "dying_explosion": {
       "name": "rail-explosion"
     },
-    "resistances": {
-      "type": "acid",
-      "percent": 80
-    },
-    "selection_box": {},
+    "resistances": [
+      {
+        "type": "fire",
+        "percent": 100
+      },
+      {
+        "type": "acid",
+        "percent": 80
+      }
+    ],
+    "selection_box": [
+      [
+        -1.7,
+        -0.8
+      ],
+      [
+        1.7,
+        0.8
+      ]
+    ],
     "damaged_trigger_effect": "hit_effects.wall()",
     "pictures": "new_rail_pictures(\"straight\")",
     "placeable_by": {
@@ -103,10 +227,23 @@
     "order": "a[ground-rail]-b[half-diagonal-rail]",
     "deconstruction_alternative": "straight-rail",
     "icon": "__base__/graphics/icons/half-diagonal-rail.png",
-    "collision_box": {},
+    "collision_box": [
+      [
+        -0.75,
+        -2.236
+      ],
+      [
+        0.75,
+        2.236
+      ]
+    ],
     "tile_height": 2,
     "extra_planner_goal_penalty": -4,
-    "flags": {},
+    "flags": [
+      "placeable-neutral",
+      "player-creation",
+      "building-direction-8-way"
+    ],
     "minable": {
       "mining_time": 0.2,
       "result": "rail",
@@ -114,15 +251,45 @@
     },
     "max_health": 200,
     "corpse": "half-diagonal-rail-remnants",
-    "dying_explosion": {
-      "name": "rail-explosion",
-      "offset": {}
-    },
-    "resistances": {
-      "type": "acid",
-      "percent": 80
-    },
-    "selection_box": {},
+    "dying_explosion": [
+      {
+        "name": "rail-explosion",
+        "offset": [
+          0.9,
+          2.2
+        ]
+      },
+      {
+        "name": "rail-explosion"
+      },
+      {
+        "name": "rail-explosion",
+        "offset": [
+          -1.2,
+          -2
+        ]
+      }
+    ],
+    "resistances": [
+      {
+        "type": "fire",
+        "percent": 100
+      },
+      {
+        "type": "acid",
+        "percent": 80
+      }
+    ],
+    "selection_box": [
+      [
+        -1.7,
+        -0.8
+      ],
+      [
+        1.7,
+        0.8
+      ]
+    ],
     "damaged_trigger_effect": "hit_effects.wall()",
     "pictures": "new_rail_pictures(\"half-diagonal\")",
     "placeable_by": {
@@ -139,8 +306,21 @@
     "order": "a[ground-rail]-c[curved-rail-a]",
     "deconstruction_alternative": "straight-rail",
     "icon": "__base__/graphics/icons/curved-rail.png",
-    "collision_box": {},
-    "flags": {},
+    "collision_box": [
+      [
+        -0.75,
+        -2.516
+      ],
+      [
+        0.75,
+        2.516
+      ]
+    ],
+    "flags": [
+      "placeable-neutral",
+      "player-creation",
+      "building-direction-8-way"
+    ],
     "minable": {
       "mining_time": 0.2,
       "result": "rail",
@@ -148,15 +328,45 @@
     },
     "max_health": 200,
     "corpse": "curved-rail-a-remnants",
-    "dying_explosion": {
-      "name": "rail-explosion",
-      "offset": {}
-    },
-    "resistances": {
-      "type": "acid",
-      "percent": 80
-    },
-    "selection_box": {},
+    "dying_explosion": [
+      {
+        "name": "rail-explosion",
+        "offset": [
+          0.9,
+          2.2
+        ]
+      },
+      {
+        "name": "rail-explosion"
+      },
+      {
+        "name": "rail-explosion",
+        "offset": [
+          -1.2,
+          -2
+        ]
+      }
+    ],
+    "resistances": [
+      {
+        "type": "fire",
+        "percent": 100
+      },
+      {
+        "type": "acid",
+        "percent": 80
+      }
+    ],
+    "selection_box": [
+      [
+        -1.7,
+        -0.8
+      ],
+      [
+        1.7,
+        0.8
+      ]
+    ],
     "damaged_trigger_effect": "hit_effects.wall()",
     "pictures": "new_rail_pictures(\"curved-a\")",
     "placeable_by": {
@@ -174,8 +384,21 @@
     "order": "a[ground-rail]-d[curved-rail-b]",
     "deconstruction_alternative": "straight-rail",
     "icon": "__base__/graphics/icons/curved-rail-b.png",
-    "collision_box": {},
-    "flags": {},
+    "collision_box": [
+      [
+        -0.75,
+        -2.441
+      ],
+      [
+        0.75,
+        2.441
+      ]
+    ],
+    "flags": [
+      "placeable-neutral",
+      "player-creation",
+      "building-direction-8-way"
+    ],
     "minable": {
       "mining_time": 0.2,
       "result": "rail",
@@ -183,15 +406,45 @@
     },
     "max_health": 200,
     "corpse": "curved-rail-b-remnants",
-    "dying_explosion": {
-      "name": "rail-explosion",
-      "offset": {}
-    },
-    "resistances": {
-      "type": "acid",
-      "percent": 80
-    },
-    "selection_box": {},
+    "dying_explosion": [
+      {
+        "name": "rail-explosion",
+        "offset": [
+          0.9,
+          2.2
+        ]
+      },
+      {
+        "name": "rail-explosion"
+      },
+      {
+        "name": "rail-explosion",
+        "offset": [
+          -1.2,
+          -2
+        ]
+      }
+    ],
+    "resistances": [
+      {
+        "type": "fire",
+        "percent": 100
+      },
+      {
+        "type": "acid",
+        "percent": 80
+      }
+    ],
+    "selection_box": [
+      [
+        -1.7,
+        -0.8
+      ],
+      [
+        1.7,
+        0.8
+      ]
+    ],
     "damaged_trigger_effect": "hit_effects.wall()",
     "pictures": "new_rail_pictures(\"curved-b\")",
     "placeable_by": {
@@ -208,11 +461,34 @@
     "name": "dummy-rail-ramp",
     "localised_name": "dummy",
     "hidden": true,
-    "icons": {
-      "icon": "__core__/graphics/icons/unknown.png"
-    },
-    "collision_box": {},
-    "selection_box": {},
+    "icons": [
+      {
+        "icon": "__base__/graphics/icons/curved-rail.png"
+      },
+      {
+        "icon": "__core__/graphics/icons/unknown.png"
+      }
+    ],
+    "collision_box": [
+      [
+        -1.8,
+        -7.8
+      ],
+      [
+        1.8,
+        7.8
+      ]
+    ],
+    "selection_box": [
+      [
+        -1.7,
+        -0.8
+      ],
+      [
+        1.7,
+        0.8
+      ]
+    ],
     "pictures": "dummy_rails_ramp_pictures()",
     "forced_fence_segment_count": 2,
     "walking_sound": "tile_sounds.walking.rails",
@@ -223,37 +499,106 @@
     "type": "elevated-straight-rail",
     "name": "dummy-elevated-straight-rail",
     "hidden": true,
-    "icons": {
-      "icon": "__core__/graphics/icons/unknown.png"
-    },
+    "icons": [
+      {
+        "icon": "__base__/graphics/icons/curved-rail.png"
+      },
+      {
+        "icon": "__core__/graphics/icons/unknown.png"
+      }
+    ],
     "localised_name": "dummy",
-    "collision_box": {},
-    "selection_box": {},
+    "collision_box": [
+      [
+        -1,
+        -1
+      ],
+      [
+        1,
+        1
+      ]
+    ],
+    "selection_box": [
+      [
+        -1.7,
+        -0.8
+      ],
+      [
+        1.7,
+        0.8
+      ]
+    ],
     "pictures": "elevated_rail_pictures(\"straight\")"
   },
   {
     "type": "elevated-half-diagonal-rail",
     "name": "dummy-elevated-half-diagonal-rail",
     "hidden": true,
-    "icons": {
-      "icon": "__core__/graphics/icons/unknown.png"
-    },
+    "icons": [
+      {
+        "icon": "__base__/graphics/icons/curved-rail.png"
+      },
+      {
+        "icon": "__core__/graphics/icons/unknown.png"
+      }
+    ],
     "localised_name": "dummy",
-    "collision_box": {},
+    "collision_box": [
+      [
+        -0.75,
+        -2.236
+      ],
+      [
+        0.75,
+        2.236
+      ]
+    ],
     "tile_height": 2,
-    "selection_box": {},
+    "selection_box": [
+      [
+        -1.7,
+        -0.8
+      ],
+      [
+        1.7,
+        0.8
+      ]
+    ],
     "pictures": "elevated_rail_pictures(\"half-diagonal\")"
   },
   {
     "type": "elevated-curved-rail-a",
     "name": "dummy-elevated-curved-rail-a",
     "hidden": true,
-    "icons": {
-      "icon": "__core__/graphics/icons/unknown.png"
-    },
+    "icons": [
+      {
+        "icon": "__base__/graphics/icons/curved-rail.png"
+      },
+      {
+        "icon": "__core__/graphics/icons/unknown.png"
+      }
+    ],
     "localised_name": "dummy",
-    "collision_box": {},
-    "selection_box": {},
+    "collision_box": [
+      [
+        -0.75,
+        -2.516
+      ],
+      [
+        0.75,
+        2.516
+      ]
+    ],
+    "selection_box": [
+      [
+        -1.7,
+        -0.8
+      ],
+      [
+        1.7,
+        0.8
+      ]
+    ],
     "damaged_trigger_effect": "hit_effects.wall()",
     "pictures": "elevated_rail_pictures(\"curved-a\")"
   },
@@ -261,12 +606,35 @@
     "type": "elevated-curved-rail-b",
     "name": "dummy-elevated-curved-rail-b",
     "hidden": true,
-    "icons": {
-      "icon": "__core__/graphics/icons/unknown.png"
-    },
+    "icons": [
+      {
+        "icon": "__base__/graphics/icons/curved-rail.png"
+      },
+      {
+        "icon": "__core__/graphics/icons/unknown.png"
+      }
+    ],
     "localised_name": "dummy",
-    "collision_box": {},
-    "selection_box": {},
+    "collision_box": [
+      [
+        -0.75,
+        -2.441
+      ],
+      [
+        0.75,
+        2.441
+      ]
+    ],
+    "selection_box": [
+      [
+        -1.7,
+        -0.8
+      ],
+      [
+        1.7,
+        0.8
+      ]
+    ],
     "pictures": "elevated_rail_pictures(\"curved-b\")"
   },
   {
@@ -274,13 +642,41 @@
     "name": "dummy-rail-support",
     "localised_name": "dummy",
     "hidden": true,
-    "icons": {
-      "icon": "__core__/graphics/icons/unknown.png"
-    },
-    "flags": {},
+    "icons": [
+      {
+        "icon": "__base__/graphics/icons/curved-rail.png"
+      },
+      {
+        "icon": "__core__/graphics/icons/unknown.png"
+      }
+    ],
+    "flags": [
+      "placeable-neutral",
+      "player-creation",
+      "building-direction-16-way",
+      "filter-directions"
+    ],
     "max_health": 1000,
-    "collision_box": {},
-    "selection_box": {},
+    "collision_box": [
+      [
+        -1.8,
+        -0.8
+      ],
+      [
+        1.8,
+        0.8
+      ]
+    ],
+    "selection_box": [
+      [
+        -1.9,
+        -0.9
+      ],
+      [
+        1.9,
+        0.9
+      ]
+    ],
     "graphics_set": {
       "structure": "util.empty_animation()"
     }
@@ -289,7 +685,11 @@
     "type": "locomotive",
     "name": "locomotive",
     "icon": "__base__/graphics/icons/locomotive.png",
-    "flags": {},
+    "flags": [
+      "placeable-neutral",
+      "player-creation",
+      "placeable-off-grid"
+    ],
     "minable": {
       "mining_time": 0.5,
       "result": "locomotive"
@@ -300,8 +700,26 @@
     "corpse": "locomotive-remnants",
     "dying_explosion": "locomotive-explosion",
     "factoriopedia_simulation": "simulations.factoriopedia_locomotive",
-    "collision_box": {},
-    "selection_box": {},
+    "collision_box": [
+      [
+        -0.6,
+        -2.6
+      ],
+      [
+        0.6,
+        2.6
+      ]
+    ],
+    "selection_box": [
+      [
+        -1,
+        -3
+      ],
+      [
+        1,
+        3
+      ]
+    ],
     "damaged_trigger_effect": "hit_effects.entity()",
     "drawing_box_vertical_extension": 1,
     "alert_icon_shift": "util.by_pixel(0, -24)",
@@ -316,54 +734,123 @@
     "connection_distance": 3,
     "joint_distance": 4,
     "energy_per_hit_point": 5,
-    "icons_positioning": {
-      "inventory_index": "defines.inventory.fuel",
-      "shift": {},
-      "max_icons_per_row": 3
-    },
-    "resistances": {
-      "type": "acid",
-      "decrease": 3,
-      "percent": 20
-    },
+    "icons_positioning": [
+      {
+        "inventory_index": "defines.inventory.fuel",
+        "shift": [
+          0,
+          0.3
+        ],
+        "max_icons_per_row": 3
+      }
+    ],
+    "resistances": [
+      {
+        "type": "fire",
+        "decrease": 15,
+        "percent": 50
+      },
+      {
+        "type": "physical",
+        "decrease": 15,
+        "percent": 30
+      },
+      {
+        "type": "impact",
+        "decrease": 50,
+        "percent": 60
+      },
+      {
+        "type": "explosion",
+        "decrease": 15,
+        "percent": 30
+      },
+      {
+        "type": "acid",
+        "decrease": 3,
+        "percent": 20
+      }
+    ],
     "energy_source": {
       "type": "burner",
-      "fuel_categories": {},
+      "fuel_categories": [
+        "chemical"
+      ],
       "effectivity": 1,
       "fuel_inventory_size": 3,
-      "smoke": {
-        "name": "train-smoke",
-        "deviation": {},
-        "frequency": 100,
-        "position": {},
-        "starting_frame": 0,
-        "starting_frame_deviation": 60,
-        "height": 2,
-        "height_deviation": 0.5,
-        "starting_vertical_speed": 0.2,
-        "starting_vertical_speed_deviation": 0.1
-      }
+      "smoke": [
+        {
+          "name": "train-smoke",
+          "deviation": [
+            0.3,
+            0.3
+          ],
+          "frequency": 100,
+          "position": [
+            0,
+            0
+          ],
+          "starting_frame": 0,
+          "starting_frame_deviation": 60,
+          "height": 2,
+          "height_deviation": 0.5,
+          "starting_vertical_speed": 0.2,
+          "starting_vertical_speed_deviation": 0.1
+        }
+      ]
     },
-    "front_light": {
-      "type": "oriented",
-      "minimum_darkness": 0.3,
-      "picture": {
-        "filename": "__core__/graphics/light-cone.png",
-        "priority": "extra-high",
-        "flags": {},
-        "scale": 2,
-        "width": 200,
-        "height": 200
+    "front_light": [
+      {
+        "type": "oriented",
+        "minimum_darkness": 0.3,
+        "picture": {
+          "filename": "__core__/graphics/light-cone.png",
+          "priority": "extra-high",
+          "flags": [
+            "light"
+          ],
+          "scale": 2,
+          "width": 200,
+          "height": 200
+        },
+        "shift": [
+          -0.6,
+          -16
+        ],
+        "size": 2,
+        "intensity": 0.6,
+        "color": {
+          "r": 1.0,
+          "g": 0.9,
+          "b": 0.9
+        }
       },
-      "shift": {},
-      "size": 2,
-      "intensity": 0.6,
-      "color": {
-        "r": 1.0,
-        "g": 0.9,
-        "b": 0.9
+      {
+        "type": "oriented",
+        "minimum_darkness": 0.3,
+        "picture": {
+          "filename": "__core__/graphics/light-cone.png",
+          "priority": "extra-high",
+          "flags": [
+            "light"
+          ],
+          "scale": 2,
+          "width": 200,
+          "height": 200
+        },
+        "shift": [
+          0.6,
+          -16
+        ],
+        "size": 2,
+        "intensity": 0.6,
+        "color": {
+          "r": 1.0,
+          "g": 0.9,
+          "b": 0.9
+        }
       }
-    },
+    ],
     "back_light": "rolling_stock_back_light()",
     "stand_by_light": "rolling_stock_stand_by_light()",
     "color": {
@@ -375,82 +862,169 @@
     "default_copy_color_from_train_stop": true,
     "pictures": {
       "rotated": {
-        "layers": {
-          "dice": 4,
-          "priority": "very-low",
-          "allow_low_quality_rotation": true,
-          "direction_count": 256,
-          "scale": 0.5,
-          "usage": "train",
-          "flags": {},
-          "apply_runtime_tint": true,
-          "tint_as_overlay": true,
-          "draw_as_shadow": true
-        }
+        "layers": [
+          "util.sprite_load(\"__base__/graphics/entity/locomotive/locomotive\",\n            {\n              dice = 4,\n              priority = \"very-low\",\n              allow_low_quality_rotation = true,\n              direction_count = 256,\n              scale = 0.5,\n              usage = \"train\"\n            }\n          )",
+          "util.sprite_load(\"__base__/graphics/entity/locomotive/locomotive-mask\",\n            {\n              dice = 4,\n              priority = \"very-low\",\n              flags = { \"mask\" },\n              apply_runtime_tint = true,\n              tint_as_overlay = true,\n              allow_low_quality_rotation = true,\n              direction_count = 256,\n              scale = 0.5,\n              usage = \"train\"\n            }\n          )",
+          "util.sprite_load(\"__base__/graphics/entity/locomotive/locomotive-shadow\",\n            {\n              dice = 4,\n              priority = \"very-low\",\n              flags = { \"shadow\" },\n              draw_as_shadow = true,\n              allow_low_quality_rotation = true,\n              direction_count = 256,\n              scale = 0.5,\n              usage = \"train\"\n            }\n          )"
+        ]
       }
     },
     "front_light_pictures": {
       "rotated": {
-        "layers": {
-          "dice": 4,
-          "priority": "very-low",
-          "blend_mode": "additive",
-          "draw_as_light": true,
-          "allow_low_quality_rotation": true,
-          "direction_count": 256,
-          "scale": 0.5
-        }
+        "layers": [
+          "util.sprite_load(\"__base__/graphics/entity/locomotive/locomotive-lights\",\n            {\n              dice = 4,\n              priority = \"very-low\",\n              blend_mode = \"additive\",\n              draw_as_light = true,\n              allow_low_quality_rotation = true,\n              direction_count = 256,\n              scale = 0.5\n            }\n          )"
+        ]
       }
     },
     "minimap_representation": {
       "filename": "__base__/graphics/entity/locomotive/minimap-representation/locomotive-minimap-representation.png",
-      "flags": {},
-      "size": {},
+      "flags": [
+        "icon"
+      ],
+      "size": [
+        20,
+        40
+      ],
       "scale": 0.5
     },
     "selected_minimap_representation": {
       "filename": "__base__/graphics/entity/locomotive/minimap-representation/locomotive-selected-minimap-representation.png",
-      "flags": {},
-      "size": {},
+      "flags": [
+        "icon"
+      ],
+      "size": [
+        20,
+        40
+      ],
       "scale": 0.5
     },
     "wheels": "standard_train_wheels",
-    "stop_trigger": {
-      "type": "play-sound",
-      "repeat_count": 125,
-      "smoke_name": "smoke-train-stop",
-      "initial_height": 0,
-      "speed": {},
-      "speed_multiplier": 0.75,
-      "speed_multiplier_deviation": 1.1,
-      "offset_deviation": {},
-      "sound": "sounds.train_brake_screech"
-    },
+    "stop_trigger": [
+      {
+        "type": "create-trivial-smoke",
+        "repeat_count": 125,
+        "smoke_name": "smoke-train-stop",
+        "initial_height": 0,
+        "speed": [
+          -0.03,
+          0
+        ],
+        "speed_multiplier": 0.75,
+        "speed_multiplier_deviation": 1.1,
+        "offset_deviation": [
+          [
+            -0.75,
+            -2.7
+          ],
+          [
+            -0.3,
+            2.7
+          ]
+        ]
+      },
+      {
+        "type": "create-trivial-smoke",
+        "repeat_count": 125,
+        "smoke_name": "smoke-train-stop",
+        "initial_height": 0,
+        "speed": [
+          0.03,
+          0
+        ],
+        "speed_multiplier": 0.75,
+        "speed_multiplier_deviation": 1.1,
+        "offset_deviation": [
+          [
+            0.3,
+            -2.7
+          ],
+          [
+            0.75,
+            2.7
+          ]
+        ]
+      },
+      {
+        "type": "play-sound",
+        "sound": "sounds.train_brakes"
+      },
+      {
+        "type": "play-sound",
+        "sound": "sounds.train_brake_screech"
+      }
+    ],
     "drive_over_tie_trigger": "drive_over_tie()",
     "drive_over_tie_trigger_minimal_speed": 0.5,
     "tie_distance": 50,
     "impact_category": "metal-large",
     "working_sound": {
-      "main_sounds": {
-        "sound": {
-          "filename": "__base__/sound/train-wheels.ogg",
-          "volume": 1.0,
-          "modifiers": {}
+      "main_sounds": [
+        {
+          "sound": {
+            "filename": "__base__/sound/train-engine-driving.ogg",
+            "volume": 0.7,
+            "modifiers": [
+              "volume_multiplier(\"main-menu\", 1.8)",
+              "volume_multiplier(\"driving\", 0.7)",
+              "volume_multiplier(\"tips-and-tricks\", 0.8)",
+              "volume_multiplier(\"elevation\", 0.5)"
+            ]
+          },
+          "match_volume_to_activity": true,
+          "activity_to_volume_modifiers": {
+            "multiplier": 1.5,
+            "offset": 1.0
+          },
+          "match_speed_to_activity": true,
+          "activity_to_speed_modifiers": {
+            "multiplier": 0.6,
+            "minimum": 1.0,
+            "maximum": 1.15,
+            "offset": 0.2
+          }
         },
-        "match_volume_to_activity": true,
-        "activity_to_volume_modifiers": {
-          "multiplier": 1.5,
-          "maximum": 1.0,
-          "offset": 1.1
+        {
+          "sound": {
+            "filename": "__base__/sound/train-engine.ogg",
+            "volume": 0.35,
+            "modifiers": [
+              "volume_multiplier(\"main-menu\", 1.8)",
+              "volume_multiplier(\"driving\", 0.9)",
+              "volume_multiplier(\"tips-and-tricks\", 0.8)"
+            ]
+          },
+          "match_volume_to_activity": true,
+          "activity_to_volume_modifiers": {
+            "multiplier": 1.75,
+            "offset": 1.7,
+            "inverted": true
+          }
         },
-        "match_speed_to_activity": true,
-        "activity_to_speed_modifiers": {
-          "multiplier": 0.6,
-          "minimum": 1.0,
-          "maximum": 1.2,
-          "offset": 0.2
+        {
+          "sound": {
+            "filename": "__base__/sound/train-wheels.ogg",
+            "volume": 1.0,
+            "modifiers": [
+              "volume_multiplier(\"main-menu\", 2.0)",
+              "volume_multiplier(\"driving\", 0.35)",
+              "volume_multiplier(\"elevation\", 0.5)"
+            ]
+          },
+          "match_volume_to_activity": true,
+          "activity_to_volume_modifiers": {
+            "multiplier": 1.5,
+            "maximum": 1.0,
+            "offset": 1.1
+          },
+          "match_speed_to_activity": true,
+          "activity_to_speed_modifiers": {
+            "multiplier": 0.6,
+            "minimum": 1.0,
+            "maximum": 1.2,
+            "offset": 0.2
+          }
         }
-      },
+      ],
       "max_sounds_per_prototype": 2,
       "activate_sound": {
         "filename": "__base__/sound/train-engine-start.ogg",
@@ -476,7 +1050,11 @@
     "type": "cargo-wagon",
     "name": "cargo-wagon",
     "icon": "__base__/graphics/icons/cargo-wagon.png",
-    "flags": {},
+    "flags": [
+      "placeable-neutral",
+      "player-creation",
+      "placeable-off-grid"
+    ],
     "inventory_size": 40,
     "minable": {
       "mining_time": 0.5,
@@ -488,8 +1066,26 @@
     "corpse": "cargo-wagon-remnants",
     "dying_explosion": "cargo-wagon-explosion",
     "factoriopedia_simulation": "simulations.factoriopedia_cargo_wagon",
-    "collision_box": {},
-    "selection_box": {},
+    "collision_box": [
+      [
+        -0.6,
+        -2.4
+      ],
+      [
+        0.6,
+        2.4
+      ]
+    ],
+    "selection_box": [
+      [
+        -1,
+        -2.703125
+      ],
+      [
+        1,
+        3.296875
+      ]
+    ],
     "damaged_trigger_effect": "hit_effects.entity()",
     "vertical_selection_shift": -0.796875,
     "weight": 1000,
@@ -500,11 +1096,33 @@
     "connection_distance": 3,
     "joint_distance": 4,
     "energy_per_hit_point": 5,
-    "resistances": {
-      "type": "acid",
-      "decrease": 3,
-      "percent": 20
-    },
+    "resistances": [
+      {
+        "type": "fire",
+        "decrease": 15,
+        "percent": 50
+      },
+      {
+        "type": "physical",
+        "decrease": 15,
+        "percent": 30
+      },
+      {
+        "type": "impact",
+        "decrease": 50,
+        "percent": 60
+      },
+      {
+        "type": "explosion",
+        "decrease": 15,
+        "percent": 30
+      },
+      {
+        "type": "acid",
+        "decrease": 3,
+        "percent": 20
+      }
+    ],
     "back_light": "rolling_stock_back_light()",
     "stand_by_light": "rolling_stock_stand_by_light()",
     "color": {
@@ -515,51 +1133,45 @@
     },
     "pictures": {
       "rotated": {
-        "layers": {
-          "dice": 4,
-          "priority": "very-low",
-          "allow_low_quality_rotation": true,
-          "back_equals_front": true,
-          "direction_count": 128,
-          "scale": 0.5,
-          "usage": "train",
-          "flags": {},
-          "apply_runtime_tint": true,
-          "tint_as_overlay": true,
-          "draw_as_shadow": true
-        }
+        "layers": [
+          "util.sprite_load(\"__base__/graphics/entity/cargo-wagon/cargo-wagon\",\n            {\n              dice = 4,\n              priority = \"very-low\",\n              allow_low_quality_rotation = true,\n              back_equals_front = true,\n              direction_count = 128,\n              scale = 0.5,\n              usage = \"train\"\n            }\n          )",
+          "util.sprite_load(\"__base__/graphics/entity/cargo-wagon/cargo-wagon-mask\",\n            {\n              dice = 4,\n              priority = \"very-low\",\n              allow_low_quality_rotation = true,\n              back_equals_front = true,\n              flags = { \"mask\" },\n              apply_runtime_tint = true,\n              tint_as_overlay = true,\n              direction_count = 128,\n              scale = 0.5,\n              usage = \"train\"\n            }\n          )",
+          "util.sprite_load(\"__base__/graphics/entity/cargo-wagon/cargo-wagon-shadow\",\n            {\n              dice = 4,\n              priority = \"very-low\",\n              allow_low_quality_rotation = true,\n              back_equals_front = true,\n              draw_as_shadow = true,\n              direction_count = 128,\n              scale = 0.5,\n              usage = \"train\"\n            }\n          )"
+        ]
       }
     },
     "horizontal_doors": {
-      "layers": {
-        "frame_count": 8,
-        "scale": 0.5,
-        "usage": "train",
-        "apply_runtime_tint": true,
-        "tint_as_overlay": true,
-        "flags": {}
-      }
+      "layers": [
+        "util.sprite_load(\"__base__/graphics/entity/cargo-wagon/cargo-wagon-door-horizontal\",\n          {\n            frame_count = 8,\n            scale = 0.5,\n            usage = \"train\"\n          }\n        )",
+        "util.sprite_load(\"__base__/graphics/entity/cargo-wagon/cargo-wagon-door-horizontal-mask\",\n          {\n            apply_runtime_tint = true,\n            tint_as_overlay = true,\n            flags = { \"mask\" },\n            frame_count = 8,\n            scale = 0.5,\n            usage = \"train\"\n          }\n        )"
+      ]
     },
     "vertical_doors": {
-      "layers": {
-        "frame_count": 8,
-        "scale": 0.5,
-        "usage": "train",
-        "apply_runtime_tint": true,
-        "tint_as_overlay": true,
-        "flags": {}
-      }
+      "layers": [
+        "util.sprite_load(\"__base__/graphics/entity/cargo-wagon/cargo-wagon-door-vertical\",\n          {\n            frame_count = 8,\n            scale = 0.5,\n            usage = \"train\"\n          }\n        )",
+        "util.sprite_load(\"__base__/graphics/entity/cargo-wagon/cargo-wagon-door-vertical-mask\",\n          {\n            apply_runtime_tint = true,\n            tint_as_overlay = true,\n            flags = { \"mask\" },\n            frame_count = 8,\n            scale = 0.5,\n            usage = \"train\"\n          }\n        )"
+      ]
     },
     "minimap_representation": {
       "filename": "__base__/graphics/entity/cargo-wagon/minimap-representation/cargo-wagon-minimap-representation.png",
-      "flags": {},
-      "size": {},
+      "flags": [
+        "icon"
+      ],
+      "size": [
+        20,
+        40
+      ],
       "scale": 0.5
     },
     "selected_minimap_representation": {
       "filename": "__base__/graphics/entity/cargo-wagon/minimap-representation/cargo-wagon-selected-minimap-representation.png",
-      "flags": {},
-      "size": {},
+      "flags": [
+        "icon"
+      ],
+      "size": [
+        20,
+        40
+      ],
       "scale": 0.5
     },
     "wheels": "standard_train_wheels",
@@ -613,7 +1225,10 @@
       }
     },
     "icon_draw_specification": {
-      "shift": {},
+      "shift": [
+        0,
+        -0.5
+      ],
       "scale": 1.5,
       "scale_for_many": 2.5,
       "render_layer": "entity-info-icon"
@@ -623,7 +1238,11 @@
     "type": "fluid-wagon",
     "name": "fluid-wagon",
     "icon": "__base__/graphics/icons/fluid-wagon.png",
-    "flags": {},
+    "flags": [
+      "placeable-neutral",
+      "player-creation",
+      "placeable-off-grid"
+    ],
     "minable": {
       "mining_time": 0.5,
       "result": "fluid-wagon"
@@ -635,13 +1254,34 @@
     "corpse": "fluid-wagon-remnants",
     "dying_explosion": "fluid-wagon-explosion",
     "factoriopedia_simulation": "simulations.factoriopedia_fluid_wagon",
-    "collision_box": {},
-    "selection_box": {},
+    "collision_box": [
+      [
+        -0.6,
+        -2.4
+      ],
+      [
+        0.6,
+        2.4
+      ]
+    ],
+    "selection_box": [
+      [
+        -1,
+        -2.703125
+      ],
+      [
+        1,
+        3.296875
+      ]
+    ],
     "damaged_trigger_effect": "hit_effects.entity()",
     "vertical_selection_shift": -0.796875,
     "icon_draw_specification": {
       "scale": 1.25,
-      "shift": {}
+      "shift": [
+        0,
+        -1
+      ]
     },
     "weight": 1000,
     "max_speed": 1.5,
@@ -651,11 +1291,33 @@
     "connection_distance": 3,
     "joint_distance": 4,
     "energy_per_hit_point": 6,
-    "resistances": {
-      "type": "acid",
-      "decrease": 3,
-      "percent": 20
-    },
+    "resistances": [
+      {
+        "type": "fire",
+        "decrease": 15,
+        "percent": 50
+      },
+      {
+        "type": "physical",
+        "decrease": 15,
+        "percent": 30
+      },
+      {
+        "type": "impact",
+        "decrease": 50,
+        "percent": 60
+      },
+      {
+        "type": "explosion",
+        "decrease": 15,
+        "percent": 30
+      },
+      {
+        "type": "acid",
+        "decrease": 3,
+        "percent": 20
+      }
+    ],
     "back_light": "rolling_stock_back_light()",
     "stand_by_light": "rolling_stock_stand_by_light()",
     "color": {
@@ -666,28 +1328,32 @@
     },
     "pictures": {
       "rotated": {
-        "layers": {
-          "dice": 4,
-          "priority": "very-low",
-          "allow_low_quality_rotation": true,
-          "back_equals_front": true,
-          "direction_count": 128,
-          "scale": 0.5,
-          "usage": "train",
-          "draw_as_shadow": true
-        }
+        "layers": [
+          "util.sprite_load(\"__base__/graphics/entity/fluid-wagon/fluid-wagon\",\n            {\n              dice = 4,\n              priority = \"very-low\",\n              allow_low_quality_rotation = true,\n              back_equals_front = true,\n              direction_count = 128,\n              scale = 0.5,\n              usage = \"train\"\n            }\n          )",
+          "util.sprite_load(\"__base__/graphics/entity/fluid-wagon/fluid-wagon-shadow\",\n            {\n              dice = 4,\n              priority = \"very-low\",\n              allow_low_quality_rotation = true,\n              back_equals_front = true,\n              draw_as_shadow = true,\n              direction_count = 128,\n              scale = 0.5,\n              usage = \"train\"\n            }\n          )"
+        ]
       }
     },
     "minimap_representation": {
       "filename": "__base__/graphics/entity/fluid-wagon/minimap-representation/fluid-wagon-minimap-representation.png",
-      "flags": {},
-      "size": {},
+      "flags": [
+        "icon"
+      ],
+      "size": [
+        20,
+        40
+      ],
       "scale": 0.5
     },
     "selected_minimap_representation": {
       "filename": "__base__/graphics/entity/fluid-wagon/minimap-representation/fluid-wagon-selected-minimap-representation.png",
-      "flags": {},
-      "size": {},
+      "flags": [
+        "icon"
+      ],
+      "size": [
+        20,
+        40
+      ],
       "scale": 0.5
     },
     "wheels": "standard_train_wheels",
@@ -703,7 +1369,11 @@
     "type": "artillery-wagon",
     "name": "artillery-wagon",
     "icon": "__base__/graphics/icons/artillery-wagon.png",
-    "flags": {},
+    "flags": [
+      "placeable-neutral",
+      "player-creation",
+      "placeable-off-grid"
+    ],
     "inventory_size": 1,
     "ammo_stack_limit": 100,
     "minable": {
@@ -716,8 +1386,26 @@
     "corpse": "artillery-wagon-remnants",
     "dying_explosion": "artillery-wagon-explosion",
     "factoriopedia_simulation": "simulations.factoriopedia_artillery_wagon",
-    "collision_box": {},
-    "selection_box": {},
+    "collision_box": [
+      [
+        -0.6,
+        -2.4
+      ],
+      [
+        0.6,
+        2.4
+      ]
+    ],
+    "selection_box": [
+      [
+        -1,
+        -2.703125
+      ],
+      [
+        1,
+        3.296875
+      ]
+    ],
     "damaged_trigger_effect": "hit_effects.entity()",
     "vertical_selection_shift": -0.796875,
     "weight": 4000,
@@ -736,13 +1424,38 @@
     "manual_range_modifier": 2.5,
     "icon_draw_specification": {
       "scale": 0.7,
-      "shift": {}
+      "shift": [
+        0,
+        -0.5
+      ]
     },
-    "resistances": {
-      "type": "acid",
-      "decrease": 3,
-      "percent": 20
-    },
+    "resistances": [
+      {
+        "type": "fire",
+        "decrease": 15,
+        "percent": 50
+      },
+      {
+        "type": "physical",
+        "decrease": 15,
+        "percent": 30
+      },
+      {
+        "type": "impact",
+        "decrease": 50,
+        "percent": 50
+      },
+      {
+        "type": "explosion",
+        "decrease": 15,
+        "percent": 30
+      },
+      {
+        "type": "acid",
+        "decrease": 3,
+        "percent": 20
+      }
+    ],
     "back_light": "rolling_stock_back_light()",
     "stand_by_light": "rolling_stock_stand_by_light()",
     "color": {
@@ -753,56 +1466,218 @@
     },
     "pictures": {
       "rotated": {
-        "layers": {
-          "dice": 4,
-          "priority": "very-low",
-          "allow_low_quality_rotation": true,
-          "direction_count": 256,
-          "scale": 0.5,
-          "usage": "train",
-          "draw_as_shadow": true
-        }
+        "layers": [
+          "util.sprite_load(\"__base__/graphics/entity/artillery-wagon/artillery-wagon-base\",\n            {\n              dice = 4,\n              priority = \"very-low\",\n              allow_low_quality_rotation = true,\n              direction_count = 256,\n              scale = 0.5,\n              usage = \"train\"\n            }\n          )",
+          "util.sprite_load(\"__base__/graphics/entity/artillery-wagon/artillery-wagon-base-shadow\",\n            {\n              dice = 4,\n              priority = \"very-low\",\n              allow_low_quality_rotation = true,\n              draw_as_shadow = true,\n              direction_count = 256,\n              scale = 0.5,\n              usage = \"train\"\n            }\n          )"
+        ]
       }
     },
     "cannon_barrel_pictures": {
       "rotated": {
-        "layers": {
-          "priority": "very-low",
-          "allow_low_quality_rotation": true,
-          "direction_count": 256,
-          "scale": 0.5,
-          "usage": "train",
-          "draw_as_shadow": true
-        }
+        "layers": [
+          "util.sprite_load(\"__base__/graphics/entity/artillery-wagon/artillery-wagon-cannon-barrel\",\n            {\n              priority = \"very-low\",\n              allow_low_quality_rotation = true,\n              direction_count = 256,\n              scale = 0.5,\n              usage = \"train\"\n            }\n          )",
+          "util.sprite_load(\"__base__/graphics/entity/artillery-wagon/artillery-wagon-cannon-barrel-shadow\",\n            {\n              priority = \"very-low\",\n              allow_low_quality_rotation = true,\n              draw_as_shadow = true,\n              direction_count = 256,\n              scale = 0.5,\n              usage = \"train\"\n            }\n          )"
+        ]
       }
     },
     "cannon_base_pictures": {
       "rotated": {
-        "layers": {
-          "priority": "very-low",
-          "allow_low_quality_rotation": true,
-          "direction_count": 256,
-          "scale": 0.5,
-          "usage": "train",
-          "draw_as_shadow": true
-        }
+        "layers": [
+          "util.sprite_load(\"__base__/graphics/entity/artillery-wagon/artillery-wagon-cannon-base\",\n            {\n              priority = \"very-low\",\n              allow_low_quality_rotation = true,\n              direction_count = 256,\n              scale = 0.5,\n              usage = \"train\"\n            }\n          )",
+          "util.sprite_load(\"__base__/graphics/entity/artillery-wagon/artillery-wagon-cannon-base-shadow\",\n            {\n              priority = \"very-low\",\n              allow_low_quality_rotation = true,\n              draw_as_shadow = true,\n              direction_count = 256,\n              scale = 0.5,\n              usage = \"train\"\n            }\n          )"
+        ]
       }
     },
     "cannon_base_height": 1.672049,
     "cannon_base_shift_when_vertical": -2.5357685,
     "cannon_base_shift_when_horizontal": -2.0702245,
-    "cannon_barrel_recoil_shiftings": {},
-    "cannon_barrel_light_direction": {},
+    "cannon_barrel_recoil_shiftings": [
+      [
+        0.01,
+        -0.0,
+        -0.0
+      ],
+      [
+        0.0093,
+        -0.1973,
+        -0.0878
+      ],
+      [
+        0.0088,
+        -0.3945,
+        -0.1755
+      ],
+      [
+        0.0083,
+        -0.5918,
+        -0.2635
+      ],
+      [
+        0.0078,
+        -0.7888,
+        -0.3513
+      ],
+      [
+        0.007,
+        -0.986,
+        -0.439
+      ],
+      [
+        0.007,
+        -0.9828,
+        -0.4375
+      ],
+      [
+        0.007,
+        -0.9753,
+        -0.4343
+      ],
+      [
+        0.0073,
+        -0.9635,
+        -0.429
+      ],
+      [
+        0.0073,
+        -0.9475,
+        -0.422
+      ],
+      [
+        0.0073,
+        -0.9278,
+        -0.413
+      ],
+      [
+        0.0073,
+        -0.9043,
+        -0.4025
+      ],
+      [
+        0.0075,
+        -0.877,
+        -0.3905
+      ],
+      [
+        0.0075,
+        -0.8463,
+        -0.3768
+      ],
+      [
+        0.0075,
+        -0.8123,
+        -0.3618
+      ],
+      [
+        0.0078,
+        -0.7755,
+        -0.3453
+      ],
+      [
+        0.0078,
+        -0.736,
+        -0.3278
+      ],
+      [
+        0.008,
+        -0.694,
+        -0.309
+      ],
+      [
+        0.008,
+        -0.6498,
+        -0.2893
+      ],
+      [
+        0.0083,
+        -0.604,
+        -0.269
+      ],
+      [
+        0.0083,
+        -0.5565,
+        -0.2478
+      ],
+      [
+        0.0085,
+        -0.508,
+        -0.2263
+      ],
+      [
+        0.0085,
+        -0.4588,
+        -0.2043
+      ],
+      [
+        0.0088,
+        -0.4088,
+        -0.182
+      ],
+      [
+        0.0088,
+        -0.359,
+        -0.1598
+      ],
+      [
+        0.009,
+        -0.3095,
+        -0.1378
+      ],
+      [
+        0.0093,
+        -0.2605,
+        -0.116
+      ],
+      [
+        0.0093,
+        -0.2128,
+        -0.0948
+      ],
+      [
+        0.0095,
+        -0.1663,
+        -0.074
+      ],
+      [
+        0.0095,
+        -0.1213,
+        -0.054
+      ],
+      [
+        0.0098,
+        -0.0785,
+        -0.035
+      ],
+      [
+        0.0098,
+        -0.038,
+        -0.017
+      ]
+    ],
+    "cannon_barrel_light_direction": [
+      0.5976251,
+      -0.0242053,
+      -0.8014102
+    ],
     "minimap_representation": {
       "filename": "__base__/graphics/entity/artillery-wagon/minimap-representation/artillery-wagon-minimap-representation.png",
-      "flags": {},
-      "size": {},
+      "flags": [
+        "icon"
+      ],
+      "size": [
+        20,
+        40
+      ],
       "scale": 0.5
     },
     "selected_minimap_representation": {
       "filename": "__base__/graphics/entity/artillery-wagon/minimap-representation/artillery-wagon-selected-minimap-representation.png",
-      "flags": {},
-      "size": {},
+      "flags": [
+        "icon"
+      ],
+      "size": [
+        20,
+        40
+      ],
       "scale": 0.5
     },
     "wheels": "standard_train_wheels",
@@ -840,7 +1715,11 @@
     "type": "train-stop",
     "name": "train-stop",
     "icon": "__base__/graphics/icons/train-stop.png",
-    "flags": {},
+    "flags": [
+      "placeable-neutral",
+      "player-creation",
+      "filter-directions"
+    ],
     "fast_replaceable_group": "train-stop",
     "minable": {
       "mining_time": 0.2,
@@ -850,14 +1729,68 @@
     "corpse": "train-stop-remnants",
     "dying_explosion": "train-stop-explosion",
     "factoriopedia_simulation": "simulations.factoriopedia_train_stop",
-    "collision_box": {},
-    "selection_box": {},
+    "collision_box": [
+      [
+        -0.5,
+        -0.5
+      ],
+      [
+        0.5,
+        0.5
+      ]
+    ],
+    "selection_box": [
+      [
+        -0.9,
+        -0.9
+      ],
+      [
+        0.9,
+        0.9
+      ]
+    ],
     "damaged_trigger_effect": "hit_effects.entity()",
     "drawing_boxes": {
-      "north": {},
-      "east": {},
-      "south": {},
-      "west": {}
+      "north": [
+        [
+          -3,
+          -2.5
+        ],
+        [
+          0.8,
+          1.25
+        ]
+      ],
+      "east": [
+        [
+          -1.75,
+          -4.25
+        ],
+        [
+          1.625,
+          0.5
+        ]
+      ],
+      "south": [
+        [
+          -0.8125,
+          -3.625
+        ],
+        [
+          2.75,
+          0.4375
+        ]
+      ],
+      "west": [
+        [
+          -1.75,
+          -1.6875
+        ],
+        [
+          2.0625,
+          2.75
+        ]
+      ]
     },
     "tile_width": 2,
     "tile_height": 2,
@@ -1014,7 +1947,12 @@
       }
     },
     "impact_category": "metal",
-    "color": {},
+    "color": [
+      0.95,
+      0,
+      0,
+      1
+    ],
     "open_sound": {
       "filename": "__base__/sound/open-close/train-stop-open.ogg",
       "volume": 0.6
@@ -1051,7 +1989,12 @@
     "type": "rail-signal",
     "name": "rail-signal",
     "icon": "__base__/graphics/icons/rail-signal.png",
-    "flags": {},
+    "flags": [
+      "placeable-neutral",
+      "player-creation",
+      "building-direction-16-way",
+      "filter-directions"
+    ],
     "fast_replaceable_group": "rail-signal",
     "minable": {
       "mining_time": 0.1,
@@ -1061,8 +2004,26 @@
     "corpse": "rail-signal-remnants",
     "dying_explosion": "rail-signal-explosion",
     "factoriopedia_simulation": "simulations.factoriopedia_rail_signal",
-    "collision_box": {},
-    "selection_box": {},
+    "collision_box": [
+      [
+        -0.2,
+        -0.2
+      ],
+      [
+        0.2,
+        0.2
+      ]
+    ],
+    "selection_box": [
+      [
+        -0.45,
+        -0.65
+      ],
+      [
+        0.45,
+        0.65
+      ]
+    ],
     "damaged_trigger_effect": "hit_effects.entity()",
     "open_sound": "sounds.rail_signal_open",
     "close_sound": "sounds.rail_signal_close",
@@ -1086,7 +2047,12 @@
     "type": "rail-chain-signal",
     "name": "rail-chain-signal",
     "icon": "__base__/graphics/icons/rail-chain-signal.png",
-    "flags": {},
+    "flags": [
+      "placeable-neutral",
+      "player-creation",
+      "building-direction-16-way",
+      "filter-directions"
+    ],
     "fast_replaceable_group": "rail-signal",
     "minable": {
       "mining_time": 0.1,
@@ -1096,8 +2062,26 @@
     "corpse": "rail-chain-signal-remnants",
     "dying_explosion": "rail-chain-signal-explosion",
     "factoriopedia_simulation": "simulations.factoriopedia_rail_chain_signal",
-    "collision_box": {},
-    "selection_box": {},
+    "collision_box": [
+      [
+        -0.2,
+        -0.2
+      ],
+      [
+        0.2,
+        0.2
+      ]
+    ],
+    "selection_box": [
+      [
+        -0.5,
+        -0.5
+      ],
+      [
+        0.5,
+        0.5
+      ]
+    ],
     "damaged_trigger_effect": "hit_effects.entity()",
     "open_sound": "sounds.rail_signal_open",
     "close_sound": "sounds.rail_signal_close",

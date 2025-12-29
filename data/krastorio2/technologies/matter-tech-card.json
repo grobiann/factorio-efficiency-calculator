@@ -7,13 +7,35 @@
     "unit": {
       "time": 60,
       "count": 200,
-      "ingredients": {}
+      "ingredients": [
+        [
+          "production-science-pack",
+          1
+        ],
+        [
+          "utility-science-pack",
+          1
+        ],
+        [
+          "kr-advanced-tech-card",
+          1
+        ],
+        [
+          "kr-matter-tech-card",
+          1
+        ]
+      ]
     },
-    "prerequisites": {},
-    "effects": {
-      "type": "character-mining-speed",
-      "modifier": 2
-    }
+    "prerequisites": [
+      "steel-axe",
+      "kr-advanced-tech-card"
+    ],
+    "effects": [
+      {
+        "type": "character-mining-speed",
+        "modifier": 2
+      }
+    ]
   },
   {
     "type": "technology",
@@ -23,13 +45,30 @@
     "unit": {
       "time": 45,
       "count": 1000,
-      "ingredients": {}
+      "ingredients": [
+        [
+          "production-science-pack",
+          1
+        ],
+        [
+          "utility-science-pack",
+          1
+        ],
+        [
+          "kr-matter-tech-card",
+          1
+        ]
+      ]
     },
-    "prerequisites": {},
-    "effects": {
-      "type": "unlock-recipe",
-      "recipe": "kr-advanced-tech-card"
-    }
+    "prerequisites": [
+      "kr-imersium-processing"
+    ],
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "kr-advanced-tech-card"
+      }
+    ]
   },
   {
     "type": "technology",
@@ -39,13 +78,31 @@
     "unit": {
       "time": 30,
       "count": 350,
-      "ingredients": {}
+      "ingredients": [
+        [
+          "production-science-pack",
+          1
+        ],
+        [
+          "utility-science-pack",
+          1
+        ],
+        [
+          "kr-matter-tech-card",
+          1
+        ]
+      ]
     },
-    "prerequisites": {},
-    "effects": {
-      "type": "unlock-recipe",
-      "recipe": "kr-energy-control-unit"
-    }
+    "prerequisites": [
+      "kr-lithium-sulfur-battery",
+      "kr-matter-tech-card"
+    ],
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "kr-energy-control-unit"
+      }
+    ]
   },
   {
     "type": "technology",
@@ -55,13 +112,30 @@
     "unit": {
       "time": 45,
       "count": 350,
-      "ingredients": {}
+      "ingredients": [
+        [
+          "production-science-pack",
+          1
+        ],
+        [
+          "utility-science-pack",
+          1
+        ],
+        [
+          "kr-matter-tech-card",
+          1
+        ]
+      ]
     },
-    "prerequisites": {},
-    "effects": {
-      "type": "unlock-recipe",
-      "recipe": "kr-energy-storage"
-    }
+    "prerequisites": [
+      "kr-energy-control-unit"
+    ],
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "kr-energy-storage"
+      }
+    ]
   },
   {
     "type": "technology",
@@ -71,13 +145,38 @@
     "unit": {
       "time": 60,
       "count": 500,
-      "ingredients": {}
+      "ingredients": [
+        [
+          "production-science-pack",
+          1
+        ],
+        [
+          "utility-science-pack",
+          1
+        ],
+        [
+          "kr-matter-tech-card",
+          1
+        ]
+      ]
     },
-    "prerequisites": {},
-    "effects": {
-      "type": "unlock-recipe",
-      "recipe": "kr-imersium-beam"
-    }
+    "prerequisites": [
+      "kr-matter-tech-card"
+    ],
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "kr-imersium-plate"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "kr-imersium-gear-wheel"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "kr-imersium-beam"
+      }
+    ]
   },
   {
     "type": "technology",
@@ -88,9 +187,24 @@
     "unit": {
       "time": 45,
       "count": 350,
-      "ingredients": {}
+      "ingredients": [
+        [
+          "production-science-pack",
+          1
+        ],
+        [
+          "utility-science-pack",
+          1
+        ],
+        [
+          "kr-matter-tech-card",
+          1
+        ]
+      ]
     },
-    "prerequisites": {},
+    "prerequisites": [
+      "kr-matter-processing"
+    ],
     "effects": {}
   },
   {
@@ -102,9 +216,24 @@
     "unit": {
       "time": 45,
       "count": 350,
-      "ingredients": {}
+      "ingredients": [
+        [
+          "production-science-pack",
+          1
+        ],
+        [
+          "utility-science-pack",
+          1
+        ],
+        [
+          "kr-matter-tech-card",
+          1
+        ]
+      ]
     },
-    "prerequisites": {},
+    "prerequisites": [
+      "kr-matter-processing"
+    ],
     "effects": {}
   },
   {
@@ -116,9 +245,24 @@
     "unit": {
       "time": 45,
       "count": 350,
-      "ingredients": {}
+      "ingredients": [
+        [
+          "production-science-pack",
+          1
+        ],
+        [
+          "utility-science-pack",
+          1
+        ],
+        [
+          "kr-matter-tech-card",
+          1
+        ]
+      ]
     },
-    "prerequisites": {},
+    "prerequisites": [
+      "kr-matter-processing"
+    ],
     "effects": {}
   },
   {
@@ -130,9 +274,24 @@
     "unit": {
       "time": 45,
       "count": 350,
-      "ingredients": {}
+      "ingredients": [
+        [
+          "production-science-pack",
+          1
+        ],
+        [
+          "utility-science-pack",
+          1
+        ],
+        [
+          "kr-matter-tech-card",
+          1
+        ]
+      ]
     },
-    "prerequisites": {},
+    "prerequisites": [
+      "kr-matter-processing"
+    ],
     "effects": {}
   },
   {
@@ -144,9 +303,24 @@
     "unit": {
       "time": 45,
       "count": 350,
-      "ingredients": {}
+      "ingredients": [
+        [
+          "production-science-pack",
+          1
+        ],
+        [
+          "utility-science-pack",
+          1
+        ],
+        [
+          "kr-matter-tech-card",
+          1
+        ]
+      ]
     },
-    "prerequisites": {},
+    "prerequisites": [
+      "kr-matter-processing"
+    ],
     "effects": {}
   },
   {
@@ -158,13 +332,47 @@
     "unit": {
       "time": 45,
       "count": 1000,
-      "ingredients": {}
+      "ingredients": [
+        [
+          "production-science-pack",
+          1
+        ],
+        [
+          "utility-science-pack",
+          1
+        ],
+        [
+          "kr-matter-tech-card",
+          1
+        ]
+      ]
     },
-    "prerequisites": {},
-    "effects": {
-      "type": "unlock-recipe",
-      "recipe": "kr-charged-matter-stabilizer"
-    }
+    "prerequisites": [
+      "kr-imersium-processing",
+      "kr-energy-control-unit"
+    ],
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "kr-matter-plant"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "kr-matter-associator"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "kr-stabilizer-charging-station"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "kr-matter-stabilizer"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "kr-charged-matter-stabilizer"
+      }
+    ]
   },
   {
     "type": "technology",
@@ -175,9 +383,24 @@
     "unit": {
       "time": 45,
       "count": 350,
-      "ingredients": {}
+      "ingredients": [
+        [
+          "production-science-pack",
+          1
+        ],
+        [
+          "utility-science-pack",
+          1
+        ],
+        [
+          "kr-matter-tech-card",
+          1
+        ]
+      ]
     },
-    "prerequisites": {},
+    "prerequisites": [
+      "kr-matter-processing"
+    ],
     "effects": {}
   },
   {
@@ -188,10 +411,25 @@
     "order": "g-e-e",
     "unit": {
       "count": 350,
-      "ingredients": {},
+      "ingredients": [
+        [
+          "production-science-pack",
+          1
+        ],
+        [
+          "utility-science-pack",
+          1
+        ],
+        [
+          "kr-matter-tech-card",
+          1
+        ]
+      ],
       "time": 45
     },
-    "prerequisites": {},
+    "prerequisites": [
+      "kr-matter-processing"
+    ],
     "effects": {}
   },
   {
@@ -202,10 +440,25 @@
     "order": "g-e-e",
     "unit": {
       "count": 350,
-      "ingredients": {},
+      "ingredients": [
+        [
+          "production-science-pack",
+          1
+        ],
+        [
+          "utility-science-pack",
+          1
+        ],
+        [
+          "kr-matter-tech-card",
+          1
+        ]
+      ],
       "time": 45
     },
-    "prerequisites": {},
+    "prerequisites": [
+      "kr-matter-processing"
+    ],
     "effects": {}
   },
   {
@@ -217,9 +470,24 @@
     "unit": {
       "time": 45,
       "count": 350,
-      "ingredients": {}
+      "ingredients": [
+        [
+          "production-science-pack",
+          1
+        ],
+        [
+          "utility-science-pack",
+          1
+        ],
+        [
+          "kr-matter-tech-card",
+          1
+        ]
+      ]
     },
-    "prerequisites": {},
+    "prerequisites": [
+      "kr-matter-processing"
+    ],
     "effects": {}
   },
   {
@@ -231,9 +499,24 @@
     "unit": {
       "time": 45,
       "count": 350,
-      "ingredients": {}
+      "ingredients": [
+        [
+          "production-science-pack",
+          1
+        ],
+        [
+          "utility-science-pack",
+          1
+        ],
+        [
+          "kr-matter-tech-card",
+          1
+        ]
+      ]
     },
-    "prerequisites": {},
+    "prerequisites": [
+      "kr-matter-processing"
+    ],
     "effects": {}
   },
   {
@@ -245,9 +528,24 @@
     "unit": {
       "time": 45,
       "count": 350,
-      "ingredients": {}
+      "ingredients": [
+        [
+          "production-science-pack",
+          1
+        ],
+        [
+          "utility-science-pack",
+          1
+        ],
+        [
+          "kr-matter-tech-card",
+          1
+        ]
+      ]
     },
-    "prerequisites": {},
+    "prerequisites": [
+      "kr-matter-processing"
+    ],
     "effects": {}
   },
   {
@@ -259,9 +557,24 @@
     "unit": {
       "time": 45,
       "count": 350,
-      "ingredients": {}
+      "ingredients": [
+        [
+          "production-science-pack",
+          1
+        ],
+        [
+          "utility-science-pack",
+          1
+        ],
+        [
+          "kr-matter-tech-card",
+          1
+        ]
+      ]
     },
-    "prerequisites": {},
+    "prerequisites": [
+      "kr-matter-processing"
+    ],
     "effects": {}
   },
   {
@@ -272,12 +585,35 @@
     "unit": {
       "time": 45,
       "count": 1000,
-      "ingredients": {}
+      "ingredients": [
+        [
+          "production-science-pack",
+          1
+        ],
+        [
+          "utility-science-pack",
+          1
+        ],
+        [
+          "kr_optimization_tech_card_name",
+          1
+        ],
+        [
+          "kr-matter-tech-card",
+          1
+        ]
+      ]
     },
-    "prerequisites": {},
-    "effects": {
-      "type": "worker-robot-battery",
-      "modifier": 0.6
-    }
+    "prerequisites": [
+      "kr-robot-battery",
+      "kr-advanced-roboports",
+      "kr-energy-control-unit"
+    ],
+    "effects": [
+      {
+        "type": "worker-robot-battery",
+        "modifier": 0.6
+      }
+    ]
   }
 ]

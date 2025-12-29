@@ -8,16 +8,25 @@
     "enabled": false,
     "category": "kr-fuel-refinery",
     "energy_required": 10,
-    "ingredients": {
-      "type": "item",
-      "name": "kr-imersite-powder",
-      "amount": 6
-    },
-    "results": {
-      "type": "item",
-      "name": "kr-advanced-fuel",
-      "amount": 10
-    },
+    "ingredients": [
+      {
+        "type": "item",
+        "name": "kr-fuel",
+        "amount": 10
+      },
+      {
+        "type": "item",
+        "name": "kr-imersite-powder",
+        "amount": 6
+      }
+    ],
+    "results": [
+      {
+        "type": "item",
+        "name": "kr-advanced-fuel",
+        "amount": 10
+      }
+    ],
     "allow_productivity": true,
     "always_show_made_in": true,
     "always_show_products": true,
@@ -57,16 +66,25 @@
     "enabled": false,
     "category": "kr-fuel-refinery",
     "energy_required": 10,
-    "ingredients": {
-      "type": "fluid",
-      "name": "kr-biomethanol",
-      "amount": 50
-    },
-    "results": {
-      "type": "item",
-      "name": "kr-biofuel",
-      "amount": 10
-    },
+    "ingredients": [
+      {
+        "type": "item",
+        "name": "kr-fuel",
+        "amount": 6
+      },
+      {
+        "type": "fluid",
+        "name": "kr-biomethanol",
+        "amount": 50
+      }
+    ],
+    "results": [
+      {
+        "type": "item",
+        "name": "kr-biofuel",
+        "amount": 10
+      }
+    ],
     "allow_productivity": true,
     "always_show_made_in": true,
     "always_show_products": true,
@@ -106,16 +124,30 @@
     "enabled": false,
     "category": "kr-fuel-refinery",
     "energy_required": 20,
-    "ingredients": {
-      "type": "fluid",
-      "name": "steam",
-      "amount": 120
-    },
-    "results": {
-      "type": "fluid",
-      "name": "kr-biomethanol",
-      "amount": 120
-    },
+    "ingredients": [
+      {
+        "type": "item",
+        "name": "wood",
+        "amount": 5
+      },
+      {
+        "type": "fluid",
+        "name": "kr-oxygen",
+        "amount": 60
+      },
+      {
+        "type": "fluid",
+        "name": "steam",
+        "amount": 120
+      }
+    ],
+    "results": [
+      {
+        "type": "fluid",
+        "name": "kr-biomethanol",
+        "amount": 120
+      }
+    ],
     "allow_productivity": true,
     "always_show_made_in": true,
     "always_show_products": true,
@@ -139,24 +171,36 @@
     "name": "kr-fuel-from-light-oil",
     "subgroup": "intermediate-product",
     "order": "o1[fuel-from-light-oil]",
-    "icons": {
-      "icon": "__base__/graphics/icons/fluid/light-oil.png",
-      "scale": 0.26,
-      "shift": {}
-    },
+    "icons": [
+      {
+        "icon": "__Krastorio2Assets__/icons/items/fuel.png"
+      },
+      {
+        "icon": "__base__/graphics/icons/fluid/light-oil.png",
+        "scale": 0.26,
+        "shift": [
+          8,
+          -8
+        ]
+      }
+    ],
     "enabled": false,
     "category": "kr-fuel-refinery",
     "energy_required": 10,
-    "ingredients": {
-      "type": "fluid",
-      "name": "light-oil",
-      "amount": 60
-    },
-    "results": {
-      "type": "item",
-      "name": "kr-fuel",
-      "amount": 10
-    },
+    "ingredients": [
+      {
+        "type": "fluid",
+        "name": "light-oil",
+        "amount": 60
+      }
+    ],
+    "results": [
+      {
+        "type": "item",
+        "name": "kr-fuel",
+        "amount": 10
+      }
+    ],
     "allow_productivity": true,
     "always_show_made_in": true,
     "always_show_products": true,
@@ -191,27 +235,44 @@
   {
     "type": "recipe",
     "name": "kr-fuel-from-solid-fuel",
-    "icons": {
-      "icon": "data.raw.item[\"solid-fuel\"].icon",
-      "icon_size": "data.raw.item[\"solid-fuel\"].icon_size or 64",
-      "scale": 0.26,
-      "shift": {}
-    },
+    "icons": [
+      {
+        "icon": "__Krastorio2Assets__/icons/items/fuel.png"
+      },
+      {
+        "icon": "data.raw.item[\"solid-fuel\"].icon",
+        "icon_size": "data.raw.item[\"solid-fuel\"].icon_size or 64",
+        "scale": 0.26,
+        "shift": [
+          8,
+          -8
+        ]
+      }
+    ],
     "subgroup": "intermediate-product",
     "order": "o2[fuel-from-solid-fuel]",
     "enabled": false,
     "category": "kr-fuel-refinery",
     "energy_required": 10,
-    "ingredients": {
-      "type": "fluid",
-      "name": "kr-hydrogen",
-      "amount": 50
-    },
-    "results": {
-      "type": "item",
-      "name": "kr-fuel",
-      "amount": 10
-    },
+    "ingredients": [
+      {
+        "type": "item",
+        "name": "solid-fuel",
+        "amount": 6
+      },
+      {
+        "type": "fluid",
+        "name": "kr-hydrogen",
+        "amount": 50
+      }
+    ],
+    "results": [
+      {
+        "type": "item",
+        "name": "kr-fuel",
+        "amount": 10
+      }
+    ],
     "allow_productivity": true,
     "always_show_made_in": true,
     "always_show_products": true,
@@ -246,24 +307,46 @@
   {
     "type": "recipe",
     "name": "kr-rocket-fuel-with-ammonia",
-    "icons": {
-      "icon": "__Krastorio2Assets__/icons/fluids/ammonia.png",
-      "scale": 0.26,
-      "shift": {}
-    },
+    "icons": [
+      {
+        "icon": "__Krastorio2Assets__/icons/recipes/rocket-fuel.png"
+      },
+      {
+        "icon": "__Krastorio2Assets__/icons/fluids/ammonia.png",
+        "scale": 0.26,
+        "shift": [
+          8,
+          -8
+        ]
+      }
+    ],
     "enabled": false,
     "energy_required": 16,
     "category": "kr-fuel-refinery",
-    "ingredients": {
-      "type": "fluid",
-      "name": "kr-oxygen",
-      "amount": 50
-    },
-    "results": {
-      "type": "item",
-      "name": "rocket-fuel",
-      "amount": 1
-    },
+    "ingredients": [
+      {
+        "type": "item",
+        "name": "iron-plate",
+        "amount": 1
+      },
+      {
+        "type": "fluid",
+        "name": "kr-ammonia",
+        "amount": 50
+      },
+      {
+        "type": "fluid",
+        "name": "kr-oxygen",
+        "amount": 50
+      }
+    ],
+    "results": [
+      {
+        "type": "item",
+        "name": "rocket-fuel",
+        "amount": 1
+      }
+    ],
     "allow_productivity": true,
     "always_show_made_in": true,
     "crafting_machine_tint": {
@@ -296,24 +379,46 @@
   {
     "type": "recipe",
     "name": "kr-rocket-fuel-with-hydrogen-chloride",
-    "icons": {
-      "icon": "__Krastorio2Assets__/icons/fluids/hydrogen-chloride.png",
-      "scale": 0.26,
-      "shift": {}
-    },
+    "icons": [
+      {
+        "icon": "__Krastorio2Assets__/icons/recipes/rocket-fuel.png"
+      },
+      {
+        "icon": "__Krastorio2Assets__/icons/fluids/hydrogen-chloride.png",
+        "scale": 0.26,
+        "shift": [
+          8,
+          -8
+        ]
+      }
+    ],
     "enabled": false,
     "category": "kr-fuel-refinery",
     "energy_required": 16,
-    "ingredients": {
-      "type": "fluid",
-      "name": "kr-oxygen",
-      "amount": 50
-    },
-    "results": {
-      "type": "item",
-      "name": "rocket-fuel",
-      "amount": 1
-    },
+    "ingredients": [
+      {
+        "type": "item",
+        "name": "iron-plate",
+        "amount": 1
+      },
+      {
+        "type": "fluid",
+        "name": "kr-hydrogen-chloride",
+        "amount": 50
+      },
+      {
+        "type": "fluid",
+        "name": "kr-oxygen",
+        "amount": 50
+      }
+    ],
+    "results": [
+      {
+        "type": "item",
+        "name": "rocket-fuel",
+        "amount": 1
+      }
+    ],
     "allow_productivity": true,
     "always_show_made_in": true,
     "hide_from_signal_gui": false,

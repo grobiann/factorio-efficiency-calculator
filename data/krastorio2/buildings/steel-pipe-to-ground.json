@@ -3,16 +3,25 @@
     "type": "recipe",
     "name": "kr-steel-pipe-to-ground",
     "enabled": false,
-    "ingredients": {
-      "type": "item",
-      "name": "steel-plate",
-      "amount": 5
-    },
-    "results": {
-      "type": "item",
-      "name": "kr-steel-pipe-to-ground",
-      "amount": 2
-    }
+    "ingredients": [
+      {
+        "type": "item",
+        "name": "kr-steel-pipe",
+        "amount": 15
+      },
+      {
+        "type": "item",
+        "name": "steel-plate",
+        "amount": 5
+      }
+    ],
+    "results": [
+      {
+        "type": "item",
+        "name": "kr-steel-pipe-to-ground",
+        "amount": 2
+      }
+    ]
   },
   {
     "type": "item",
@@ -27,25 +36,60 @@
     "type": "pipe-to-ground",
     "name": "kr-steel-pipe-to-ground",
     "icon": "__Krastorio2Assets__/icons/entities/steel-pipe-to-ground.png",
-    "flags": {},
+    "flags": [
+      "placeable-neutral",
+      "player-creation"
+    ],
     "minable": {
       "mining_time": 0.1,
       "result": "kr-steel-pipe-to-ground"
     },
     "fast_replaceable_group": "pipe",
-    "collision_box": {},
-    "selection_box": {},
+    "collision_box": [
+      [
+        -0.29,
+        -0.29
+      ],
+      [
+        0.29,
+        0.2
+      ]
+    ],
+    "selection_box": [
+      [
+        -0.5,
+        -0.5
+      ],
+      [
+        0.5,
+        0.5
+      ]
+    ],
     "fluid_box": {
       "volume": 100,
       "pipe_covers": "require(\"prototypes.buildings.steel-pipe-covers\")",
-      "pipe_connections": {
-        "flow_direction": "input-output",
-        "direction": "defines.direction.south",
-        "position": {},
-        "connection_category": "kr-steel-pipe",
-        "connection_type": "underground",
-        "max_underground_distance": 30
-      },
+      "pipe_connections": [
+        {
+          "flow_direction": "input-output",
+          "direction": "defines.direction.north",
+          "position": [
+            0,
+            0
+          ],
+          "connection_category": "kr-steel-pipe"
+        },
+        {
+          "flow_direction": "input-output",
+          "direction": "defines.direction.south",
+          "position": [
+            0,
+            0
+          ],
+          "connection_type": "underground",
+          "max_underground_distance": 30,
+          "connection_category": "kr-steel-pipe"
+        }
+      ],
       "hide_connection_info": true
     },
     "max_health": 150,
@@ -53,10 +97,16 @@
     "icon_draw_specification": {
       "scale": 0.5
     },
-    "resistances": {
-      "type": "impact",
-      "percent": 60
-    },
+    "resistances": [
+      {
+        "type": "fire",
+        "percent": 90
+      },
+      {
+        "type": "impact",
+        "percent": 60
+      }
+    ],
     "vehicle_impact_sound": {
       "filename": "__base__/sound/car-metal-impact.ogg",
       "volume": 0.65
