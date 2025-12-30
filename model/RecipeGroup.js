@@ -1,53 +1,53 @@
 /**
- * ProductionZone - 여러 레시피를 묶어서 하나의 레시피처럼 작동하는 생산 구역
+ * RecipeGroup - 여러 레시피를 묶어서 하나의 레시피처럼 작동하는 레시피 그룹
  */
-export class ProductionZone {
+export class RecipeGroup {
   constructor(data = {}) {
-    this.id = data.id || `zone_${Date.now()}`;
-    this.name = data.name || "새 생산구역";
-    this.recipes = data.recipes || []; // Array of { recipeId, multiplier, type: 'recipe'|'zone' }
+    this.id = data.id || `group_${Date.now()}`;
+    this.name = data.name || "새 레시피 그룹";
+    this.recipes = data.recipes || []; // Array of { recipeId, multiplier, type: 'recipe'|'group' }
   }
 
   /**
-   * 특정 레시피 또는 생산구역 객체 가져오기
+   * 특정 레시피 또는 레시피 그룹 객체 가져오기
    */
-  getRecipeOrZone(entry, allRecipes, allZones) {
-    if (entry.type === 'zone') {
-      return allZones.get(entry.recipeId);
+  getRecipeOrGroup(entry, allRecipes, allGroups) {
+    if (entry.type === 'group') {
+      return allGroups.get(entry.recipeId);
     }
     return allRecipes[entry.recipeId];
   }
 
   /**
-   * 구역 내 모든 레시피의 입력/출력을 계산하여 통합
+   * 그룹 내 모든 레시피의 입력/출력을 계산하여 통합
    * @param {Object} allRecipes - Map of recipeId -> Recipe
-   * @param {Map} allZones - Map of zoneId -> ProductionZone
+   * @param {Map} allGroups - Map of groupId -> RecipeGroup
    * @returns {Object} { ingredients: [...], results: [...] }
    */
-  calculateIO(allRecipes, allZones = new Map()) {
+  calculateIO(allRecipes, allGroups = new Map()) {
     const allInputs = {}; // item -> total amount needed
     const allOutputs = {}; // item -> total amount produced
     
-    // 각 레시피/생산구역 처리
+    // 각 레시피/레시피 그룹 처리
     for (const recipeEntry of this.recipes) {
       const multiplier = recipeEntry.multiplier || 1;
       let ingredientsMap, resultsMap;
       
-      if (recipeEntry.type === 'zone') {
-        // 생산구역인 경우
-        const zone = allZones.get(recipeEntry.recipeId);
-        if (!zone) continue;
+      if (recipeEntry.type === 'group') {
+        // 레시피 그룹인 경우
+        const group = allGroups.get(recipeEntry.recipeId);
+        if (!group) continue;
         
-        const zoneIO = zone.calculateIO(allRecipes, allZones);
+        const groupIO = group.calculateIO(allRecipes, allGroups);
         
-        // 생산구역의 입출력을 맵으로 변환
+        // 레시피 그룹의 입출력을 맵으로 변환
         ingredientsMap = {};
-        for (const ing of zoneIO.ingredients) {
+        for (const ing of groupIO.ingredients) {
           ingredientsMap[ing.name] = ing.amount;
         }
         
         resultsMap = {};
-        for (const res of zoneIO.results) {
+        for (const res of groupIO.results) {
           resultsMap[res.name] = res.amount;
         }
       } else {
@@ -109,28 +109,28 @@ export class ProductionZone {
   }
 
   /**
-   * 생산구역을 Recipe처럼 사용할 수 있도록 변환
+   * 레시피 그룹을 Recipe처럼 사용할 수 있도록 변환
    * @param {Object} allRecipes - Map of recipeId -> Recipe
-   * @param {Map} allZones - Map of zoneId -> ProductionZone
+   * @param {Map} allGroups - Map of groupId -> RecipeGroup
    * @returns {Object} Recipe-compatible object
    */
-  toRecipeFormat(allRecipes, allZones = new Map()) {
-    const io = this.calculateIO(allRecipes, allZones);
+  toRecipeFormat(allRecipes, allGroups = new Map()) {
+    const io = this.calculateIO(allRecipes, allGroups);
     
     return {
       id: this.id,
       name: this.name,
-      type: 'production-zone',
+      type: 'recipe-group',
       energy_required: 1,
       ingredients: io.ingredients,
       results: io.results,
-      _isZone: true,
-      _zoneData: this
+      _isGroup: true,
+      _groupData: this
     };
   }
 
   /**
-   * 레시피 또는 생산구역 추가
+   * 레시피 또는 레시피 그룹 추가
    */
   addRecipe(recipeId, multiplier = 1, type = 'recipe') {
     this.recipes.push({ recipeId, multiplier, type });
@@ -199,6 +199,6 @@ export class ProductionZone {
    * JSON에서 복원
    */
   static fromJSON(data) {
-    return new ProductionZone(data);
+    return new RecipeGroup(data);
   }
 }

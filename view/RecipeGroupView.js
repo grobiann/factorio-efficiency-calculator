@@ -1,16 +1,16 @@
-import { ProductionZone } from "../model/ProductionZone.js";
+import { RecipeGroup } from "../model/RecipeGroup.js";
 
 /**
- * ProductionZoneView - 생산구역 관리 UI
+ * RecipeGroupView - 레시피 그룹 관리 UI
  */
-export class ProductionZoneView {
+export class RecipeGroupView {
   constructor(allRecipes, recipesByProduct, locale, loadedData) {
-    this.zones = new Map();
+    this.groups = new Map();
     this.allRecipes = allRecipes; // { recipeId: Recipe } 형태
     this.recipesByProduct = recipesByProduct;
     this.locale = locale;
     this.loadedData = loadedData;
-    this.selectedZoneId = null;
+    this.selectedGroupId = null;
     this.loadFromStorage();
   }
 
@@ -18,30 +18,49 @@ export class ProductionZoneView {
    * 뷰 렌더링
    */
   render(container) {
-    const zoneManagement = container.querySelector('.zone-management');
-    if (!zoneManagement) return;
+    const groupManagement = container.querySelector('.group-management');
+    if (!groupManagement) return;
 
-    // 첫 번째 생산구역 자동 선택
-    if (!this.selectedZoneId && this.zones.size > 0) {
-      this.selectedZoneId = this.zones.values().next().value.id;
+    // 첫 번째 레시피 그룹 자동 선택
+    if (!this.selectedGroupId && this.groups.size > 0) {
+      this.selectedGroupId = this.groups.values().next().value.id;
     }
 
-    let html = '<div class="zone-management-grid">';
+    let html = '<div class="group-management-grid">';
     
-    // 왼쪽: 생산구역 목록
-    html += '<div class="zone-sidebar">';
-    html += '<button id="addZoneBtn" class="btn-primary">새 생산구역 추가</button>';
-    html += '<div class="zone-list-container">';
+    // 왼쪽: 레시피 그룹 목록
+    html += '<div class="sidebar-container">';
+    html += '<button id="addGroupBtn" class="btn-primary">새 레시피 그룹 추가</button>';
+    html += '<div class="list-container">';
     
-    if (this.zones.size === 0) {
-      html += '<p style="color: #999; text-align: center; padding: 20px;">생산구역이 없습니다.</p>';
+    if (this.groups.size === 0) {
+      html += '<p style="color: #999; text-align: center; padding: 20px;">레시피 그룹이 없습니다.</p>';
     } else {
-      for (const zone of this.zones.values()) {
-        const isSelected = zone.id === this.selectedZoneId;
+      for (const group of this.groups.values()) {
+        const isSelected = group.id === this.selectedGroupId;
+        const io = group.calculateIO(this.allRecipes, this.groups);
+        const results = io.results || [];
+        
+        // 결과물 아이콘 HTML 생성
+        let iconsHtml = '';
+        const maxIcons = 1;
+        const displayResults = results.slice(0, maxIcons);
+        
+        for (const result of displayResults) {
+          const iconInfo = this.getIconInfo(result.name);
+          if (iconInfo && iconInfo.path) {
+            iconsHtml += `<img src="${iconInfo.path}" alt="${this.escapeHtml(this.locale.itemName(result.name))}" class="list-item-icon" />`;
+          }
+        }
+        
+        if (results.length > maxIcons) {
+          iconsHtml += `<span class="list-item-more">+${results.length - maxIcons}</span>`;
+        }
+        
         html += `
-          <div class="zone-list-item ${isSelected ? 'selected' : ''}" data-zone-id="${zone.id}">
-            <span class="zone-list-name">${this.escapeHtml(zone.name)}</span>
-            <span class="zone-list-count">${zone.recipes.length}개 레시피</span>
+          <div class="list-item ${isSelected ? 'selected' : ''}" data-group-id="${group.id}">
+            <span class="list-item-name">${this.escapeHtml(group.name)}</span>
+            <div class="list-item-icons">${iconsHtml}</div>
           </div>
         `;
       }
@@ -50,38 +69,38 @@ export class ProductionZoneView {
     html += '</div></div>';
 
     // 오른쪽: 상세 정보 영역
-    html += '<div class="zone-detail-container">';
-    if (this.selectedZoneId && this.zones.has(this.selectedZoneId)) {
-      html += this.renderZoneDetail(this.zones.get(this.selectedZoneId));
+    html += '<div class="group-detail-container">';
+    if (this.selectedGroupId && this.groups.has(this.selectedGroupId)) {
+      html += this.renderGroupDetail(this.groups.get(this.selectedGroupId));
     } else {
-      html += '<p style="color: #999; text-align: center; padding: 40px;">생산구역을 선택하세요.</p>';
+      html += '<p style="color: #999; text-align: center; padding: 40px;">레시피 그룹을 선택하세요.</p>';
     }
     html += '</div>';
     
     html += '</div>';
 
-    zoneManagement.innerHTML = html;
+    groupManagement.innerHTML = html;
 
     // 이벤트 리스너 등록
     this.attachEventListeners(container);
   }
 
   /**
-   * 생산구역 상세 정보 렌더링
+   * 레시피 그룹 상세 정보 렌더링
    */
-  renderZoneDetail(zone) {
-    const io = zone.calculateIO(this.allRecipes, this.zones);
+  renderGroupDetail(group) {
+    const io = group.calculateIO(this.allRecipes, this.groups);
     
     // 최대 재료/생산품 개수 계산
     let maxIngredients = 0;
     let maxResults = 0;
     
-    for (const recipeEntry of zone.recipes) {
+    for (const recipeEntry of group.recipes) {
       let recipe;
-      if (recipeEntry.type === 'zone') {
-        const subZone = this.zones.get(recipeEntry.recipeId);
-        if (subZone) {
-          const subIO = subZone.calculateIO(this.allRecipes, this.zones);
+      if (recipeEntry.type === 'group') {
+        const subGroup = this.groups.get(recipeEntry.recipeId);
+        if (subGroup) {
+          const subIO = subGroup.calculateIO(this.allRecipes, this.groups);
           const ingredientsCount = subIO.ingredients ? subIO.ingredients.length : 0;
           const resultsCount = subIO.results ? subIO.results.length : 0;
           maxIngredients = Math.max(maxIngredients, ingredientsCount);
@@ -99,21 +118,21 @@ export class ProductionZoneView {
       }
     }
 
-    let html = '<div class="zone-detail">';
+    let html = '<div class="group-detail">';
     
     // 이름 편집
     html += `
-      <div class="zone-name-edit">
-        <input type="text" class="zone-name-input" value="${this.escapeHtml(zone.name)}" placeholder="생산구역 이름">
-        <button class="btn-danger zone-delete-btn">생산구역 삭제</button>
+      <div class="group-name-edit">
+        <input type="text" class="group-name-input" value="${this.escapeHtml(group.name)}" placeholder="레시피 그룹 이름">
+        <button class="btn-danger group-delete-btn">레시피 그룹 삭제</button>
       </div>
     `;
 
     // 출력/입력 요약
-    html += '<div class="zone-io-summary">';
-    html += '<div class="zone-io-section zone-outputs">';
+    html += '<div class="group-io-summary">';
+    html += '<div class="group-io-section group-outputs">';
     html += '<h4>출력</h4>';
-    html += '<div class="zone-io-items">';
+    html += '<div class="group-io-items">';
     if (io.results.length === 0) {
       html += '<span style="color: #999;">없음</span>';
     } else {
@@ -124,9 +143,9 @@ export class ProductionZoneView {
     }
     html += '</div></div>';
 
-    html += '<div class="zone-io-section zone-inputs">';
+    html += '<div class="group-io-section group-inputs">';
     html += '<h4>입력</h4>';
-    html += '<div class="zone-io-items">';
+    html += '<div class="group-io-items">';
     if (io.ingredients.length === 0) {
       html += '<span style="color: #999;">없음</span>';
     } else {
@@ -136,24 +155,24 @@ export class ProductionZoneView {
       }
     }
     html += '</div></div>';
-    html += '</div>'; // zone-io-summary
+    html += '</div>'; // group-io-summary
 
     // 레시피 목록
-    html += '<div class="zone-recipes-container">';
+    html += '<div class="group-recipes-container">';
     
-    if (zone.recipes.length === 0) {
-      html += '<div class="zone-no-recipes">';
+    if (group.recipes.length === 0) {
+      html += '<div class="group-no-recipes">';
       html += '<p>레시피가 없습니다. 레시피를 선택하세요.</p>';
       html += this.renderRecipeSelector();
       html += '</div>';
     } else {
-      for (let i = 0; i < zone.recipes.length; i++) {
-        html += this.renderRecipeRow(zone, i, maxIngredients, maxResults);
+      for (let i = 0; i < group.recipes.length; i++) {
+        html += this.renderRecipeRow(group, i, maxIngredients, maxResults);
       }
     }
     
-    html += '</div>'; // zone-recipes-container
-    html += '</div>'; // zone-detail
+    html += '</div>'; // group-recipes-container
+    html += '</div>'; // group-detail
 
     return html;
   }
@@ -161,26 +180,26 @@ export class ProductionZoneView {
   /**
    * 레시피 행 렌더링
    */
-  renderRecipeRow(zone, index, maxIngredients, maxResults) {
-    const recipeEntry = zone.recipes[index];
+  renderRecipeRow(group, index, maxIngredients, maxResults) {
+    const recipeEntry = group.recipes[index];
     let recipe, ingredients, results;
     
-    if (recipeEntry.type === 'zone') {
-      // 생산구역인 경우
-      const subZone = this.zones.get(recipeEntry.recipeId);
-      if (!subZone) {
-        return `<div class="zone-recipe-row">생산구역을 찾을 수 없습니다: ${recipeEntry.recipeId}</div>`;
+    if (recipeEntry.type === 'group') {
+      // 레시피 그룹인 경우
+      const subGroup = this.groups.get(recipeEntry.recipeId);
+      if (!subGroup) {
+        return `<div class="group-recipe-row">레시피 그룹을 찾을 수 없습니다: ${recipeEntry.recipeId}</div>`;
       }
       
-      const subIO = subZone.calculateIO(this.allRecipes, this.zones);
+      const subIO = subGroup.calculateIO(this.allRecipes, this.groups);
       
-      // 생산구역을 레시피처럼 표현
+      // 레시피 그룹을 레시피처럼 표현
       recipe = {
-        id: subZone.id,
-        name: subZone.name,
+        id: subGroup.id,
+        name: subGroup.name,
         ingredients: subIO.ingredients,
         results: subIO.results,
-        _isZone: true
+        _isGroup: true
       };
       ingredients = subIO.ingredients;
       results = subIO.results;
@@ -189,31 +208,31 @@ export class ProductionZoneView {
       recipe = this.allRecipes[recipeEntry.recipeId];
       
       if (!recipe) {
-        return `<div class="zone-recipe-row">레시피를 찾을 수 없습니다: ${recipeEntry.recipeId}</div>`;
+        return `<div class="group-recipe-row">레시피를 찾을 수 없습니다: ${recipeEntry.recipeId}</div>`;
       }
       
       ingredients = recipe.ingredients || [];
       results = recipe.results || [];
     }
 
-    let html = '<div class="zone-recipe-row">';
+    let html = '<div class="group-recipe-row">';
     
     // 동작 버튼
-    html += '<div class="zone-recipe-actions">';
-    html += `<button class="zone-action-btn" data-action="up" data-index="${index}" ${index === 0 ? 'disabled' : ''}>↑</button>`;
-    html += `<button class="zone-action-btn" data-action="down" data-index="${index}" ${index === zone.recipes.length - 1 ? 'disabled' : ''}>↓</button>`;
-    html += `<button class="zone-action-btn" data-action="copy" data-index="${index}">📋</button>`;
-    html += `<button class="zone-action-btn zone-action-remove" data-action="remove" data-index="${index}">✕</button>`;
+    html += '<div class="group-recipe-actions">';
+    html += `<button class="group-action-btn" data-action="up" data-index="${index}" ${index === 0 ? 'disabled' : ''}>↑</button>`;
+    html += `<button class="group-action-btn" data-action="down" data-index="${index}" ${index === group.recipes.length - 1 ? 'disabled' : ''}>↓</button>`;
+    html += `<button class="group-action-btn" data-action="copy" data-index="${index}">📋</button>`;
+    html += `<button class="group-action-btn group-action-remove" data-action="remove" data-index="${index}">✕</button>`;
     html += '</div>';
 
     // 제작법 아이콘
-    html += '<div class="zone-recipe-icon">';
+    html += '<div class="group-recipe-icon">';
     const recipeIconInfo = this.getRecipeIcon(recipe);
     html += this.createItemIcon(recipeIconInfo, null, false);
     html += '</div>';
 
     // 생산품
-    html += '<div class="zone-recipe-results">';
+    html += '<div class="group-recipe-results">';
     for (let i = 0; i < maxResults; i++) {
       if (i < results.length) {
         const result = results[i];
@@ -221,13 +240,13 @@ export class ProductionZoneView {
         const amount = result.amount * (recipeEntry.multiplier || 1);
         html += this.createItemIcon(iconInfo, amount, true);
       } else {
-        html += '<div class="zone-item-slot empty"></div>';
+        html += '<div class="group-item-slot empty"></div>';
       }
     }
     html += '</div>';
 
     // 재료
-    html += '<div class="zone-recipe-ingredients">';
+    html += '<div class="group-recipe-ingredients">';
     for (let i = 0; i < maxIngredients; i++) {
       if (i < ingredients.length) {
         const ingredient = ingredients[i];
@@ -235,12 +254,12 @@ export class ProductionZoneView {
         const amount = ingredient.amount * (recipeEntry.multiplier || 1);
         html += this.createItemIcon(iconInfo, amount, true, ingredient.name, ingredient.type);
       } else {
-        html += '<div class="zone-item-slot empty"></div>';
+        html += '<div class="group-item-slot empty"></div>';
       }
     }
     html += '</div>';
 
-    html += '</div>'; // zone-recipe-row
+    html += '</div>'; // group-recipe-row
 
     return html;
   }
@@ -253,11 +272,11 @@ export class ProductionZoneView {
     html += '<select class="recipe-select-dropdown">';
     html += '<option value="">선택하세요...</option>';
     
-    // 생산구역 그룹
-    if (this.zones.size > 0) {
-      html += '<optgroup label="생산구역">';
-      for (const zone of this.zones.values()) {
-        html += `<option value="zone:${zone.id}">${this.escapeHtml(zone.name)}</option>`;
+    // 레시피 그룹 그룹
+    if (this.groups.size > 0) {
+      html += '<optgroup label="레시피 그룹">';
+      for (const group of this.groups.values()) {
+        html += `<option value="group:${group.id}">${this.escapeHtml(group.name)}</option>`;
       }
       html += '</optgroup>';
     }
@@ -267,8 +286,8 @@ export class ProductionZoneView {
       const productName = this.locale.itemName(productId);
       html += `<optgroup label="${this.escapeHtml(productName)}">`;
       for (const recipe of recipes) {
-        // 생산구역으로 변환된 레시피는 제외
-        if (!recipe._isZone) {
+        // 레시피 그룹으로 변환된 레시피는 제외
+        if (!recipe._isGroup) {
           html += `<option value="recipe:${recipe.id}">${this.escapeHtml(this.locale.recipeName(recipe.id))}</option>`;
         }
       }
@@ -289,13 +308,13 @@ export class ProductionZoneView {
     const mipmapOffset = '-64px 0';
     const objectFit = 'none';
     
-    let html = `<div class="zone-item-slot ${amount !== null && showAmount ? 'with-amount' : ''}" ${itemId ? `data-item-id="${itemId}" data-item-type="${itemType || 'item'}"` : ''}>`;
-    html += `<div class="zone-item-icon">`;
+    let html = `<div class="group-item-slot ${amount !== null && showAmount ? 'with-amount' : ''}" ${itemId ? `data-item-id="${itemId}" data-item-type="${itemType || 'item'}"` : ''}>`;
+    html += `<div class="group-item-icon">`;
     html += `<img src="${iconInfo.path}" alt="${iconInfo.name}" style="object-fit: ${objectFit}; object-position: ${mipmapOffset};">`;
     html += `</div>`;
     
     if (amount !== null && showAmount) {
-      html += `<div class="zone-item-amount">${this.formatAmount(amount)}</div>`;
+      html += `<div class="group-item-amount">${this.formatAmount(amount)}</div>`;
     }
     
     html += `</div>`;
@@ -379,43 +398,74 @@ export class ProductionZoneView {
   }
 
   /**
+   * 아이콘 정보 가져오기
+   */
+  getIconInfo(itemId) {
+    if (!this.loadedData || !this.loadedData.entries) return null;
+    
+    const searchTypes = ['item', 'module', 'fluid'];
+    
+    for (const searchType of searchTypes) {
+      const entry = this.loadedData.entries.find(e => e.name === itemId && e.type === searchType);
+      if (entry && entry.icon) {
+        return {
+          path: entry.icon,
+          size: entry.icon_size || 64,
+          mipmaps: entry.mipmap_count || 0
+        };
+      }
+    }
+    
+    const anyEntry = this.loadedData.entries.find(e => e.name === itemId);
+    if (anyEntry) {
+      return {
+        path: anyEntry.icon || null,
+        size: anyEntry.icon_size || 64,
+        mipmaps: anyEntry.mipmap_count || 0
+      };
+    }
+    
+    return null;
+  }
+
+  /**
    * 이벤트 리스너 등록
    */
   attachEventListeners(container) {
-    // 새 생산구역 추가
-    const addBtn = container.querySelector('#addZoneBtn');
+    // 새 레시피 그룹 추가
+    const addBtn = container.querySelector('#addGroupBtn');
     if (addBtn) {
-      addBtn.onclick = () => this.addZone();
+      addBtn.onclick = () => this.addGroup();
     }
 
-    // 생산구역 선택
-    container.querySelectorAll('.zone-list-item').forEach(item => {
+    // 레시피 그룹 선택
+    container.querySelectorAll('.list-item').forEach(item => {
       item.onclick = () => {
-        this.selectedZoneId = item.dataset.zoneId;
+        this.selectedGroupId = item.dataset.groupId;
         this.render(container);
       };
     });
 
-    // 생산구역 이름 변경
-    const nameInput = container.querySelector('.zone-name-input');
+    // 레시피 그룹 이름 변경
+    const nameInput = container.querySelector('.group-name-input');
     if (nameInput) {
       nameInput.onchange = () => {
-        const zone = this.zones.get(this.selectedZoneId);
-        if (zone) {
-          zone.name = nameInput.value || '새 생산구역';
+        const group = this.groups.get(this.selectedGroupId);
+        if (group) {
+          group.name = nameInput.value || '새 레시피 그룹';
           this.saveToStorage();
           this.render(container);
         }
       };
     }
 
-    // 생산구역 삭제
-    const deleteBtn = container.querySelector('.zone-delete-btn');
+    // 레시피 그룹 삭제
+    const deleteBtn = container.querySelector('.group-delete-btn');
     if (deleteBtn) {
       deleteBtn.onclick = () => {
-        if (confirm('이 생산구역을 삭제하시겠습니까?')) {
-          this.zones.delete(this.selectedZoneId);
-          this.selectedZoneId = null;
+        if (confirm('이 레시피 그룹을 삭제하시겠습니까?')) {
+          this.groups.delete(this.selectedGroupId);
+          this.selectedGroupId = null;
           this.saveToStorage();
           this.render(container);
         }
@@ -423,25 +473,25 @@ export class ProductionZoneView {
     }
 
     // 레시피 동작 버튼
-    container.querySelectorAll('.zone-action-btn').forEach(btn => {
+    container.querySelectorAll('.group-action-btn').forEach(btn => {
       btn.onclick = () => {
         const action = btn.dataset.action;
         const index = parseInt(btn.dataset.index);
-        const zone = this.zones.get(this.selectedZoneId);
-        if (!zone) return;
+        const group = this.groups.get(this.selectedGroupId);
+        if (!group) return;
 
         switch (action) {
           case 'up':
-            zone.moveRecipeUp(index);
+            group.moveRecipeUp(index);
             break;
           case 'down':
-            zone.moveRecipeDown(index);
+            group.moveRecipeDown(index);
             break;
           case 'copy':
-            zone.copyRecipe(index);
+            group.copyRecipe(index);
             break;
           case 'remove':
-            zone.removeRecipe(index);
+            group.removeRecipe(index);
             break;
         }
 
@@ -458,15 +508,15 @@ export class ProductionZoneView {
         const value = select.value;
         if (!value) return;
 
-        const zone = this.zones.get(this.selectedZoneId);
-        if (zone) {
-          // zone: 또는 recipe: 접두사로 타입 구분
-          if (value.startsWith('zone:')) {
-            const zoneId = value.substring(5);
-            zone.addRecipe(zoneId, 1, 'zone');
+        const group = this.groups.get(this.selectedGroupId);
+        if (group) {
+          // group: 또는 recipe: 접두사로 타입 구분
+          if (value.startsWith('group:')) {
+            const groupId = value.substring(6);
+            group.addRecipe(groupId, 1, 'group');
           } else if (value.startsWith('recipe:')) {
             const recipeId = value.substring(7);
-            zone.addRecipe(recipeId, 1, 'recipe');
+            group.addRecipe(recipeId, 1, 'recipe');
           }
           this.saveToStorage();
           this.render(container);
@@ -475,7 +525,7 @@ export class ProductionZoneView {
     }
 
     // 재료 클릭 -> 해당 재료를 생산하는 레시피 추가
-    container.querySelectorAll('.zone-recipe-ingredients .zone-item-slot[data-item-id]').forEach(slot => {
+    container.querySelectorAll('.group-recipe-ingredients .group-item-slot[data-item-id]').forEach(slot => {
       slot.style.cursor = 'pointer';
       slot.onclick = () => {
         const itemId = slot.dataset.itemId;
@@ -489,10 +539,10 @@ export class ProductionZoneView {
    * 재료를 생산하는 레시피 추가
    */
   addRecipeForIngredient(itemId, itemType) {
-    const zone = this.zones.get(this.selectedZoneId);
-    if (!zone) return;
+    const group = this.groups.get(this.selectedGroupId);
+    if (!group) return;
 
-    // 최신 recipesByProduct 생성 (생산구역 포함)
+    // 최신 recipesByProduct 생성 (레시피 그룹 포함)
     const allRecipes = {};
     
     // 기존 레시피 복사
@@ -500,10 +550,10 @@ export class ProductionZoneView {
       allRecipes[productId] = [...recipes];
     }
     
-    // 현재 모든 생산구역을 레시피로 변환해서 추가
+    // 현재 모든 레시피 그룹을 레시피로 변환해서 추가
     const Recipe = window.Recipe || class { constructor(data) { Object.assign(this, data); } };
-    for (const z of this.zones.values()) {
-      const recipeFormat = z.toRecipeFormat(this.allRecipes, this.zones);
+    for (const z of this.groups.values()) {
+      const recipeFormat = z.toRecipeFormat(this.allRecipes, this.groups);
       const recipeObj = new Recipe(recipeFormat);
       
       for (const result of recipeFormat.results) {
@@ -554,10 +604,10 @@ export class ProductionZoneView {
 
     for (const recipe of recipes) {
       const recipeIconInfo = this.getRecipeIcon(recipe);
-      const recipeName = recipe._isZone ? recipe.name : this.locale.recipeName(recipe.id);
+      const recipeName = recipe._isGroup ? recipe.name : this.locale.recipeName(recipe.id);
       
       modalHtml += `
-        <div class="recipe-selection-item" data-recipe-id="${recipe.id}" data-is-zone="${recipe._isZone || false}">
+        <div class="recipe-selection-item" data-recipe-id="${recipe.id}" data-is-group="${recipe._isGroup || false}">
           <div class="recipe-selection-icon">
             ${this.createItemIcon(recipeIconInfo, null, false)}
           </div>
@@ -611,18 +661,18 @@ export class ProductionZoneView {
    * 선택된 레시피를 구역에 추가
    */
   addSelectedRecipe(itemId, recipe) {
-    const zone = this.zones.get(this.selectedZoneId);
-    if (!zone) return;
+    const group = this.groups.get(this.selectedGroupId);
+    if (!group) return;
     
     // 필요한 수량 계산 (현재 구역에서 이 재료가 얼마나 필요한지)
     let requiredAmount = 0;
-    for (const recipeEntry of zone.recipes) {
+    for (const recipeEntry of group.recipes) {
       let ingredientsMap;
       
-      if (recipeEntry.type === 'zone') {
-        const subZone = this.zones.get(recipeEntry.recipeId);
-        if (!subZone) continue;
-        const subIO = subZone.calculateIO(this.allRecipes, this.zones);
+      if (recipeEntry.type === 'group') {
+        const subGroup = this.groups.get(recipeEntry.recipeId);
+        if (!subGroup) continue;
+        const subIO = subGroup.calculateIO(this.allRecipes, this.groups);
         ingredientsMap = {};
         for (const ing of subIO.ingredients) {
           ingredientsMap[ing.name] = ing.amount;
@@ -640,8 +690,8 @@ export class ProductionZoneView {
 
     // 새 레시피가 생산하는 양
     let producedAmount;
-    if (recipe._isZone) {
-      // 생산구역인 경우
+    if (recipe._isGroup) {
+      // 레시피 그룹인 경우
       const results = recipe.results || [];
       const result = results.find(r => r.name === itemId);
       producedAmount = result ? result.amount : 1;
@@ -654,28 +704,29 @@ export class ProductionZoneView {
     // 필요한 배수 계산
     const multiplier = requiredAmount > 0 ? requiredAmount / producedAmount : 1;
 
-    const type = recipe._isZone ? 'zone' : 'recipe';
-    zone.addRecipe(recipe.id, multiplier, type);
+    const type = recipe._isGroup ? 'group' : 'recipe';
+    group.addRecipe(recipe.id, multiplier, type);
     this.saveToStorage();
-    this.render(document.getElementById('production-zone-tab'));
+    this.render(document.getElementById('recipe-group-tab'));
   }
 
   /**
-   * 새 생산구역 추가
+   * 새 레시피 그룹 추가
    */
-  addZone() {
-    const zone = new ProductionZone();
-    this.zones.set(zone.id, zone);
-    this.selectedZoneId = zone.id;
+  addGroup() {
+    const group = new RecipeGroup();
+    this.groups.set(group.id, group);
+    this.selectedGroupId = group.id;
     this.saveToStorage();
-    this.render(document.getElementById('production-zone-tab'));
+    this.render(document.getElementById('recipe-group-tab'));
   }
+
   /**
    * localStorage에 저장
    */
   saveToStorage() {
-    const data = Array.from(this.zones.values()).map(z => z.toJSON());
-    localStorage.setItem('productionZones', JSON.stringify(data));
+    const data = Array.from(this.groups.values()).map(z => z.toJSON());
+    localStorage.setItem('recipeGroups', JSON.stringify(data));
   }
 
   /**
@@ -683,12 +734,12 @@ export class ProductionZoneView {
    */
   loadFromStorage() {
     try {
-      const data = localStorage.getItem('productionZones');
+      const data = localStorage.getItem('recipeGroups');
       if (data) {
-        const zones = JSON.parse(data);
-        zones.forEach(zoneData => {
-          const zone = ProductionZone.fromJSON(zoneData);
-          this.zones.set(zone.id, zone);
+        const groups = JSON.parse(data);
+        groups.forEach(groupData => {
+          const group = RecipeGroup.fromJSON(groupData);
+          this.groups.set(group.id, group);
         });
       }
     } catch (e) {
@@ -697,13 +748,13 @@ export class ProductionZoneView {
   }
 
   /**
-   * 모든 생산구역을 recipesByProduct에 통합
+   * 모든 레시피 그룹을 recipesByProduct에 통합
    */
   integrateIntoRecipeMap(recipesByProduct) {
     const Recipe = window.Recipe || class { constructor(data) { Object.assign(this, data); } };
     
-    for (const zone of this.zones.values()) {
-      const recipeFormat = zone.toRecipeFormat(this.allRecipes, this.zones);
+    for (const group of this.groups.values()) {
+      const recipeFormat = group.toRecipeFormat(this.allRecipes, this.groups);
       const recipeObj = new Recipe(recipeFormat);
       
       // 각 결과물에 대해 추가

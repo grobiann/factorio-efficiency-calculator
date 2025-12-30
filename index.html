@@ -12,15 +12,15 @@
   <!-- 탭 내비게이션 -->
   <div class="tab-navigation">
     <button class="tab-btn active" data-tab="compare">비교</button>
-    <button class="tab-btn" data-tab="production-zone">생산구역</button>
+    <button class="tab-btn" data-tab="recipe-group">레시피 그룹</button>
     <button class="tab-btn" data-tab="custom-recipe">레시피</button>
   </div>
 
   <!-- 탭 컨텐츠 영역 -->
   <div class="tab-contents">
-    <!-- 생산구역 탭 -->
-    <div id="production-zone-tab" class="tab-content">
-      <div class="zone-management"></div>
+    <!-- 레시피 그룹 탭 -->
+    <div id="recipe-group-tab" class="tab-content">
+      <div class="group-management"></div>
     </div>
 
     <!-- 비교 탭 -->
@@ -29,11 +29,7 @@
 
     <!-- 커스텀 레시피 탭 -->
     <div id="custom-recipe-tab" class="tab-content">
-      <div class="recipe-management">
-        <h2>커스텀 레시피 관리</h2>
-        <button id="addCustomRecipeBtn" class="btn-primary">새 레시피 추가</button>
-        <div id="customRecipeList" class="custom-recipe-list"></div>
-      </div>
+      <div class="recipe-management"></div>
     </div>
   </div>
 
@@ -64,6 +60,13 @@
       <option value="per_sec">개/초 (per second)</option>
       <option value="per_min">개/분 (per minute)</option>
     </select>
+    <hr />
+    <div class="settings-section">
+      <h3>데이터 관리</h3>
+      <button id="exportDataBtn" class="btn-secondary">데이터 내보내기 (JSON)</button>
+      <button id="importDataBtn" class="btn-secondary">데이터 가져오기 (JSON)</button>
+      <input type="file" id="importFileInput" accept=".json" style="display: none;" />
+    </div>
   </div>
 
   <br><br>

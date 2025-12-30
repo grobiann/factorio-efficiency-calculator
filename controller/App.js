@@ -4,7 +4,7 @@ import { renderSummaryTable } from "../view/SummaryView.js";
 import { Locale } from "../model/Locale.js";
 import { DatasetManager } from "../model/DatasetManager.js";
 import { DatasetConfigView } from "../view/DatasetConfigView.js";
-import { ProductionZoneView } from "../view/ProductionZoneView.js";
+import { RecipeGroupView } from "../view/RecipeGroupView.js";
 import { CustomRecipeView } from "../view/CustomRecipeView.js";
 import { CompareView } from "../view/CompareView.js";
 
@@ -211,16 +211,121 @@ export async function startApp() {
       allRecipes[recipe.id] = recipe;
     }
   }
-  const productionZoneView = new ProductionZoneView(allRecipes, recipesByProduct, locale, loadedData);
-  productionZoneView.render(document.getElementById('production-zone-tab'));
+  
+  // Load sample data first
+  async function loadSampleData() {
+    try {
+      const samples = await fetch('data/samples.json').then(r => r.json());
+      
+      // Load sample recipe groups
+      const existingZones = localStorage.getItem('recipeGroups');
+      const zonesArray = existingZones ? JSON.parse(existingZones) : null;
+      if (samples.recipeGroups && (!zonesArray || zonesArray.length === 0)) {
+        localStorage.setItem('recipeGroups', JSON.stringify(samples.recipeGroups));
+        console.log('Loaded sample recipe groups:', samples.recipeGroups);
+      }
+      
+      // Load sample custom recipes
+      const existingRecipes = localStorage.getItem('customRecipes');
+      const recipesArray = existingRecipes ? JSON.parse(existingRecipes) : null;
+      if (samples.customRecipes && (!recipesArray || recipesArray.length === 0)) {
+        localStorage.setItem('customRecipes', JSON.stringify(samples.customRecipes));
+        console.log('Loaded sample custom recipes:', samples.customRecipes);
+      }
+      
+      // Load sample compare groups
+      const existingGroups = localStorage.getItem('compareGroups');
+      const groupsData = existingGroups ? JSON.parse(existingGroups) : null;
+      if (samples.compareGroups && (!groupsData || !groupsData.groups || groupsData.groups.length === 0)) {
+        const newGroupsData = {
+          groups: samples.compareGroups,
+          nextGroupId: samples.compareGroups.length + 1,
+          selectedIndex: 0
+        };
+        localStorage.setItem('compareGroups', JSON.stringify(newGroupsData));
+        console.log('Loaded sample compare groups:', samples.compareGroups);
+      }
+    } catch (e) {
+      console.error('Failed to load sample data:', e);
+    }
+  }
+  
+  await loadSampleData();
+  
+  const recipeGroupView = new RecipeGroupView(allRecipes, recipesByProduct, locale, loadedData);
+  recipeGroupView.render(document.getElementById('recipe-group-tab'));
 
   // Initialize custom recipe view
   const customRecipeView = new CustomRecipeView(loadedData, locale);
   customRecipeView.render(document.getElementById('custom-recipe-tab'));
 
   // Initialize compare view
-  const compareView = new CompareView(productionZoneView.zones, customRecipeView.manager, allRecipes, locale, loadedData);
+  const compareView = new CompareView(recipeGroupView.zones, customRecipeView.manager, allRecipes, locale, loadedData);
   compareView.render(document);
+
+  // Export/Import data functionality
+  const exportDataBtn = document.getElementById('exportDataBtn');
+  const importDataBtn = document.getElementById('importDataBtn');
+  const importFileInput = document.getElementById('importFileInput');
+
+  if (exportDataBtn) {
+    exportDataBtn.addEventListener('click', () => {
+      const exportData = {
+        compareGroups: JSON.parse(localStorage.getItem('compareGroups') || '{"groups":[],"nextGroupId":1,"selectedIndex":0}').groups,
+        recipeGroups: JSON.parse(localStorage.getItem('recipeGroups') || '[]'),
+        customRecipes: JSON.parse(localStorage.getItem('customRecipes') || '[]')
+      };
+      
+      const dataStr = JSON.stringify(exportData, null, 2);
+      const blob = new Blob([dataStr], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `factorio-data-${new Date().toISOString().split('T')[0]}.json`;
+      a.click();
+      URL.revokeObjectURL(url);
+    });
+  }
+
+  if (importDataBtn && importFileInput) {
+    importDataBtn.addEventListener('click', () => {
+      importFileInput.click();
+    });
+
+    importFileInput.addEventListener('change', async (e) => {
+      const file = e.target.files[0];
+      if (!file) return;
+
+      try {
+        const text = await file.text();
+        const importData = JSON.parse(text);
+
+        // Validate and import
+        if (importData.recipeGroups) {
+          localStorage.setItem('recipeGroups', JSON.stringify(importData.recipeGroups));
+        }
+        if (importData.customRecipes) {
+          localStorage.setItem('customRecipes', JSON.stringify(importData.customRecipes));
+        }
+        if (importData.compareGroups) {
+          const groupsData = {
+            groups: importData.compareGroups,
+            nextGroupId: importData.compareGroups.length + 1,
+            selectedIndex: 0
+          };
+          localStorage.setItem('compareGroups', JSON.stringify(groupsData));
+        }
+
+        alert('데이터를 성공적으로 가져왔습니다. 페이지를 새로고침합니다.');
+        location.reload();
+      } catch (err) {
+        alert('데이터 가져오기 실패: ' + err.message);
+      }
+
+      // Reset file input
+      importFileInput.value = '';
+    });
+  }
 
   // Tab switching logic
   const tabBtns = document.querySelectorAll('.tab-btn');
@@ -238,8 +343,8 @@ export async function startApp() {
       document.getElementById(`${targetTab}-tab`).classList.add('active');
 
       // Render tab content if needed
-      if (targetTab === 'production-zone') {
-        productionZoneView.render(document.getElementById('production-zone-tab'));
+      if (targetTab === 'recipe-group') {
+        recipeGroupView.render(document.getElementById('recipe-group-tab'));
       } else if (targetTab === 'custom-recipe') {
         customRecipeView.render(document.getElementById('custom-recipe-tab'));
       } else if (targetTab === 'compare') {
@@ -247,12 +352,6 @@ export async function startApp() {
       }
     });
   });
-
-  // Add custom recipe button
-  const addCustomRecipeBtn = document.getElementById('addCustomRecipeBtn');
-  if (addCustomRecipeBtn) {
-    addCustomRecipeBtn.onclick = () => customRecipeView.addRecipe();
-  }
 
   // Integrate custom recipes and production zones into recipesByProduct
   function integrateCustomContent() {
@@ -267,14 +366,14 @@ export async function startApp() {
         allRecipes[recipe.id] = recipe;
       }
     }
-    productionZoneView.allRecipes = allRecipes;
-    productionZoneView.loadedData = loadedData;
+    recipeGroupView.allRecipes = allRecipes;
+    recipeGroupView.loadedData = loadedData;
     
     // Integrate custom recipes
     customRecipeView.getManager().integrateIntoRecipeMap(recipesByProduct);
     
-    // Integrate production zones
-    productionZoneView.integrateIntoRecipeMap(recipesByProduct);
+    // Integrate recipe groups
+    recipeGroupView.integrateIntoRecipeMap(recipesByProduct);
     
     // Update products list
     productsWithRecipes = Object.keys(recipesByProduct);

@@ -1,0 +1,128 @@
+{
+  "compareGroups": [
+    {
+      "id": 1,
+      "name": "기본 생산 비교 (sample)",
+      "items": []
+    }
+  ],
+  "recipeGroups": [
+    {
+      "id": "group_sample_1",
+      "name": "철판 생산 (sample)",
+      "recipes": [
+        {
+          "recipeId": "iron-plate",
+          "multiplier": 24,
+          "type": "recipe"
+        }
+      ]
+    },
+    {
+      "id": "group_sample_2",
+      "name": "전자회로 생산 (sample)",
+      "recipes": [
+        {
+          "recipeId": "electronic-circuit",
+          "multiplier": 10,
+          "type": "recipe"
+        },
+        {
+          "recipeId": "copper-cable",
+          "multiplier": 15,
+          "type": "recipe"
+        }
+      ]
+    },
+    {
+      "id": "group_sample_3",
+      "name": "과학팩 생산 (sample)",
+      "recipes": [
+        {
+          "recipeId": "automation-science-pack",
+          "multiplier": 5,
+          "type": "recipe"
+        },
+        {
+          "recipeId": "logistic-science-pack",
+          "multiplier": 5,
+          "type": "recipe"
+        }
+      ]
+    }
+  ],
+  "customRecipes": [
+    {
+      "id": "custom_sample_1",
+      "name": "빠른 철판 제련 (sample)",
+      "type": "custom-recipe",
+      "energy_required": 1.6,
+      "ingredients": [
+        {
+          "type": "item",
+          "name": "iron-ore",
+          "amount": 1
+        }
+      ],
+      "results": [
+        {
+          "type": "item",
+          "name": "iron-plate",
+          "amount": 2
+        }
+      ],
+      "category": "smelting"
+    },
+    {
+      "id": "custom_sample_2",
+      "name": "고급 전자회로 (sample)",
+      "type": "custom-recipe",
+      "energy_required": 6,
+      "ingredients": [
+        {
+          "type": "item",
+          "name": "electronic-circuit",
+          "amount": 2
+        },
+        {
+          "type": "item",
+          "name": "plastic-bar",
+          "amount": 2
+        },
+        {
+          "type": "item",
+          "name": "copper-cable",
+          "amount": 4
+        }
+      ],
+      "results": [
+        {
+          "type": "item",
+          "name": "advanced-circuit",
+          "amount": 2
+        }
+      ],
+      "category": "crafting"
+    },
+    {
+      "id": "custom_sample_3",
+      "name": "에너지 효율 채굴 (sample)",
+      "type": "custom-recipe",
+      "energy_required": 1,
+      "ingredients": [],
+      "results": [
+        {
+          "type": "item",
+          "name": "iron-ore",
+          "amount": 5
+        },
+        {
+          "type": "item",
+          "name": "copper-ore",
+          "amount": 3
+        }
+      ],
+      "category": "mining"
+    }
+  ]
+}

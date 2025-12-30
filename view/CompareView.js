@@ -10,21 +10,19 @@ import {
 } from '../utils/Constants.js';
 
 /**
- * CompareView - 생산구역과 레시피 비교
+ * CompareView - 레시피 그룹과 레시피 비교
  */
 export class CompareView {
-  constructor(zones, customRecipeManager, allRecipes, locale, loadedData) {
-    this.zones = zones;
+  constructor(groups, customRecipeManager, allRecipes, locale, loadedData) {
+    this.groups = groups;
     this.customRecipeManager = customRecipeManager;
     this.allRecipes = allRecipes;
     this.locale = locale;
     this.loadedData = loadedData;
     
     // 비교 그룹 관리
-    this.compareGroups = [
-      { id: 1, name: '비교 그룹 1', items: [] }
-    ];
-    this.nextGroupId = 2;
+    this.compareGroups = [];
+    this.nextGroupId = 1;
     this.selectedGroupIndex = 0;
     
     this._loadFromStorage();
@@ -58,20 +56,23 @@ export class CompareView {
    * @private
    */
   _buildSidebar() {
-    let html = '<div class="compare-groups-sidebar">';
-    html += `<button class="${CSS_CLASSES.PRIMARY} add-compare-group-btn">새 비교그룹 추가</button>`;
-    html += '<div class="compare-groups-list">';
+    let html = '<div class="sidebar-container">';
+    html += `<button class="${CSS_CLASSES.PRIMARY}">새 비교그룹 추가</button>`;
+    html += '<div class="list-container">';
     
-    for (let i = 0; i < this.compareGroups.length; i++) {
-      const group = this.compareGroups[i];
-      const isActive = i === this.selectedGroupIndex;
-      html += ViewHelpers.createSidebarItemHtml(
-        group.name,
-        `(${group.items.length})`,
-        isActive,
-        `data-index="${i}"`,
-        'compare-group-item'
-      );
+    if (this.compareGroups.length === 0) {
+      html += '<p style="color: #999; text-align: center; padding: 20px;">비교그룹이 없습니다.</p>';
+    } else {
+      for (let i = 0; i < this.compareGroups.length; i++) {
+        const group = this.compareGroups[i];
+        const isActive = i === this.selectedGroupIndex;
+        html += `
+          <div class="list-item ${isActive ? 'selected' : ''}" data-index="${i}">
+            <span class="list-item-name">${ViewHelpers.escapeHtml(group.name)}</span>
+            <span class="list-item-count">(${group.items.length})</span>
+          </div>
+        `;
+      }
     }
     
     html += '</div></div>';
@@ -87,6 +88,8 @@ export class CompareView {
     
     if (this.compareGroups.length > 0) {
       html += this._buildGroupDetail(this.compareGroups[this.selectedGroupIndex]);
+    } else {
+      html += '<p style="color: #999; text-align: center; padding: 40px;">비교그룹을 선택하세요.</p>';
     }
     
     html += '</div>';
@@ -133,8 +136,8 @@ export class CompareView {
     // 헤더 행
     html += '<thead>';
     html += '<tr>';
-    html += '<th class="compare-name-col">생산구역</th>';
-    html += '<th class="compare-output-col">출력</th>';
+    html += '<th class="compare-name-col">레시피 그룹</th>';
+    html += '<th class="compare-output-col">출력</th>'
     html += '<th class="compare-input-col">입력</th>';
     html += '<th class="compare-action-col"></th>';
     html += '</tr>';
@@ -264,8 +267,8 @@ export class CompareView {
         const type = btn.dataset.type;
         const id = btn.dataset.id;
         
-        const data = type === ENTRY_TYPES.ZONE 
-          ? this.zones.get(id)
+        const data = type === ENTRY_TYPES.GROUP 
+          ? this.groups.get(id)
           : this.customRecipeManager.getRecipe(id);
         
         if (data) {
@@ -287,11 +290,11 @@ export class CompareView {
     
     const currentGroup = this.compareGroups[this.selectedGroupIndex];
     
-    // 생산구역
-    for (const [zoneId, zone] of this.zones) {
-      if (!this._isItemSelected(currentGroup, ENTRY_TYPES.ZONE, zoneId)) {
-        html += `<button class="compare-modal-item" data-type="${ENTRY_TYPES.ZONE}" data-id="${zoneId}">`;
-        html += `<span>${ViewHelpers.escapeHtml(zone.name)}</span>`;
+    // 레시피 그룹
+    for (const [groupId, group] of this.groups) {
+      if (!this._isItemSelected(currentGroup, ENTRY_TYPES.GROUP, groupId)) {
+        html += `<button class="compare-modal-item" data-type="${ENTRY_TYPES.GROUP}" data-id="${groupId}">`;
+        html += `<span>${ViewHelpers.escapeHtml(group.name)}</span>`;
         html += `</button>`;
       }
     }
@@ -333,13 +336,13 @@ export class CompareView {
    */
   _attachGroupManagementEvents(container) {
     // 그룹 추가
-    const addGroupBtn = container.querySelector('.add-compare-group-btn');
+    const addGroupBtn = container.querySelector('.sidebar-container .btn-primary');
     if (addGroupBtn) {
       addGroupBtn.addEventListener('click', () => this._addGroup());
     }
 
     // 그룹 선택
-    const groupItems = container.querySelectorAll('.compare-group-item');
+    const groupItems = container.querySelectorAll('.list-item');
     groupItems.forEach(item => {
       item.addEventListener('click', () => {
         this.selectedGroupIndex = parseInt(item.dataset.index);
@@ -408,10 +411,6 @@ export class CompareView {
    * @private
    */
   _deleteGroup() {
-    if (this.compareGroups.length === UI_CONFIG.MIN_COMPARE_GROUPS) {
-      alert(ERROR_MESSAGES.MIN_GROUPS);
-      return;
-    }
     this.compareGroups.splice(this.selectedGroupIndex, 1);
     this.selectedGroupIndex = Math.max(0, this.selectedGroupIndex - 1);
     this._saveToStorage();
@@ -433,25 +432,24 @@ export class CompareView {
    * @private
    */
   _updateSidebar(container) {
-    const sidebar = container.querySelector('.compare-groups-list');
+    const sidebar = container.querySelector('.list-container');
     if (!sidebar) return;
 
     let html = '';
     for (let i = 0; i < this.compareGroups.length; i++) {
       const group = this.compareGroups[i];
       const isActive = i === this.selectedGroupIndex;
-      html += ViewHelpers.createSidebarItemHtml(
-        group.name,
-        `(${group.items.length})`,
-        isActive,
-        `data-index="${i}"`,
-        'compare-group-item'
-      );
+      html += `
+        <div class="list-item ${isActive ? 'selected' : ''}" data-index="${i}">
+          <span class="list-item-name">${ViewHelpers.escapeHtml(group.name)}</span>
+          <span class="list-item-count">(${group.items.length})</span>
+        </div>
+      `;
     }
     sidebar.innerHTML = html;
     
     // 이벤트 재등록
-    const groupItems = sidebar.querySelectorAll('.compare-group-item');
+    const groupItems = sidebar.querySelectorAll('.list-item');
     groupItems.forEach(item => {
       item.addEventListener('click', () => {
         this.selectedGroupIndex = parseInt(item.dataset.index);
@@ -465,8 +463,8 @@ export class CompareView {
    * @private
    */
   _calculateIO(item) {
-    if (item.type === ENTRY_TYPES.ZONE) {
-      return item.data.calculateIO(this.allRecipes, this.zones);
+    if (item.type === ENTRY_TYPES.GROUP) {
+      return item.data.calculateIO(this.allRecipes, this.groups);
     }
     return {
       ingredients: item.data.ingredients || [],
@@ -511,8 +509,8 @@ export class CompareView {
         id: g.id,
         name: g.name,
         items: g.items.map(item => {
-          const data = item.type === ENTRY_TYPES.ZONE
-            ? this.zones.get(item.id)
+          const data = item.type === ENTRY_TYPES.GROUP
+            ? this.groups.get(item.id)
             : this.customRecipeManager.getRecipe(item.id);
           return data ? { type: item.type, id: item.id, data } : null;
         }).filter(Boolean)

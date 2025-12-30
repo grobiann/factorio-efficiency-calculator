@@ -8,6 +8,7 @@ export class CustomRecipeView {
     this.manager = new CustomRecipeManager();
     this.loadedData = loadedData;
     this.locale = locale;
+    this.selectedRecipeId = null;
   }
 
   /**
@@ -97,323 +98,384 @@ export class CustomRecipeView {
    * 뷰 렌더링
    */
   render(container) {
-    const recipeList = container.querySelector('#customRecipeList');
-    if (!recipeList) return;
+    const recipeManagement = container.querySelector('.recipe-management');
+    if (!recipeManagement) return;
 
-    recipeList.innerHTML = '';
-
+    // 첫 번째 레시피 자동 선택
     const recipes = this.manager.getAllRecipes();
-    if (recipes.length === 0) {
-      recipeList.innerHTML = '<p style="color: #999; text-align: center; padding: 40px;">커스텀 레시피가 없습니다. 새로 추가해보세요!</p>';
-      return;
+    if (!this.selectedRecipeId && recipes.length > 0) {
+      this.selectedRecipeId = recipes[0].id;
     }
 
-    for (const recipe of recipes) {
-      const recipeItem = this.createRecipeItem(recipe);
-      recipeList.appendChild(recipeItem);
+    let html = '<div class="recipe-management-grid">';
+    
+    // 왼쪽: 레시피 목록 사이드바
+    html += '<div class="sidebar-container">';
+    html += '<button id="addCustomRecipeBtn" class="btn-primary">새 레시피 추가</button>';
+    html += '<div class="list-container">';
+    
+    if (recipes.length === 0) {
+      html += '<p style="color: #999; text-align: center; padding: 20px;">커스텀 레시피가 없습니다.</p>';
+    } else {
+      for (const recipe of recipes) {
+        const isSelected = recipe.id === this.selectedRecipeId;
+        const results = recipe.results || [];
+        
+        // 결과물 아이콘 HTML 생성
+        let iconsHtml = '';
+        const maxIcons = 1;
+        const displayResults = results.slice(0, maxIcons);
+        
+        for (const result of displayResults) {
+          const iconInfo = this.getIconInfo(result.name);
+          if (iconInfo && iconInfo.path) {
+            iconsHtml += `<img src="${iconInfo.path}" alt="${this.escapeHtml(this.locale.itemName(result.name))}" class="list-item-icon" />`;
+          }
+        }
+        
+        if (results.length > maxIcons) {
+          iconsHtml += `<span class="list-item-more">+${results.length - maxIcons}</span>`;
+        }
+        
+        html += `
+          <div class="list-item ${isSelected ? 'selected' : ''}" data-recipe-id="${recipe.id}">
+            <span class="list-item-name">${this.escapeHtml(recipe.name)}</span>
+            <div class="list-item-icons">${iconsHtml}</div>
+          </div>
+        `;
+      }
     }
+    
+    html += '</div></div>';
+
+    // 오른쪽: 상세 정보 영역
+    html += '<div class="recipe-detail-container">';
+    if (this.selectedRecipeId) {
+      const selectedRecipe = this.manager.getRecipe(this.selectedRecipeId);
+      if (selectedRecipe) {
+        html += this.renderRecipeDetail(selectedRecipe);
+      } else {
+        html += '<p style="color: #999; text-align: center; padding: 40px;">레시피를 선택하세요.</p>';
+      }
+    } else {
+      html += '<p style="color: #999; text-align: center; padding: 40px;">레시피를 선택하세요.</p>';
+    }
+    html += '</div>';
+    
+    html += '</div>';
+
+    recipeManagement.innerHTML = html;
+
+    // 이벤트 리스너 등록
+    this.attachEventListeners(container);
   }
 
   /**
-   * 레시피 아이템 생성
+   * HTML 이스케이프
    */
-  createRecipeItem(recipe) {
+  escapeHtml(text) {
     const div = document.createElement('div');
-    div.className = 'recipe-item';
+    div.textContent = text;
+    return div.innerHTML;
+  }
 
-    const info = document.createElement('div');
-    info.className = 'recipe-info';
-
-    // 이름과 버튼을 포함하는 헤더
-    const header = document.createElement('div');
-    header.className = 'recipe-header';
+  /**
+   * 레시피 상세 정보 렌더링
+   */
+  renderRecipeDetail(recipe) {
+    let html = '<div class="recipe-detail">';
     
-    const name = document.createElement('div');
-    name.className = 'recipe-name';
-    name.textContent = recipe.name;
+    // 이름 편집 및 삭제 버튼
+    html += `
+      <div class="recipe-name-edit">
+        <input type="text" class="recipe-name-input" value="${this.escapeHtml(recipe.name)}" placeholder="레시피 이름">
+        <button class="btn-danger recipe-delete-btn">레시피 삭제</button>
+      </div>
+    `;
 
-    const actions = document.createElement('div');
-    actions.className = 'recipe-actions';
+    // 기본 정보
+    html += '<div class="recipe-basic-info">';
+    html += `
+      <label>
+        제작 시간:
+        <input type="number" class="recipe-energy-input" value="${recipe.energy_required || 1}" step="0.1" min="0.1">
+        초
+      </label>
+      <label>
+        카테고리:
+        <input type="text" class="recipe-category-input" value="${this.escapeHtml(recipe.category || 'crafting')}" placeholder="crafting">
+      </label>
+    `;
+    html += '</div>';
 
-    const editBtn = document.createElement('button');
-    editBtn.className = 'btn-secondary';
-    editBtn.textContent = '수정';
-    editBtn.onclick = () => this.editRecipe(recipe.id);
-
-    const deleteBtn = document.createElement('button');
-    deleteBtn.className = 'btn-danger';
-    deleteBtn.textContent = '삭제';
-    deleteBtn.onclick = () => this.deleteRecipe(recipe.id);
-
-    actions.appendChild(editBtn);
-    actions.appendChild(deleteBtn);
+    // 재료 섹션
+    html += '<div class="recipe-section">';
+    html += '<h3>재료 (Ingredients)</h3>';
+    html += '<div class="recipe-items-list" id="ingredientsList">';
     
-    header.appendChild(name);
-    header.appendChild(actions);
-
-    // zone-io-summary 스타일로 재료와 결과물 표시
-    const ioSummary = document.createElement('div');
-    ioSummary.className = 'zone-io-summary';
+    if (recipe.ingredients && recipe.ingredients.length > 0) {
+      recipe.ingredients.forEach((ing, index) => {
+        html += this.renderItemRow(ing, index, 'ingredient');
+      });
+    } else {
+      html += '<p style="color: #999;">재료가 없습니다.</p>';
+    }
     
-    // 출력 (결과물)
-    const outputSection = document.createElement('div');
-    outputSection.className = 'zone-io-section zone-outputs';
-    const outputTitle = document.createElement('h4');
-    outputTitle.textContent = '출력';
-    const outputItems = document.createElement('div');
-    outputItems.className = 'zone-io-items';
-    recipe.results.forEach(res => {
-      const icon = this.createItemIcon(res.name, res.amount);
-      outputItems.appendChild(icon);
+    html += '</div>';
+    html += '<button class="btn-secondary add-ingredient-btn">재료 추가</button>';
+    html += '</div>';
+
+    // 결과물 섹션
+    html += '<div class="recipe-section">';
+    html += '<h3>결과물 (Results)</h3>';
+    html += '<div class="recipe-items-list" id="resultsList">';
+    
+    if (recipe.results && recipe.results.length > 0) {
+      recipe.results.forEach((res, index) => {
+        html += this.renderItemRow(res, index, 'result');
+      });
+    } else {
+      html += '<p style="color: #999;">결과물이 없습니다.</p>';
+    }
+    
+    html += '</div>';
+    html += '<button class="btn-secondary add-result-btn">결과물 추가</button>';
+    html += '</div>';
+
+    html += '</div>';
+    return html;
+  }
+
+  /**
+   * 아이템 행 렌더링
+   */
+  renderItemRow(item, index, type) {
+    const typeLabel = type === 'ingredient' ? '재료' : '결과물';
+    return `
+      <div class="recipe-item-row" data-index="${index}" data-type="${type}">
+        <input type="text" class="item-name-input" value="${this.escapeHtml(item.name)}" placeholder="아이템 ID">
+        <input type="number" class="item-amount-input" value="${item.amount}" step="0.1" min="0.1">
+        <select class="item-type-select">
+          <option value="item" ${item.type === 'item' ? 'selected' : ''}>Item</option>
+          <option value="fluid" ${item.type === 'fluid' ? 'selected' : ''}>Fluid</option>
+        </select>
+        <button class="btn-danger remove-item-btn">✕</button>
+      </div>
+    `;
+  }
+
+  /**
+   * 이벤트 리스너 연결
+   */
+  attachEventListeners(container) {
+    // 레시피 목록 아이템 클릭
+    const listItems = container.querySelectorAll('.list-item');
+    listItems.forEach(item => {
+      item.addEventListener('click', () => {
+        this.selectedRecipeId = item.dataset.recipeId;
+        this.render(container);
+      });
     });
-    outputSection.appendChild(outputTitle);
-    outputSection.appendChild(outputItems);
-    
-    // 입력 (재료)
-    const inputSection = document.createElement('div');
-    inputSection.className = 'zone-io-section zone-inputs';
-    const inputTitle = document.createElement('h4');
-    inputTitle.textContent = '입력';
-    const inputItems = document.createElement('div');
-    inputItems.className = 'zone-io-items';
-    recipe.ingredients.forEach(ing => {
-      const icon = this.createItemIcon(ing.name, ing.amount);
-      inputItems.appendChild(icon);
+
+    // 새 레시피 추가 버튼
+    const addBtn = container.querySelector('#addCustomRecipeBtn');
+    if (addBtn) {
+      addBtn.addEventListener('click', () => this.addRecipe());
+    }
+
+    // 레시피 이름 변경
+    const nameInput = container.querySelector('.recipe-name-input');
+    if (nameInput) {
+      nameInput.addEventListener('input', () => {
+        const recipe = this.manager.getRecipe(this.selectedRecipeId);
+        if (recipe) {
+          recipe.name = nameInput.value;
+          this.manager.saveToStorage();
+          this.updateSidebar(container);
+        }
+      });
+    }
+
+    // 제작 시간 변경
+    const energyInput = container.querySelector('.recipe-energy-input');
+    if (energyInput) {
+      energyInput.addEventListener('input', () => {
+        const recipe = this.manager.getRecipe(this.selectedRecipeId);
+        if (recipe) {
+          recipe.energy_required = parseFloat(energyInput.value) || 1;
+          this.manager.saveToStorage();
+        }
+      });
+    }
+
+    // 카테고리 변경
+    const categoryInput = container.querySelector('.recipe-category-input');
+    if (categoryInput) {
+      categoryInput.addEventListener('input', () => {
+        const recipe = this.manager.getRecipe(this.selectedRecipeId);
+        if (recipe) {
+          recipe.category = categoryInput.value;
+          this.manager.saveToStorage();
+        }
+      });
+    }
+
+    // 레시피 삭제 버튼
+    const deleteBtn = container.querySelector('.recipe-delete-btn');
+    if (deleteBtn) {
+      deleteBtn.addEventListener('click', () => {
+        if (confirm('이 레시피를 삭제하시겠습니까?')) {
+          this.deleteRecipe(this.selectedRecipeId);
+        }
+      });
+    }
+
+    // 재료 추가 버튼
+    const addIngredientBtn = container.querySelector('.add-ingredient-btn');
+    if (addIngredientBtn) {
+      addIngredientBtn.addEventListener('click', () => {
+        const recipe = this.manager.getRecipe(this.selectedRecipeId);
+        if (recipe) {
+          recipe.addIngredient('iron-plate', 1, 'item');
+          this.manager.saveToStorage();
+          this.render(container);
+        }
+      });
+    }
+
+    // 결과물 추가 버튼
+    const addResultBtn = container.querySelector('.add-result-btn');
+    if (addResultBtn) {
+      addResultBtn.addEventListener('click', () => {
+        const recipe = this.manager.getRecipe(this.selectedRecipeId);
+        if (recipe) {
+          recipe.addResult('iron-plate', 1, 'item');
+          this.manager.saveToStorage();
+          this.render(container);
+        }
+      });
+    }
+
+    // 아이템 행 이벤트들
+    const itemRows = container.querySelectorAll('.recipe-item-row');
+    itemRows.forEach(row => {
+      const index = parseInt(row.dataset.index);
+      const type = row.dataset.type;
+      const recipe = this.manager.getRecipe(this.selectedRecipeId);
+      if (!recipe) return;
+
+      // 아이템 이름 변경
+      const nameInput = row.querySelector('.item-name-input');
+      nameInput.addEventListener('input', () => {
+        if (type === 'ingredient') {
+          recipe.updateIngredient(index, { name: nameInput.value });
+        } else {
+          recipe.updateResult(index, { name: nameInput.value });
+        }
+        this.manager.saveToStorage();
+      });
+
+      // 수량 변경
+      const amountInput = row.querySelector('.item-amount-input');
+      amountInput.addEventListener('input', () => {
+        const amount = parseFloat(amountInput.value) || 1;
+        if (type === 'ingredient') {
+          recipe.updateIngredient(index, { amount });
+        } else {
+          recipe.updateResult(index, { amount });
+        }
+        this.manager.saveToStorage();
+      });
+
+      // 타입 변경
+      const typeSelect = row.querySelector('.item-type-select');
+      typeSelect.addEventListener('change', () => {
+        if (type === 'ingredient') {
+          recipe.updateIngredient(index, { type: typeSelect.value });
+        } else {
+          recipe.updateResult(index, { type: typeSelect.value });
+        }
+        this.manager.saveToStorage();
+      });
+
+      // 삭제 버튼
+      const removeBtn = row.querySelector('.remove-item-btn');
+      removeBtn.addEventListener('click', () => {
+        if (type === 'ingredient') {
+          recipe.removeIngredient(index);
+        } else {
+          recipe.removeResult(index);
+        }
+        this.manager.saveToStorage();
+        this.render(container);
+      });
     });
-    inputSection.appendChild(inputTitle);
-    inputSection.appendChild(inputItems);
+  }
+
+  /**
+   * 사이드바만 업데이트
+   */
+  updateSidebar(container) {
+    const listContainer = container.querySelector('.list-container');
+    if (!listContainer) return;
+
+    const recipes = this.manager.getAllRecipes();
+    let html = '';
     
-    ioSummary.appendChild(outputSection);
-    ioSummary.appendChild(inputSection);
+    if (recipes.length === 0) {
+      html = '<p style="color: #999; text-align: center; padding: 20px;">커스텀 레시피가 없습니다.</p>';
+    } else {
+      for (const recipe of recipes) {
+        const isSelected = recipe.id === this.selectedRecipeId;
+        const ingredientsCount = recipe.ingredients ? recipe.ingredients.length : 0;
+        const resultsCount = recipe.results ? recipe.results.length : 0;
+        html += `
+          <div class="list-item ${isSelected ? 'selected' : ''}" data-recipe-id="${recipe.id}">
+            <span class="list-item-name">${this.escapeHtml(recipe.name)}</span>
+            <span class="list-item-count">${ingredientsCount}→${resultsCount}</span>
+          </div>
+        `;
+      }
+    }
+    
+    listContainer.innerHTML = html;
 
-    info.appendChild(header);
-    info.appendChild(ioSummary);
-
-    div.appendChild(info);
-
-    return div;
+    // 이벤트 재등록
+    const listItems = listContainer.querySelectorAll('.list-item');
+    listItems.forEach(item => {
+      item.addEventListener('click', () => {
+        this.selectedRecipeId = item.dataset.recipeId;
+        this.render(container);
+      });
+    });
   }
 
   /**
    * 새 레시피 추가
    */
   addRecipe() {
-    this.showRecipeModal();
-  }
-
-  /**
-   * 레시피 수정
-   */
-  editRecipe(recipeId) {
-    const recipe = this.manager.getRecipe(recipeId);
-    if (recipe) {
-      this.showRecipeModal(recipe);
-    }
+    const newRecipe = new CustomRecipe({
+      name: '새 레시피',
+      energy_required: 1,
+      ingredients: [],
+      results: [],
+      category: 'crafting'
+    });
+    this.manager.addRecipe(newRecipe);
+    this.selectedRecipeId = newRecipe.id;
+    this.render(document.getElementById('custom-recipe-tab'));
+    window.dispatchEvent(new Event('custom-content-updated'));
   }
 
   /**
    * 레시피 삭제
    */
   deleteRecipe(recipeId) {
-    if (confirm('정말 이 레시피를 삭제하시겠습니까?')) {
-      this.manager.deleteRecipe(recipeId);
-      this.render(document.getElementById('custom-recipe-tab'));
-    }
-  }
-
-  /**
-   * 레시피 모달 표시
-   */
-  showRecipeModal(recipe = null) {
-    const isEdit = recipe !== null;
-    const currentRecipe = recipe || new CustomRecipe();
-
-    // 모달 생성
-    const modal = document.createElement('div');
-    modal.className = 'modal active';
-    modal.innerHTML = `
-      <div class="modal-content">
-        <div class="modal-header">
-          <h3 class="modal-title">${isEdit ? '레시피 수정' : '새 레시피 추가'}</h3>
-          <button class="modal-close">&times;</button>
-        </div>
-        <div class="modal-body">
-          <div class="form-group">
-            <label>레시피 이름</label>
-            <input type="text" id="recipeName" value="${currentRecipe.name}" placeholder="예: 고급 철판">
-          </div>
-          <div class="form-group">
-            <label>제작 시간 (초)</label>
-            <input type="number" id="recipeTime" value="${currentRecipe.energy_required}" step="0.1" min="0.1">
-          </div>
-          <div class="form-group">
-            <label>재료 (Ingredients)</label>
-            <div id="ingredientsList"></div>
-            <button type="button" class="btn-secondary" id="addIngredientBtn">재료 추가</button>
-          </div>
-          <div class="form-group">
-            <label>결과물 (Results)</label>
-            <div id="resultsList"></div>
-            <button type="button" class="btn-secondary" id="addResultBtn">결과물 추가</button>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button class="btn-secondary modal-cancel">취소</button>
-          <button class="btn-primary modal-save">저장</button>
-        </div>
-      </div>
-    `;
-
-    document.body.appendChild(modal);
-
-    // 아이템 목록 (entries에서 가져오기)
-    const allItems = this.loadedData?.entries ? 
-      this.loadedData.entries.filter(e => ['item', 'fluid', 'module'].includes(e.type)) : [];
-
-    // 재료 렌더링
-    const renderIngredients = () => {
-      const list = modal.querySelector('#ingredientsList');
-      list.innerHTML = '';
-
-      currentRecipe.ingredients.forEach((ing, index) => {
-        const ingDiv = document.createElement('div');
-        ingDiv.style.cssText = 'display: flex; gap: 8px; margin-bottom: 8px; align-items: center;';
-        ingDiv.innerHTML = `
-          <select class="ing-item" data-index="${index}" style="flex: 2;">
-            ${allItems.map(item => 
-              `<option value="${item.name}" ${ing.name === item.name ? 'selected' : ''}>${this.locale.itemName(item.name)}</option>`
-            ).join('')}
-          </select>
-          <input type="number" class="ing-amount" data-index="${index}" value="${ing.amount}" min="0.1" step="0.1" placeholder="수량" style="flex: 1; width: 100px;">
-          <button type="button" class="btn-danger" data-index="${index}" style="padding: 8px 12px;">삭제</button>
-        `;
-        list.appendChild(ingDiv);
-      });
-
-      // 이벤트 리스너
-      list.querySelectorAll('.ing-item').forEach(select => {
-        select.onchange = (e) => {
-          const idx = parseInt(e.target.dataset.index);
-          currentRecipe.ingredients[idx].name = e.target.value;
-        };
-      });
-
-      list.querySelectorAll('.ing-amount').forEach(input => {
-        input.onchange = (e) => {
-          const idx = parseInt(e.target.dataset.index);
-          currentRecipe.ingredients[idx].amount = parseFloat(e.target.value) || 1;
-        };
-      });
-
-      list.querySelectorAll('button[data-index]').forEach(btn => {
-        btn.onclick = (e) => {
-          const idx = parseInt(e.target.dataset.index);
-          currentRecipe.removeIngredient(idx);
-          renderIngredients();
-        };
-      });
-    };
-
-    // 결과물 렌더링
-    const renderResults = () => {
-      const list = modal.querySelector('#resultsList');
-      list.innerHTML = '';
-
-      currentRecipe.results.forEach((res, index) => {
-        const resDiv = document.createElement('div');
-        resDiv.style.cssText = 'display: flex; gap: 8px; margin-bottom: 8px; align-items: center;';
-        resDiv.innerHTML = `
-          <select class="res-item" data-index="${index}" style="flex: 2;">
-            ${allItems.map(item => 
-              `<option value="${item.name}" ${res.name === item.name ? 'selected' : ''}>${this.locale.itemName(item.name)}</option>`
-            ).join('')}
-          </select>
-          <input type="number" class="res-amount" data-index="${index}" value="${res.amount}" min="0.1" step="0.1" placeholder="수량" style="flex: 1; width: 100px;">
-          <button type="button" class="btn-danger" data-index="${index}" style="padding: 8px 12px;">삭제</button>
-        `;
-        list.appendChild(resDiv);
-      });
-
-      // 이벤트 리스너
-      list.querySelectorAll('.res-item').forEach(select => {
-        select.onchange = (e) => {
-          const idx = parseInt(e.target.dataset.index);
-          currentRecipe.results[idx].name = e.target.value;
-        };
-      });
-
-      list.querySelectorAll('.res-amount').forEach(input => {
-        input.onchange = (e) => {
-          const idx = parseInt(e.target.dataset.index);
-          currentRecipe.results[idx].amount = parseFloat(e.target.value) || 1;
-        };
-      });
-
-      list.querySelectorAll('button[data-index]').forEach(btn => {
-        btn.onclick = (e) => {
-          const idx = parseInt(e.target.dataset.index);
-          currentRecipe.removeResult(idx);
-          renderResults();
-        };
-      });
-    };
-
-    renderIngredients();
-    renderResults();
-
-    // 재료 추가 버튼
-    modal.querySelector('#addIngredientBtn').onclick = () => {
-      const firstItem = allItems[0]?.name || 'iron-plate';
-      currentRecipe.addIngredient(firstItem, 1);
-      renderIngredients();
-    };
-
-    // 결과물 추가 버튼
-    modal.querySelector('#addResultBtn').onclick = () => {
-      const firstItem = allItems[0]?.name || 'iron-plate';
-      currentRecipe.addResult(firstItem, 1);
-      renderResults();
-    };
-
-    // 모달 닫기
-    const closeModal = () => {
-      modal.remove();
-    };
-
-    modal.querySelector('.modal-close').onclick = closeModal;
-    modal.querySelector('.modal-cancel').onclick = closeModal;
-    
-    // 모달 배경 클릭으로 닫기 (드래그 방지)
-    let mouseDownTarget = null;
-    modal.addEventListener('mousedown', (e) => {
-      mouseDownTarget = e.target;
-    });
-    modal.addEventListener('mouseup', (e) => {
-      if (e.target === modal && mouseDownTarget === modal) {
-        closeModal();
-      }
-      mouseDownTarget = null;
-    });
-
-    // 저장
-    modal.querySelector('.modal-save').onclick = () => {
-      currentRecipe.name = modal.querySelector('#recipeName').value || 'Unnamed Recipe';
-      currentRecipe.energy_required = parseFloat(modal.querySelector('#recipeTime').value) || 1;
-
-      if (currentRecipe.ingredients.length === 0) {
-        alert('재료를 최소 1개 이상 추가해주세요.');
-        return;
-      }
-
-      if (currentRecipe.results.length === 0) {
-        alert('결과물을 최소 1개 이상 추가해주세요.');
-        return;
-      }
-
-      this.manager.addRecipe(currentRecipe);
-      this.render(document.getElementById('custom-recipe-tab'));
-      closeModal();
-    };
+    this.manager.deleteRecipe(recipeId);
+    const recipes = this.manager.getAllRecipes();
+    this.selectedRecipeId = recipes.length > 0 ? recipes[0].id : null;
+    this.render(document.getElementById('custom-recipe-tab'));
+    window.dispatchEvent(new Event('custom-content-updated'));
   }
 
   /**

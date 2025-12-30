@@ -4,7 +4,7 @@
 
 // 로컬 스토리지 키
 export const STORAGE_KEYS = {
-  PRODUCTION_ZONES: 'productionZones',
+  RECIPE_GROUPS: 'recipeGroups',
   CUSTOM_RECIPES: 'customRecipes',
   COMPARE_GROUPS: 'compareGroups',
   SETTINGS: 'appSettings'
@@ -19,7 +19,7 @@ export const ITEM_TYPES = {
 
 // 엔트리 타입
 export const ENTRY_TYPES = {
-  ZONE: 'zone',
+  GROUP: 'group',
   RECIPE: 'recipe'
 };
 
@@ -42,7 +42,7 @@ export const ICON_CONFIG = {
 // UI 상수
 export const UI_CONFIG = {
   DEBOUNCE_DELAY: 300,
-  MIN_COMPARE_GROUPS: 1,
+  MIN_COMPARE_GROUPS: 0,
   SIDEBAR_WIDTH: '250px',
   GRID_MIN_WIDTH: '320px'
 };
@@ -60,11 +60,11 @@ export const CSS_CLASSES = {
 
 // 에러 메시지
 export const ERROR_MESSAGES = {
-  NO_ZONES: '생산구역이 없습니다',
+  NO_GROUPS: '레시피 그룹이 없습니다',
   NO_RECIPES: '커스텀 레시피가 없습니다',
-  NO_ITEMS: '생산구역이나 커스텀 레시피가 없습니다',
+  NO_ITEMS: '레시피 그룹이나 커스텀 레시피가 없습니다',
   MIN_GROUPS: '최소 1개의 비교 그룹이 필요합니다',
-  ZONE_NOT_FOUND: '생산구역을 찾을 수 없습니다',
+  GROUP_NOT_FOUND: '레시피 그룹을 찾을 수 없습니다',
   RECIPE_NOT_FOUND: '레시피를 찾을 수 없습니다',
   INVALID_DATA: '잘못된 데이터입니다'
 };
