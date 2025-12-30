@@ -68,13 +68,15 @@ export async function startApp() {
     // Update UI
     buildProductOptions();
     updateCurrentRecipes();
-    updateTitle();
     
     // Recalculate if we had a previous calculation
     if (lastRate !== null) {
       performCalculation(lastRate);
     } else {
-      document.getElementById("result").innerHTML = "";
+      const resultElement = document.getElementById("result");
+      if (resultElement) {
+        resultElement.innerHTML = "";
+      }
     }
   }
 
@@ -260,7 +262,7 @@ export async function startApp() {
   customRecipeView.render(document.getElementById('custom-recipe-tab'));
 
   // Initialize compare view
-  const compareView = new CompareView(recipeGroupView.zones, customRecipeView.manager, allRecipes, locale, loadedData);
+  const compareView = new CompareView(recipeGroupView.groups, customRecipeView.manager, allRecipes, locale, loadedData);
   compareView.render(document);
 
   // Export/Import data functionality

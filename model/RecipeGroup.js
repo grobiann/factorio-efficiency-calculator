@@ -22,9 +22,19 @@ export class RecipeGroup {
    * 그룹 내 모든 레시피의 입력/출력을 계산하여 통합
    * @param {Object} allRecipes - Map of recipeId -> Recipe
    * @param {Map} allGroups - Map of groupId -> RecipeGroup
+   * @param {Set} visited - 이미 방문한 그룹 ID Set (순환 참조 방지)
    * @returns {Object} { ingredients: [...], results: [...] }
    */
-  calculateIO(allRecipes, allGroups = new Map()) {
+  calculateIO(allRecipes, allGroups = new Map(), visited = new Set()) {
+    // 순환 참조 감지
+    if (visited.has(this.id)) {
+      console.warn(`순환 참조 감지: ${this.id}`);
+      return { ingredients: [], results: [] };
+    }
+    
+    // 현재 그룹을 방문 목록에 추가
+    visited.add(this.id);
+    
     const allInputs = {}; // item -> total amount needed
     const allOutputs = {}; // item -> total amount produced
     
@@ -38,7 +48,7 @@ export class RecipeGroup {
         const group = allGroups.get(recipeEntry.recipeId);
         if (!group) continue;
         
-        const groupIO = group.calculateIO(allRecipes, allGroups);
+        const groupIO = group.calculateIO(allRecipes, allGroups, visited);
         
         // 레시피 그룹의 입출력을 맵으로 변환
         ingredientsMap = {};
