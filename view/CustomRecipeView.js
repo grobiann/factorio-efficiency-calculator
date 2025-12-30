@@ -29,23 +29,6 @@ export class CustomRecipeView {
     const iconInfo = this.getIconInfo(itemId);
     if (iconInfo && iconInfo.path) {
       icon.src = iconInfo.path;
-      
-      // Mipmap 처리: 원본 크기로 표시하되 첫 번째 mipmap만 보이도록
-      if (iconInfo.mipmaps > 0) {
-        const iconSize = iconInfo.size || 64;
-        // Mipmap 이미지의 총 너비 계산
-        let totalWidth = iconSize;
-        for (let i = 1; i < iconInfo.mipmaps; i++) {
-          totalWidth += iconSize / Math.pow(2, i);
-        }
-        
-        // 원본 크기 유지, 32x32 영역만 보이도록 crop
-        const scale = 32 / iconSize; // 32px 표시 크기 / 원본 아이콘 크기
-        icon.style.cssText = `width: ${totalWidth * scale}px; height: ${iconSize * scale}px; object-fit: none; object-position: -64px 0;`;
-      } else {
-        // 일반 아이콘: 32x32로 표시
-        icon.style.cssText = 'width: 32px; height: 32px; object-fit: none; object-position: -64px 0;';
-      }
     } else {
       icon.src = 'data/default-icon.svg';
       icon.style.cssText = 'width: 32px; height: 32px; object-fit: contain;';

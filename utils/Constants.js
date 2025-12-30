@@ -36,7 +36,7 @@ export const DEFAULT_ICON_PATH = '__base__/graphics/icons/signal/signal_info.png
 export const ICON_CONFIG = {
   DEFAULT_SIZE: 64,
   DISPLAY_SIZE: 32,
-  MIPMAP_OFFSET: '-64px 0'
+  MIPMAP_OFFSET: '0 0'
 };
 
 // UI 상수
