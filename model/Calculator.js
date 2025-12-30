@@ -8,7 +8,8 @@ export class Calculator {
     const scale = targetPerSecond / producedPerSecond;
     const result = {};
 
-    for (const [item, amount] of Object.entries(recipe.inputs || {})) {
+    const ingredientsMap = recipe.getIngredientsMap();
+    for (const [item, amount] of Object.entries(ingredientsMap)) {
       result[item] = amount * scale;
     }
 
@@ -29,7 +30,8 @@ export class Calculator {
     nextVisited.add(productId);
 
     // how many of this recipe's crafts are required to produce targetCount units of productId
-    const producedPerCraft = recipe.outputs && (productId in recipe.outputs) ? recipe.outputs[productId] : (recipe.output || 0);
+    const resultsMap = recipe.getResultsMap();
+    const producedPerCraft = resultsMap[productId] || 0;
     if (!producedPerCraft) {
       console.warn(`Recipe ${recipe.id} does not produce ${productId} (or zero output); skipping per-item expansion.`);
       return {};
@@ -38,7 +40,8 @@ export class Calculator {
     const craftsNeeded = targetCount / producedPerCraft;
     const result = {};
 
-    for (const [itemId, amount] of Object.entries(recipe.inputs || {})) {
+    const ingredientsMap = recipe.getIngredientsMap();
+    for (const [itemId, amount] of Object.entries(ingredientsMap)) {
       const required = amount * craftsNeeded;
 
       const subRecipes = recipesByProduct[itemId];

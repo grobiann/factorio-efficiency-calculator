@@ -4,28 +4,68 @@
 // and each level is an array of recipe result objects ({ recipeId, name, outputs, inputs, cost }).
 import { buildRecipeNodes } from "../model/NodeBuilder.js";
 
-// Helper: find icon path from loaded data
-function getIconPath(type, id, loadedData) {
+// Helper: find icon info from loaded data
+function getIconInfo(type, id, loadedData) {
     try {
-        if (type === "items" && loadedData && loadedData.items) {
-            const item = loadedData.items.find(i => i.name === id);
-            if (item && item.icon) {
-                // __base__ is already in the correct folder structure
-                return item.icon;
-            }
-        } else if (type === "recipes" && loadedData && loadedData.recipes) {
+        if (type === "recipes" && loadedData && loadedData.recipes) {
             // Search in all recipe categories
             for (const category of Object.values(loadedData.recipes)) {
                 if (Array.isArray(category)) {
                     const recipe = category.find(r => r.name === id || r.id === id);
-                    if (recipe && recipe.icon) {
-                        return recipe.icon;
+                    if (recipe) {
+                        // If recipe has its own icon, use it
+                        if (recipe.icon) {
+                            return {
+                                path: recipe.icon,
+                                size: recipe.icon_size || 64,
+                                mipmaps: recipe.mipmap_count || 0
+                            };
+                        }
+                        
+                        // Otherwise, use the first result's icon
+                        if (recipe.results && recipe.results.length > 0) {
+                            const firstResult = recipe.results[0];
+                            const resultName = firstResult.name || firstResult[0]; // Handle both object and array format
+                            if (resultName) {
+                                // Recursively get the item's icon
+                                return getIconInfo("items", resultName, loadedData);
+                            }
+                        }
+                        
+                        return null;
                     }
                 }
             }
         }
+        else if (loadedData && loadedData.entries) {
+            // Search in entries with priority: item > module > fluid
+            // If first match has no icon, try other types
+            const searchTypes = ['item', 'module', 'fluid'];
+            
+            for (const searchType of searchTypes) {
+                const entry = loadedData.entries.find(e => e.name === id && e.type === searchType);
+                if (entry && entry.icon) {
+                    // Return icon path and metadata
+                    return {
+                        path: entry.icon,
+                        size: entry.icon_size || 64,
+                        mipmaps: entry.mipmap_count || (entry.pictures && entry.pictures[0] ? entry.pictures[0].mipmap_count : 0)
+                    };
+                }
+            }
+            
+            // If no entry with icon found, return the first matching entry even without icon
+            const anyEntry = loadedData.entries.find(e => e.name === id);
+            if (anyEntry) {
+                return {
+                    path: anyEntry.icon || null,
+                    size: anyEntry.icon_size || 64,
+                    mipmaps: anyEntry.mipmap_count || (anyEntry.pictures && anyEntry.pictures[0] ? anyEntry.pictures[0].mipmap_count : 0)
+                };
+            }
+        }
     } catch (e) {
-        console.warn(`Error getting icon path for ${type}/${id}:`, e);
+        console.warn(`Error getting icon info for ${type}/${id}:`, e);
     }
     return null;
 }
@@ -42,35 +82,34 @@ function createIconWithTooltip(type, id, amount, locale, multiplier = 1, loadedD
     // Start with default icon to avoid 404 errors
     icon.src = "data/default-icon.svg";
     
-    // Try to get icon path from data
-    const iconPath = getIconPath(type, id, loadedData);
-    
-    if (iconPath) {
+    // Try to get icon info from data
+    const iconInfo = getIconInfo(type, id, loadedData);
+    if (iconInfo && iconInfo.path) {
         const testImg = new Image();
         testImg.onload = function() {
             // Icon exists, use it
-            icon.src = iconPath;
+            icon.src = iconInfo.path;
+            
+            const iconSize = iconInfo.size || 64;
+            icon.style.width = iconSize + "px";
+            icon.style.height = iconSize + "px";
+            icon.style.objectFit = 'none';
+            icon.style.objectPosition = '0 0';
         };
         testImg.onerror = function() {
             // Icon doesn't exist, keep default and log warning
-            console.warn(`Icon not found at path: ${iconPath} for ${type}/${id}`);
+            console.warn(`Icon not found at path: ${iconInfo.path} for ${type}/${id}`);
         };
-        testImg.src = iconPath;
+        testImg.src = iconInfo.path;
     } else {
         console.warn(`No icon path found in data for ${type}/${id}`);
     }
     
-    const amountLabel = document.createElement("div");
-    amountLabel.className = "icon-amount";
-    amountLabel.textContent = (amount * multiplier).toFixed(2);
-    
-    const tooltip = document.createElement("div");
-    tooltip.className = "icon-tooltip";
-    tooltip.innerHTML = `<strong>${locale.itemName(id)}</strong><br>${(amount * multiplier).toFixed(2)}`;
+    //const amountLabel = document.createElement("div");
+    //amountLabel.className = "icon-amount";
+    //amountLabel.textContent = (amount * multiplier).toFixed(2);
     
     container.appendChild(icon);
-    container.appendChild(amountLabel);
-    container.appendChild(tooltip);
     
     return container;
 }
@@ -145,20 +184,22 @@ export async function renderRecipeTable(productRecipes, productId, targetCount, 
             const rname = document.createElement("div");
             rname.className = "recipe-name small";
             
-            // Recipe icon for sub-recipes
+            // Recipe icon for sub-recipes (no text)
             if (node.recipeId) {
                 const recipeIcon = createIconWithTooltip("recipes", node.recipeId, 1, locale, 1, loadedData);
                 recipeIcon.classList.add("recipe-icon-small");
                 rname.appendChild(recipeIcon);
             }
             
-            const nameText = document.createElement("span");
-            nameText.textContent = (node.recipeId ? locale.recipeName(node.recipeId) : node.name) || "";
-            rname.appendChild(nameText);
             block.appendChild(rname);
 
             const outList2 = document.createElement("div");
             outList2.className = "icon-list outputs-list";
+            outList2.style.display = "flex";
+            outList2.style.flexDirection = "row";
+            outList2.style.flexWrap = "wrap";
+            outList2.style.backgroundColor = "#4a9eff";
+            outList2.style.border = "none";
             for (const [outId, amount] of Object.entries(node.outputs || {})) {
                 const iconEl = createIconWithTooltip("items", outId, amount, locale, multiplier, loadedData);
                 outList2.appendChild(iconEl);
@@ -167,6 +208,11 @@ export async function renderRecipeTable(productRecipes, productId, targetCount, 
 
             const ingList = document.createElement("div");
             ingList.className = "icon-list inputs-list";
+            ingList.style.display = "flex";
+            ingList.style.flexDirection = "row";
+            ingList.style.flexWrap = "wrap";
+            ingList.style.backgroundColor = "#d4a574";
+            ingList.style.border = "none";
             for (const [inputId, amount] of Object.entries(node.inputs || {})) {
                 const iconEl = createIconWithTooltip("items", inputId, amount, locale, multiplier, loadedData);
                 ingList.appendChild(iconEl);

@@ -11,19 +11,20 @@ export class Resolver {
   static compare(recipes, productId, target, recipesByProduct, mode = "per_sec") {
     return recipes.map(recipe => {
       // Determine how many crafts are needed to satisfy the target for productId
-      const producedPerCraft = recipe.outputs && (productId in recipe.outputs) ? recipe.outputs[productId] : (recipe.output || 0);
+      const resultsMap = recipe.getResultsMap();
+      const producedPerCraft = resultsMap[productId] || 0;
       const craftsNeeded = producedPerCraft ? (target / producedPerCraft) : 0;
 
       // scaled ingredients for this recipe (direct inputs)
       const ingredientsScaled = {};
-      for (const [itemId, amount] of Object.entries(recipe.inputs || {})) {
+      const ingredientsMap = recipe.getIngredientsMap();
+      for (const [itemId, amount] of Object.entries(ingredientsMap)) {
         ingredientsScaled[itemId] = amount * craftsNeeded;
       }
 
       // scaled outputs produced when making `target` units of productId
       const outputsScaled = {};
-      const outputsDef = recipe.outputs || (recipe.output ? { [productId]: recipe.output } : {});
-      for (const [outId, amount] of Object.entries(outputsDef)) {
+      for (const [outId, amount] of Object.entries(resultsMap)) {
         outputsScaled[outId] = amount * craftsNeeded;
       }
 

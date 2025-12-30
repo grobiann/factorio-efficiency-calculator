@@ -80,7 +80,7 @@ h1 {
   min-width: 240px;
   max-width: 400px;
   box-shadow: 0 6px 18px rgba(0,0,0,0.08);
-  max-height: 70vh;
+  max-height: 64vh;
   overflow-y: auto;
 }
 
@@ -106,7 +106,7 @@ label {
 }
 
 input[type="number"] {
-  width: 120px;
+  width: 64px;
   margin-left: 8px;
   padding: 4px 6px;
 }
@@ -220,7 +220,6 @@ button {
 /* Columns & Summary tables share the same base styling */
 .recipe-compare-table,
 .summary-table {
-  display: block;
   border: 1px solid #e6e6e6;
   border-radius: 6px;
   background: #ffffff;
@@ -256,7 +255,7 @@ button {
 }
 
 .recipe-compare-row {
-  display: grid;
+  display: flex;
   grid-auto-flow: column;
   grid-auto-columns: 1fr;
 }
@@ -285,6 +284,7 @@ button {
 }
 
 .recipe-block.top {
+  display: flex;
   border: 1px solid #eef1f6;
   padding: 8px;
   border-radius: 4px;
@@ -309,27 +309,39 @@ button {
 }
 
 .recipe-compare-cell {
-  padding: 12px;
+  padding: 0;
   border-right: 1px solid #eee;
   min-height: 48px;
+  display: flex;
+  flex-direction: column;
 }
 
 .recipe-compare-cell:last-child {
   border-right: none;
 }
 
-.header-cell .recipe-name {
-  font-weight: 600;
-}
-
 .recipe-block {
-  margin-bottom: 8px;
-  padding-bottom: 6px;
-  border-bottom: 1px dashed #eee;
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  gap: 0;
+  padding: 0;
+  margin-bottom: 4px;
+  width: 100%;
+  box-sizing: border-box;
+  background: transparent;
+  border-radius: 0;
+  overflow: hidden;
+  border: 1px solid #333;
 }
 
 .recipe-block:last-child {
-  border-bottom: none;
+  margin-bottom: 0;
+}
+
+.header-cell .recipe-name {
+  font-weight: 600;
 }
 
 .small-list div {
@@ -377,22 +389,33 @@ button {
 
 .dataset-item input[type="checkbox"]:focus {
   outline: 2px solid #88a;
-}
 /* ===== Icon Display Styles ===== */
 .icon-container {
   position: relative;
-  display: inline-block;
-  margin: 2px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin: 10px;
   vertical-align: middle;
+  overflow: hidden;
+  width: 28px;
+  height: 28px;
+  min-width: 28px;
+  min-height: 28px;
+  max-width: 28px;
+  max-height: 28px;
+  flex-shrink: 0;
 }
 
 .item-icon {
-  width: 32px;
-  height: 32px;
+  width: 28px;
+  height: 28px;
   display: block;
   border: 1px solid #ccc;
   border-radius: 3px;
   background: #f5f5f5;
+  object-fit: none;
+  object-position: 0 0;
 }
 
 .icon-amount {
@@ -408,7 +431,7 @@ button {
 }
 
 .icon-tooltip {
-  position: absolute;
+  position: fixed;
   display: none;
   background: rgba(30, 30, 30, 0.95);
   color: white;
@@ -416,23 +439,9 @@ button {
   border-radius: 4px;
   font-size: 12px;
   white-space: nowrap;
-  z-index: 1000;
+  z-index: 10000;
   pointer-events: none;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-  bottom: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-  margin-bottom: 5px;
-}
-
-.icon-tooltip::after {
-  content: "";
-  position: absolute;
-  top: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-  border: 5px solid transparent;
-  border-top-color: rgba(30, 30, 30, 0.95);
 }
 
 .icon-container:hover .icon-tooltip {
@@ -450,23 +459,61 @@ button {
 }
 
 /* Icon lists with backgrounds */
+.recipe-name {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  flex: 0 0 80px;
+  min-width: 80px;
+  max-width: 80px;
+  padding: 8px;
+  background: #4a4a4a;
+  border-right: 1px solid #333;
+}
+
+.recipe-name span {
+  display: none;
+}
+
 .icon-list {
   display: flex;
+  flex-direction: row;
   flex-wrap: wrap;
-  gap: 4px;
-  padding: 6px;
-  border-radius: 4px;
-  margin: 4px 0;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 8px;
+  border-radius: 0;
+  margin: 0;
+  gap: 2px;
+  min-height: 100%;
+}
+
+.icon-container {
+  display: flex;
+  align-items: center;
+  vertical-align: middle;
+  justify-content: center;  
 }
 
 .outputs-list {
-  background: #e3f2fd; /* Blue background for outputs */
-  border: 1px solid #90caf9;
+  display: flex;
+  flex: 0 0 64px;
+  min-width: 64px;
+  max-width: 64px;
+  background: #4a9eff;
+  border: none;
+  border-right: 1px solid #3080dd;
 }
 
 .inputs-list {
-  background: #fff3e0; /* Sand/orange background for inputs */
-  border: 1px solid #ffcc80;
+  display: flex;
+  flex: 1;
+  background: #d4a574;
+  border: none;
+}
+  background: #fff3e0;
+  border: none;
 }
 
 .recipe-icon {

@@ -2,7 +2,8 @@ import { Calculator } from "./Calculator.js";
 
 // Build a node object representing a scaled recipe result for a target count.
 export function buildSingleRecipeNode(recipe, productId, targetCount, recipesByProduct) {
-    const producedPerCraft = recipe.outputs && (productId in recipe.outputs) ? recipe.outputs[productId] : (recipe.output || 0);
+    const resultsMap = recipe.getResultsMap();
+    const producedPerCraft = resultsMap[productId] || 0;
     if (!producedPerCraft) {
         console.warn(`Recipe ${recipe.id} does not produce ${productId} (or has zero output); skipping.`);
         return { recipeId: recipe.id, name: recipe.name, outputs: {}, inputs: {}, cost: {} };
@@ -12,14 +13,14 @@ export function buildSingleRecipeNode(recipe, productId, targetCount, recipesByP
 
     // scaled inputs
     const inputsScaled = {};
-    for (const [itemId, amount] of Object.entries(recipe.inputs || {})) {
+    const ingredientsMap = recipe.getIngredientsMap();
+    for (const [itemId, amount] of Object.entries(ingredientsMap)) {
         inputsScaled[itemId] = amount * craftsNeeded;
     }
 
     // scaled outputs
     const outputsScaled = {};
-    const outputsDef = recipe.outputs || (recipe.output ? { [productId]: recipe.output } : {});
-    for (const [outId, amount] of Object.entries(outputsDef)) {
+    for (const [outId, amount] of Object.entries(resultsMap)) {
         outputsScaled[outId] = amount * craftsNeeded;
     }
 

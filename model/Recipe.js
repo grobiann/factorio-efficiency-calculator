@@ -4,22 +4,15 @@ export class Recipe {
     this.name = data.name;
     this.type = data.type || "recipe";
     this.time = data.energy_required;
-    this.output = data.output;
-    this.input = data.input;
 
     // Factorio-style schema support:
     // - ingredients: [ { type: "item"|"fluid", name: "id", amount: n }, ... ] or single object
     // - results:     [ { type: "item"|"fluid", name: "id", amount: n }, ... ] or single object
     // Normalize single objects to arrays
     this.ingredients = data.ingredients ? 
-      (Array.isArray(data.ingredients) ? data.ingredients : [data.ingredients]) : null;
+      (Array.isArray(data.ingredients) ? data.ingredients : [data.ingredients]) : [];
     this.results = data.results ? 
-      (Array.isArray(data.results) ? data.results : [data.results]) : null;
-
-    // Normalize to maps used internally by the calculator/views.
-    // Backwards-compatible: accept legacy `inputs`/`outputs` maps.
-    this.inputs = data.inputs || Recipe.#ioArrayToMap(this.ingredients);
-    this.outputs = data.outputs || Recipe.#ioArrayToMap(this.results);
+      (Array.isArray(data.results) ? data.results : [data.results]) : [];
   }
 
   static #expectedAmount(entry) {
@@ -60,19 +53,27 @@ export class Recipe {
 
   /**
    * Amount of a specific product produced per second by this recipe.
-   * If `outputs` contains the productId, use that; otherwise fall back to `output`.
-  * productId is expected to be provided by the caller (the product being queried).
+   * productId is expected to be provided by the caller (the product being queried).
    */
   outputPerSecond(productId) {
-    if (this.outputs && productId && (productId in this.outputs)) {
-      return this.outputs[productId] / this.time;
+    const outputs = Recipe.#ioArrayToMap(this.results);
+    if (outputs && productId && (productId in outputs)) {
+      return outputs[productId] / this.time;
     }
-
-    if (this.output !== undefined && this.output !== null) {
-      return this.output / this.time;
-    }
-
-    // no output information for requested product
     return 0;
+  }
+
+  /**
+   * Get ingredients as a map { itemId: amount }
+   */
+  getIngredientsMap() {
+    return Recipe.#ioArrayToMap(this.ingredients) || {};
+  }
+
+  /**
+   * Get results as a map { itemId: amount }
+   */
+  getResultsMap() {
+    return Recipe.#ioArrayToMap(this.results) || {};
   }
 }

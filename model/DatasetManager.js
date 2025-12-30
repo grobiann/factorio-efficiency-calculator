@@ -74,7 +74,7 @@ export class DatasetManager {
    * Load and merge all enabled datasets
    */
   async loadData() {
-    const itemsArrays = [];
+    const allEntries = [];
     const recipesObjects = [];
 
     // Load enabled datasets in order
@@ -82,6 +82,7 @@ export class DatasetManager {
       .filter(ds => this.enabledDatasets.has(ds.id))
       .sort((a, b) => a.order - b.order);
 
+    console.log("Loading datasets:", enabledList.map(ds => ds.id));
     for (const dataset of enabledList) {
       try {
         // Support both old format (object with items/recipes keys) and new format (array of files)
@@ -93,14 +94,14 @@ export class DatasetManager {
         for (const filePath of files) {
           const data = await fetch(`data/${filePath}`).then(r => r.json());
           
-          // Process data based on type field
+          // Process data
           if (Array.isArray(data)) {
-            // Array format: separate by type
+            // Array format: add all entries
             for (const entry of data) {
-              if (entry.type === 'item') {
-                itemsArrays.push(entry);
-              } else if (entry.type === 'recipe') {
-                // Convert to recipe object format for merging
+              allEntries.push(entry);
+              
+              // Also track recipes separately for backward compatibility
+              if (entry.type === 'recipe') {
                 if (!recipesObjects.length || !recipesObjects[recipesObjects.length - 1]._isArrayFormat) {
                   recipesObjects.push({ recipes: [], _isArrayFormat: true });
                 }
@@ -126,9 +127,10 @@ export class DatasetManager {
     const mergedRecipes = this.mergeRecipes(recipesObjects);
 
     this.loadedData = {
-      items: itemsArrays,
+      entries: allEntries,
       recipes: mergedRecipes
     };
+    console.log("Loaded data:", this.loadedData);
 
     return this.loadedData;
   }

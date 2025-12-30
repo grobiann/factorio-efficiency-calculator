@@ -31,13 +31,15 @@ export async function startApp() {
       for (const r of (recs || [])) {
         const recipe = new Recipe(r);
         // Determine which products this recipe produces
-        const outputIds = recipe.outputs ? Object.keys(recipe.outputs) : [cat];
+        const resultsMap = recipe.getResultsMap();
+        const outputIds = Object.keys(resultsMap);
         outputIds.forEach(pid => {
           if (!recipesByProduct[pid]) recipesByProduct[pid] = [];
           recipesByProduct[pid].push(recipe);
         });
       }
     }
+    console.log("Built recipesByProduct map:", recipesByProduct);
     return recipesByProduct;
   }
 
