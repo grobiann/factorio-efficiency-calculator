@@ -1,12 +1,12 @@
 import { Recipe } from "../model/Recipe.js";
 import { Resolver } from "../model/Resolver.js";
-import { renderRecipeTable } from "../view/CompareView.js";
 import { renderSummaryTable } from "../view/SummaryView.js";
 import { Locale } from "../model/Locale.js";
 import { DatasetManager } from "../model/DatasetManager.js";
 import { DatasetConfigView } from "../view/DatasetConfigView.js";
 import { ProductionZoneView } from "../view/ProductionZoneView.js";
 import { CustomRecipeView } from "../view/CustomRecipeView.js";
+import { CompareView } from "../view/CompareView.js";
 
 export async function startApp() {
   // Initialize dataset manager
@@ -113,7 +113,6 @@ export async function startApp() {
     displayModeSelect.value = displayMode;
     displayModeSelect.onchange = () => {
       displayMode = displayModeSelect.value;
-      updateTitle();
       if (lastRate !== null) performCalculation(lastRate);
     };
   }
@@ -133,31 +132,6 @@ export async function startApp() {
 
   function updateCurrentRecipes() {
     currentProductRecipes = (recipesByProduct[currentProduct] || []).slice();
-  }
-
-  function updateTitle() {
-    const title = document.getElementById("pageTitle");
-    if (!title) return;
-    const name = locale.itemName(currentProduct) || currentProduct;
-    // Show unit label depending on display mode and selected time unit
-    let titleUnit = "";
-    // Determine title unit based on display mode (per second or per minute)
-    if (displayMode === "per_min") {
-      titleUnit = locale.lang === "ko" ? "분" : "min";
-    } else {
-      titleUnit = locale.lang === "ko" ? "초" : "sec";
-    }
-    title.textContent = `${name} 레시피 효율 비교 (${titleUnit})`;
-
-    // Update target input unit label
-    const targetLabel = document.getElementById("targetUnitLabel");
-    if (targetLabel) {
-      if (displayMode === "per_min") {
-        targetLabel.textContent = locale.lang === "ko" ? "개 / 분" : "items / min";
-      } else {
-        targetLabel.textContent = locale.lang === "ko" ? "개 / 초" : "items / sec";
-      }
-    }
   }
 
   // Perform a calculation given the user's input (rate). This will set
@@ -182,10 +156,9 @@ export async function startApp() {
 
     lastResults = results;
 
-    // Render summary and recipe table (views will build their own columns from recipes)
+    // Render summary table
     const targetCount = (displayMode === "per_min") ? (target / 60) : target;
     renderSummaryTable(currentProductRecipes, currentProduct, targetCount, recipesByProduct, locale, multiplier);
-    renderRecipeTable(currentProductRecipes, currentProduct, targetCount, recipesByProduct, locale, multiplier, loadedData);
   }
 
   // (Column-building moved into the view layer: renderRecipeTable)
@@ -245,6 +218,10 @@ export async function startApp() {
   const customRecipeView = new CustomRecipeView(loadedData, locale);
   customRecipeView.render(document.getElementById('custom-recipe-tab'));
 
+  // Initialize compare view
+  const compareView = new CompareView(productionZoneView.zones, customRecipeView.manager, allRecipes, locale, loadedData);
+  compareView.render(document);
+
   // Tab switching logic
   const tabBtns = document.querySelectorAll('.tab-btn');
   const tabContents = document.querySelectorAll('.tab-content');
@@ -265,6 +242,8 @@ export async function startApp() {
         productionZoneView.render(document.getElementById('production-zone-tab'));
       } else if (targetTab === 'custom-recipe') {
         customRecipeView.render(document.getElementById('custom-recipe-tab'));
+      } else if (targetTab === 'compare') {
+        compareView.render(document);
       }
     });
   });
@@ -315,5 +294,4 @@ export async function startApp() {
 
   // Initialize title and product list on load
   buildProductOptions();
-  updateTitle();
 }

@@ -124,34 +124,13 @@ export class CustomRecipeView {
     const info = document.createElement('div');
     info.className = 'recipe-info';
 
+    // 이름과 버튼을 포함하는 헤더
+    const header = document.createElement('div');
+    header.className = 'recipe-header';
+    
     const name = document.createElement('div');
     name.className = 'recipe-name';
     name.textContent = recipe.name;
-
-    const details = document.createElement('div');
-    details.className = 'recipe-details';
-    details.style.cssText = 'display: flex; gap: 8px; align-items: center; flex-wrap: wrap;';
-    
-    // 재료 아이콘들
-    recipe.ingredients.forEach(ing => {
-      const icon = this.createItemIcon(ing.name, ing.amount);
-      details.appendChild(icon);
-    });
-    
-    // 화살표
-    const arrow = document.createElement('span');
-    arrow.textContent = '→';
-    arrow.style.cssText = 'margin: 0 4px; color: #666;';
-    details.appendChild(arrow);
-    
-    // 결과물 아이콘들
-    recipe.results.forEach(res => {
-      const icon = this.createItemIcon(res.name, res.amount);
-      details.appendChild(icon);
-    });
-
-    info.appendChild(name);
-    info.appendChild(details);
 
     const actions = document.createElement('div');
     actions.className = 'recipe-actions';
@@ -168,9 +147,49 @@ export class CustomRecipeView {
 
     actions.appendChild(editBtn);
     actions.appendChild(deleteBtn);
+    
+    header.appendChild(name);
+    header.appendChild(actions);
+
+    // zone-io-summary 스타일로 재료와 결과물 표시
+    const ioSummary = document.createElement('div');
+    ioSummary.className = 'zone-io-summary';
+    
+    // 출력 (결과물)
+    const outputSection = document.createElement('div');
+    outputSection.className = 'zone-io-section zone-outputs';
+    const outputTitle = document.createElement('h4');
+    outputTitle.textContent = '출력';
+    const outputItems = document.createElement('div');
+    outputItems.className = 'zone-io-items';
+    recipe.results.forEach(res => {
+      const icon = this.createItemIcon(res.name, res.amount);
+      outputItems.appendChild(icon);
+    });
+    outputSection.appendChild(outputTitle);
+    outputSection.appendChild(outputItems);
+    
+    // 입력 (재료)
+    const inputSection = document.createElement('div');
+    inputSection.className = 'zone-io-section zone-inputs';
+    const inputTitle = document.createElement('h4');
+    inputTitle.textContent = '입력';
+    const inputItems = document.createElement('div');
+    inputItems.className = 'zone-io-items';
+    recipe.ingredients.forEach(ing => {
+      const icon = this.createItemIcon(ing.name, ing.amount);
+      inputItems.appendChild(icon);
+    });
+    inputSection.appendChild(inputTitle);
+    inputSection.appendChild(inputItems);
+    
+    ioSummary.appendChild(outputSection);
+    ioSummary.appendChild(inputSection);
+
+    info.appendChild(header);
+    info.appendChild(ioSummary);
 
     div.appendChild(info);
-    div.appendChild(actions);
 
     return div;
   }

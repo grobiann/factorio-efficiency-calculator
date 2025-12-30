@@ -26,20 +26,19 @@ export class ProductionZoneView {
       this.selectedZoneId = this.zones.values().next().value.id;
     }
 
-    // 헤더 부분
-    let headerHtml = `
-      <h2>생산구역 관리</h2>
-      <button id="addZoneBtn" class="btn-primary">새 생산구역 추가</button>
-    `;
-
-    // 생산구역 목록
-    let listHtml = '<div class="zone-list-container">';
+    let html = '<div class="zone-management-grid">';
+    
+    // 왼쪽: 생산구역 목록
+    html += '<div class="zone-sidebar">';
+    html += '<button id="addZoneBtn" class="btn-primary">새 생산구역 추가</button>';
+    html += '<div class="zone-list-container">';
+    
     if (this.zones.size === 0) {
-      listHtml += '<p style="color: #999; text-align: center; padding: 20px;">생산구역이 없습니다.</p>';
+      html += '<p style="color: #999; text-align: center; padding: 20px;">생산구역이 없습니다.</p>';
     } else {
       for (const zone of this.zones.values()) {
         const isSelected = zone.id === this.selectedZoneId;
-        listHtml += `
+        html += `
           <div class="zone-list-item ${isSelected ? 'selected' : ''}" data-zone-id="${zone.id}">
             <span class="zone-list-name">${this.escapeHtml(zone.name)}</span>
             <span class="zone-list-count">${zone.recipes.length}개 레시피</span>
@@ -47,18 +46,21 @@ export class ProductionZoneView {
         `;
       }
     }
-    listHtml += '</div>';
+    
+    html += '</div></div>';
 
-    // 상세 정보 영역
-    let detailHtml = '<div class="zone-detail-container">';
+    // 오른쪽: 상세 정보 영역
+    html += '<div class="zone-detail-container">';
     if (this.selectedZoneId && this.zones.has(this.selectedZoneId)) {
-      detailHtml += this.renderZoneDetail(this.zones.get(this.selectedZoneId));
+      html += this.renderZoneDetail(this.zones.get(this.selectedZoneId));
     } else {
-      detailHtml += '<p style="color: #999; text-align: center; padding: 40px;">생산구역을 선택하세요.</p>';
+      html += '<p style="color: #999; text-align: center; padding: 40px;">생산구역을 선택하세요.</p>';
     }
-    detailHtml += '</div>';
+    html += '</div>';
+    
+    html += '</div>';
 
-    zoneManagement.innerHTML = headerHtml + listHtml + detailHtml;
+    zoneManagement.innerHTML = html;
 
     // 이벤트 리스너 등록
     this.attachEventListeners(container);

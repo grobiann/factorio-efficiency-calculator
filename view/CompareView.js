@@ -1,232 +1,530 @@
-// Old single-column comparison rendering removed — no longer used.
+import { ViewHelpers } from '../utils/ViewHelpers.js';
+import { 
+  STORAGE_KEYS, 
+  ENTRY_TYPES, 
+  ERROR_MESSAGES,
+  IO_SECTION_TYPES,
+  IO_SECTION_TITLES,
+  UI_CONFIG,
+  CSS_CLASSES
+} from '../utils/Constants.js';
 
-// Render recipe columns: columns is an array where each element is an array of levels,
-// and each level is an array of recipe result objects ({ recipeId, name, outputs, inputs, cost }).
-import { buildRecipeNodes } from "../model/NodeBuilder.js";
+/**
+ * CompareView - 생산구역과 레시피 비교
+ */
+export class CompareView {
+  constructor(zones, customRecipeManager, allRecipes, locale, loadedData) {
+    this.zones = zones;
+    this.customRecipeManager = customRecipeManager;
+    this.allRecipes = allRecipes;
+    this.locale = locale;
+    this.loadedData = loadedData;
+    
+    // 비교 그룹 관리
+    this.compareGroups = [
+      { id: 1, name: '비교 그룹 1', items: [] }
+    ];
+    this.nextGroupId = 2;
+    this.selectedGroupIndex = 0;
+    
+    this._loadFromStorage();
+  }
 
-// Helper: find icon info from loaded data
-function getIconInfo(type, id, loadedData) {
+  /**
+   * 뷰 렌더링
+   */
+  render(container) {
+    const compareTab = container.querySelector('#compare-tab');
+    if (!compareTab) return;
+
+    compareTab.innerHTML = this._buildHtml();
+    this._attachEvents(compareTab);
+  }
+
+  /**
+   * 전체 HTML 구조 생성
+   * @private
+   */
+  _buildHtml() {
+    let html = '<div class="compare-management">';
+    html += this._buildSidebar();
+    html += this._buildDetailSection();
+    html += '</div>';
+    return html;
+  }
+
+  /**
+   * 사이드바 HTML 생성
+   * @private
+   */
+  _buildSidebar() {
+    let html = '<div class="compare-groups-sidebar">';
+    html += `<button class="${CSS_CLASSES.PRIMARY} add-compare-group-btn">새 비교그룹 추가</button>`;
+    html += '<div class="compare-groups-list">';
+    
+    for (let i = 0; i < this.compareGroups.length; i++) {
+      const group = this.compareGroups[i];
+      const isActive = i === this.selectedGroupIndex;
+      html += ViewHelpers.createSidebarItemHtml(
+        group.name,
+        `(${group.items.length})`,
+        isActive,
+        `data-index="${i}"`,
+        'compare-group-item'
+      );
+    }
+    
+    html += '</div></div>';
+    return html;
+  }
+
+  /**
+   * 상세 영역 HTML 생성
+   * @private
+   */
+  _buildDetailSection() {
+    let html = '<div class="compare-group-detail">';
+    
+    if (this.compareGroups.length > 0) {
+      html += this._buildGroupDetail(this.compareGroups[this.selectedGroupIndex]);
+    }
+    
+    html += '</div>';
+    return html;
+  }
+
+  /**
+   * 그룹 상세 정보 렌더링
+   * @private
+   */
+  _buildGroupDetail(group) {
+    let html = '<div class="compare-detail-container">';
+    
+    // 그룹 헤더
+    html += this._buildGroupHeader(group);
+
+    // 비교 그리드
+    html += this._buildCompareGrid(group);
+    
+    html += '</div>';
+    return html;
+  }
+
+  /**
+   * 그룹 헤더 생성
+   * @private
+   */
+  _buildGroupHeader(group) {
+    let html = '<div class="compare-group-header">';
+    html += `<input type="text" class="compare-group-name-input" value="${ViewHelpers.escapeHtml(group.name)}" placeholder="비교 그룹 이름">`;
+    html += `<button class="${CSS_CLASSES.DANGER} delete-compare-group-btn">그룹 삭제</button>`;
+    html += '</div>';
+    return html;
+  }
+
+  /**
+   * 비교 그리드 생성
+   * @private
+   */
+  _buildCompareGrid(group) {
+    let html = '<div class="compare-section">';
+    html += '<table class="compare-table">';
+    
+    // 헤더 행
+    html += '<thead>';
+    html += '<tr>';
+    html += '<th class="compare-name-col">생산구역</th>';
+    html += '<th class="compare-output-col">출력</th>';
+    html += '<th class="compare-input-col">입력</th>';
+    html += '<th class="compare-action-col"></th>';
+    html += '</tr>';
+    html += '</thead>';
+    
+    html += '<tbody>';
+    
+    // 선택된 항목들
+    for (let i = 0; i < group.items.length; i++) {
+      html += this._buildCompareRow(group.items[i], i);
+    }
+    
+    // 추가 버튼 행
+    html += this._buildAddRow();
+    
+    html += '</tbody>';
+    html += '</table></div>';
+    return html;
+  }
+
+  /**
+   * 비교 테이블 행 렌더링
+   * @private
+   */
+  _buildCompareRow(item, index) {
+    const io = this._calculateIO(item);
+
+    let html = '<tr class="compare-row">';
+    
+    // 이름 셀
+    html += '<td class="compare-name-cell">';
+    html += `<span class="compare-item-name">${ViewHelpers.escapeHtml(item.data.name)}</span>`;
+    html += '</td>';
+    
+    // 출력 셀
+    html += '<td class="compare-output-cell">';
+    html += this._buildIOIcons(io.results);
+    html += '</td>';
+    
+    // 입력 셀
+    html += '<td class="compare-input-cell">';
+    html += this._buildIOIcons(io.ingredients);
+    html += '</td>';
+    
+    // 액션 셀 (삭제 버튼)
+    html += '<td class="compare-action-cell">';
+    html += `<button class="compare-row-remove" data-index="${index}">✕</button>`;
+    html += '</td>';
+    
+    html += '</tr>';
+    return html;
+  }
+
+  /**
+   * IO 아이콘 리스트 생성
+   * @private
+   */
+  _buildIOIcons(items) {
+    if (!items || items.length === 0) {
+      return '<span class="compare-io-empty">-</span>';
+    }
+    
+    let html = '<div class="compare-io-icons">';
+    for (const item of items) {
+      const iconInfo = ViewHelpers.getIconInfo(this.loadedData, item.name, item.type || 'item');
+      html += ViewHelpers.createItemIconHtml(iconInfo, item.amount, ViewHelpers.formatNumber);
+    }
+    html += '</div>';
+    return html;
+  }
+
+  /**
+   * 추가 버튼 행 렌더링
+   * @private
+   */
+  _buildAddRow() {
+    let html = '<tr class="compare-add-row">';
+    html += '<td colspan="4" class="compare-add-cell">';
+    html += '<button class="compare-add-btn">';
+    html += '<svg class="compare-plus-icon" viewBox="0 0 24 24" width="20" height="20">';
+    html += '<path fill="currentColor" d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z"/>';
+    html += '</svg>';
+    html += '<span>항목 추가</span>';
+    html += '</button>';
+    html += '</td>';
+    html += '</tr>';
+    return html;
+  }
+
+  /**
+   * 선택 모달 표시
+   * @private
+   */
+  _showSelectionModal() {
+    const modal = document.createElement('div');
+    modal.className = 'compare-modal';
+    modal.innerHTML = `
+      <div class="compare-modal-content">
+        <div class="compare-modal-header">
+          <h3>항목 선택</h3>
+          <button class="compare-modal-close">✕</button>
+        </div>
+        <div class="compare-modal-body">
+          ${this._buildModalList()}
+        </div>
+      </div>
+    `;
+
+    document.body.appendChild(modal);
+
+    // 이벤트 설정
+    const closeBtn = modal.querySelector('.compare-modal-close');
+    ViewHelpers.attachModalCloseEvents(modal, closeBtn);
+
+    // 항목 선택 이벤트
+    this._attachModalItemEvents(modal);
+  }
+
+  /**
+   * 모달 항목 선택 이벤트 연결
+   * @private
+   */
+  _attachModalItemEvents(modal) {
+    const itemBtns = modal.querySelectorAll('.compare-modal-item');
+    itemBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const type = btn.dataset.type;
+        const id = btn.dataset.id;
+        
+        const data = type === ENTRY_TYPES.ZONE 
+          ? this.zones.get(id)
+          : this.customRecipeManager.getRecipe(id);
+        
+        if (data) {
+          this.compareGroups[this.selectedGroupIndex].items.push({ type, id, data });
+          this._saveToStorage();
+          modal.remove();
+          this.render(document);
+        }
+      });
+    });
+  }
+
+  /**
+   * 모달 리스트 생성
+   * @private
+   */
+  _buildModalList() {
+    let html = '<div class="compare-modal-list">';
+    
+    const currentGroup = this.compareGroups[this.selectedGroupIndex];
+    
+    // 생산구역
+    for (const [zoneId, zone] of this.zones) {
+      if (!this._isItemSelected(currentGroup, ENTRY_TYPES.ZONE, zoneId)) {
+        html += `<button class="compare-modal-item" data-type="${ENTRY_TYPES.ZONE}" data-id="${zoneId}">`;
+        html += `<span>${ViewHelpers.escapeHtml(zone.name)}</span>`;
+        html += `</button>`;
+      }
+    }
+    
+    // 레시피
+    const recipes = this.customRecipeManager.getAllRecipes();
+    for (const recipe of recipes) {
+      if (!this._isItemSelected(currentGroup, ENTRY_TYPES.RECIPE, recipe.id)) {
+        html += `<button class="compare-modal-item" data-type="${ENTRY_TYPES.RECIPE}" data-id="${recipe.id}">`;
+        html += `<span>${ViewHelpers.escapeHtml(recipe.name)}</span>`;
+        html += `</button>`;
+      }
+    }
+    
+    html += '</div>';
+    return html;
+  }
+
+  /**
+   * 항목이 이미 선택되었는지 확인
+   * @private
+   */
+  _isItemSelected(group, type, id) {
+    return group.items.some(item => item.type === type && item.id === id);
+  }
+
+  /**
+   * 이벤트 리스너 연결
+   * @private
+   */
+  _attachEvents(container) {
+    this._attachGroupManagementEvents(container);
+    this._attachCompareEvents(container);
+  }
+
+  /**
+   * 그룹 관리 이벤트 연결
+   * @private
+   */
+  _attachGroupManagementEvents(container) {
+    // 그룹 추가
+    const addGroupBtn = container.querySelector('.add-compare-group-btn');
+    if (addGroupBtn) {
+      addGroupBtn.addEventListener('click', () => this._addGroup());
+    }
+
+    // 그룹 선택
+    const groupItems = container.querySelectorAll('.compare-group-item');
+    groupItems.forEach(item => {
+      item.addEventListener('click', () => {
+        this.selectedGroupIndex = parseInt(item.dataset.index);
+        this.render(document);
+      });
+    });
+
+    // 그룹 이름 변경
+    const nameInput = container.querySelector('.compare-group-name-input');
+    if (nameInput) {
+      const debouncedUpdate = ViewHelpers.debounce(() => {
+        this.compareGroups[this.selectedGroupIndex].name = nameInput.value;
+        this._saveToStorage();
+        this._updateSidebar(container);
+      }, UI_CONFIG.DEBOUNCE_DELAY);
+      
+      nameInput.addEventListener('input', debouncedUpdate);
+    }
+
+    // 그룹 삭제
+    const deleteGroupBtn = container.querySelector('.delete-compare-group-btn');
+    if (deleteGroupBtn) {
+      deleteGroupBtn.addEventListener('click', () => this._deleteGroup());
+    }
+  }
+
+  /**
+   * 비교 항목 이벤트 연결
+   * @private
+   */
+  _attachCompareEvents(container) {
+    // 항목 추가
+    const addBtn = container.querySelector('.compare-add-btn');
+    if (addBtn) {
+      addBtn.addEventListener('click', () => this._showSelectionModal());
+    }
+
+    // 항목 제거
+    const removeBtns = container.querySelectorAll('.compare-row-remove');
+    removeBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const index = parseInt(btn.dataset.index);
+        this._removeItem(index);
+      });
+    });
+  }
+
+  /**
+   * 그룹 추가
+   * @private
+   */
+  _addGroup() {
+    const newGroup = {
+      id: this.nextGroupId++,
+      name: `비교 그룹 ${this.nextGroupId - 1}`,
+      items: []
+    };
+    this.compareGroups.push(newGroup);
+    this.selectedGroupIndex = this.compareGroups.length - 1;
+    this._saveToStorage();
+    this.render(document);
+  }
+
+  /**
+   * 그룹 삭제
+   * @private
+   */
+  _deleteGroup() {
+    if (this.compareGroups.length === UI_CONFIG.MIN_COMPARE_GROUPS) {
+      alert(ERROR_MESSAGES.MIN_GROUPS);
+      return;
+    }
+    this.compareGroups.splice(this.selectedGroupIndex, 1);
+    this.selectedGroupIndex = Math.max(0, this.selectedGroupIndex - 1);
+    this._saveToStorage();
+    this.render(document);
+  }
+
+  /**
+   * 항목 제거
+   * @private
+   */
+  _removeItem(index) {
+    this.compareGroups[this.selectedGroupIndex].items.splice(index, 1);
+    this._saveToStorage();
+    this.render(document);
+  }
+
+  /**
+   * 사이드바만 업데이트
+   * @private
+   */
+  _updateSidebar(container) {
+    const sidebar = container.querySelector('.compare-groups-list');
+    if (!sidebar) return;
+
+    let html = '';
+    for (let i = 0; i < this.compareGroups.length; i++) {
+      const group = this.compareGroups[i];
+      const isActive = i === this.selectedGroupIndex;
+      html += ViewHelpers.createSidebarItemHtml(
+        group.name,
+        `(${group.items.length})`,
+        isActive,
+        `data-index="${i}"`,
+        'compare-group-item'
+      );
+    }
+    sidebar.innerHTML = html;
+    
+    // 이벤트 재등록
+    const groupItems = sidebar.querySelectorAll('.compare-group-item');
+    groupItems.forEach(item => {
+      item.addEventListener('click', () => {
+        this.selectedGroupIndex = parseInt(item.dataset.index);
+        this.render(document);
+      });
+    });
+  }
+
+  /**
+   * IO 계산
+   * @private
+   */
+  _calculateIO(item) {
+    if (item.type === ENTRY_TYPES.ZONE) {
+      return item.data.calculateIO(this.allRecipes, this.zones);
+    }
+    return {
+      ingredients: item.data.ingredients || [],
+      results: item.data.results || []
+    };
+  }
+
+  /**
+   * localStorage에 저장
+   * @private
+   */
+  _saveToStorage() {
     try {
-        if (type === "recipes" && loadedData && loadedData.recipes) {
-            // Search in all recipe categories
-            for (const category of Object.values(loadedData.recipes)) {
-                if (Array.isArray(category)) {
-                    const recipe = category.find(r => r.name === id || r.id === id);
-                    if (recipe) {
-                        // If recipe has its own icon, use it
-                        if (recipe.icon) {
-                            return {
-                                path: recipe.icon,
-                                size: recipe.icon_size || 64,
-                                mipmaps: recipe.mipmap_count || 0
-                            };
-                        }
-                        
-                        // Otherwise, use the first result's icon
-                        if (recipe.results && recipe.results.length > 0) {
-                            const firstResult = recipe.results[0];
-                            const resultName = firstResult.name || firstResult[0]; // Handle both object and array format
-                            if (resultName) {
-                                // Recursively get the item's icon
-                                return getIconInfo("items", resultName, loadedData);
-                            }
-                        }
-                        
-                        return null;
-                    }
-                }
-            }
-        }
-        else if (loadedData && loadedData.entries) {
-            // Search in entries with priority: item > module > fluid
-            // If first match has no icon, try other types
-            const searchTypes = ['item', 'module', 'fluid'];
-            
-            for (const searchType of searchTypes) {
-                const entry = loadedData.entries.find(e => e.name === id && e.type === searchType);
-                if (entry && entry.icon) {
-                    // Return icon path and metadata
-                    return {
-                        path: entry.icon,
-                        size: entry.icon_size || 64,
-                        mipmaps: entry.mipmap_count || (entry.pictures && entry.pictures[0] ? entry.pictures[0].mipmap_count : 0)
-                    };
-                }
-            }
-            
-            // If no entry with icon found, return the first matching entry even without icon
-            const anyEntry = loadedData.entries.find(e => e.name === id);
-            if (anyEntry) {
-                return {
-                    path: anyEntry.icon || null,
-                    size: anyEntry.icon_size || 64,
-                    mipmaps: anyEntry.mipmap_count || (anyEntry.pictures && anyEntry.pictures[0] ? anyEntry.pictures[0].mipmap_count : 0)
-                };
-            }
-        }
+      const data = {
+        groups: this.compareGroups.map(g => ({
+          id: g.id,
+          name: g.name,
+          items: g.items.map(item => ({ type: item.type, id: item.id }))
+        })),
+        nextGroupId: this.nextGroupId,
+        selectedIndex: this.selectedGroupIndex
+      };
+      localStorage.setItem(STORAGE_KEYS.COMPARE_GROUPS, JSON.stringify(data));
     } catch (e) {
-        console.warn(`Error getting icon info for ${type}/${id}:`, e);
+      console.error('Failed to save compare groups:', e);
     }
-    return null;
-}
+  }
 
-// Helper: create an icon element with tooltip
-function createIconWithTooltip(type, id, amount, locale, multiplier = 1, loadedData = null) {
-    const container = document.createElement("div");
-    container.className = "icon-container";
-    
-    const icon = document.createElement("img");
-    icon.className = "item-icon";
-    icon.alt = locale.itemName(id);
-    
-    // Start with default icon to avoid 404 errors
-    icon.src = "data/default-icon.svg";
-    
-    // Try to get icon info from data
-    const iconInfo = getIconInfo(type, id, loadedData);
-    if (iconInfo && iconInfo.path) {
-        const testImg = new Image();
-        testImg.onload = function() {
-            // Icon exists, use it
-            icon.src = iconInfo.path;
-            
-            const iconSize = iconInfo.size || 64;
-            icon.style.width = iconSize + "px";
-            icon.style.height = iconSize + "px";
-            icon.style.objectFit = 'none';
-            icon.style.objectPosition = '0 0';
-        };
-        testImg.onerror = function() {
-            // Icon doesn't exist, keep default and log warning
-            console.warn(`Icon not found at path: ${iconInfo.path} for ${type}/${id}`);
-        };
-        testImg.src = iconInfo.path;
-    } else {
-        console.warn(`No icon path found in data for ${type}/${id}`);
+  /**
+   * localStorage에서 로드
+   * @private
+   */
+  _loadFromStorage() {
+    try {
+      const data = localStorage.getItem(STORAGE_KEYS.COMPARE_GROUPS);
+      if (!data) return;
+
+      const parsed = JSON.parse(data);
+      if (!parsed || !ViewHelpers.isValidArray(parsed.groups)) return;
+
+      this.compareGroups = parsed.groups.map(g => ({
+        id: g.id,
+        name: g.name,
+        items: g.items.map(item => {
+          const data = item.type === ENTRY_TYPES.ZONE
+            ? this.zones.get(item.id)
+            : this.customRecipeManager.getRecipe(item.id);
+          return data ? { type: item.type, id: item.id, data } : null;
+        }).filter(Boolean)
+      }));
+
+      this.nextGroupId = parsed.nextGroupId || this.compareGroups.length + 1;
+      this.selectedGroupIndex = Math.min(
+        parsed.selectedIndex || 0,
+        this.compareGroups.length - 1
+      );
+    } catch (e) {
+      console.error('Failed to load compare groups:', e);
     }
-    
-    //const amountLabel = document.createElement("div");
-    //amountLabel.className = "icon-amount";
-    //amountLabel.textContent = (amount * multiplier).toFixed(2);
-    
-    container.appendChild(icon);
-    
-    return container;
-}
-
-// Render a recipe table. `productRecipes` is an array of top-level Recipe objects.
-// This function will build per-recipe expansion columns (levels) internally
-// usinolver.compare(..., "per_item")` and then render the grid.
-export async function renderRecipeTable(productRecipes, productId, targetCount, recipesByProduct, locale, multiplier = 1, loadedData = null) {
-    const container = document.getElementById("result");
-    container.innerHTML = "";
-
-    if (!productRecipes || productRecipes.length === 0) return;
-
-    // Build columns using shared builder
-    const columns = productRecipes.map(r => buildRecipeNodes(r, productId, targetCount, recipesByProduct));
-    const cols = columns.length;
-
-    const table = document.createElement("div");
-    table.className = "recipe-compare-table";
-    table.style.gridTemplateColumns = `repeat(${cols}, 1fr)`;
-
-    // Header row: recipe name + outputs (for each top recipe, take level0 first item)
-    const headerRow = document.createElement("div");
-    headerRow.className = "recipe-compare-row header";
-
-    const bodyRow = document.createElement("div");
-    bodyRow.className = "recipe-compare-row";
-
-    // Build header cell and column body in a single loop so each column's
-    // content is created together (clearer logical grouping).
-    for (let c = 0; c < cols; c++) {
-        const col = columns[c];
-
-        // Header cell
-        const headerCell = document.createElement("div");
-        headerCell.className = "recipe-compare-cell header-cell";
-        const firstNode = (col.recipeNodes || [])[0] || {};
-
-        const name = document.createElement("div");
-        name.className = "recipe-name";
-        
-        // Recipe icon
-        if (firstNode.recipeId) {
-            const recipeIcon = createIconWithTooltip("recipes", firstNode.recipeId, 1, locale, 1, loadedData);
-            recipeIcon.classList.add("recipe-icon");
-            name.appendChild(recipeIcon);
-        }
-        
-        const nameText = document.createElement("span");
-        nameText.textContent = (firstNode.recipeId ? locale.recipeName(firstNode.recipeId) : firstNode.name) || "";
-        name.appendChild(nameText);
-        headerCell.appendChild(name);
-
-        const outList = document.createElement("div");
-        outList.className = "icon-list outputs-list";
-        for (const [outId, amount] of Object.entries(firstNode.outputs || {})) {
-            const iconEl = createIconWithTooltip("items", outId, amount, locale, multiplier, loadedData);
-            outList.appendChild(iconEl);
-        }
-        headerCell.appendChild(outList);
-        headerRow.appendChild(headerCell);
-
-        // Column body (stack of nodes)
-        const cell = document.createElement("div");
-        cell.className = "recipe-compare-cell";
-
-        const nodes = col.recipeNodes || [];
-        for (const node of nodes) {
-            const block = document.createElement("div");
-            block.className = "recipe-block";
-
-            const rname = document.createElement("div");
-            rname.className = "recipe-name small";
-            
-            // Recipe icon for sub-recipes (no text)
-            if (node.recipeId) {
-                const recipeIcon = createIconWithTooltip("recipes", node.recipeId, 1, locale, 1, loadedData);
-                recipeIcon.classList.add("recipe-icon-small");
-                rname.appendChild(recipeIcon);
-            }
-            
-            block.appendChild(rname);
-
-            const outList2 = document.createElement("div");
-            outList2.className = "icon-list outputs-list";
-            outList2.style.display = "flex";
-            outList2.style.flexDirection = "row";
-            outList2.style.flexWrap = "wrap";
-            outList2.style.backgroundColor = "#4a9eff";
-            outList2.style.border = "none";
-            for (const [outId, amount] of Object.entries(node.outputs || {})) {
-                const iconEl = createIconWithTooltip("items", outId, amount, locale, multiplier, loadedData);
-                outList2.appendChild(iconEl);
-            }
-            block.appendChild(outList2);
-
-            const ingList = document.createElement("div");
-            ingList.className = "icon-list inputs-list";
-            ingList.style.display = "flex";
-            ingList.style.flexDirection = "row";
-            ingList.style.flexWrap = "wrap";
-            ingList.style.backgroundColor = "#d4a574";
-            ingList.style.border = "none";
-            for (const [inputId, amount] of Object.entries(node.inputs || {})) {
-                const iconEl = createIconWithTooltip("items", inputId, amount, locale, multiplier, loadedData);
-                ingList.appendChild(iconEl);
-            }
-            block.appendChild(ingList);
-
-            cell.appendChild(block);
-        }
-
-        bodyRow.appendChild(cell);
-    }
-
-    table.appendChild(headerRow);
-    table.appendChild(bodyRow);
-
-    container.appendChild(table);
+  }
 }
