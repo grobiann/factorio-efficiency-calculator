@@ -7,13 +7,29 @@
 </head>
 <body>
 
-  <h1 id="pageTitle">로켓 부품 레시피 효율 비교</h1>
+  <h1 id="pageTitle">Factorio 효율 계산기</h1>
 
-  <!-- 비교 대상 선택 (product / item) -->
-  <label>
-    비교 대상:
-    <select id="productSelect"></select>
-  </label>
+  <!-- 탭 내비게이션 -->
+  <div class="tab-navigation">
+    <button class="tab-btn active" data-tab="production-zone">생산구역</button>
+    <button class="tab-btn" data-tab="production-line">생산라인</button>
+    <button class="tab-btn" data-tab="custom-recipe">레시피</button>
+  </div>
+
+  <!-- 탭 컨텐츠 영역 -->
+  <div class="tab-contents">
+    <!-- 생산구역 탭 -->
+    <div id="production-zone-tab" class="tab-content active">
+      <div class="zone-management"></div>
+    </div>
+
+    <!-- 생산라인 탭 (기존 기능) -->
+    <div id="production-line-tab" class="tab-content">
+      <!-- 비교 대상 선택 (product / item) -->
+      <label>
+        비교 대상:
+        <select id="productSelect"></select>
+      </label>
 
   <!-- 상단 우측 아이콘 버튼들 -->
   <div class="top-right-buttons">
@@ -58,6 +74,17 @@
 
   <!-- 결과 출력 영역 -->
   <div id="result"></div>
+    </div>
+
+    <!-- 커스텀 레시피 탭 -->
+    <div id="custom-recipe-tab" class="tab-content">
+      <div class="recipe-management">
+        <h2>커스텀 레시피 관리</h2>
+        <button id="addCustomRecipeBtn" class="btn-primary">새 레시피 추가</button>
+        <div id="customRecipeList" class="custom-recipe-list"></div>
+      </div>
+    </div>
+  </div>
 
   <!-- JS 진입점 -->
   <script type="module" src="main.js"></script>

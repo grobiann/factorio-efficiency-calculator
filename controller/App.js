@@ -5,6 +5,8 @@ import { renderSummaryTable } from "../view/SummaryView.js";
 import { Locale } from "../model/Locale.js";
 import { DatasetManager } from "../model/DatasetManager.js";
 import { DatasetConfigView } from "../view/DatasetConfigView.js";
+import { ProductionZoneView } from "../view/ProductionZoneView.js";
+import { CustomRecipeView } from "../view/CustomRecipeView.js";
 
 export async function startApp() {
   // Initialize dataset manager
@@ -227,6 +229,89 @@ export async function startApp() {
       }, 300);
     };
   }
+
+  // Initialize production zone view
+  const allRecipes = {};
+  for (const [cat, recs] of Object.entries(data)) {
+    for (const r of (recs || [])) {
+      const recipe = new Recipe(r);
+      allRecipes[recipe.id] = recipe;
+    }
+  }
+  const productionZoneView = new ProductionZoneView(allRecipes, recipesByProduct, locale, loadedData);
+  productionZoneView.render(document.getElementById('production-zone-tab'));
+
+  // Initialize custom recipe view
+  const customRecipeView = new CustomRecipeView(loadedData, locale);
+  customRecipeView.render(document.getElementById('custom-recipe-tab'));
+
+  // Tab switching logic
+  const tabBtns = document.querySelectorAll('.tab-btn');
+  const tabContents = document.querySelectorAll('.tab-content');
+
+  tabBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const targetTab = btn.dataset.tab;
+      
+      // Update active states
+      tabBtns.forEach(b => b.classList.remove('active'));
+      tabContents.forEach(c => c.classList.remove('active'));
+      
+      btn.classList.add('active');
+      document.getElementById(`${targetTab}-tab`).classList.add('active');
+
+      // Render tab content if needed
+      if (targetTab === 'production-zone') {
+        productionZoneView.render(document.getElementById('production-zone-tab'));
+      } else if (targetTab === 'custom-recipe') {
+        customRecipeView.render(document.getElementById('custom-recipe-tab'));
+      }
+    });
+  });
+
+  // Add custom recipe button
+  const addCustomRecipeBtn = document.getElementById('addCustomRecipeBtn');
+  if (addCustomRecipeBtn) {
+    addCustomRecipeBtn.onclick = () => customRecipeView.addRecipe();
+  }
+
+  // Integrate custom recipes and production zones into recipesByProduct
+  function integrateCustomContent() {
+    // Reset to base recipes
+    recipesByProduct = buildRecipeMap(data);
+    
+    // Rebuild allRecipes map
+    const allRecipes = {};
+    for (const [cat, recs] of Object.entries(data)) {
+      for (const r of (recs || [])) {
+        const recipe = new Recipe(r);
+        allRecipes[recipe.id] = recipe;
+      }
+    }
+    productionZoneView.allRecipes = allRecipes;
+    productionZoneView.loadedData = loadedData;
+    
+    // Integrate custom recipes
+    customRecipeView.getManager().integrateIntoRecipeMap(recipesByProduct);
+    
+    // Integrate production zones
+    productionZoneView.integrateIntoRecipeMap(recipesByProduct);
+    
+    // Update products list
+    productsWithRecipes = Object.keys(recipesByProduct);
+    buildProductOptions();
+  }
+
+  // Call integration initially
+  integrateCustomContent();
+
+  // Re-integrate when switching back to production line tab
+  window.addEventListener('custom-content-updated', () => {
+    integrateCustomContent();
+    if (lastRate !== null) {
+      performCalculation(lastRate);
+    }
+  });
 
   // Initialize title and product list on load
   buildProductOptions();
