@@ -151,8 +151,8 @@
         "percent": 75
       }
     ],
-    "open_sound": "sounds.machine_open",
-    "close_sound": "sounds.machine_close",
+    "open_sound": null,
+    "close_sound": null,
     "starting_attack_sound": [
       {
         "filename": "__Krastorio2Assets__/sounds/weapons/laser-artillery-turret-starting_attack_sound.ogg",

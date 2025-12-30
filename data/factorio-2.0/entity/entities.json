@@ -61,27 +61,27 @@
     "pictures": [
       {
         "layers": [
-          "character_animations.level1.dead",
-          "character_animations.level1.dead_mask",
-          "character_animations.level1.dead_shadow"
+          null,
+          null,
+          null
         ]
       },
       {
         "layers": [
-          "character_animations.level1.dead",
-          "character_animations.level1.dead_mask",
-          "character_animations.level2addon.dead",
-          "character_animations.level2addon.dead_mask",
-          "character_animations.level1.dead_shadow"
+          null,
+          null,
+          null,
+          null,
+          null
         ]
       },
       {
         "layers": [
-          "character_animations.level1.dead",
-          "character_animations.level1.dead_mask",
-          "character_animations.level3addon.dead",
-          "character_animations.level3addon.dead_mask",
-          "character_animations.level1.dead_shadow"
+          null,
+          null,
+          null,
+          null,
+          null
         ]
       }
     ],
@@ -218,42 +218,42 @@
       {
         "idle": {
           "layers": [
-            "character_animations.level1.idle",
-            "character_animations.level1.idle_mask",
-            "character_animations.level1.idle_shadow"
+            null,
+            null,
+            null
           ]
         },
         "idle_with_gun": {
           "layers": [
-            "character_animations.level1.idle_gun",
-            "character_animations.level1.idle_gun_mask",
-            "character_animations.level1.idle_gun_shadow"
+            null,
+            null,
+            null
           ]
         },
         "mining_with_tool": {
           "layers": [
-            "character_animations.level1.mining_tool",
-            "character_animations.level1.mining_tool_mask",
-            "character_animations.level1.mining_tool_shadow"
+            null,
+            null,
+            null
           ]
         },
         "running_with_gun": {
           "layers": [
-            "character_animations.level1.running_gun",
-            "character_animations.level1.running_gun_mask",
-            "character_animations.level1.running_gun_shadow"
+            null,
+            null,
+            null
           ]
         },
         "flipped_shadow_running_with_gun": {
           "layers": [
-            "character_animations.level1.running_gun_shadow_flipped"
+            null
           ]
         },
         "running": {
           "layers": [
-            "character_animations.level1.running",
-            "character_animations.level1.running_mask",
-            "character_animations.level1.running_shadow"
+            null,
+            null,
+            null
           ]
         }
       },
@@ -264,58 +264,58 @@
         ],
         "idle": {
           "layers": [
-            "character_animations.level1.idle",
-            "character_animations.level1.idle_mask",
-            "character_animations.level2addon.idle",
-            "character_animations.level2addon.idle_mask",
-            "character_animations.level1.idle_shadow",
-            "character_animations.level2addon.idle_shadow"
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
           ]
         },
         "idle_with_gun": {
           "layers": [
-            "character_animations.level1.idle_gun",
-            "character_animations.level1.idle_gun_mask",
-            "character_animations.level2addon.idle_gun",
-            "character_animations.level2addon.idle_gun_mask",
-            "character_animations.level1.idle_gun_shadow",
-            "character_animations.level2addon.idle_gun_shadow"
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
           ]
         },
         "mining_with_tool": {
           "layers": [
-            "character_animations.level1.mining_tool",
-            "character_animations.level1.mining_tool_mask",
-            "character_animations.level2addon.mining_tool",
-            "character_animations.level2addon.mining_tool_mask",
-            "character_animations.level1.mining_tool_shadow",
-            "character_animations.level2addon.mining_tool_shadow"
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
           ]
         },
         "running_with_gun": {
           "layers": [
-            "character_animations.level1.running_gun",
-            "character_animations.level1.running_gun_mask",
-            "character_animations.level2addon.running_gun",
-            "character_animations.level2addon.running_gun_mask",
-            "character_animations.level1.running_gun_shadow",
-            "character_animations.level2addon.running_gun_shadow"
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
           ]
         },
         "flipped_shadow_running_with_gun": {
           "layers": [
-            "character_animations.level1.running_gun_shadow_flipped",
-            "character_animations.level2addon.running_gun_shadow_flipped"
+            null,
+            null
           ]
         },
         "running": {
           "layers": [
-            "character_animations.level1.running",
-            "character_animations.level1.running_mask",
-            "character_animations.level2addon.running",
-            "character_animations.level2addon.running_mask",
-            "character_animations.level1.running_shadow",
-            "character_animations.level2addon.running_shadow"
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
           ]
         }
       },
@@ -326,58 +326,58 @@
         ],
         "idle": {
           "layers": [
-            "character_animations.level1.idle",
-            "character_animations.level1.idle_mask",
-            "character_animations.level3addon.idle",
-            "character_animations.level3addon.idle_mask",
-            "character_animations.level1.idle_shadow",
-            "character_animations.level3addon.idle_shadow"
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
           ]
         },
         "idle_with_gun": {
           "layers": [
-            "character_animations.level1.idle_gun",
-            "character_animations.level1.idle_gun_mask",
-            "character_animations.level3addon.idle_gun",
-            "character_animations.level3addon.idle_gun_mask",
-            "character_animations.level1.idle_gun_shadow",
-            "character_animations.level3addon.idle_gun_shadow"
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
           ]
         },
         "mining_with_tool": {
           "layers": [
-            "character_animations.level1.mining_tool",
-            "character_animations.level1.mining_tool_mask",
-            "character_animations.level3addon.mining_tool",
-            "character_animations.level3addon.mining_tool_mask",
-            "character_animations.level1.mining_tool_shadow",
-            "character_animations.level3addon.mining_tool_shadow"
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
           ]
         },
         "running_with_gun": {
           "layers": [
-            "character_animations.level1.running_gun",
-            "character_animations.level1.running_gun_mask",
-            "character_animations.level3addon.running_gun",
-            "character_animations.level3addon.running_gun_mask",
-            "character_animations.level1.running_gun_shadow",
-            "character_animations.level3addon.running_gun_shadow"
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
           ]
         },
         "flipped_shadow_running_with_gun": {
           "layers": [
-            "character_animations.level1.running_gun_shadow_flipped",
-            "character_animations.level3addon.running_gun_shadow_flipped"
+            null,
+            null
           ]
         },
         "running": {
           "layers": [
-            "character_animations.level1.running",
-            "character_animations.level1.running_mask",
-            "character_animations.level3addon.running",
-            "character_animations.level3addon.running_mask",
-            "character_animations.level1.running_shadow",
-            "character_animations.level3addon.running_shadow"
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
           ]
         }
       }
@@ -430,7 +430,7 @@
       10,
       21
     ],
-    "synced_footstep_particle_triggers": "movement_triggers.character",
+    "synced_footstep_particle_triggers": null,
     "footprint_particles": [
       {
         "tiles": [
@@ -509,10 +509,10 @@
     "max_health": 200,
     "corpse": "stone-furnace-remnants",
     "dying_explosion": "stone-furnace-explosion",
-    "repair_sound": "sounds.manual_repair",
+    "repair_sound": null,
     "mined_sound": "sounds.deconstruct_bricks(0.8)",
-    "open_sound": "sounds.machine_open",
-    "close_sound": "sounds.machine_close",
+    "open_sound": null,
+    "close_sound": null,
     "allowed_effects": [
       "speed",
       "consumption",
@@ -717,11 +717,11 @@
       "result": "raw-fish",
       "count": 5
     },
-    "mined_sound": "sounds.mine_fish",
+    "mined_sound": null,
     "max_health": 20,
     "subgroup": "creatures",
     "order": "b-a",
-    "factoriopedia_simulation": "simulations.factoriopedia_fish",
+    "factoriopedia_simulation": null,
     "collision_box": [
       [
         -0.75,
@@ -821,7 +821,7 @@
       "pipe_connections": [
         {
           "flow_direction": "input-output",
-          "direction": "defines.direction.west",
+          "direction": null,
           "position": [
             -1,
             0.5
@@ -829,7 +829,7 @@
         },
         {
           "flow_direction": "input-output",
-          "direction": "defines.direction.east",
+          "direction": null,
           "position": [
             1,
             0.5
@@ -845,7 +845,7 @@
       "pipe_connections": [
         {
           "flow_direction": "output",
-          "direction": "defines.direction.north",
+          "direction": null,
           "position": [
             0,
             -0.5
@@ -897,8 +897,8 @@
       "fade_in_ticks": 4,
       "fade_out_ticks": 20
     },
-    "open_sound": "sounds.steam_open",
-    "close_sound": "sounds.steam_close",
+    "open_sound": null,
+    "close_sound": null,
     "pictures": {
       "north": {
         "structure": {
@@ -1182,8 +1182,8 @@
     "max_health": 200,
     "corpse": "iron-chest-remnants",
     "dying_explosion": "iron-chest-explosion",
-    "open_sound": "sounds.metallic_chest_open",
-    "close_sound": "sounds.metallic_chest_close",
+    "open_sound": null,
+    "close_sound": null,
     "resistances": [
       {
         "type": "fire",
@@ -1286,8 +1286,8 @@
     "maximum_wire_distance": 7.5,
     "supply_area_distance": 2.5,
     "impact_category": "wood",
-    "open_sound": "sounds.electric_network_open",
-    "close_sound": "sounds.electric_network_close",
+    "open_sound": null,
+    "close_sound": null,
     "fast_replaceable_group": "electric-pole",
     "pictures": {
       "layers": [
@@ -1439,7 +1439,7 @@
       "pipe_connections": [
         {
           "flow_direction": "input-output",
-          "direction": "defines.direction.south",
+          "direction": null,
           "position": [
             0,
             2
@@ -1447,7 +1447,7 @@
         },
         {
           "flow_direction": "input-output",
-          "direction": "defines.direction.north",
+          "direction": null,
           "position": [
             0,
             -2
@@ -1525,8 +1525,8 @@
       }
     ],
     "impact_category": "metal-large",
-    "open_sound": "sounds.machine_open",
-    "close_sound": "sounds.machine_close",
+    "open_sound": null,
+    "close_sound": null,
     "working_sound": {
       "sound": {
         "filename": "__base__/sound/steam-engine-90bpm.ogg",
@@ -1599,7 +1599,7 @@
         "pipe_connections": [
           {
             "flow_direction": "input",
-            "direction": "defines.direction.north",
+            "direction": null,
             "position": [
               0,
               -1
@@ -1618,7 +1618,7 @@
         "pipe_connections": [
           {
             "flow_direction": "output",
-            "direction": "defines.direction.south",
+            "direction": null,
             "position": [
               0,
               1
@@ -1631,8 +1631,8 @@
       }
     ],
     "fluid_boxes_off_when_no_fluid_recipe": true,
-    "open_sound": "sounds.machine_open",
-    "close_sound": "sounds.machine_close",
+    "open_sound": null,
+    "close_sound": null,
     "impact_category": "metal",
     "working_sound": {
       "sound": {
@@ -1785,9 +1785,9 @@
       "scale": 0.5
     },
     "fast_replaceable_group": "inserter",
-    "open_sound": "sounds.inserter_open",
-    "close_sound": "sounds.inserter_close",
-    "working_sound": "sounds.inserter_fast",
+    "open_sound": null,
+    "close_sound": null,
+    "working_sound": null,
     "hand_base_picture": {
       "filename": "__base__/graphics/entity/bulk-inserter/bulk-inserter-hand-base.png",
       "priority": "extra-high",
@@ -1885,8 +1885,8 @@
       ]
     ],
     "damaged_trigger_effect": "hit_effects.entity()",
-    "open_sound": "sounds.machine_open",
-    "close_sound": "sounds.machine_close",
+    "open_sound": null,
+    "close_sound": null,
     "picture_safe": {
       "filename": "__base__/graphics/entity/land-mine/land-mine.png",
       "priority": "medium",
@@ -2006,9 +2006,9 @@
       "scale": 0.7
     },
     "logistic_mode": "passive-provider",
-    "open_sound": "sounds.metallic_chest_open",
-    "close_sound": "sounds.metallic_chest_close",
-    "animation_sound": "sounds.logistics_chest_open",
+    "open_sound": null,
+    "close_sound": null,
+    "animation_sound": null,
     "impact_category": "metal",
     "opened_duration": "logistic_chest_opened_duration",
     "animation": {
@@ -2089,9 +2089,9 @@
       "scale": 0.7
     },
     "logistic_mode": "active-provider",
-    "open_sound": "sounds.metallic_chest_open",
-    "close_sound": "sounds.metallic_chest_close",
-    "animation_sound": "sounds.logistics_chest_open",
+    "open_sound": null,
+    "close_sound": null,
+    "animation_sound": null,
     "impact_category": "metal",
     "opened_duration": "logistic_chest_opened_duration",
     "animation": {
@@ -2173,9 +2173,9 @@
       "scale": 0.7
     },
     "logistic_mode": "storage",
-    "open_sound": "sounds.metallic_chest_open",
-    "close_sound": "sounds.metallic_chest_close",
-    "animation_sound": "sounds.logistics_chest_open",
+    "open_sound": null,
+    "close_sound": null,
+    "animation_sound": null,
     "impact_category": "metal",
     "opened_duration": "logistic_chest_opened_duration",
     "animation": {
@@ -2257,9 +2257,9 @@
     },
     "trash_inventory_size": 20,
     "logistic_mode": "buffer",
-    "open_sound": "sounds.metallic_chest_open",
-    "close_sound": "sounds.metallic_chest_close",
-    "animation_sound": "sounds.logistics_chest_open",
+    "open_sound": null,
+    "close_sound": null,
+    "animation_sound": null,
     "impact_category": "metal",
     "opened_duration": "logistic_chest_opened_duration",
     "animation": {
@@ -2341,9 +2341,9 @@
     },
     "trash_inventory_size": 20,
     "logistic_mode": "requester",
-    "open_sound": "sounds.metallic_chest_open",
-    "close_sound": "sounds.metallic_chest_close",
-    "animation_sound": "sounds.logistics_chest_open",
+    "open_sound": null,
+    "close_sound": null,
+    "animation_sound": null,
     "impact_category": "metal",
     "opened_duration": "logistic_chest_opened_duration",
     "animation": {
@@ -2406,7 +2406,7 @@
     "module_slots": 4,
     "icons_positioning": [
       {
-        "inventory_index": "defines.inventory.assembling_machine_modules",
+        "inventory_index": null,
         "shift": [
           0,
           3.3
@@ -2480,7 +2480,7 @@
     "rocket_entity": "rocket-silo-rocket",
     "times_to_blink": 3,
     "light_blinking_speed": "1 / (3 * 60)",
-    "door_opening_speed": "1 / (4.25 * 60)",
+    "door_opening_speed": 0.00392156862745098,
     "base_engine_light": {
       "intensity": 1,
       "size": 25,
@@ -2543,7 +2543,7 @@
     },
     "door_back_open_offset": [
       1.8,
-      "-1.8 * 0.43299225"
+      -0.77938605
     ],
     "door_front_sprite": {
       "filename": "__base__/graphics/entity/rocket-silo/05-door-front.png",
@@ -2554,7 +2554,7 @@
     },
     "door_front_open_offset": [
       -1.8,
-      "1.8 * 0.43299225"
+      0.77938605
     ],
     "base_day_sprite": {
       "filename": "__base__/graphics/entity/rocket-silo/06-rocket-silo.png",
@@ -2572,7 +2572,7 @@
           "height": 32,
           "shift": [
             1.34375,
-            "0.28125-1.375"
+            -1.09375
           ],
           "scale": 0.5
         },
@@ -2582,7 +2582,7 @@
           "height": 32,
           "shift": [
             2.3125,
-            "0.9375-1.375"
+            -0.4375
           ],
           "scale": 0.5
         },
@@ -2592,7 +2592,7 @@
           "height": 32,
           "shift": [
             2.65625,
-            "1.90625-1.375"
+            0.53125
           ],
           "scale": 0.5
         },
@@ -2602,7 +2602,7 @@
           "height": 32,
           "shift": [
             -2.65625,
-            "1.90625-1.375"
+            0.53125
           ],
           "scale": 0.5
         },
@@ -2612,7 +2612,7 @@
           "height": 32,
           "shift": [
             -2.3125,
-            "0.9375-1.375"
+            -0.4375
           ],
           "scale": 0.5
         },
@@ -2622,7 +2622,7 @@
           "height": 32,
           "shift": [
             -1.34375,
-            "0.28125-1.375"
+            -1.09375
           ],
           "scale": 0.5
         },
@@ -2632,7 +2632,7 @@
           "height": 32,
           "shift": [
             0,
-            "0-1.375"
+            -1.375
           ],
           "scale": 0.5
         }
@@ -2646,7 +2646,7 @@
           "height": 32,
           "shift": [
             2.3125,
-            "2.8125-1.375"
+            1.4375
           ],
           "scale": 0.5
         },
@@ -2656,7 +2656,7 @@
           "height": 32,
           "shift": [
             1.34375,
-            "3.40625-1.375"
+            2.03125
           ],
           "scale": 0.5
         },
@@ -2666,7 +2666,7 @@
           "height": 32,
           "shift": [
             0,
-            "3.75-1.375"
+            2.375
           ],
           "scale": 0.5
         },
@@ -2676,7 +2676,7 @@
           "height": 32,
           "shift": [
             0,
-            "3.75-1.375"
+            2.375
           ],
           "scale": 0.5
         },
@@ -2686,7 +2686,7 @@
           "height": 32,
           "shift": [
             -2.3125,
-            "2.8125-1.375"
+            1.4375
           ],
           "scale": 0.5
         }
@@ -2848,7 +2848,7 @@
     "shadow_slave_entity": "rocket-silo-rocket-shadow",
     "inventory_size": 0,
     "rising_speed": "1 / (7 * 60)",
-    "engine_starting_speed": "1 / (5.5 * 60)",
+    "engine_starting_speed": 0.0030303030303030303,
     "flying_speed": "1 / (2000 * 60)",
     "flying_acceleration": 0.01,
     "icon_draw_specification": {
@@ -3028,8 +3028,8 @@
       0.235,
       0.275
     ],
-    "open_sound": "sounds.mech_large_open",
-    "close_sound": "sounds.mech_large_close",
+    "open_sound": null,
+    "close_sound": null,
     "graphics_set": {
       "water_reflection": {
         "pictures": {
@@ -3097,7 +3097,7 @@
     ],
     "robot_opened_duration": "logistic_chest_opened_duration",
     "robot_animation": "util.sprite_load(\"__base__/graphics/entity/cargo-hubs/hubs/planet-hub-drone-hatch\",\n                      {\n                        frame_count = 7,\n                        scale = 0.5,\n                        shift = {0, -0.5},\n                      })",
-    "robot_animation_sound": "sounds.logistics_chest_open",
+    "robot_animation_sound": null,
     "cargo_station_parameters": {
       "is_input_station": true,
       "is_output_station": false,
@@ -3325,8 +3325,8 @@
     ],
     "draw_logistic_radius_visualization": true,
     "draw_construction_radius_visualization": true,
-    "open_door_trigger_effect": "sounds.roboport_door_open",
-    "close_door_trigger_effect": "sounds.roboport_door_close",
+    "open_door_trigger_effect": null,
+    "close_door_trigger_effect": null,
     "circuit_connector": "circuit_connector_definitions[\"roboport\"]",
     "circuit_wire_max_distance": "default_circuit_wire_max_distance",
     "default_available_logistic_output_signal": {
@@ -3412,28 +3412,28 @@
       "pipe_covers": "pipecoverspictures()",
       "pipe_connections": [
         {
-          "direction": "defines.direction.north",
+          "direction": null,
           "position": [
             -1,
             -1
           ]
         },
         {
-          "direction": "defines.direction.east",
+          "direction": null,
           "position": [
             1,
             1
           ]
         },
         {
-          "direction": "defines.direction.south",
+          "direction": null,
           "position": [
             1,
             1
           ]
         },
         {
-          "direction": "defines.direction.west",
+          "direction": null,
           "position": [
             -1,
             -1
@@ -3509,8 +3509,8 @@
     },
     "flow_length_in_ticks": 360,
     "impact_category": "metal-large",
-    "open_sound": "sounds.metal_large_open",
-    "close_sound": "sounds.metal_large_close",
+    "open_sound": null,
+    "close_sound": null,
     "working_sound": {
       "sound": {
         "filename": "__base__/sound/storage-tank.ogg",
@@ -3599,7 +3599,7 @@
       "pipe_covers": "pipecoverspictures()",
       "pipe_connections": [
         {
-          "direction": "defines.direction.north",
+          "direction": null,
           "position": [
             0,
             -0.5
@@ -3607,7 +3607,7 @@
           "flow_direction": "output"
         },
         {
-          "direction": "defines.direction.south",
+          "direction": null,
           "position": [
             0,
             0.5
@@ -3624,8 +3624,8 @@
     "energy_usage": "29kW",
     "pumping_speed": 20,
     "impact_category": "metal",
-    "open_sound": "sounds.machine_open",
-    "close_sound": "sounds.machine_close",
+    "open_sound": null,
+    "close_sound": null,
     "animations": {
       "north": {
         "filename": "__base__/graphics/entity/pump/pump-north.png",
@@ -3669,7 +3669,7 @@
       }
     },
     "fluid_wagon_connector_frame_count": 35,
-    "fluid_wagon_connector_alignment_tolerance": "2.0 / 32.0",
+    "fluid_wagon_connector_alignment_tolerance": 0.0625,
     "fluid_wagon_connector_graphics": "require(\"prototypes.entity.pump-connector\")",
     "fluid_animation": {
       "north": {
@@ -3781,7 +3781,7 @@
       "pipe_covers": "pipecoverspictures()",
       "pipe_connections": [
         {
-          "direction": "defines.direction.north",
+          "direction": null,
           "position": [
             0,
             0
@@ -3789,7 +3789,7 @@
           "flow_direction": "output"
         },
         {
-          "direction": "defines.direction.south",
+          "direction": null,
           "position": [
             0,
             0
@@ -3869,7 +3869,7 @@
       "pipe_covers": "pipecoverspictures()",
       "pipe_connections": [
         {
-          "direction": "defines.direction.north",
+          "direction": null,
           "position": [
             0,
             0
@@ -3877,7 +3877,7 @@
           "flow_direction": "output"
         },
         {
-          "direction": "defines.direction.south",
+          "direction": null,
           "position": [
             0,
             0
@@ -3957,7 +3957,7 @@
       "pipe_covers": "pipecoverspictures()",
       "pipe_connections": [
         {
-          "direction": "defines.direction.north",
+          "direction": null,
           "position": [
             0,
             0
@@ -3965,7 +3965,7 @@
           "flow_direction": "output"
         },
         {
-          "direction": "defines.direction.south",
+          "direction": null,
           "position": [
             0,
             0
@@ -4038,8 +4038,8 @@
       ]
     ],
     "damaged_trigger_effect": "hit_effects.entity()",
-    "open_sound": "sounds.machine_open",
-    "close_sound": "sounds.machine_close",
+    "open_sound": null,
+    "close_sound": null,
     "picture": {
       "filename": "__base__/graphics/entity/market/market.png",
       "width": 156,
@@ -4120,8 +4120,8 @@
       ]
     },
     "impact_category": "metal",
-    "open_sound": "sounds.electric_network_open",
-    "close_sound": "sounds.electric_network_close",
+    "open_sound": null,
+    "close_sound": null,
     "working_sound": {
       "sound": {
         "filename": "__base__/sound/substation.ogg",
@@ -4383,7 +4383,7 @@
     "module_slots": 2,
     "icons_positioning": [
       {
-        "inventory_index": "defines.inventory.beacon_modules",
+        "inventory_index": null,
         "shift": [
           0,
           0
@@ -4416,8 +4416,8 @@
     "show_when_smoke_off": true,
     "particle_count": 16,
     "particle_spread": [
-      "3.6 * 1.05",
-      "3.6 * 0.6 * 1.05"
+      3.7800000000000002,
+      2.2680000000000002
     ],
     "particle_distance_scale_factor": 0.5,
     "particle_scale_factor": [
@@ -4479,7 +4479,7 @@
             },
             {
               "type": "play-sound",
-              "sound": "sounds.poison_capsule_explosion"
+              "sound": null
             }
           ]
         }
@@ -4487,7 +4487,7 @@
       {
         "type": "cluster",
         "cluster_count": 11,
-        "distance": "8 * 1.1",
+        "distance": 8.8,
         "distance_deviation": 2,
         "action_delivery": {
           "type": "instant",
@@ -4801,7 +4801,7 @@
         }
       ]
     },
-    "turret_rotation_speed": "0.35 / 60",
+    "turret_rotation_speed": 0.005833333333333333,
     "turret_return_timeout": 300,
     "sound_no_fuel": {
       "filename": "__base__/sound/fight/tank-no-fuel-1.ogg",
@@ -4889,7 +4889,7 @@
     "tank_driving": true,
     "weight": 20000,
     "inventory_size": 80,
-    "track_particle_triggers": "movement_triggers.tank",
+    "track_particle_triggers": null,
     "guns": [
       "tank-cannon",
       "tank-machine-gun",
@@ -4907,8 +4907,8 @@
     "show_when_smoke_off": true,
     "particle_count": 24,
     "particle_spread": [
-      "3.6 * 1.05",
-      "3.6 * 0.6 * 1.05"
+      3.7800000000000002,
+      2.2680000000000002
     ],
     "particle_distance_scale_factor": 0.5,
     "particle_scale_factor": [
@@ -4917,8 +4917,8 @@
     ],
     "particle_duration_variation": "60 * 3",
     "wave_speed": [
-      "0.5 / 80",
-      "0.5 / 60"
+      0.00625,
+      0.008333333333333333
     ],
     "wave_distance": [
       1,
@@ -5148,8 +5148,8 @@
       ]
     },
     "impact_category": "metal-large",
-    "open_sound": "sounds.metal_large_open",
-    "close_sound": "sounds.metal_large_close",
+    "open_sound": null,
+    "close_sound": null,
     "working_sound": {
       "sound": {
         "filename": "__base__/sound/oil-refinery.ogg"
@@ -5165,7 +5165,7 @@
         "pipe_connections": [
           {
             "flow_direction": "input",
-            "direction": "defines.direction.south",
+            "direction": null,
             "position": [
               -1,
               2
@@ -5180,7 +5180,7 @@
         "pipe_connections": [
           {
             "flow_direction": "input",
-            "direction": "defines.direction.south",
+            "direction": null,
             "position": [
               1,
               2
@@ -5195,7 +5195,7 @@
         "pipe_connections": [
           {
             "flow_direction": "output",
-            "direction": "defines.direction.north",
+            "direction": null,
             "position": [
               -2,
               -2
@@ -5210,7 +5210,7 @@
         "pipe_connections": [
           {
             "flow_direction": "output",
-            "direction": "defines.direction.north",
+            "direction": null,
             "position": [
               0,
               -2
@@ -5225,7 +5225,7 @@
         "pipe_connections": [
           {
             "flow_direction": "output",
-            "direction": "defines.direction.north",
+            "direction": null,
             "position": [
               2,
               -2
@@ -5460,7 +5460,7 @@
         "pipe_connections": [
           {
             "flow_direction": "input",
-            "direction": "defines.direction.north",
+            "direction": null,
             "position": [
               -1,
               -1
@@ -5475,7 +5475,7 @@
         "pipe_connections": [
           {
             "flow_direction": "input",
-            "direction": "defines.direction.north",
+            "direction": null,
             "position": [
               1,
               -1
@@ -5490,7 +5490,7 @@
         "pipe_connections": [
           {
             "flow_direction": "output",
-            "direction": "defines.direction.south",
+            "direction": null,
             "position": [
               -1,
               1
@@ -5505,7 +5505,7 @@
         "pipe_connections": [
           {
             "flow_direction": "output",
-            "direction": "defines.direction.south",
+            "direction": null,
             "position": [
               1,
               1
@@ -5586,8 +5586,8 @@
     "energy_production": "500GW",
     "energy_usage": "0kW",
     "picture": "accumulator_picture( {1, 0.8, 1, 1} )",
-    "open_sound": "sounds.machine_open",
-    "close_sound": "sounds.machine_close",
+    "open_sound": null,
+    "close_sound": null,
     "impact_category": "metal"
   },
   {
@@ -5700,84 +5700,84 @@
             -2,
             -2
           ],
-          "direction": "defines.direction.north"
+          "direction": null
         },
         {
           "position": [
             0,
             -2
           ],
-          "direction": "defines.direction.north"
+          "direction": null
         },
         {
           "position": [
             2,
             -2
           ],
-          "direction": "defines.direction.north"
+          "direction": null
         },
         {
           "position": [
             2,
             -2
           ],
-          "direction": "defines.direction.east"
+          "direction": null
         },
         {
           "position": [
             2,
             0
           ],
-          "direction": "defines.direction.east"
+          "direction": null
         },
         {
           "position": [
             2,
             2
           ],
-          "direction": "defines.direction.east"
+          "direction": null
         },
         {
           "position": [
             2,
             2
           ],
-          "direction": "defines.direction.south"
+          "direction": null
         },
         {
           "position": [
             0,
             2
           ],
-          "direction": "defines.direction.south"
+          "direction": null
         },
         {
           "position": [
             -2,
             2
           ],
-          "direction": "defines.direction.south"
+          "direction": null
         },
         {
           "position": [
             -2,
             2
           ],
-          "direction": "defines.direction.west"
+          "direction": null
         },
         {
           "position": [
             -2,
             0
           ],
-          "direction": "defines.direction.west"
+          "direction": null
         },
         {
           "position": [
             -2,
             -2
           ],
-          "direction": "defines.direction.west"
+          "direction": null
         }
       ],
       "heat_picture": "apply_heat_pipe_glow\n      {\n        filename = \"__base__/graphics/entity/nuclear-reactor/reactor-heated.png\",\n        width = 216,\n        height = 256,\n        scale = 0.5,\n        shift = util.by_pixel(3, -6.5)\n      }"
@@ -6027,8 +6027,8 @@
         }
       ]
     },
-    "open_sound": "sounds.machine_open",
-    "close_sound": "sounds.machine_close",
+    "open_sound": null,
+    "close_sound": null,
     "impact_category": "metal-large",
     "working_sound": {
       "sound": "sound_variations(\"__base__/sound/centrifuge\", 3, 0.3, volume_multiplier(\"main-menu\", 1.5) )",
@@ -6129,7 +6129,7 @@
       "pipe_connections": [
         {
           "flow_direction": "input-output",
-          "direction": "defines.direction.west",
+          "direction": null,
           "position": [
             -1,
             0.5
@@ -6137,7 +6137,7 @@
         },
         {
           "flow_direction": "input-output",
-          "direction": "defines.direction.east",
+          "direction": null,
           "position": [
             1,
             0.5
@@ -6153,7 +6153,7 @@
       "pipe_connections": [
         {
           "flow_direction": "output",
-          "direction": "defines.direction.north",
+          "direction": null,
           "position": [
             0,
             -0.5
@@ -6177,7 +6177,7 @@
             0,
             0.5
           ],
-          "direction": "defines.direction.south"
+          "direction": null
         }
       ],
       "pipe_covers": "make_4way_animation_from_spritesheet(\n        {\n          filename = \"__base__/graphics/entity/heat-exchanger/heatex-endings.png\",\n          width = 64,\n          height = 64,\n          direction_count = 4,\n          scale = 0.5\n        })",
@@ -6199,8 +6199,8 @@
       "fade_in_ticks": 4,
       "fade_out_ticks": 20
     },
-    "open_sound": "sounds.steam_open",
-    "close_sound": "sounds.steam_close",
+    "open_sound": null,
+    "close_sound": null,
     "pictures": {
       "north": {
         "structure": {
@@ -6352,7 +6352,7 @@
       "pipe_connections": [
         {
           "flow_direction": "input-output",
-          "direction": "defines.direction.south",
+          "direction": null,
           "position": [
             0,
             2
@@ -6360,7 +6360,7 @@
         },
         {
           "flow_direction": "input-output",
-          "direction": "defines.direction.north",
+          "direction": null,
           "position": [
             0,
             -2
@@ -6442,8 +6442,8 @@
       }
     ],
     "impact_category": "metal-large",
-    "open_sound": "sounds.machine_open",
-    "close_sound": "sounds.machine_close",
+    "open_sound": null,
+    "close_sound": null,
     "working_sound": {
       "sound": {
         "filename": "__base__/sound/steam-turbine.ogg",
@@ -6553,28 +6553,28 @@
             0,
             0
           ],
-          "direction": "defines.direction.north"
+          "direction": null
         },
         {
           "position": [
             0,
             0
           ],
-          "direction": "defines.direction.east"
+          "direction": null
         },
         {
           "position": [
             0,
             0
           ],
-          "direction": "defines.direction.south"
+          "direction": null
         },
         {
           "position": [
             0,
             0
           ],
-          "direction": "defines.direction.west"
+          "direction": null
         }
       ]
     },
@@ -6701,7 +6701,7 @@
   },
   {
     "type": "spider-vehicle",
-    "name": "arguments.name",
+    "name": null,
     "collision_box": [
       [
         "-1 * scale",
@@ -6734,7 +6734,7 @@
     ],
     "drawing_box_vertical_extension": "3 * scale",
     "icon": "__base__/graphics/icons/spidertron.png",
-    "factoriopedia_simulation": "arguments.factoriopedia_simulation",
+    "factoriopedia_simulation": null,
     "mined_sound": "sounds.deconstruct_large(0.8)",
     "open_sound": {
       "filename": "__base__/sound/spidertron/spidertron-door-open.ogg",
@@ -6774,7 +6774,7 @@
     ],
     "minable": {
       "mining_time": 1,
-      "result": "arguments.name"
+      "result": null
     },
     "max_health": 3000,
     "resistances": "util.table.deepcopy(spidertron_resistances)",
@@ -6974,7 +6974,7 @@
     "name": "compi-speech-bubble",
     "style": "compilatron_speech_bubble",
     "wrapper_flow_style": "compilatron_speech_bubble_wrapper",
-    "fade_in_out_ticks": "60 * 0.5",
+    "fade_in_out_ticks": 30.0,
     "flags": [
       "not-on-map",
       "placeable-off-grid"
@@ -7111,28 +7111,28 @@
             0,
             0
           ],
-          "direction": "defines.direction.north"
+          "direction": null
         },
         {
           "position": [
             0,
             0
           ],
-          "direction": "defines.direction.east"
+          "direction": null
         },
         {
           "position": [
             0,
             0
           ],
-          "direction": "defines.direction.south"
+          "direction": null
         },
         {
           "position": [
             0,
             0
           ],
-          "direction": "defines.direction.west"
+          "direction": null
         }
       ]
     },
@@ -7201,16 +7201,16 @@
     "shadow_slave_entity": "cargo-pod-shadow",
     "default_graphic": {
       "type": "pod-catalogue",
-      "catalogue_id": "procession_graphic_catalogue_types.pod_base"
+      "catalogue_id": null
     },
     "default_shadow_graphic": {
       "type": "pod-catalogue",
-      "catalogue_id": "procession_graphic_catalogue_types.pod_shadow"
+      "catalogue_id": null
     },
     "procession_graphic_catalogue": "cargo_pod_procession_catalogue",
     "procession_audio_catalogue": [
       {
-        "index": "procession_audio_catalogue_types.pod_reentry_flames",
+        "index": null,
         "sound": {
           "filename": "__base__/sound/procession/cargo-pod-reentry-flame.ogg",
           "aggregation": {
@@ -7221,7 +7221,7 @@
         }
       },
       {
-        "index": "procession_audio_catalogue_types.pod_thruster_burst_1",
+        "index": null,
         "sound": {
           "filename": "__base__/sound/procession/cargo-pod-thruster-burst-1.ogg",
           "aggregation": {
@@ -7232,7 +7232,7 @@
         }
       },
       {
-        "index": "procession_audio_catalogue_types.pod_thruster_burst_2",
+        "index": null,
         "sound": {
           "filename": "__base__/sound/procession/cargo-pod-thruster-burst-2.ogg",
           "aggregation": {
@@ -7243,7 +7243,7 @@
         }
       },
       {
-        "index": "procession_audio_catalogue_types.pod_thruster_burst_3",
+        "index": null,
         "sound": {
           "filename": "__base__/sound/procession/cargo-pod-thruster-burst-3.ogg",
           "aggregation": {
@@ -7254,7 +7254,7 @@
         }
       },
       {
-        "index": "procession_audio_catalogue_types.pod_thruster_burst_4",
+        "index": null,
         "sound": {
           "filename": "__base__/sound/procession/cargo-pod-thruster-burst-4.ogg",
           "aggregation": {
@@ -7265,7 +7265,7 @@
         }
       },
       {
-        "index": "procession_audio_catalogue_types.pod_wings",
+        "index": null,
         "sound": {
           "filename": "__base__/sound/procession/cargo-pod-wings.ogg",
           "aggregation": {
@@ -7276,7 +7276,7 @@
         }
       },
       {
-        "index": "procession_audio_catalogue_types.rocket_claws_open",
+        "index": null,
         "sound": {
           "filename": "__base__/sound/procession/cargo-pod-rocket-claws-open.ogg",
           "aggregation": {
@@ -7287,7 +7287,7 @@
         }
       },
       {
-        "index": "procession_audio_catalogue_types.pod_ground_land",
+        "index": null,
         "sound": {
           "filename": "__base__/sound/car-stone-impact-2.ogg",
           "volume": 0.8,

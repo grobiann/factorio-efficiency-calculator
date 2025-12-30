@@ -1,0 +1,737 @@
+[
+  {
+    "type": "item",
+    "name": "se-space-probe-rocket-silo",
+    "icon": "__space-exploration-graphics__/graphics/icons/probe-rocket-silo.png",
+    "icon_size": 64,
+    "order": "a-b",
+    "subgroup": "rocket-logistics",
+    "stack_size": 1,
+    "place_result": "se-space-probe-rocket-silo"
+  },
+  {
+    "type": "item",
+    "name": "se-space-probe-rocket",
+    "icon": "__space-exploration-graphics__/graphics/icons/probe-rocket.png",
+    "icon_size": 64,
+    "order": "r-a",
+    "subgroup": "intersurface-part",
+    "stack_size": 1
+  },
+  {
+    "type": "item",
+    "name": "se-space-probe-rocket-deployed",
+    "icon": "__space-exploration-graphics__/graphics/icons/probe-rocket.png",
+    "icon_size": 64,
+    "order": "r-b",
+    "stack_size": 1,
+    "subgroup": "intersurface-part",
+    "flags": {},
+    "hidden": true
+  },
+  {
+    "type": "recipe",
+    "name": "se-space-probe-rocket-silo",
+    "results": [
+      {
+        "type": "item",
+        "name": "se-space-probe-rocket-silo",
+        "amount": 1
+      }
+    ],
+    "enabled": false,
+    "energy_required": 50,
+    "ingredients": [
+      {
+        "type": "item",
+        "name": "electric-engine-unit",
+        "amount": 200
+      },
+      {
+        "type": "item",
+        "name": "processing-unit",
+        "amount": 200
+      },
+      {
+        "type": "item",
+        "name": "se-heat-shielding",
+        "amount": 200
+      },
+      {
+        "type": "item",
+        "name": "se-holmium-cable",
+        "amount": 200
+      },
+      {
+        "type": "item",
+        "name": "se-heavy-girder",
+        "amount": 100
+      },
+      {
+        "type": "item",
+        "name": "se-aeroframe-scaffold",
+        "amount": 100
+      }
+    ],
+    "requester_paste_multiplier": 1,
+    "always_show_made_in": false
+  },
+  {
+    "type": "recipe",
+    "name": "se-space-probe-rocket",
+    "results": [
+      {
+        "type": "item",
+        "name": "se-space-probe-rocket",
+        "amount": 1
+      }
+    ],
+    "enabled": false,
+    "energy_required": 100,
+    "ingredients": [
+      {
+        "type": "item",
+        "name": "se-cargo-rocket-section",
+        "amount": 10
+      },
+      {
+        "type": "item",
+        "name": "se-iridium-plate",
+        "amount": 50
+      },
+      {
+        "type": "item",
+        "name": "se-aeroframe-scaffold",
+        "amount": 20
+      },
+      {
+        "type": "item",
+        "name": "se-holmium-solenoid",
+        "amount": 5
+      },
+      {
+        "type": "item",
+        "name": "rocket-fuel",
+        "amount": 50
+      }
+    ],
+    "requester_paste_multiplier": 1,
+    "always_show_made_in": false,
+    "allow_productivity": true
+  },
+  {
+    "type": "recipe",
+    "name": "se-space-probe-rocket-deploy",
+    "localised_name": [
+      "recipe-name.",
+      "..data_util.mod_prefix..\"space-probe-rocket-deployed\""
+    ],
+    "results": [
+      {
+        "type": "item",
+        "name": "se-space-probe-rocket-deployed",
+        "amount": 1
+      }
+    ],
+    "category": "rocket-deploying",
+    "subgroup": "intersurface-part",
+    "enabled": false,
+    "energy_required": 100,
+    "ingredients": [
+      {
+        "type": "item",
+        "name": "se-space-probe-rocket",
+        "amount": 1
+      }
+    ],
+    "always_show_made_in": true
+  },
+  {
+    "type": "technology",
+    "name": "se-space-probe",
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "se-space-probe-rocket-silo"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "se-space-probe-rocket"
+      }
+    ],
+    "icon": "__space-exploration-graphics__/graphics/technology/probe-rocket.png",
+    "icon_size": 128,
+    "order": "e-g",
+    "prerequisites": [
+      "se-aeroframe-scaffold",
+      "se-holmium-solenoid",
+      "se-heavy-girder"
+    ],
+    "unit": {
+      "count": 200,
+      "time": 60,
+      "ingredients": [
+        [
+          "automation-science-pack",
+          1
+        ],
+        [
+          "logistic-science-pack",
+          1
+        ],
+        [
+          "chemical-science-pack",
+          1
+        ],
+        [
+          "se-rocket-science-pack",
+          1
+        ],
+        [
+          "se-astronomic-science-pack-2",
+          1
+        ],
+        [
+          "se-energy-science-pack-2",
+          1
+        ]
+      ]
+    }
+  },
+  {
+    "type": "rocket-silo",
+    "name": "se-space-probe-rocket-silo",
+    "icon": "__space-exploration-graphics__/graphics/icons/probe-rocket-silo.png",
+    "icon_size": 64,
+    "flags": [
+      "placeable-player",
+      "player-creation"
+    ],
+    "crafting_categories": [
+      "rocket-deploying"
+    ],
+    "rocket_parts_required": 1,
+    "rocket_quick_relaunch_start_offset": -0.625,
+    "can_launch_without_landing_pads": true,
+    "cargo_station_parameters": {
+      "hatch_definitions": [
+        {
+          "hatch_graphics": null,
+          "offset": [
+            0,
+            0
+          ],
+          "pod_shadow_offset": [
+            0,
+            0
+          ],
+          "cargo_unit_entity_to_spawn": "",
+          "receiving_cargo_units": {}
+        }
+      ]
+    },
+    "crafting_speed": 1,
+    "to_be_inserted_to_rocket_inventory_size": 1,
+    "module_slots": 4,
+    "icons_positioning": [
+      {
+        "inventory_index": null,
+        "shift": [
+          0,
+          3.3
+        ]
+      }
+    ],
+    "fixed_recipe": "se-space-probe-rocket-deploy",
+    "show_recipe_icon": false,
+    "allowed_effects": "data_util.all_effects_except(\"productivity\", \"quality\")",
+    "minable": {
+      "mining_time": 1,
+      "result": "se-space-probe-rocket-silo"
+    },
+    "max_health": 5000,
+    "corpse": "rocket-silo-remnants",
+    "dying_explosion": "rocket-silo-explosion",
+    "collision_box": [
+      [
+        -4.2,
+        -4.2
+      ],
+      [
+        4.2,
+        4.2
+      ]
+    ],
+    "selection_box": [
+      [
+        -4.5,
+        -4.5
+      ],
+      [
+        4.5,
+        4.5
+      ]
+    ],
+    "collision_mask": {
+      "layers": {
+        "water_tile": true,
+        "ground_tile": true,
+        "item": true,
+        "object": true,
+        "player": true
+      }
+    },
+    "se_allow_in_space": true,
+    "damaged_trigger_effect": "table.deepcopy(data.raw[\"rocket-silo\"][\"rocket-silo\"].damaged_trigger_effect)",
+    "hole_clipping_box": [
+      [
+        -2.75,
+        -1.15
+      ],
+      [
+        2.75,
+        2.25
+      ]
+    ],
+    "resistances": [
+      {
+        "type": "fire",
+        "percent": 60
+      },
+      {
+        "type": "impact",
+        "percent": 60
+      }
+    ],
+    "impact_category": "metal-large",
+    "energy_source": {
+      "type": "electric",
+      "usage_priority": "primary-input"
+    },
+    "energy_usage": "250kW",
+    "lamp_energy_usage": "0kW",
+    "active_energy_usage": "3990kW",
+    "rocket_entity": "se-space-probe-rocket",
+    "times_to_blink": 3,
+    "light_blinking_speed": "1 / (3 * 60)",
+    "door_opening_speed": 0.00392156862745098,
+    "base_engine_light": {
+      "intensity": 1,
+      "size": 25,
+      "shift": [
+        0,
+        1.5
+      ]
+    },
+    "shadow_sprite": {
+      "filename": "__base__/graphics/entity/rocket-silo/00-rocket-silo-shadow.png",
+      "priority": "medium",
+      "width": 612,
+      "height": 578,
+      "draw_as_shadow": true,
+      "dice": 2,
+      "shift": "util.by_pixel(7, 2)",
+      "scale": 0.5
+    },
+    "hole_sprite": {
+      "filename": "__base__/graphics/entity/rocket-silo/01-rocket-silo-hole.png",
+      "width": 400,
+      "height": 270,
+      "shift": "util.by_pixel(-5, 16)",
+      "scale": 0.5
+    },
+    "hole_light_sprite": {
+      "filename": "__base__/graphics/entity/rocket-silo/01-rocket-silo-hole-light.png",
+      "width": 400,
+      "height": 270,
+      "shift": "util.by_pixel(-5, 16)",
+      "tint": [
+        1,
+        1,
+        1,
+        0
+      ],
+      "scale": 0.5
+    },
+    "rocket_shadow_overlay_sprite": {
+      "filename": "__base__/graphics/entity/rocket-silo/03-rocket-over-shadow-over-rocket.png",
+      "width": 426,
+      "height": 288,
+      "shift": "util.by_pixel(-2, 21)",
+      "scale": 0.5
+    },
+    "rocket_glow_overlay_sprite": {
+      "filename": "__base__/graphics/entity/rocket-silo/03-rocket-over-glow.png",
+      "blend_mode": "additive",
+      "width": 434,
+      "height": 446,
+      "shift": "util.by_pixel(-3, 36)",
+      "scale": 0.5
+    },
+    "door_back_sprite": {
+      "filename": "__base__/graphics/entity/rocket-silo/04-door-back.png",
+      "width": 312,
+      "height": 286,
+      "shift": "util.by_pixel(37, 12)",
+      "scale": 0.5
+    },
+    "door_back_open_offset": [
+      1.8,
+      -0.77938605
+    ],
+    "door_front_sprite": {
+      "filename": "__base__/graphics/entity/rocket-silo/05-door-front.png",
+      "width": 332,
+      "height": 300,
+      "shift": "util.by_pixel(-28, 33)",
+      "scale": 0.5
+    },
+    "door_front_open_offset": [
+      -1.8,
+      0.77938605
+    ],
+    "base_day_sprite": {
+      "layers": [
+        {
+          "filename": "__base__/graphics/entity/rocket-silo/06-rocket-silo.png",
+          "width": 608,
+          "height": 596,
+          "shift": "util.by_pixel(3, -1)",
+          "scale": 0.5
+        },
+        {
+          "filename": "__space-exploration-graphics-5__/graphics/entity/probe/06-rocket-silo-mask.png",
+          "width": 608,
+          "height": 596,
+          "shift": "util.by_pixel(3, -1)",
+          "tint": {
+            "r": 0.4,
+            "b": 0.9,
+            "g": 0.6
+          },
+          "scale": 0.5
+        }
+      ]
+    },
+    "red_lights_back_sprites": {
+      "layers": [
+        {
+          "filename": "__base__/graphics/entity/rocket-silo/07-red-lights-back/red-light.png",
+          "width": 32,
+          "height": 32,
+          "shift": [
+            1.34375,
+            -1.09375
+          ],
+          "scale": 0.5
+        },
+        {
+          "filename": "__base__/graphics/entity/rocket-silo/07-red-lights-back/red-light.png",
+          "width": 32,
+          "height": 32,
+          "shift": [
+            2.3125,
+            -0.4375
+          ],
+          "scale": 0.5
+        },
+        {
+          "filename": "__base__/graphics/entity/rocket-silo/07-red-lights-back/red-light.png",
+          "width": 32,
+          "height": 32,
+          "shift": [
+            2.65625,
+            0.53125
+          ],
+          "scale": 0.5
+        },
+        {
+          "filename": "__base__/graphics/entity/rocket-silo/07-red-lights-back/red-light.png",
+          "width": 32,
+          "height": 32,
+          "shift": [
+            -2.65625,
+            0.53125
+          ],
+          "scale": 0.5
+        },
+        {
+          "filename": "__base__/graphics/entity/rocket-silo/07-red-lights-back/red-light.png",
+          "width": 32,
+          "height": 32,
+          "shift": [
+            -2.3125,
+            -0.4375
+          ],
+          "scale": 0.5
+        },
+        {
+          "filename": "__base__/graphics/entity/rocket-silo/07-red-lights-back/red-light.png",
+          "width": 32,
+          "height": 32,
+          "shift": [
+            -1.34375,
+            -1.09375
+          ],
+          "scale": 0.5
+        },
+        {
+          "filename": "__base__/graphics/entity/rocket-silo/07-red-lights-back/red-light.png",
+          "width": 32,
+          "height": 32,
+          "shift": [
+            0,
+            -1.375
+          ],
+          "scale": 0.5
+        }
+      ]
+    },
+    "red_lights_front_sprites": {
+      "layers": [
+        {
+          "filename": "__base__/graphics/entity/rocket-silo/07-red-lights-back/red-light.png",
+          "width": 32,
+          "height": 32,
+          "shift": [
+            2.3125,
+            1.4375
+          ],
+          "scale": 0.5
+        },
+        {
+          "filename": "__base__/graphics/entity/rocket-silo/07-red-lights-back/red-light.png",
+          "width": 32,
+          "height": 32,
+          "shift": [
+            1.34375,
+            2.03125
+          ],
+          "scale": 0.5
+        },
+        {
+          "filename": "__base__/graphics/entity/rocket-silo/07-red-lights-back/red-light.png",
+          "width": 32,
+          "height": 32,
+          "shift": [
+            0,
+            2.375
+          ],
+          "scale": 0.5
+        },
+        {
+          "filename": "__base__/graphics/entity/rocket-silo/07-red-lights-back/red-light.png",
+          "width": 32,
+          "height": 32,
+          "shift": [
+            0,
+            2.375
+          ],
+          "scale": 0.5
+        },
+        {
+          "filename": "__base__/graphics/entity/rocket-silo/07-red-lights-back/red-light.png",
+          "width": 32,
+          "height": 32,
+          "shift": [
+            -2.3125,
+            1.4375
+          ],
+          "scale": 0.5
+        }
+      ]
+    },
+    "satellite_animation": {
+      "filename": "__base__/graphics/entity/rocket-silo/15-rocket-silo-turbine.png",
+      "priority": "medium",
+      "width": 54,
+      "height": 88,
+      "frame_count": 32,
+      "line_length": 8,
+      "animation_speed": 0.4,
+      "shift": "util.by_pixel(-100, 111)",
+      "scale": 0.5
+    },
+    "arm_01_back_animation": {
+      "filename": "__base__/graphics/entity/rocket-silo/08-rocket-silo-arms-back.png",
+      "priority": "medium",
+      "width": 128,
+      "height": 150,
+      "frame_count": 32,
+      "line_length": 32,
+      "animation_speed": 0.3,
+      "shift": "util.by_pixel(-53, -84)",
+      "scale": 0.5
+    },
+    "arm_02_right_animation": {
+      "filename": "__base__/graphics/entity/rocket-silo/08-rocket-silo-arms-right.png",
+      "priority": "medium",
+      "width": 182,
+      "height": 188,
+      "frame_count": 32,
+      "line_length": 32,
+      "animation_speed": 0.3,
+      "shift": "util.by_pixel(101, -38)",
+      "scale": 0.5
+    },
+    "arm_03_front_animation": {
+      "filename": "__base__/graphics/entity/rocket-silo/13-rocket-silo-arms-front.png",
+      "priority": "medium",
+      "width": 126,
+      "height": 228,
+      "frame_count": 32,
+      "line_length": 32,
+      "animation_speed": 0.3,
+      "shift": "util.by_pixel(-51, 16)",
+      "scale": 0.5
+    },
+    "base_front_sprite": {
+      "layers": [
+        {
+          "filename": "__base__/graphics/entity/rocket-silo/14-rocket-silo-front.png",
+          "width": 580,
+          "height": 262,
+          "shift": "util.by_pixel(-1, 78)",
+          "scale": 0.5
+        },
+        {
+          "filename": "__space-exploration-graphics-5__/graphics/entity/probe/14-rocket-silo-front-mask.png",
+          "width": 580,
+          "height": 262,
+          "shift": "util.by_pixel(-1, 78)",
+          "tint": {
+            "r": 0.4,
+            "b": 0.9,
+            "g": 0.6
+          },
+          "scale": 0.5
+        }
+      ]
+    },
+    "silo_fade_out_start_distance": 8,
+    "silo_fade_out_end_distance": 15,
+    "alarm_sound": {
+      "filename": "__base__/sound/silo-alarm.ogg",
+      "volume": 1.0
+    },
+    "clamps_on_sound": {
+      "filename": "__base__/sound/silo-clamps-on.ogg",
+      "volume": 1.0
+    },
+    "clamps_off_sound": {
+      "filename": "__base__/sound/silo-clamps-off.ogg",
+      "volume": 0.8
+    },
+    "doors_sound": {
+      "filename": "__base__/sound/silo-doors.ogg",
+      "volume": 0.8
+    },
+    "raise_rocket_sound": {
+      "filename": "__base__/sound/silo-raise-rocket.ogg",
+      "volume": 1.0
+    },
+    "open_sound": "table.deepcopy(data.raw[\"rocket-silo\"][\"rocket-silo\"].open_sound)",
+    "close_sound": "table.deepcopy(data.raw[\"rocket-silo\"][\"rocket-silo\"].close_sound)",
+    "working_sound": {
+      "sound": {
+        "filename": "__base__/sound/rocket-silo-working-1.ogg",
+        "volume": 0.8
+      },
+      "fade_in_ticks": 10,
+      "fade_out_ticks": 15
+    }
+  },
+  {
+    "type": "rocket-silo-rocket",
+    "name": "se-space-probe-rocket",
+    "subgroup": "rocket-effects",
+    "hidden": true,
+    "flags": [
+      "not-on-map"
+    ],
+    "collision_mask": {
+      "layers": {},
+      "not_colliding_with_itself": true
+    },
+    "collision_box": [
+      [
+        -2,
+        -7
+      ],
+      [
+        2,
+        4
+      ]
+    ],
+    "selection_box": [
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ]
+    ],
+    "dying_explosion": "massive-explosion",
+    "shadow_slave_entity": "rocket-silo-rocket-shadow",
+    "inventory_size": 1,
+    "rising_speed": "1 / (7 * 60)",
+    "engine_starting_speed": 0.0030303030303030303,
+    "flying_speed": "1 / (2000 * 60)",
+    "flying_acceleration": 0.01,
+    "cargo_pod_entity": "cargo-pod",
+    "glow_light": {
+      "intensity": 1,
+      "size": 30,
+      "shift": [
+        0,
+        1.5
+      ],
+      "color": {
+        "r": 1.0,
+        "g": 1.0,
+        "b": 1.0
+      }
+    },
+    "rocket_sprite": "util.add_shift_offset(util.by_pixel(0, 32*3.5), --util.mul_shift(rocket_rise_offset, -1),\n    {\n      filename = \"__space-exploration-graphics-5__/graphics/entity/probe/probe-rocket.png\",\n      width = 310,\n      height = 596,\n      shift = util.by_pixel(-5, -27),\n      scale = 0.5\n    })",
+    "rocket_shadow_sprite": "util.add_shift_offset(util.by_pixel(-146, -120),\n    {\n      filename = \"__space-exploration-graphics__/graphics/entity/rocket-silo/09-rocket-shadow.png\",\n      priority = \"medium\",\n      width = 672,\n      height = 216,\n      draw_as_shadow = true,\n      shift = util.by_pixel(146, 121),\n      scale = 0.5\n    })",
+    "rocket_glare_overlay_sprite": "util.add_shift_offset(util.by_pixel(0, 112+112),\n    {\n      filename = \"__base__/graphics/entity/rocket-silo/03-rocket-over-glare.png\",\n      blend_mode = \"additive\",\n      width = 481,\n      height = 481,\n      shift = util.by_pixel(-2, -2),\n      flags = { \"linear-magnification\", \"linear-minification\" },\n      --hr_version =\n      --{\n      --  filename = \"__base__/graphics/entity/rocket-silo/03-rocket-over-glare.png\",\n      --  blend_mode = \"additive\",\n      --  width = 954,\n      --  height = 954,\n      --  shift = util.by_pixel(0, 0),\n      --  scale = 0.5\n      --}\n    })",
+    "rocket_smoke_top1_animation": "util.add_shift_offset(util.by_pixel(0-66, -112+28+232+32),\n    {\n      filename = \"__base__/graphics/entity/rocket-silo/12-rocket-smoke.png\",\n      priority = \"medium\",\n      tint = { r = 0.8, g = 0.8, b = 1, a = 0.8 },\n      --tint = { r = 1, g = 0, b = 0, a = 0.8 },\n      width = 80,\n      height = 286,\n      frame_count = 24,\n      line_length = 8,\n      animation_speed = 0.5,\n      scale = 1.5/2*1.3,\n      shift = util.by_pixel(-1, -3),\n    })",
+    "rocket_smoke_top2_animation": "util.add_shift_offset(util.by_pixel(0+17, -112+28+265+32),\n    {\n      filename = \"__base__/graphics/entity/rocket-silo/12-rocket-smoke.png\",\n      priority = \"medium\",\n      tint = { r = 0.8, g = 0.8, b = 1, a = 0.8 },\n      --tint = { r = 0, g = 1, b = 0, a = 0.8 },\n      width = 80,\n      height = 286,\n      frame_count = 24,\n      line_length = 8,\n      animation_speed = 0.5,\n      scale = 1.5/2*1.3,\n      shift = util.by_pixel(-1, -3),\n    })",
+    "rocket_smoke_top3_animation": "util.add_shift_offset(util.by_pixel(0+48, -112+28+252+32),\n    {\n      filename = \"__base__/graphics/entity/rocket-silo/12-rocket-smoke.png\",\n      priority = \"medium\",\n      tint = { r = 0.8, g = 0.8, b = 1, a = 0.8 },\n      --tint = { r = 0, g = 0, b = 1, a = 0.8 },\n      width = 80,\n      height = 286,\n      frame_count = 24,\n      line_length = 8,\n      animation_speed = 0.5,\n      scale = 1.5/2*1.3,\n      shift = util.by_pixel(-1, -3),\n    })",
+    "rocket_smoke_bottom1_animation": "util.add_shift_offset(util.by_pixel(0-69, -112+28+205+32),\n    {\n      filename = \"__base__/graphics/entity/rocket-silo/12-rocket-smoke.png\",\n      priority = \"medium\",\n      tint = { r = 0.8, g = 0.8, b = 1, a = 0.7 },\n      --tint = { r = 1, g = 1, b = 0, a = 0.8 },\n      width = 80,\n      height = 286,\n      frame_count = 24,\n      line_length = 8,\n      animation_speed = 0.5,\n      scale = 1.5/2*1.3,\n      shift = util.by_pixel(-1, -3),\n    })",
+    "rocket_smoke_bottom2_animation": "util.add_shift_offset(util.by_pixel(0+62, -112+28+207+32),\n    {\n      filename = \"__base__/graphics/entity/rocket-silo/12-rocket-smoke.png\",\n      priority = \"medium\",\n      tint = { r = 0.8, g = 0.8, b = 1, a = 0.7 },\n      --tint = { r = 0, g = 1, b = 1, a = 0.8 },\n      width = 80,\n      height = 286,\n      frame_count = 24,\n      line_length = 8,\n      animation_speed = 0.5,\n      scale = 1.5/2*1.3,\n      shift = util.by_pixel(-1, -3),\n    })",
+    "rocket_flame_animation": "util.add_shift_offset(util.by_pixel(-1, 280-16),\n    {\n      filename = \"__space-exploration-graphics__/graphics/entity/rocket-silo/10-jet-flame.png\",\n      priority = \"medium\",\n      blend_mode = \"additive\",\n      width = 172,\n      height = 256,\n      frame_count = 8,\n      line_length = 8,\n      animation_speed = 0.5,\n      scale = 1.13/2,\n      shift = util.by_pixel(-1, -2),\n    })",
+    "rocket_flame_left_animation": "util.add_shift_offset(util.by_pixel(-32-28+3, 280-68+1),\n    {\n      filename = \"__space-exploration-graphics__/graphics/entity/rocket-silo/10-jet-flame.png\",\n      priority = \"medium\",\n      blend_mode = \"additive\",\n      width = 172,\n      height = 256,\n      frame_count = 8,\n      line_length = 8,\n      animation_speed = 0.5,\n      scale = 0.345/2*1.15,\n      shift = util.by_pixel(-1, -2),\n    })",
+    "rocket_flame_left_rotation": 0.0611,
+    "rocket_flame_right_animation": "util.add_shift_offset(util.by_pixel(32+16, 280-50),\n    {\n      filename = \"__space-exploration-graphics__/graphics/entity/rocket-silo/10-jet-flame.png\",\n      priority = \"medium\",\n      blend_mode = \"additive\",\n      width = 172,\n      height = 256,\n      frame_count = 8,\n      line_length = 8,\n      animation_speed = 0.5,\n      scale = 0.368/2*1.15,\n      shift = util.by_pixel(-1, -2),\n    })",
+    "rocket_flame_right_rotation": 0.952,
+    "rocket_initial_offset": [
+      0,
+      1.5
+    ],
+    "rocket_rise_offset": [
+      0,
+      -3.5
+    ],
+    "rocket_launch_offset": [
+      0,
+      -256
+    ],
+    "rocket_render_layer_switch_distance": 7.5,
+    "full_render_layer_switch_distance": 9,
+    "effects_fade_in_start_distance": 4.5,
+    "effects_fade_in_end_distance": 7.5,
+    "shadow_fade_out_start_ratio": 0.25,
+    "shadow_fade_out_end_ratio": 0.75,
+    "rocket_visible_distance_from_center": 2.75,
+    "rocket_above_wires_slice_offset_from_center": -3,
+    "rocket_air_object_slice_offset_from_center": -5.5,
+    "flying_sound": {
+      "filename": "__base__/sound/silo-rocket.ogg",
+      "volume": 1.0,
+      "audible_distance_modifier": 3
+    }
+  }
+]

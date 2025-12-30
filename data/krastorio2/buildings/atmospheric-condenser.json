@@ -82,7 +82,7 @@
         "pipe_connections": [
           {
             "flow_direction": "output",
-            "direction": "defines.direction.east",
+            "direction": null,
             "position": [
               2,
               -1
@@ -90,7 +90,7 @@
           },
           {
             "flow_direction": "output",
-            "direction": "defines.direction.east",
+            "direction": null,
             "position": [
               2,
               1
@@ -98,7 +98,7 @@
           },
           {
             "flow_direction": "output",
-            "direction": "defines.direction.west",
+            "direction": null,
             "position": [
               -2,
               -1
@@ -106,7 +106,7 @@
           },
           {
             "flow_direction": "output",
-            "direction": "defines.direction.west",
+            "direction": null,
             "position": [
               -2,
               1
@@ -114,7 +114,7 @@
           },
           {
             "flow_direction": "output",
-            "direction": "defines.direction.north",
+            "direction": null,
             "position": [
               1,
               -2
@@ -122,7 +122,7 @@
           },
           {
             "flow_direction": "output",
-            "direction": "defines.direction.north",
+            "direction": null,
             "position": [
               -1,
               -2
@@ -130,7 +130,7 @@
           },
           {
             "flow_direction": "output",
-            "direction": "defines.direction.south",
+            "direction": null,
             "position": [
               1,
               2
@@ -138,7 +138,7 @@
           },
           {
             "flow_direction": "output",
-            "direction": "defines.direction.south",
+            "direction": null,
             "position": [
               -1,
               2
@@ -187,7 +187,7 @@
       "productivity",
       "pollution"
     ],
-    "vehicle_impact_sound": "sounds.generic_impact",
+    "vehicle_impact_sound": null,
     "working_sound": {
       "sound": {
         "filename": "__Krastorio2Assets__/sounds/buildings/atmospheric-condenser.ogg",
@@ -198,8 +198,8 @@
         "volume": 0.5
       }
     },
-    "open_sound": "sounds.machine_open",
-    "close_sound": "sounds.machine_close",
+    "open_sound": null,
+    "close_sound": null,
     "graphics_set": {
       "animation": {
         "layers": [
@@ -263,7 +263,7 @@
     },
     "icons_positioning": [
       {
-        "inventory_index": "defines.inventory.assembling_machine_modules",
+        "inventory_index": null,
         "shift": [
           0,
           1.25

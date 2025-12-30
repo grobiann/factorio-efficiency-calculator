@@ -8,15 +8,15 @@
       0.58
     ],
     "mining_time": 1,
-    "walking_sound": "tile_sounds.walking.ore",
-    "driving_sound": "tile_sounds.driving.stone",
+    "walking_sound": null,
+    "driving_sound": null,
     "mining_visualisation_tint": {
       "r": 0.895,
       "g": 0.965,
       "b": 1.0,
       "a": 1.0
     },
-    "factoriopedia_simulation": "simulations.factoriopedia_iron_ore"
+    "factoriopedia_simulation": null
   },
   {
     "base_density": 10,
@@ -33,15 +33,15 @@
       0.215
     ],
     "mining_time": 1,
-    "walking_sound": "tile_sounds.walking.ore",
-    "driving_sound": "tile_sounds.driving.stone",
+    "walking_sound": null,
+    "driving_sound": null,
     "mining_visualisation_tint": {
       "r": 1.0,
       "g": 0.675,
       "b": 0.541,
       "a": 1.0
     },
-    "factoriopedia_simulation": "simulations.factoriopedia_copper_ore"
+    "factoriopedia_simulation": null
   },
   {
     "base_density": 8,
@@ -58,15 +58,15 @@
       0
     ],
     "mining_time": 1,
-    "walking_sound": "tile_sounds.walking.ore",
-    "driving_sound": "tile_sounds.driving.stone",
+    "walking_sound": null,
+    "driving_sound": null,
     "mining_visualisation_tint": {
       "r": 0.465,
       "g": 0.465,
       "b": 0.465,
       "a": 1.0
     },
-    "factoriopedia_simulation": "simulations.factoriopedia_coal"
+    "factoriopedia_simulation": null
   },
   {
     "base_density": 8,
@@ -82,15 +82,15 @@
       0.427
     ],
     "mining_time": 1,
-    "walking_sound": "tile_sounds.walking.ore",
-    "driving_sound": "tile_sounds.driving.stone",
+    "walking_sound": null,
+    "driving_sound": null,
     "mining_visualisation_tint": {
       "r": 0.984,
       "g": 0.883,
       "b": 0.646,
       "a": 1.0
     },
-    "factoriopedia_simulation": "simulations.factoriopedia_stone"
+    "factoriopedia_simulation": null
   },
   {
     "base_density": 4,
@@ -104,12 +104,12 @@
     "flags": [
       "placeable-neutral"
     ],
-    "factoriopedia_simulation": "simulations.factoriopedia_uranium_ore",
+    "factoriopedia_simulation": null,
     "order": "a-b-e",
     "tree_removal_probability": 0.7,
     "tree_removal_max_distance": "32 * 32",
-    "walking_sound": "tile_sounds.walking.ore",
-    "driving_sound": "tile_sounds.driving.stone",
+    "walking_sound": null,
+    "driving_sound": null,
     "minable": {
       "mining_particle": "stone-particle",
       "mining_time": 2,
@@ -222,7 +222,7 @@
       ]
     },
     "walking_sound": "tile_sounds.walking.oil({})",
-    "driving_sound": "tile_sounds.driving.oil",
+    "driving_sound": null,
     "collision_box": [
       [
         -1.4,

@@ -86,7 +86,7 @@
       "usage_priority": "solar"
     },
     "production": "250kW",
-    "vehicle_impact_sound": "sounds.generic_impact",
+    "vehicle_impact_sound": null,
     "picture": {
       "layers": [
         {

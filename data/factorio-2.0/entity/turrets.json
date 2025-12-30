@@ -96,7 +96,7 @@
       "min_range": 0,
       "projectile_creation_parameters": "worm_shoot_shiftings(scale_worm_small, scale_worm_small * scale_worm_stream)",
       "use_shooter_direction": true,
-      "lead_target_for_projectile_speed": "0.2* 0.75 * 1.5 *1.5",
+      "lead_target_for_projectile_speed": 0.3375,
       "ammo_category": "biological",
       "ammo_type": {
         "action": {
@@ -186,8 +186,8 @@
     "damaged_trigger_effect": "hit_effects.entity()",
     "rotation_speed": 0.015,
     "preparing_speed": 0.08,
-    "preparing_sound": "sounds.gun_turret_activate",
-    "folding_sound": "sounds.gun_turret_deactivate",
+    "preparing_sound": null,
+    "folding_sound": null,
     "folding_speed": 0.08,
     "inventory_size": 1,
     "automated_ammo_count": 10,
@@ -195,14 +195,14 @@
     "alert_when_attacking": true,
     "circuit_connector": "circuit_connector_definitions[\"gun-turret\"]",
     "circuit_wire_max_distance": "default_circuit_wire_max_distance",
-    "open_sound": "sounds.turret_open",
-    "close_sound": "sounds.turret_close",
+    "open_sound": null,
+    "close_sound": null,
     "icon_draw_specification": {
       "scale": 0.7
     },
     "icons_positioning": [
       {
-        "inventory_index": "defines.inventory.turret_ammo",
+        "inventory_index": null,
         "shift": [
           0,
           -0.25
@@ -285,7 +285,7 @@
         "starting_frame_speed_deviation": 0.1
       },
       "range": 18,
-      "sound": "sounds.gun_turret_gunshot"
+      "sound": null
     },
     "call_for_help_radius": 40,
     "water_reflection": {
@@ -343,10 +343,10 @@
     "circuit_wire_max_distance": "default_circuit_wire_max_distance",
     "rotation_speed": 0.01,
     "preparing_speed": 0.05,
-    "open_sound": "sounds.turret_open",
-    "close_sound": "sounds.turret_close",
-    "preparing_sound": "sounds.laser_turret_activate",
-    "folding_sound": "sounds.laser_turret_deactivate",
+    "open_sound": null,
+    "close_sound": null,
+    "preparing_sound": null,
+    "folding_sound": null,
     "corpse": "laser-turret-remnants",
     "dying_explosion": "laser-turret-explosion",
     "folding_speed": 0.05,
@@ -420,7 +420,7 @@
       "source_direction_count": 64,
       "source_offset": [
         0,
-        "-3.423489 / 4"
+        -0.85587225
       ],
       "damage_modifier": 2,
       "ammo_category": "laser",
@@ -474,8 +474,8 @@
       "result": "artillery-turret"
     },
     "fast_replaceable_group": "artillery-turret",
-    "open_sound": "sounds.artillery_open",
-    "close_sound": "sounds.artillery_close",
+    "open_sound": null,
+    "close_sound": null,
     "mined_sound": "sounds.deconstruct_large(0.8)",
     "rotating_sound": {
       "sound": {
@@ -885,7 +885,7 @@
       "min_range": 0,
       "projectile_creation_parameters": "worm_shoot_shiftings(scale_worm_medium, scale_worm_medium * scale_worm_stream)",
       "use_shooter_direction": true,
-      "lead_target_for_projectile_speed": "0.2* 0.75 * 1.5 *1.5",
+      "lead_target_for_projectile_speed": 0.3375,
       "ammo_category": "biological",
       "ammo_type": {
         "action": {
@@ -1054,7 +1054,7 @@
       "min_range": 0,
       "projectile_creation_parameters": "worm_shoot_shiftings(scale_worm_big, scale_worm_big * scale_worm_stream)",
       "use_shooter_direction": true,
-      "lead_target_for_projectile_speed": "0.2* 0.75 * 1.5 * 1.5",
+      "lead_target_for_projectile_speed": 0.3375,
       "ammo_category": "biological",
       "ammo_type": {
         "action": {
@@ -1224,7 +1224,7 @@
       "min_range": 0,
       "projectile_creation_parameters": "worm_shoot_shiftings(scale_worm_behemoth, scale_worm_behemoth * scale_worm_stream)",
       "use_shooter_direction": true,
-      "lead_target_for_projectile_speed": "0.2* 0.75 * 1.5 * 1.5",
+      "lead_target_for_projectile_speed": 0.3375,
       "ammo_type": {
         "action": {
           "type": "direct",

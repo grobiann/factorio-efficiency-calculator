@@ -1,0 +1,103 @@
+[
+  {
+    "type": "projectile",
+    "name": "se-sound-continous-",
+    "hidden": true,
+    "acceleration": 0,
+    "animation": {
+      "filename": "__space-exploration-graphics__/graphics/blank.png",
+      "frame_count": 1,
+      "height": 1,
+      "line_length": 1,
+      "priority": "high",
+      "width": 1
+    },
+    "flags": [
+      "not-on-map"
+    ],
+    "working_sound": {
+      "apparent_volume": "volume or 1",
+      "audible_distance_modifier": "audible_distance_modifier or 1",
+      "sound": [
+        {
+          "filename": "path",
+          "volume": "volume or 1"
+        }
+      ]
+    }
+  },
+  {
+    "type": "explosion",
+    "name": "se-sound-",
+    "subgroup": "environmental-effects",
+    "hidden": true,
+    "animations": [
+      {
+        "filename": "__space-exploration-graphics__/graphics/blank.png",
+        "frame_count": 1,
+        "height": 1,
+        "line_length": 1,
+        "priority": "high",
+        "width": 1
+      }
+    ],
+    "flags": [
+      "not-on-map"
+    ],
+    "sound": {
+      "aggregation": {
+        "max_count": 1,
+        "remove": true
+      },
+      "audible_distance_modifier": "audible_distance_modifier or 1",
+      "variations": [
+        {
+          "filename": "path",
+          "volume": "volume or 1"
+        }
+      ]
+    }
+  },
+  {
+    "type": "sound",
+    "name": "se-meteor-woosh",
+    "aggregation": {
+      "max_count": 1,
+      "remove": true
+    },
+    "variations": [
+      {
+        "filename": "__space-exploration__/sound/meteor-woosh.ogg",
+        "volume": 1
+      }
+    ]
+  },
+  {
+    "type": "sound",
+    "name": "se-spaceship-woosh",
+    "aggregation": {
+      "max_count": 1,
+      "remove": true
+    },
+    "variations": [
+      {
+        "filename": "__space-exploration__/sound/spaceship-woosh.ogg",
+        "volume": 1
+      }
+    ]
+  },
+  {
+    "type": "sound",
+    "name": "se-game-lost",
+    "aggregation": {
+      "max_count": 1,
+      "remove": true
+    },
+    "variations": [
+      {
+        "filename": "__core__/sound/game-lost.ogg",
+        "volume": 1
+      }
+    ]
+  }
+]

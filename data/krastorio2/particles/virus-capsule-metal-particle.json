@@ -104,7 +104,7 @@
       },
       {
         "type": "play-sound",
-        "sound": "sounds.small_splash"
+        "sound": null
       }
     ],
     "pictures": {

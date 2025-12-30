@@ -55,7 +55,7 @@
       "item": "rail",
       "count": 1
     },
-    "walking_sound": "tile_sounds.walking.rails",
+    "walking_sound": null,
     "deconstruction_marker_positions": [
       [
         0.0,
@@ -159,7 +159,7 @@
       "item": "rail",
       "count": 4
     },
-    "walking_sound": "tile_sounds.walking.rails"
+    "walking_sound": null
   },
   {
     "type": "straight-rail",
@@ -217,7 +217,7 @@
       "item": "rail",
       "count": 1
     },
-    "walking_sound": "tile_sounds.walking.rails",
+    "walking_sound": null,
     "extra_planner_goal_penalty": -4,
     "factoriopedia_alternative": "straight-rail"
   },
@@ -296,7 +296,7 @@
       "item": "rail",
       "count": 2
     },
-    "walking_sound": "tile_sounds.walking.rails",
+    "walking_sound": null,
     "extra_planner_penalty": 0,
     "factoriopedia_alternative": "straight-rail"
   },
@@ -373,7 +373,7 @@
       "item": "rail",
       "count": 3
     },
-    "walking_sound": "tile_sounds.walking.rails",
+    "walking_sound": null,
     "extra_planner_penalty": 0.5,
     "deconstruction_marker_positions": "rail_8shifts_vector(-0.248, -0.533)",
     "factoriopedia_alternative": "straight-rail"
@@ -451,7 +451,7 @@
       "item": "rail",
       "count": 3
     },
-    "walking_sound": "tile_sounds.walking.rails",
+    "walking_sound": null,
     "extra_planner_penalty": 0.5,
     "deconstruction_marker_positions": "rail_8shifts_vector(-0.309, -0.155)",
     "factoriopedia_alternative": "straight-rail"
@@ -491,7 +491,7 @@
     ],
     "pictures": "dummy_rails_ramp_pictures()",
     "forced_fence_segment_count": 2,
-    "walking_sound": "tile_sounds.walking.rails",
+    "walking_sound": null,
     "extra_planner_penalty": 0.5,
     "support_range": 9
   },
@@ -699,7 +699,7 @@
     "deliver_category": "vehicle",
     "corpse": "locomotive-remnants",
     "dying_explosion": "locomotive-explosion",
-    "factoriopedia_simulation": "simulations.factoriopedia_locomotive",
+    "factoriopedia_simulation": null,
     "collision_box": [
       [
         -0.6,
@@ -736,7 +736,7 @@
     "energy_per_hit_point": 5,
     "icons_positioning": [
       {
-        "inventory_index": "defines.inventory.fuel",
+        "inventory_index": null,
         "shift": [
           0,
           0.3
@@ -946,11 +946,11 @@
       },
       {
         "type": "play-sound",
-        "sound": "sounds.train_brakes"
+        "sound": null
       },
       {
         "type": "play-sound",
-        "sound": "sounds.train_brake_screech"
+        "sound": null
       }
     ],
     "drive_over_tie_trigger": "drive_over_tie()",
@@ -1065,7 +1065,7 @@
     "deliver_category": "vehicle",
     "corpse": "cargo-wagon-remnants",
     "dying_explosion": "cargo-wagon-explosion",
-    "factoriopedia_simulation": "simulations.factoriopedia_cargo_wagon",
+    "factoriopedia_simulation": null,
     "collision_box": [
       [
         -0.6,
@@ -1178,10 +1178,10 @@
     "drive_over_tie_trigger": "drive_over_tie()",
     "drive_over_tie_trigger_minimal_speed": 0.5,
     "tie_distance": 50,
-    "working_sound": "sounds.train_wagon_wheels",
+    "working_sound": null,
     "crash_trigger": "crash_trigger()",
-    "open_sound": "sounds.cargo_wagon_open",
-    "close_sound": "sounds.cargo_wagon_close",
+    "open_sound": null,
+    "close_sound": null,
     "impact_category": "metal-large",
     "water_reflection": "locomotive_reflection()",
     "door_opening_sound": {
@@ -1253,7 +1253,7 @@
     "deliver_category": "vehicle",
     "corpse": "fluid-wagon-remnants",
     "dying_explosion": "fluid-wagon-explosion",
-    "factoriopedia_simulation": "simulations.factoriopedia_fluid_wagon",
+    "factoriopedia_simulation": null,
     "collision_box": [
       [
         -0.6,
@@ -1360,7 +1360,7 @@
     "drive_over_tie_trigger": "drive_over_tie()",
     "drive_over_tie_trigger_minimal_speed": 0.5,
     "tie_distance": 50,
-    "working_sound": "sounds.train_wagon_wheels",
+    "working_sound": null,
     "crash_trigger": "crash_trigger()",
     "impact_category": "metal-large",
     "water_reflection": "locomotive_reflection()"
@@ -1385,7 +1385,7 @@
     "deliver_category": "vehicle",
     "corpse": "artillery-wagon-remnants",
     "dying_explosion": "artillery-wagon-explosion",
-    "factoriopedia_simulation": "simulations.factoriopedia_artillery_wagon",
+    "factoriopedia_simulation": null,
     "collision_box": [
       [
         -0.6,
@@ -1684,10 +1684,10 @@
     "drive_over_tie_trigger": "drive_over_tie()",
     "drive_over_tie_trigger_minimal_speed": 0.5,
     "tie_distance": 50,
-    "working_sound": "sounds.train_wagon_wheels",
+    "working_sound": null,
     "crash_trigger": "crash_trigger()",
-    "open_sound": "sounds.artillery_open",
-    "close_sound": "sounds.artillery_close",
+    "open_sound": null,
+    "close_sound": null,
     "rotating_sound": {
       "sound": {
         "filename": "__base__/sound/fight/artillery-rotation-loop.ogg",
@@ -1728,7 +1728,7 @@
     "max_health": 250,
     "corpse": "train-stop-remnants",
     "dying_explosion": "train-stop-explosion",
-    "factoriopedia_simulation": "simulations.factoriopedia_train_stop",
+    "factoriopedia_simulation": null,
     "collision_box": [
       [
         -0.5,
@@ -2003,7 +2003,7 @@
     "max_health": 100,
     "corpse": "rail-signal-remnants",
     "dying_explosion": "rail-signal-explosion",
-    "factoriopedia_simulation": "simulations.factoriopedia_rail_signal",
+    "factoriopedia_simulation": null,
     "collision_box": [
       [
         -0.2,
@@ -2025,8 +2025,8 @@
       ]
     ],
     "damaged_trigger_effect": "hit_effects.entity()",
-    "open_sound": "sounds.rail_signal_open",
-    "close_sound": "sounds.rail_signal_close",
+    "open_sound": null,
+    "close_sound": null,
     "ground_picture_set": "require(\"graphics.entity.rail-signal.rail-signal-ground\")",
     "elevated_picture_set": "require(\"graphics.entity.rail-signal.rail-signal-ground\")",
     "circuit_wire_max_distance": "default_circuit_wire_max_distance",
@@ -2061,7 +2061,7 @@
     "max_health": 100,
     "corpse": "rail-chain-signal-remnants",
     "dying_explosion": "rail-chain-signal-explosion",
-    "factoriopedia_simulation": "simulations.factoriopedia_rail_chain_signal",
+    "factoriopedia_simulation": null,
     "collision_box": [
       [
         -0.2,
@@ -2083,8 +2083,8 @@
       ]
     ],
     "damaged_trigger_effect": "hit_effects.entity()",
-    "open_sound": "sounds.rail_signal_open",
-    "close_sound": "sounds.rail_signal_close",
+    "open_sound": null,
+    "close_sound": null,
     "ground_picture_set": "require(\"graphics.entity.rail-chain-signal.rail-chain-signal-ground\")",
     "elevated_picture_set": "require(\"graphics.entity.rail-chain-signal.rail-chain-signal-ground\")",
     "circuit_wire_max_distance": "default_circuit_wire_max_distance",

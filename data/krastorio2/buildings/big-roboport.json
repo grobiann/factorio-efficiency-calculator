@@ -206,9 +206,9 @@
         "percent": 80
       }
     ],
-    "open_sound": "sounds.machine_open",
-    "close_sound": "sounds.machine_close",
-    "vehicle_impact_sound": "sounds.generic_impact",
+    "open_sound": null,
+    "close_sound": null,
+    "vehicle_impact_sound": null,
     "working_sound": {
       "sound": {
         "audible_distance_modifier": 0.5,

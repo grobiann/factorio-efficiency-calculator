@@ -111,7 +111,7 @@
         "pipe_connections": [
           {
             "flow_direction": "input",
-            "direction": "defines.direction.north",
+            "direction": null,
             "position": [
               -0.5,
               -2.5
@@ -130,7 +130,7 @@
         "pipe_connections": [
           {
             "flow_direction": "output",
-            "direction": "defines.direction.south",
+            "direction": null,
             "position": [
               0.5,
               2.5
@@ -177,7 +177,7 @@
       "filename": "__Krastorio2Assets__/sounds/buildings/close.ogg",
       "volume": 1
     },
-    "vehicle_impact_sound": "sounds.generic_impact",
+    "vehicle_impact_sound": null,
     "working_sound": {
       "sound": {
         "filename": "__Krastorio2Assets__/sounds/buildings/quantum-computer.ogg",

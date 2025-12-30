@@ -1,0 +1,118 @@
+[
+  {
+    "type": "noise-function",
+    "name": "se_resource_autoplace_all_patches",
+    "parameters": [
+      "base_density",
+      "base_spots_per_km2",
+      "candidate_spot_count",
+      "frequency_multiplier",
+      "has_starting_area_placement",
+      "random_spot_size_minimum",
+      "random_spot_size_maximum",
+      "regular_blob_amplitude_multiplier",
+      "regular_patch_set_count",
+      "regular_patch_set_index",
+      "regular_rq_factor",
+      "seed1",
+      "size_multiplier",
+      "starting_blob_amplitude_multiplier",
+      "starting_patch_set_count",
+      "starting_patch_set_index",
+      "starting_rq_factor",
+      "random_probability"
+    ],
+    "expression": "if(has_starting_area_placement == 1, max(starting_patches, regular_patches), regular_patches)",
+    "local_expressions": {
+      "se_distance": "clamp(",
+      "basement_value": "basement_value",
+      "blobs0": "basis_noise{x = x, y = y, seed0 = map_seed, seed1 = seed1, input_scale = 1/8, output_scale = 1} + \\z\n                   basis_noise{x = x, y = y, seed0 = map_seed, seed1 = seed1, input_scale = 1/24, output_scale = 1}",
+      "double_density_distance": "base_distance",
+      "regular_patch_fade_in_distance": "regular_patch_fade_in_distance",
+      "starting_resource_placement_radius": "starting_resource_placement_radius",
+      "starting_patches_split": "starting_patches_split",
+      "spots_per_km2_near_start": "base_spots_per_km2 * frequency_multiplier",
+      "starting_patches": "spot_noise{\\z\n                                       x = x,\\z\n                                       y = y,\\z\n                                       density_expression = starting_amount / (pi * starting_resource_placement_radius * starting_resource_placement_radius) * starting_modulation,\\z\n                                       spot_quantity_expression = starting_area_spot_quantity,\\z\n                                       spot_radius_expression = ",
+      "spot_favorability_expression": 1,
+      "seed0": "map_seed",
+      "seed1": "seed1",
+      "skip_span": "regular_patch_set_count",
+      "skip_offset": "regular_patch_set_index",
+      "region_size": 1024,
+      "candidate_spot_count": "candidate_spot_count",
+      "suggested_minimum_candidate_point_spacing": "..rs_suggested_minimum_candidate_point_spacing..",
+      "hard_region_target_quantity": 0,
+      "maximum_spot_basement_radius": "128\\z",
+      "start_vein": "1 - 10 * abs(multioctave_noise{\\z\n                                                     x = x,\\z\n                                                     y = y,\\z\n                                                     persistence = 0.5,\\z\n                                                     seed0 = map_seed,\\z\n                                                     seed1 = seed1,\\z\n                                                     input_scale = 1,\\z\n                                                     output_scale = 1,\\z\n                                                     octaves = 6\\z\n                        })",
+      "starting_amount": "",
+      "starting_frequency_multiplier": "((frequency_multiplier - 1) * 0.25) + 1",
+      "starting_area_spot_quantity": "starting_amount / starting_patches_split / frequency_multiplier",
+      "starting_blob_amplitude": "starting_blob_amplitude_multiplier / (pi/3 * starting_rq_factor ^ 2) * starting_area_spot_quantity ^ (1/3)",
+      "starting_modulation": "clamp((starting_resource_placement_radius - se_distance) * ",
+      "regular_patches": "spot_noise{\\z\n                                      x = x,\\z\n                                      y = y,\\z\n                                      density_expression = regular_density_at(se_distance),\\z",
+      "spot_quantity_expression": "regular_spot_quantity_expression",
+      "spot_radius_expression": "..size_boost..",
+      "x": "x",
+      "y": "y",
+      "input_scale": "1/64",
+      "output_scale": "1.5\\z",
+      "regular_spot_quantity_expression": "random_penalty_between(random_spot_size_minimum, random_spot_size_maximum, 1) * \\z\n                                            regular_spot_quantity_base_at(se_distance)",
+      "vein": "1 - 10 * abs(multioctave_noise{\\z\n                                               x = x,\\z\n                                               y = y,\\z\n                                               persistence = 0.5,\\z\n                                               seed0 = map_seed,\\z\n                                               seed1 = seed1,\\z\n                                               input_scale = 1/4,\\z\n                                               output_scale = 1,\\z\n                                               octaves = 6\\z\n        })",
+      "regular_blob_amplitude_maximum_distance": "if(has_starting_area_placement == -1,\\z\n                                                    double_density_distance,\\z\n                                                    double_density_distance + regular_patch_fade_in_distance)"
+    },
+    "local_functions": {
+      "size_effective_distance_at": {
+        "parameters": [
+          "distance"
+        ],
+        "expression": "if(has_starting_area_placement == -1, distance, distance - regular_patch_fade_in_distance)"
+      },
+      "regular_density_at": {
+        "parameters": [
+          "distance"
+        ],
+        "expression": "base_density * frequency_multiplier * size_multiplier * \\z\n                        if(has_starting_area_placement == -1, 1, clamp((distance - starting_resource_placement_radius) / regular_patch_fade_in_distance, 0, 1)) * \\z\n                        (1 + clamp(size_effective_distance_at(distance) / double_density_distance, 0, 1))"
+      },
+      "regular_spot_quantity_base_at": {
+        "parameters": [
+          "distance"
+        ],
+        "expression": "regular_density_at(distance) * 1000000 / spots_per_km2_near_start"
+      },
+      "regular_spot_height_typical_at": {
+        "parameters": [
+          "distance"
+        ],
+        "expression": "((random_spot_size_minimum + random_spot_size_maximum) / 2 * regular_spot_quantity_base_at(distance)) ^ (1/3) / (pi/3 * regular_rq_factor ^ 2)"
+      },
+      "regular_blob_amplitude_at": {
+        "parameters": [
+          "distance"
+        ],
+        "expression": "regular_blob_amplitude_multiplier * min(regular_spot_height_typical_at(regular_blob_amplitude_maximum_distance),\\z\n                                                                regular_spot_height_typical_at(distance))"
+      }
+    }
+  },
+  {
+    "type": "noise-expression",
+    "name": "all_patches_name",
+    "expression": "se_resource_autoplace_all_patches{\\z\n        base_density = ",
+    "base_spots_per_km2": ".. (params.base_spots_per_km2 or 2.5) ..",
+    "candidate_spot_count": ".. (candidate_spot_count) ..",
+    "frequency_multiplier": ".. setting_scale(",
+    "has_starting_area_placement": "..(   params.has_starting_area_placement == nil and -1\n                                          or params.has_starting_area_placement and 1\n                                          or 0)..",
+    "random_spot_size_minimum": ".. (params.random_spot_size_minimum or 0.25) ..",
+    "random_spot_size_maximum": ".. (params.random_spot_size_maximum or 2.00) ..",
+    "regular_blob_amplitude_multiplier": ".. ((params.regular_blob_amplitude_multiplier or 1) / 8) ..",
+    "regular_patch_set_count": ".. autoplace_set.regular.count_expression_name ..",
+    "regular_patch_set_index": ".. autoplace_set.regular:get_patch_set_index(patch_set_name) ..",
+    "regular_rq_factor": ".. ((params.regular_rq_factor_multiplier or 1) / 10) ..",
+    "seed1": ".. (params.seed1 or 100) ..",
+    "size_multiplier": ".. setting_scale(",
+    "starting_blob_amplitude_multiplier": ".. ((params.starting_blob_amplitude_multiplier or 1) / 8) ..",
+    "starting_patch_set_count": ".. autoplace_set.starting.count_expression_name ..",
+    "starting_patch_set_index": ".. (   params.has_starting_area_placement == true and autoplace_set.starting:get_patch_set_index(patch_set_name)\n                                        or 0) .. ",
+    "starting_rq_factor": ".. ((params.starting_rq_factor_multiplier or 1) / 8) ..",
+    "random_probability": "1\\z"
+  }
+]

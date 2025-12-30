@@ -100,7 +100,7 @@
         "pipe_connections": [
           {
             "flow_direction": "input",
-            "direction": "defines.direction.north",
+            "direction": null,
             "position": [
               0,
               -2
@@ -119,7 +119,7 @@
         "pipe_connections": [
           {
             "flow_direction": "output",
-            "direction": "defines.direction.south",
+            "direction": null,
             "position": [
               0,
               2
@@ -158,12 +158,12 @@
         "percent": 80
       }
     ],
-    "open_sound": "sounds.machine_open",
-    "close_sound": "sounds.machine_close",
+    "open_sound": null,
+    "close_sound": null,
     "idle_sound": {
       "filename": "__base__/sound/idle1.ogg"
     },
-    "vehicle_impact_sound": "sounds.generic_impact",
+    "vehicle_impact_sound": null,
     "working_sound": {
       "sound": [
         {
@@ -324,7 +324,7 @@
     },
     "icons_positioning": [
       {
-        "inventory_index": "defines.inventory.assembling_machine_modules",
+        "inventory_index": null,
         "shift": [
           0,
           1.25

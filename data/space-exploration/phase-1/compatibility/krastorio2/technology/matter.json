@@ -1,0 +1,124 @@
+[
+  {
+    "type": "technology",
+    "name": "se-kr-matter-",
+    "mod": "space-exploration",
+    "icons": [
+      {
+        "icon": "__Krastorio2Assets__/technologies/backgrounds/matter.png",
+        "icon_size": 256
+      },
+      {
+        "icon": "__space-exploration-graphics__/graphics/technology/",
+        "icon_size": 128,
+        "scale": 0.5
+      }
+    ],
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "se-kr-"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "se-kr-matter-to-"
+      }
+    ],
+    "prerequisites": [
+      "kr-matter-processing"
+    ],
+    "order": "g-e-e",
+    "unit": {
+      "count": 500,
+      "ingredients": [
+        [
+          "production-science-pack",
+          1
+        ],
+        [
+          "utility-science-pack",
+          1
+        ],
+        [
+          "kr-matter-tech-card",
+          1
+        ]
+      ],
+      "time": 60
+    },
+    "localised_name": [
+      "technology-name.k2-conversion",
+      [
+        "item-name.",
+        "..item_name"
+      ]
+    ]
+  },
+  {
+    "type": "technology",
+    "name": "se-kr-experimental-matter-processing",
+    "effects": {},
+    "icon": "__Krastorio2Assets__/icons/entities/matter-plant.png",
+    "icon_size": 64,
+    "order": "e-g",
+    "prerequisites": [
+      "se-naquium-cube",
+      "se-space-matter-fusion-2"
+    ],
+    "unit": {
+      "count": 200,
+      "time": 120,
+      "ingredients": [
+        [
+          "automation-science-pack",
+          1
+        ],
+        [
+          "logistic-science-pack",
+          1
+        ],
+        [
+          "chemical-science-pack",
+          1
+        ],
+        [
+          "production-science-pack",
+          1
+        ],
+        [
+          "utility-science-pack",
+          1
+        ],
+        [
+          "se-rocket-science-pack",
+          1
+        ],
+        [
+          "space-science-pack",
+          1
+        ],
+        [
+          "se-astronomic-science-pack-4",
+          1
+        ],
+        [
+          "se-energy-science-pack-4",
+          1
+        ],
+        [
+          "se-material-science-pack-4",
+          1
+        ],
+        [
+          "kr-matter-tech-card",
+          1
+        ],
+        [
+          "se-deep-space-science-pack-1",
+          1
+        ]
+      ]
+    },
+    "kr_check_science_packs_incompatibilities": false
+  }
+]

@@ -105,9 +105,9 @@
         "percent": 35
       }
     ],
-    "open_sound": "sounds.machine_open",
-    "close_sound": "sounds.machine_close",
-    "vehicle_impact_sound": "sounds.generic_impact",
+    "open_sound": null,
+    "close_sound": null,
+    "vehicle_impact_sound": null,
     "working_sound": {
       "sound": {
         "filename": "__Krastorio2Assets__/sounds/buildings/stabilizer-charging-station.ogg",

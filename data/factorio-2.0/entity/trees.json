@@ -27,7 +27,7 @@
     },
     "corpse": "type_name .. \"-stump\"",
     "damaged_trigger_effect": "leaf_sound_trigger",
-    "mined_sound": "sounds.tree_mined",
+    "mined_sound": null,
     "remains_when_mined": "type_name .. \"-stump\"",
     "emissions_per_second": "tree_emissions",
     "max_health": 50,
@@ -65,10 +65,10 @@
     "subgroup": "trees",
     "order": "a[tree]-a[nauvis]-a[regular]-",
     "impact_category": "tree",
-    "autoplace": "tree_data.autoplace",
+    "autoplace": null,
     "variations": "tree_variations",
-    "variation_weights": "tree_data.variation_weights",
-    "colors": "tree_data.colors",
+    "variation_weights": null,
+    "colors": null,
     "darkness_of_burnt_tree": 0.5,
     "ambient_sounds_group": "ambient_sounds_group",
     "ambient_sounds": "ambient_sounds"
@@ -266,7 +266,7 @@
       "probability_expression": "tree_dead_desert",
       "richness_expression": "clamp(random_penalty_at(6, 1), 0, 1)"
     },
-    "factoriopedia_simulation": "simulations.factoriopedia_dead_tree",
+    "factoriopedia_simulation": null,
     "pictures": [
       {
         "filename": "__base__/graphics/entity/tree/dead-tree-desert/dead-tree-desert-00.png",

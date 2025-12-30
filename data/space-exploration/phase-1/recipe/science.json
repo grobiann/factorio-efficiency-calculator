@@ -1,0 +1,1602 @@
+[
+  {
+    "type": "recipe",
+    "name": "chemical-science-pack",
+    "enabled": false,
+    "energy_required": 36,
+    "ingredients": [
+      {
+        "type": "item",
+        "name": "engine-unit",
+        "amount": 1
+      },
+      {
+        "type": "item",
+        "name": "advanced-circuit",
+        "amount": 3
+      },
+      {
+        "type": "item",
+        "name": "sulfur",
+        "amount": 2
+      }
+    ],
+    "results": [
+      {
+        "type": "item",
+        "name": "chemical-science-pack",
+        "amount": 3
+      }
+    ],
+    "allow_productivity": true
+  },
+  {
+    "type": "recipe",
+    "name": "utility-science-pack",
+    "category": "space-manufacturing",
+    "enabled": false,
+    "energy_required": 80,
+    "ingredients": [
+      {
+        "type": "item",
+        "name": "se-machine-learning-data",
+        "amount": 4
+      },
+      {
+        "type": "item",
+        "name": "se-cryonite-rod",
+        "amount": 8
+      },
+      {
+        "type": "item",
+        "name": "efficiency-module",
+        "amount": 1
+      },
+      {
+        "type": "item",
+        "name": "solar-panel",
+        "amount": 1
+      },
+      {
+        "type": "fluid",
+        "name": "se-space-coolant-warm",
+        "amount": 20
+      }
+    ],
+    "results": [
+      {
+        "type": "item",
+        "name": "utility-science-pack",
+        "amount": 4
+      },
+      {
+        "type": "item",
+        "name": "se-junk-data",
+        "amount": 4
+      },
+      {
+        "type": "fluid",
+        "name": "se-space-coolant-hot",
+        "amount": 20
+      }
+    ],
+    "icons": [
+      {
+        "icon": "__space-exploration-graphics__/graphics/icons/catalogue/deep-2.png",
+        "icon_size": 64
+      },
+      {
+        "icon": "__space-exploration-graphics__/graphics/icons/catalogue/mask-2.png",
+        "icon_size": 64,
+        "tint": null
+      }
+    ],
+    "icon_size": 64,
+    "main_product": "utility-science-pack",
+    "requester_paste_multiplier": 1,
+    "always_show_made_in": true,
+    "subgroup": "science-pack"
+  },
+  {
+    "type": "recipe",
+    "name": "production-science-pack",
+    "category": "space-manufacturing",
+    "enabled": false,
+    "energy_required": 60,
+    "ingredients": [
+      {
+        "type": "item",
+        "name": "se-machine-learning-data",
+        "amount": 1
+      },
+      {
+        "type": "item",
+        "name": "se-vulcanite-block",
+        "amount": 6
+      },
+      {
+        "type": "item",
+        "name": "productivity-module",
+        "amount": 1
+      },
+      {
+        "type": "item",
+        "name": "se-iron-ingot",
+        "amount": 5
+      },
+      {
+        "type": "fluid",
+        "name": "se-plasma-stream",
+        "amount": 100
+      }
+    ],
+    "results": [
+      {
+        "type": "item",
+        "name": "production-science-pack",
+        "amount": 3
+      },
+      {
+        "type": "item",
+        "name": "se-junk-data",
+        "amount": 1
+      }
+    ],
+    "icons": [
+      {
+        "icon": "__space-exploration-graphics__/graphics/icons/catalogue/deep-2.png",
+        "icon_size": 64
+      },
+      {
+        "icon": "__space-exploration-graphics__/graphics/icons/catalogue/mask-2.png",
+        "icon_size": 64,
+        "tint": null
+      }
+    ],
+    "icon_size": 64,
+    "main_product": "production-science-pack",
+    "requester_paste_multiplier": 1,
+    "always_show_made_in": true,
+    "subgroup": "science-pack"
+  },
+  {
+    "type": "recipe",
+    "name": "space-science-pack",
+    "results": [
+      {
+        "type": "item",
+        "name": "space-science-pack",
+        "amount": 100
+      }
+    ],
+    "category": "space-manufacturing",
+    "enabled": false,
+    "energy_required": 20,
+    "ingredients": [
+      {
+        "type": "item",
+        "name": "se-heat-shielding",
+        "amount": 10
+      },
+      {
+        "type": "item",
+        "name": "low-density-structure",
+        "amount": 10
+      },
+      {
+        "type": "item",
+        "name": "rocket-control-unit",
+        "amount": 10
+      },
+      {
+        "type": "item",
+        "name": "se-cargo-rocket-cargo-pod",
+        "amount": 5
+      },
+      {
+        "type": "item",
+        "name": "se-cargo-rocket-fuel-tank",
+        "amount": 1
+      }
+    ],
+    "main_product": "space-science-pack",
+    "requester_paste_multiplier": 1
+  },
+  {
+    "type": "recipe",
+    "name": "space-science-pack",
+    "results": [
+      {
+        "type": "item",
+        "name": "space-science-pack",
+        "amount": 4
+      }
+    ],
+    "category": "space-crafting",
+    "enabled": false,
+    "energy_required": 20,
+    "ingredients": [
+      {
+        "type": "item",
+        "name": "se-heat-shielding",
+        "amount": 1
+      },
+      {
+        "type": "item",
+        "name": "low-density-structure",
+        "amount": 1
+      },
+      {
+        "type": "item",
+        "name": "battery",
+        "amount": 5
+      },
+      {
+        "type": "item",
+        "name": "processing-unit",
+        "amount": 1
+      },
+      {
+        "type": "fluid",
+        "name": "se-liquid-rocket-fuel",
+        "amount": 20
+      }
+    ],
+    "main_product": "space-science-pack",
+    "requester_paste_multiplier": 1,
+    "always_show_made_in": true
+  },
+  {
+    "type": "recipe",
+    "name": "se-rocket-science-pack",
+    "category": "advanced-crafting",
+    "enabled": false,
+    "energy_required": 80,
+    "ingredients": [
+      {
+        "type": "item",
+        "name": "speed-module",
+        "amount": 1
+      },
+      {
+        "type": "item",
+        "name": "electric-furnace",
+        "amount": 1
+      },
+      {
+        "type": "item",
+        "name": "se-satellite-telemetry",
+        "amount": 1
+      }
+    ],
+    "results": [
+      {
+        "type": "item",
+        "name": "se-rocket-science-pack",
+        "amount": 8
+      }
+    ],
+    "icon": "__space-exploration-graphics__/graphics/icons/beaker/orange.png",
+    "icon_size": 64,
+    "main_product": "se-rocket-science-pack",
+    "requester_paste_multiplier": 1,
+    "always_show_made_in": true,
+    "allow_productivity": true,
+    "subgroup": "science-pack"
+  },
+  {
+    "type": "recipe",
+    "name": "space-science-pack",
+    "category": "space-crafting",
+    "enabled": false,
+    "energy_required": 75,
+    "ingredients": [
+      {
+        "type": "item",
+        "name": "stone",
+        "amount": 5
+      },
+      {
+        "type": "item",
+        "name": "se-space-transport-belt",
+        "amount": 2
+      },
+      {
+        "type": "item",
+        "name": "processing-unit",
+        "amount": 1
+      },
+      {
+        "type": "item",
+        "name": "rocket-fuel",
+        "amount": 1
+      },
+      {
+        "type": "fluid",
+        "name": "se-space-water",
+        "amount": 1
+      }
+    ],
+    "results": [
+      {
+        "type": "item",
+        "name": "space-science-pack",
+        "amount": 5
+      }
+    ],
+    "icons": [
+      {
+        "icon": "__space-exploration-graphics__/graphics/icons/catalogue/deep-1.png",
+        "icon_size": 64
+      },
+      {
+        "icon": "__space-exploration-graphics__/graphics/icons/catalogue/mask-1.png",
+        "icon_size": 64
+      }
+    ],
+    "icon_size": 64,
+    "main_product": "space-science-pack",
+    "requester_paste_multiplier": 1,
+    "always_show_made_in": true,
+    "subgroup": "science-pack"
+  },
+  {
+    "type": "recipe",
+    "name": "se-astronomic-science-pack-1",
+    "category": "space-manufacturing",
+    "enabled": false,
+    "energy_required": 30,
+    "ingredients": [
+      {
+        "type": "item",
+        "name": "se-astronomic-catalogue-1",
+        "amount": 1
+      },
+      {
+        "type": "item",
+        "name": "se-beryllium-plate",
+        "amount": 20
+      },
+      {
+        "type": "item",
+        "name": "se-astronomic-insight",
+        "amount": 1
+      },
+      {
+        "type": "item",
+        "name": "se-significant-data",
+        "amount": 1
+      },
+      {
+        "type": "fluid",
+        "name": "se-space-coolant-cold",
+        "amount": 20
+      }
+    ],
+    "results": [
+      {
+        "type": "item",
+        "name": "se-astronomic-science-pack-1",
+        "amount": 2
+      },
+      {
+        "type": "item",
+        "name": "se-junk-data",
+        "amount": 6
+      },
+      {
+        "type": "fluid",
+        "name": "se-space-coolant-hot",
+        "amount": 20
+      }
+    ],
+    "icon_size": 64,
+    "main_product": "se-astronomic-science-pack-1",
+    "requester_paste_multiplier": 1,
+    "always_show_made_in": true
+  },
+  {
+    "type": "recipe",
+    "name": "se-astronomic-science-pack-2",
+    "category": "space-manufacturing",
+    "enabled": false,
+    "energy_required": 30,
+    "ingredients": [
+      {
+        "type": "item",
+        "name": "se-astronomic-catalogue-2",
+        "amount": 1
+      },
+      {
+        "type": "item",
+        "name": "se-astronomic-science-pack-1",
+        "amount": 2
+      },
+      {
+        "type": "item",
+        "name": "se-aeroframe-pole",
+        "amount": 40
+      },
+      {
+        "type": "item",
+        "name": "se-astronomic-insight",
+        "amount": 1
+      },
+      {
+        "type": "item",
+        "name": "se-significant-data",
+        "amount": 1
+      },
+      {
+        "type": "fluid",
+        "name": "se-space-coolant-cold",
+        "amount": 20
+      }
+    ],
+    "results": [
+      {
+        "type": "item",
+        "name": "se-astronomic-science-pack-2",
+        "amount": 4
+      },
+      {
+        "type": "item",
+        "name": "se-junk-data",
+        "amount": 6
+      },
+      {
+        "type": "fluid",
+        "name": "se-space-coolant-hot",
+        "amount": 20
+      }
+    ],
+    "icon_size": 64,
+    "main_product": "se-astronomic-science-pack-2",
+    "requester_paste_multiplier": 1,
+    "always_show_made_in": true
+  },
+  {
+    "type": "recipe",
+    "name": "se-astronomic-science-pack-3",
+    "category": "space-manufacturing",
+    "enabled": false,
+    "energy_required": 30,
+    "ingredients": [
+      {
+        "type": "item",
+        "name": "se-astronomic-catalogue-3",
+        "amount": 1
+      },
+      {
+        "type": "item",
+        "name": "se-astronomic-science-pack-2",
+        "amount": 4
+      },
+      {
+        "type": "item",
+        "name": "se-aeroframe-scaffold",
+        "amount": 30
+      },
+      {
+        "type": "item",
+        "name": "se-astronomic-insight",
+        "amount": 1
+      },
+      {
+        "type": "item",
+        "name": "se-significant-data",
+        "amount": 1
+      },
+      {
+        "type": "fluid",
+        "name": "se-space-coolant-cold",
+        "amount": 20
+      }
+    ],
+    "results": [
+      {
+        "type": "item",
+        "name": "se-astronomic-science-pack-3",
+        "amount": 6
+      },
+      {
+        "type": "item",
+        "name": "se-junk-data",
+        "amount": 6
+      },
+      {
+        "type": "fluid",
+        "name": "se-space-coolant-hot",
+        "amount": 20
+      }
+    ],
+    "icon_size": 64,
+    "main_product": "se-astronomic-science-pack-3",
+    "requester_paste_multiplier": 1,
+    "always_show_made_in": true
+  },
+  {
+    "type": "recipe",
+    "name": "se-astronomic-science-pack-4",
+    "category": "space-manufacturing",
+    "enabled": false,
+    "energy_required": 30,
+    "ingredients": [
+      {
+        "type": "item",
+        "name": "se-astronomic-catalogue-4",
+        "amount": 1
+      },
+      {
+        "type": "item",
+        "name": "se-astronomic-science-pack-3",
+        "amount": 6
+      },
+      {
+        "type": "item",
+        "name": "se-aeroframe-bulkhead",
+        "amount": 10
+      },
+      {
+        "type": "item",
+        "name": "se-astronomic-insight",
+        "amount": 1
+      },
+      {
+        "type": "item",
+        "name": "se-significant-data",
+        "amount": 1
+      },
+      {
+        "type": "fluid",
+        "name": "se-space-coolant-cold",
+        "amount": 20
+      }
+    ],
+    "results": [
+      {
+        "type": "item",
+        "name": "se-astronomic-science-pack-4",
+        "amount": 8
+      },
+      {
+        "type": "item",
+        "name": "se-junk-data",
+        "amount": 6
+      },
+      {
+        "type": "fluid",
+        "name": "se-space-coolant-hot",
+        "amount": 20
+      }
+    ],
+    "icon_size": 64,
+    "main_product": "se-astronomic-science-pack-4",
+    "requester_paste_multiplier": 1,
+    "always_show_made_in": true
+  },
+  {
+    "type": "recipe",
+    "name": "se-biological-science-pack-1",
+    "category": "space-manufacturing",
+    "enabled": false,
+    "energy_required": 30,
+    "ingredients": [
+      {
+        "type": "item",
+        "name": "se-biological-catalogue-1",
+        "amount": 1
+      },
+      {
+        "type": "item",
+        "name": "se-vitamelange-extract",
+        "amount": 20
+      },
+      {
+        "type": "item",
+        "name": "se-biological-insight",
+        "amount": 1
+      },
+      {
+        "type": "item",
+        "name": "se-significant-data",
+        "amount": 1
+      },
+      {
+        "type": "fluid",
+        "name": "se-space-coolant-cold",
+        "amount": 20
+      }
+    ],
+    "results": [
+      {
+        "type": "item",
+        "name": "se-biological-science-pack-1",
+        "amount": 2
+      },
+      {
+        "type": "item",
+        "name": "se-junk-data",
+        "amount": 6
+      },
+      {
+        "type": "fluid",
+        "name": "se-space-coolant-hot",
+        "amount": 20
+      }
+    ],
+    "icon_size": 64,
+    "main_product": "se-biological-science-pack-1",
+    "requester_paste_multiplier": 1,
+    "always_show_made_in": true
+  },
+  {
+    "type": "recipe",
+    "name": "se-biological-science-pack-2",
+    "category": "space-manufacturing",
+    "enabled": false,
+    "energy_required": 30,
+    "ingredients": [
+      {
+        "type": "item",
+        "name": "se-biological-catalogue-2",
+        "amount": 1
+      },
+      {
+        "type": "item",
+        "name": "se-biological-science-pack-1",
+        "amount": 2
+      },
+      {
+        "type": "item",
+        "name": "se-bioscrubber",
+        "amount": 10
+      },
+      {
+        "type": "item",
+        "name": "se-biological-insight",
+        "amount": 1
+      },
+      {
+        "type": "item",
+        "name": "se-significant-data",
+        "amount": 1
+      },
+      {
+        "type": "fluid",
+        "name": "se-space-coolant-cold",
+        "amount": 20
+      }
+    ],
+    "results": [
+      {
+        "type": "item",
+        "name": "se-biological-science-pack-2",
+        "amount": 4
+      },
+      {
+        "type": "item",
+        "name": "se-junk-data",
+        "amount": 6
+      },
+      {
+        "type": "fluid",
+        "name": "se-space-coolant-hot",
+        "amount": 20
+      }
+    ],
+    "icon_size": 64,
+    "main_product": "se-biological-science-pack-2",
+    "requester_paste_multiplier": 1,
+    "always_show_made_in": true
+  },
+  {
+    "type": "recipe",
+    "name": "se-biological-science-pack-3",
+    "category": "space-manufacturing",
+    "enabled": false,
+    "energy_required": 30,
+    "ingredients": [
+      {
+        "type": "item",
+        "name": "se-biological-catalogue-3",
+        "amount": 1
+      },
+      {
+        "type": "item",
+        "name": "se-biological-science-pack-2",
+        "amount": 4
+      },
+      {
+        "type": "item",
+        "name": "se-vitalic-reagent",
+        "amount": 40
+      },
+      {
+        "type": "item",
+        "name": "se-biological-insight",
+        "amount": 1
+      },
+      {
+        "type": "item",
+        "name": "se-significant-data",
+        "amount": 1
+      },
+      {
+        "type": "fluid",
+        "name": "se-space-coolant-cold",
+        "amount": 20
+      }
+    ],
+    "results": [
+      {
+        "type": "item",
+        "name": "se-biological-science-pack-3",
+        "amount": 6
+      },
+      {
+        "type": "item",
+        "name": "se-junk-data",
+        "amount": 6
+      },
+      {
+        "type": "fluid",
+        "name": "se-space-coolant-hot",
+        "amount": 20
+      }
+    ],
+    "icon_size": 64,
+    "main_product": "se-biological-science-pack-3",
+    "requester_paste_multiplier": 1,
+    "always_show_made_in": true
+  },
+  {
+    "type": "recipe",
+    "name": "se-biological-science-pack-4",
+    "category": "space-manufacturing",
+    "enabled": false,
+    "energy_required": 30,
+    "ingredients": [
+      {
+        "type": "item",
+        "name": "se-biological-catalogue-4",
+        "amount": 1
+      },
+      {
+        "type": "item",
+        "name": "se-biological-science-pack-3",
+        "amount": 6
+      },
+      {
+        "type": "item",
+        "name": "se-vitalic-epoxy",
+        "amount": 10
+      },
+      {
+        "type": "item",
+        "name": "se-core-fragment-se-vitamelange",
+        "amount": 1
+      },
+      {
+        "type": "item",
+        "name": "se-biological-insight",
+        "amount": 1
+      },
+      {
+        "type": "item",
+        "name": "se-significant-data",
+        "amount": 1
+      },
+      {
+        "type": "fluid",
+        "name": "se-space-coolant-cold",
+        "amount": 20
+      }
+    ],
+    "results": [
+      {
+        "type": "item",
+        "name": "se-biological-science-pack-4",
+        "amount": 8
+      },
+      {
+        "type": "item",
+        "name": "se-junk-data",
+        "amount": 6
+      },
+      {
+        "type": "fluid",
+        "name": "se-space-coolant-hot",
+        "amount": 20
+      }
+    ],
+    "icon_size": 64,
+    "main_product": "se-biological-science-pack-4",
+    "requester_paste_multiplier": 1,
+    "always_show_made_in": true
+  },
+  {
+    "type": "recipe",
+    "name": "se-material-science-pack-1",
+    "category": "space-manufacturing",
+    "enabled": false,
+    "energy_required": 30,
+    "ingredients": [
+      {
+        "type": "item",
+        "name": "se-material-catalogue-1",
+        "amount": 1
+      },
+      {
+        "type": "item",
+        "name": "se-iridium-plate",
+        "amount": 20
+      },
+      {
+        "type": "item",
+        "name": "se-material-insight",
+        "amount": 1
+      },
+      {
+        "type": "item",
+        "name": "se-significant-data",
+        "amount": 1
+      },
+      {
+        "type": "fluid",
+        "name": "se-space-coolant-cold",
+        "amount": 20
+      }
+    ],
+    "results": [
+      {
+        "type": "item",
+        "name": "se-material-science-pack-1",
+        "amount": 2
+      },
+      {
+        "type": "item",
+        "name": "se-junk-data",
+        "amount": 6
+      },
+      {
+        "type": "fluid",
+        "name": "se-space-coolant-hot",
+        "amount": 20
+      }
+    ],
+    "icon_size": 64,
+    "main_product": "se-material-science-pack-1",
+    "requester_paste_multiplier": 1,
+    "always_show_made_in": true
+  },
+  {
+    "type": "recipe",
+    "name": "se-material-science-pack-2",
+    "category": "space-manufacturing",
+    "enabled": false,
+    "energy_required": 30,
+    "ingredients": [
+      {
+        "type": "item",
+        "name": "se-material-catalogue-2",
+        "amount": 1
+      },
+      {
+        "type": "item",
+        "name": "se-material-science-pack-1",
+        "amount": 2
+      },
+      {
+        "type": "item",
+        "name": "se-heavy-girder",
+        "amount": 10
+      },
+      {
+        "type": "item",
+        "name": "se-material-insight",
+        "amount": 1
+      },
+      {
+        "type": "item",
+        "name": "se-significant-data",
+        "amount": 1
+      },
+      {
+        "type": "fluid",
+        "name": "se-space-coolant-cold",
+        "amount": 20
+      }
+    ],
+    "results": [
+      {
+        "type": "item",
+        "name": "se-material-science-pack-2",
+        "amount": 4
+      },
+      {
+        "type": "item",
+        "name": "se-junk-data",
+        "amount": 6
+      },
+      {
+        "type": "fluid",
+        "name": "se-space-coolant-hot",
+        "amount": 20
+      }
+    ],
+    "icon_size": 64,
+    "main_product": "se-material-science-pack-2",
+    "requester_paste_multiplier": 1,
+    "always_show_made_in": true
+  },
+  {
+    "type": "recipe",
+    "name": "se-material-science-pack-3",
+    "category": "space-manufacturing",
+    "enabled": false,
+    "energy_required": 30,
+    "ingredients": [
+      {
+        "type": "item",
+        "name": "se-material-catalogue-3",
+        "amount": 1
+      },
+      {
+        "type": "item",
+        "name": "se-material-science-pack-2",
+        "amount": 4
+      },
+      {
+        "type": "item",
+        "name": "se-heavy-bearing",
+        "amount": 15
+      },
+      {
+        "type": "item",
+        "name": "se-material-insight",
+        "amount": 1
+      },
+      {
+        "type": "item",
+        "name": "se-significant-data",
+        "amount": 1
+      },
+      {
+        "type": "fluid",
+        "name": "se-space-coolant-cold",
+        "amount": 20
+      }
+    ],
+    "results": [
+      {
+        "type": "item",
+        "name": "se-material-science-pack-3",
+        "amount": 6
+      },
+      {
+        "type": "item",
+        "name": "se-junk-data",
+        "amount": 6
+      },
+      {
+        "type": "fluid",
+        "name": "se-space-coolant-hot",
+        "amount": 20
+      }
+    ],
+    "icon_size": 64,
+    "main_product": "se-material-science-pack-3",
+    "requester_paste_multiplier": 1,
+    "always_show_made_in": true
+  },
+  {
+    "type": "recipe",
+    "name": "se-material-science-pack-4",
+    "category": "space-manufacturing",
+    "enabled": false,
+    "energy_required": 30,
+    "ingredients": [
+      {
+        "type": "item",
+        "name": "se-material-catalogue-4",
+        "amount": 1
+      },
+      {
+        "type": "item",
+        "name": "se-material-science-pack-3",
+        "amount": 6
+      },
+      {
+        "type": "item",
+        "name": "se-heavy-composite",
+        "amount": 10
+      },
+      {
+        "type": "item",
+        "name": "se-material-insight",
+        "amount": 1
+      },
+      {
+        "type": "item",
+        "name": "se-significant-data",
+        "amount": 1
+      },
+      {
+        "type": "fluid",
+        "name": "se-space-coolant-cold",
+        "amount": 20
+      }
+    ],
+    "results": [
+      {
+        "type": "item",
+        "name": "se-material-science-pack-4",
+        "amount": 8
+      },
+      {
+        "type": "item",
+        "name": "se-junk-data",
+        "amount": 6
+      },
+      {
+        "type": "fluid",
+        "name": "se-space-coolant-hot",
+        "amount": 20
+      }
+    ],
+    "icon_size": 64,
+    "main_product": "se-material-science-pack-4",
+    "requester_paste_multiplier": 1,
+    "always_show_made_in": true
+  },
+  {
+    "type": "recipe",
+    "name": "se-energy-science-pack-1",
+    "category": "space-manufacturing",
+    "enabled": false,
+    "energy_required": 30,
+    "ingredients": [
+      {
+        "type": "item",
+        "name": "se-energy-catalogue-1",
+        "amount": 1
+      },
+      {
+        "type": "item",
+        "name": "se-holmium-plate",
+        "amount": 20
+      },
+      {
+        "type": "item",
+        "name": "se-energy-insight",
+        "amount": 1
+      },
+      {
+        "type": "item",
+        "name": "se-significant-data",
+        "amount": 1
+      },
+      {
+        "type": "fluid",
+        "name": "se-space-coolant-cold",
+        "amount": 20
+      }
+    ],
+    "results": [
+      {
+        "type": "item",
+        "name": "se-energy-science-pack-1",
+        "amount": 2
+      },
+      {
+        "type": "item",
+        "name": "se-junk-data",
+        "amount": 6
+      },
+      {
+        "type": "fluid",
+        "name": "se-space-coolant-hot",
+        "amount": 20
+      }
+    ],
+    "icon_size": 64,
+    "main_product": "se-energy-science-pack-1",
+    "requester_paste_multiplier": 1,
+    "always_show_made_in": true
+  },
+  {
+    "type": "recipe",
+    "name": "se-energy-science-pack-2",
+    "category": "space-manufacturing",
+    "enabled": false,
+    "energy_required": 30,
+    "ingredients": [
+      {
+        "type": "item",
+        "name": "se-energy-catalogue-2",
+        "amount": 1
+      },
+      {
+        "type": "item",
+        "name": "se-energy-science-pack-1",
+        "amount": 2
+      },
+      {
+        "type": "item",
+        "name": "se-holmium-cable",
+        "amount": 20
+      },
+      {
+        "type": "item",
+        "name": "se-energy-insight",
+        "amount": 1
+      },
+      {
+        "type": "item",
+        "name": "se-significant-data",
+        "amount": 1
+      },
+      {
+        "type": "fluid",
+        "name": "se-space-coolant-cold",
+        "amount": 20
+      }
+    ],
+    "results": [
+      {
+        "type": "item",
+        "name": "se-energy-science-pack-2",
+        "amount": 4
+      },
+      {
+        "type": "item",
+        "name": "se-junk-data",
+        "amount": 6
+      },
+      {
+        "type": "fluid",
+        "name": "se-space-coolant-hot",
+        "amount": 20
+      }
+    ],
+    "icon_size": 64,
+    "main_product": "se-energy-science-pack-2",
+    "requester_paste_multiplier": 1,
+    "always_show_made_in": true
+  },
+  {
+    "type": "recipe",
+    "name": "se-energy-science-pack-3",
+    "category": "space-manufacturing",
+    "enabled": false,
+    "energy_required": 30,
+    "ingredients": [
+      {
+        "type": "item",
+        "name": "se-energy-catalogue-3",
+        "amount": 1
+      },
+      {
+        "type": "item",
+        "name": "se-energy-science-pack-2",
+        "amount": 4
+      },
+      {
+        "type": "item",
+        "name": "se-holmium-solenoid",
+        "amount": 15
+      },
+      {
+        "type": "item",
+        "name": "se-energy-insight",
+        "amount": 1
+      },
+      {
+        "type": "item",
+        "name": "se-significant-data",
+        "amount": 1
+      },
+      {
+        "type": "fluid",
+        "name": "se-space-coolant-cold",
+        "amount": 20
+      }
+    ],
+    "results": [
+      {
+        "type": "item",
+        "name": "se-energy-science-pack-3",
+        "amount": 6
+      },
+      {
+        "type": "item",
+        "name": "se-junk-data",
+        "amount": 6
+      },
+      {
+        "type": "fluid",
+        "name": "se-space-coolant-hot",
+        "amount": 20
+      }
+    ],
+    "icon_size": 64,
+    "main_product": "se-energy-science-pack-3",
+    "requester_paste_multiplier": 1,
+    "always_show_made_in": true
+  },
+  {
+    "type": "recipe",
+    "name": "se-energy-science-pack-4",
+    "category": "space-manufacturing",
+    "enabled": false,
+    "energy_required": 30,
+    "ingredients": [
+      {
+        "type": "item",
+        "name": "se-energy-catalogue-4",
+        "amount": 1
+      },
+      {
+        "type": "item",
+        "name": "se-energy-science-pack-3",
+        "amount": 6
+      },
+      {
+        "type": "item",
+        "name": "se-quantum-processor",
+        "amount": 5
+      },
+      {
+        "type": "item",
+        "name": "se-energy-insight",
+        "amount": 1
+      },
+      {
+        "type": "item",
+        "name": "se-significant-data",
+        "amount": 1
+      },
+      {
+        "type": "fluid",
+        "name": "se-space-coolant-cold",
+        "amount": 20
+      }
+    ],
+    "results": [
+      {
+        "type": "item",
+        "name": "se-energy-science-pack-4",
+        "amount": 8
+      },
+      {
+        "type": "item",
+        "name": "se-junk-data",
+        "amount": 6
+      },
+      {
+        "type": "fluid",
+        "name": "se-space-coolant-hot",
+        "amount": 20
+      }
+    ],
+    "icon_size": 64,
+    "main_product": "se-energy-science-pack-4",
+    "requester_paste_multiplier": 1,
+    "always_show_made_in": true
+  },
+  {
+    "type": "recipe",
+    "name": "space-science-pack",
+    "category": "space-manufacturing",
+    "enabled": false,
+    "energy_required": 20,
+    "ingredients": [
+      {
+        "type": "item",
+        "name": "se-significant-data",
+        "amount": 100
+      },
+      {
+        "type": "item",
+        "name": "se-lifesupport-canister",
+        "amount": 1
+      },
+      {
+        "type": "item",
+        "name": "se-space-mirror",
+        "amount": 1
+      },
+      {
+        "type": "item",
+        "name": "se-space-platform-scaffold",
+        "amount": 1
+      },
+      {
+        "type": "fluid",
+        "name": "se-space-coolant-supercooled",
+        "amount": 100
+      }
+    ],
+    "results": [
+      {
+        "type": "item",
+        "name": "space-science-pack",
+        "amount": 5
+      },
+      {
+        "type": "item",
+        "name": "se-junk-data",
+        "amount": 100
+      },
+      {
+        "type": "fluid",
+        "name": "se-space-coolant-hot",
+        "amount": 100
+      }
+    ],
+    "icon": "data.raw.tool[\"space-science-pack\"].icon",
+    "icon_size": 64,
+    "main_product": "space-science-pack",
+    "requester_paste_multiplier": 1
+  },
+  {
+    "type": "recipe",
+    "name": "se-deep-space-science-pack-1",
+    "category": "space-manufacturing",
+    "enabled": false,
+    "energy_required": 60,
+    "ingredients": [
+      {
+        "type": "item",
+        "name": "se-significant-data",
+        "amount": 1
+      },
+      {
+        "type": "item",
+        "name": "se-deep-catalogue-1",
+        "amount": 1
+      },
+      {
+        "type": "item",
+        "name": "se-naquium-plate",
+        "amount": 10
+      },
+      {
+        "type": "fluid",
+        "name": "se-neural-gel-2",
+        "amount": 5
+      },
+      {
+        "type": "fluid",
+        "name": "se-space-coolant-supercooled",
+        "amount": 100
+      }
+    ],
+    "results": [
+      {
+        "type": "item",
+        "name": "se-deep-space-science-pack-1",
+        "amount": 2
+      },
+      {
+        "type": "item",
+        "name": "se-junk-data",
+        "amount": 4
+      },
+      {
+        "type": "item",
+        "name": "se-broken-data",
+        "amount": 1
+      },
+      {
+        "type": "fluid",
+        "name": "se-space-coolant-hot",
+        "amount": 100
+      }
+    ],
+    "icon": "data.raw.tool[data_util.mod_prefix .. \"deep-space-science-pack-1\"].icon",
+    "icon_size": 64,
+    "main_product": "se-deep-space-science-pack-1",
+    "requester_paste_multiplier": 1,
+    "always_show_made_in": true
+  },
+  {
+    "type": "recipe",
+    "name": "se-deep-space-science-pack-2",
+    "category": "space-manufacturing",
+    "enabled": false,
+    "energy_required": 120,
+    "ingredients": [
+      {
+        "type": "item",
+        "name": "se-deep-space-science-pack-1",
+        "amount": 2
+      },
+      {
+        "type": "item",
+        "name": "se-significant-data",
+        "amount": 1
+      },
+      {
+        "type": "item",
+        "name": "se-deep-catalogue-2",
+        "amount": 1
+      },
+      {
+        "type": "item",
+        "name": "se-naquium-cube",
+        "amount": 1
+      },
+      {
+        "type": "fluid",
+        "name": "se-neural-gel-2",
+        "amount": 5
+      },
+      {
+        "type": "fluid",
+        "name": "se-space-coolant-supercooled",
+        "amount": 200
+      }
+    ],
+    "results": [
+      {
+        "type": "item",
+        "name": "se-deep-space-science-pack-2",
+        "amount": 4
+      },
+      {
+        "type": "item",
+        "name": "se-junk-data",
+        "amount": 4
+      },
+      {
+        "type": "item",
+        "name": "se-broken-data",
+        "amount": 1
+      },
+      {
+        "type": "fluid",
+        "name": "se-space-coolant-hot",
+        "amount": 200
+      }
+    ],
+    "icon": "data.raw.tool[data_util.mod_prefix .. \"deep-space-science-pack-2\"].icon",
+    "icon_size": 64,
+    "main_product": "se-deep-space-science-pack-2",
+    "requester_paste_multiplier": 1,
+    "always_show_made_in": true
+  },
+  {
+    "type": "recipe",
+    "name": "se-deep-space-science-pack-3",
+    "category": "space-manufacturing",
+    "enabled": false,
+    "energy_required": 180,
+    "ingredients": [
+      {
+        "type": "item",
+        "name": "se-deep-space-science-pack-2",
+        "amount": 4
+      },
+      {
+        "type": "item",
+        "name": "se-significant-data",
+        "amount": 1
+      },
+      {
+        "type": "item",
+        "name": "se-deep-catalogue-3",
+        "amount": 1
+      },
+      {
+        "type": "item",
+        "name": "se-naquium-tessaract",
+        "amount": 1
+      },
+      {
+        "type": "fluid",
+        "name": "se-neural-gel-2",
+        "amount": 5
+      },
+      {
+        "type": "fluid",
+        "name": "se-space-coolant-supercooled",
+        "amount": 200
+      }
+    ],
+    "results": [
+      {
+        "type": "item",
+        "name": "se-deep-space-science-pack-3",
+        "amount": 6
+      },
+      {
+        "type": "item",
+        "name": "se-junk-data",
+        "amount": 4
+      },
+      {
+        "type": "item",
+        "name": "se-broken-data",
+        "amount": 1
+      },
+      {
+        "type": "fluid",
+        "name": "se-space-coolant-hot",
+        "amount": 200
+      }
+    ],
+    "icon": "data.raw.tool[data_util.mod_prefix .. \"deep-space-science-pack-3\"].icon",
+    "icon_size": 64,
+    "main_product": "se-deep-space-science-pack-3",
+    "requester_paste_multiplier": 1,
+    "always_show_made_in": true
+  },
+  {
+    "type": "recipe",
+    "name": "se-deep-space-science-pack-4",
+    "category": "space-manufacturing",
+    "enabled": false,
+    "energy_required": 240,
+    "ingredients": [
+      {
+        "type": "item",
+        "name": "se-deep-space-science-pack-3",
+        "amount": 6
+      },
+      {
+        "type": "item",
+        "name": "se-significant-data",
+        "amount": 1
+      },
+      {
+        "type": "item",
+        "name": "se-deep-catalogue-4",
+        "amount": 1
+      },
+      {
+        "type": "item",
+        "name": "se-naquium-processor",
+        "amount": 1
+      },
+      {
+        "type": "fluid",
+        "name": "se-neural-gel-2",
+        "amount": 5
+      },
+      {
+        "type": "fluid",
+        "name": "se-space-coolant-supercooled",
+        "amount": 200
+      }
+    ],
+    "results": [
+      {
+        "type": "item",
+        "name": "se-deep-space-science-pack-4",
+        "amount": 8
+      },
+      {
+        "type": "item",
+        "name": "se-junk-data",
+        "amount": 4
+      },
+      {
+        "type": "item",
+        "name": "se-broken-data",
+        "amount": 1
+      },
+      {
+        "type": "fluid",
+        "name": "se-space-coolant-hot",
+        "amount": 200
+      }
+    ],
+    "icon": "data.raw.tool[data_util.mod_prefix .. \"deep-space-science-pack-4\"].icon",
+    "icon_size": 64,
+    "main_product": "se-deep-space-science-pack-4",
+    "requester_paste_multiplier": 1,
+    "always_show_made_in": true
+  }
+]

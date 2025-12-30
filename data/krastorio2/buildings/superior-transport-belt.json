@@ -81,8 +81,8 @@
         "percent": 50
       }
     ],
-    "open_sound": "sounds.transport_belt_open",
-    "close_sound": "sounds.transport_belt_close",
+    "open_sound": null,
+    "close_sound": null,
     "working_sound": {
       "sound": {
         "filename": "__base__/sound/transport-belt.ogg",

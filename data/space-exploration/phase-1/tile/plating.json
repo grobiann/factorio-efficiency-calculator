@@ -1,0 +1,138 @@
+[
+  {
+    "type": "tile",
+    "name": "se-space-platform-plating",
+    "needs_correction": false,
+    "minable": {
+      "mining_time": 0.2,
+      "result": "se-space-platform-plating"
+    },
+    "mined_sound": {
+      "filename": "__base__/sound/deconstruct-bricks.ogg"
+    },
+    "collision_mask": {
+      "layers": [
+        "[space_collision_layer] = true"
+      ]
+    },
+    "walking_speed_modifier": 1.5,
+    "layer_group": "ground-artificial",
+    "layer": 100,
+    "decorative_removal_probability": 1,
+    "variants": {
+      "main": [
+        {
+          "picture": "__space-exploration-graphics__/graphics/terrain/space-platform-plating/tile1.png",
+          "count": 12,
+          "size": 1,
+          "scale": 0.5
+        }
+      ],
+      "transition": {
+        "overlay_layout": {
+          "inner_corner": {
+            "spritesheet": "__space-exploration-graphics__/graphics/terrain/space-platform-plating/tile-inner-corner.png",
+            "count": 1,
+            "tall": false,
+            "scale": 0.5
+          },
+          "outer_corner": {
+            "spritesheet": "__space-exploration-graphics__/graphics/terrain/space-platform-plating/tile-outer-corner.png",
+            "count": 1,
+            "tall": false,
+            "scale": 0.5
+          },
+          "side": {
+            "spritesheet": "__space-exploration-graphics__/graphics/terrain/space-platform-plating/tile-side.png",
+            "count": 16,
+            "tall": false,
+            "scale": 0.5
+          },
+          "u_transition": {
+            "spritesheet": "__space-exploration-graphics__/graphics/terrain/space-platform-plating/tile-u.png",
+            "count": 1,
+            "tall": false,
+            "scale": 0.5
+          },
+          "o_transition": {
+            "spritesheet": "__space-exploration-graphics__/graphics/terrain/space-platform-plating/tile-o.png",
+            "count": 1,
+            "scale": 0.5
+          }
+        }
+      }
+    },
+    "walking_sound": [
+      {
+        "filename": "__base__/sound/walking/concrete-1.ogg",
+        "volume": 1.2
+      },
+      {
+        "filename": "__base__/sound/walking/concrete-2.ogg",
+        "volume": 1.2
+      },
+      {
+        "filename": "__base__/sound/walking/concrete-3.ogg",
+        "volume": 1.2
+      },
+      {
+        "filename": "__base__/sound/walking/concrete-4.ogg",
+        "volume": 1.2
+      }
+    ],
+    "map_color": {
+      "r": 100,
+      "g": 100,
+      "b": 100
+    },
+    "ageing": 0,
+    "vehicle_friction_modifier": 100,
+    "transitions": [
+      {
+        "to_tiles": [
+          "water",
+          "deepwater",
+          "water-green",
+          "deepwater-green",
+          "water-shallow",
+          "water-mud",
+          "se-space"
+        ],
+        "transition_group": 1,
+        "spritesheet": "__space-exploration-graphics__/graphics/terrain/space-platform-plating/tile-transitions.png",
+        "overlay_enabled": true,
+        "background_enabled": true,
+        "mask_enabled": false,
+        "background_mask_enabled": true,
+        "background_layer_offset": 1,
+        "offset_background_layer_by_tile_layer": true,
+        "layout": {
+          "scale": 0.5,
+          "inner_corner_count": 8,
+          "outer_corner_count": 8,
+          "side_count": 8,
+          "u_transition_count": 2,
+          "o_transition_count": 4,
+          "inner_corner_y": 0,
+          "outer_corner_y": 576,
+          "side_y": 1152,
+          "u_transition_y": 1728,
+          "o_transition_y": 2304,
+          "inner_corner_tile_height": 2,
+          "outer_corner_tile_height": 2,
+          "side_tile_height": 2,
+          "u_transition_tile_height": 2,
+          "overlay": {
+            "x_offset": 0
+          },
+          "mask": {
+            "x_offset": 2176
+          },
+          "background": {
+            "x_offset": 1088
+          }
+        }
+      }
+    ]
+  }
+]

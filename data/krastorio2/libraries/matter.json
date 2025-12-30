@@ -28,9 +28,9 @@
     "energy_required": "def.energy_required or 2",
     "ingredients": [
       {
-        "type": "material.type",
-        "name": "material.name",
-        "amount": "material.amount"
+        "type": null,
+        "name": null,
+        "amount": null
       },
       "def.needs_stabilizer and { type = \"item\", name = \"kr-charged-matter-stabilizer\", amount = 1 } or nil"
     ],
@@ -38,13 +38,13 @@
       {
         "type": "fluid",
         "name": "kr-matter",
-        "amount": "def.matter_count"
+        "amount": null
       },
       "def.needs_stabilizer and { type = \"item\", name = \"kr-matter-stabilizer\", amount = 1, probability = 0.99 }\n          or nil"
     ],
     "main_product": "",
     "allow_as_intermediate": false,
-    "allow_productivity": "def.allow_productivity"
+    "allow_productivity": null
   },
   {
     "type": "recipe",
@@ -64,7 +64,7 @@
       {
         "type": "fluid",
         "name": "kr-matter",
-        "amount": "def.matter_count"
+        "amount": null
       },
       "def.needs_stabilizer and { type = \"item\", name = \"kr-charged-matter-stabilizer\", amount = 1 } or nil"
     ],
@@ -74,7 +74,7 @@
     ],
     "main_product": "",
     "allow_as_intermediate": false,
-    "allow_productivity": "def.allow_productivity",
+    "allow_productivity": null,
     "always_show_made_in": true,
     "always_show_products": true
   }

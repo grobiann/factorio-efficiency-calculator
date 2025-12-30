@@ -83,7 +83,7 @@
         "pipe_connections": [
           {
             "flow_direction": "input",
-            "direction": "defines.direction.north",
+            "direction": null,
             "position": [
               0,
               -3
@@ -99,7 +99,7 @@
         "pipe_connections": [
           {
             "flow_direction": "output",
-            "direction": "defines.direction.south",
+            "direction": null,
             "position": [
               0,
               3
@@ -151,9 +151,9 @@
       }
     },
     "energy_usage": "500kW",
-    "open_sound": "sounds.machine_open",
-    "close_sound": "sounds.machine_close",
-    "vehicle_impact_sound": "sounds.generic_impact",
+    "open_sound": null,
+    "close_sound": null,
+    "vehicle_impact_sound": null,
     "working_sound": {
       "sound": {
         "filename": "__Krastorio2Assets__/sounds/buildings/filtration-plant.ogg",
@@ -253,7 +253,7 @@
     },
     "icons_positioning": [
       {
-        "inventory_index": "defines.inventory.assembling_machine_modules",
+        "inventory_index": null,
         "shift": [
           0,
           1.25

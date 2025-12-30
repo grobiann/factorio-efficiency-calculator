@@ -13,8 +13,8 @@
       "mining_time": 1
     },
     "corpse": "small-remnants",
-    "open_sound": "sounds.metallic_chest_open",
-    "close_sound": "sounds.metallic_chest_close",
+    "open_sound": null,
+    "close_sound": null,
     "resistances": [
       {
         "type": "fire",
@@ -91,8 +91,8 @@
     "hidden": true,
     "max_health": 350,
     "corpse": "small-remnants",
-    "open_sound": "sounds.metallic_chest_open",
-    "close_sound": "sounds.metallic_chest_close",
+    "open_sound": null,
+    "close_sound": null,
     "resistances": [
       {
         "type": "fire",
@@ -173,8 +173,8 @@
     "alert_when_damaged": false,
     "allow_copy_paste": false,
     "default_status": "broken",
-    "open_sound": "sounds.metal_large_open",
-    "close_sound": "sounds.metal_large_close",
+    "open_sound": null,
+    "close_sound": null,
     "resistances": [
       {
         "type": "fire",
@@ -252,8 +252,8 @@
     ],
     "icon": "__base__/graphics/icons/crash-site-spaceship-wreck-big-1.png",
     "default_status": "broken",
-    "open_sound": "sounds.metal_large_open",
-    "close_sound": "sounds.metal_large_close",
+    "open_sound": null,
+    "close_sound": null,
     "flags": "wreck_flags",
     "hidden": true,
     "map_color": {
@@ -335,8 +335,8 @@
     ],
     "icon": "__base__/graphics/icons/crash-site-spaceship-wreck-big-2.png",
     "default_status": "broken",
-    "open_sound": "sounds.metal_large_open",
-    "close_sound": "sounds.metal_large_close",
+    "open_sound": null,
+    "close_sound": null,
     "flags": "wreck_flags",
     "hidden": true,
     "map_color": {
@@ -418,8 +418,8 @@
     ],
     "icon": "__base__/graphics/icons/crash-site-spaceship-wreck-medium-1.png",
     "default_status": "broken",
-    "open_sound": "sounds.metal_small_open",
-    "close_sound": "sounds.metal_small_close",
+    "open_sound": null,
+    "close_sound": null,
     "flags": "wreck_flags",
     "hidden": true,
     "map_color": {
@@ -500,8 +500,8 @@
     ],
     "icon": "__base__/graphics/icons/crash-site-spaceship-wreck-medium-2.png",
     "default_status": "broken",
-    "open_sound": "sounds.metal_small_open",
-    "close_sound": "sounds.metal_small_close",
+    "open_sound": null,
+    "close_sound": null,
     "flags": "wreck_flags",
     "hidden": true,
     "map_color": {
@@ -582,8 +582,8 @@
     ],
     "icon": "__base__/graphics/icons/crash-site-spaceship-wreck-medium-3.png",
     "default_status": "broken",
-    "open_sound": "sounds.metal_small_open",
-    "close_sound": "sounds.metal_small_close",
+    "open_sound": null,
+    "close_sound": null,
     "flags": "wreck_flags",
     "hidden": true,
     "map_color": {

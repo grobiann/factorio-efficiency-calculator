@@ -8,7 +8,7 @@
     ],
     "icons": "flib_table.array_merge({\n        {\n          { icon = \"__Krastorio2Assets__/icons/burn-recipes-background/burn-recipe-corner.png\" },\n          {\n            icon = \"__Krastorio2Assets__/icons/burn-recipes-background/burn-recipe-corner-mask.png\",\n            tint = with_alpha(fluid.base_color, 0.9),\n          },\n        },\n        data_util.transform_icons(data_util.get_icons(fluid), { scale = 0.34 }),\n      })",
     "subgroup": "kr-flare-stack",
-    "order": "fluid.order",
+    "order": null,
     "hide_from_player_crafting": true,
     "enabled": false,
     "category": "kr-fuel-burning",
@@ -26,7 +26,7 @@
     "show_amount_in_title": false,
     "hide_from_signal_gui": false,
     "crafting_machine_tint": {
-      "primary": "fluid.base_color",
+      "primary": null,
       "secondary": "with_alpha(fluid.base_color, 0.35)",
       "tertiary": "with_alpha(fluid.flow_color, 0.5)",
       "quaternary": "with_alpha(fluid.flow_color, 0.75)"

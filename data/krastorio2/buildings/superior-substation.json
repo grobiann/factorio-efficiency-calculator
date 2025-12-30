@@ -106,7 +106,7 @@
       "fade_out_ticks": 40,
       "use_doppler_shift": false
     },
-    "vehicle_impact_sound": "sounds.generic_impact",
+    "vehicle_impact_sound": null,
     "connection_points": [
       {
         "shadow": {

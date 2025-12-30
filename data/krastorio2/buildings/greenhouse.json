@@ -91,7 +91,7 @@
         "pipe_connections": [
           {
             "flow_direction": "input-output",
-            "direction": "defines.direction.north",
+            "direction": null,
             "position": [
               0,
               -3
@@ -99,7 +99,7 @@
           },
           {
             "flow_direction": "input-output",
-            "direction": "defines.direction.west",
+            "direction": null,
             "position": [
               -3,
               0
@@ -107,7 +107,7 @@
           },
           {
             "flow_direction": "input-output",
-            "direction": "defines.direction.east",
+            "direction": null,
             "position": [
               3,
               0
@@ -115,7 +115,7 @@
           },
           {
             "flow_direction": "input-output",
-            "direction": "defines.direction.south",
+            "direction": null,
             "position": [
               0,
               3
@@ -215,7 +215,7 @@
     },
     "icons_positioning": [
       {
-        "inventory_index": "defines.inventory.furnace_modules",
+        "inventory_index": null,
         "shift": [
           0,
           1

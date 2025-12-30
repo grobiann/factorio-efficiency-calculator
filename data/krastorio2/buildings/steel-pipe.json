@@ -64,7 +64,7 @@
       "volume": 100,
       "pipe_connections": [
         {
-          "direction": "defines.direction.north",
+          "direction": null,
           "position": [
             0,
             0
@@ -72,7 +72,7 @@
           "connection_category": "kr-steel-pipe"
         },
         {
-          "direction": "defines.direction.east",
+          "direction": null,
           "position": [
             0,
             0
@@ -80,7 +80,7 @@
           "connection_category": "kr-steel-pipe"
         },
         {
-          "direction": "defines.direction.south",
+          "direction": null,
           "position": [
             0,
             0
@@ -88,7 +88,7 @@
           "connection_category": "kr-steel-pipe"
         },
         {
-          "direction": "defines.direction.west",
+          "direction": null,
           "position": [
             0,
             0
@@ -117,7 +117,7 @@
       "filename": "__base__/sound/car-metal-impact.ogg",
       "volume": 0.65
     },
-    "working_sound": "sounds.pipe",
+    "working_sound": null,
     "pictures": {
       "straight_vertical_single": {
         "filename": "__Krastorio2Assets__/buildings/steel-pipe/steel-pipe-straight-vertical-single.png",
@@ -245,42 +245,42 @@
         "height": 128,
         "scale": 0.5
       },
-      "straight_vertical_single_visualization": "data.raw.pipe.pipe.pictures.straight_vertical_single_visualization",
-      "straight_vertical_visualization": "data.raw.pipe.pipe.pictures.straight_vertical_visualization",
-      "straight_vertical_window_visualization": "data.raw.pipe.pipe.pictures.straight_vertical_window_visualization",
-      "straight_horizontal_window_visualization": "data.raw.pipe.pipe.pictures.straight_horizontal_window_visualization",
-      "straight_horizontal_visualization": "data.raw.pipe.pipe.pictures.straight_horizontal_visualization",
-      "corner_up_right_visualization": "data.raw.pipe.pipe.pictures.corner_up_right_visualization",
-      "corner_up_left_visualization": "data.raw.pipe.pipe.pictures.corner_up_left_visualization",
-      "corner_down_right_visualization": "data.raw.pipe.pipe.pictures.corner_down_right_visualization",
-      "corner_down_left_visualization": "data.raw.pipe.pipe.pictures.corner_down_left_visualization",
-      "t_up_visualization": "data.raw.pipe.pipe.pictures.t_up_visualization",
-      "t_down_visualization": "data.raw.pipe.pipe.pictures.t_down_visualization",
-      "t_right_visualization": "data.raw.pipe.pipe.pictures.t_right_visualization",
-      "t_left_visualization": "data.raw.pipe.pipe.pictures.t_left_visualization",
-      "cross_visualization": "data.raw.pipe.pipe.pictures.cross_visualization",
-      "ending_up_visualization": "data.raw.pipe.pipe.pictures.ending_up_visualization",
-      "ending_down_visualization": "data.raw.pipe.pipe.pictures.ending_down_visualization",
-      "ending_right_visualization": "data.raw.pipe.pipe.pictures.ending_right_visualization",
-      "ending_left_visualization": "data.raw.pipe.pipe.pictures.ending_left_visualization",
-      "straight_vertical_single_disabled_visualization": "data.raw.pipe.pipe.pictures.straight_vertical_single_disabled_visualization",
-      "straight_vertical_disabled_visualization": "data.raw.pipe.pipe.pictures.straight_vertical_disabled_visualization",
-      "straight_vertical_window_disabled_visualization": "data.raw.pipe.pipe.pictures.straight_vertical_window_disabled_visualization",
-      "straight_horizontal_window_disabled_visualization": "data.raw.pipe.pipe.pictures.straight_horizontal_window_disabled_visualization",
-      "straight_horizontal_disabled_visualization": "data.raw.pipe.pipe.pictures.straight_horizontal_disabled_visualization",
-      "corner_up_right_disabled_visualization": "data.raw.pipe.pipe.pictures.corner_up_right_disabled_visualization",
-      "corner_up_left_disabled_visualization": "data.raw.pipe.pipe.pictures.corner_up_left_disabled_visualization",
-      "corner_down_right_disabled_visualization": "data.raw.pipe.pipe.pictures.corner_down_right_disabled_visualization",
-      "corner_down_left_disabled_visualization": "data.raw.pipe.pipe.pictures.corner_down_left_disabled_visualization",
-      "t_up_disabled_visualization": "data.raw.pipe.pipe.pictures.t_up_disabled_visualization",
-      "t_down_disabled_visualization": "data.raw.pipe.pipe.pictures.t_down_disabled_visualization",
-      "t_right_disabled_visualization": "data.raw.pipe.pipe.pictures.t_right_disabled_visualization",
-      "t_left_disabled_visualization": "data.raw.pipe.pipe.pictures.t_left_disabled_visualization",
-      "cross_disabled_visualization": "data.raw.pipe.pipe.pictures.cross_disabled_visualization",
-      "ending_up_disabled_visualization": "data.raw.pipe.pipe.pictures.ending_up_disabled_visualization",
-      "ending_down_disabled_visualization": "data.raw.pipe.pipe.pictures.ending_down_disabled_visualization",
-      "ending_right_disabled_visualization": "data.raw.pipe.pipe.pictures.ending_right_disabled_visualization",
-      "ending_left_disabled_visualization": "data.raw.pipe.pipe.pictures.ending_left_disabled_visualization",
+      "straight_vertical_single_visualization": null,
+      "straight_vertical_visualization": null,
+      "straight_vertical_window_visualization": null,
+      "straight_horizontal_window_visualization": null,
+      "straight_horizontal_visualization": null,
+      "corner_up_right_visualization": null,
+      "corner_up_left_visualization": null,
+      "corner_down_right_visualization": null,
+      "corner_down_left_visualization": null,
+      "t_up_visualization": null,
+      "t_down_visualization": null,
+      "t_right_visualization": null,
+      "t_left_visualization": null,
+      "cross_visualization": null,
+      "ending_up_visualization": null,
+      "ending_down_visualization": null,
+      "ending_right_visualization": null,
+      "ending_left_visualization": null,
+      "straight_vertical_single_disabled_visualization": null,
+      "straight_vertical_disabled_visualization": null,
+      "straight_vertical_window_disabled_visualization": null,
+      "straight_horizontal_window_disabled_visualization": null,
+      "straight_horizontal_disabled_visualization": null,
+      "corner_up_right_disabled_visualization": null,
+      "corner_up_left_disabled_visualization": null,
+      "corner_down_right_disabled_visualization": null,
+      "corner_down_left_disabled_visualization": null,
+      "t_up_disabled_visualization": null,
+      "t_down_disabled_visualization": null,
+      "t_right_disabled_visualization": null,
+      "t_left_disabled_visualization": null,
+      "cross_disabled_visualization": null,
+      "ending_up_disabled_visualization": null,
+      "ending_down_disabled_visualization": null,
+      "ending_right_disabled_visualization": null,
+      "ending_left_disabled_visualization": null,
       "horizontal_window_background": {
         "filename": "__Krastorio2Assets__/buildings/steel-pipe/steel-pipe-horizontal-window-background.png",
         "priority": "extra-high",

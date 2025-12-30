@@ -74,7 +74,7 @@
               "include_decals": false,
               "invoke_decorative_trigger": true,
               "decoratives_with_trigger_only": false,
-              "radius": "2.25 -- large radius for demostrative purposes"
+              "radius": 2.25
             }
           ]
         }
@@ -309,7 +309,7 @@
             "include_decals": false,
             "invoke_decorative_trigger": true,
             "decoratives_with_trigger_only": false,
-            "radius": "1.5 -- large radius for demostrative purposes"
+            "radius": 1.5
           }
         ]
       }
@@ -362,7 +362,7 @@
             "include_decals": false,
             "invoke_decorative_trigger": true,
             "decoratives_with_trigger_only": false,
-            "radius": "3.5 -- large radius for demostrative purposes"
+            "radius": 3.5
           },
           {
             "type": "nested-result",
@@ -621,7 +621,7 @@
             "include_decals": false,
             "invoke_decorative_trigger": true,
             "decoratives_with_trigger_only": false,
-            "radius": "3.5 -- large radius for demostrative purposes"
+            "radius": 3.5
           }
         ]
       }
@@ -782,7 +782,7 @@
             "include_decals": false,
             "invoke_decorative_trigger": true,
             "decoratives_with_trigger_only": false,
-            "radius": "3.25 -- large radius for demostrative purposes"
+            "radius": 3.25
           }
         ]
       }

@@ -118,7 +118,7 @@
       ]
     },
     "continuous_animation": true,
-    "vehicle_impact_sound": "sounds.generic_impact",
+    "vehicle_impact_sound": null,
     "animation": {
       "layers": [
         {

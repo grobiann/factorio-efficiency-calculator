@@ -71,7 +71,7 @@
       "pipe_connections": [
         {
           "flow_direction": "input-output",
-          "direction": "defines.direction.north",
+          "direction": null,
           "position": [
             0,
             0
@@ -80,7 +80,7 @@
         },
         {
           "flow_direction": "input-output",
-          "direction": "defines.direction.south",
+          "direction": null,
           "position": [
             0,
             0
@@ -111,7 +111,7 @@
       "filename": "__base__/sound/car-metal-impact.ogg",
       "volume": 0.65
     },
-    "working_sound": "sounds.pipe",
+    "working_sound": null,
     "pictures": {
       "north": {
         "filename": "__Krastorio2Assets__/buildings/steel-pipe-to-ground/steel-pipe-to-ground-up.png",

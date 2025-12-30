@@ -1,0 +1,103 @@
+[
+  {
+    "type": "recipe",
+    "name": "landfill",
+    "subgroup": "landfill",
+    "energy_required": 1,
+    "enabled": false,
+    "category": "crafting",
+    "ingredients": [
+      {
+        "type": "item",
+        "name": "stone",
+        "amount": 50
+      }
+    ],
+    "results": [
+      {
+        "type": "item",
+        "name": "landfill",
+        "amount": 1
+      }
+    ],
+    "order": "z-a-a"
+  },
+  {
+    "type": "recipe",
+    "name": "landfill-sand",
+    "subgroup": "landfill",
+    "localised_name": [
+      "item-name.landfill"
+    ],
+    "energy_required": 1,
+    "enabled": false,
+    "category": "crafting",
+    "icons": [
+      {
+        "icon": null,
+        "icon_size": null
+      },
+      {
+        "icon": "data.raw.item[SEItemNames.get_sand_name()].icon",
+        "icon_size": "data.raw.item[SEItemNames.get_sand_name()].icon_size or 64",
+        "scale": "0.33*64/(data.raw.item[SEItemNames.get_sand_name()].icon_size or 64)"
+      }
+    ],
+    "ingredients": [
+      {
+        "type": "item",
+        "name": "SEItemNames.get_sand_name()",
+        "amount": 200
+      }
+    ],
+    "results": [
+      {
+        "type": "item",
+        "name": "landfill",
+        "amount": 1
+      }
+    ],
+    "order": "z-a-b",
+    "allow_decomposition": false,
+    "hide_from_signal_gui": false
+  },
+  {
+    "type": "recipe",
+    "name": "landfill-",
+    "subgroup": "landfill",
+    "localised_name": [
+      "item-name.landfill"
+    ],
+    "energy_required": 1,
+    "enabled": false,
+    "category": "hard-recycling",
+    "icons": [
+      {
+        "icon": null,
+        "icon_size": "data.raw.item.landfill.icon_size or 64"
+      },
+      {
+        "icon": "data.raw.item[item_name].icon",
+        "icon_size": "data.raw.item[item_name].icon_size or 64",
+        "scale": "0.33*64/(data.raw.item[item_name].icon_size or 64)"
+      }
+    ],
+    "ingredients": [
+      {
+        "type": "item",
+        "name": "item_name",
+        "amount": "count"
+      }
+    ],
+    "results": [
+      {
+        "type": "item",
+        "name": "landfill",
+        "amount": 1
+      }
+    ],
+    "order": "z-b-",
+    "allow_decomposition": false,
+    "hide_from_signal_gui": false
+  }
+]

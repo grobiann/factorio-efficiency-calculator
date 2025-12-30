@@ -1,0 +1,68 @@
+[
+  {
+    "type": "item",
+    "name": null,
+    "icons": null,
+    "order": null,
+    "stack_size": 50,
+    "subgroup": "ruins",
+    "place_result": null,
+    "flags": {},
+    "hidden": true,
+    "localised_name": null
+  },
+  {
+    "type": "item",
+    "name": "se-blueprint-registration-point",
+    "icon": "__space-exploration-graphics__/graphics/icons/circle-x.png",
+    "icon_size": 64,
+    "stack_size": 50,
+    "subgroup": "ruins",
+    "order": "a",
+    "flags": {},
+    "hidden": true,
+    "place_result": "se-blueprint-registration-point"
+  },
+  {
+    "type": "simple-entity-with-force",
+    "name": "se-blueprint-registration-point",
+    "collision_box": [
+      [
+        -0.45,
+        -0.45
+      ],
+      [
+        0.45,
+        0.45
+      ]
+    ],
+    "collision_mask": {
+      "layers": {},
+      "not_colliding_with_itself": true
+    },
+    "selection_box": [
+      [
+        -0.45,
+        -0.45
+      ],
+      [
+        0.45,
+        0.45
+      ]
+    ],
+    "selection_priority": 200,
+    "icon": "__space-exploration-graphics__/graphics/icons/circle-x.png",
+    "icon_size": 64,
+    "animations": {
+      "filename": "__space-exploration-graphics__/graphics/icons/circle-x.png",
+      "width": 32,
+      "height": 32
+    },
+    "flags": {},
+    "hidden": true,
+    "minable": {
+      "mining_time": 0.2,
+      "result": "se-blueprint-registration-point"
+    }
+  }
+]

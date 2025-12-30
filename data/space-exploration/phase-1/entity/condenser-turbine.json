@@ -1,0 +1,233 @@
+[
+  {
+    "type": "storage-tank",
+    "name": "se-condenser-turbine-tank",
+    "hidden": true,
+    "subgroup": "composite-entity-parts",
+    "order": "a",
+    "icons": "data_util.add_icons(\n      \"__space-exploration-graphics__/graphics/icons/condenser-turbine.png\",\n      data.raw.item[\"storage-tank\"].icon\n    )",
+    "flags": [
+      "placeable-player",
+      "player-creation",
+      "not-deconstructable",
+      "not-blueprintable",
+      "hide-alt-info"
+    ],
+    "max_health": 500,
+    "collision_box": [
+      [
+        -1.5,
+        -0.25
+      ],
+      [
+        1.5,
+        0.25
+      ]
+    ],
+    "selection_box": [
+      [
+        -1.5,
+        -0.25
+      ],
+      [
+        1.5,
+        0.25
+      ]
+    ],
+    "se_allow_in_space": true,
+    "collision_mask": {
+      "layers": {},
+      "not_colliding_with_itself": true
+    },
+    "selectable_in_game": "selectable",
+    "fluid_box": {
+      "filter": "se-decompressing-steam",
+      "volume": 25,
+      "pipe_connections": [
+        {
+          "position": [
+            0,
+            0
+          ],
+          "direction": null
+        },
+        {
+          "position": [
+            1,
+            0
+          ],
+          "direction": null
+        },
+        {
+          "position": [
+            -1,
+            0
+          ],
+          "direction": null
+        }
+      ]
+    },
+    "window_bounding_box": [
+      [
+        -0.0,
+        0.0
+      ],
+      [
+        0.0,
+        1.0
+      ]
+    ],
+    "pictures": {
+      "picture": "blank_image",
+      "window_background": "blank_image",
+      "fluid_background": "blank_image",
+      "flow_sprite": "blank_image",
+      "gas_flow": "blank_image"
+    },
+    "flow_length_in_ticks": 360,
+    "circuit_wire_max_distance": 0
+  },
+  {
+    "type": "generator",
+    "name": "se-condenser-turbine-generator",
+    "hidden": true,
+    "subgroup": "composite-entity-parts",
+    "icon": "__space-exploration-graphics__/graphics/icons/condenser-turbine.png",
+    "icon_size": 64,
+    "alert_icon_shift": [
+      0,
+      0.375
+    ],
+    "burns_fluid": false,
+    "fluid_usage_per_tick": 1,
+    "scale_fluid_usage": true,
+    "selectable_in_game": "selectable",
+    "collision_box": [
+      [
+        -1.25,
+        -1.6
+      ],
+      [
+        1.25,
+        1.6
+      ]
+    ],
+    "collision_mask": {
+      "layers": {},
+      "not_colliding_with_itself": true
+    },
+    "selection_box": [
+      [
+        -1.25,
+        -1.6
+      ],
+      [
+        1.25,
+        1.6
+      ]
+    ],
+    "se_allow_in_space": true,
+    "order": "zzz",
+    "corpse": "big-remnants",
+    "dying_explosion": "medium-explosion",
+    "efficiency": 1,
+    "energy_source": {
+      "type": "electric",
+      "usage_priority": "secondary-output"
+    },
+    "flags": [
+      "placeable-neutral",
+      "player-creation",
+      "placeable-off-grid",
+      "hide-alt-info"
+    ],
+    "fluid_box": {
+      "volume": 25,
+      "filter": "se-decompressing-steam",
+      "height": 2,
+      "minimum_temperature": 15,
+      "pipe_connections": [
+        {
+          "position": [
+            0,
+            0.65
+          ],
+          "flow_direction": "input-output",
+          "direction": null
+        },
+        {
+          "position": [
+            0,
+            -0.65
+          ],
+          "flow_direction": "input-output",
+          "direction": null
+        }
+      ],
+      "production_type": "input-output"
+    },
+    "horizontal_animation": {
+      "layers": [
+        {
+          "filename": "__space-exploration-graphics-3__/graphics/entity/condenser-turbine/condenser-turbine-H.png",
+          "frame_count": 8,
+          "height": 245,
+          "line_length": 4,
+          "scale": 0.5,
+          "shift": [
+            0,
+            -0.1171875
+          ],
+          "width": 320
+        }
+      ]
+    },
+    "max_health": 300,
+    "maximum_temperature": 500,
+    "perceived_performance": {
+      "minimum": 0.25,
+      "performance_to_activity_rate": 0.5
+    },
+    "resistances": [
+      {
+        "percent": 70,
+        "type": "fire"
+      }
+    ],
+    "smoke": [
+      {
+        "east_position": [
+          0.75,
+          -0.75
+        ],
+        "frequency": 0.3125,
+        "name": "turbine-smoke",
+        "north_position": [
+          0,
+          -1
+        ],
+        "slow_down_factor": 1,
+        "starting_frame_deviation": 60,
+        "starting_vertical_speed": 0.08
+      }
+    ],
+    "impact_category": "metal",
+    "vertical_animation": {
+      "layers": [
+        {
+          "filename": "__space-exploration-graphics-3__/graphics/entity/condenser-turbine/condenser-turbine-V.png",
+          "frame_count": 8,
+          "height": 347,
+          "line_length": 4,
+          "scale": 0.5,
+          "shift": [
+            0.1484375,
+            0.1796875
+          ],
+          "width": 217
+        }
+      ]
+    },
+    "working_sound": "table.deepcopy(data.raw.generator[\"steam-turbine\"].working_sound)"
+  }
+]

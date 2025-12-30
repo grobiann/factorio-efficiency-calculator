@@ -82,7 +82,7 @@
         "pipe_connections": [
           {
             "flow_direction": "input",
-            "direction": "defines.direction.west",
+            "direction": null,
             "position": [
               -2,
               -1
@@ -98,7 +98,7 @@
         "pipe_connections": [
           {
             "flow_direction": "input",
-            "direction": "defines.direction.west",
+            "direction": null,
             "position": [
               -2,
               1
@@ -114,7 +114,7 @@
         "pipe_connections": [
           {
             "flow_direction": "output",
-            "direction": "defines.direction.east",
+            "direction": null,
             "position": [
               2,
               -1
@@ -130,7 +130,7 @@
         "pipe_connections": [
           {
             "flow_direction": "output",
-            "direction": "defines.direction.east",
+            "direction": null,
             "position": [
               2,
               1
@@ -183,8 +183,8 @@
       "pollution",
       "quality"
     ],
-    "open_sound": "sounds.machine_open",
-    "close_sound": "sounds.machine_close",
+    "open_sound": null,
+    "close_sound": null,
     "vehicle_impact_sound": {
       "filename": "__base__/sound/car-metal-impact.ogg",
       "volume": 0.65
@@ -287,7 +287,7 @@
     },
     "icons_positioning": [
       {
-        "inventory_index": "defines.inventory.assembling_machine_modules",
+        "inventory_index": null,
         "shift": [
           0,
           1.25

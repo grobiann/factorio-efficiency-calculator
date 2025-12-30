@@ -17,7 +17,7 @@
       "type": "toggle-show-entity-info",
       "count": 1
     },
-    "simulation": "simulations.show_info"
+    "simulation": null
   },
   {
     "type": "tips-and-tricks-item",
@@ -32,7 +32,7 @@
       "type": "use-confirm",
       "count": 3
     },
-    "simulation": "simulations.e_confirm"
+    "simulation": null
   },
   {
     "type": "tips-and-tricks-item",
@@ -47,7 +47,7 @@
       "type": "clear-cursor",
       "count": 5
     },
-    "simulation": "simulations.clear_cursor"
+    "simulation": null
   },
   {
     "type": "tips-and-tricks-item",
@@ -62,7 +62,7 @@
       "type": "use-pipette",
       "count": 5
     },
-    "simulation": "simulations.pipette"
+    "simulation": null
   },
   {
     "type": "tips-and-tricks-item",
@@ -92,7 +92,7 @@
       ]
     },
     "tutorial": "stack-transfers",
-    "simulation": "simulations.stack_transfers"
+    "simulation": null
   },
   {
     "type": "tips-and-tricks-item",
@@ -121,7 +121,7 @@
       "stack-transfers"
     ],
     "tutorial": "entity-transfers",
-    "simulation": "simulations.entity_transfers"
+    "simulation": null
   },
   {
     "type": "tips-and-tricks-item",
@@ -150,7 +150,7 @@
     "dependencies": [
       "entity-transfers"
     ],
-    "simulation": "simulations.z_drop"
+    "simulation": null
   },
   {
     "type": "tips-and-tricks-item",
@@ -183,7 +183,7 @@
         }
       ]
     },
-    "simulation": "simulations.shoot_targeting"
+    "simulation": null
   },
   {
     "type": "tips-and-tricks-item",
@@ -203,7 +203,7 @@
       "consecutive": true,
       "count": 3
     },
-    "simulation": "simulations.bulk_crafting"
+    "simulation": null
   },
   {
     "type": "tips-and-tricks-item",
@@ -241,7 +241,7 @@
         }
       ]
     },
-    "simulation": "simulations.rotating_assemblers"
+    "simulation": null
   },
   {
     "type": "tips-and-tricks-item",
@@ -259,7 +259,7 @@
       "type": "flip-entity",
       "count": 3
     },
-    "simulation": "simulations.entity_flip"
+    "simulation": null
   },
   {
     "type": "tips-and-tricks-item",
@@ -299,7 +299,7 @@
         }
       ]
     },
-    "simulation": "simulations.circuit_network"
+    "simulation": null
   },
   {
     "type": "tips-and-tricks-item",
@@ -346,7 +346,7 @@
         }
       ]
     },
-    "simulation": "simulations.spidertron_control"
+    "simulation": null
   },
   {
     "type": "tips-and-tricks-item",
@@ -377,7 +377,7 @@
         }
       ]
     },
-    "simulation": "simulations.belt_lanes"
+    "simulation": null
   },
   {
     "type": "tips-and-tricks-item",
@@ -406,7 +406,7 @@
       "match_type_only": true,
       "count": 3
     },
-    "simulation": "simulations.splitters"
+    "simulation": null
   },
   {
     "type": "tips-and-tricks-item-category",
@@ -429,7 +429,7 @@
       "count": 20,
       "match_type_only": true
     },
-    "simulation": "simulations.inserters"
+    "simulation": null
   },
   {
     "type": "tips-and-tricks-item",
@@ -452,7 +452,7 @@
     "dependencies": [
       "inserters"
     ],
-    "simulation": "simulations.burner_inserter_refueling"
+    "simulation": null
   },
   {
     "type": "tips-and-tricks-item",
@@ -473,7 +473,7 @@
     "dependencies": [
       "inserters"
     ],
-    "simulation": "simulations.long_inserters"
+    "simulation": null
   },
   {
     "type": "tips-and-tricks-item",
@@ -495,7 +495,7 @@
     "dependencies": [
       "inserters"
     ],
-    "simulation": "simulations.move_between_labs"
+    "simulation": null
   },
   {
     "type": "tips-and-tricks-item",
@@ -528,7 +528,7 @@
     "dependencies": [
       "inserters"
     ],
-    "simulation": "simulations.insertion_limits"
+    "simulation": null
   },
   {
     "type": "tips-and-tricks-item",
@@ -561,7 +561,7 @@
     "dependencies": [
       "inserters"
     ],
-    "simulation": "simulations.limit_chest"
+    "simulation": null
   },
   {
     "type": "tips-and-tricks-item-category",
@@ -629,7 +629,7 @@
       "type": "generating-power",
       "count": "25 -- checked once per 12 seconds (in total 5 minutes)"
     },
-    "simulation": "simulations.electric_network"
+    "simulation": null
   },
   {
     "type": "tips-and-tricks-item",
@@ -645,7 +645,7 @@
     "dependencies": [
       "electric-network"
     ],
-    "simulation": "simulations.steam_power"
+    "simulation": null
   },
   {
     "type": "tips-and-tricks-item",
@@ -677,7 +677,7 @@
     "dependencies": [
       "electric-network"
     ],
-    "simulation": "simulations.electric_pole_connections"
+    "simulation": null
   },
   {
     "type": "tips-and-tricks-item",
@@ -706,7 +706,7 @@
     "dependencies": [
       "electric-network"
     ],
-    "simulation": "simulations.low_power"
+    "simulation": null
   },
   {
     "type": "tips-and-tricks-item",
@@ -739,7 +739,7 @@
     "dependencies": [
       "electric-network"
     ],
-    "simulation": "simulations.power_switch_connections"
+    "simulation": null
   },
   {
     "type": "tips-and-tricks-item-category",
@@ -761,7 +761,7 @@
       "type": "paste-entity-settings",
       "count": 2
     },
-    "simulation": "simulations.copy_entity_settings"
+    "simulation": null
   },
   {
     "type": "tips-and-tricks-item",
@@ -807,7 +807,7 @@
     "dependencies": [
       "copy-entity-settings"
     ],
-    "simulation": "simulations.copy_paste_trains"
+    "simulation": null
   },
   {
     "type": "tips-and-tricks-item",
@@ -853,7 +853,7 @@
     "dependencies": [
       "copy-entity-settings"
     ],
-    "simulation": "simulations.copy_paste_filters"
+    "simulation": null
   },
   {
     "type": "tips-and-tricks-item",
@@ -888,7 +888,7 @@
     "dependencies": [
       "copy-entity-settings"
     ],
-    "simulation": "simulations.copy_paste_requester_chest"
+    "simulation": null
   },
   {
     "type": "tips-and-tricks-item",
@@ -911,7 +911,7 @@
     "dependencies": [
       "copy-entity-settings"
     ],
-    "simulation": "simulations.copy_paste_spidertron"
+    "simulation": null
   },
   {
     "type": "tips-and-tricks-item-category",
@@ -938,7 +938,7 @@
       "consecutive": true,
       "count": 5
     },
-    "simulation": "simulations.drag_building"
+    "simulation": null
   },
   {
     "type": "tips-and-tricks-item",
@@ -967,7 +967,7 @@
     "dependencies": [
       "drag-building"
     ],
-    "simulation": "simulations.drag_building_poles"
+    "simulation": null
   },
   {
     "type": "tips-and-tricks-item",
@@ -991,7 +991,7 @@
     "dependencies": [
       "drag-building-poles"
     ],
-    "simulation": "simulations.pole_dragging_coverage"
+    "simulation": null
   },
   {
     "type": "tips-and-tricks-item",
@@ -1016,7 +1016,7 @@
     "dependencies": [
       "drag-building"
     ],
-    "simulation": "simulations.drag_building_underground"
+    "simulation": null
   },
   {
     "type": "tips-and-tricks-item",
@@ -1039,7 +1039,7 @@
     "dependencies": [
       "drag-building"
     ],
-    "simulation": "simulations.smart_belt_building"
+    "simulation": null
   },
   {
     "type": "tips-and-tricks-item",
@@ -1074,7 +1074,7 @@
     "dependencies": [
       "drag-building"
     ],
-    "simulation": "simulations.fast_obstacle_traversing"
+    "simulation": null
   },
   {
     "type": "tips-and-tricks-item-category",
@@ -1097,7 +1097,7 @@
       "match_type_only": true,
       "count": 5
     },
-    "simulation": "simulations.trains"
+    "simulation": null
   },
   {
     "type": "tips-and-tricks-item",
@@ -1125,7 +1125,7 @@
       "count": 5,
       "build_mode": "normal"
     },
-    "simulation": "simulations.rail_building"
+    "simulation": null
   },
   {
     "type": "tips-and-tricks-item",
@@ -1162,7 +1162,7 @@
       "distance": 10
     },
     "tutorial": "trains-stations",
-    "simulation": "simulations.train_stop"
+    "simulation": null
   },
   {
     "type": "tips-and-tricks-item",
@@ -1201,7 +1201,7 @@
       "count": 20
     },
     "tutorial": "trains-basic-signals",
-    "simulation": "simulations.rail_signals"
+    "simulation": null
   },
   {
     "type": "tips-and-tricks-item",
@@ -1233,7 +1233,7 @@
       "rail-signals-basic"
     ],
     "tutorial": "trains-advanced-signals",
-    "simulation": "simulations.rail_signals_advanced"
+    "simulation": null
   },
   {
     "type": "tips-and-tricks-item",
@@ -1265,7 +1265,7 @@
       "type": "gate-over-rail-build",
       "count": 4
     },
-    "simulation": "simulations.gate_over_rail"
+    "simulation": null
   },
   {
     "type": "tips-and-tricks-item",
@@ -1303,7 +1303,7 @@
       "entity": "fluid-wagon",
       "count": 10
     },
-    "simulation": "simulations.fluid_wagon_connection"
+    "simulation": null
   },
   {
     "type": "tips-and-tricks-item",
@@ -1322,7 +1322,7 @@
       "entity": "train-stop",
       "count": 25
     },
-    "simulation": "simulations.train_stops_same_name"
+    "simulation": null
   },
   {
     "type": "tips-and-tricks-item-category",
@@ -1379,7 +1379,7 @@
         }
       ]
     },
-    "simulation": "simulations.logistic_network"
+    "simulation": null
   },
   {
     "type": "tips-and-tricks-item",
@@ -1422,7 +1422,7 @@
     "dependencies": [
       "logistic-network"
     ],
-    "simulation": "simulations.personal_logistics"
+    "simulation": null
   },
   {
     "type": "tips-and-tricks-item",
@@ -1451,7 +1451,7 @@
     "dependencies": [
       "logistic-network"
     ],
-    "simulation": "simulations.construction_robots"
+    "simulation": null
   },
   {
     "type": "tips-and-tricks-item",
@@ -1468,7 +1468,7 @@
     "dependencies": [
       "logistic-network"
     ],
-    "simulation": "simulations.personal_logistics"
+    "simulation": null
   },
   {
     "type": "tips-and-tricks-item",
@@ -1485,7 +1485,7 @@
     "dependencies": [
       "logistic-network"
     ],
-    "simulation": "simulations.construction_robots"
+    "simulation": null
   },
   {
     "type": "tips-and-tricks-item",
@@ -1506,7 +1506,7 @@
     "dependencies": [
       "logistic-network"
     ],
-    "simulation": "simulations.requester_chest"
+    "simulation": null
   },
   {
     "type": "tips-and-tricks-item",
@@ -1527,7 +1527,7 @@
     "dependencies": [
       "logistic-network"
     ],
-    "simulation": "simulations.active_provider_chest"
+    "simulation": null
   },
   {
     "type": "tips-and-tricks-item",
@@ -1548,7 +1548,7 @@
     "dependencies": [
       "logistic-network"
     ],
-    "simulation": "simulations.buffer_chest"
+    "simulation": null
   },
   {
     "type": "tips-and-tricks-item-category",
@@ -1578,7 +1578,7 @@
         }
       ]
     },
-    "simulation": "simulations.ghost_building"
+    "simulation": null
   },
   {
     "type": "tips-and-tricks-item",
@@ -1625,7 +1625,7 @@
       "ghost-building",
       "rail-building"
     ],
-    "simulation": "simulations.ghost_rail_building"
+    "simulation": null
   },
   {
     "type": "tips-and-tricks-item",
@@ -1665,7 +1665,7 @@
     "dependencies": [
       "ghost-building"
     ],
-    "simulation": "simulations.copy_paste"
+    "simulation": null
   },
   {
     "type": "tips-and-tricks-item-category",
@@ -1702,7 +1702,7 @@
       "type": "fast-replace",
       "count": 2
     },
-    "simulation": "simulations.fast_replace"
+    "simulation": null
   },
   {
     "type": "tips-and-tricks-item",
@@ -1725,7 +1725,7 @@
     "dependencies": [
       "belt-lanes"
     ],
-    "simulation": "simulations.fast_replace_direction"
+    "simulation": null
   },
   {
     "type": "tips-and-tricks-item",
@@ -1762,7 +1762,7 @@
     "dependencies": [
       "fast-replace"
     ],
-    "simulation": "simulations.fast_replace_belt_splitter"
+    "simulation": null
   },
   {
     "type": "tips-and-tricks-item",
@@ -1799,6 +1799,6 @@
     "dependencies": [
       "fast-replace"
     ],
-    "simulation": "simulations.fast_replace_belt_underground"
+    "simulation": null
   }
 ]

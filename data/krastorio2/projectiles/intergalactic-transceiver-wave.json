@@ -71,7 +71,7 @@
               "action_delivery": {
                 "type": "projectile",
                 "projectile": "atomic-bomb-ground-zero-projectile",
-                "starting_speed": "0.9 * 0.9",
+                "starting_speed": 0.81,
                 "starting_speed_deviation": 0.075
               }
             }
@@ -87,7 +87,7 @@
               "action_delivery": {
                 "type": "projectile",
                 "projectile": "atomic-bomb-ground-zero-projectile",
-                "starting_speed": "0.9 * 0.9",
+                "starting_speed": 0.81,
                 "starting_speed_deviation": 0.075
               }
             }
@@ -103,7 +103,7 @@
               "action_delivery": {
                 "type": "projectile",
                 "projectile": "atomic-bomb-ground-zero-projectile",
-                "starting_speed": "0.9 * 0.9",
+                "starting_speed": 0.81,
                 "starting_speed_deviation": 0.075
               }
             }
@@ -119,7 +119,7 @@
               "action_delivery": {
                 "type": "projectile",
                 "projectile": "kr-beacon-wave",
-                "starting_speed": "0.75 * 1.2",
+                "starting_speed": 0.8999999999999999,
                 "starting_speed_deviation": 0.075
               }
             }
@@ -135,7 +135,7 @@
               "action_delivery": {
                 "type": "projectile",
                 "projectile": "kr-beacon-wave",
-                "starting_speed": "0.75 * 0.8",
+                "starting_speed": 0.6000000000000001,
                 "starting_speed_deviation": 0.075
               }
             }
@@ -152,7 +152,7 @@
               "action_delivery": {
                 "type": "projectile",
                 "projectile": "kr-antimatter-bomb-wave-spawns-matter-smoke",
-                "starting_speed": "0.6 * 0.78",
+                "starting_speed": 0.46799999999999997,
                 "starting_speed_deviation": 0.075
               }
             }
@@ -169,7 +169,7 @@
               "action_delivery": {
                 "type": "projectile",
                 "projectile": "kr-antimatter-bomb-wave-spawns-matter-smoke",
-                "starting_speed": "0.6 * 0.78",
+                "starting_speed": 0.46799999999999997,
                 "starting_speed_deviation": 0.075
               }
             }
@@ -186,7 +186,7 @@
               "action_delivery": {
                 "type": "projectile",
                 "projectile": "kr-antimatter-bomb-wave-spawns-matter-smoke",
-                "starting_speed": "0.5 * 0.75",
+                "starting_speed": 0.375,
                 "starting_speed_deviation": 0.075
               }
             }

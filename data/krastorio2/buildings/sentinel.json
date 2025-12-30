@@ -97,7 +97,7 @@
         "percent": 10
       }
     ],
-    "vehicle_impact_sound": "sounds.generic_impact",
+    "vehicle_impact_sound": null,
     "working_sound": {
       "sound": {
         "filename": "__Krastorio2Assets__/sounds/buildings/sentinel.ogg"

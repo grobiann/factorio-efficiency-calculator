@@ -102,7 +102,7 @@
         "pipe_connections": [
           {
             "flow_direction": "input",
-            "direction": "defines.direction.north",
+            "direction": null,
             "position": [
               -1,
               -1
@@ -117,7 +117,7 @@
         "pipe_connections": [
           {
             "flow_direction": "input",
-            "direction": "defines.direction.north",
+            "direction": null,
             "position": [
               1,
               -1
@@ -132,7 +132,7 @@
         "pipe_connections": [
           {
             "flow_direction": "output",
-            "direction": "defines.direction.south",
+            "direction": null,
             "position": [
               -1,
               1
@@ -147,7 +147,7 @@
         "pipe_connections": [
           {
             "flow_direction": "output",
-            "direction": "defines.direction.south",
+            "direction": null,
             "position": [
               1,
               1
@@ -164,7 +164,7 @@
       }
     },
     "energy_usage": "250kW",
-    "vehicle_impact_sound": "sounds.generic_impact",
+    "vehicle_impact_sound": null,
     "working_sound": {
       "sound": {
         "filename": "__base__/sound/chemical-plant.ogg",

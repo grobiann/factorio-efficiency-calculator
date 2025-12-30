@@ -136,7 +136,7 @@
       "filename": "__Krastorio2Assets__/sounds/buildings/planetary-teleporter-close-sound.ogg",
       "volume": 0.8
     },
-    "vehicle_impact_sound": "sounds.generic_impact",
+    "vehicle_impact_sound": null,
     "working_sound": {
       "sound": {
         "filename": "__Krastorio2Assets__/sounds/buildings/planetary-teleporter-working-sound.ogg",

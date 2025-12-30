@@ -9,8 +9,8 @@
     "show_when_smoke_off": true,
     "particle_count": 16,
     "particle_spread": [
-      "3.6 * 1.05",
-      "3.6 * 0.6 * 1.05"
+      3.7800000000000002,
+      2.2680000000000002
     ],
     "particle_distance_scale_factor": 0.5,
     "particle_scale_factor": [
@@ -74,7 +74,7 @@
       {
         "type": "cluster",
         "cluster_count": 11,
-        "distance": "8 * 1.1",
+        "distance": 8.8,
         "distance_deviation": 2,
         "action_delivery": {
           "type": "instant",

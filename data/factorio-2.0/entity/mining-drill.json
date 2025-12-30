@@ -43,21 +43,21 @@
       "volume": 200,
       "pipe_connections": [
         {
-          "direction": "defines.direction.west",
+          "direction": null,
           "position": [
             -1,
             0
           ]
         },
         {
-          "direction": "defines.direction.east",
+          "direction": null,
           "position": [
             1,
             0
           ]
         },
         {
-          "direction": "defines.direction.south",
+          "direction": null,
           "position": [
             0,
             1
@@ -77,8 +77,8 @@
       "fade_in_ticks": 4,
       "fade_out_ticks": 20
     },
-    "open_sound": "sounds.drill_open",
-    "close_sound": "sounds.drill_close",
+    "open_sound": null,
+    "close_sound": null,
     "graphics_set": {
       "drilling_vertical_movement_duration": "10 / electric_drill_animation_speed",
       "animation_progress": 1,
@@ -1507,8 +1507,8 @@
       "fade_in_ticks": 4,
       "fade_out_ticks": 20
     },
-    "open_sound": "sounds.drill_open",
-    "close_sound": "sounds.drill_close",
+    "open_sound": null,
+    "close_sound": null,
     "allowed_effects": {},
     "energy_source": {
       "type": "burner",
@@ -1725,7 +1725,7 @@
       "pipe_covers": "pipecoverspictures()",
       "pipe_connections": [
         {
-          "direction": "defines.direction.north",
+          "direction": null,
           "positions": [
             [
               1,

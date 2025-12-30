@@ -1,0 +1,499 @@
+[
+  {
+    "type": "item",
+    "name": "se-casting-machine",
+    "icon": "__space-exploration-graphics-2__/graphics/icons/casting-machine.png",
+    "icon_size": 64,
+    "subgroup": "smelting-machine",
+    "order": "d",
+    "stack_size": 50,
+    "place_result": "se-casting-machine"
+  },
+  {
+    "type": "item",
+    "name": "se-fuel-refinery",
+    "icon": "__space-exploration-graphics__/graphics/icons/fuel-refinery.png",
+    "icon_size": 64,
+    "order": "z-d[refinery]-e[fuel-refinery]",
+    "subgroup": "chemistry",
+    "stack_size": 10,
+    "place_result": "se-fuel-refinery"
+  },
+  {
+    "type": "item",
+    "name": "se-fluid-burner-generator",
+    "icon": "__space-exploration-graphics__/graphics/icons/fluid-burner-generator.png",
+    "icon_size": 64,
+    "order": "z-d[fluid-burner-generator]",
+    "subgroup": "energy",
+    "stack_size": 20,
+    "place_result": "se-fluid-burner-generator"
+  },
+  {
+    "type": "item",
+    "name": "se-antimatter-reactor",
+    "icon": "__space-exploration-graphics__/graphics/icons/antimatter-reactor.png",
+    "icon_size": 64,
+    "order": "f[antimatter]-a[reactor]-b",
+    "subgroup": "energy",
+    "stack_size": "stack_size(9)",
+    "place_result": "se-antimatter-reactor"
+  },
+  {
+    "type": "item",
+    "name": "se-naquium-heat-pipe",
+    "icon": "__space-exploration-graphics__/graphics/icons/naquium-heat-pipe.png",
+    "icon_size": 64,
+    "order": "f[nuclear-energy]-b[heat-pipe]-m",
+    "subgroup": "energy",
+    "stack_size": 50,
+    "place_result": "se-naquium-heat-pipe"
+  },
+  {
+    "type": "item",
+    "name": "se-dimensional-anchor",
+    "hidden_in_factoriopedia": true,
+    "icon": "__space-exploration-graphics__/graphics/icons/dimensional-anchor.png",
+    "icon_size": 64,
+    "order": "z-a-",
+    "stack_size": "stack_size(9)",
+    "subgroup": "beaming",
+    "place_result": "se-dimensional-anchor"
+  },
+  {
+    "type": "item",
+    "name": "se-pulveriser",
+    "icon": "__space-exploration-graphics__/graphics/icons/pulveriser.png",
+    "icon_size": 64,
+    "order": "z-d-z",
+    "stack_size": "stack_size(7)",
+    "subgroup": "mechanical",
+    "place_result": "se-pulveriser"
+  },
+  {
+    "type": "item",
+    "name": "se-addon-power-pole",
+    "icon": "__space-exploration-graphics__/graphics/icons/addon-power-pole.png",
+    "icon_size": 64,
+    "order": "z-p-a",
+    "stack_size": 50,
+    "subgroup": "energy-pipe-distribution",
+    "place_result": "se-addon-power-pole"
+  },
+  {
+    "type": "item",
+    "name": "se-pylon",
+    "icon": "__space-exploration-graphics__/graphics/icons/pylon.png",
+    "icon_size": 64,
+    "order": "z-p-a",
+    "stack_size": 50,
+    "subgroup": "energy-pipe-distribution",
+    "place_result": "se-pylon"
+  },
+  {
+    "type": "item",
+    "name": "se-pylon-substation",
+    "icon": "__space-exploration-graphics__/graphics/icons/pylon-substation.png",
+    "icon_size": 64,
+    "order": "z-p-b",
+    "stack_size": 50,
+    "subgroup": "energy-pipe-distribution",
+    "place_result": "se-pylon-substation"
+  },
+  {
+    "type": "item",
+    "name": "se-pylon-construction",
+    "icon": "__space-exploration-graphics__/graphics/icons/pylon-construction.png",
+    "icon_size": 64,
+    "order": "z-p-c",
+    "stack_size": 50,
+    "subgroup": "energy-pipe-distribution",
+    "place_result": "se-pylon-construction",
+    "flags": [
+      "draw-logistic-overlay"
+    ]
+  },
+  {
+    "type": "item",
+    "name": "se-pylon-construction-radar",
+    "icon": "__space-exploration-graphics__/graphics/icons/pylon-construction-radar.png",
+    "icon_size": 64,
+    "order": "z-p-d",
+    "stack_size": 50,
+    "subgroup": "energy-pipe-distribution",
+    "place_result": "se-pylon-construction-radar",
+    "flags": [
+      "draw-logistic-overlay"
+    ]
+  },
+  {
+    "type": "item",
+    "name": "se-space-assembling-machine",
+    "icon": "__space-exploration-graphics__/graphics/icons/assembling-machine.png",
+    "icon_size": 64,
+    "order": "z-a-",
+    "stack_size": "stack_size(3)",
+    "subgroup": "assembling",
+    "place_result": "se-space-assembling-machine"
+  },
+  {
+    "type": "item",
+    "name": "se-space-astrometrics-laboratory",
+    "icon": "__space-exploration-graphics__/graphics/icons/astrometrics-laboratory.png",
+    "icon_size": 64,
+    "order": "a-a",
+    "stack_size": "stack_size(5)",
+    "subgroup": "computation",
+    "place_result": "se-space-astrometrics-laboratory"
+  },
+  {
+    "type": "item",
+    "name": "se-space-biochemical-laboratory",
+    "icon": "__space-exploration-graphics__/graphics/icons/biochemical-laboratory.png",
+    "icon_size": 64,
+    "order": "z-a-",
+    "stack_size": "stack_size(7)",
+    "subgroup": "chemistry",
+    "place_result": "se-space-biochemical-laboratory"
+  },
+  {
+    "type": "item",
+    "name": "se-space-electromagnetics-laboratory",
+    "icon": "__space-exploration-graphics__/graphics/icons/electromagnetics-laboratory.png",
+    "icon_size": 64,
+    "order": "z-a-",
+    "stack_size": "stack_size(7)",
+    "subgroup": "plasma",
+    "place_result": "se-space-electromagnetics-laboratory"
+  },
+  {
+    "type": "item",
+    "name": "se-space-decontamination-facility",
+    "icon": "__space-exploration-graphics__/graphics/icons/decontamination-facility.png",
+    "icon_size": 64,
+    "order": "z-a-",
+    "stack_size": "stack_size(6)",
+    "subgroup": "chemistry",
+    "place_result": "se-space-decontamination-facility"
+  },
+  {
+    "type": "item",
+    "name": "se-space-genetics-laboratory",
+    "icon": "__space-exploration-graphics__/graphics/icons/genetics-laboratory.png",
+    "icon_size": 64,
+    "order": "z-a-",
+    "stack_size": "stack_size(7)",
+    "subgroup": "chemistry",
+    "place_result": "se-space-genetics-laboratory"
+  },
+  {
+    "type": "item",
+    "name": "se-space-gravimetrics-laboratory",
+    "icon": "__space-exploration-graphics__/graphics/icons/gravimetrics-laboratory.png",
+    "icon_size": 64,
+    "order": "a-b",
+    "stack_size": "stack_size(5)",
+    "subgroup": "computation",
+    "place_result": "se-space-gravimetrics-laboratory"
+  },
+  {
+    "type": "item",
+    "name": "se-space-growth-facility",
+    "icon": "__space-exploration-graphics__/graphics/icons/growth-facility.png",
+    "icon_size": 64,
+    "order": "z-a-",
+    "stack_size": "stack_size(9)",
+    "subgroup": "chemistry",
+    "place_result": "se-space-growth-facility"
+  },
+  {
+    "type": "item",
+    "name": "se-space-hypercooler",
+    "icon": "__space-exploration-graphics__/graphics/icons/hypercooler.png",
+    "icon_size": 64,
+    "order": "z-a-",
+    "stack_size": "stack_size(5)",
+    "subgroup": "cooling",
+    "place_result": "se-space-hypercooler"
+  },
+  {
+    "type": "item",
+    "name": "se-space-laser-laboratory",
+    "icon": "__space-exploration-graphics__/graphics/icons/laser-laboratory.png",
+    "icon_size": 64,
+    "order": "z-a-",
+    "stack_size": "stack_size(7)",
+    "subgroup": "plasma",
+    "place_result": "se-space-laser-laboratory"
+  },
+  {
+    "type": "item",
+    "name": "se-lifesupport-facility",
+    "icon": "__space-exploration-graphics__/graphics/icons/lifesupport-facility.png",
+    "icon_size": 64,
+    "order": "z-a-",
+    "stack_size": "stack_size(6)",
+    "subgroup": "chemistry",
+    "place_result": "se-lifesupport-facility"
+  },
+  {
+    "type": "item",
+    "name": "se-space-manufactory",
+    "icon": "__space-exploration-graphics__/graphics/icons/manufactory.png",
+    "icon_size": 64,
+    "order": "z-a-",
+    "stack_size": "stack_size(9)",
+    "subgroup": "assembling",
+    "place_result": "se-space-manufactory"
+  },
+  {
+    "type": "item",
+    "name": "se-space-material-fabricator",
+    "icon": "__space-exploration-graphics__/graphics/icons/material-fabricator.png",
+    "icon_size": 64,
+    "order": "z-a-",
+    "stack_size": "stack_size(9)",
+    "subgroup": "plasma",
+    "place_result": "se-space-material-fabricator"
+  },
+  {
+    "type": "item",
+    "name": "se-space-mechanical-laboratory",
+    "icon": "__space-exploration-graphics__/graphics/icons/mechanical-laboratory.png",
+    "icon_size": 64,
+    "order": "z-a-",
+    "stack_size": "stack_size(7)",
+    "subgroup": "mechanical",
+    "place_result": "se-space-mechanical-laboratory"
+  },
+  {
+    "type": "item",
+    "name": "se-space-particle-accelerator",
+    "icon": "__space-exploration-graphics__/graphics/icons/particle-accelerator.png",
+    "icon_size": 64,
+    "order": "z-a-",
+    "stack_size": "stack_size(9)",
+    "subgroup": "plasma",
+    "place_result": "se-space-particle-accelerator"
+  },
+  {
+    "type": "item",
+    "name": "se-space-particle-collider",
+    "icon": "__space-exploration-graphics__/graphics/icons/particle-collider.png",
+    "icon_size": 64,
+    "order": "z-a-",
+    "stack_size": "stack_size(9)",
+    "subgroup": "plasma",
+    "place_result": "se-space-particle-collider"
+  },
+  {
+    "type": "item",
+    "name": "se-space-plasma-generator",
+    "icon": "__space-exploration-graphics__/graphics/icons/plasma-generator.png",
+    "icon_size": 64,
+    "order": "z-a-",
+    "stack_size": "stack_size(7)",
+    "subgroup": "plasma",
+    "place_result": "se-space-plasma-generator"
+  },
+  {
+    "type": "item",
+    "name": "se-space-radiation-laboratory",
+    "icon": "__space-exploration-graphics__/graphics/icons/radiation-laboratory.png",
+    "icon_size": 64,
+    "order": "z-a-",
+    "stack_size": "stack_size(7)",
+    "subgroup": "radiation",
+    "place_result": "se-space-radiation-laboratory"
+  },
+  {
+    "type": "item",
+    "name": "se-space-radiator",
+    "icon": "__space-exploration-graphics__/graphics/icons/radiator.png",
+    "icon_size": 64,
+    "order": "z-a-",
+    "stack_size": "stack_size(3)",
+    "subgroup": "cooling",
+    "place_result": "se-space-radiator"
+  },
+  {
+    "type": "item",
+    "name": "se-space-radiator-2",
+    "icon": "__space-exploration-graphics__/graphics/icons/radiator-blue.png",
+    "icon_size": 64,
+    "order": "z-a-",
+    "stack_size": "stack_size(3)",
+    "subgroup": "cooling",
+    "place_result": "se-space-radiator-2"
+  },
+  {
+    "type": "item",
+    "name": "se-recycling-facility",
+    "icon": "__space-exploration-graphics__/graphics/icons/recycling-facility.png",
+    "icon_size": 64,
+    "order": "z-a-",
+    "stack_size": "stack_size(7)",
+    "subgroup": "mechanical",
+    "place_result": "se-recycling-facility"
+  },
+  {
+    "type": "item",
+    "name": "se-space-supercomputer-1",
+    "icon": "__space-exploration-graphics__/graphics/icons/supercomputer-1.png",
+    "icon_size": 64,
+    "order": "z-a-",
+    "stack_size": "stack_size(5)",
+    "subgroup": "computation",
+    "place_result": "se-space-supercomputer-1"
+  },
+  {
+    "type": "item",
+    "name": "se-space-supercomputer-2",
+    "icon": "__space-exploration-graphics__/graphics/icons/supercomputer-2.png",
+    "icon_size": 64,
+    "order": "z-a-",
+    "stack_size": "stack_size(5)",
+    "subgroup": "computation",
+    "place_result": "se-space-supercomputer-2"
+  },
+  {
+    "type": "item",
+    "name": "se-space-supercomputer-3",
+    "icon": "__space-exploration-graphics__/graphics/icons/supercomputer-3.png",
+    "icon_size": 64,
+    "order": "z-a-",
+    "stack_size": "stack_size(5)",
+    "subgroup": "computation",
+    "place_result": "se-space-supercomputer-3"
+  },
+  {
+    "type": "item",
+    "name": "se-space-supercomputer-4",
+    "icon": "__space-exploration-graphics__/graphics/icons/supercomputer-4.png",
+    "icon_size": 64,
+    "order": "z-a-",
+    "stack_size": "stack_size(5)",
+    "subgroup": "computation",
+    "place_result": "se-space-supercomputer-4"
+  },
+  {
+    "type": "item",
+    "name": "se-space-telescope",
+    "icon": "__space-exploration-graphics__/graphics/icons/telescope.png",
+    "icon_size": 64,
+    "order": "z-a-",
+    "stack_size": "stack_size(3)",
+    "subgroup": "telescope",
+    "place_result": "se-space-telescope"
+  },
+  {
+    "type": "item",
+    "name": "se-space-telescope-xray",
+    "icon": "__space-exploration-graphics__/graphics/icons/telescope-xray.png",
+    "icon_size": 64,
+    "order": "z-a-",
+    "stack_size": "stack_size(5)",
+    "subgroup": "telescope",
+    "place_result": "se-space-telescope-xray"
+  },
+  {
+    "type": "item",
+    "name": "se-space-telescope-gammaray",
+    "icon": "__space-exploration-graphics__/graphics/icons/telescope-gammaray.png",
+    "icon_size": 64,
+    "order": "z-a-",
+    "stack_size": "stack_size(5)",
+    "subgroup": "telescope",
+    "place_result": "se-space-telescope-gammaray"
+  },
+  {
+    "type": "item",
+    "name": "se-space-telescope-microwave",
+    "icon": "__space-exploration-graphics__/graphics/icons/telescope-microwave.png",
+    "icon_size": 64,
+    "order": "z-a-",
+    "stack_size": "stack_size(9)",
+    "subgroup": "telescope",
+    "place_result": "se-space-telescope-microwave"
+  },
+  {
+    "type": "item",
+    "name": "se-space-telescope-radio",
+    "icon": "__space-exploration-graphics__/graphics/icons/telescope-radio.png",
+    "icon_size": 64,
+    "order": "z-a-",
+    "stack_size": "stack_size(9)",
+    "subgroup": "telescope",
+    "place_result": "se-space-telescope-radio"
+  },
+  {
+    "type": "item",
+    "name": "se-space-thermodynamics-laboratory",
+    "icon": "__space-exploration-graphics__/graphics/icons/thermodynamics-laboratory.png",
+    "icon_size": 64,
+    "order": "z-a-",
+    "stack_size": "stack_size(7)",
+    "subgroup": "smelting-machine",
+    "place_result": "se-space-thermodynamics-laboratory"
+  },
+  {
+    "type": "item",
+    "name": "se-supercharger",
+    "icon": "__space-exploration-graphics__/graphics/icons/supercharger.png",
+    "icon_size": 64,
+    "order": "z-z",
+    "stack_size": "stack_size(4)",
+    "subgroup": "logistic-network",
+    "place_result": "se-supercharger"
+  },
+  {
+    "type": "item",
+    "name": "se-compact-beacon",
+    "icon": "__space-exploration-graphics__/graphics/icons/compact-beacon.png",
+    "icon_size": 64,
+    "order": "z-a[beacon]-b",
+    "stack_size": "stack_size(4)",
+    "subgroup": "module",
+    "place_result": "se-compact-beacon"
+  },
+  {
+    "type": "item",
+    "name": "se-compact-beacon-2",
+    "icon": "__space-exploration-graphics__/graphics/icons/compact-beacon-2.png",
+    "icon_size": 64,
+    "order": "z-a[beacon]-b",
+    "stack_size": "stack_size(4)",
+    "subgroup": "module",
+    "place_result": "se-compact-beacon-2"
+  },
+  {
+    "type": "item",
+    "name": "se-wide-beacon",
+    "icon": "__space-exploration-graphics__/graphics/icons/wide-beacon.png",
+    "icon_size": 64,
+    "order": "z-a[beacon]-c",
+    "stack_size": "stack_size(4)",
+    "subgroup": "module",
+    "place_result": "se-wide-beacon"
+  },
+  {
+    "type": "item",
+    "name": "se-wide-beacon-2",
+    "icon": "__space-exploration-graphics__/graphics/icons/wide-beacon-2.png",
+    "icon_size": 64,
+    "order": "z-a[beacon]-d",
+    "stack_size": "stack_size(4)",
+    "subgroup": "module",
+    "place_result": "se-wide-beacon-2"
+  },
+  {
+    "type": "item",
+    "name": "se-space-science-lab",
+    "icon": "__space-exploration-graphics__/graphics/icons/space-science-lab.png",
+    "icon_size": 64,
+    "order": "z-space-science-lab",
+    "stack_size": 1,
+    "subgroup": "lab",
+    "place_result": "se-space-science-lab"
+  }
+]

@@ -1,0 +1,49 @@
+[
+  {
+    "type": "technology",
+    "name": "se-linked-containers",
+    "effects": "tech_effects",
+    "icons": "mods[\"aai-containers\"] and {\n      { icon = \"__aai-containers__/graphics/technology/container-6-base.png\", icon_size = 128 },\n      { icon = \"__aai-containers__/graphics/technology/container-6-mask.png\", icon_size = 128 }\n    } or nil",
+    "icon": "mods[\"aai-containers\"] and nil or \"__space-exploration-graphics__/graphics/technology/teleportation.png\"",
+    "icon_size": 128,
+    "order": "e-g",
+    "prerequisites": [
+      "se-teleportation"
+    ],
+    "unit": {
+      "count": 5000,
+      "time": 60,
+      "ingredients": [
+        [
+          "logistic-science-pack",
+          1
+        ],
+        [
+          "utility-science-pack",
+          1
+        ],
+        [
+          "production-science-pack",
+          1
+        ],
+        [
+          "se-rocket-science-pack",
+          1
+        ],
+        [
+          "se-astronomic-science-pack-4",
+          1
+        ],
+        [
+          "se-energy-science-pack-4",
+          1
+        ],
+        [
+          "se-deep-space-science-pack-4",
+          1
+        ]
+      ]
+    },
+    "enabled": true
+  }
+]

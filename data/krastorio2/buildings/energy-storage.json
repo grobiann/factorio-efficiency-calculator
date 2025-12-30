@@ -108,7 +108,7 @@
       "input_flow_limit": "5MW",
       "output_flow_limit": "5MW"
     },
-    "vehicle_impact_sound": "sounds.generic_impact",
+    "vehicle_impact_sound": null,
     "working_sound": {
       "sound": {
         "filename": "__Krastorio2Assets__/sounds/buildings/energy-storage-working.ogg",

@@ -1,0 +1,161 @@
+[
+  {
+    "type": "recipe",
+    "name": "se-liquid-rocket-fuel",
+    "ingredients": [
+      {
+        "type": "item",
+        "name": "rocket-fuel",
+        "amount": 1
+      }
+    ],
+    "results": [
+      {
+        "type": "fluid",
+        "name": "se-liquid-rocket-fuel",
+        "amount": null
+      }
+    ],
+    "allow_productivity": true,
+    "energy_required": 1,
+    "enabled": false,
+    "category": "fuel-refining",
+    "subgroup": "fuel",
+    "order": "a[fuel]-d[liquid-rocket]-a[liquid-rocket]",
+    "crafting_machine_tint": {
+      "primary": {
+        "r": 0.29,
+        "g": 0.027,
+        "b": 0.0,
+        "a": 0.0
+      },
+      "secondary": {
+        "r": 0.722,
+        "g": 0.465,
+        "b": 0.19,
+        "a": 0.0
+      },
+      "tertiary": {
+        "r": 0.87,
+        "g": 0.365,
+        "b": 0.0,
+        "a": 0.0
+      }
+    }
+  },
+  {
+    "type": "recipe",
+    "name": "se-vulcanite-rocket-fuel",
+    "localised_name": [
+      "item-name.rocket-fuel"
+    ],
+    "ingredients": [
+      {
+        "type": "fluid",
+        "name": "se-pyroflux",
+        "amount": 60
+      },
+      {
+        "type": "item",
+        "name": "coal",
+        "amount": 1
+      }
+    ],
+    "results": [
+      {
+        "type": "item",
+        "name": "rocket-fuel",
+        "amount": 1
+      }
+    ],
+    "icons": "data_util.transition_icons(\n      {\n        icon = data.raw.fluid[data_util.mod_prefix .. \"pyroflux\"].icon,\n        icon_size = data.raw.fluid[data_util.mod_prefix .. \"pyroflux\"].icon_size, scale = 0.5\n      },\n      {\n        icon = data.raw.item[\"rocket-fuel\"].icon,\n        icon_size = data.raw.item[\"rocket-fuel\"].icon_size, scale = 0.5\n      }\n    )",
+    "energy_required": 1,
+    "allow_productivity": true,
+    "enabled": false,
+    "category": "fuel-refining",
+    "subgroup": "fuel",
+    "order": "a[fuel]-c[rocket-fuel]-c[rocket-fuel]",
+    "crafting_machine_tint": {
+      "primary": {
+        "r": 0.29,
+        "g": 0.027,
+        "b": 0.0,
+        "a": 0.0
+      },
+      "secondary": {
+        "r": 0.722,
+        "g": 0.465,
+        "b": 0.19,
+        "a": 0.0
+      },
+      "tertiary": {
+        "r": 0.87,
+        "g": 0.365,
+        "b": 0.0,
+        "a": 0.0
+      }
+    },
+    "allow_as_intermediate": false,
+    "allow_decomposition": false,
+    "hide_from_signal_gui": false
+  },
+  {
+    "type": "recipe",
+    "name": "se-rocket-fuel-from-water-copper",
+    "ingredients": [
+      {
+        "type": "fluid",
+        "name": "water",
+        "amount": 1000
+      },
+      {
+        "type": "item",
+        "name": "copper-plate",
+        "amount": 1
+      }
+    ],
+    "results": [
+      {
+        "type": "item",
+        "name": "rocket-fuel",
+        "amount": 1
+      },
+      {
+        "type": "item",
+        "name": "se-scrap",
+        "probability": 0.1,
+        "amount_min": 1,
+        "amount_max": 1
+      }
+    ],
+    "icons": "data_util.transition_icons(\n      {\n        icon = data.raw.fluid[\"water\"].icon,\n        icon_size = data.raw.fluid[\"water\"].icon_size, scale = 0.5\n      },\n      {\n        icon = data.raw.item[\"rocket-fuel\"].icon,\n        icon_size = data.raw.item[\"rocket-fuel\"].icon_size, scale = 0.5\n      }\n    )",
+    "energy_required": 500,
+    "allow_productivity": true,
+    "enabled": false,
+    "category": "fuel-refining",
+    "subgroup": "fuel",
+    "order": "a[fuel]-c[rocket-fuel]-b[rocket-fuel]",
+    "crafting_machine_tint": {
+      "primary": {
+        "r": 0.29,
+        "g": 0.027,
+        "b": 0.0,
+        "a": 0.0
+      },
+      "secondary": {
+        "r": 0.722,
+        "g": 0.465,
+        "b": 0.19,
+        "a": 0.0
+      },
+      "tertiary": {
+        "r": 0.87,
+        "g": 0.365,
+        "b": 0.0,
+        "a": 0.0
+      }
+    },
+    "allow_decomposition": false,
+    "hide_from_signal_gui": false
+  }
+]

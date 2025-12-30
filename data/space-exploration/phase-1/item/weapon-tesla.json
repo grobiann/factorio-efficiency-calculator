@@ -1,0 +1,33 @@
+[
+  {
+    "type": "ammo-category",
+    "name": "tesla",
+    "subgroup": "ammo-category",
+    "bonus_gui_order": "k-c",
+    "icon": "__space-exploration-graphics__/graphics/icons/ammo-category/tesla-gun.png",
+    "icon_size": 64
+  },
+  {
+    "type": "gun",
+    "name": "se-tesla-gun",
+    "attack_parameters": {
+      "ammo_category": "tesla",
+      "cooldown": 10,
+      "movement_slow_down_factor": 0.2,
+      "damage_modifier": 1,
+      "range": 10,
+      "type": "projectile",
+      "sound": [
+        {
+          "filename": "__space-exploration__/sound/tesla-gunshot.ogg",
+          "volume": 0.9
+        }
+      ]
+    },
+    "icon": "__space-exploration-graphics__/graphics/icons/tesla-gun.png",
+    "icon_size": 64,
+    "order": "z-t[tesla]",
+    "stack_size": 5,
+    "subgroup": "gun"
+  }
+]

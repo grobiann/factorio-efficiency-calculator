@@ -1,0 +1,524 @@
+[
+  {
+    "icon": "__space-exploration-graphics__/graphics/icons/space-pipe.png",
+    "icon_size": 64,
+    "name": "se-space-pipe",
+    "order": "a[pipe]-s[space]-a",
+    "place_result": "se-space-pipe",
+    "stack_size": 100,
+    "subgroup": "pipe",
+    "type": "item"
+  },
+  {
+    "icon": "__space-exploration-graphics__/graphics/icons/space-pipe-to-ground.png",
+    "icon_size": 64,
+    "name": "se-space-pipe-to-ground",
+    "order": "a[pipe]-s[space]-b",
+    "place_result": "se-space-pipe-to-ground",
+    "stack_size": 50,
+    "subgroup": "pipe",
+    "type": "item"
+  },
+  {
+    "type": "recipe",
+    "name": "se-space-pipe",
+    "category": "space-crafting",
+    "ingredients": [
+      {
+        "type": "item",
+        "name": "copper-cable",
+        "amount": 2
+      },
+      {
+        "type": "item",
+        "name": "steel-plate",
+        "amount": 1
+      },
+      {
+        "type": "item",
+        "name": "plastic-bar",
+        "amount": 1
+      },
+      {
+        "type": "item",
+        "name": "SEItemNames.get_glass_name()",
+        "amount": 1
+      }
+    ],
+    "results": [
+      {
+        "type": "item",
+        "name": "se-space-pipe",
+        "amount": 1
+      }
+    ],
+    "energy_required": 10,
+    "enabled": false,
+    "always_show_made_in": true
+  },
+  {
+    "type": "recipe",
+    "name": "se-space-pipe-to-ground",
+    "ingredients": [
+      {
+        "type": "item",
+        "name": "se-space-pipe",
+        "amount": 10
+      }
+    ],
+    "results": [
+      {
+        "type": "item",
+        "name": "se-space-pipe-to-ground",
+        "amount": 1
+      }
+    ],
+    "energy_required": 10,
+    "enabled": false,
+    "always_show_made_in": true
+  },
+  {
+    "type": "pipe",
+    "name": "se-space-pipe",
+    "collision_box": [
+      [
+        -0.29,
+        -0.29
+      ],
+      [
+        0.29,
+        0.29
+      ]
+    ],
+    "collision_mask": "collision_floor",
+    "corpse": "small-remnants",
+    "fast_replaceable_group": "pipe",
+    "flags": [
+      "placeable-neutral",
+      "player-creation"
+    ],
+    "icon_draw_specification": null,
+    "fluid_box": {
+      "volume": "settings.startup[\"se-space-pipe-capacity\"].value",
+      "pipe_connections": [
+        {
+          "position": [
+            0,
+            0
+          ],
+          "direction": null
+        },
+        {
+          "position": [
+            0,
+            0
+          ],
+          "direction": null
+        },
+        {
+          "position": [
+            0,
+            0
+          ],
+          "direction": null
+        },
+        {
+          "position": [
+            0,
+            0
+          ],
+          "direction": null
+        }
+      ],
+      "hide_connection_info": true
+    },
+    "horizontal_window_bounding_box": [
+      [
+        -0.25,
+        -0.28125
+      ],
+      [
+        0.25,
+        0.15625
+      ]
+    ],
+    "icon": "__space-exploration-graphics__/graphics/icons/space-pipe.png",
+    "icon_size": 64,
+    "max_health": 100,
+    "minable": {
+      "mining_time": 0.1,
+      "result": "se-space-pipe"
+    },
+    "pictures": {
+      "corner_down_left": {
+        "filename": "__space-exploration-graphics__/graphics/entity/pipe/pipe-corner-down-left.png",
+        "height": 128,
+        "priority": "extra-high",
+        "scale": 0.5,
+        "width": 128
+      },
+      "corner_down_right": {
+        "filename": "__space-exploration-graphics__/graphics/entity/pipe/pipe-corner-down-right.png",
+        "height": 128,
+        "priority": "extra-high",
+        "scale": 0.5,
+        "width": 128
+      },
+      "corner_up_left": {
+        "filename": "__space-exploration-graphics__/graphics/entity/pipe/pipe-corner-up-left.png",
+        "height": 128,
+        "priority": "extra-high",
+        "scale": 0.5,
+        "width": 128
+      },
+      "corner_up_right": {
+        "filename": "__space-exploration-graphics__/graphics/entity/pipe/pipe-corner-up-right.png",
+        "height": 128,
+        "priority": "extra-high",
+        "scale": 0.5,
+        "width": 128
+      },
+      "cross": {
+        "filename": "__space-exploration-graphics__/graphics/entity/pipe/pipe-cross.png",
+        "height": 128,
+        "priority": "extra-high",
+        "scale": 0.5,
+        "width": 128
+      },
+      "ending_down": {
+        "filename": "__space-exploration-graphics__/graphics/entity/pipe/pipe-ending-down.png",
+        "height": 128,
+        "priority": "extra-high",
+        "scale": 0.5,
+        "width": 128
+      },
+      "ending_left": {
+        "filename": "__space-exploration-graphics__/graphics/entity/pipe/pipe-ending-left.png",
+        "height": 128,
+        "priority": "extra-high",
+        "scale": 0.5,
+        "width": 128
+      },
+      "ending_right": {
+        "filename": "__space-exploration-graphics__/graphics/entity/pipe/pipe-ending-right.png",
+        "height": 128,
+        "priority": "extra-high",
+        "scale": 0.5,
+        "width": 128
+      },
+      "ending_up": {
+        "filename": "__space-exploration-graphics__/graphics/entity/pipe/pipe-ending-up.png",
+        "height": 128,
+        "priority": "extra-high",
+        "scale": 0.5,
+        "width": 128
+      },
+      "fluid_background": {
+        "filename": "__space-exploration-graphics__/graphics/entity/pipe/fluid-background.png",
+        "height": 40,
+        "priority": "extra-high",
+        "scale": 0.5,
+        "width": 64
+      },
+      "gas_flow": {
+        "axially_symmetrical": false,
+        "direction_count": 1,
+        "filename": "__space-exploration-graphics__/graphics/entity/pipe/steam.png",
+        "frame_count": 60,
+        "height": 30,
+        "line_length": 10,
+        "priority": "extra-high",
+        "width": 48
+      },
+      "high_temperature_flow": {
+        "filename": "__space-exploration-graphics__/graphics/entity/pipe/fluid-flow-high-temperature.png",
+        "height": 18,
+        "priority": "extra-high",
+        "width": 160
+      },
+      "horizontal_window_background": {
+        "filename": "__space-exploration-graphics__/graphics/entity/pipe/pipe-horizontal-window-background.png",
+        "height": 128,
+        "priority": "extra-high",
+        "scale": 0.5,
+        "width": 128
+      },
+      "low_temperature_flow": {
+        "filename": "__space-exploration-graphics__/graphics/entity/pipe/fluid-flow-low-temperature.png",
+        "height": 18,
+        "priority": "extra-high",
+        "width": 160
+      },
+      "middle_temperature_flow": {
+        "filename": "__space-exploration-graphics__/graphics/entity/pipe/fluid-flow-medium-temperature.png",
+        "height": 18,
+        "priority": "extra-high",
+        "width": 160
+      },
+      "straight_horizontal": {
+        "filename": "__space-exploration-graphics__/graphics/entity/pipe/pipe-straight-horizontal.png",
+        "height": 128,
+        "priority": "extra-high",
+        "scale": 0.5,
+        "width": 128
+      },
+      "straight_horizontal_window": {
+        "filename": "__space-exploration-graphics__/graphics/entity/pipe/pipe-straight-horizontal-window.png",
+        "height": 128,
+        "priority": "extra-high",
+        "scale": 0.5,
+        "width": 128
+      },
+      "straight_vertical": {
+        "filename": "__space-exploration-graphics__/graphics/entity/pipe/pipe-straight-vertical.png",
+        "height": 128,
+        "priority": "extra-high",
+        "scale": 0.5,
+        "width": 128
+      },
+      "straight_vertical_single": {
+        "filename": "__space-exploration-graphics__/graphics/entity/pipe/pipe-straight-vertical-single.png",
+        "height": 160,
+        "priority": "extra-high",
+        "scale": 0.5,
+        "width": 160
+      },
+      "straight_vertical_window": {
+        "filename": "__space-exploration-graphics__/graphics/entity/pipe/pipe-straight-vertical-window.png",
+        "height": 128,
+        "priority": "extra-high",
+        "scale": 0.5,
+        "width": 128
+      },
+      "t_down": {
+        "filename": "__space-exploration-graphics__/graphics/entity/pipe/pipe-t-down.png",
+        "height": 128,
+        "priority": "extra-high",
+        "scale": 0.5,
+        "width": 128
+      },
+      "t_left": {
+        "filename": "__space-exploration-graphics__/graphics/entity/pipe/pipe-t-left.png",
+        "height": 128,
+        "priority": "extra-high",
+        "scale": 0.5,
+        "width": 128
+      },
+      "t_right": {
+        "filename": "__space-exploration-graphics__/graphics/entity/pipe/pipe-t-right.png",
+        "height": 128,
+        "priority": "extra-high",
+        "scale": 0.5,
+        "width": 128
+      },
+      "t_up": {
+        "filename": "__space-exploration-graphics__/graphics/entity/pipe/pipe-t-up.png",
+        "height": 128,
+        "priority": "extra-high",
+        "scale": 0.5,
+        "width": 128
+      },
+      "vertical_window_background": {
+        "filename": "__space-exploration-graphics__/graphics/entity/pipe/pipe-vertical-window-background.png",
+        "height": 128,
+        "priority": "extra-high",
+        "scale": 0.5,
+        "width": 128
+      },
+      "straight_vertical_single_visualization": null,
+      "straight_vertical_visualization": null,
+      "straight_vertical_window_visualization": null,
+      "straight_horizontal_window_visualization": null,
+      "straight_horizontal_visualization": null,
+      "corner_up_right_visualization": null,
+      "corner_up_left_visualization": null,
+      "corner_down_right_visualization": null,
+      "corner_down_left_visualization": null,
+      "t_up_visualization": null,
+      "t_down_visualization": null,
+      "t_right_visualization": null,
+      "t_left_visualization": null,
+      "cross_visualization": null,
+      "ending_up_visualization": null,
+      "ending_down_visualization": null,
+      "ending_right_visualization": null,
+      "ending_left_visualization": null,
+      "straight_vertical_single_disabled_visualization": null,
+      "straight_vertical_disabled_visualization": null,
+      "straight_vertical_window_disabled_visualization": null,
+      "straight_horizontal_window_disabled_visualization": null,
+      "straight_horizontal_disabled_visualization": null,
+      "corner_up_right_disabled_visualization": null,
+      "corner_up_left_disabled_visualization": null,
+      "corner_down_right_disabled_visualization": null,
+      "corner_down_left_disabled_visualization": null,
+      "t_up_disabled_visualization": null,
+      "t_down_disabled_visualization": null,
+      "t_right_disabled_visualization": null,
+      "t_left_disabled_visualization": null,
+      "cross_disabled_visualization": null,
+      "ending_up_disabled_visualization": null,
+      "ending_down_disabled_visualization": null,
+      "ending_right_disabled_visualization": null,
+      "ending_left_disabled_visualization": null
+    },
+    "resistances": [
+      {
+        "percent": 80,
+        "type": "fire"
+      },
+      {
+        "percent": 30,
+        "type": "impact"
+      }
+    ],
+    "selection_box": [
+      [
+        -0.5,
+        -0.5
+      ],
+      [
+        0.5,
+        0.5
+      ]
+    ],
+    "impact_category": "metal",
+    "vertical_window_bounding_box": [
+      [
+        -0.28125,
+        -0.5
+      ],
+      [
+        0.03125,
+        0.125
+      ]
+    ],
+    "working_sound": {
+      "match_volume_to_activity": true,
+      "max_sounds_per_type": 3,
+      "sound": [
+        {
+          "filename": "__base__/sound/pipe.ogg",
+          "volume": 0.85
+        }
+      ]
+    },
+    "open_sound": null,
+    "close_sound": null
+  },
+  {
+    "type": "pipe-to-ground",
+    "name": "se-space-pipe-to-ground",
+    "icon": "__space-exploration-graphics__/graphics/icons/space-pipe-to-ground.png",
+    "icon_size": 64,
+    "flags": [
+      "placeable-neutral",
+      "player-creation"
+    ],
+    "minable": {
+      "mining_time": 0.1,
+      "result": "se-space-pipe-to-ground"
+    },
+    "max_health": 150,
+    "fast_replaceable_group": "pipe",
+    "corpse": "small-remnants",
+    "resistances": [
+      {
+        "type": "fire",
+        "percent": 80
+      },
+      {
+        "type": "impact",
+        "percent": 40
+      }
+    ],
+    "collision_box": [
+      [
+        -0.29,
+        -0.29
+      ],
+      [
+        0.29,
+        0.2
+      ]
+    ],
+    "collision_mask": "collision_floor_platform",
+    "selection_box": [
+      [
+        -0.5,
+        -0.5
+      ],
+      [
+        0.5,
+        0.5
+      ]
+    ],
+    "icon_draw_specification": null,
+    "fluid_box": {
+      "volume": "settings.startup[\"se-space-pipe-capacity\"].value",
+      "pipe_covers": "pipecoverspictures()",
+      "hide_connection_info": true,
+      "pipe_connections": [
+        {
+          "position": [
+            0,
+            0
+          ],
+          "direction": null
+        },
+        {
+          "connection_type": "underground",
+          "position": [
+            0,
+            0
+          ],
+          "direction": null,
+          "max_underground_distance": "pipe_span + 1",
+          "underground_collision_mask": "settings.startup[data_util.mod_prefix..\"use-underground-collision-masks\"].value and {layers={[empty_space_collision_layer]=true}} or nil"
+        }
+      ]
+    },
+    "underground_sprite": {
+      "filename": "__core__/graphics/arrows/underground-lines.png",
+      "priority": "extra-high-no-scale",
+      "width": 64,
+      "height": 64,
+      "scale": 0.5
+    },
+    "impact_category": "metal",
+    "pictures": {
+      "north": {
+        "filename": "__space-exploration-graphics__/graphics/entity/pipe-to-ground/pipe-to-ground-up.png",
+        "priority": "extra-high",
+        "width": 128,
+        "height": 128,
+        "scale": 0.5
+      },
+      "south": {
+        "filename": "__space-exploration-graphics__/graphics/entity/pipe-to-ground/pipe-to-ground-down.png",
+        "priority": "extra-high",
+        "width": 128,
+        "height": 128,
+        "scale": 0.5
+      },
+      "west": {
+        "filename": "__space-exploration-graphics__/graphics/entity/pipe-to-ground/pipe-to-ground-left.png",
+        "priority": "extra-high",
+        "width": 128,
+        "height": 128,
+        "scale": 0.5
+      },
+      "east": {
+        "filename": "__space-exploration-graphics__/graphics/entity/pipe-to-ground/pipe-to-ground-right.png",
+        "priority": "extra-high",
+        "width": 128,
+        "height": 128,
+        "scale": 0.5
+      }
+    },
+    "visualization": null,
+    "disabled_visualization": null,
+    "open_sound": "data.raw[\"pipe-to-ground\"][\"pipe-to-ground\"].open_sound",
+    "close_sound": "data.raw[\"pipe-to-ground\"][\"pipe-to-ground\"].close_sound"
+  }
+]

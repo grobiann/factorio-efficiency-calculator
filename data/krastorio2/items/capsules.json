@@ -49,7 +49,7 @@
                 "target_effects": [
                   {
                     "type": "play-sound",
-                    "sound": "sounds.throw_projectile"
+                    "sound": null
                   }
                 ]
               }
@@ -147,7 +147,7 @@
                 "target_effects": [
                   {
                     "type": "play-sound",
-                    "sound": "sounds.throw_projectile"
+                    "sound": null
                   }
                 ]
               }

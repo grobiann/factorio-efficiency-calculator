@@ -107,9 +107,9 @@
     "inputs": [
       "kr-basic-tech-card"
     ],
-    "open_sound": "sounds.machine_open",
-    "close_sound": "sounds.machine_close",
-    "vehicle_impact_sound": "sounds.generic_impact",
+    "open_sound": null,
+    "close_sound": null,
+    "vehicle_impact_sound": null,
     "working_sound": {
       "sound": {
         "audible_distance_modifier": 0.7,
@@ -122,7 +122,7 @@
     "alert_icon_shift": "util.by_pixel(37.5, 0)",
     "icons_positioning": [
       {
-        "inventory_index": "defines.inventory.lab_input",
+        "inventory_index": null,
         "shift": "util.by_pixel(37.5, -27.5)"
       }
     ],

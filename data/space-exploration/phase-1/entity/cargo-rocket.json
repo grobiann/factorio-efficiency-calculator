@@ -1,0 +1,101 @@
+[
+  {
+    "type": "container",
+    "name": "se-cargo-rocket-cargo-pod",
+    "circuit_connector": null,
+    "circuit_wire_max_distance": 0,
+    "close_sound": {
+      "filename": "__base__/sound/metallic-chest-close.ogg",
+      "volume": 0.7
+    },
+    "collision_box": [
+      [
+        -0.95,
+        -0.95
+      ],
+      [
+        0.95,
+        0.95
+      ]
+    ],
+    "selection_box": [
+      [
+        -0.95,
+        -0.95
+      ],
+      [
+        0.95,
+        0.95
+      ]
+    ],
+    "selection_priority": 51,
+    "corpse": "medium-remnants",
+    "flags": [
+      "placeable-neutral",
+      "player-creation"
+    ],
+    "icon": "__space-exploration-graphics__/graphics/icons/cargo-pod.png",
+    "icon_size": 64,
+    "inventory_size": "math.ceil(rocket_capacity / 0.9 / 100 ) * 10",
+    "max_health": 1000,
+    "minable": {
+      "mining_time": 0.2,
+      "result": "se-cargo-rocket-cargo-pod"
+    },
+    "open_sound": {
+      "filename": "__base__/sound/metallic-chest-open.ogg",
+      "volume": 0.65
+    },
+    "order": "z-z",
+    "picture": {
+      "layers": [
+        {
+          "filename": "__space-exploration-graphics__/graphics/entity/cargo-pod/cargo-pod.png",
+          "height": 194,
+          "priority": "extra-high",
+          "shift": [
+            "1/32",
+            "1/32"
+          ],
+          "width": 147,
+          "scale": 0.35
+        },
+        {
+          "draw_as_shadow": true,
+          "filename": "__space-exploration-graphics__/graphics/entity/cargo-pod/cargo-pod-shadow.png",
+          "height": 164,
+          "priority": "extra-high",
+          "shift": [
+            "10/32",
+            "6/32"
+          ],
+          "width": 167,
+          "scale": 0.35
+        }
+      ]
+    },
+    "resistances": [
+      {
+        "percent": 90,
+        "type": "fire"
+      },
+      {
+        "percent": 90,
+        "type": "explosion"
+      },
+      {
+        "percent": 100,
+        "type": "poison"
+      },
+      {
+        "percent": 60,
+        "type": "impact"
+      },
+      {
+        "percent": 100,
+        "type": "meteor"
+      }
+    ],
+    "impact_category": "metal-large"
+  }
+]

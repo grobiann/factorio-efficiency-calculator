@@ -127,7 +127,7 @@
       "filename": "__Krastorio2Assets__/sounds/buildings/close.ogg",
       "volume": 1
     },
-    "vehicle_impact_sound": "sounds.generic_impact",
+    "vehicle_impact_sound": null,
     "working_sound": {
       "sound": {
         "filename": "__Krastorio2Assets__/sounds/buildings/singularity-lab.ogg",
@@ -260,20 +260,20 @@
     ],
     "icons_positioning": [
       {
-        "inventory_index": "defines.inventory.lab_modules",
+        "inventory_index": null,
         "shift": [
           0,
           1.6
         ]
       },
       {
-        "inventory_index": "defines.inventory.lab_input",
+        "inventory_index": null,
         "shift": [
           0,
           -1.5
         ],
         "max_icons_per_row": 3,
-        "separation_multiplier": "1 / 1.1",
+        "separation_multiplier": 0.9090909090909091,
         "scale": 1.5
       }
     ]

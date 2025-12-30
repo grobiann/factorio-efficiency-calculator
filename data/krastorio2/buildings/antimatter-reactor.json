@@ -110,7 +110,7 @@
       "pipe_connections": [
         {
           "flow_direction": "input",
-          "direction": "defines.direction.east",
+          "direction": null,
           "position": [
             4,
             0
@@ -148,7 +148,7 @@
       }
     },
     "max_power_output": "3000MW",
-    "vehicle_impact_sound": "sounds.generic_impact",
+    "vehicle_impact_sound": null,
     "working_sound": {
       "sound": [
         {

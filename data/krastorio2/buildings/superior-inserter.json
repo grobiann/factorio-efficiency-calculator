@@ -96,8 +96,8 @@
       "usage_priority": "secondary-input",
       "drain": "1kW"
     },
-    "vehicle_impact_sound": "sounds.generic_impact",
-    "working_sound": "sounds.inserter_fast",
+    "vehicle_impact_sound": null,
+    "working_sound": null,
     "max_health": 200,
     "corpse": "kr-superior-inserter-remnants",
     "damaged_trigger_effect": "hit_effects.entity()",

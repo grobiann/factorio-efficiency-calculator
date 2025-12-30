@@ -127,8 +127,8 @@
       }
     ],
     "folded_animation": "rocket_turret_sheet({ direction_count = 8, line_length = 1 })",
-    "open_sound": "sounds.machine_open",
-    "close_sound": "sounds.machine_close",
+    "open_sound": null,
+    "close_sound": null,
     "vehicle_impact_sound": {
       "filename": "__base__/sound/car-metal-impact.ogg",
       "volume": 0.65

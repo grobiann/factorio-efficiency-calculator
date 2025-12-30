@@ -1,0 +1,334 @@
+[
+  {
+    "type": "recipe",
+    "name": "se-space-capsule",
+    "results": [
+      {
+        "type": "item",
+        "name": "se-space-capsule",
+        "amount": 1
+      }
+    ],
+    "energy_required": 60,
+    "ingredients": [
+      {
+        "type": "item",
+        "name": "se-heat-shielding",
+        "amount": 100
+      },
+      {
+        "type": "item",
+        "name": "rocket-control-unit",
+        "amount": 100
+      },
+      {
+        "type": "item",
+        "name": "low-density-structure",
+        "amount": 100
+      },
+      {
+        "type": "item",
+        "name": "rocket-fuel",
+        "amount": 100
+      },
+      {
+        "type": "item",
+        "name": "solar-panel",
+        "amount": 50
+      },
+      {
+        "type": "item",
+        "name": "accumulator",
+        "amount": 50
+      },
+      {
+        "type": "item",
+        "name": "SEItemNames.get_glass_name()",
+        "amount": 50
+      }
+    ],
+    "requester_paste_multiplier": 1,
+    "enabled": false,
+    "always_show_made_in": true
+  },
+  {
+    "type": "recipe",
+    "name": "se-space-capsule-refurbish",
+    "results": [
+      {
+        "type": "item",
+        "name": "se-space-capsule",
+        "amount": 1
+      }
+    ],
+    "energy_required": 5,
+    "ingredients": [
+      {
+        "type": "item",
+        "name": "se-space-capsule-scorched",
+        "amount": 1
+      },
+      {
+        "type": "item",
+        "name": "se-heat-shielding",
+        "amount": 50
+      },
+      {
+        "type": "item",
+        "name": "low-density-structure",
+        "amount": 25
+      },
+      {
+        "type": "item",
+        "name": "repair-pack",
+        "amount": 25
+      }
+    ],
+    "icon": "__space-exploration-graphics__/graphics/icons/space-capsule-scorched.png",
+    "icon_size": 64,
+    "icons": "data_util.transition_icons(data.raw.item[data_util.mod_prefix..\"space-capsule-scorched\"], data.raw.item[data_util.mod_prefix..\"space-capsule\"])",
+    "requester_paste_multiplier": 1,
+    "enabled": false,
+    "always_show_products": true,
+    "localised_name": [
+      "recipe-name.",
+      "..data_util.mod_prefix .. \"space-capsule-refurbish\""
+    ],
+    "auto_recycle": false
+  },
+  {
+    "type": "recipe",
+    "name": "se-cargo-rocket-section",
+    "results": [
+      {
+        "type": "item",
+        "name": "se-cargo-rocket-section",
+        "amount": 1
+      }
+    ],
+    "energy_required": 30,
+    "ingredients": [
+      {
+        "type": "item",
+        "name": "se-heat-shielding",
+        "amount": 4
+      },
+      {
+        "type": "item",
+        "name": "low-density-structure",
+        "amount": 4
+      },
+      {
+        "type": "item",
+        "name": "rocket-control-unit",
+        "amount": 4
+      },
+      {
+        "type": "item",
+        "name": "se-cargo-rocket-cargo-pod",
+        "amount": 1
+      },
+      {
+        "type": "item",
+        "name": "se-cargo-rocket-fuel-tank",
+        "amount": 1
+      }
+    ],
+    "requester_paste_multiplier": 1,
+    "enabled": false,
+    "always_show_made_in": true,
+    "allow_productivity": true
+  },
+  {
+    "type": "recipe",
+    "name": "se-cargo-rocket-section-beryllium",
+    "localised_name": [
+      "item-name.",
+      "..data_util.mod_prefix..\"cargo-rocket-section\""
+    ],
+    "results": [
+      {
+        "type": "item",
+        "name": "se-cargo-rocket-section",
+        "amount": 2
+      }
+    ],
+    "energy_required": 60,
+    "ingredients": [
+      {
+        "type": "item",
+        "name": "se-beryllium-plate",
+        "amount": 8
+      },
+      {
+        "type": "item",
+        "name": "se-heat-shielding",
+        "amount": 4
+      },
+      {
+        "type": "item",
+        "name": "low-density-structure",
+        "amount": 4
+      },
+      {
+        "type": "item",
+        "name": "rocket-control-unit",
+        "amount": 4
+      },
+      {
+        "type": "item",
+        "name": "se-cargo-rocket-cargo-pod",
+        "amount": 1
+      },
+      {
+        "type": "item",
+        "name": "se-cargo-rocket-fuel-tank",
+        "amount": 1
+      }
+    ],
+    "icons": "data_util.sub_icons(data.raw.item[data_util.mod_prefix .. \"cargo-rocket-section\"].icon,\n                                  data.raw.item[data_util.mod_prefix .. \"beryllium-plate\"].icon)",
+    "requester_paste_multiplier": 1,
+    "enabled": false,
+    "always_show_made_in": true,
+    "allow_productivity": true,
+    "hide_from_signal_gui": false
+  },
+  {
+    "type": "recipe",
+    "name": "se-cargo-rocket-section-unpack",
+    "results": [
+      {
+        "type": "item",
+        "name": "se-cargo-rocket-section",
+        "amount": 5,
+        "ignored_by_stats": 5
+      }
+    ],
+    "energy_required": 5,
+    "ingredients": [
+      {
+        "type": "item",
+        "name": "se-cargo-rocket-section-packed",
+        "amount": 1
+      }
+    ],
+    "requester_paste_multiplier": 1,
+    "enabled": false,
+    "always_show_made_in": true,
+    "always_show_products": true,
+    "allow_as_intermediate": false,
+    "hide_from_signal_gui": false,
+    "localised_name": [
+      "recipe-name.",
+      "..data_util.mod_prefix .. \"cargo-rocket-section-unpack\""
+    ],
+    "icons": "data_util.transition_icons(\n        {\n          icon = data.raw.item[data_util.mod_prefix .. \"cargo-rocket-section-packed\"].icon,\n          icon_size = data.raw.item[data_util.mod_prefix .. \"cargo-rocket-section-packed\"].icon_size, scale = 0.5,\n          draw_background = true\n        },\n        {\n          icon = data.raw.item[data_util.mod_prefix .. \"cargo-rocket-section\"].icon,\n          icon_size = data.raw.item[data_util.mod_prefix .. \"cargo-rocket-section\"].icon_size, scale = 0.5,\n          draw_background = true\n        }\n      )"
+  },
+  {
+    "type": "recipe",
+    "name": "se-cargo-rocket-section-packed",
+    "results": [
+      {
+        "type": "item",
+        "name": "se-cargo-rocket-section-packed",
+        "amount": 1
+      }
+    ],
+    "energy_required": 5,
+    "ingredients": [
+      {
+        "type": "item",
+        "name": "se-cargo-rocket-section",
+        "amount": 5,
+        "ignored_by_stats": 5
+      }
+    ],
+    "requester_paste_multiplier": 1,
+    "enabled": false,
+    "always_show_made_in": true,
+    "always_show_products": true,
+    "allow_as_intermediate": false,
+    "hide_from_signal_gui": false,
+    "localised_name": [
+      "recipe-name.",
+      "..data_util.mod_prefix .. \"cargo-rocket-section-pack\""
+    ],
+    "icons": "data_util.transition_icons(\n        {\n          icon = data.raw.item[data_util.mod_prefix .. \"cargo-rocket-section\"].icon,\n          icon_size = data.raw.item[data_util.mod_prefix .. \"cargo-rocket-section\"].icon_size, scale = 0.5,\n          draw_background = true\n        },\n        {\n          icon = data.raw.item[data_util.mod_prefix .. \"cargo-rocket-section-packed\"].icon,\n          icon_size = data.raw.item[data_util.mod_prefix .. \"cargo-rocket-section-packed\"].icon_size, scale = 0.5,\n          draw_background = true\n        }\n      )"
+  },
+  {
+    "type": "recipe",
+    "name": "se-cargo-rocket-cargo-pod",
+    "results": [
+      {
+        "type": "item",
+        "name": "se-cargo-rocket-cargo-pod",
+        "amount": 1
+      }
+    ],
+    "energy_required": 30,
+    "ingredients": [
+      {
+        "type": "item",
+        "name": "steel-plate",
+        "amount": 6
+      },
+      {
+        "type": "item",
+        "name": "advanced-circuit",
+        "amount": 4
+      },
+      {
+        "type": "item",
+        "name": "iron-chest",
+        "amount": 4
+      },
+      {
+        "type": "item",
+        "name": "fast-inserter",
+        "amount": 2
+      }
+    ],
+    "requester_paste_multiplier": 2,
+    "enabled": false,
+    "always_show_made_in": true,
+    "allow_productivity": true
+  },
+  {
+    "type": "recipe",
+    "name": "se-cargo-rocket-fuel-tank",
+    "results": [
+      {
+        "type": "item",
+        "name": "se-cargo-rocket-fuel-tank",
+        "amount": 1
+      }
+    ],
+    "energy_required": 30,
+    "ingredients": [
+      {
+        "type": "item",
+        "name": "advanced-circuit",
+        "amount": 2
+      },
+      {
+        "type": "item",
+        "name": "pipe",
+        "amount": 2
+      },
+      {
+        "type": "item",
+        "name": "storage-tank",
+        "amount": 1
+      },
+      {
+        "type": "item",
+        "name": "pump",
+        "amount": 1
+      }
+    ],
+    "requester_paste_multiplier": 2,
+    "enabled": false,
+    "always_show_made_in": true,
+    "allow_productivity": true
+  }
+]

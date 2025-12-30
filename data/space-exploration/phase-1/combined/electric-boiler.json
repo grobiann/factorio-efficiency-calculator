@@ -1,0 +1,395 @@
+[
+  {
+    "type": "item",
+    "name": "se-electric-boiler",
+    "icon": "__space-exploration-graphics__/graphics/icons/electric-boiler.png",
+    "icon_size": 64,
+    "order": "b-a-z",
+    "subgroup": "energy",
+    "stack_size": 50,
+    "place_result": "se-electric-boiler"
+  },
+  {
+    "type": "recipe",
+    "name": "se-electric-boiler",
+    "results": [
+      {
+        "type": "item",
+        "name": "se-electric-boiler",
+        "amount": 1
+      }
+    ],
+    "enabled": false,
+    "energy_required": 3,
+    "ingredients": [
+      {
+        "type": "item",
+        "name": "copper-plate",
+        "amount": 100
+      },
+      {
+        "type": "item",
+        "name": "steel-plate",
+        "amount": 10
+      },
+      {
+        "type": "item",
+        "name": "pipe",
+        "amount": 10
+      },
+      {
+        "type": "item",
+        "name": "se-heat-shielding",
+        "amount": 1
+      }
+    ],
+    "requester_paste_multiplier": 1,
+    "always_show_made_in": false
+  },
+  {
+    "type": "technology",
+    "name": "se-electric-boiler",
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "se-electric-boiler"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "se-electric-boiling-void"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "se-electric-boiling-steam-100"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "se-electric-boiling-steam-165"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "se-electric-boiling-steam-500"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "se-electric-boiling-steam-5000"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "se-steam-to-water"
+      }
+    ],
+    "icon": "__space-exploration-graphics__/graphics/technology/electric-boiler.png",
+    "icon_size": 128,
+    "order": "e-g",
+    "prerequisites": [
+      "steam-power",
+      "se-heat-shielding"
+    ],
+    "unit": {
+      "count": 100,
+      "time": 10,
+      "ingredients": [
+        [
+          "automation-science-pack",
+          1
+        ],
+        [
+          "logistic-science-pack",
+          1
+        ],
+        [
+          "chemical-science-pack",
+          1
+        ]
+      ]
+    }
+  },
+  {
+    "type": "assembling-machine",
+    "name": "se-electric-boiler",
+    "icon": "__space-exploration-graphics__/graphics/icons/electric-boiler.png",
+    "icon_size": 64,
+    "flags": [
+      "placeable-neutral",
+      "player-creation"
+    ],
+    "minable": {
+      "mining_time": 0.2,
+      "result": "se-electric-boiler"
+    },
+    "max_health": 200,
+    "corpse": "boiler-remnants",
+    "impact_category": "metal",
+    "resistances": [
+      {
+        "type": "fire",
+        "percent": 90
+      },
+      {
+        "type": "explosion",
+        "percent": 30
+      },
+      {
+        "type": "impact",
+        "percent": 30
+      }
+    ],
+    "collision_box": [
+      [
+        -1.29,
+        -0.79
+      ],
+      [
+        1.29,
+        0.79
+      ]
+    ],
+    "collision_mask": {
+      "layers": {
+        "water_tile": true,
+        "item": true,
+        "object": true,
+        "player": true
+      }
+    },
+    "se_allow_in_space": true,
+    "selection_box": [
+      [
+        -1.5,
+        -1
+      ],
+      [
+        1.5,
+        1
+      ]
+    ],
+    "target_temperature": 500,
+    "circuit_wire_max_distance": 10,
+    "circuit_connector": "circuit_connector_definitions.create_vector\n        (\n          universal_connector_template,\n          {\n            { variation = 0, main_offset = util.by_pixel(4, -16), shadow_offset = util.by_pixel(4, -16), show_shadow = false },\n            { variation = 2, main_offset = util.by_pixel(2, -24), shadow_offset = util.by_pixel(2, -24), show_shadow = false },\n            { variation = 0, main_offset = util.by_pixel(4, -16), shadow_offset = util.by_pixel(4, -16), show_shadow = false },\n            { variation = 2, main_offset = util.by_pixel(5, -24), shadow_offset = util.by_pixel(5, -24), show_shadow = false },\n          }\n        )",
+    "fluid_boxes": [
+      {
+        "volume": "100 * 1",
+        "height": 2,
+        "pipe_covers": "pipecoverspictures()",
+        "pipe_connections": [
+          {
+            "flow_direction": "input-output",
+            "position": [
+              -1,
+              0.5
+            ],
+            "direction": null
+          },
+          {
+            "flow_direction": "input-output",
+            "position": [
+              1,
+              0.5
+            ],
+            "direction": null
+          }
+        ],
+        "production_type": "input",
+        "filter": "water"
+      },
+      {
+        "volume": "100 * 1",
+        "height": 2,
+        "pipe_covers": "pipecoverspictures()",
+        "pipe_connections": [
+          {
+            "flow_direction": "output",
+            "position": [
+              0,
+              -0.5
+            ],
+            "direction": null
+          }
+        ],
+        "production_type": "output",
+        "filter": "steam"
+      }
+    ],
+    "fluid_boxes_off_when_no_fluid_recipe": false,
+    "energy_usage": "5MW",
+    "crafting_categories": [
+      "se-electric-boiling",
+      "melting"
+    ],
+    "crafting_speed": 1,
+    "energy_source": {
+      "type": "electric",
+      "usage_priority": "secondary-input"
+    },
+    "working_sound": {
+      "sound": {
+        "filename": "__base__/sound/boiler.ogg",
+        "volume": 0.8
+      },
+      "max_sounds_per_type": 3
+    },
+    "graphics_set": {
+      "animation": {
+        "north": {
+          "layers": [
+            {
+              "filename": "__space-exploration-graphics-3__/graphics/entity/electric-boiler/electric-boiler-n.png",
+              "width": 268,
+              "height": 220,
+              "priority": "extra-high",
+              "shift": "util.by_pixel(-1.25, 5.25)",
+              "scale": 0.5
+            },
+            {
+              "filename": "__space-exploration-graphics-3__/graphics/entity/electric-boiler/electric-boiler-n-shadow.png",
+              "width": 274,
+              "height": 164,
+              "priority": "extra-high",
+              "shift": "util.by_pixel(20.5, 9)",
+              "scale": 0.5,
+              "draw_as_shadow": true
+            }
+          ]
+        },
+        "east": {
+          "layers": [
+            {
+              "filename": "__space-exploration-graphics-3__/graphics/entity/electric-boiler/electric-boiler-e.png",
+              "width": 210,
+              "height": 300,
+              "priority": "extra-high",
+              "shift": "util.by_pixel(-1.75, 1.25)",
+              "scale": 0.5
+            },
+            {
+              "filename": "__space-exploration-graphics-3__/graphics/entity/electric-boiler/electric-boiler-e-shadow.png",
+              "width": 184,
+              "height": 194,
+              "priority": "extra-high",
+              "shift": "util.by_pixel(30, 9.5)",
+              "scale": 0.5,
+              "draw_as_shadow": true
+            }
+          ]
+        },
+        "south": {
+          "layers": [
+            {
+              "filename": "__space-exploration-graphics-3__/graphics/entity/electric-boiler/electric-boiler-s.png",
+              "width": 260,
+              "height": 200,
+              "priority": "extra-high",
+              "shift": "util.by_pixel(4, 10.75)",
+              "scale": 0.5
+            },
+            {
+              "filename": "__space-exploration-graphics-3__/graphics/entity/electric-boiler/electric-boiler-s-shadow.png",
+              "priority": "extra-high",
+              "width": 310,
+              "height": 130,
+              "shift": "util.by_pixel(29.75, 15.75)",
+              "scale": 0.5,
+              "draw_as_shadow": true
+            }
+          ]
+        },
+        "west": {
+          "layers": [
+            {
+              "filename": "__space-exploration-graphics-3__/graphics/entity/electric-boiler/electric-boiler-w.png",
+              "width": 196,
+              "height": 272,
+              "priority": "extra-high",
+              "shift": "util.by_pixel(1.5, 7.75)",
+              "scale": 0.5
+            },
+            {
+              "filename": "__space-exploration-graphics-3__/graphics/entity/electric-boiler/electric-boiler-w-shadow.png",
+              "width": 206,
+              "height": 218,
+              "priority": "extra-high",
+              "shift": "util.by_pixel(19.5, 6.5)",
+              "scale": 0.5,
+              "draw_as_shadow": true
+            }
+          ]
+        }
+      },
+      "working_visualisations": [
+        {
+          "north_animation": {
+            "layers": [
+              {
+                "filename": "__space-exploration-graphics-3__/graphics/entity/electric-boiler/electric-boiler-n-light.png",
+                "width": 268,
+                "height": 220,
+                "priority": "extra-high",
+                "shift": "util.by_pixel(-1.25, 5.25)",
+                "scale": 0.5,
+                "blend_mode": "additive"
+              }
+            ]
+          },
+          "east_animation": {
+            "layers": [
+              {
+                "filename": "__space-exploration-graphics-3__/graphics/entity/electric-boiler/electric-boiler-e-light.png",
+                "width": 210,
+                "height": 300,
+                "priority": "extra-high",
+                "shift": "util.by_pixel(-1.75, 1.25)",
+                "scale": 0.5,
+                "blend_mode": "additive"
+              }
+            ]
+          },
+          "south_animation": {
+            "layers": [
+              {
+                "filename": "__space-exploration-graphics-3__/graphics/entity/electric-boiler/electric-boiler-s-light.png",
+                "width": 260,
+                "height": 200,
+                "priority": "extra-high",
+                "shift": "util.by_pixel(4, 10.75)",
+                "scale": 0.5,
+                "blend_mode": "additive"
+              }
+            ]
+          },
+          "west_animation": {
+            "layers": [
+              {
+                "filename": "__space-exploration-graphics-3__/graphics/entity/electric-boiler/electric-boiler-w-light.png",
+                "width": 196,
+                "height": 272,
+                "priority": "extra-high",
+                "shift": "util.by_pixel(1.5, 7.75)",
+                "scale": 0.5,
+                "blend_mode": "additive"
+              }
+            ]
+          }
+        },
+        {
+          "effect": "uranium-glow",
+          "light": {
+            "intensity": 0.5,
+            "size": 4,
+            "shift": [
+              0.0,
+              0.0
+            ],
+            "color": {
+              "r": 1,
+              "g": 0.9,
+              "b": 0.5
+            }
+          }
+        }
+      ]
+    },
+    "open_sound": null,
+    "close_sound": null
+  }
+]

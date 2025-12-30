@@ -1,0 +1,179 @@
+[
+  {
+    "type": "item-subgroup",
+    "name": "base.subgroup..\"-delivery-cannon-capsules\"",
+    "group": null,
+    "order": "a-b"
+  },
+  {
+    "type": "item",
+    "name": "se-delivery-cannon-package-",
+    "icons": "data_util.add_icon_to_stack({{\n            icon = \"__space-exploration-graphics__/graphics/icons/delivery-cannon-capsule.png\",\n            icon_size = 64,\n          }}, base, {scale = 0.5})",
+    "order": "order",
+    "flags": {},
+    "hidden": true,
+    "subgroup": "base.subgroup..\"-delivery-cannon-capsules\"",
+    "stack_size": 1,
+    "localised_name": [
+      "item-name.se-delivery-cannon-capsule-packed",
+      "base.localised_name or {type..\"-name.\"..resource.name}"
+    ]
+  },
+  {
+    "type": "recipe",
+    "name": "se-delivery-cannon-pack-",
+    "subgroup": "base.subgroup..\"-delivery-cannon-capsules\"",
+    "icons": "data_util.add_icons(base.icons or base.icon,\n                                      data.raw.item[data_util.mod_prefix..\"delivery-cannon-capsule\"])",
+    "enabled": true,
+    "energy_required": 5,
+    "ingredients": [
+      {
+        "type": "item",
+        "name": "se-delivery-cannon-capsule",
+        "amount": 1
+      },
+      {
+        "type": "(type == 'fluid') and 'fluid' or 'item'",
+        "name": null,
+        "amount": "amount",
+        "ignored_by_stats": "amount"
+      }
+    ],
+    "results": [
+      {
+        "type": "item",
+        "name": "se-delivery-cannon-package-",
+        "amount": 1
+      }
+    ],
+    "requester_paste_multiplier": 1,
+    "always_show_made_in": false,
+    "category": "delivery-cannon",
+    "hide_from_player_crafting": true,
+    "localised_name": [
+      "item-name.se-delivery-cannon-capsule-packed",
+      "base.localised_name or {type..\"-name.\"..resource.name}"
+    ],
+    "allow_decomposition": false
+  },
+  {
+    "type": "item",
+    "name": "se-delivery-cannon-weapon-package-",
+    "icons": "data_util.add_icon_to_stack({{\n              icon = \"__space-exploration-graphics__/graphics/icons/delivery-cannon-weapon-capsule.png\",\n              icon_size = 64,\n            }}, proto, {scale = 0.5})",
+    "order": "order",
+    "flags": {},
+    "hidden": true,
+    "subgroup": "proto.subgroup or \"delivery-cannon-capsules\"",
+    "stack_size": 1,
+    "localised_name": [
+      "item-name.se-delivery-cannon-weapon-capsule-packed",
+      "proto.localised_name or {\"item-name.\"..dcar.name}"
+    ]
+  },
+  {
+    "type": "recipe",
+    "name": "se-delivery-cannon-weapon-pack-",
+    "icon": null,
+    "icon_size": null,
+    "icons": "table.deepcopy(proto.icons)",
+    "results": [
+      {
+        "type": "item",
+        "name": "se-delivery-cannon-weapon-package-",
+        "amount": 1
+      }
+    ],
+    "enabled": "unlock_tech == nil",
+    "energy_required": "energy_required",
+    "ingredients": "dcar.ingredients or ingredients",
+    "requester_paste_multiplier": 1,
+    "always_show_made_in": false,
+    "category": "delivery-cannon-weapon",
+    "hide_from_player_crafting": true,
+    "localised_name": [
+      "item-name.se-delivery-cannon-weapon-capsule-packed",
+      "proto.localised_name or {\"item-name.\"..dcar.name}"
+    ],
+    "allow_decomposition": false
+  },
+  {
+    "type": "capsule",
+    "name": "se-delivery-cannon-artillery-targeter-",
+    "icons": "artillery_icons",
+    "capsule_action": {
+      "type": "equipment-remote",
+      "equipment": "dummy-defense-equipment"
+    },
+    "order": "b[turret]-d[artillery-turret]-b[remote]-",
+    "subgroup": "defensive-structure",
+    "stack_size": 1,
+    "localised_name": [
+      "item-name.se-delivery-cannon-artillery-targeter",
+      "proto.localised_name or {\"item-name.\"..dcar.name}"
+    ],
+    "localised_description": [
+      "item-description.se-delivery-cannon-artillery-targeter",
+      "proto.localised_name or {\"item-name.\"..dcar.name}"
+    ],
+    "flags": {}
+  },
+  {
+    "type": "artillery-flare",
+    "name": "se-dummy-artillery-flare-",
+    "subgroup": "ammo-effects",
+    "hidden": true,
+    "icon": "__base__/graphics/icons/artillery-targeting-remote.png",
+    "icon_size": 64,
+    "flags": [
+      "placeable-off-grid",
+      "not-on-map"
+    ],
+    "map_color": "dcar.map_color or {r=1, g=0.5, b=0}",
+    "life_time": "0 * 60",
+    "initial_height": 0,
+    "initial_vertical_speed": 0,
+    "initial_frame_speed": 1,
+    "shots_per_flare": 0,
+    "early_death_ticks": "60 * (settings.startup[data_util.mod_prefix..\"delivery-cannon-artillery-timeout\"].value + 60)",
+    "pictures": [
+      {
+        "filename": "__core__/graphics/shoot-cursor-red.png",
+        "priority": "low",
+        "width": 258,
+        "height": 183,
+        "frame_count": 1,
+        "scale": 1,
+        "flags": [
+          "icon"
+        ]
+      }
+    ]
+  },
+  {
+    "type": "recipe",
+    "name": "se-delivery-cannon-artillery-targeter-",
+    "results": [
+      {
+        "type": "item",
+        "name": "se-delivery-cannon-artillery-targeter-",
+        "amount": 1
+      }
+    ],
+    "enabled": false,
+    "energy_required": 0.5,
+    "ingredients": [
+      {
+        "type": "item",
+        "name": "processing-unit",
+        "amount": 1
+      },
+      {
+        "type": "item",
+        "name": "radar",
+        "amount": 1
+      }
+    ],
+    "requester_paste_multiplier": 1,
+    "always_show_made_in": false
+  }
+]

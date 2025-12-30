@@ -86,7 +86,7 @@
       "pipe_connections": [
         {
           "flow_direction": "output",
-          "direction": "defines.direction.north",
+          "direction": null,
           "position": [
             0,
             -0.5
@@ -94,7 +94,7 @@
         },
         {
           "flow_direction": "input",
-          "direction": "defines.direction.south",
+          "direction": null,
           "position": [
             0,
             0.5
@@ -119,9 +119,9 @@
       }
     ],
     "corpse": "1x2-remnants",
-    "open_sound": "sounds.machine_open",
-    "close_sound": "sounds.machine_close",
-    "working_sound": "data.raw.pump.pump.working_sound",
+    "open_sound": null,
+    "close_sound": null,
+    "working_sound": null,
     "vehicle_impact_sound": {
       "filename": "__base__/sound/car-metal-impact.ogg",
       "volume": 0.65
@@ -169,7 +169,7 @@
       }
     },
     "fluid_wagon_connector_frame_count": 35,
-    "fluid_wagon_connector_alignment_tolerance": "2.0 / 32.0",
+    "fluid_wagon_connector_alignment_tolerance": 0.0625,
     "fluid_wagon_connector_graphics": {
       "load_animations": {
         "west": [

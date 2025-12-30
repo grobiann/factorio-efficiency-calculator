@@ -16,7 +16,7 @@
     "type": "procession",
     "name": "default-a",
     "usage": "departure",
-    "procession_style": "procession_style.default",
+    "procession_style": null,
     "timeline": {
       "duration": 100,
       "layers": [
@@ -81,7 +81,7 @@
     "type": "procession",
     "name": "default-rocket-a",
     "usage": "departure",
-    "procession_style": "procession_style.default",
+    "procession_style": null,
     "timeline": {
       "duration": 800,
       "special_action_tick": 800,
@@ -136,7 +136,7 @@
     "type": "procession",
     "name": "default-b",
     "usage": "arrival",
-    "procession_style": "procession_style.default",
+    "procession_style": null,
     "timeline": {
       "duration": "400 * scl",
       "special_action_tick": "100 * scl",
@@ -201,7 +201,7 @@
           "end_time": 0,
           "graphic": {
             "type": "pod-catalogue",
-            "catalogue_id": "procession_graphic_catalogue.pod_anim_opening"
+            "catalogue_id": null
           },
           "frames": [
             {
@@ -320,7 +320,7 @@
           "end_time": 400,
           "graphic": {
             "type": "pod-catalogue",
-            "catalogue_id": "procession_graphic_catalogue.pod_anim_landing"
+            "catalogue_id": null
           },
           "frames": [
             {
@@ -352,7 +352,7 @@
     "type": "procession",
     "name": "default-intermezzo",
     "usage": "intermezzo",
-    "procession_style": "procession_style.default",
+    "procession_style": null,
     "timeline": {
       "duration": 100,
       "layers": {}

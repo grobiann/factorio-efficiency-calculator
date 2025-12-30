@@ -1,0 +1,553 @@
+[
+  {
+    "type": "fluid",
+    "name": "se-methane-gas",
+    "subgroup": "oil",
+    "default_temperature": 15,
+    "max_temperature": 1000,
+    "heat_capacity": "0.1kJ",
+    "icon": "__space-exploration-graphics__/graphics/icons/fluid/methane-gas.png",
+    "icon_size": 64,
+    "base_color": {
+      "r": 0.7,
+      "g": 0.5,
+      "b": 0.4
+    },
+    "flow_color": {
+      "r": 1.0,
+      "g": 0.97,
+      "b": 0.95
+    },
+    "order": "a[oil]-g[methane]-b[methane-gas]",
+    "gas_temperature": -160,
+    "auto_barrel": true
+  },
+  {
+    "type": "fluid",
+    "name": "se-liquid-rocket-fuel",
+    "default_temperature": 25,
+    "heat_capacity": "0.1kJ",
+    "fuel_value": "(100 / data_util.liquid_rocket_fuel_per_solid) .. \"MJ\"",
+    "max_temperature": 100,
+    "base_color": {
+      "r": 0.53,
+      "g": 0.1,
+      "b": 0
+    },
+    "flow_color": {
+      "r": 0.93,
+      "g": 0.68,
+      "b": 0.2
+    },
+    "icon": "__space-exploration-graphics__/graphics/icons/fluid/liquid-rocket-fuel.png",
+    "icon_size": 64,
+    "order": "a[fuel]-d[liquid-rocket]-a[liquid-rocket]",
+    "subgroup": "fuel"
+  },
+  {
+    "type": "fluid",
+    "name": "se-space-coolant",
+    "default_temperature": null,
+    "heat_capacity": "0.1kJ",
+    "min_temperature": -273,
+    "max_temperature": 1000,
+    "base_color": {
+      "r": 80,
+      "g": 27,
+      "b": 255
+    },
+    "flow_color": {
+      "r": 178,
+      "g": 155,
+      "b": 255
+    },
+    "icon": "__space-exploration-graphics__/graphics/icons/fluid/space-coolant.png",
+    "icon_size": 64,
+    "order": "a[fluid]-a[water]",
+    "pressure_to_speed_ratio": 0.4,
+    "flow_to_energy_ratio": 0.59
+  },
+  {
+    "type": "fluid",
+    "name": "se-space-coolant-hot",
+    "default_temperature": null,
+    "heat_capacity": "0.1kJ",
+    "max_temperature": "steam_max_temperature",
+    "base_color": {
+      "r": 159,
+      "g": 27,
+      "b": 255
+    },
+    "flow_color": {
+      "r": 212,
+      "g": 155,
+      "b": 255
+    },
+    "icon": "__space-exploration-graphics__/graphics/icons/fluid/space-coolant-hot.png",
+    "icon_size": 64,
+    "order": "a[thermofluid]-a[hot]-a[hot]",
+    "subgroup": "thermofluid"
+  },
+  {
+    "type": "fluid",
+    "name": "se-space-coolant-warm",
+    "default_temperature": null,
+    "heat_capacity": "0.1kJ",
+    "max_temperature": "steam_max_temperature",
+    "base_color": {
+      "r": 121,
+      "g": 27,
+      "b": 255
+    },
+    "flow_color": {
+      "r": 196,
+      "g": 155,
+      "b": 255
+    },
+    "icon": "__space-exploration-graphics__/graphics/icons/fluid/space-coolant-warm.png",
+    "icon_size": 64,
+    "order": "a[thermofluid]-b[warm]-a[warm]",
+    "subgroup": "thermofluid",
+    "auto_barrel": false
+  },
+  {
+    "type": "fluid",
+    "name": "se-space-coolant-cold",
+    "default_temperature": null,
+    "heat_capacity": "0.1kJ",
+    "max_temperature": "steam_max_temperature",
+    "base_color": {
+      "r": 95,
+      "g": 47,
+      "b": 255
+    },
+    "flow_color": {
+      "r": 185,
+      "g": 164,
+      "b": 255
+    },
+    "icon": "__space-exploration-graphics__/graphics/icons/fluid/space-coolant-cold.png",
+    "icon_size": 64,
+    "order": "a[thermofluid]-c[cold]-a[cold]",
+    "subgroup": "thermofluid",
+    "auto_barrel": false
+  },
+  {
+    "type": "fluid",
+    "name": "se-space-coolant-supercooled",
+    "default_temperature": null,
+    "heat_capacity": "0.1kJ",
+    "max_temperature": "steam_max_temperature",
+    "base_color": {
+      "r": 98,
+      "g": 111,
+      "b": 255
+    },
+    "flow_color": {
+      "r": 186,
+      "g": 192,
+      "b": 255
+    },
+    "icon": "__space-exploration-graphics__/graphics/icons/fluid/space-coolant-supercooled.png",
+    "icon_size": 64,
+    "order": "a[thermofluid]-d[supercooled]-a[supercooled]",
+    "subgroup": "thermofluid",
+    "auto_barrel": false
+  },
+  {
+    "type": "fluid",
+    "name": "se-bio-sludge",
+    "default_temperature": 25,
+    "heat_capacity": "0.1kJ",
+    "max_temperature": 100,
+    "base_color": {
+      "r": 0,
+      "g": 84,
+      "b": 3
+    },
+    "flow_color": {
+      "r": 133,
+      "g": 226,
+      "b": 18
+    },
+    "icon": "__space-exploration-graphics__/graphics/icons/fluid/bio-sludge.png",
+    "icon_size": 64,
+    "order": "a[sludge]-a[bio-sludge]-a[bio-slidge]",
+    "subgroup": "sludge"
+  },
+  {
+    "type": "fluid",
+    "name": "se-contaminated-bio-sludge",
+    "default_temperature": 25,
+    "heat_capacity": "0.1kJ",
+    "max_temperature": 100,
+    "base_color": {
+      "r": 71,
+      "g": 46,
+      "b": 5
+    },
+    "flow_color": {
+      "r": 135,
+      "g": 121,
+      "b": 9
+    },
+    "icon": "__space-exploration-graphics__/graphics/icons/fluid/contaminated-bio-sludge.png",
+    "icon_size": 64,
+    "order": "a[sludge]-b[contaminated-bio-sludge]-a[contaminated-bio-sludge]",
+    "subgroup": "sludge"
+  },
+  {
+    "type": "fluid",
+    "name": "se-chemical-gel",
+    "default_temperature": 25,
+    "heat_capacity": "0.1kJ",
+    "max_temperature": 100,
+    "base_color": {
+      "r": 238,
+      "g": 106,
+      "b": 13
+    },
+    "flow_color": {
+      "r": 238,
+      "g": 106,
+      "b": 13
+    },
+    "icon": "__space-exploration-graphics__/graphics/icons/fluid/chemical-gel.png",
+    "icon_size": 64,
+    "order": "a[gel]-a[chemical-gel]-a[chemical-gel]",
+    "subgroup": "gel"
+  },
+  {
+    "type": "fluid",
+    "name": "se-nutrient-gel",
+    "default_temperature": 25,
+    "heat_capacity": "0.1kJ",
+    "max_temperature": 100,
+    "base_color": {
+      "r": 214,
+      "g": 52,
+      "b": 103
+    },
+    "flow_color": {
+      "r": 214,
+      "g": 52,
+      "b": 103
+    },
+    "icon": "__space-exploration-graphics__/graphics/icons/fluid/nutrient-gel.png",
+    "icon_size": 64,
+    "order": "a[gel]-b[nutrient-gel]-a[nutrient-gel]",
+    "subgroup": "gel"
+  },
+  {
+    "type": "fluid",
+    "name": "se-neural-gel",
+    "default_temperature": 25,
+    "heat_capacity": "0.1kJ",
+    "max_temperature": 100,
+    "base_color": {
+      "r": 210,
+      "g": 149,
+      "b": 186
+    },
+    "flow_color": {
+      "r": 210,
+      "g": 149,
+      "b": 186
+    },
+    "icon": "__space-exploration-graphics__/graphics/icons/fluid/neural-gel.png",
+    "icon_size": 64,
+    "order": "a[gel]-c[neural-gel]-a[neural-gel]",
+    "subgroup": "gel"
+  },
+  {
+    "type": "fluid",
+    "name": "se-neural-gel-2",
+    "default_temperature": 25,
+    "heat_capacity": "0.1kJ",
+    "max_temperature": 100,
+    "base_color": {
+      "r": 135,
+      "g": 124,
+      "b": 213
+    },
+    "flow_color": {
+      "r": 135,
+      "g": 124,
+      "b": 213
+    },
+    "icon": "__space-exploration-graphics__/graphics/icons/fluid/neural-gel-2.png",
+    "icon_size": 64,
+    "order": "a[gel]-d[adv-neural-gel]-a[adv-neural-gel]",
+    "subgroup": "gel"
+  },
+  {
+    "type": "fluid",
+    "name": "se-plasma-stream",
+    "default_temperature": 5000,
+    "heat_capacity": "0.01kJ",
+    "max_temperature": 100000,
+    "base_color": {
+      "r": 255,
+      "g": 186,
+      "b": 0
+    },
+    "flow_color": {
+      "r": 255,
+      "g": 186,
+      "b": 0
+    },
+    "icon": "__space-exploration-graphics__/graphics/icons/fluid/plasma-stream.png",
+    "icon_size": 64,
+    "order": "r-a",
+    "gas_temperature": 0,
+    "auto_barrel": false,
+    "subgroup": "stream"
+  },
+  {
+    "type": "fluid",
+    "name": "se-ion-stream",
+    "default_temperature": 5000,
+    "heat_capacity": "0.01kJ",
+    "max_temperature": 100000,
+    "base_color": {
+      "r": 0,
+      "g": 240,
+      "b": 255
+    },
+    "flow_color": {
+      "r": 0,
+      "g": 240,
+      "b": 255
+    },
+    "icon": "__space-exploration-graphics__/graphics/icons/fluid/ion-stream.png",
+    "icon_size": 64,
+    "order": "r-b",
+    "gas_temperature": 0,
+    "auto_barrel": false,
+    "subgroup": "stream"
+  },
+  {
+    "type": "fluid",
+    "name": "se-proton-stream",
+    "default_temperature": 5000,
+    "heat_capacity": "0.01kJ",
+    "max_temperature": 100000,
+    "base_color": {
+      "r": 13,
+      "g": 231,
+      "b": 13
+    },
+    "flow_color": {
+      "r": 13,
+      "g": 231,
+      "b": 13
+    },
+    "icon": "__space-exploration-graphics__/graphics/icons/fluid/proton-stream.png",
+    "icon_size": 64,
+    "order": "r-d",
+    "gas_temperature": 0,
+    "auto_barrel": false,
+    "subgroup": "stream"
+  },
+  {
+    "type": "fluid",
+    "name": "se-particle-stream",
+    "default_temperature": 5000,
+    "heat_capacity": "0.01kJ",
+    "max_temperature": 100000,
+    "base_color": {
+      "r": 255,
+      "g": 0,
+      "b": 150
+    },
+    "flow_color": {
+      "r": 255,
+      "g": 0,
+      "b": 150
+    },
+    "icon": "__space-exploration-graphics__/graphics/icons/fluid/particle-stream.png",
+    "icon_size": 64,
+    "order": "r-e",
+    "gas_temperature": 0,
+    "auto_barrel": false,
+    "subgroup": "stream"
+  },
+  {
+    "type": "fluid",
+    "name": "se-antimatter-stream",
+    "default_temperature": 10000,
+    "heat_capacity": "0.01kJ",
+    "max_temperature": 100000,
+    "base_color": {
+      "r": 150,
+      "g": 0,
+      "b": 255
+    },
+    "flow_color": {
+      "r": 150,
+      "g": 0,
+      "b": 255
+    },
+    "icon": "__space-exploration-graphics__/graphics/icons/fluid/antimatter-stream.png",
+    "icon_size": 64,
+    "order": "z",
+    "gas_temperature": 0,
+    "auto_barrel": false,
+    "fuel_value": "20MJ",
+    "subgroup": "stream"
+  },
+  {
+    "type": "fluid",
+    "name": "se-cryonite-slush",
+    "default_temperature": 0,
+    "heat_capacity": "0.01kJ",
+    "max_temperature": 25,
+    "base_color": {
+      "r": 185,
+      "g": 164,
+      "b": 255
+    },
+    "flow_color": {
+      "r": 185,
+      "g": 164,
+      "b": 255
+    },
+    "icon": "__space-exploration-graphics__/graphics/icons/fluid/cryonite-slush.png",
+    "icon_size": 64,
+    "order": "a[cryonite]-f[cryonite-slush]-a[cryonite-slush]",
+    "auto_barrel": true,
+    "subgroup": "cryonite"
+  },
+  {
+    "type": "fluid",
+    "name": "se-pyroflux",
+    "default_temperature": 50,
+    "heat_capacity": "0.01kJ",
+    "max_temperature": 10000,
+    "base_color": {
+      "r": 185,
+      "g": 0,
+      "b": 0
+    },
+    "flow_color": {
+      "r": 185,
+      "g": 0,
+      "b": 0
+    },
+    "icon": "__space-exploration-graphics__/graphics/icons/fluid/pyroflux.png",
+    "icon_size": 64,
+    "order": "a[vulcanite]-f[pyroflux]-a[pyroflux]",
+    "auto_barrel": true,
+    "subgroup": "vulcanite"
+  },
+  {
+    "type": "fluid",
+    "name": "se-vitalic-acid",
+    "default_temperature": 25,
+    "heat_capacity": "0.01kJ",
+    "max_temperature": 25,
+    "base_color": {
+      "r": 146,
+      "g": 240,
+      "b": 48
+    },
+    "flow_color": {
+      "r": 146,
+      "g": 240,
+      "b": 48
+    },
+    "icon": "__space-exploration-graphics__/graphics/icons/fluid/vitalic-acid.png",
+    "icon_size": 64,
+    "order": "a[vitamelange]-g[vitalic-acid]-a[vitalic-acid]",
+    "auto_barrel": true,
+    "subgroup": "vitamelange"
+  },
+  {
+    "type": "fluid",
+    "name": "se-molten-iron",
+    "default_temperature": 1600,
+    "heat_capacity": "0.01kJ",
+    "max_temperature": 1600,
+    "base_color": {
+      "r": 171,
+      "g": 219,
+      "b": 253
+    },
+    "flow_color": {
+      "r": 171,
+      "g": 219,
+      "b": 253
+    },
+    "icon": "__space-exploration-graphics__/graphics/icons/fluid/molten-iron.png",
+    "icon_size": 64,
+    "order": "a[iron]-c[molten-iron]-a[molten-iron]",
+    "auto_barrel": false,
+    "subgroup": "iron"
+  },
+  {
+    "type": "fluid",
+    "name": "se-molten-copper",
+    "default_temperature": 1100,
+    "heat_capacity": "0.01kJ",
+    "max_temperature": 1100,
+    "base_color": {
+      "r": 253,
+      "g": 204,
+      "b": 171
+    },
+    "flow_color": {
+      "r": 253,
+      "g": 204,
+      "b": 171
+    },
+    "icon": "__space-exploration-graphics__/graphics/icons/fluid/molten-copper.png",
+    "icon_size": 64,
+    "order": "a[copper]-c[molten-copper]-a[molten-copper]",
+    "auto_barrel": false,
+    "subgroup": "copper"
+  },
+  {
+    "type": "fluid",
+    "name": "se-molten-holmium",
+    "default_temperature": 1400,
+    "heat_capacity": "0.01kJ",
+    "max_temperature": 1400,
+    "base_color": {
+      "r": 253,
+      "g": 171,
+      "b": 190
+    },
+    "flow_color": {
+      "r": 253,
+      "g": 171,
+      "b": 190
+    },
+    "icon": "__space-exploration-graphics__/graphics/icons/fluid/molten-holmium.png",
+    "icon_size": 64,
+    "order": "a[holmium]-f[molten-holmium]-a[molten-holmium]",
+    "auto_barrel": false,
+    "subgroup": "holmium"
+  },
+  {
+    "type": "fluid",
+    "name": "se-molten-beryllium",
+    "default_temperature": 1300,
+    "heat_capacity": "0.01kJ",
+    "max_temperature": 1300,
+    "base_color": {
+      "r": 171,
+      "g": 253,
+      "b": 185
+    },
+    "flow_color": {
+      "r": 171,
+      "g": 253,
+      "b": 185
+    },
+    "icon": "__space-exploration-graphics__/graphics/icons/fluid/molten-beryllium.png",
+    "icon_size": 64,
+    "order": "a[beryllium]-f[molten-beryllium]-a[molten-beryllium]",
+    "auto_barrel": false,
+    "subgroup": "beryllium"
+  }
+]

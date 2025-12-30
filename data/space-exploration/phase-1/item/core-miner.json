@@ -1,0 +1,12 @@
+[
+  {
+    "type": "item",
+    "name": "se-core-miner-drill",
+    "icon": "__space-exploration-graphics__/graphics/icons/core-miner.png",
+    "icon_size": 64,
+    "order": "zzzz-core-miner",
+    "stack_size": 1,
+    "subgroup": "extraction-machine",
+    "place_result": "se-core-miner-drill"
+  }
+]

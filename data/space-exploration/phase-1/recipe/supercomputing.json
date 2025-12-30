@@ -1,0 +1,262 @@
+[
+  {
+    "type": "recipe",
+    "name": "se-deep-catalogue-1",
+    "main_product": "se-deep-catalogue-1",
+    "enabled": false,
+    "energy_required": 60,
+    "ingredients": [
+      {
+        "type": "item",
+        "name": "se-void-probe-data",
+        "amount": 1
+      },
+      {
+        "type": "item",
+        "name": "se-nano-engineering-data",
+        "amount": 1
+      },
+      {
+        "type": "item",
+        "name": "se-naquium-structural-data",
+        "amount": 1
+      },
+      {
+        "type": "item",
+        "name": "se-naquium-energy-data",
+        "amount": 1
+      },
+      {
+        "type": "item",
+        "name": "se-cryonite-rod",
+        "amount": 1
+      },
+      {
+        "type": "fluid",
+        "name": "se-space-coolant-supercooled",
+        "amount": 10
+      }
+    ],
+    "results": [
+      {
+        "type": "item",
+        "name": "se-deep-catalogue-1",
+        "amount": 1
+      },
+      {
+        "type": "fluid",
+        "name": "se-space-coolant-hot",
+        "amount": 10
+      }
+    ],
+    "requester_paste_multiplier": 1,
+    "always_show_made_in": true,
+    "category": "space-supercomputing-3"
+  },
+  {
+    "type": "recipe",
+    "name": "se-deep-catalogue-2",
+    "main_product": "se-deep-catalogue-2",
+    "enabled": false,
+    "energy_required": 70,
+    "ingredients": [
+      {
+        "type": "item",
+        "name": "se-timespace-anomaly-data",
+        "amount": 1
+      },
+      {
+        "type": "item",
+        "name": "se-singularity-data",
+        "amount": 1
+      },
+      {
+        "type": "item",
+        "name": "se-hyperlattice-data",
+        "amount": 1
+      },
+      {
+        "type": "item",
+        "name": "se-annihilation-data",
+        "amount": 1
+      },
+      {
+        "type": "item",
+        "name": "se-cryonite-rod",
+        "amount": 2
+      },
+      {
+        "type": "fluid",
+        "name": "se-space-coolant-supercooled",
+        "amount": 20
+      }
+    ],
+    "results": [
+      {
+        "type": "item",
+        "name": "se-deep-catalogue-2",
+        "amount": 1
+      },
+      {
+        "type": "fluid",
+        "name": "se-space-coolant-hot",
+        "amount": 20
+      }
+    ],
+    "requester_paste_multiplier": 1,
+    "always_show_made_in": true,
+    "category": "space-supercomputing-3"
+  },
+  {
+    "type": "recipe",
+    "name": "se-deep-catalogue-3",
+    "main_product": "se-deep-catalogue-3",
+    "enabled": false,
+    "energy_required": 80,
+    "ingredients": [
+      {
+        "type": "item",
+        "name": "se-space-fold-data",
+        "amount": 1
+      },
+      {
+        "type": "item",
+        "name": "se-space-warp-data",
+        "amount": 1
+      },
+      {
+        "type": "item",
+        "name": "se-space-dilation-data",
+        "amount": 1
+      },
+      {
+        "type": "item",
+        "name": "se-space-injection-data",
+        "amount": 1
+      },
+      {
+        "type": "item",
+        "name": "se-cryonite-rod",
+        "amount": 3
+      },
+      {
+        "type": "fluid",
+        "name": "se-space-coolant-supercooled",
+        "amount": 30
+      }
+    ],
+    "results": [
+      {
+        "type": "item",
+        "name": "se-deep-catalogue-3",
+        "amount": 1
+      },
+      {
+        "type": "fluid",
+        "name": "se-space-coolant-hot",
+        "amount": 30
+      }
+    ],
+    "requester_paste_multiplier": 1,
+    "always_show_made_in": true,
+    "category": "space-supercomputing-3"
+  },
+  {
+    "type": "recipe",
+    "name": "se-deep-catalogue-4",
+    "main_product": "se-deep-catalogue-4",
+    "enabled": false,
+    "energy_required": 90,
+    "ingredients": [
+      {
+        "type": "item",
+        "name": "se-interstellar-data",
+        "amount": 1
+      },
+      {
+        "type": "item",
+        "name": "se-teleportation-data",
+        "amount": 1
+      },
+      {
+        "type": "item",
+        "name": "se-wormhole-data",
+        "amount": 1
+      },
+      {
+        "type": "item",
+        "name": "se-rhga-data",
+        "amount": 1
+      },
+      {
+        "type": "item",
+        "name": "se-cryonite-rod",
+        "amount": 4
+      },
+      {
+        "type": "fluid",
+        "name": "se-space-coolant-supercooled",
+        "amount": 40
+      }
+    ],
+    "results": [
+      {
+        "type": "item",
+        "name": "se-deep-catalogue-4",
+        "amount": 1
+      },
+      {
+        "type": "fluid",
+        "name": "se-space-coolant-hot",
+        "amount": 40
+      }
+    ],
+    "requester_paste_multiplier": 1,
+    "always_show_made_in": true,
+    "category": "space-supercomputing-4"
+  },
+  {
+    "type": "recipe",
+    "name": "se-rhga-data",
+    "main_product": "se-rhga-data",
+    "enabled": false,
+    "energy_required": 1000,
+    "ingredients": [
+      {
+        "type": "item",
+        "name": "se-empty-data",
+        "amount": 50
+      },
+      {
+        "type": "item",
+        "name": "se-naquium-processor",
+        "amount": 1
+      },
+      {
+        "type": "item",
+        "name": "se-cryonite-rod",
+        "amount": 100
+      },
+      {
+        "type": "fluid",
+        "name": "se-space-coolant-supercooled",
+        "amount": 1000
+      }
+    ],
+    "results": [
+      {
+        "type": "item",
+        "name": "se-rhga-data",
+        "amount": 50
+      },
+      {
+        "type": "fluid",
+        "name": "se-space-coolant-hot",
+        "amount": 1000
+      }
+    ],
+    "requester_paste_multiplier": 1,
+    "always_show_made_in": true,
+    "category": "space-supercomputing-4"
+  }
+]

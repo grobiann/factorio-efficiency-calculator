@@ -97,7 +97,7 @@
       "pipe_connections": [
         {
           "flow_direction": "input-output",
-          "direction": "defines.direction.west",
+          "direction": null,
           "position": [
             -1,
             0
@@ -105,7 +105,7 @@
         },
         {
           "flow_direction": "input-output",
-          "direction": "defines.direction.east",
+          "direction": null,
           "position": [
             1,
             0
@@ -113,7 +113,7 @@
         },
         {
           "flow_direction": "input-output",
-          "direction": "defines.direction.south",
+          "direction": null,
           "position": [
             0,
             1
@@ -139,9 +139,9 @@
         "percent": 20
       }
     ],
-    "open_sound": "sounds.machine_open",
-    "close_sound": "sounds.machine_close",
-    "vehicle_impact_sound": "sounds.generic_impact",
+    "open_sound": null,
+    "close_sound": null,
+    "vehicle_impact_sound": null,
     "working_sound": {
       "sound": {
         "audible_distance_modifier": 0.5,

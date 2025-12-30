@@ -67,7 +67,7 @@
           0.5,
           0.5
         ],
-        "frequency": "0.25 / 2",
+        "frequency": 0.125,
         "position": [
           0.0,
           -0.8
@@ -124,10 +124,10 @@
     ],
     "rotation_speed": 0.015,
     "preparing_speed": 0.08,
-    "open_sound": "sounds.turret_open",
-    "close_sound": "sounds.turret_close",
-    "preparing_sound": "sounds.flamethrower_turret_activate",
-    "folding_sound": "sounds.flamethrower_turret_deactivate",
+    "open_sound": null,
+    "close_sound": null,
+    "preparing_sound": null,
+    "folding_sound": null,
     "folding_speed": 0.08,
     "attacking_speed": 1,
     "ending_attack_speed": 0.2,
@@ -147,14 +147,14 @@
       "volume": 100,
       "pipe_connections": [
         {
-          "direction": "defines.direction.west",
+          "direction": null,
           "position": [
             -0.5,
             1.0
           ]
         },
         {
-          "direction": "defines.direction.east",
+          "direction": null,
           "position": [
             0.5,
             1.0
@@ -367,7 +367,7 @@
       "cooldown": 4,
       "range": 30,
       "min_range": 6,
-      "turn_range": "1.0 / 3.0",
+      "turn_range": 0.3333333333333333,
       "fire_penalty": 15,
       "fluids": [
         {
@@ -525,11 +525,11 @@
   },
   {
     "intensity": 1,
-    "size": "4 * 0.8"
+    "size": 3.2
   },
   {
     "intensity": 0.8,
-    "size": "4 * 0.8"
+    "size": 3.2
   },
   [
     {

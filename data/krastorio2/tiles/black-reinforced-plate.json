@@ -125,9 +125,9 @@
         "scale": 0.5
       }
     },
-    "transitions": "data.raw.tile.concrete.transitions",
-    "transitions_between_transitions": "data.raw.tile.concrete.transitions_between_transitions",
-    "walking_sound": "tile_sounds.walking.refined_concrete",
+    "transitions": null,
+    "transitions_between_transitions": null,
+    "walking_sound": null,
     "map_color": {
       "r": 40,
       "g": 40,

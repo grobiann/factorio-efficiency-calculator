@@ -107,13 +107,13 @@
     "fluid_boxes": [
       {
         "production_type": "input",
-        "pipe_picture": "pipe_pictures.a",
+        "pipe_picture": null,
         "pipe_covers": "pipecoverspictures()",
         "volume": 1000,
         "pipe_connections": [
           {
             "flow_direction": "input",
-            "direction": "defines.direction.north",
+            "direction": null,
             "position": [
               -1,
               -3
@@ -126,13 +126,13 @@
       },
       {
         "production_type": "input",
-        "pipe_picture": "pipe_pictures.b",
+        "pipe_picture": null,
         "pipe_covers": "pipecoverspictures()",
         "volume": 1000,
         "pipe_connections": [
           {
             "flow_direction": "input",
-            "direction": "defines.direction.north",
+            "direction": null,
             "position": [
               1,
               -3
@@ -145,13 +145,13 @@
       },
       {
         "production_type": "input",
-        "pipe_picture": "pipe_pictures.b",
+        "pipe_picture": null,
         "pipe_covers": "pipecoverspictures()",
         "volume": 1000,
         "pipe_connections": [
           {
             "flow_direction": "input",
-            "direction": "defines.direction.west",
+            "direction": null,
             "position": [
               -3,
               -1
@@ -164,13 +164,13 @@
       },
       {
         "production_type": "input",
-        "pipe_picture": "pipe_pictures.a",
+        "pipe_picture": null,
         "pipe_covers": "pipecoverspictures()",
         "volume": 1000,
         "pipe_connections": [
           {
             "flow_direction": "input",
-            "direction": "defines.direction.east",
+            "direction": null,
             "position": [
               3,
               -1
@@ -183,13 +183,13 @@
       },
       {
         "production_type": "output",
-        "pipe_picture": "pipe_pictures.b",
+        "pipe_picture": null,
         "pipe_covers": "pipecoverspictures()",
         "volume": 1000,
         "pipe_connections": [
           {
             "flow_direction": "output",
-            "direction": "defines.direction.south",
+            "direction": null,
             "position": [
               -1,
               3
@@ -202,13 +202,13 @@
       },
       {
         "production_type": "output",
-        "pipe_picture": "pipe_pictures.a",
+        "pipe_picture": null,
         "pipe_covers": "pipecoverspictures()",
         "volume": 1000,
         "pipe_connections": [
           {
             "flow_direction": "output",
-            "direction": "defines.direction.south",
+            "direction": null,
             "position": [
               1,
               3
@@ -221,13 +221,13 @@
       },
       {
         "production_type": "output",
-        "pipe_picture": "pipe_pictures.a",
+        "pipe_picture": null,
         "pipe_covers": "pipecoverspictures()",
         "volume": 1000,
         "pipe_connections": [
           {
             "flow_direction": "output",
-            "direction": "defines.direction.west",
+            "direction": null,
             "position": [
               -3,
               1
@@ -240,13 +240,13 @@
       },
       {
         "production_type": "output",
-        "pipe_picture": "pipe_pictures.b",
+        "pipe_picture": null,
         "pipe_covers": "pipecoverspictures()",
         "volume": 1000,
         "pipe_connections": [
           {
             "flow_direction": "output",
-            "direction": "defines.direction.east",
+            "direction": null,
             "position": [
               3,
               1
@@ -281,9 +281,9 @@
       }
     },
     "energy_usage": "2MW",
-    "open_sound": "sounds.machine_open",
-    "close_sound": "sounds.machine_close",
-    "vehicle_impact_sound": "sounds.generic_impact",
+    "open_sound": null,
+    "close_sound": null,
+    "vehicle_impact_sound": null,
     "working_sound": {
       "sound": {
         "filename": "__Krastorio2Assets__/sounds/buildings/advanced-furnace.ogg",
@@ -424,7 +424,7 @@
     },
     "icons_positioning": [
       {
-        "inventory_index": "defines.inventory.assembling_machine_modules",
+        "inventory_index": null,
         "shift": [
           0,
           1.25

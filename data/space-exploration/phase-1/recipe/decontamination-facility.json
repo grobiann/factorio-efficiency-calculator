@@ -1,0 +1,110 @@
+[
+  {
+    "type": "recipe",
+    "name": "se-space-water",
+    "enabled": false,
+    "ingredients": [
+      {
+        "type": "fluid",
+        "name": "water",
+        "amount": 99
+      },
+      {
+        "type": "fluid",
+        "name": "lubricant",
+        "amount": 1
+      }
+    ],
+    "energy_required": 1,
+    "results": [
+      {
+        "type": "fluid",
+        "name": "se-space-water",
+        "amount": 10
+      }
+    ],
+    "allow_as_intermediate": false,
+    "icon_size": 64,
+    "crafting_machine_tint": null,
+    "category": "space-decontamination",
+    "subgroup": "water",
+    "always_show_made_in": true,
+    "order": "c-a"
+  },
+  {
+    "type": "recipe",
+    "name": "se-bio-sludge-decontamination",
+    "enabled": false,
+    "ingredients": [
+      {
+        "type": "fluid",
+        "name": "se-contaminated-bio-sludge",
+        "amount": 100
+      }
+    ],
+    "results": [
+      {
+        "type": "item",
+        "name": "se-contaminated-scrap",
+        "amount_min": 1,
+        "amount_max": 1,
+        "probability": 0.01
+      },
+      {
+        "type": "fluid",
+        "name": "se-bio-sludge",
+        "amount": 99
+      }
+    ],
+    "energy_required": 5,
+    "allow_as_intermediate": false,
+    "icon_size": 64,
+    "crafting_machine_tint": null,
+    "category": "space-decontamination",
+    "subgroup": "sludge",
+    "icons": "data_util.transition_icons(\n    {\n      icon = data.raw.fluid[data_util.mod_prefix .. \"contaminated-bio-sludge\"].icon,\n      icon_size = data.raw.fluid[data_util.mod_prefix .. \"contaminated-bio-sludge\"].icon_size, scale = 0.5\n    },\n    {\n      icon = data.raw.fluid[data_util.mod_prefix .. \"bio-sludge\"].icon,\n      icon_size = data.raw.fluid[data_util.mod_prefix .. \"bio-sludge\"].icon_size, scale = 0.5\n    }\n  )",
+    "always_show_made_in": true,
+    "order": "a[sludge]-b[contaminated-bio-sludge]-b[contaminated-bio-sludge]"
+  },
+  {
+    "type": "recipe",
+    "name": "se-space-water-decontamination",
+    "enabled": false,
+    "ingredients": [
+      {
+        "type": "fluid",
+        "name": "se-contaminated-space-water",
+        "amount": 100
+      }
+    ],
+    "results": [
+      {
+        "type": "fluid",
+        "name": "se-space-water",
+        "amount": 99
+      },
+      {
+        "type": "fluid",
+        "name": "se-contaminated-bio-sludge",
+        "amount": 1
+      },
+      {
+        "type": "item",
+        "name": "se-contaminated-scrap",
+        "amount_min": 1,
+        "amount_max": 1,
+        "probability": 0.01
+      }
+    ],
+    "energy_required": 5,
+    "allow_as_intermediate": false,
+    "icon_size": 64,
+    "crafting_machine_tint": null,
+    "category": "space-decontamination",
+    "subgroup": "water",
+    "icons": "data_util.transition_icons(\n    {\n      icon = data.raw.fluid[data_util.mod_prefix .. \"contaminated-space-water\"].icon,\n      icon_size = data.raw.fluid[data_util.mod_prefix .. \"contaminated-space-water\"].icon_size, scale = 0.5\n    },\n    {\n      icon = data.raw.fluid[data_util.mod_prefix .. \"space-water\"].icon,\n      icon_size = data.raw.fluid[data_util.mod_prefix .. \"space-water\"].icon_size, scale = 0.5\n    }\n  )",
+    "always_show_made_in": true,
+    "hide_from_signal_gui": false,
+    "order": "a[water]-c[cosmic-water]-b[cosmic-water-decon]"
+  }
+]

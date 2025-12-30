@@ -1,0 +1,205 @@
+[
+  {
+    "type": "explosion",
+    "name": "se-dummy-explosion",
+    "subgroup": "explosions",
+    "hidden": true,
+    "animations": [
+      {
+        "direction_count": 1,
+        "filename": "__space-exploration-graphics__/graphics/blank.png",
+        "frame_count": 1,
+        "height": 1,
+        "line_length": 1,
+        "width": 1
+      }
+    ],
+    "flags": [
+      "not-on-map"
+    ]
+  },
+  {
+    "type": "explosion",
+    "name": "se-trigger-movable-debris",
+    "subgroup": "explosions",
+    "hidden": true,
+    "animations": [
+      {
+        "direction_count": 1,
+        "filename": "__space-exploration-graphics__/graphics/blank.png",
+        "frame_count": 1,
+        "height": 1,
+        "line_length": 1,
+        "width": 1
+      }
+    ],
+    "flags": [
+      "not-on-map"
+    ]
+  },
+  {
+    "type": "explosion",
+    "name": "data_util.mod_prefix..name",
+    "subgroup": "explosions",
+    "hidden": true,
+    "icons": [
+      {
+        "icon": "__base__/graphics/icons/explosion.png",
+        "icon_size": 64,
+        "scale": 0.5
+      }
+    ],
+    "animations": [
+      "animation"
+    ],
+    "created_effect": {
+      "type": "direct",
+      "action_delivery": {
+        "type": "instant",
+        "target_effects": [
+          {
+            "type": "create-particle",
+            "particle_name": "explosion-remnants-particle",
+            "initial_height": 0.5,
+            "initial_vertical_speed": "0.06 + 0.01 * magnitude",
+            "initial_vertical_speed_deviation": "0.06 + 0.01 * magnitude",
+            "offset_deviation": [
+              [
+                -0.2,
+                -0.2
+              ],
+              [
+                0.2,
+                0.2
+              ]
+            ],
+            "repeat_count": "10 + 5 * magnitude",
+            "speed_from_center": "0.06 + 0.01 * magnitude",
+            "speed_from_center_deviation": "0.06 + 0.01 * magnitude"
+          },
+          {
+            "type": "create-particle",
+            "particle_name": "stone-particle",
+            "initial_height": 0.5,
+            "initial_vertical_speed": "0.1 + 0.05 * magnitude",
+            "initial_vertical_speed_deviation": "0.1 + 0.05 * magnitude",
+            "offset_deviation": [
+              [
+                -0.2,
+                -0.2
+              ],
+              [
+                0.2,
+                0.2
+              ]
+            ],
+            "repeat_count": "40 + 20 * magnitude",
+            "speed_from_center": "0.06 + 0.02 * magnitude",
+            "speed_from_center_deviation": "0.06 + 0.02 * magnitude"
+          }
+        ]
+      }
+    },
+    "flags": [
+      "not-on-map"
+    ],
+    "light": {
+      "color": {
+        "r": 1,
+        "g": 0.9,
+        "b": 0.8
+      },
+      "intensity": "0.8 + 0.1 * magnitude",
+      "size": "30 + 5 * magnitude"
+    },
+    "sound": {
+      "aggregation": {
+        "max_count": 1,
+        "remove": true
+      },
+      "variations": "sound"
+    }
+  },
+  {
+    "type": "explosion",
+    "name": "se-meteor-explosion",
+    "subgroup": "explosions",
+    "hidden": true,
+    "animations": [
+      {
+        "animation_speed": 0.5,
+        "filename": "__base__/graphics/entity/bigass-explosion/bigass-explosion-36f.png",
+        "frame_count": 36,
+        "width": 324,
+        "height": 416,
+        "shift": [
+          0,
+          -1.5
+        ],
+        "stripes": [
+          {
+            "filename": "__base__/graphics/entity/bigass-explosion/bigass-explosion-36f-1.png",
+            "height_in_frames": 3,
+            "width_in_frames": 6
+          },
+          {
+            "filename": "__base__/graphics/entity/bigass-explosion/bigass-explosion-36f-2.png",
+            "height_in_frames": 3,
+            "width_in_frames": 6
+          }
+        ],
+        "scale": 1
+      }
+    ],
+    "created_effect": {
+      "type": "direct",
+      "action_delivery": {
+        "type": "instant",
+        "target_effects": [
+          {
+            "type": "create-particle",
+            "particle_name": "stone-particle",
+            "initial_height": 0.5,
+            "initial_vertical_speed": 0.3,
+            "initial_vertical_speed_deviation": 0.3,
+            "offset_deviation": [
+              [
+                -0.2,
+                -0.2
+              ],
+              [
+                0.2,
+                0.2
+              ]
+            ],
+            "repeat_count": 120,
+            "speed_from_center": 0.2,
+            "speed_from_center_deviation": 0.2
+          }
+        ]
+      }
+    },
+    "flags": [
+      "not-on-map"
+    ],
+    "light": {
+      "color": {
+        "r": 1,
+        "g": 0.9,
+        "b": 0.8
+      },
+      "intensity": 1,
+      "size": 50
+    },
+    "sound": {
+      "aggregation": {
+        "max_count": 1,
+        "remove": true
+      },
+      "variations": {
+        "filename": "__base__/sound/explosion1.ogg",
+        "volume": 1
+      }
+    }
+  }
+]

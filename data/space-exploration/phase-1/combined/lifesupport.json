@@ -1,0 +1,18 @@
+[
+  {
+    "type": "sprite",
+    "name": "se-lifesupport-button-sprite",
+    "filename": "__space-exploration-graphics__/graphics/icons/thruster-suit-black.png",
+    "priority": "extra-high-no-scale",
+    "width": 64,
+    "height": 64
+  },
+  {
+    "type": "sound",
+    "name": "se-canister-breath",
+    "variations": {
+      "filename": "__space-exploration__/sound/canister-breath.ogg",
+      "volume": 0.25
+    }
+  }
+]
