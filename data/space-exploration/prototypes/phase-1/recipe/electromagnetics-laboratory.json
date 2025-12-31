@@ -1,0 +1,141 @@
+[
+  {
+    "type": "recipe",
+    "name": "se-holmium-cable",
+    "results": [
+      {
+        "type": "item",
+        "name": "se-holmium-cable",
+        "amount": 2
+      }
+    ],
+    "energy_required": 1,
+    "ingredients": [
+      {
+        "type": "item",
+        "name": "se-holmium-plate",
+        "amount": 2
+      },
+      {
+        "type": "item",
+        "name": "plastic-bar",
+        "amount": 1
+      }
+    ],
+    "category": "crafting-or-electromagnetics",
+    "requester_paste_multiplier": 1,
+    "always_show_made_in": false,
+    "allow_productivity": true,
+    "enabled": false
+  },
+  {
+    "type": "recipe",
+    "name": "se-holmium-solenoid",
+    "results": [
+      {
+        "type": "item",
+        "name": "se-holmium-solenoid",
+        "amount": 1
+      }
+    ],
+    "energy_required": 2,
+    "ingredients": [
+      {
+        "type": "item",
+        "name": "iron-stick",
+        "amount": 1
+      },
+      {
+        "type": "item",
+        "name": "se-holmium-cable",
+        "amount": 8
+      },
+      {
+        "type": "item",
+        "name": "se-holmium-plate",
+        "amount": 8
+      }
+    ],
+    "category": "crafting-or-electromagnetics",
+    "requester_paste_multiplier": 1,
+    "always_show_made_in": false,
+    "allow_productivity": true,
+    "enabled": false
+  },
+  {
+    "type": "recipe",
+    "name": "se-quantum-processor",
+    "results": [
+      {
+        "type": "item",
+        "name": "se-quantum-processor",
+        "amount": 1
+      }
+    ],
+    "energy_required": 16,
+    "ingredients": [
+      {
+        "type": "item",
+        "name": "processing-unit",
+        "amount": 4
+      },
+      {
+        "type": "item",
+        "name": "se-holmium-cable",
+        "amount": 32
+      },
+      {
+        "type": "item",
+        "name": "se-holmium-plate",
+        "amount": 32
+      },
+      {
+        "type": "item",
+        "name": "se-quantum-phenomenon-data",
+        "amount": 1
+      }
+    ],
+    "category": "space-electromagnetics",
+    "requester_paste_multiplier": 1,
+    "always_show_made_in": true,
+    "enabled": false
+  },
+  {
+    "type": "recipe",
+    "name": "se-dynamic-emitter",
+    "results": [
+      {
+        "type": "item",
+        "name": "se-dynamic-emitter",
+        "amount": 1
+      }
+    ],
+    "energy_required": 6,
+    "ingredients": [
+      {
+        "type": "item",
+        "name": "se-cryonite-rod",
+        "amount": 4
+      },
+      {
+        "type": "item",
+        "name": "se-holmium-solenoid",
+        "amount": 4
+      },
+      {
+        "type": "item",
+        "name": "se-quantum-processor",
+        "amount": 1
+      },
+      {
+        "type": "fluid",
+        "name": "se-particle-stream",
+        "amount": 10
+      }
+    ],
+    "category": "space-electromagnetics",
+    "requester_paste_multiplier": 1,
+    "always_show_made_in": true,
+    "enabled": false
+  }
+]

@@ -1,0 +1,128 @@
+[
+  {
+    "type": "beacon",
+    "name": "se-wide-beacon",
+    "icon": "__space-exploration-graphics__/graphics/icons/wide-beacon.png",
+    "icon_size": 64,
+    "flags": [
+      "placeable-player",
+      "player-creation"
+    ],
+    "minable": {
+      "mining_time": 0.25,
+      "result": "se-wide-beacon"
+    },
+    "next_upgrade": "se-wide-beacon-2",
+    "fast_replaceable_group": "wide-beacon",
+    "se_allow_in_space": true,
+    "profile": [
+      1,
+      0
+    ],
+    "allowed_effects": "data_util.all_effects_except(\"productivity\", \"quality\")",
+    "animation": {
+      "layers": [
+        {
+          "animation_speed": 0.5,
+          "filename": "__space-exploration-graphics-4__/graphics/entity/wide-beacon/wide-beacon.png",
+          "frame_count": 32,
+          "width": 256,
+          "height": 320,
+          "line_length": 8,
+          "shift": [
+            0,
+            -0.5
+          ],
+          "scale": 0.5
+        },
+        {
+          "draw_as_shadow": true,
+          "animation_speed": 0.5,
+          "filename": "__space-exploration-graphics-4__/graphics/entity/wide-beacon/wide-beacon-shadow.png",
+          "frame_count": 32,
+          "width": 330,
+          "height": 174,
+          "line_length": 4,
+          "shift": [
+            0.625,
+            0.625
+          ],
+          "scale": 0.5
+        }
+      ]
+    },
+    "animation_shadow": "blank_image",
+    "base_picture": "blank_image",
+    "collision_box": [
+      [
+        -1.7,
+        -1.7
+      ],
+      [
+        1.7,
+        1.7
+      ]
+    ],
+    "drawing_box_vertical_extension": 0.7,
+    "selection_box": [
+      [
+        -2,
+        -2
+      ],
+      [
+        2,
+        2
+      ]
+    ],
+    "corpse": "medium-remnants",
+    "damaged_trigger_effect": {
+      "entity_name": "spark-explosion",
+      "offset_deviation": [
+        [
+          -0.5,
+          -0.5
+        ],
+        [
+          0.5,
+          0.5
+        ]
+      ],
+      "offsets": [
+        [
+          0,
+          1
+        ]
+      ],
+      "type": "create-entity"
+    },
+    "dying_explosion": "beacon-explosion",
+    "energy_source": {
+      "type": "electric",
+      "usage_priority": "secondary-input"
+    },
+    "energy_usage": "10000kW",
+    "max_health": 800,
+    "module_slots": 15,
+    "icons_positioning": [
+      {
+        "inventory_index": null,
+        "shift": {
+          "x": 0,
+          "y": -0.5
+        },
+        "max_icons_per_row": 5
+      }
+    ],
+    "distribution_effectivity": 0.5,
+    "supply_area_distance": 14,
+    "radius_visualisation_picture": {
+      "filename": "__base__/graphics/entity/beacon/beacon-radius-visualization.png",
+      "height": 10,
+      "priority": "extra-high-no-scale",
+      "width": 10
+    },
+    "impact_category": "metal",
+    "open_sound": null,
+    "close_sound": null
+  }
+]

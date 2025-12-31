@@ -1,0 +1,2331 @@
+[
+  {
+    "type": "technology",
+    "name": "sand-processing",
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "sand-from-stone"
+      }
+    ],
+    "icon": "__space-exploration-graphics__/graphics/technology/sand-processing.png",
+    "icon_size": 128,
+    "order": "a",
+    "prerequisites": {},
+    "unit": {
+      "count": 10,
+      "ingredients": [
+        [
+          "automation-science-pack",
+          1
+        ]
+      ],
+      "time": 30
+    }
+  },
+  {
+    "type": "technology",
+    "name": "glass-processing",
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "glass-from-sand"
+      }
+    ],
+    "icon": "__space-exploration-graphics__/graphics/technology/glass-processing.png",
+    "icon_size": 128,
+    "order": "a",
+    "prerequisites": [
+      "sand-processing"
+    ],
+    "unit": {
+      "count": 40,
+      "ingredients": [
+        [
+          "automation-science-pack",
+          1
+        ]
+      ],
+      "time": 30
+    }
+  },
+  {
+    "type": "technology",
+    "name": "se-rocket-science-pack",
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "se-rocket-science-pack"
+      }
+    ],
+    "icon": "__space-exploration-graphics__/graphics/technology/beaker/orange.png",
+    "icon_size": 256,
+    "order": "g-e-c",
+    "essential": true,
+    "prerequisites": [
+      "rocket-silo",
+      "speed-module",
+      "advanced-material-processing-2"
+    ],
+    "unit": {
+      "count": 500,
+      "time": 30,
+      "ingredients": [
+        [
+          "automation-science-pack",
+          1
+        ],
+        [
+          "logistic-science-pack",
+          1
+        ],
+        [
+          "chemical-science-pack",
+          1
+        ]
+      ]
+    }
+  },
+  {
+    "type": "technology",
+    "name": "space-science-pack",
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "space-science-pack"
+      }
+    ],
+    "icons": [
+      {
+        "icon": "__space-exploration-graphics__/graphics/technology/catalogue/deep-1.png",
+        "icon_size": 128
+      },
+      {
+        "icon": "__space-exploration-graphics__/graphics/technology/catalogue/mask-1.png",
+        "icon_size": 128
+      }
+    ],
+    "order": "g-e-d",
+    "prerequisites": [
+      "se-space-science-lab",
+      "se-space-decontamination-facility"
+    ],
+    "unit": {
+      "count": 500,
+      "time": 30,
+      "ingredients": [
+        [
+          "automation-science-pack",
+          1
+        ],
+        [
+          "logistic-science-pack",
+          1
+        ],
+        [
+          "chemical-science-pack",
+          1
+        ],
+        [
+          "se-rocket-science-pack",
+          1
+        ]
+      ]
+    }
+  },
+  {
+    "type": "technology",
+    "name": "utility-science-pack",
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "utility-science-pack"
+      }
+    ],
+    "icons": [
+      {
+        "icon": "__space-exploration-graphics__/graphics/technology/catalogue/deep-2.png",
+        "icon_size": 128
+      },
+      {
+        "icon": "__space-exploration-graphics__/graphics/technology/catalogue/mask-2.png",
+        "icon_size": 128
+      }
+    ],
+    "order": "g-e-d",
+    "prerequisites": [
+      "se-space-supercomputer-1",
+      "se-processing-cryonite"
+    ],
+    "unit": {
+      "count": 500,
+      "time": 30,
+      "ingredients": [
+        [
+          "automation-science-pack",
+          1
+        ],
+        [
+          "logistic-science-pack",
+          1
+        ],
+        [
+          "chemical-science-pack",
+          1
+        ],
+        [
+          "space-science-pack",
+          1
+        ]
+      ]
+    }
+  },
+  {
+    "type": "technology",
+    "name": "energy-shield-mk3-equipment",
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "energy-shield-mk3-equipment"
+      }
+    ],
+    "icons": "data_util.technology_icon_constant_equipment(\"__space-exploration-graphics__/graphics/technology/energy-shield-green.png\", 128)",
+    "order": "g-e-c",
+    "prerequisites": [
+      "energy-shield-mk2-equipment"
+    ],
+    "unit": {
+      "count": 1000,
+      "time": 60,
+      "ingredients": {}
+    }
+  },
+  {
+    "type": "technology",
+    "name": "energy-shield-mk4-equipment",
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "energy-shield-mk4-equipment"
+      }
+    ],
+    "icons": "data_util.technology_icon_constant_equipment(\"__space-exploration-graphics__/graphics/technology/energy-shield-cyan.png\", 128)",
+    "order": "g-e-d",
+    "prerequisites": [
+      "energy-shield-mk3-equipment"
+    ],
+    "unit": {
+      "count": 2000,
+      "time": 60,
+      "ingredients": {}
+    }
+  },
+  {
+    "type": "technology",
+    "name": "energy-shield-mk5-equipment",
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "energy-shield-mk5-equipment"
+      }
+    ],
+    "icons": "data_util.technology_icon_constant_equipment(\"__space-exploration-graphics__/graphics/technology/energy-shield-blue.png\", 128)",
+    "order": "g-e-e",
+    "prerequisites": [
+      "se-nanomaterial",
+      "energy-shield-mk4-equipment"
+    ],
+    "unit": {
+      "count": 4000,
+      "time": 60,
+      "ingredients": {}
+    }
+  },
+  {
+    "type": "technology",
+    "name": "energy-shield-mk6-equipment",
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "energy-shield-mk6-equipment"
+      }
+    ],
+    "icons": "data_util.technology_icon_constant_equipment(\"__space-exploration-graphics__/graphics/technology/energy-shield-magenta.png\", 128)",
+    "order": "g-e-f",
+    "prerequisites": [
+      "energy-shield-mk5-equipment"
+    ],
+    "unit": {
+      "count": 8000,
+      "time": 60,
+      "ingredients": {}
+    }
+  },
+  {
+    "type": "technology",
+    "name": "se-adaptive-armour-1",
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "se-adaptive-armour-equipment-1"
+      }
+    ],
+    "icons": "data_util.technology_icon_constant_equipment(\"__space-exploration-graphics__/graphics/technology/adaptive-armour-1.png\", 128)",
+    "order": "e-g",
+    "prerequisites": [
+      "chemical-science-pack",
+      "battery",
+      "modular-armor"
+    ],
+    "unit": {
+      "count": 100,
+      "time": 30,
+      "ingredients": [
+        [
+          "automation-science-pack",
+          1
+        ],
+        [
+          "logistic-science-pack",
+          1
+        ],
+        [
+          "chemical-science-pack",
+          1
+        ]
+      ]
+    }
+  },
+  {
+    "type": "technology",
+    "name": "se-adaptive-armour-2",
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "se-adaptive-armour-equipment-2"
+      }
+    ],
+    "icons": "data_util.technology_icon_constant_equipment(\"__space-exploration-graphics__/graphics/technology/adaptive-armour-2.png\", 128)",
+    "order": "e-g",
+    "prerequisites": [
+      "military-science-pack",
+      "low-density-structure",
+      "processing-unit",
+      "se-adaptive-armour-1"
+    ],
+    "unit": {
+      "count": 200,
+      "time": 30,
+      "ingredients": [
+        [
+          "automation-science-pack",
+          1
+        ],
+        [
+          "logistic-science-pack",
+          1
+        ],
+        [
+          "chemical-science-pack",
+          1
+        ],
+        [
+          "military-science-pack",
+          1
+        ]
+      ]
+    }
+  },
+  {
+    "type": "technology",
+    "name": "se-adaptive-armour-3",
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "se-adaptive-armour-equipment-3"
+      }
+    ],
+    "icons": "data_util.technology_icon_constant_equipment(\"__space-exploration-graphics__/graphics/technology/adaptive-armour-3.png\", 128)",
+    "order": "e-g",
+    "prerequisites": [
+      "space-science-pack",
+      "se-adaptive-armour-2"
+    ],
+    "unit": {
+      "count": 300,
+      "time": 60,
+      "ingredients": [
+        [
+          "automation-science-pack",
+          1
+        ],
+        [
+          "logistic-science-pack",
+          1
+        ],
+        [
+          "chemical-science-pack",
+          1
+        ],
+        [
+          "military-science-pack",
+          1
+        ],
+        [
+          "space-science-pack",
+          1
+        ]
+      ]
+    }
+  },
+  {
+    "type": "technology",
+    "name": "se-adaptive-armour-4",
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "se-adaptive-armour-equipment-4"
+      }
+    ],
+    "icons": "data_util.technology_icon_constant_equipment(\"__space-exploration-graphics__/graphics/technology/adaptive-armour-4.png\", 128)",
+    "order": "e-g",
+    "prerequisites": [
+      "se-material-science-pack-1",
+      "se-adaptive-armour-3"
+    ],
+    "unit": {
+      "count": 400,
+      "time": 60,
+      "ingredients": [
+        [
+          "automation-science-pack",
+          1
+        ],
+        [
+          "logistic-science-pack",
+          1
+        ],
+        [
+          "chemical-science-pack",
+          1
+        ],
+        [
+          "military-science-pack",
+          1
+        ],
+        [
+          "se-material-science-pack-1",
+          1
+        ]
+      ]
+    }
+  },
+  {
+    "type": "technology",
+    "name": "se-adaptive-armour-5",
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "se-adaptive-armour-equipment-5"
+      }
+    ],
+    "icons": "data_util.technology_icon_constant_equipment(\"__space-exploration-graphics__/graphics/technology/adaptive-armour-5.png\", 128)",
+    "order": "e-g",
+    "prerequisites": [
+      "se-nanomaterial",
+      "se-material-science-pack-4",
+      "se-adaptive-armour-4"
+    ],
+    "unit": {
+      "count": 500,
+      "time": 60,
+      "ingredients": [
+        [
+          "automation-science-pack",
+          1
+        ],
+        [
+          "logistic-science-pack",
+          1
+        ],
+        [
+          "chemical-science-pack",
+          1
+        ],
+        [
+          "military-science-pack",
+          1
+        ],
+        [
+          "utility-science-pack",
+          1
+        ],
+        [
+          "se-astronomic-science-pack-4",
+          1
+        ],
+        [
+          "se-biological-science-pack-4",
+          1
+        ],
+        [
+          "se-material-science-pack-4",
+          1
+        ],
+        [
+          "se-energy-science-pack-4",
+          1
+        ]
+      ]
+    }
+  },
+  {
+    "type": "technology",
+    "name": "se-aeroframe-pole",
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "se-aeroframe-pole"
+      }
+    ],
+    "icon": "__space-exploration-graphics__/graphics/technology/aeroframe-pole.png",
+    "icon_size": 128,
+    "order": "e-g",
+    "prerequisites": [
+      "se-processing-beryllium",
+      "se-astronomic-science-pack-1"
+    ],
+    "unit": {
+      "count": 10,
+      "time": 60,
+      "ingredients": [
+        [
+          "automation-science-pack",
+          1
+        ],
+        [
+          "logistic-science-pack",
+          1
+        ],
+        [
+          "chemical-science-pack",
+          1
+        ],
+        [
+          "utility-science-pack",
+          1
+        ],
+        [
+          "se-astronomic-science-pack-1",
+          1
+        ]
+      ]
+    }
+  },
+  {
+    "type": "technology",
+    "name": "se-aeroframe-scaffold",
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "se-aeroframe-scaffold"
+      }
+    ],
+    "icon": "__space-exploration-graphics__/graphics/technology/aeroframe-scaffold.png",
+    "icon_size": 128,
+    "order": "e-g",
+    "prerequisites": [
+      "se-aeroframe-pole",
+      "se-astronomic-science-pack-2"
+    ],
+    "unit": {
+      "count": 100,
+      "time": 60,
+      "ingredients": [
+        [
+          "automation-science-pack",
+          1
+        ],
+        [
+          "logistic-science-pack",
+          1
+        ],
+        [
+          "chemical-science-pack",
+          1
+        ],
+        [
+          "utility-science-pack",
+          1
+        ],
+        [
+          "se-astronomic-science-pack-2",
+          1
+        ]
+      ]
+    }
+  },
+  {
+    "type": "technology",
+    "name": "se-low-density-structure-beryllium",
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "se-low-density-structure-beryllium"
+      }
+    ],
+    "icons": [
+      {
+        "icon": "__base__/graphics/technology/low-density-structure.png",
+        "scale": 1,
+        "icon_size": 256,
+        "shift": [
+          12,
+          12
+        ]
+      },
+      {
+        "icon": "__space-exploration-graphics__/graphics/technology/aeroframe-scaffold.png",
+        "scale": 1,
+        "icon_size": 128,
+        "shift": [
+          -64,
+          -64
+        ]
+      }
+    ],
+    "order": "e-g",
+    "prerequisites": [
+      "se-aeroframe-scaffold"
+    ],
+    "unit": {
+      "count": 100,
+      "time": 60,
+      "ingredients": [
+        [
+          "automation-science-pack",
+          1
+        ],
+        [
+          "logistic-science-pack",
+          1
+        ],
+        [
+          "chemical-science-pack",
+          1
+        ],
+        [
+          "space-science-pack",
+          1
+        ],
+        [
+          "se-astronomic-science-pack-2",
+          1
+        ]
+      ]
+    }
+  },
+  {
+    "type": "technology",
+    "name": "se-aeroframe-bulkhead",
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "se-aeroframe-bulkhead"
+      }
+    ],
+    "icon": "__space-exploration-graphics__/graphics/technology/aeroframe-bulkhead.png",
+    "icon_size": 128,
+    "order": "e-g",
+    "prerequisites": [
+      "se-aeroframe-scaffold",
+      "se-astronomic-science-pack-3"
+    ],
+    "unit": {
+      "count": 200,
+      "time": 60,
+      "ingredients": [
+        [
+          "automation-science-pack",
+          1
+        ],
+        [
+          "logistic-science-pack",
+          1
+        ],
+        [
+          "chemical-science-pack",
+          1
+        ],
+        [
+          "utility-science-pack",
+          1
+        ],
+        [
+          "se-astronomic-science-pack-3",
+          1
+        ]
+      ]
+    }
+  },
+  {
+    "type": "technology",
+    "name": "se-antimatter-reactor",
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "se-antimatter-reactor"
+      }
+    ],
+    "icon": "__space-exploration-graphics__/graphics/technology/antimatter-reactor.png",
+    "icon_size": 128,
+    "order": "e-g",
+    "prerequisites": [
+      "nuclear-power",
+      "se-antimatter-production"
+    ],
+    "unit": {
+      "count": 1000,
+      "time": 60,
+      "ingredients": [
+        [
+          "automation-science-pack",
+          1
+        ],
+        [
+          "logistic-science-pack",
+          1
+        ],
+        [
+          "chemical-science-pack",
+          1
+        ],
+        [
+          "utility-science-pack",
+          1
+        ],
+        [
+          "se-energy-science-pack-4",
+          1
+        ],
+        [
+          "se-material-science-pack-4",
+          1
+        ],
+        [
+          "se-astronomic-science-pack-4",
+          1
+        ],
+        [
+          "se-deep-space-science-pack-1",
+          1
+        ]
+      ]
+    }
+  },
+  {
+    "type": "technology",
+    "name": "se-astronomic-science-pack-1",
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "se-astronomic-science-pack-1"
+      }
+    ],
+    "icon": "__space-exploration-graphics__/graphics/technology/catalogue/astronomic-1.png",
+    "icon_size": 128,
+    "order": "e-g",
+    "essential": true,
+    "prerequisites": [
+      "se-processing-beryllium",
+      "se-space-catalogue-astronomic-1",
+      "se-space-hypercooling-1"
+    ],
+    "unit": {
+      "count": 100,
+      "time": 60,
+      "ingredients": [
+        [
+          "automation-science-pack",
+          1
+        ],
+        [
+          "logistic-science-pack",
+          1
+        ],
+        [
+          "chemical-science-pack",
+          1
+        ],
+        [
+          "utility-science-pack",
+          1
+        ]
+      ]
+    }
+  },
+  {
+    "type": "technology",
+    "name": "se-astronomic-science-pack-2",
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "se-astronomic-science-pack-2"
+      }
+    ],
+    "icon": "__space-exploration-graphics__/graphics/technology/catalogue/astronomic-2.png",
+    "icon_size": 128,
+    "order": "e-g",
+    "essential": true,
+    "prerequisites": [
+      "se-space-catalogue-astronomic-2"
+    ],
+    "unit": {
+      "count": 100,
+      "time": 60,
+      "ingredients": [
+        [
+          "se-astronomic-science-pack-1",
+          1
+        ]
+      ]
+    }
+  },
+  {
+    "type": "technology",
+    "name": "se-astronomic-science-pack-3",
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "se-astronomic-science-pack-3"
+      }
+    ],
+    "icon": "__space-exploration-graphics__/graphics/technology/catalogue/astronomic-3.png",
+    "icon_size": 128,
+    "order": "e-g",
+    "essential": true,
+    "prerequisites": [
+      "se-space-catalogue-astronomic-3"
+    ],
+    "unit": {
+      "count": 200,
+      "time": 60,
+      "ingredients": [
+        [
+          "se-astronomic-science-pack-1",
+          1
+        ],
+        [
+          "se-astronomic-science-pack-2",
+          1
+        ]
+      ]
+    }
+  },
+  {
+    "type": "technology",
+    "name": "se-astronomic-science-pack-4",
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "se-astronomic-science-pack-4"
+      }
+    ],
+    "icon": "__space-exploration-graphics__/graphics/technology/catalogue/astronomic-4.png",
+    "icon_size": 128,
+    "order": "e-g",
+    "essential": true,
+    "prerequisites": [
+      "se-space-catalogue-astronomic-4"
+    ],
+    "unit": {
+      "count": 500,
+      "time": 60,
+      "ingredients": [
+        [
+          "se-astronomic-science-pack-1",
+          1
+        ],
+        [
+          "se-astronomic-science-pack-2",
+          1
+        ],
+        [
+          "se-astronomic-science-pack-3",
+          1
+        ]
+      ]
+    }
+  },
+  {
+    "type": "technology",
+    "name": "se-biological-science-pack-1",
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "se-biological-science-pack-1"
+      }
+    ],
+    "icon": "__space-exploration-graphics__/graphics/technology/catalogue/biological-1.png",
+    "icon_size": 128,
+    "order": "e-g",
+    "essential": true,
+    "prerequisites": [
+      "se-processing-vitamelange",
+      "se-space-catalogue-biological-1",
+      "se-space-hypercooling-1"
+    ],
+    "unit": {
+      "count": 100,
+      "time": 60,
+      "ingredients": [
+        [
+          "automation-science-pack",
+          1
+        ],
+        [
+          "logistic-science-pack",
+          1
+        ],
+        [
+          "chemical-science-pack",
+          1
+        ],
+        [
+          "production-science-pack",
+          1
+        ]
+      ]
+    }
+  },
+  {
+    "type": "technology",
+    "name": "se-biological-science-pack-2",
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "se-biological-science-pack-2"
+      }
+    ],
+    "icon": "__space-exploration-graphics__/graphics/technology/catalogue/biological-2.png",
+    "icon_size": 128,
+    "order": "e-g",
+    "essential": true,
+    "prerequisites": [
+      "se-space-catalogue-biological-2",
+      "se-bioscrubber"
+    ],
+    "unit": {
+      "count": 100,
+      "time": 60,
+      "ingredients": [
+        [
+          "se-biological-science-pack-1",
+          1
+        ]
+      ]
+    }
+  },
+  {
+    "type": "technology",
+    "name": "se-biological-science-pack-3",
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "se-biological-science-pack-3"
+      }
+    ],
+    "icon": "__space-exploration-graphics__/graphics/technology/catalogue/biological-3.png",
+    "icon_size": 128,
+    "order": "e-g",
+    "essential": true,
+    "prerequisites": [
+      "se-space-catalogue-biological-3"
+    ],
+    "unit": {
+      "count": 200,
+      "time": 60,
+      "ingredients": [
+        [
+          "se-biological-science-pack-1",
+          1
+        ],
+        [
+          "se-biological-science-pack-2",
+          1
+        ]
+      ]
+    }
+  },
+  {
+    "type": "technology",
+    "name": "se-biological-science-pack-4",
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "se-biological-science-pack-4"
+      }
+    ],
+    "icon": "__space-exploration-graphics__/graphics/technology/catalogue/biological-4.png",
+    "icon_size": 128,
+    "order": "e-g",
+    "essential": true,
+    "prerequisites": [
+      "se-space-catalogue-biological-4"
+    ],
+    "unit": {
+      "count": 500,
+      "time": 60,
+      "ingredients": [
+        [
+          "se-biological-science-pack-1",
+          1
+        ],
+        [
+          "se-biological-science-pack-2",
+          1
+        ],
+        [
+          "se-biological-science-pack-3",
+          1
+        ]
+      ]
+    }
+  },
+  {
+    "type": "technology",
+    "name": "se-core-miner",
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "se-core-miner-drill"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "se-pyroflux-steam"
+      }
+    ],
+    "icon": "__space-exploration-graphics__/graphics/technology/core-miner.png",
+    "icon_size": 128,
+    "order": "e-g",
+    "prerequisites": [
+      "oil-processing",
+      "se-pulveriser",
+      "electric-mining-drill"
+    ],
+    "unit": {
+      "count": 200,
+      "time": 30,
+      "ingredients": [
+        [
+          "automation-science-pack",
+          1
+        ],
+        [
+          "logistic-science-pack",
+          1
+        ]
+      ]
+    }
+  },
+  {
+    "type": "technology",
+    "name": "se-centrifuge",
+    "icon_size": 256,
+    "icon": "__space-exploration-graphics__/graphics/technology/centrifuge.png",
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "centrifuge"
+      }
+    ],
+    "prerequisites": [
+      "processing-unit"
+    ],
+    "unit": {
+      "ingredients": [
+        [
+          "automation-science-pack",
+          1
+        ],
+        [
+          "logistic-science-pack",
+          1
+        ],
+        [
+          "chemical-science-pack",
+          1
+        ],
+        [
+          "se-rocket-science-pack",
+          1
+        ]
+      ],
+      "time": 30,
+      "count": 200
+    },
+    "order": "e-p-b-c"
+  },
+  {
+    "type": "technology",
+    "name": "steam-turbine",
+    "icon_size": 256,
+    "icon": "__space-exploration-graphics__/graphics/technology/steam-turbine.png",
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "steam-turbine"
+      }
+    ],
+    "prerequisites": [
+      "steam-power",
+      "se-electric-boiler"
+    ],
+    "unit": {
+      "ingredients": [
+        [
+          "automation-science-pack",
+          1
+        ],
+        [
+          "logistic-science-pack",
+          1
+        ],
+        [
+          "chemical-science-pack",
+          1
+        ]
+      ],
+      "time": 30,
+      "count": 100
+    },
+    "order": "e-p-b-c"
+  },
+  {
+    "name": "se-cryogun",
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "se-cryogun"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "se-cryogun-ammo"
+      }
+    ],
+    "icon": "__space-exploration-graphics__/graphics/technology/cryogun.png",
+    "icon_size": 128,
+    "order": "g-b-z",
+    "prerequisites": [
+      "military-4",
+      "se-aeroframe-pole",
+      "se-processing-cryonite",
+      "se-space-thermodynamics-laboratory",
+      "se-space-hypercooling-2"
+    ],
+    "type": "technology",
+    "unit": {
+      "count": 200,
+      "ingredients": [
+        [
+          "automation-science-pack",
+          1
+        ],
+        [
+          "logistic-science-pack",
+          1
+        ],
+        [
+          "military-science-pack",
+          1
+        ],
+        [
+          "chemical-science-pack",
+          1
+        ],
+        [
+          "se-astronomic-science-pack-1",
+          1
+        ]
+      ],
+      "time": 60
+    }
+  },
+  {
+    "name": "se-meteor-point-defence",
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "se-meteor-point-defence"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "se-meteor-point-defence-ammo"
+      }
+    ],
+    "icons": [
+      {
+        "icon": "__space-exploration-graphics__/graphics/technology/meteor-point-defence-base.png",
+        "icon_size": 128
+      },
+      {
+        "icon": "__space-exploration-graphics__/graphics/technology/meteor-point-defence-mask.png",
+        "icon_size": 128,
+        "tint": {
+          "r": 255,
+          "g": 0,
+          "b": 0
+        }
+      }
+    ],
+    "order": "g-b-z",
+    "prerequisites": [
+      "steel-processing",
+      "concrete",
+      "electronics",
+      "glass-processing"
+    ],
+    "type": "technology",
+    "unit": {
+      "count": 200,
+      "ingredients": [
+        [
+          "automation-science-pack",
+          1
+        ],
+        [
+          "logistic-science-pack",
+          1
+        ]
+      ],
+      "time": 30
+    }
+  },
+  {
+    "name": "se-meteor-defence",
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "se-meteor-defence"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "se-meteor-defence-ammo"
+      }
+    ],
+    "icon": "__space-exploration-graphics__/graphics/technology/meteor-defence.png",
+    "icon_size": 128,
+    "order": "g-b-z",
+    "prerequisites": [
+      "laser",
+      "processing-unit",
+      "battery",
+      "se-meteor-point-defence"
+    ],
+    "type": "technology",
+    "unit": {
+      "count": 200,
+      "ingredients": [
+        [
+          "automation-science-pack",
+          1
+        ],
+        [
+          "logistic-science-pack",
+          1
+        ],
+        [
+          "chemical-science-pack",
+          1
+        ]
+      ],
+      "time": 30
+    }
+  },
+  {
+    "type": "technology",
+    "name": "se-deep-catalogue-1",
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "se-deep-catalogue-1"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "se-nano-engineering-data"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "se-naquium-structural-data"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "se-naquium-energy-data"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "se-void-probe"
+      }
+    ],
+    "icons": [
+      {
+        "icon": "__space-exploration-graphics__/graphics/technology/catalogue/base-catalogue-1.png",
+        "icon_size": 128
+      },
+      {
+        "icon": "__space-exploration-graphics__/graphics/technology/catalogue/mask-catalogue-1.png",
+        "icon_size": 128
+      }
+    ],
+    "order": "e-g",
+    "prerequisites": [
+      "se-processing-naquium",
+      "se-nanomaterial",
+      "se-energy-science-pack-4",
+      "se-biological-science-pack-4",
+      "se-space-supercomputer-3"
+    ],
+    "unit": {
+      "count": 1000,
+      "time": 60,
+      "ingredients": [
+        [
+          "utility-science-pack",
+          1
+        ],
+        [
+          "se-astronomic-science-pack-4",
+          1
+        ],
+        [
+          "se-biological-science-pack-4",
+          1
+        ],
+        [
+          "se-energy-science-pack-4",
+          1
+        ],
+        [
+          "se-material-science-pack-4",
+          1
+        ]
+      ]
+    }
+  },
+  {
+    "type": "technology",
+    "name": "se-deep-catalogue-2",
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "se-deep-catalogue-2"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "se-singularity-data"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "se-hyperlattice-data"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "se-timespace-anomaly-data"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "se-annihilation-data"
+      }
+    ],
+    "icons": [
+      {
+        "icon": "__space-exploration-graphics__/graphics/technology/catalogue/base-catalogue-2.png",
+        "icon_size": 128
+      },
+      {
+        "icon": "__space-exploration-graphics__/graphics/technology/catalogue/mask-catalogue-2.png",
+        "icon_size": 128
+      }
+    ],
+    "order": "e-g",
+    "prerequisites": [
+      "se-antimatter-production",
+      "se-deep-space-science-pack-1"
+    ],
+    "unit": {
+      "count": 100,
+      "time": 60,
+      "ingredients": [
+        [
+          "se-deep-space-science-pack-1",
+          1
+        ]
+      ]
+    }
+  },
+  {
+    "type": "technology",
+    "name": "se-deep-catalogue-3",
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "se-deep-catalogue-3"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "se-space-fold-data"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "se-space-fold-data-alt"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "se-space-warp-data"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "se-space-warp-data-alt"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "se-space-dilation-data"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "se-space-dilation-data-alt"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "se-space-injection-data"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "se-space-injection-data-alt"
+      }
+    ],
+    "icons": [
+      {
+        "icon": "__space-exploration-graphics__/graphics/technology/catalogue/base-catalogue-3.png",
+        "icon_size": 128
+      },
+      {
+        "icon": "__space-exploration-graphics__/graphics/technology/catalogue/mask-catalogue-3.png",
+        "icon_size": 128
+      }
+    ],
+    "order": "e-g",
+    "prerequisites": [
+      "se-naquium-tessaract",
+      "se-deep-space-science-pack-2"
+    ],
+    "unit": {
+      "count": 100,
+      "time": 60,
+      "ingredients": [
+        [
+          "se-deep-space-science-pack-1",
+          1
+        ],
+        [
+          "se-deep-space-science-pack-2",
+          1
+        ]
+      ]
+    }
+  },
+  {
+    "type": "technology",
+    "name": "se-deep-catalogue-4",
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "se-deep-catalogue-4"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "se-interstellar-data"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "se-teleportation-data"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "se-wormhole-data"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "se-rhga-data"
+      }
+    ],
+    "icons": [
+      {
+        "icon": "__space-exploration-graphics__/graphics/technology/catalogue/base-catalogue-4.png",
+        "icon_size": 128
+      },
+      {
+        "icon": "__space-exploration-graphics__/graphics/technology/catalogue/mask-catalogue-4.png",
+        "icon_size": 128
+      }
+    ],
+    "order": "e-g",
+    "prerequisites": [
+      "se-nexus",
+      "se-deep-space-science-pack-3"
+    ],
+    "unit": {
+      "count": 5000,
+      "time": 60,
+      "ingredients": [
+        [
+          "se-deep-space-science-pack-1",
+          1
+        ],
+        [
+          "se-deep-space-science-pack-2",
+          1
+        ],
+        [
+          "se-deep-space-science-pack-3",
+          1
+        ]
+      ]
+    }
+  },
+  {
+    "type": "technology",
+    "name": "se-deep-space-science-pack-1",
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "se-deep-space-science-pack-1"
+      }
+    ],
+    "icon": "__space-exploration-graphics__/graphics/technology/catalogue/deep-1.png",
+    "icon_size": 128,
+    "order": "e-g",
+    "essential": true,
+    "prerequisites": [
+      "se-deep-catalogue-1"
+    ],
+    "unit": {
+      "count": 2000,
+      "time": 60,
+      "ingredients": [
+        [
+          "utility-science-pack",
+          1
+        ],
+        [
+          "se-astronomic-science-pack-4",
+          1
+        ],
+        [
+          "se-biological-science-pack-4",
+          1
+        ],
+        [
+          "se-energy-science-pack-4",
+          1
+        ],
+        [
+          "se-material-science-pack-4",
+          1
+        ]
+      ]
+    }
+  },
+  {
+    "type": "technology",
+    "name": "se-deep-space-science-pack-2",
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "se-deep-space-science-pack-2"
+      }
+    ],
+    "icon": "__space-exploration-graphics__/graphics/technology/catalogue/deep-2.png",
+    "icon_size": 128,
+    "order": "e-g",
+    "essential": true,
+    "prerequisites": [
+      "se-deep-catalogue-2"
+    ],
+    "unit": {
+      "count": 2000,
+      "time": 60,
+      "ingredients": [
+        [
+          "se-deep-space-science-pack-1",
+          1
+        ]
+      ]
+    }
+  },
+  {
+    "type": "technology",
+    "name": "se-deep-space-science-pack-3",
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "se-deep-space-science-pack-3"
+      }
+    ],
+    "icon": "__space-exploration-graphics__/graphics/technology/catalogue/deep-3.png",
+    "icon_size": 128,
+    "order": "e-g",
+    "essential": true,
+    "prerequisites": [
+      "se-deep-catalogue-3"
+    ],
+    "unit": {
+      "count": 2000,
+      "time": 60,
+      "ingredients": [
+        [
+          "se-deep-space-science-pack-1",
+          1
+        ],
+        [
+          "se-deep-space-science-pack-2",
+          1
+        ]
+      ]
+    }
+  },
+  {
+    "type": "technology",
+    "name": "se-deep-space-science-pack-4",
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "se-deep-space-science-pack-4"
+      }
+    ],
+    "icon": "__space-exploration-graphics__/graphics/technology/catalogue/deep-4.png",
+    "icon_size": 128,
+    "order": "e-g",
+    "essential": true,
+    "prerequisites": [
+      "se-deep-catalogue-4"
+    ],
+    "unit": {
+      "count": 2000,
+      "time": 60,
+      "ingredients": [
+        [
+          "se-deep-space-science-pack-1",
+          1
+        ],
+        [
+          "se-deep-space-science-pack-2",
+          1
+        ],
+        [
+          "se-deep-space-science-pack-3",
+          1
+        ]
+      ]
+    }
+  },
+  {
+    "type": "technology",
+    "name": "se-energy-science-pack-1",
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "se-energy-science-pack-1"
+      }
+    ],
+    "icon": "__space-exploration-graphics__/graphics/technology/catalogue/energy-1.png",
+    "icon_size": 128,
+    "order": "e-g",
+    "essential": true,
+    "prerequisites": [
+      "se-processing-holmium",
+      "se-space-catalogue-energy-1",
+      "se-space-hypercooling-1"
+    ],
+    "unit": {
+      "count": 100,
+      "time": 60,
+      "ingredients": [
+        [
+          "automation-science-pack",
+          1
+        ],
+        [
+          "logistic-science-pack",
+          1
+        ],
+        [
+          "chemical-science-pack",
+          1
+        ],
+        [
+          "utility-science-pack",
+          1
+        ]
+      ]
+    }
+  },
+  {
+    "type": "technology",
+    "name": "se-energy-science-pack-2",
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "se-energy-science-pack-2"
+      }
+    ],
+    "icon": "__space-exploration-graphics__/graphics/technology/catalogue/energy-2.png",
+    "icon_size": 128,
+    "order": "e-g",
+    "essential": true,
+    "prerequisites": [
+      "se-space-catalogue-energy-2"
+    ],
+    "unit": {
+      "count": 100,
+      "time": 60,
+      "ingredients": [
+        [
+          "se-energy-science-pack-1",
+          1
+        ]
+      ]
+    }
+  },
+  {
+    "type": "technology",
+    "name": "se-energy-science-pack-3",
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "se-energy-science-pack-3"
+      }
+    ],
+    "icon": "__space-exploration-graphics__/graphics/technology/catalogue/energy-3.png",
+    "icon_size": 128,
+    "order": "e-g",
+    "essential": true,
+    "prerequisites": [
+      "se-space-catalogue-energy-3"
+    ],
+    "unit": {
+      "count": 200,
+      "time": 60,
+      "ingredients": [
+        [
+          "se-energy-science-pack-1",
+          1
+        ],
+        [
+          "se-energy-science-pack-2",
+          1
+        ]
+      ]
+    }
+  },
+  {
+    "type": "technology",
+    "name": "se-energy-science-pack-4",
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "se-energy-science-pack-4"
+      }
+    ],
+    "icon": "__space-exploration-graphics__/graphics/technology/catalogue/energy-4.png",
+    "icon_size": 128,
+    "order": "e-g",
+    "essential": true,
+    "prerequisites": [
+      "se-space-catalogue-energy-4"
+    ],
+    "unit": {
+      "count": 500,
+      "time": 60,
+      "ingredients": [
+        [
+          "se-energy-science-pack-1",
+          1
+        ],
+        [
+          "se-energy-science-pack-2",
+          1
+        ],
+        [
+          "se-energy-science-pack-3",
+          1
+        ]
+      ]
+    }
+  },
+  {
+    "type": "technology",
+    "name": "se-fluid-burner-generator",
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "se-fluid-burner-generator"
+      }
+    ],
+    "icon": "__space-exploration-graphics__/graphics/technology/fluid-burner-generator.png",
+    "icon_size": 128,
+    "order": "e-g",
+    "prerequisites": [
+      "se-space-radiator-1",
+      "se-condenser-turbine"
+    ],
+    "unit": {
+      "count": 200,
+      "time": 30,
+      "ingredients": [
+        [
+          "automation-science-pack",
+          1
+        ],
+        [
+          "logistic-science-pack",
+          1
+        ],
+        [
+          "chemical-science-pack",
+          1
+        ],
+        [
+          "se-rocket-science-pack",
+          1
+        ],
+        [
+          "space-science-pack",
+          1
+        ]
+      ]
+    }
+  },
+  {
+    "type": "technology",
+    "name": "se-fuel-refining",
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "se-fuel-refinery"
+      }
+    ],
+    "icon": "__space-exploration-graphics__/graphics/technology/fuel-refinery.png",
+    "icon_size": 128,
+    "order": "e-g",
+    "prerequisites": [
+      "oil-processing"
+    ],
+    "unit": {
+      "count": 100,
+      "time": 30,
+      "ingredients": [
+        [
+          "automation-science-pack",
+          1
+        ],
+        [
+          "logistic-science-pack",
+          1
+        ]
+      ]
+    }
+  },
+  {
+    "type": "technology",
+    "name": "se-heat-shielding",
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "se-heat-shielding"
+      }
+    ],
+    "icon": "__space-exploration-graphics__/graphics/technology/heat-shielding.png",
+    "icon_size": 128,
+    "order": "e-g",
+    "prerequisites": [
+      "chemical-science-pack"
+    ],
+    "unit": {
+      "count": 100,
+      "time": 30,
+      "ingredients": [
+        [
+          "automation-science-pack",
+          1
+        ],
+        [
+          "logistic-science-pack",
+          1
+        ],
+        [
+          "chemical-science-pack",
+          1
+        ]
+      ]
+    }
+  },
+  {
+    "type": "technology",
+    "name": "se-heavy-girder",
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "se-heavy-girder"
+      }
+    ],
+    "icon": "__space-exploration-graphics__/graphics/technology/heavy-girder.png",
+    "icon_size": 128,
+    "order": "e-g",
+    "prerequisites": [
+      "se-processing-iridium",
+      "se-material-science-pack-1"
+    ],
+    "unit": {
+      "count": 10,
+      "time": 60,
+      "ingredients": [
+        [
+          "automation-science-pack",
+          1
+        ],
+        [
+          "logistic-science-pack",
+          1
+        ],
+        [
+          "chemical-science-pack",
+          1
+        ],
+        [
+          "se-material-science-pack-1",
+          1
+        ]
+      ]
+    }
+  },
+  {
+    "type": "technology",
+    "name": "se-heavy-bearing",
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "se-heavy-bearing"
+      }
+    ],
+    "icon": "__space-exploration-graphics__/graphics/technology/heavy-bearing.png",
+    "icon_size": 128,
+    "order": "e-g",
+    "prerequisites": [
+      "se-heavy-girder",
+      "se-material-science-pack-2"
+    ],
+    "unit": {
+      "count": 100,
+      "time": 60,
+      "ingredients": [
+        [
+          "automation-science-pack",
+          1
+        ],
+        [
+          "logistic-science-pack",
+          1
+        ],
+        [
+          "chemical-science-pack",
+          1
+        ],
+        [
+          "se-material-science-pack-2",
+          1
+        ]
+      ]
+    }
+  },
+  {
+    "type": "technology",
+    "name": "se-heavy-composite",
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "se-heavy-composite"
+      }
+    ],
+    "icon": "__space-exploration-graphics__/graphics/technology/heavy-composite.png",
+    "icon_size": 128,
+    "order": "e-g",
+    "prerequisites": [
+      "se-heavy-bearing",
+      "se-material-science-pack-3"
+    ],
+    "unit": {
+      "count": 200,
+      "time": 60,
+      "ingredients": [
+        [
+          "automation-science-pack",
+          1
+        ],
+        [
+          "logistic-science-pack",
+          1
+        ],
+        [
+          "chemical-science-pack",
+          1
+        ],
+        [
+          "se-material-science-pack-3",
+          1
+        ]
+      ]
+    }
+  },
+  {
+    "type": "technology",
+    "name": "se-heavy-assembly",
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "se-heavy-assembly"
+      }
+    ],
+    "icon": "__space-exploration-graphics__/graphics/technology/heavy-assembly.png",
+    "icon_size": 128,
+    "order": "e-g",
+    "prerequisites": [
+      "se-heavy-composite",
+      "se-material-science-pack-4"
+    ],
+    "unit": {
+      "count": 400,
+      "time": 60,
+      "ingredients": [
+        [
+          "automation-science-pack",
+          1
+        ],
+        [
+          "logistic-science-pack",
+          1
+        ],
+        [
+          "chemical-science-pack",
+          1
+        ],
+        [
+          "se-material-science-pack-4",
+          1
+        ]
+      ]
+    }
+  },
+  {
+    "type": "technology",
+    "name": "se-holmium-cable",
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "se-holmium-cable"
+      }
+    ],
+    "icon": "__space-exploration-graphics__/graphics/technology/holmium-cable.png",
+    "icon_size": 128,
+    "order": "e-g",
+    "prerequisites": [
+      "se-processing-holmium",
+      "se-energy-science-pack-1"
+    ],
+    "unit": {
+      "count": 10,
+      "time": 60,
+      "ingredients": [
+        [
+          "automation-science-pack",
+          1
+        ],
+        [
+          "logistic-science-pack",
+          1
+        ],
+        [
+          "chemical-science-pack",
+          1
+        ],
+        [
+          "se-energy-science-pack-1",
+          1
+        ]
+      ]
+    }
+  },
+  {
+    "type": "technology",
+    "name": "se-processing-unit-holmium",
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "se-processing-unit-holmium"
+      }
+    ],
+    "icons": [
+      {
+        "icon": "__base__/graphics/technology/processing-unit.png",
+        "scale": 1,
+        "icon_size": 256,
+        "shift": [
+          12,
+          12
+        ]
+      },
+      {
+        "icon": "__space-exploration-graphics__/graphics/technology/holmium-cable.png",
+        "scale": 1,
+        "icon_size": 128,
+        "shift": [
+          -64,
+          -64
+        ]
+      }
+    ],
+    "order": "e-g",
+    "prerequisites": [
+      "se-holmium-cable"
+    ],
+    "unit": {
+      "count": 100,
+      "time": 60,
+      "ingredients": [
+        [
+          "automation-science-pack",
+          1
+        ],
+        [
+          "logistic-science-pack",
+          1
+        ],
+        [
+          "chemical-science-pack",
+          1
+        ],
+        [
+          "space-science-pack",
+          1
+        ],
+        [
+          "se-energy-science-pack-1",
+          1
+        ]
+      ]
+    }
+  },
+  {
+    "type": "technology",
+    "name": "se-holmium-solenoid",
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "se-holmium-solenoid"
+      }
+    ],
+    "icon": "__space-exploration-graphics__/graphics/technology/holmium-solenoid.png",
+    "icon_size": 128,
+    "order": "e-g",
+    "prerequisites": [
+      "se-holmium-cable",
+      "se-energy-science-pack-2"
+    ],
+    "unit": {
+      "count": 100,
+      "time": 60,
+      "ingredients": [
+        [
+          "automation-science-pack",
+          1
+        ],
+        [
+          "logistic-science-pack",
+          1
+        ],
+        [
+          "chemical-science-pack",
+          1
+        ],
+        [
+          "se-energy-science-pack-2",
+          1
+        ]
+      ]
+    }
+  },
+  {
+    "type": "technology",
+    "name": "se-ion-engine",
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "se-spaceship-ion-engine"
+      },
+      {
+        "type": "unlock-recipe",
+        "recipe": "se-spaceship-ion-booster-tank"
+      }
+    ],
+    "icon": "__space-exploration-graphics__/graphics/technology/ion-engine.png",
+    "icon_size": 256,
+    "order": "e-g",
+    "prerequisites": [
+      "se-spaceship",
+      "se-holmium-solenoid"
+    ],
+    "unit": {
+      "count": 1600,
+      "time": 60,
+      "ingredients": [
+        [
+          "automation-science-pack",
+          1
+        ],
+        [
+          "logistic-science-pack",
+          1
+        ],
+        [
+          "chemical-science-pack",
+          1
+        ],
+        [
+          "se-astronomic-science-pack-3",
+          1
+        ],
+        [
+          "se-energy-science-pack-2",
+          1
+        ]
+      ]
+    }
+  },
+  {
+    "type": "technology",
+    "name": "se-quantum-processor",
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "se-quantum-processor"
+      }
+    ],
+    "icon": "__space-exploration-graphics__/graphics/technology/quantum-processor.png",
+    "icon_size": 128,
+    "order": "e-g",
+    "prerequisites": [
+      "se-holmium-solenoid",
+      "se-energy-science-pack-3"
+    ],
+    "unit": {
+      "count": 200,
+      "time": 60,
+      "ingredients": [
+        [
+          "automation-science-pack",
+          1
+        ],
+        [
+          "logistic-science-pack",
+          1
+        ],
+        [
+          "chemical-science-pack",
+          1
+        ],
+        [
+          "se-energy-science-pack-3",
+          1
+        ]
+      ]
+    }
+  },
+  {
+    "type": "technology",
+    "name": "se-dynamic-emitter",
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "se-dynamic-emitter"
+      }
+    ],
+    "icon": "__space-exploration-graphics__/graphics/technology/dynamic-emitter.png",
+    "icon_size": 128,
+    "order": "e-g",
+    "prerequisites": [
+      "se-quantum-processor",
+      "se-energy-science-pack-4"
+    ],
+    "unit": {
+      "count": 400,
+      "time": 60,
+      "ingredients": [
+        [
+          "automation-science-pack",
+          1
+        ],
+        [
+          "logistic-science-pack",
+          1
+        ],
+        [
+          "chemical-science-pack",
+          1
+        ],
+        [
+          "se-energy-science-pack-4",
+          1
+        ]
+      ]
+    }
+  },
+  {
+    "type": "technology",
+    "name": "se-lattice-pressure-vessel",
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "se-lattice-pressure-vessel"
+      }
+    ],
+    "icon": "__space-exploration-graphics__/graphics/technology/lattice-pressure-vessel.png",
+    "icon_size": 128,
+    "order": "e-g",
+    "prerequisites": [
+      "se-aeroframe-bulkhead",
+      "se-astronomic-science-pack-4"
+    ],
+    "unit": {
+      "count": 400,
+      "time": 60,
+      "ingredients": [
+        [
+          "automation-science-pack",
+          1
+        ],
+        [
+          "logistic-science-pack",
+          1
+        ],
+        [
+          "chemical-science-pack",
+          1
+        ],
+        [
+          "se-astronomic-science-pack-4",
+          1
+        ]
+      ]
+    }
+  }
+]

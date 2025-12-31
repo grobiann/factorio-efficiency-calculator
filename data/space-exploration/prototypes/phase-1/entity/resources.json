@@ -1,0 +1,685 @@
+[
+  {
+    "type": "resource",
+    "name": "se-water-ice",
+    "icon": "__space-exploration-graphics__/graphics/icons/water-ice.png",
+    "icon_size": 64,
+    "flags": [
+      "placeable-neutral"
+    ],
+    "order": "a[water]-b[water-ice]-a[water-ice]",
+    "tree_removal_probability": 0.8,
+    "tree_removal_max_distance": "32 * 32",
+    "minable": {
+      "mining_particle": "stone-particle",
+      "mining_time": 1,
+      "result": "se-water-ice"
+    },
+    "collision_box": [
+      [
+        -0.1,
+        -0.1
+      ],
+      [
+        0.1,
+        0.1
+      ]
+    ],
+    "selection_box": [
+      [
+        -0.5,
+        -0.5
+      ],
+      [
+        0.5,
+        0.5
+      ]
+    ],
+    "autoplace": {
+      "control": "se-water-ice",
+      "tile_restriction": [
+        "se-asteroid"
+      ]
+    },
+    "stage_counts": [
+      15000,
+      9500,
+      5500,
+      2900,
+      1300,
+      400,
+      150,
+      80
+    ],
+    "stages": {
+      "sheet": {
+        "filename": "__space-exploration-graphics__/graphics/entity/water-ice/water-ice.png",
+        "priority": "extra-high",
+        "size": 128,
+        "frame_count": 8,
+        "variation_count": 8,
+        "scale": 0.5
+      }
+    },
+    "map_color": {
+      "r": "198/255",
+      "g": "241/255",
+      "b": "245/255"
+    }
+  },
+  {
+    "type": "resource",
+    "name": "se-methane-ice",
+    "icon": "__space-exploration-graphics__/graphics/icons/methane-ice.png",
+    "icon_size": 64,
+    "flags": [
+      "placeable-neutral"
+    ],
+    "order": "a[oil]-g[methane]-a[methane]",
+    "tree_removal_probability": 0.8,
+    "tree_removal_max_distance": "32 * 32",
+    "minable": {
+      "mining_particle": "stone-particle",
+      "mining_time": 1,
+      "result": "se-methane-ice"
+    },
+    "collision_box": [
+      [
+        -0.1,
+        -0.1
+      ],
+      [
+        0.1,
+        0.1
+      ]
+    ],
+    "selection_box": [
+      [
+        -0.5,
+        -0.5
+      ],
+      [
+        0.5,
+        0.5
+      ]
+    ],
+    "autoplace": {
+      "control": "se-methane-ice",
+      "tile_restriction": [
+        "se-asteroid"
+      ]
+    },
+    "stage_counts": [
+      15000,
+      9500,
+      5500,
+      2900,
+      1300,
+      400,
+      150,
+      80
+    ],
+    "stages": {
+      "sheet": {
+        "filename": "__space-exploration-graphics__/graphics/entity/methane-ice/methane-ice.png",
+        "priority": "extra-high",
+        "size": 128,
+        "frame_count": 8,
+        "variation_count": 8,
+        "scale": 0.5
+      }
+    },
+    "map_color": {
+      "r": "245/255",
+      "g": "231/255",
+      "b": "198/255"
+    }
+  },
+  {
+    "type": "resource",
+    "name": "se-beryllium-ore",
+    "icon": "__space-exploration-graphics__/graphics/icons/beryllium-ore.png",
+    "icon_size": 64,
+    "flags": [
+      "placeable-neutral"
+    ],
+    "order": "a[beryllium]-b[beryllium-ore]-a[beryllium-ore]",
+    "tree_removal_probability": 0.8,
+    "tree_removal_max_distance": "32 * 32",
+    "minable": {
+      "mining_particle": "stone-particle",
+      "mining_time": 4,
+      "result": "se-beryllium-ore"
+    },
+    "collision_box": [
+      [
+        -0.1,
+        -0.1
+      ],
+      [
+        0.1,
+        0.1
+      ]
+    ],
+    "selection_box": [
+      [
+        -0.5,
+        -0.5
+      ],
+      [
+        0.5,
+        0.5
+      ]
+    ],
+    "autoplace": {
+      "control": "se-beryllium-ore"
+    },
+    "stage_counts": [
+      15000,
+      9500,
+      5500,
+      2900,
+      1300,
+      400,
+      150,
+      80
+    ],
+    "stages": {
+      "sheet": {
+        "filename": "__space-exploration-graphics__/graphics/entity/beryllium-ore/beryllium-ore.png",
+        "priority": "extra-high",
+        "size": 128,
+        "frame_count": 8,
+        "variation_count": 8,
+        "scale": 0.5
+      }
+    },
+    "map_color": {
+      "r": "144/255",
+      "g": "222/255",
+      "b": "184/255"
+    }
+  },
+  {
+    "type": "resource",
+    "name": "se-cryonite",
+    "icon": "__space-exploration-graphics__/graphics/icons/cryonite.png",
+    "icon_size": 64,
+    "flags": [
+      "placeable-neutral"
+    ],
+    "order": "a[cryonite]-b[cryonite-ore]-a[cryonite]",
+    "tree_removal_probability": 0.8,
+    "tree_removal_max_distance": "32 * 32",
+    "minable": {
+      "mining_particle": "stone-particle",
+      "mining_time": 2,
+      "result": "se-cryonite"
+    },
+    "collision_box": [
+      [
+        -0.1,
+        -0.1
+      ],
+      [
+        0.1,
+        0.1
+      ]
+    ],
+    "selection_box": [
+      [
+        -0.5,
+        -0.5
+      ],
+      [
+        0.5,
+        0.5
+      ]
+    ],
+    "autoplace": {
+      "control": "se-cryonite",
+      "tile_restriction": "alien_biomes.list_tiles(alien_biomes.require_tag(alien_biomes.all_tiles(), {\"frozen\"}))"
+    },
+    "stage_counts": [
+      15000,
+      9500,
+      5500,
+      2900,
+      1300,
+      400,
+      150,
+      80
+    ],
+    "stages": {
+      "sheet": {
+        "filename": "__space-exploration-graphics__/graphics/entity/cryonite/cryonite.png",
+        "priority": "extra-high",
+        "size": 128,
+        "frame_count": 8,
+        "variation_count": 8,
+        "scale": 0.5
+      }
+    },
+    "stages_effect": {
+      "sheet": {
+        "blend_mode": "additive",
+        "filename": "__space-exploration-graphics__/graphics/entity/cryonite/cryonite-glow.png",
+        "flags": [
+          "light"
+        ],
+        "frame_count": 8,
+        "height": 128,
+        "priority": "extra-high",
+        "scale": 0.5,
+        "variation_count": 8,
+        "width": 128
+      }
+    },
+    "effect_animation_period": 5,
+    "effect_animation_period_deviation": 1,
+    "effect_darkness_multiplier": 3.6,
+    "max_effect_alpha": 0.3,
+    "min_effect_alpha": 0.2,
+    "map_color": {
+      "r": "35/255",
+      "g": "164/255",
+      "b": "255/255"
+    }
+  },
+  {
+    "type": "resource",
+    "name": "se-holmium-ore",
+    "icon": "__space-exploration-graphics__/graphics/icons/holmium-ore.png",
+    "icon_size": 64,
+    "flags": [
+      "placeable-neutral"
+    ],
+    "order": "a[holmium]-b[holmium-ore]-a[holmium-ore]",
+    "tree_removal_probability": 0.8,
+    "tree_removal_max_distance": "32 * 32",
+    "minable": {
+      "mining_particle": "stone-particle",
+      "mining_time": 3,
+      "result": "se-holmium-ore"
+    },
+    "collision_box": [
+      [
+        -0.1,
+        -0.1
+      ],
+      [
+        0.1,
+        0.1
+      ]
+    ],
+    "selection_box": [
+      [
+        -0.5,
+        -0.5
+      ],
+      [
+        0.5,
+        0.5
+      ]
+    ],
+    "autoplace": {
+      "control": "se-holmium-ore"
+    },
+    "stage_counts": [
+      15000,
+      9500,
+      5500,
+      2900,
+      1300,
+      400,
+      150,
+      80
+    ],
+    "stages": {
+      "sheet": {
+        "filename": "__space-exploration-graphics__/graphics/entity/holmium-ore/holmium-ore.png",
+        "priority": "extra-high",
+        "size": 128,
+        "frame_count": 8,
+        "variation_count": 8,
+        "scale": 0.5
+      }
+    },
+    "map_color": {
+      "r": "135/255",
+      "g": "96/255",
+      "b": "109/255"
+    }
+  },
+  {
+    "type": "resource",
+    "name": "se-iridium-ore",
+    "icon": "__space-exploration-graphics__/graphics/icons/iridium-ore.png",
+    "icon_size": 64,
+    "flags": [
+      "placeable-neutral"
+    ],
+    "order": "a[iridium]-b[iridium-ore]-a[iridium-ore]",
+    "tree_removal_probability": 0.8,
+    "tree_removal_max_distance": "32 * 32",
+    "category": "hard-resource",
+    "minable": {
+      "fluid_amount": 1,
+      "required_fluid": "sulfuric-acid",
+      "mining_particle": "stone-particle",
+      "mining_time": 5,
+      "result": "se-iridium-ore"
+    },
+    "collision_box": [
+      [
+        -0.1,
+        -0.1
+      ],
+      [
+        0.1,
+        0.1
+      ]
+    ],
+    "selection_box": [
+      [
+        -0.5,
+        -0.5
+      ],
+      [
+        0.5,
+        0.5
+      ]
+    ],
+    "autoplace": {
+      "control": "se-iridium-ore"
+    },
+    "stage_counts": [
+      15000,
+      9500,
+      5500,
+      2900,
+      1300,
+      400,
+      150,
+      80
+    ],
+    "stages": {
+      "sheet": {
+        "filename": "__space-exploration-graphics__/graphics/entity/iridium-ore/iridium-ore.png",
+        "priority": "extra-high",
+        "size": 128,
+        "frame_count": 8,
+        "variation_count": 8,
+        "scale": 0.5
+      }
+    },
+    "map_color": {
+      "r": "244/255",
+      "g": "202/255",
+      "b": "85/255"
+    }
+  },
+  {
+    "type": "resource",
+    "name": "se-naquium-ore",
+    "icon": "__space-exploration-graphics__/graphics/icons/naquium-ore.png",
+    "icon_size": 64,
+    "flags": [
+      "placeable-neutral"
+    ],
+    "order": "a[naquium]-b[naquium-ore]-a[naquium-ore]",
+    "tree_removal_probability": 0.8,
+    "tree_removal_max_distance": "32 * 32",
+    "category": "hard-resource",
+    "minable": {
+      "fluid_amount": 20,
+      "required_fluid": "sulfuric-acid",
+      "mining_particle": "stone-particle",
+      "mining_time": 10,
+      "result": "se-naquium-ore"
+    },
+    "collision_box": [
+      [
+        -0.1,
+        -0.1
+      ],
+      [
+        0.1,
+        0.1
+      ]
+    ],
+    "selection_box": [
+      [
+        -0.5,
+        -0.5
+      ],
+      [
+        0.5,
+        0.5
+      ]
+    ],
+    "autoplace": {
+      "control": "se-naquium-ore",
+      "tile_restriction": [
+        "se-asteroid"
+      ]
+    },
+    "stage_counts": [
+      15000,
+      9500,
+      5500,
+      2900,
+      1300,
+      400,
+      150,
+      80
+    ],
+    "stages": {
+      "sheet": {
+        "filename": "__space-exploration-graphics__/graphics/entity/naquium-ore/naquium-ore.png",
+        "priority": "extra-high",
+        "size": 128,
+        "frame_count": 8,
+        "variation_count": 8,
+        "scale": 0.5
+      }
+    },
+    "stages_effect": {
+      "sheet": {
+        "blend_mode": "additive",
+        "filename": "__space-exploration-graphics__/graphics/entity/naquium-ore/naquium-ore-glow.png",
+        "flags": [
+          "light"
+        ],
+        "frame_count": 8,
+        "height": 128,
+        "priority": "extra-high",
+        "scale": 0.5,
+        "variation_count": 8,
+        "width": 128
+      }
+    },
+    "effect_animation_period": 5,
+    "effect_animation_period_deviation": 1,
+    "effect_darkness_multiplier": 3.6,
+    "max_effect_alpha": 0.3,
+    "min_effect_alpha": 0.2,
+    "map_color": {
+      "r": "137/255",
+      "g": "113/255",
+      "b": "214/255"
+    }
+  },
+  {
+    "type": "resource",
+    "name": "se-vulcanite",
+    "icon": "__space-exploration-graphics__/graphics/icons/vulcanite.png",
+    "icon_size": 64,
+    "flags": [
+      "placeable-neutral"
+    ],
+    "order": "a[vulcanite]-b[vulcanite-ore]-a[vulcanite-ore]",
+    "tree_removal_probability": 0.8,
+    "tree_removal_max_distance": "32 * 32",
+    "minable": {
+      "mining_particle": "stone-particle",
+      "mining_time": 2,
+      "result": "se-vulcanite"
+    },
+    "collision_box": [
+      [
+        -0.1,
+        -0.1
+      ],
+      [
+        0.1,
+        0.1
+      ]
+    ],
+    "selection_box": [
+      [
+        -0.5,
+        -0.5
+      ],
+      [
+        0.5,
+        0.5
+      ]
+    ],
+    "autoplace": {
+      "control": "se-vulcanite",
+      "tile_restriction": "alien_biomes.list_tiles(alien_biomes.require_tag(alien_biomes.all_tiles(), {\"volcanic\"}))"
+    },
+    "stage_counts": [
+      15000,
+      9500,
+      5500,
+      2900,
+      1300,
+      400,
+      150,
+      80
+    ],
+    "stages": {
+      "sheet": {
+        "filename": "__space-exploration-graphics__/graphics/entity/vulcanite/vulcanite.png",
+        "priority": "extra-high",
+        "size": 128,
+        "frame_count": 8,
+        "variation_count": 8,
+        "scale": 0.5
+      }
+    },
+    "stages_effect": {
+      "sheet": {
+        "blend_mode": "additive",
+        "filename": "__space-exploration-graphics__/graphics/entity/vulcanite/vulcanite-glow.png",
+        "flags": [
+          "light"
+        ],
+        "frame_count": 8,
+        "height": 128,
+        "priority": "extra-high",
+        "scale": 0.5,
+        "variation_count": 8,
+        "width": 128
+      }
+    },
+    "effect_animation_period": 5,
+    "effect_animation_period_deviation": 1,
+    "effect_darkness_multiplier": 3.6,
+    "max_effect_alpha": 0.3,
+    "min_effect_alpha": 0.2,
+    "map_color": {
+      "r": "224/255",
+      "g": "40/255",
+      "b": "10/255"
+    }
+  },
+  {
+    "type": "resource",
+    "name": "se-vitamelange",
+    "icon": "__space-exploration-graphics__/graphics/icons/vitamelange.png",
+    "icon_size": 64,
+    "flags": [
+      "placeable-neutral"
+    ],
+    "order": "a[vitamelange]-b[vitamelange]-a[vitamelange]",
+    "tree_removal_probability": 0.8,
+    "tree_removal_max_distance": "32 * 32",
+    "minable": {
+      "mining_particle": "stone-particle",
+      "mining_time": 1,
+      "result": "se-vitamelange"
+    },
+    "collision_box": [
+      [
+        -0.1,
+        -0.1
+      ],
+      [
+        0.1,
+        0.1
+      ]
+    ],
+    "selection_box": [
+      [
+        -0.5,
+        -0.5
+      ],
+      [
+        0.5,
+        0.5
+      ]
+    ],
+    "autoplace": {
+      "control": "se-vitamelange",
+      "tile_restriction": "alien_biomes.list_tiles(alien_biomes.require_tag(alien_biomes.all_tiles(), {\"grass\", \"dirt\"}))"
+    },
+    "stage_counts": [
+      15000,
+      9500,
+      5500,
+      2900,
+      1300,
+      400,
+      150,
+      80
+    ],
+    "stages": {
+      "sheet": {
+        "filename": "__space-exploration-graphics__/graphics/entity/vitamelange/vitamelange.png",
+        "priority": "extra-high",
+        "size": 128,
+        "frame_count": 8,
+        "variation_count": 8,
+        "scale": 0.5
+      }
+    },
+    "stages_effect": {
+      "sheet": {
+        "blend_mode": "additive-soft",
+        "filename": "__space-exploration-graphics__/graphics/entity/vitamelange/vitamelange-glow.png",
+        "flags": [
+          "light"
+        ],
+        "frame_count": 8,
+        "height": 128,
+        "priority": "extra-high",
+        "scale": 0.5,
+        "variation_count": 8,
+        "width": 128
+      }
+    },
+    "effect_animation_period": 5,
+    "effect_animation_period_deviation": 1,
+    "effect_darkness_multiplier": 3.6,
+    "max_effect_alpha": 0.15,
+    "min_effect_alpha": 0.05,
+    "map_color": {
+      "r": "173/255",
+      "g": "206/255",
+      "b": "54/255"
+    }
+  }
+]

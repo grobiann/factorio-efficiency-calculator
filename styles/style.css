@@ -1081,6 +1081,20 @@ button {
   margin-right: 8px;
 }
 
+.group-recipe-icon .group-item-slot {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.group-recipe-icon .group-item-icon {
+  width: 32px;
+  height: 32px;
+  position: relative;
+}
+
 .group-recipe-results,
 .group-recipe-ingredients {
   display: flex;
@@ -1104,6 +1118,93 @@ button {
   border-radius: 0 4px 4px 0;
 }
 
+/* ===== 통합 아이콘 시스템 ===== */
+.item-icon-slot {
+  width: 36px;
+  height: 36px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.item-icon-slot.with-border {
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 3px;
+}
+
+.item-icon-slot.with-amount {
+  height: 44px;
+}
+
+.item-icon-container {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.item-icon-no-image {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 8px;
+  font-weight: 600;
+  color: #999;
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 2px;
+  text-align: center;
+  line-height: 1.1;
+  padding: 2px;
+}
+
+.item-icon-main {
+  image-rendering: auto;
+   object-fit: cover;
+   object-position: left center;
+}
+
+.item-icon-overlay {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 16px !important;
+  height: 16px !important;
+  object-fit: cover;
+  object-position: center;
+  image-rendering: auto;
+  transform: scale(var(--icon-scale, 0.5));
+  z-index: 1;
+  pointer-events: none;
+}
+
+.item-icon-amount {
+  width: 100%;
+  height: 12px;
+  font-size: 10px;
+  line-height: 12px;
+  text-align: center;
+  color: #fff;
+  font-weight: 600;
+  text-shadow: 0 0 2px rgba(0, 0, 0, 0.8),
+               0 0 3px rgba(0, 0, 0, 0.5);
+  white-space: nowrap;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ===== 레거시 호환성 (구 클래스명들을 새 시스템으로 매핑) ===== */
 .group-item-slot {
   width: 32px;
   height: 32px;
@@ -1114,6 +1215,7 @@ button {
   border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 3px;
   overflow: hidden;
+  flex-shrink: 0;
 }
 
 .group-item-slot.empty {
@@ -1132,34 +1234,58 @@ button {
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  position: relative;
 }
 
 .group-item-icon img {
-  width: 32px;
-  height: 32px;
-  object-fit: cover;
-  object-position: left center;
-  image-rendering: pixelated;
-  image-rendering: -moz-crisp-edges;
-  image-rendering: crisp-edges;
+  image-rendering: auto;
 }
 
 .group-item-amount {
   height: 12px;
-  background: rgba(0, 0, 0, 0.7);
-  color: white;
-  font-size: 9px;
+  font-size: 10px;
+  line-height: 12px;
+  text-align: center;
+  color: #fff;
   font-weight: 600;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0 2px;
+  text-shadow: 0 0 2px rgba(0, 0, 0, 0.8),
+               0 0 3px rgba(0, 0, 0, 0.5);
+  white-space: nowrap;
 }
 
+/* 레시피 아이콘 컨테이너 */
+.recipe-icon-container .group-item-icon,
+.recipe-icon-container .item-icon-container {
+  position: relative;
+}
+
+/* 레시피 메인 아이콘 */
+.recipe-icon-main {
+  image-rendering: auto;
+}
+
+/* 레시피 오버레이 아이콘 (우상단) */
+.recipe-icon-overlay {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 16px !important;
+  height: 16px !important;
+  object-fit: cover;
+  object-position: center;
+  image-rendering: auto;
+  transform: scale(var(--icon-scale, 0.5));
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* 수량 표시 배경 색상 (컨텍스트별) */
+.group-recipe-results .item-icon-amount,
 .group-recipe-results .group-item-amount {
   background: rgba(33, 150, 243, 0.8);
 }
 
+.group-recipe-ingredients .item-icon-amount,
 .group-recipe-ingredients .group-item-amount {
   background: rgba(255, 152, 0, 0.8);
 }
@@ -1389,16 +1515,19 @@ button {
   align-items: center;
 }
 
+.compare-io-icons .item-icon-slot,
 .compare-io-icons .group-item-slot {
   margin: 0;
   min-width: auto;
 }
 
+.compare-io-icons .item-icon-container,
 .compare-io-icons .group-item-icon {
   width: 40px;
   height: 40px;
 }
 
+.compare-io-icons .item-icon-amount,
 .compare-io-icons .group-item-quantity {
   font-size: 12px;
   padding: 2px 4px;
@@ -1855,11 +1984,11 @@ button {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
-.recipe-add-icon {
-  width: 32px;
-  height: 32px;
-  object-fit: cover;
-  object-position: left center;
+/* 레시피 추가 모달의 아이콘은 테두리 없음 */
+.recipe-add-item .item-icon-slot,
+.recipe-add-item .group-item-slot {
+  border: none;
+  background: none;
 }
 
 .recipe-add-icon-placeholder {

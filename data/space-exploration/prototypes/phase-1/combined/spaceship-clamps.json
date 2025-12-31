@@ -1,0 +1,403 @@
+[
+  {
+    "type": "item",
+    "name": "se-spaceship-clamp",
+    "icon": "__space-exploration-graphics__/graphics/icons/spaceship-clamp.png",
+    "icon_size": 64,
+    "order": "c-a",
+    "subgroup": "spaceship-structure",
+    "stack_size": 50,
+    "place_result": "se-spaceship-clamp-place"
+  },
+  {
+    "type": "recipe",
+    "name": "se-spaceship-clamp",
+    "results": [
+      {
+        "type": "item",
+        "name": "se-spaceship-clamp",
+        "amount": 1
+      }
+    ],
+    "enabled": false,
+    "energy_required": 30,
+    "ingredients": [
+      {
+        "type": "item",
+        "name": "se-aeroframe-scaffold",
+        "amount": 10
+      },
+      {
+        "type": "item",
+        "name": "se-heavy-girder",
+        "amount": 6
+      },
+      {
+        "type": "item",
+        "name": "electric-engine-unit",
+        "amount": 10
+      },
+      {
+        "type": "item",
+        "name": "processing-unit",
+        "amount": 10
+      }
+    ],
+    "requester_paste_multiplier": 1,
+    "always_show_made_in": false
+  },
+  {
+    "type": "item",
+    "name": "se-spaceship-clamp-anchor",
+    "icon": "__space-exploration-graphics__/graphics/icons/spaceship-clamp-anchor.png",
+    "icon_size": 64,
+    "order": "c-b",
+    "subgroup": "energy",
+    "stack_size": 50,
+    "place_result": "se-spaceship-clamp-anchor"
+  },
+  {
+    "type": "recipe",
+    "name": "se-spaceship-clamp-anchor",
+    "result": [
+      {
+        "type": "item",
+        "name": "se-spaceship-clamp-anchor",
+        "amount": 1
+      }
+    ],
+    "enabled": false,
+    "energy_required": 30,
+    "ingredients": [
+      {
+        "type": "item",
+        "name": "se-aeroframe-scaffold",
+        "amount": 6
+      },
+      {
+        "type": "item",
+        "name": "se-heavy-girder",
+        "amount": 10
+      },
+      {
+        "type": "item",
+        "name": "electric-engine-unit",
+        "amount": 10
+      },
+      {
+        "type": "item",
+        "name": "processing-unit",
+        "amount": 10
+      }
+    ],
+    "requester_paste_multiplier": 1,
+    "always_show_made_in": true
+  },
+  {
+    "type": "technology",
+    "name": "se-spaceship-clamps",
+    "effects": [
+      {
+        "type": "unlock-recipe",
+        "recipe": "se-spaceship-clamp"
+      }
+    ],
+    "icon": "__space-exploration-graphics__/graphics/technology/spaceship-clamps.png",
+    "icon_size": 128,
+    "order": "e-g",
+    "prerequisites": [
+      "se-spaceship",
+      "se-heavy-girder"
+    ],
+    "unit": {
+      "count": 500,
+      "time": 60,
+      "ingredients": [
+        [
+          "automation-science-pack",
+          1
+        ],
+        [
+          "logistic-science-pack",
+          1
+        ],
+        [
+          "chemical-science-pack",
+          1
+        ],
+        [
+          "se-rocket-science-pack",
+          1
+        ],
+        [
+          "se-astronomic-science-pack-3",
+          1
+        ],
+        [
+          "se-material-science-pack-1",
+          1
+        ]
+      ]
+    }
+  },
+  {
+    "type": "storage-tank",
+    "name": "se-spaceship-clamp-place",
+    "subgroup": "composite-entity-parts",
+    "hidden": true,
+    "icons": [
+      {
+        "icon": "__space-exploration-graphics__/graphics/icons/spaceship-clamp.png"
+      }
+    ],
+    "minable": {
+      "mining_time": 0.5,
+      "result": "se-spaceship-clamp"
+    },
+    "se_allow_in_space": true,
+    "corpse": "legacy-straight-rail-remnants",
+    "collision_box": [
+      [
+        -0.99,
+        -0.99
+      ],
+      [
+        0.99,
+        0.99
+      ]
+    ],
+    "collision_mask": {
+      "layers": {
+        "player": true,
+        "floor": true,
+        "item": true
+      }
+    },
+    "selection_box": [
+      [
+        -1,
+        -1
+      ],
+      [
+        1,
+        1
+      ]
+    ],
+    "flags": [
+      "placeable-neutral",
+      "player-creation"
+    ],
+    "max_health": "clamp_health",
+    "pictures": {
+      "picture": {
+        "north": "picture_right",
+        "east": "picture_left",
+        "south": "blank",
+        "west": "blank"
+      },
+      "window_background": "blank",
+      "fluid_background": "blank",
+      "flow_sprite": "blank",
+      "gas_flow": "blank"
+    },
+    "fluid_box": {
+      "volume": 9.999999999999999e-05,
+      "pipe_connections": {},
+      "hide_connection_info": true
+    },
+    "window_bounding_box": [
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ]
+    ],
+    "flow_length_in_ticks": 1,
+    "two_direction_only": true,
+    "draw_copper_wires": false,
+    "draw_circuit_wires": false,
+    "build_grid_size": 2
+  },
+  {
+    "type": "constant-combinator",
+    "name": "se-spaceship-clamp",
+    "placeable_by": {
+      "item": "se-spaceship-clamp",
+      "count": 1
+    },
+    "minable": {
+      "mining_time": 0.5,
+      "result": "se-spaceship-clamp"
+    },
+    "flags": [
+      "placeable-neutral",
+      "player-creation",
+      "hide-alt-info"
+    ],
+    "icon": "__space-exploration-graphics__/graphics/icons/spaceship-clamp.png",
+    "icon_size": 64,
+    "order": "c",
+    "max_health": "clamp_health",
+    "open_sound": null,
+    "close_sound": null,
+    "corpse": "small-remnants",
+    "collision_box": [
+      [
+        -0.99,
+        -0.99
+      ],
+      [
+        0.99,
+        0.99
+      ]
+    ],
+    "collision_mask": {
+      "layers": {
+        "player": true,
+        "floor": true,
+        "item": true
+      }
+    },
+    "build_grid_size": 2,
+    "selection_box": [
+      [
+        -1,
+        -1
+      ],
+      [
+        1,
+        1
+      ]
+    ],
+    "scale_info_icons": false,
+    "item_slot_count": 1,
+    "sprites": {
+      "north": "picture_left",
+      "east": "picture_right",
+      "south": "picture_right",
+      "west": "picture_left"
+    },
+    "activity_led_sprites": {
+      "north": "blank",
+      "east": "blank",
+      "south": "blank",
+      "west": "blank"
+    },
+    "activity_led_light": {
+      "intensity": 0.8,
+      "size": 1
+    },
+    "activity_led_light_offsets": [
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ]
+    ],
+    "circuit_wire_connection_points": [
+      {
+        "wire": {
+          "red": [
+            0,
+            0
+          ],
+          "green": [
+            0,
+            0
+          ]
+        },
+        "shadow": {
+          "red": [
+            0,
+            0
+          ],
+          "green": [
+            0,
+            0
+          ]
+        }
+      },
+      {
+        "wire": {
+          "red": [
+            -0.5,
+            0.8
+          ],
+          "green": [
+            -0.7,
+            0.8
+          ]
+        },
+        "shadow": {
+          "red": [
+            -0.5,
+            0.8
+          ],
+          "green": [
+            -0.7,
+            0.8
+          ]
+        }
+      },
+      {
+        "wire": {
+          "red": [
+            0,
+            0
+          ],
+          "green": [
+            0,
+            0
+          ]
+        },
+        "shadow": {
+          "red": [
+            0,
+            0
+          ],
+          "green": [
+            0,
+            0
+          ]
+        }
+      },
+      {
+        "wire": {
+          "red": [
+            0.7,
+            0.8
+          ],
+          "green": [
+            0.5,
+            0.8
+          ]
+        },
+        "shadow": {
+          "red": [
+            0.7,
+            0.8
+          ],
+          "green": [
+            0.5,
+            0.8
+          ]
+        }
+      }
+    ],
+    "circuit_wire_max_distance": 8
+  }
+]

@@ -81,42 +81,87 @@ export class ViewHelpers {
       };
     }
 
+    console.warn('[ViewHelpers.getIconInfo] Icon not found in data - itemId:', itemId, 'type:', type, 'entries count:', loadedData.entries.length);
     return null;
   }
 
   /**
-   * 아이템 아이콘 HTML 생성
+   * 통합 아이콘 HTML 생성 (단일 또는 이중 아이콘 지원)
+   * @param {Array|Object} icons - 아이콘 정보 배열 또는 단일 객체
+   * @param {Object} options - 옵션 { amount, showBorder, formatFn, dataAttrs }
+   * @returns {string} 아이콘 HTML
+   */
+  static createIconHtml(icons, options = {}) {
+    const {
+      amount = null,
+      showBorder = true,
+      formatFn = ViewHelpers.formatNumber,
+      dataAttrs = ''
+    } = options;
+
+    // 단일 객체를 배열로 변환
+    const iconArray = Array.isArray(icons) ? icons : [icons];
+    const hasAmount = amount !== null && amount !== undefined;
+    
+    let html = `<div class="item-icon-slot ${showBorder ? 'with-border' : 'no-border'} ${hasAmount ? 'with-amount' : ''}" ${dataAttrs}>`;
+    html += '<div class="item-icon-container">';
+    
+    if (iconArray.length > 0 && iconArray[0]) {
+      const mainIcon = iconArray[0];
+      
+      // 메인 아이콘
+      if (mainIcon.path) {
+        const iconSize = mainIcon.size || 64;
+        const mipmaps = mainIcon.mipmaps || 0;
+        
+        let totalWidth = iconSize;
+        for (let i = 1; i < mipmaps; i++) {
+          totalWidth += iconSize / Math.pow(2, i);
+        }
+        
+        const scale = 32 / iconSize;
+        const imgWidth = totalWidth * scale;
+        const imgHeight = iconSize * scale;
+        const offsetX = mipmaps > 0 ? -iconSize * scale : 0;
+        
+        html += `<img src="${mainIcon.path}" alt="${mainIcon.name || ''}" class="item-icon-main" style="width: ${imgWidth}px; height: ${imgHeight}px;">`;
+      } else {
+        // 아이콘이 없을 때
+        console.warn('[ViewHelpers.createIconHtml] Rendering "No Image" for item:', mainIcon.name || 'unknown', '| Icon object:', JSON.stringify(mainIcon));
+        html += '<div class="item-icon-no-image">No<br>Image</div>';
+      }
+      
+      // 오버레이 아이콘 (두 번째 아이콘)
+      if (iconArray.length > 1 && iconArray[1] && iconArray[1].path) {
+        const overlayIcon = iconArray[1];
+        const scale = overlayIcon.scale || 0.5;
+        html += `<img src="${overlayIcon.path}" alt="${overlayIcon.name || ''}" class="item-icon-overlay" style="--icon-scale: ${scale};">`;
+      }
+    }
+    
+    html += '</div>';
+    
+    if (hasAmount) {
+      html += `<div class="item-icon-amount">${formatFn(amount)}</div>`;
+    }
+    
+    html += '</div>';
+    return html;
+  }
+
+  /**
+   * 아이템 아이콘 HTML 생성 (단일 아이템용 - 하위 호환성)
    * @param {Object} iconInfo - 아이콘 정보 객체
    * @param {number|null} amount - 표시할 수량
    * @param {Function} formatFn - 숫자 포맷 함수 (기본: formatNumber)
    * @returns {string} 아이콘 HTML
    */
   static createItemIconHtml(iconInfo, amount = null, formatFn = ViewHelpers.formatNumber) {
-    let html = '<div class="zone-item-slot">';
-
-    if (iconInfo && iconInfo.path) {
-      html += '<div class="zone-item-icon">';
-      
-      const iconSize = iconInfo.size || 64;
-      let totalWidth = iconSize;
-      for (let i = 1; i < (iconInfo.mipmaps || 0); i++) {
-        totalWidth += iconSize / Math.pow(2, i);
-      }
-      
-      const scale = 32 / iconSize;
-      const imgWidth = totalWidth * scale;
-      const imgHeight = iconSize * scale;
-
-      html += `<img src="${iconInfo.path}" alt="${iconInfo.name || ''}" style="width: ${imgWidth}px; height: ${imgHeight}px; object-fit: none; object-position: -64px 0;">`;
-      html += '</div>';
-
-      if (amount !== null && amount !== undefined) {
-        html += `<div class="zone-item-amount">${formatFn(amount)}</div>`;
-      }
-    }
-
-    html += '</div>';
-    return html;
+    return ViewHelpers.createIconHtml(iconInfo, {
+      amount,
+      showBorder: true,
+      formatFn
+    });
   }
 
   /**
@@ -248,5 +293,96 @@ export class ViewHelpers {
   static parseNumber(value, defaultValue = 0) {
     const parsed = parseFloat(value);
     return isNaN(parsed) ? defaultValue : parsed;
+  }
+
+  /**
+   * 레시피 아이콘 정보 가져오기
+   * @param {Object} recipe - 레시피 객체
+   * @param {Object} loadedData - 데이터셋
+   * @returns {Array} 아이콘 정보 배열
+   */
+  static getRecipeIcon(recipe, loadedData) {
+    // 레시피에 icons 배열이 있으면 사용
+    if (recipe.icons && Array.isArray(recipe.icons) && recipe.icons.length > 0) {
+      return recipe.icons.map(iconData => {
+        // 문자열인 경우 (아이템 이름)
+        if (typeof iconData === 'string') {
+          const iconInfo = ViewHelpers.getIconInfo(loadedData, iconData);
+          // iconInfo가 null인 경우 기본 아이콘 사용
+          if (!iconInfo || !iconInfo.path) {
+            return {
+              path: '__base__/graphics/icons/signal/signal_info.png',
+              name: iconData,
+              scale: 1,
+              shift: { x: 0, y: 0 },
+              hasMipmap: false
+            };
+          }
+          return {
+            path: iconInfo.path,
+            name: iconInfo.name || iconData,
+            scale: 1,
+            shift: { x: 0, y: 0 },
+            hasMipmap: iconInfo.hasMipmap || false
+          };
+        }
+        // 객체인 경우
+        return {
+          path: iconData.icon,
+          name: recipe.name,
+          scale: iconData.scale || 1,
+          shift: iconData.shift || { x: 0, y: 0 },
+          tint: iconData.tint,
+          hasMipmap: iconData.icon_size > 0
+        };
+      });
+    }
+    
+    // 레시피 자체 단일 아이콘이 있으면 사용
+    if (recipe.icon) {
+      return [{
+        path: recipe.icon,
+        name: recipe.name,
+        scale: 1,
+        shift: { x: 0, y: 0 },
+        hasMipmap: recipe.icon_mipmaps > 0
+      }];
+    }
+    
+    // 없으면 첫 번째 생산품 아이콘 사용
+    if (recipe.results && recipe.results.length > 0) {
+      const iconInfo = ViewHelpers.getIconInfo(loadedData, recipe.results[0].name, recipe.results[0].type || 'item');
+      if (iconInfo && iconInfo.path) {
+        return [{
+          path: iconInfo.path,
+          name: iconInfo.name,
+          scale: 1,
+          shift: { x: 0, y: 0 },
+          hasMipmap: iconInfo.hasMipmap || false
+        }];
+      }
+    }
+    
+    // 둘 다 없으면 기본 아이콘
+    return [{
+      path: '__base__/graphics/icons/signal/signal_info.png',
+      name: recipe.name,
+      scale: 1,
+      shift: { x: 0, y: 0 },
+      hasMipmap: false
+    }];
+  }
+
+  /**
+   * 레시피 아이콘 HTML 생성 (icons 배열 지원, 오버레이 포함)
+   * @param {Array} icons - 아이콘 정보 배열
+   * @param {string} containerClass - 추가 클래스명 (하위 호환성용)
+   * @returns {string} 레시피 아이콘 HTML
+   */
+  static createRecipeIconHtml(icons, containerClass = '') {
+    return ViewHelpers.createIconHtml(icons, {
+      amount: null,
+      showBorder: false
+    });
   }
 }

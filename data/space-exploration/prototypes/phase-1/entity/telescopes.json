@@ -1,0 +1,884 @@
+[
+  {
+    "type": "assembling-machine",
+    "name": "se-space-telescope",
+    "icon": "__space-exploration-graphics__/graphics/icons/telescope.png",
+    "icon_size": 64,
+    "flags": [
+      "placeable-neutral",
+      "placeable-player",
+      "player-creation"
+    ],
+    "minable": {
+      "mining_time": 0.1,
+      "result": "se-space-telescope"
+    },
+    "max_health": 500,
+    "corpse": "big-remnants",
+    "dying_explosion": "medium-explosion",
+    "alert_icon_shift": "util.by_pixel(0, -12)",
+    "collision_box": [
+      [
+        -1.3,
+        -1.3
+      ],
+      [
+        1.3,
+        1.3
+      ]
+    ],
+    "selection_box": [
+      [
+        -1.5,
+        -1.5
+      ],
+      [
+        1.5,
+        1.5
+      ]
+    ],
+    "drawing_box_vertical_extension": 0.4,
+    "circuit_connector": "circuit_connector_definitions.create_vector\n    (\n      universal_connector_template,\n      {\n        { variation = 18, main_offset = {1,1}, shadow_offset = {1,1}, show_shadow = true },\n        { variation = 18, main_offset = {1,1}, shadow_offset = {1,1}, show_shadow = true },\n        { variation = 18, main_offset = {1,1}, shadow_offset = {1,1}, show_shadow = true },\n        { variation = 18, main_offset = {1,1}, shadow_offset = {1,1}, show_shadow = true },\n      }\n    )",
+    "circuit_wire_max_distance": "default_circuit_wire_max_distance",
+    "resistances": [
+      {
+        "type": "impact",
+        "percent": 10
+      }
+    ],
+    "fluid_boxes": [
+      {
+        "production_type": "input",
+        "pipe_covers": "pipecoverspictures()",
+        "volume": 1000,
+        "pipe_connections": [
+          {
+            "flow_direction": "input",
+            "position": [
+              0,
+              -1
+            ],
+            "direction": null
+          }
+        ],
+        "secondary_draw_orders": {
+          "north": -1
+        }
+      },
+      {
+        "production_type": "output",
+        "pipe_covers": "pipecoverspictures()",
+        "volume": 1000,
+        "pipe_connections": [
+          {
+            "flow_direction": "output",
+            "position": [
+              0,
+              1
+            ],
+            "direction": null
+          }
+        ],
+        "secondary_draw_orders": {
+          "north": -1
+        }
+      }
+    ],
+    "open_sound": null,
+    "close_sound": null,
+    "impact_category": "metal-large",
+    "working_sound": {
+      "apparent_volume": 1.5,
+      "idle_sound": {
+        "filename": "__base__/sound/idle1.ogg",
+        "volume": 0.6
+      },
+      "sound": [
+        {
+          "filename": "__base__/sound/assembling-machine-t1-1.ogg",
+          "volume": 0.8
+        },
+        {
+          "filename": "__base__/sound/assembling-machine-t1-2.ogg",
+          "volume": 0.8
+        }
+      ]
+    },
+    "collision_mask": {
+      "layers": {
+        "water_tile": true,
+        "ground_tile": true,
+        "item": true,
+        "object": true,
+        "player": true
+      }
+    },
+    "graphics_set": {
+      "animation": {
+        "layers": [
+          {
+            "filename": "__space-exploration-graphics-4__/graphics/entity/telescope/telescope.png",
+            "priority": "high",
+            "width": "2080/8",
+            "height": "2128/8",
+            "frame_count": 64,
+            "line_length": 8,
+            "shift": "util.by_pixel(6, -19)",
+            "animation_speed": "telescope_animation_speed",
+            "scale": 0.5
+          },
+          {
+            "draw_as_shadow": true,
+            "filename": "__space-exploration-graphics-4__/graphics/entity/telescope/telescope-shadow.png",
+            "priority": "high",
+            "width": "2608/8",
+            "height": "1552/8",
+            "frame_count": 64,
+            "line_length": 8,
+            "shift": "util.by_pixel(32, 7)",
+            "animation_speed": "telescope_animation_speed",
+            "scale": 0.5
+          }
+        ]
+      },
+      "working_visualisations": [
+        {
+          "effect": "uranium-glow",
+          "light": {
+            "intensity": 0.5,
+            "size": 8,
+            "shift": [
+              0.0,
+              0.0
+            ],
+            "color": {
+              "r": 0.9,
+              "g": 1,
+              "b": 0.8
+            }
+          }
+        }
+      ]
+    },
+    "crafting_categories": [
+      "space-observation-visible",
+      "space-observation-uv",
+      "space-observation-infrared"
+    ],
+    "crafting_speed": "telescope_crafting_speed",
+    "energy_source": {
+      "type": "electric",
+      "usage_priority": "secondary-input",
+      "emissions_per_minute": {
+        "pollution": 4
+      }
+    },
+    "energy_usage": "1000kW",
+    "module_slots": "telescope_module_slots",
+    "allowed_effects": "data_util.all_effects_except(\"productivity\")"
+  },
+  {
+    "type": "assembling-machine",
+    "name": "se-space-telescope-xray",
+    "icon": "__space-exploration-graphics__/graphics/icons/telescope-xray.png",
+    "icon_size": 64,
+    "flags": [
+      "placeable-neutral",
+      "placeable-player",
+      "player-creation"
+    ],
+    "minable": {
+      "mining_time": 0.2,
+      "result": "se-space-telescope-xray"
+    },
+    "max_health": 500,
+    "corpse": "big-remnants",
+    "dying_explosion": "medium-explosion",
+    "alert_icon_shift": "util.by_pixel(0, -12)",
+    "collision_box": [
+      [
+        -2.3,
+        -2.3
+      ],
+      [
+        2.3,
+        2.3
+      ]
+    ],
+    "selection_box": [
+      [
+        -2.5,
+        -2.5
+      ],
+      [
+        2.5,
+        2.5
+      ]
+    ],
+    "drawing_box_vertical_extension": 1,
+    "circuit_connector": "circuit_connector_definitions.create_vector\n    (\n      universal_connector_template,\n      {\n        { variation = 18, main_offset = {2, 2}, shadow_offset = {2, 2}, show_shadow = true },\n        { variation = 18, main_offset = {2, 2}, shadow_offset = {2, 2}, show_shadow = true },\n        { variation = 18, main_offset = {2, 2}, shadow_offset = {2, 2}, show_shadow = true },\n        { variation = 18, main_offset = {2, 2}, shadow_offset = {2, 2}, show_shadow = true },\n      }\n    )",
+    "circuit_wire_max_distance": "default_circuit_wire_max_distance",
+    "resistances": [
+      {
+        "type": "impact",
+        "percent": 10
+      }
+    ],
+    "fluid_boxes": [
+      {
+        "production_type": "input",
+        "pipe_covers": "pipecoverspictures()",
+        "volume": 1000,
+        "pipe_connections": [
+          {
+            "flow_direction": "input",
+            "position": [
+              0,
+              -2
+            ],
+            "direction": null
+          }
+        ],
+        "secondary_draw_orders": {
+          "north": -1
+        }
+      },
+      {
+        "production_type": "output",
+        "pipe_covers": "pipecoverspictures()",
+        "volume": 1000,
+        "pipe_connections": [
+          {
+            "flow_direction": "output",
+            "position": [
+              0,
+              2
+            ],
+            "direction": null
+          }
+        ],
+        "secondary_draw_orders": {
+          "north": -1
+        }
+      }
+    ],
+    "open_sound": null,
+    "close_sound": null,
+    "impact_category": "metal-large",
+    "working_sound": {
+      "apparent_volume": 1.5,
+      "idle_sound": {
+        "filename": "__base__/sound/idle1.ogg",
+        "volume": 0.6
+      },
+      "sound": [
+        {
+          "filename": "__base__/sound/assembling-machine-t1-1.ogg",
+          "volume": 0.8
+        },
+        {
+          "filename": "__base__/sound/assembling-machine-t1-2.ogg",
+          "volume": 0.8
+        }
+      ]
+    },
+    "collision_mask": {
+      "layers": {
+        "water_tile": true,
+        "ground_tile": true,
+        "item": true,
+        "object": true,
+        "player": true
+      }
+    },
+    "graphics_set": {
+      "animation": {
+        "layers": [
+          {
+            "filename": "__space-exploration-graphics-4__/graphics/entity/telescope-xray/telescope-xray.png",
+            "priority": "high",
+            "width": "2880/8",
+            "height": "3232/8",
+            "frame_count": 64,
+            "line_length": 8,
+            "shift": "util.by_pixel(6, -13)",
+            "animation_speed": "xray_animation_speed",
+            "scale": 0.5
+          },
+          {
+            "draw_as_shadow": true,
+            "filename": "__space-exploration-graphics-4__/graphics/entity/telescope-xray/telescope-xray-shadow.png",
+            "priority": "high",
+            "width": "3712/8",
+            "height": "2224/8",
+            "frame_count": 64,
+            "line_length": 8,
+            "shift": "util.by_pixel(33, 10)",
+            "animation_speed": "xray_animation_speed",
+            "scale": 0.5
+          }
+        ]
+      },
+      "working_visualisations": [
+        {
+          "effect": "uranium-glow",
+          "light": {
+            "intensity": 0.5,
+            "size": 8,
+            "shift": [
+              0.0,
+              0.0
+            ],
+            "color": {
+              "r": 0.5,
+              "g": 0.5,
+              "b": 1
+            }
+          }
+        }
+      ]
+    },
+    "crafting_categories": [
+      "space-observation-xray"
+    ],
+    "crafting_speed": "xray_crafting_speed",
+    "energy_source": {
+      "type": "electric",
+      "usage_priority": "secondary-input",
+      "emissions_per_minute": {
+        "pollution": 4
+      }
+    },
+    "energy_usage": "1000kW",
+    "module_slots": "xray_module_slots",
+    "allowed_effects": "data_util.all_effects_except(\"productivity\")"
+  },
+  {
+    "type": "assembling-machine",
+    "name": "se-space-telescope-gammaray",
+    "icon": "__space-exploration-graphics__/graphics/icons/telescope-gammaray.png",
+    "icon_size": 64,
+    "flags": [
+      "placeable-neutral",
+      "placeable-player",
+      "player-creation"
+    ],
+    "minable": {
+      "mining_time": 0.2,
+      "result": "se-space-telescope-gammaray"
+    },
+    "max_health": 500,
+    "corpse": "big-remnants",
+    "dying_explosion": "medium-explosion",
+    "alert_icon_shift": "util.by_pixel(0, -12)",
+    "collision_box": [
+      [
+        -2.3,
+        -2.3
+      ],
+      [
+        2.3,
+        2.3
+      ]
+    ],
+    "selection_box": [
+      [
+        -2.5,
+        -2.5
+      ],
+      [
+        2.5,
+        2.5
+      ]
+    ],
+    "drawing_box_vertical_extension": 1,
+    "circuit_connector": "circuit_connector_definitions.create_vector\n    (\n      universal_connector_template,\n      {\n        { variation = 18, main_offset = {2, 2}, shadow_offset = {2, 2}, show_shadow = true },\n        { variation = 18, main_offset = {2, 2}, shadow_offset = {2, 2}, show_shadow = true },\n        { variation = 18, main_offset = {2, 2}, shadow_offset = {2, 2}, show_shadow = true },\n        { variation = 18, main_offset = {2, 2}, shadow_offset = {2, 2}, show_shadow = true },\n      }\n    )",
+    "circuit_wire_max_distance": "default_circuit_wire_max_distance",
+    "resistances": [
+      {
+        "type": "impact",
+        "percent": 10
+      }
+    ],
+    "fluid_boxes": [
+      {
+        "production_type": "input",
+        "pipe_covers": "pipecoverspictures()",
+        "volume": 1000,
+        "pipe_connections": [
+          {
+            "flow_direction": "input",
+            "position": [
+              0,
+              -2
+            ],
+            "direction": null
+          }
+        ],
+        "secondary_draw_orders": {
+          "north": -1
+        }
+      },
+      {
+        "production_type": "output",
+        "pipe_covers": "pipecoverspictures()",
+        "volume": 1000,
+        "pipe_connections": [
+          {
+            "flow_direction": "output",
+            "position": [
+              0,
+              2
+            ],
+            "direction": null
+          }
+        ],
+        "secondary_draw_orders": {
+          "north": -1
+        }
+      }
+    ],
+    "open_sound": null,
+    "close_sound": null,
+    "impact_category": "metal-large",
+    "working_sound": {
+      "apparent_volume": 1.5,
+      "idle_sound": {
+        "filename": "__base__/sound/idle1.ogg",
+        "volume": 0.6
+      },
+      "sound": [
+        {
+          "filename": "__base__/sound/assembling-machine-t1-1.ogg",
+          "volume": 0.8
+        },
+        {
+          "filename": "__base__/sound/assembling-machine-t1-2.ogg",
+          "volume": 0.8
+        }
+      ]
+    },
+    "collision_mask": {
+      "layers": {
+        "water_tile": true,
+        "ground_tile": true,
+        "item": true,
+        "object": true,
+        "player": true
+      }
+    },
+    "graphics_set": {
+      "animation": {
+        "layers": [
+          {
+            "filename": "__space-exploration-graphics-4__/graphics/entity/telescope-gammaray/telescope-gammaray.png",
+            "priority": "high",
+            "width": "2880/8",
+            "height": "3232/8",
+            "frame_count": 64,
+            "line_length": 8,
+            "shift": "util.by_pixel(6, -13)",
+            "animation_speed": "gammaray_animation_speed",
+            "scale": 0.5
+          },
+          {
+            "draw_as_shadow": true,
+            "filename": "__space-exploration-graphics-4__/graphics/entity/telescope-gammaray/telescope-gammaray-shadow.png",
+            "priority": "high",
+            "width": "3712/8",
+            "height": "2224/8",
+            "frame_count": 64,
+            "line_length": 8,
+            "shift": "util.by_pixel(33, 10)",
+            "animation_speed": "gammaray_animation_speed",
+            "scale": 0.5
+          }
+        ]
+      },
+      "working_visualisations": [
+        {
+          "effect": "uranium-glow",
+          "light": {
+            "intensity": 0.5,
+            "size": 8,
+            "shift": [
+              0.0,
+              0.0
+            ],
+            "color": {
+              "r": 1,
+              "g": 0.5,
+              "b": 1
+            }
+          }
+        }
+      ]
+    },
+    "crafting_categories": [
+      "space-observation-gammaray"
+    ],
+    "crafting_speed": "gammaray_crafting_speed",
+    "energy_source": {
+      "type": "electric",
+      "usage_priority": "secondary-input",
+      "emissions_per_minute": {
+        "pollution": 4
+      }
+    },
+    "energy_usage": "1000kW",
+    "module_slots": "gammaray_module_slots",
+    "allowed_effects": "data_util.all_effects_except(\"productivity\")"
+  },
+  {
+    "type": "assembling-machine",
+    "name": "se-space-telescope-microwave",
+    "icon": "__space-exploration-graphics__/graphics/icons/telescope-microwave.png",
+    "icon_size": 64,
+    "flags": [
+      "placeable-neutral",
+      "placeable-player",
+      "player-creation"
+    ],
+    "minable": {
+      "mining_time": 0.2,
+      "result": "se-space-telescope-microwave"
+    },
+    "max_health": 500,
+    "corpse": "big-remnants",
+    "dying_explosion": "medium-explosion",
+    "alert_icon_shift": "util.by_pixel(0, -12)",
+    "collision_box": [
+      [
+        -4.3,
+        -4.3
+      ],
+      [
+        4.3,
+        4.3
+      ]
+    ],
+    "selection_box": [
+      [
+        -4.5,
+        -4.5
+      ],
+      [
+        4.5,
+        4.5
+      ]
+    ],
+    "drawing_box_vertical_extension": 2,
+    "circuit_connector": "circuit_connector_definitions.create_vector\n    (\n      universal_connector_template,\n      {\n        { variation = 18, main_offset = {3.3, 4}, shadow_offset = {3.3, 4}, show_shadow = true },\n        { variation = 18, main_offset = {3.3, 4}, shadow_offset = {3.3, 4}, show_shadow = true },\n        { variation = 18, main_offset = {3.3, 4}, shadow_offset = {3.3, 4}, show_shadow = true },\n        { variation = 18, main_offset = {3.3, 4}, shadow_offset = {3.3, 4}, show_shadow = true },\n      }\n    )",
+    "circuit_wire_max_distance": "default_circuit_wire_max_distance",
+    "resistances": [
+      {
+        "type": "impact",
+        "percent": 10
+      }
+    ],
+    "fluid_boxes": [
+      {
+        "production_type": "input",
+        "pipe_covers": "pipecoverspictures()",
+        "volume": 1000,
+        "pipe_connections": [
+          {
+            "flow_direction": "input",
+            "position": [
+              0,
+              -4
+            ],
+            "direction": null
+          }
+        ],
+        "secondary_draw_orders": {
+          "north": -1
+        }
+      },
+      {
+        "production_type": "output",
+        "pipe_covers": "pipecoverspictures()",
+        "volume": 1000,
+        "pipe_connections": [
+          {
+            "flow_direction": "output",
+            "position": [
+              0,
+              4
+            ],
+            "direction": null
+          }
+        ],
+        "secondary_draw_orders": {
+          "north": -1
+        }
+      }
+    ],
+    "open_sound": null,
+    "close_sound": null,
+    "impact_category": "metal-large",
+    "working_sound": {
+      "apparent_volume": 1.5,
+      "idle_sound": {
+        "filename": "__base__/sound/idle1.ogg",
+        "volume": 0.6
+      },
+      "sound": [
+        {
+          "filename": "__base__/sound/assembling-machine-t1-1.ogg",
+          "volume": 0.8
+        },
+        {
+          "filename": "__base__/sound/assembling-machine-t1-2.ogg",
+          "volume": 0.8
+        }
+      ]
+    },
+    "collision_mask": {
+      "layers": {
+        "water_tile": true,
+        "ground_tile": true,
+        "item": true,
+        "object": true,
+        "player": true
+      }
+    },
+    "graphics_set": {
+      "animation": {
+        "layers": [
+          {
+            "filename": "__space-exploration-graphics-4__/graphics/entity/telescope-microwave/telescope-microwave.png",
+            "priority": "high",
+            "width": "4688/8",
+            "height": "5440/8",
+            "frame_count": 64,
+            "line_length": 8,
+            "shift": "util.by_pixel(1, -26)",
+            "animation_speed": "microwave_animation_speed",
+            "scale": 0.5
+          },
+          {
+            "draw_as_shadow": true,
+            "filename": "__space-exploration-graphics-4__/graphics/entity/telescope-microwave/telescope-microwave-shadow.png",
+            "priority": "high",
+            "width": "5440/8",
+            "height": "4800/8",
+            "frame_count": 64,
+            "line_length": 8,
+            "shift": "util.by_pixel(25, 19)",
+            "animation_speed": "microwave_animation_speed",
+            "scale": 0.5
+          }
+        ]
+      },
+      "working_visualisations": [
+        {
+          "effect": "uranium-glow",
+          "light": {
+            "intensity": 0.5,
+            "size": 8,
+            "shift": [
+              0.0,
+              0.0
+            ],
+            "color": {
+              "r": 1,
+              "g": 1,
+              "b": 0.5
+            }
+          }
+        }
+      ]
+    },
+    "crafting_categories": [
+      "space-observation-microwave"
+    ],
+    "crafting_speed": "microwave_crafting_speed",
+    "energy_source": {
+      "type": "electric",
+      "usage_priority": "secondary-input",
+      "emissions_per_minute": {
+        "pollution": 4
+      }
+    },
+    "energy_usage": "1000kW",
+    "module_slots": "microwave_module_slots",
+    "allowed_effects": "data_util.all_effects_except(\"productivity\")"
+  },
+  {
+    "type": "assembling-machine",
+    "name": "se-space-telescope-radio",
+    "icon": "__space-exploration-graphics__/graphics/icons/telescope-radio.png",
+    "icon_size": 64,
+    "flags": [
+      "placeable-neutral",
+      "placeable-player",
+      "player-creation"
+    ],
+    "minable": {
+      "mining_time": 0.2,
+      "result": "se-space-telescope-radio"
+    },
+    "max_health": 500,
+    "corpse": "big-remnants",
+    "dying_explosion": "medium-explosion",
+    "alert_icon_shift": "util.by_pixel(0, -12)",
+    "collision_box": [
+      [
+        -4.3,
+        -4.3
+      ],
+      [
+        4.3,
+        4.3
+      ]
+    ],
+    "selection_box": [
+      [
+        -4.5,
+        -4.5
+      ],
+      [
+        4.5,
+        4.5
+      ]
+    ],
+    "drawing_box_vertical_extension": 2,
+    "circuit_connector": "circuit_connector_definitions.create_vector\n    (\n      universal_connector_template,\n      {\n        { variation = 18, main_offset = {3.3, 4}, shadow_offset = {3.3, 4}, show_shadow = true },\n        { variation = 18, main_offset = {3.3, 4}, shadow_offset = {3.3, 4}, show_shadow = true },\n        { variation = 18, main_offset = {3.3, 4}, shadow_offset = {3.3, 4}, show_shadow = true },\n        { variation = 18, main_offset = {3.3, 4}, shadow_offset = {3.3, 4}, show_shadow = true },\n      }\n    )",
+    "circuit_wire_max_distance": "default_circuit_wire_max_distance",
+    "resistances": [
+      {
+        "type": "impact",
+        "percent": 10
+      }
+    ],
+    "fluid_boxes": [
+      {
+        "production_type": "input",
+        "pipe_covers": "pipecoverspictures()",
+        "volume": 1000,
+        "pipe_connections": [
+          {
+            "flow_direction": "input",
+            "position": [
+              0,
+              -4
+            ],
+            "direction": null
+          }
+        ],
+        "secondary_draw_orders": {
+          "north": -1
+        }
+      },
+      {
+        "production_type": "output",
+        "pipe_covers": "pipecoverspictures()",
+        "volume": 1000,
+        "pipe_connections": [
+          {
+            "flow_direction": "output",
+            "position": [
+              0,
+              4
+            ],
+            "direction": null
+          }
+        ],
+        "secondary_draw_orders": {
+          "north": -1
+        }
+      }
+    ],
+    "open_sound": null,
+    "close_sound": null,
+    "impact_category": "metal-large",
+    "working_sound": {
+      "apparent_volume": 1.5,
+      "idle_sound": {
+        "filename": "__base__/sound/idle1.ogg",
+        "volume": 0.6
+      },
+      "sound": [
+        {
+          "filename": "__base__/sound/assembling-machine-t1-1.ogg",
+          "volume": 0.8
+        },
+        {
+          "filename": "__base__/sound/assembling-machine-t1-2.ogg",
+          "volume": 0.8
+        }
+      ]
+    },
+    "collision_mask": {
+      "layers": {
+        "water_tile": true,
+        "ground_tile": true,
+        "item": true,
+        "object": true,
+        "player": true
+      }
+    },
+    "graphics_set": {
+      "animation": {
+        "layers": [
+          {
+            "filename": "__space-exploration-graphics-4__/graphics/entity/telescope-radio/telescope-radio.png",
+            "priority": "high",
+            "width": "4688/8",
+            "height": "5440/8",
+            "frame_count": 64,
+            "line_length": 8,
+            "shift": "util.by_pixel(1, -26)",
+            "animation_speed": "radio_animation_speed",
+            "scale": 0.5
+          },
+          {
+            "draw_as_shadow": true,
+            "filename": "__space-exploration-graphics-4__/graphics/entity/telescope-radio/telescope-radio-shadow.png",
+            "priority": "high",
+            "width": "5440/8",
+            "height": "4800/8",
+            "frame_count": 64,
+            "line_length": 8,
+            "shift": "util.by_pixel(25, 19)",
+            "animation_speed": "radio_animation_speed",
+            "scale": 0.5
+          }
+        ]
+      },
+      "working_visualisations": [
+        {
+          "effect": "uranium-glow",
+          "light": {
+            "intensity": 0.5,
+            "size": 8,
+            "shift": [
+              0.0,
+              0.0
+            ],
+            "color": {
+              "r": 1,
+              "g": 0.5,
+              "b": 0.5
+            }
+          }
+        }
+      ]
+    },
+    "crafting_categories": [
+      "space-observation-radio"
+    ],
+    "crafting_speed": "radio_crafting_speed",
+    "energy_source": {
+      "type": "electric",
+      "usage_priority": "secondary-input",
+      "emissions_per_minute": {
+        "pollution": 4
+      }
+    },
+    "energy_usage": "1000kW",
+    "module_slots": "radio_module_slots",
+    "allowed_effects": "data_util.all_effects_except(\"productivity\")"
+  }
+]

@@ -1,0 +1,82 @@
+[
+  {
+    "type": "recipe",
+    "name": "se-rocket-launch-pad-silo-dummy-recipe",
+    "results": [
+      {
+        "type": "item",
+        "name": "se-rocket-launch-pad-silo-dummy-result-item",
+        "amount": 1
+      }
+    ],
+    "category": "rocket-building",
+    "enabled": false,
+    "energy_required": 0.01,
+    "hidden": true,
+    "auto_recycle": false,
+    "ingredients": [
+      {
+        "type": "item",
+        "name": "se-rocket-launch-pad-silo-dummy-ingredient-item",
+        "amount": 1
+      }
+    ],
+    "always_show_made_in": true
+  },
+  {
+    "type": "recipe",
+    "name": "se-rocket-launch-pad",
+    "results": [
+      {
+        "type": "item",
+        "name": "se-rocket-launch-pad",
+        "amount": 1
+      }
+    ],
+    "enabled": false,
+    "energy_required": 30,
+    "ingredients": [
+      {
+        "type": "item",
+        "name": "steel-plate",
+        "amount": 1000
+      },
+      {
+        "type": "item",
+        "name": "concrete",
+        "amount": 1000
+      },
+      {
+        "type": "item",
+        "name": "pipe",
+        "amount": 100
+      },
+      {
+        "type": "item",
+        "name": "storage-tank",
+        "amount": 10
+      },
+      {
+        "type": "item",
+        "name": "radar",
+        "amount": 10
+      },
+      {
+        "type": "item",
+        "name": "steel-chest",
+        "amount": 10
+      },
+      {
+        "type": "item",
+        "name": "processing-unit",
+        "amount": 200
+      },
+      {
+        "type": "item",
+        "name": "electric-engine-unit",
+        "amount": 200
+      }
+    ],
+    "requester_paste_multiplier": 1
+  }
+]

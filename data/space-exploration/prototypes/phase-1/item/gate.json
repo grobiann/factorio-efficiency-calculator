@@ -1,0 +1,19 @@
+[
+  {
+    "type": "item",
+    "name": "se-gate-fragment-",
+    "localised_name": [
+      "item-name.",
+      "..data_util.mod_prefix .. \"gate-fragment\""
+    ],
+    "icon": "__space-exploration-graphics__/graphics/icons/gate/fragment-",
+    "icon_size": 64,
+    "order": "a[ancient]-g[gate]-a",
+    "stack_size": 1,
+    "subgroup": "ancient",
+    "place_result": "se-gate-fragment-",
+    "flags": {},
+    "hidden": true,
+    "auto_recycle": false
+  }
+]

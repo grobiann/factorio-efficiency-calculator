@@ -1,0 +1,54 @@
+[
+  {
+    "type": "technology",
+    "name": "se-bio-upgrade-",
+    "effects": "table.deepcopy(upgrade_type.effects)",
+    "icons": [
+      {
+        "icon": "__space-exploration-graphics__/graphics/technology/bio-upgrade-base.png",
+        "icon_size": 128
+      },
+      {
+        "icon": "__space-exploration-graphics__/graphics/technology/bio-upgrade-flask.png",
+        "icon_size": 128
+      },
+      {
+        "icon": "__space-exploration-graphics__/graphics/technology/bio-upgrade-mask.png",
+        "icon_size": 128,
+        "tint": null
+      }
+    ],
+    "order": "e-g",
+    "upgrade": true,
+    "prerequisites": [
+      "[1] = prereq\n          --i == 1 and (data_util.mod_prefix .. \"biological-science-pack-1\") or nil"
+    ],
+    "unit": {
+      "count": "2^i*50",
+      "time": 60,
+      "ingredients": [
+        [
+          "automation-science-pack",
+          1
+        ],
+        [
+          "logistic-science-pack",
+          1
+        ],
+        [
+          "chemical-science-pack",
+          1
+        ],
+        [
+          "se-rocket-science-pack",
+          1
+        ],
+        [
+          "se-biological-science-pack-",
+          1
+        ],
+        null
+      ]
+    }
+  }
+]

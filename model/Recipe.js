@@ -13,6 +13,12 @@ export class Recipe {
       (Array.isArray(data.ingredients) ? data.ingredients : [data.ingredients]) : [];
     this.results = data.results ? 
       (Array.isArray(data.results) ? data.results : [data.results]) : [];
+    
+    // Icon data preservation
+    this.icon = data.icon;
+    this.icon_size = data.icon_size;
+    this.icon_mipmaps = data.icon_mipmaps;
+    this.icons = data.icons;
   }
 
   static #expectedAmount(entry) {

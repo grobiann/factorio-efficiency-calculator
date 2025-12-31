@@ -1,0 +1,591 @@
+[
+  {
+    "type": "item",
+    "name": "se-water-ice",
+    "icon": "__space-exploration-graphics__/graphics/icons/water-ice.png",
+    "icon_size": 64,
+    "subgroup": "water",
+    "order": "a[water]-b[water-ice]-a[water-ice]",
+    "stack_size": 200
+  },
+  {
+    "type": "item",
+    "name": "se-methane-ice",
+    "icon": "__space-exploration-graphics__/graphics/icons/methane-ice.png",
+    "icon_size": 64,
+    "order": "a[oil]-g[methane]-a[methane]",
+    "stack_size": 200,
+    "subgroup": "oil"
+  },
+  {
+    "type": "item",
+    "name": "se-iron-ingot",
+    "icon": "__space-exploration-graphics__/graphics/icons/iron-ingot.png",
+    "icon_size": 64,
+    "order": "a[iron]-d[iron-ingot]-a[iron-ingot]",
+    "stack_size": 50,
+    "subgroup": "iron"
+  },
+  {
+    "type": "item",
+    "name": "se-steel-ingot",
+    "icon": "__space-exploration-graphics__/graphics/icons/steel-ingot.png",
+    "icon_size": 64,
+    "order": "a[iron]-f[steel-ingot]-a[steel-ingot]",
+    "stack_size": 50,
+    "subgroup": "iron"
+  },
+  {
+    "type": "item",
+    "name": "se-copper-ingot",
+    "icon": "__space-exploration-graphics__/graphics/icons/copper-ingot.png",
+    "icon_size": 64,
+    "order": "a[copper]-d[copper-ingot]-a[copper-ingot]",
+    "stack_size": 50,
+    "subgroup": "copper"
+  },
+  {
+    "type": "item",
+    "name": "se-cryonite",
+    "icon": "__space-exploration-graphics__/graphics/icons/cryonite.png",
+    "icon_size": 64,
+    "order": "a[cryonite]-b[cryonite-ore]-a[cryonite]",
+    "pictures": [
+      {
+        "filename": "__space-exploration-graphics__/graphics/icons/cryonite.png",
+        "scale": 0.5,
+        "size": 64
+      },
+      {
+        "filename": "__space-exploration-graphics__/graphics/icons/cryonite-01.png",
+        "scale": 0.5,
+        "size": 64
+      },
+      {
+        "filename": "__space-exploration-graphics__/graphics/icons/cryonite-02.png",
+        "scale": 0.5,
+        "size": 64
+      },
+      {
+        "filename": "__space-exploration-graphics__/graphics/icons/cryonite-03.png",
+        "scale": 0.5,
+        "size": 64
+      }
+    ],
+    "stack_size": 20,
+    "subgroup": "cryonite"
+  },
+  {
+    "type": "item",
+    "name": "se-cryonite-powder",
+    "icon": "__space-exploration-graphics__/graphics/icons/cryonite-powder.png",
+    "icon_size": 64,
+    "order": "a[cryonite]-c[cryonite-powder]-a[cryonite-powder]",
+    "stack_size": 50,
+    "subgroup": "cryonite"
+  },
+  {
+    "type": "item",
+    "name": "se-cryonite-crystal",
+    "icon": "__space-exploration-graphics__/graphics/icons/cryonite-crystal.png",
+    "icon_size": 64,
+    "order": "a[cryonite]-d[cryonite-crystal]-a[cryonite-crystal]",
+    "stack_size": 50,
+    "subgroup": "cryonite"
+  },
+  {
+    "type": "item",
+    "name": "se-cryonite-rod",
+    "icon": "__space-exploration-graphics__/graphics/icons/cryonite-rod.png",
+    "icon_size": 64,
+    "order": "a[cryonite]-e[cryonite-rod]-a[cryonite-rod]",
+    "stack_size": 200,
+    "subgroup": "cryonite"
+  },
+  {
+    "type": "item",
+    "name": "se-cryonite-ion-exchange-beads",
+    "icon": "__space-exploration-graphics__/graphics/icons/cryonite-ion-exchange-beads.png",
+    "icon_size": 64,
+    "order": "a[cryonite]-e[cryonite-rod]-b[cryonite-ion]",
+    "stack_size": 200,
+    "subgroup": "cryonite"
+  },
+  {
+    "type": "item",
+    "name": "se-beryllium-ore",
+    "icon": "__space-exploration-graphics__/graphics/icons/beryllium-ore.png",
+    "icon_size": 64,
+    "order": "a[beryllium]-b[beryllium-ore]-a[beryllium-ore]",
+    "pictures": [
+      {
+        "filename": "__space-exploration-graphics__/graphics/icons/beryllium-ore.png",
+        "scale": 0.5,
+        "size": 64
+      },
+      {
+        "filename": "__space-exploration-graphics__/graphics/icons/beryllium-ore-01.png",
+        "scale": 0.5,
+        "size": 64
+      },
+      {
+        "filename": "__space-exploration-graphics__/graphics/icons/beryllium-ore-02.png",
+        "scale": 0.5,
+        "size": 64
+      },
+      {
+        "filename": "__space-exploration-graphics__/graphics/icons/beryllium-ore-03.png",
+        "scale": 0.5,
+        "size": 64
+      }
+    ],
+    "stack_size": 50,
+    "subgroup": "beryllium"
+  },
+  {
+    "type": "item",
+    "name": "se-beryllium-sulfate",
+    "icon": "__space-exploration-graphics__/graphics/icons/beryllium-sulfate.png",
+    "icon_size": 64,
+    "order": "a[beryllium]-c[beryllium-sulfate]-a[beryllium-sulfate]",
+    "stack_size": 100,
+    "subgroup": "beryllium"
+  },
+  {
+    "type": "fluid",
+    "name": "se-beryllium-hydroxide",
+    "default_temperature": 25,
+    "heat_capacity": "0.1kJ",
+    "max_temperature": 100,
+    "base_color": {
+      "r": 73,
+      "g": 112,
+      "b": 79
+    },
+    "flow_color": {
+      "r": 156,
+      "g": 178,
+      "b": 159
+    },
+    "icon": "__space-exploration-graphics__/graphics/icons/fluid/beryllium-hydroxide.png",
+    "icon_size": 64,
+    "order": "a[beryllium]-d[beryllium-hydroxide]-a[beryllium-hydroxide]",
+    "subgroup": "beryllium"
+  },
+  {
+    "type": "item",
+    "name": "se-beryllium-powder",
+    "icon": "__space-exploration-graphics__/graphics/icons/beryllium-powder.png",
+    "icon_size": 64,
+    "order": "a[beryllium]-e[beryllium-powder]-a[beryllium-powder]",
+    "stack_size": 100,
+    "subgroup": "beryllium"
+  },
+  {
+    "type": "item",
+    "name": "se-beryllium-ingot",
+    "icon": "__space-exploration-graphics__/graphics/icons/beryllium-ingot.png",
+    "icon_size": 64,
+    "order": "a[beryllium]-g[beryllium-ingot]-a[beryllium-ingot]",
+    "stack_size": 100,
+    "subgroup": "beryllium"
+  },
+  {
+    "type": "item",
+    "name": "se-beryllium-plate",
+    "icon": "__space-exploration-graphics__/graphics/icons/beryllium-plate.png",
+    "icon_size": 64,
+    "order": "a[beryllium]-h[beryllium-plate]-a[beryllium-plate]",
+    "stack_size": 200,
+    "subgroup": "beryllium"
+  },
+  {
+    "type": "item",
+    "name": "se-holmium-ore",
+    "icon": "__space-exploration-graphics__/graphics/icons/holmium-ore.png",
+    "icon_size": 64,
+    "order": "a[holmium]-b[holmium-ore]-a[holmium-ore]",
+    "pictures": [
+      {
+        "filename": "__space-exploration-graphics__/graphics/icons/holmium-ore.png",
+        "scale": 0.5,
+        "size": 64
+      },
+      {
+        "filename": "__space-exploration-graphics__/graphics/icons/holmium-ore-01.png",
+        "scale": 0.5,
+        "size": 64
+      },
+      {
+        "filename": "__space-exploration-graphics__/graphics/icons/holmium-ore-02.png",
+        "scale": 0.5,
+        "size": 64
+      },
+      {
+        "filename": "__space-exploration-graphics__/graphics/icons/holmium-ore-03.png",
+        "scale": 0.5,
+        "size": 64
+      }
+    ],
+    "stack_size": 20,
+    "subgroup": "holmium"
+  },
+  {
+    "type": "item",
+    "name": "se-holmium-ore-crushed",
+    "icon": "__space-exploration-graphics__/graphics/icons/holmium-ore-washed.png",
+    "icon_size": 64,
+    "order": "a[holmium]-c[holmium-crushed]-a[holmium-crushed]",
+    "stack_size": 50,
+    "subgroup": "holmium"
+  },
+  {
+    "type": "item",
+    "name": "se-holmium-chloride",
+    "icon": "__space-exploration-graphics__/graphics/icons/holmium-chloride.png",
+    "icon_size": 64,
+    "order": "a[holmium]-d[holmium-chloride]-a[holmium-chloride]",
+    "stack_size": 50,
+    "subgroup": "holmium"
+  },
+  {
+    "type": "item",
+    "name": "se-holmium-powder",
+    "icon": "__space-exploration-graphics__/graphics/icons/holmium-powder.png",
+    "icon_size": 64,
+    "order": "a[holmium]-e[holmium-powder]-a[holmium-powder]",
+    "stack_size": 50,
+    "subgroup": "holmium"
+  },
+  {
+    "type": "item",
+    "name": "se-holmium-ingot",
+    "icon": "__space-exploration-graphics__/graphics/icons/holmium-ingot.png",
+    "icon_size": 64,
+    "order": "a[holmium]-g[holmium-ingot]-a[holmium-ingot]",
+    "stack_size": 50,
+    "subgroup": "holmium"
+  },
+  {
+    "type": "item",
+    "name": "se-holmium-plate",
+    "icon": "__space-exploration-graphics__/graphics/icons/holmium-plate.png",
+    "icon_size": 64,
+    "order": "a[holmium]-h[holmium-plate]-a[holmium-plate]",
+    "stack_size": 100,
+    "subgroup": "holmium"
+  },
+  {
+    "type": "item",
+    "name": "se-iridium-ore",
+    "icon": "__space-exploration-graphics__/graphics/icons/iridium-ore.png",
+    "icon_size": 64,
+    "order": "a[iridium]-b[iridium-ore]-a[iridium-ore]",
+    "pictures": [
+      {
+        "filename": "__space-exploration-graphics__/graphics/icons/iridium-ore.png",
+        "scale": 0.5,
+        "size": 64
+      },
+      {
+        "filename": "__space-exploration-graphics__/graphics/icons/iridium-ore-01.png",
+        "scale": 0.5,
+        "size": 64
+      },
+      {
+        "filename": "__space-exploration-graphics__/graphics/icons/iridium-ore-02.png",
+        "scale": 0.5,
+        "size": 64
+      },
+      {
+        "filename": "__space-exploration-graphics__/graphics/icons/iridium-ore-03.png",
+        "scale": 0.5,
+        "size": 64
+      }
+    ],
+    "stack_size": 10,
+    "subgroup": "iridium"
+  },
+  {
+    "type": "item",
+    "name": "se-iridium-ore-crushed",
+    "icon": "__space-exploration-graphics__/graphics/icons/iridium-ore-crushed.png",
+    "icon_size": 64,
+    "order": "a[iridium]-c[iridium-crushed]-a[iridium-crushed]",
+    "stack_size": 40,
+    "subgroup": "iridium"
+  },
+  {
+    "type": "item",
+    "name": "se-iridium-powder",
+    "icon": "__space-exploration-graphics__/graphics/icons/iridium-powder.png",
+    "icon_size": 64,
+    "order": "a[iridium]-d[iridium-powder]-a[iridium-powder]",
+    "stack_size": 30,
+    "subgroup": "iridium"
+  },
+  {
+    "type": "item",
+    "name": "se-iridium-blastcake",
+    "icon": "__space-exploration-graphics__/graphics/icons/iridium-blastcake.png",
+    "icon_size": 64,
+    "order": "a[iridium]-e[iridium-blastcake]-a[iridium-blastcake]",
+    "stack_size": 20,
+    "subgroup": "iridium"
+  },
+  {
+    "type": "item",
+    "name": "se-iridium-ingot",
+    "icon": "__space-exploration-graphics__/graphics/icons/iridium-ingot.png",
+    "icon_size": 64,
+    "order": "a[iridium]-f[iridium-ingot]-a[iridium-ingot]",
+    "stack_size": 20,
+    "subgroup": "iridium"
+  },
+  {
+    "type": "item",
+    "name": "se-iridium-plate",
+    "icon": "__space-exploration-graphics__/graphics/icons/iridium-plate.png",
+    "icon_size": 64,
+    "order": "a[iridium]-g[iridium-plate]-a[iridium-plate]",
+    "stack_size": 40,
+    "subgroup": "iridium"
+  },
+  {
+    "type": "item",
+    "name": "se-naquium-ore",
+    "icon": "__space-exploration-graphics__/graphics/icons/naquium-ore.png",
+    "icon_size": 64,
+    "order": "a[naquium]-b[naquium-ore]-a[naquium-ore]",
+    "pictures": [
+      {
+        "filename": "__space-exploration-graphics__/graphics/icons/naquium-ore.png",
+        "scale": 0.5,
+        "size": 64
+      },
+      {
+        "filename": "__space-exploration-graphics__/graphics/icons/naquium-ore-01.png",
+        "scale": 0.5,
+        "size": 64
+      },
+      {
+        "filename": "__space-exploration-graphics__/graphics/icons/naquium-ore-02.png",
+        "scale": 0.5,
+        "size": 64
+      },
+      {
+        "filename": "__space-exploration-graphics__/graphics/icons/naquium-ore-03.png",
+        "scale": 0.5,
+        "size": 64
+      }
+    ],
+    "stack_size": 10,
+    "subgroup": "naquium"
+  },
+  {
+    "type": "item",
+    "name": "se-naquium-ore-crushed",
+    "icon": "__space-exploration-graphics__/graphics/icons/naquium-ore-crushed.png",
+    "icon_size": 64,
+    "order": "a[naquium]-c[naquium-crushed]-a[naquium-crushed]",
+    "stack_size": 20,
+    "subgroup": "naquium"
+  },
+  {
+    "type": "item",
+    "name": "se-naquium-refined",
+    "icon": "__space-exploration-graphics__/graphics/icons/naquium-refined.png",
+    "icon_size": 64,
+    "order": "a[naquium]-d[naquium-refined]-a[naquium-refined]",
+    "stack_size": 20,
+    "subgroup": "naquium"
+  },
+  {
+    "type": "item",
+    "name": "se-naquium-crystal",
+    "icon": "__space-exploration-graphics__/graphics/icons/naquium-crystal.png",
+    "icon_size": 64,
+    "order": "a[naquium]-f[naquium-crystal]-a[naquium-crystal]",
+    "stack_size": 20,
+    "subgroup": "naquium"
+  },
+  {
+    "type": "item",
+    "name": "se-naquium-powder",
+    "icon": "__space-exploration-graphics__/graphics/icons/naquium-powder.png",
+    "icon_size": 64,
+    "order": "a[naquium]-e[naquium-powder]-a[naquium-powder]",
+    "stack_size": 20,
+    "subgroup": "naquium"
+  },
+  {
+    "type": "item",
+    "name": "se-naquium-ingot",
+    "icon": "__space-exploration-graphics__/graphics/icons/naquium-ingot.png",
+    "icon_size": 64,
+    "order": "a[naquium]-g[naquium-ingot]-a[naquium-ingot]",
+    "stack_size": 10,
+    "subgroup": "naquium"
+  },
+  {
+    "type": "item",
+    "name": "se-naquium-plate",
+    "icon": "__space-exploration-graphics__/graphics/icons/naquium-plate.png",
+    "icon_size": 64,
+    "order": "a[naquium]-h[naquium-plate]-a[naquium-plate]",
+    "stack_size": 20,
+    "subgroup": "naquium"
+  },
+  {
+    "type": "item",
+    "name": "se-vitamelange",
+    "icon": "__space-exploration-graphics__/graphics/icons/vitamelange.png",
+    "icon_size": 64,
+    "order": "a[vitamelange]-b[vitamelange]-a[vitamelange]",
+    "pictures": [
+      {
+        "filename": "__space-exploration-graphics__/graphics/icons/vitamelange.png",
+        "scale": 0.5,
+        "size": 64
+      },
+      {
+        "filename": "__space-exploration-graphics__/graphics/icons/vitamelange-01.png",
+        "scale": 0.5,
+        "size": 64
+      },
+      {
+        "filename": "__space-exploration-graphics__/graphics/icons/vitamelange-02.png",
+        "scale": 0.5,
+        "size": 64
+      },
+      {
+        "filename": "__space-exploration-graphics__/graphics/icons/vitamelange-03.png",
+        "scale": 0.5,
+        "size": 64
+      }
+    ],
+    "stack_size": 20,
+    "subgroup": "vitamelange",
+    "fuel_category": "chemical",
+    "fuel_value": "2MJ"
+  },
+  {
+    "type": "item",
+    "name": "se-vitamelange-nugget",
+    "icon": "__space-exploration-graphics__/graphics/icons/vitamelange-nugget.png",
+    "icon_size": 64,
+    "order": "a[vitamelange]-c[vitamelange-nugget]-a[vitamelange-nugget]",
+    "stack_size": 50,
+    "subgroup": "vitamelange",
+    "fuel_category": "chemical",
+    "fuel_value": "1MJ"
+  },
+  {
+    "type": "item",
+    "name": "se-vitamelange-bloom",
+    "icon": "__space-exploration-graphics__/graphics/icons/vitamelange-bloom.png",
+    "icon_size": 64,
+    "order": "a[vitamelange]-d[vitamelange-bloom]-a[vitamelange-bloom]",
+    "stack_size": 50,
+    "subgroup": "vitamelange",
+    "fuel_category": "chemical",
+    "fuel_value": "2.2MJ"
+  },
+  {
+    "type": "item",
+    "name": "se-vitamelange-spice",
+    "icon": "__space-exploration-graphics__/graphics/icons/vitamelange-spice.png",
+    "icon_size": 64,
+    "order": "a[vitamelange]-e[vitamelange-spice]-a[vitamelange-spice]",
+    "stack_size": 50,
+    "subgroup": "vitamelange",
+    "fuel_category": "chemical",
+    "fuel_value": "4.5MJ"
+  },
+  {
+    "type": "item",
+    "name": "se-vitamelange-extract",
+    "icon": "__space-exploration-graphics__/graphics/icons/vitamelange-extract.png",
+    "icon_size": 64,
+    "order": "a[vitamelange]-f[vitamelange-extract]-a[vitamelange-extract]",
+    "stack_size": 200,
+    "subgroup": "vitamelange",
+    "fuel_category": "chemical",
+    "fuel_value": "10MJ"
+  },
+  {
+    "type": "item",
+    "name": "se-vulcanite",
+    "icon": "__space-exploration-graphics__/graphics/icons/vulcanite.png",
+    "icon_size": 64,
+    "order": "a[vulcanite]-b[vulcanite-ore]-a[vulcanite-ore]",
+    "pictures": [
+      {
+        "filename": "__space-exploration-graphics__/graphics/icons/vulcanite.png",
+        "scale": 0.5,
+        "size": 64
+      },
+      {
+        "filename": "__space-exploration-graphics__/graphics/icons/vulcanite-01.png",
+        "scale": 0.5,
+        "size": 64
+      },
+      {
+        "filename": "__space-exploration-graphics__/graphics/icons/vulcanite-02.png",
+        "scale": 0.5,
+        "size": 64
+      },
+      {
+        "filename": "__space-exploration-graphics__/graphics/icons/vulcanite-03.png",
+        "scale": 0.5,
+        "size": 64
+      }
+    ],
+    "stack_size": 20,
+    "subgroup": "vulcanite",
+    "fuel_category": "chemical",
+    "fuel_value": "2MJ"
+  },
+  {
+    "type": "item",
+    "name": "se-vulcanite-crushed",
+    "icon": "__space-exploration-graphics__/graphics/icons/vulcanite-washed.png",
+    "icon_size": 64,
+    "order": "a[vulcanite]-c[vulcanite-crushed]-a[vulcanite-crushed]",
+    "stack_size": 50,
+    "subgroup": "vulcanite",
+    "fuel_category": "chemical",
+    "fuel_value": "4MJ"
+  },
+  {
+    "type": "item",
+    "name": "se-vulcanite-enriched",
+    "icon": "__space-exploration-graphics__/graphics/icons/vulcanite-enriched.png",
+    "icon_size": 64,
+    "order": "a[vulcanite]-d[vulcanite-enriched]-a[vulcanite-enriched]",
+    "stack_size": 50,
+    "subgroup": "vulcanite",
+    "fuel_category": "chemical",
+    "fuel_value": "10MJ"
+  },
+  {
+    "type": "item",
+    "name": "se-vulcanite-block",
+    "icon": "__space-exploration-graphics__/graphics/icons/vulcanite-block.png",
+    "icon_size": 64,
+    "order": "a[vulcanite]-e[vulcanite-block]-a[vulcanite-block]",
+    "stack_size": 200,
+    "subgroup": "vulcanite",
+    "fuel_category": "chemical",
+    "fuel_value": "30MJ"
+  },
+  {
+    "type": "item",
+    "name": "se-vulcanite-ion-exchange-beads",
+    "icon": "__space-exploration-graphics__/graphics/icons/vulcanite-ion-exchange-beads.png",
+    "icon_size": 64,
+    "order": "a[vulcanite]-e[vulcanite-block]-b[vulcanite-ion]",
+    "stack_size": 200,
+    "subgroup": "vulcanite"
+  }
+]

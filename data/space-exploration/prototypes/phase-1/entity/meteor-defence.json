@@ -1,0 +1,594 @@
+[
+  {
+    "type": "ammo-turret",
+    "name": "se-meteor-defence-container",
+    "minable": {
+      "mining_time": 0.5,
+      "result": "se-meteor-defence"
+    },
+    "alert_when_attacking": false,
+    "automated_ammo_count": 4,
+    "attack_parameters": {
+      "ammo_type": {},
+      "ammo_category": "se-meteor-defence",
+      "cooldown": 300,
+      "range": 1,
+      "type": "projectile"
+    },
+    "graphics_set": {
+      "base_visualisation": {
+        "render_layer": "object",
+        "animation": {
+          "north": {
+            "layers": [
+              {
+                "filename": "__space-exploration-graphics-3__/graphics/entity/meteor-defence/meteor-defence.png",
+                "shift": [
+                  0,
+                  -4.75
+                ],
+                "width": 616,
+                "height": 1198,
+                "scale": 0.5
+              },
+              {
+                "draw_as_shadow": true,
+                "filename": "__space-exploration-graphics-3__/graphics/entity/meteor-defence/meteor-defence-shadow.png",
+                "shift": [
+                  2.5,
+                  "2/32"
+                ],
+                "width": 890,
+                "height": 578,
+                "scale": 0.5
+              }
+            ]
+          }
+        }
+      }
+    },
+    "call_for_help_radius": 40,
+    "folded_animation": "blank_image",
+    "collision_box": "collision_box",
+    "drawing_box_vertical_extension": 9,
+    "collision_mask": {
+      "layers": {
+        "water_tile": true,
+        "item": true,
+        "object": true,
+        "player": true
+      }
+    },
+    "se_allow_in_space": true,
+    "corpse": "big-remnants",
+    "dying_explosion": "medium-explosion",
+    "flags": [
+      "placeable-neutral",
+      "player-creation"
+    ],
+    "icon": "__space-exploration-graphics__/graphics/icons/meteor-defence.png",
+    "icon_size": 64,
+    "ignore_target_mask": [
+      "common"
+    ],
+    "order": "b-a",
+    "inventory_size": 1,
+    "max_health": 8000,
+    "resistances": [
+      {
+        "type": "impact",
+        "percent": 100
+      },
+      {
+        "type": "fire",
+        "percent": 100
+      }
+    ],
+    "open_sound": null,
+    "close_sound": null,
+    "rotation_speed": 0.015,
+    "selection_box": "selection_box",
+    "selection_priority": 100,
+    "impact_category": "metal-large"
+  },
+  {
+    "type": "electric-turret",
+    "name": "se-meteor-defence-charger",
+    "subgroup": "composite-entity-parts",
+    "hidden": true,
+    "icons": "data_util.add_icons(\n      \"__space-exploration-graphics__/graphics/icons/meteor-defence.png\",\n      \"__base__/graphics/icons/accumulator.png\"\n    )",
+    "flags": [
+      "placeable-player",
+      "player-creation",
+      "placeable-off-grid",
+      "not-deconstructable",
+      "not-blueprintable"
+    ],
+    "ignore_target_mask": [
+      "common"
+    ],
+    "order": "b-a",
+    "selectable_in_game": false,
+    "selection_box": [
+      [
+        -4.5,
+        -4.5
+      ],
+      [
+        4.5,
+        4.5
+      ]
+    ],
+    "collision_box": "collision_box",
+    "collision_mask": {
+      "layers": {}
+    },
+    "energy_source": {
+      "drain": "5MW",
+      "buffer_capacity": "2000MJ",
+      "input_flow_limit": "20MW",
+      "type": "electric",
+      "usage_priority": "secondary-input"
+    },
+    "graphics_set": {
+      "base_visualisations": {
+        "animation": {
+          "north": "blank_image"
+        }
+      }
+    },
+    "call_for_help_radius": 1,
+    "folded_animation": "blank_image",
+    "attack_parameters": {
+      "ammo_type": {},
+      "ammo_category": "se-meteor-defence",
+      "cooldown": 3600,
+      "range": 1,
+      "type": "projectile"
+    }
+  },
+  {
+    "type": "explosion",
+    "name": "se-meteor-defence-beam",
+    "subgroup": "ammo-effects",
+    "hidden": true,
+    "animations": [
+      {
+        "filename": "__space-exploration-graphics-3__/graphics/entity/meteor-defence/meteor-defence-beam.png",
+        "frame_count": 6,
+        "height": 1,
+        "priority": "extra-high",
+        "width": 187
+      }
+    ],
+    "beam": true,
+    "flags": [
+      "not-on-map",
+      "placeable-off-grid"
+    ],
+    "light": {
+      "color": {
+        "b": 0,
+        "g": 0,
+        "r": 1
+      },
+      "intensity": 1,
+      "size": 20
+    },
+    "rotate": true,
+    "smoke": "smoke-fast",
+    "smoke_count": 2,
+    "smoke_slow_down_factor": 1,
+    "sound": [
+      {
+        "filename": "__base__/sound/fight/old/huge-explosion.ogg",
+        "volume": 1
+      }
+    ]
+  },
+  {
+    "type": "ammo-turret",
+    "name": "se-meteor-point-defence-container",
+    "minable": {
+      "mining_time": 0.3,
+      "result": "se-meteor-point-defence"
+    },
+    "alert_when_attacking": false,
+    "automated_ammo_count": 4,
+    "additional_pastable_entities": [
+      "se-meteor-point-defence-container"
+    ],
+    "attack_parameters": {
+      "ammo_category": "se-meteor-point-defence",
+      "ammo_type": {},
+      "cooldown": 300,
+      "range": 64,
+      "type": "projectile"
+    },
+    "graphics_set": {
+      "base_visualisation": {
+        "render_layer": "object",
+        "animation": {
+          "north": {
+            "layers": [
+              {
+                "filename": "__space-exploration-graphics-3__/graphics/entity/meteor-point-defence/meteor-point-defence-base.png",
+                "shift": [
+                  "1/32",
+                  -1.5
+                ],
+                "width": 206,
+                "height": 400,
+                "scale": 0.5
+              },
+              {
+                "filename": "__space-exploration-graphics-3__/graphics/entity/meteor-point-defence/meteor-point-defence-mask.png",
+                "shift": [
+                  "1/32",
+                  -1.5
+                ],
+                "width": 206,
+                "height": 400,
+                "scale": 0.5,
+                "tint": {
+                  "r": 255,
+                  "g": 0,
+                  "b": 0
+                }
+              },
+              {
+                "draw_as_shadow": true,
+                "filename": "__space-exploration-graphics-3__/graphics/entity/meteor-point-defence/meteor-point-defence-shadow.png",
+                "shift": [
+                  1.7,
+                  0.6
+                ],
+                "width": 408,
+                "height": 136,
+                "scale": 0.5
+              }
+            ]
+          }
+        }
+      }
+    },
+    "call_for_help_radius": 40,
+    "folded_animation": "blank_image",
+    "collision_box": [
+      [
+        -1.35,
+        -1.35
+      ],
+      [
+        1.35,
+        1.35
+      ]
+    ],
+    "drawing_box_vertical_extension": 2.85,
+    "collision_mask": {
+      "layers": {
+        "water_tile": true,
+        "item": true,
+        "object": true,
+        "player": true
+      }
+    },
+    "se_allow_in_space": true,
+    "corpse": "medium-remnants",
+    "dying_explosion": "medium-explosion",
+    "flags": [
+      "placeable-neutral",
+      "player-creation"
+    ],
+    "icon": "__space-exploration-graphics__/graphics/icons/meteor-point-defence.png",
+    "icon_size": 64,
+    "ignore_target_mask": [
+      "common"
+    ],
+    "order": "a-a",
+    "inventory_size": 1,
+    "max_health": 2000,
+    "resistances": [
+      {
+        "type": "impact",
+        "percent": 100
+      },
+      {
+        "type": "fire",
+        "percent": 100
+      }
+    ],
+    "open_sound": null,
+    "close_sound": null,
+    "rotation_speed": 0.015,
+    "selection_box": [
+      [
+        -1.5,
+        -1.5
+      ],
+      [
+        1.5,
+        1.5
+      ]
+    ],
+    "selection_priority": 100,
+    "impact_category": "metal-large"
+  },
+  {
+    "type": "sprite",
+    "name": "se-meteor-point-defence-mask",
+    "filename": "__space-exploration-graphics-3__/graphics/entity/meteor-point-defence/meteor-point-defence-mask.png",
+    "shift": [
+      "1/32",
+      -1.5
+    ],
+    "width": 206,
+    "height": 400,
+    "scale": 0.5
+  },
+  {
+    "type": "electric-turret",
+    "name": "se-meteor-point-defence-charger",
+    "subgroup": "composite-entity-parts",
+    "hidden": true,
+    "icons": "data_util.add_icons(\n      \"__space-exploration-graphics__/graphics/icons/meteor-point-defence.png\",\n      \"__base__/graphics/icons/accumulator.png\"\n    )",
+    "flags": [
+      "placeable-player",
+      "player-creation",
+      "placeable-off-grid",
+      "not-deconstructable",
+      "not-blueprintable"
+    ],
+    "graphics_set": {
+      "base_visualisation": {
+        "render_layer": "object",
+        "animation": {
+          "north": {
+            "layers": [
+              {
+                "filename": "__space-exploration-graphics-3__/graphics/entity/meteor-point-defence/meteor-point-defence-base.png",
+                "shift": [
+                  "1/32",
+                  -1.5
+                ],
+                "width": 206,
+                "height": 400,
+                "scale": 0.5
+              },
+              {
+                "filename": "__space-exploration-graphics-3__/graphics/entity/meteor-point-defence/meteor-point-defence-mask.png",
+                "shift": [
+                  "1/32",
+                  -1.5
+                ],
+                "width": 206,
+                "height": 400,
+                "scale": 0.5,
+                "tint": {
+                  "r": 255,
+                  "g": 0,
+                  "b": 0
+                }
+              },
+              {
+                "draw_as_shadow": true,
+                "filename": "__space-exploration-graphics-3__/graphics/entity/meteor-point-defence/meteor-point-defence-shadow.png",
+                "shift": [
+                  1.7,
+                  0.6
+                ],
+                "width": 408,
+                "height": 136,
+                "scale": 0.5
+              }
+            ]
+          }
+        }
+      }
+    },
+    "icon_size": 64,
+    "ignore_target_mask": [
+      "common"
+    ],
+    "order": "a-a",
+    "selectable_in_game": false,
+    "selection_box": [
+      [
+        -1.5,
+        -1.5
+      ],
+      [
+        1.5,
+        1.5
+      ]
+    ],
+    "collision_box": [
+      [
+        -1.35,
+        -1.35
+      ],
+      [
+        1.35,
+        1.35
+      ]
+    ],
+    "collision_mask": {
+      "layers": {}
+    },
+    "energy_source": {
+      "drain": "pt_charger_idle_draw",
+      "input_flow_limit": "pt_charger_max_draw",
+      "buffer_capacity": "pt_charger_buffer_capacity",
+      "type": "electric",
+      "usage_priority": "secondary-input"
+    },
+    "call_for_help_radius": 1,
+    "folded_animation": "blank_image",
+    "attack_parameters": {
+      "ammo_type": {
+        "energy_consumption": "50MJ"
+      },
+      "ammo_category": "se-meteor-point-defence",
+      "cooldown": 1500,
+      "range": 1,
+      "type": "projectile"
+    }
+  },
+  {
+    "type": "electric-turret",
+    "name": "se-meteor-point-defence-charger-overcharged",
+    "subgroup": "composite-entity-parts",
+    "hidden": true,
+    "icons": "data_util.add_icons(\n      \"__space-exploration-graphics__/graphics/icons/meteor-point-defence.png\",\n      \"__base__/graphics/icons/accumulator.png\"\n    )",
+    "graphics_set": {
+      "base_visualisation": {
+        "render_layer": "object",
+        "animation": {
+          "north": {
+            "layers": [
+              {
+                "filename": "__space-exploration-graphics-3__/graphics/entity/meteor-point-defence/meteor-point-defence-base.png",
+                "shift": [
+                  "1/32",
+                  -1.5
+                ],
+                "width": 206,
+                "height": 400,
+                "scale": 0.5
+              },
+              {
+                "filename": "__space-exploration-graphics-3__/graphics/entity/meteor-point-defence/meteor-point-defence-mask.png",
+                "shift": [
+                  "1/32",
+                  -1.5
+                ],
+                "width": 206,
+                "height": 400,
+                "scale": 0.5,
+                "tint": {
+                  "r": 200,
+                  "g": 100,
+                  "b": 0
+                }
+              },
+              {
+                "draw_as_shadow": true,
+                "filename": "__space-exploration-graphics-3__/graphics/entity/meteor-point-defence/meteor-point-defence-shadow.png",
+                "shift": [
+                  1.7,
+                  0.6
+                ],
+                "width": 408,
+                "height": 136,
+                "scale": 0.5
+              }
+            ]
+          }
+        }
+      }
+    },
+    "icon": "__space-exploration-graphics__/graphics/icons/meteor-point-defence.png",
+    "flags": [
+      "placeable-player",
+      "player-creation",
+      "placeable-off-grid",
+      "not-deconstructable",
+      "not-blueprintable"
+    ],
+    "icon_size": 64,
+    "order": "a-a",
+    "selectable_in_game": false,
+    "selection_box": [
+      [
+        -1.5,
+        -1.5
+      ],
+      [
+        1.5,
+        1.5
+      ]
+    ],
+    "collision_box": [
+      [
+        -1.35,
+        -1.35
+      ],
+      [
+        1.35,
+        1.35
+      ]
+    ],
+    "collision_mask": {
+      "layers": {}
+    },
+    "energy_source": {
+      "drain": "pt_charger_overcharged_idle_draw",
+      "input_flow_limit": "pt_charger_overcharged_max_draw",
+      "buffer_capacity": "pt_charger_overcharged_buffer_capacity",
+      "type": "electric",
+      "usage_priority": "primary-input"
+    },
+    "call_for_help_radius": 1,
+    "folded_animation": "blank_image",
+    "attack_parameters": {
+      "ammo_type": {
+        "energy_consumption": "200MJ"
+      },
+      "ammo_category": "se-meteor-point-defence",
+      "cooldown": 0.2,
+      "range": 1,
+      "type": "projectile"
+    }
+  },
+  {
+    "type": "explosion",
+    "name": "se-meteor-point-defence-beam",
+    "subgroup": "ammo-effects",
+    "hidden": true,
+    "animations": [
+      {
+        "filename": "__space-exploration-graphics-3__/graphics/entity/meteor-point-defence/meteor-point-defence-beam.png",
+        "frame_count": 6,
+        "height": 1,
+        "priority": "extra-high",
+        "width": "576/6"
+      }
+    ],
+    "beam": true,
+    "flags": [
+      "not-on-map",
+      "placeable-off-grid"
+    ],
+    "light": {
+      "color": {
+        "b": 0.5,
+        "g": 0.95,
+        "r": 1
+      },
+      "intensity": 1,
+      "size": 20
+    },
+    "rotate": true,
+    "smoke": "smoke-fast",
+    "smoke_count": 2,
+    "smoke_slow_down_factor": 1,
+    "sound": [
+      {
+        "filename": "__base__/sound/fight/heavy-gunshot-1.ogg",
+        "volume": 0.45
+      },
+      {
+        "filename": "__base__/sound/fight/heavy-gunshot-2.ogg",
+        "volume": 0.45
+      },
+      {
+        "filename": "__base__/sound/fight/heavy-gunshot-3.ogg",
+        "volume": 0.45
+      },
+      {
+        "filename": "__base__/sound/fight/heavy-gunshot-4.ogg",
+        "volume": 0.45
+      }
+    ]
+  }
+]

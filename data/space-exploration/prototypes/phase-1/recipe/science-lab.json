@@ -1,0 +1,67 @@
+[
+  {
+    "type": "recipe",
+    "name": "se-space-science-lab",
+    "category": "space-crafting",
+    "enabled": false,
+    "energy_required": 30,
+    "ingredients": [
+      {
+        "type": "item",
+        "name": "lab",
+        "amount": 10
+      },
+      {
+        "type": "item",
+        "name": "low-density-structure",
+        "amount": 40
+      },
+      {
+        "type": "item",
+        "name": "processing-unit",
+        "amount": 20
+      },
+      {
+        "type": "item",
+        "name": "electric-engine-unit",
+        "amount": 10
+      },
+      {
+        "type": "item",
+        "name": "battery",
+        "amount": 10
+      }
+    ],
+    "results": [
+      {
+        "type": "item",
+        "name": "se-space-science-lab",
+        "amount": 1
+      }
+    ],
+    "icon": "__space-exploration-graphics__/graphics/icons/space-science-lab.png",
+    "icon_size": 64,
+    "crafting_machine_tint": {
+      "primary": {
+        "r": 0.29,
+        "g": 0.027,
+        "b": 0.0,
+        "a": 0.0
+      },
+      "secondary": {
+        "r": 0.722,
+        "g": 0.465,
+        "b": 0.19,
+        "a": 0.0
+      },
+      "tertiary": {
+        "r": 0.87,
+        "g": 0.365,
+        "b": 0.0,
+        "a": 0.0
+      }
+    },
+    "requester_paste_multiplier": 3,
+    "always_show_made_in": true
+  }
+]

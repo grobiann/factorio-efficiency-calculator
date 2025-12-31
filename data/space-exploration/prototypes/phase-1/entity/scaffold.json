@@ -1,0 +1,151 @@
+[
+  {
+    "type": "assembling-machine",
+    "name": "se-gate-addon-scaffold",
+    "icon": "__space-exploration-graphics__/graphics/icons/scaffold.png",
+    "icon_size": 64,
+    "flags": [
+      "placeable-neutral",
+      "placeable-player",
+      "player-creation"
+    ],
+    "max_health": 700,
+    "corpse": "big-remnants",
+    "order": "a[ancient]-g[gate]-z[scaffold]",
+    "dying_explosion": "medium-explosion",
+    "alert_icon_shift": "util.by_pixel(0, -12)",
+    "collision_box": [
+      [
+        "-4/2+1/32",
+        "-4/2+1/32"
+      ],
+      [
+        "4/2-1/32",
+        "4/2-1/32"
+      ]
+    ],
+    "selection_box": [
+      [
+        "-4/2+1/32",
+        "-4/2+1/32"
+      ],
+      [
+        "4/2-1/32",
+        "4/2-1/32"
+      ]
+    ],
+    "drawing_box_vertical_extension": 0,
+    "open_sound": null,
+    "close_sound": null,
+    "impact_category": "metal-large",
+    "working_sound": {
+      "apparent_volume": 1.5,
+      "idle_sound": {
+        "filename": "__base__/sound/idle1.ogg",
+        "volume": 0.6
+      },
+      "sound": [
+        {
+          "filename": "__base__/sound/assembling-machine-t1-1.ogg",
+          "volume": 0.8
+        },
+        {
+          "filename": "__base__/sound/assembling-machine-t1-2.ogg",
+          "volume": 0.8
+        }
+      ]
+    },
+    "collision_mask": {
+      "layers": {},
+      "not_colliding_with_itself": true
+    },
+    "animation": "make_scaffold_pictures(4,4)",
+    "crafting_categories": [
+      "fixed-recipe"
+    ],
+    "fixed_recipe": "se-gate-addon",
+    "crafting_speed": 1,
+    "energy_source": {
+      "type": "void"
+    },
+    "energy_usage": "1000kW"
+  },
+  {
+    "type": "assembling-machine",
+    "name": "se-gate-platform-scaffold",
+    "subgroup": "gate-parts",
+    "hidden": true,
+    "icon": "__space-exploration-graphics__/graphics/icons/scaffold.png",
+    "icon_size": 64,
+    "flags": [
+      "placeable-neutral"
+    ],
+    "max_health": 1000,
+    "corpse": "big-remnants",
+    "order": "a[ancient]-g[gate]-z[scaffold]",
+    "dying_explosion": "medium-explosion",
+    "alert_icon_shift": "util.by_pixel(0, -12)",
+    "collision_box": [
+      [
+        "-9/2+1/32",
+        "-3/2+1/32"
+      ],
+      [
+        "9/2-1/32",
+        "3/2-1/32"
+      ]
+    ],
+    "selection_box": [
+      [
+        "-9/2+1/32",
+        "-3/2+1/32"
+      ],
+      [
+        "9/2-1/32",
+        "3/2-1/32"
+      ]
+    ],
+    "drawing_box_vertical_extension": 0,
+    "collision_mask": {
+      "layers": {},
+      "not_colliding_with_itself": true
+    },
+    "se_allow_in_space": true,
+    "open_sound": null,
+    "close_sound": null,
+    "impact_category": "metal-large",
+    "working_sound": {
+      "apparent_volume": 1.5,
+      "idle_sound": {
+        "filename": "__base__/sound/idle1.ogg",
+        "volume": 0.6
+      },
+      "sound": [
+        {
+          "filename": "__base__/sound/assembling-machine-t1-1.ogg",
+          "volume": 0.8
+        },
+        {
+          "filename": "__base__/sound/assembling-machine-t1-2.ogg",
+          "volume": 0.8
+        }
+      ]
+    },
+    "graphics_set": {
+      "animation": "make_scaffold_pictures(9,3)"
+    },
+    "crafting_categories": [
+      "fixed-recipe"
+    ],
+    "fixed_recipe": "se-gate-platform",
+    "crafting_speed": 1,
+    "energy_source": {
+      "type": "electric",
+      "usage_priority": "secondary-input",
+      "emissions_per_minute": {
+        "pollution": 4
+      }
+    },
+    "energy_usage": "1000kW"
+  }
+]

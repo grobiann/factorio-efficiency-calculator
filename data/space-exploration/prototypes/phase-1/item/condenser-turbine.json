@@ -1,0 +1,12 @@
+[
+  {
+    "type": "item",
+    "name": "se-condenser-turbine",
+    "icon": "__space-exploration-graphics__/graphics/icons/condenser-turbine.png",
+    "icon_size": 64,
+    "order": "data.raw[\"item\"][\"steam-turbine\"].order or \"\"..\"-b\"",
+    "place_result": "se-condenser-turbine",
+    "stack_size": 10,
+    "subgroup": "energy"
+  }
+]
