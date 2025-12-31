@@ -262,7 +262,7 @@ export async function startApp() {
   customRecipeView.render(document.getElementById('custom-recipe-tab'));
 
   // Initialize compare view
-  const compareView = new CompareView(recipeGroupView.groups, customRecipeView.manager, allRecipes, locale, loadedData);
+  const compareView = new CompareView(recipeGroupView.groups, customRecipeView.manager, allRecipes, locale, loadedData, recipesByProduct, recipeGroupView);
   compareView.render(document);
 
   // Export/Import data functionality

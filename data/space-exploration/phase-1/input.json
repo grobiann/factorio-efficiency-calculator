@@ -1,1 +1,204 @@
-[]
+[
+  {
+    "type": "custom-input",
+    "name": "se-remote-view-pins",
+    "key_sequence": "CONTROL + SHIFT + N",
+    "enabled_while_spectating": true,
+    "order": "a-aa"
+  },
+  [],
+  [],
+  {
+    "type": "custom-input",
+    "name": "se-star-map",
+    "key_sequence": "Y",
+    "enabled_while_spectating": true,
+    "order": "a-b"
+  },
+  {
+    "type": "custom-input",
+    "name": "se-universe-explorer",
+    "key_sequence": "U",
+    "enabled_while_spectating": true,
+    "order": "a-c"
+  },
+  {
+    "type": "custom-input",
+    "name": "se-respawn",
+    "key_sequence": "HOME",
+    "enabled_while_spectating": true,
+    "order": "a-d"
+  },
+  {
+    "type": "custom-input",
+    "name": "se-mode-toggle",
+    "key_sequence": "R",
+    "enabled_while_spectating": true,
+    "order": "a-e"
+  },
+  {
+    "type": "custom-input",
+    "name": "se-blueprint-converter",
+    "key_sequence": "",
+    "enabled_while_spectating": true,
+    "order": "a-f"
+  },
+  {
+    "type": "custom-input",
+    "name": "se-pin-one",
+    "key_sequence": "CONTROL + 1",
+    "enabled_while_spectating": true,
+    "order": "b-a"
+  },
+  {
+    "type": "custom-input",
+    "name": "se-pin-two",
+    "key_sequence": "CONTROL + 2",
+    "enabled_while_spectating": true,
+    "order": "b-b"
+  },
+  {
+    "type": "custom-input",
+    "name": "se-pin-three",
+    "key_sequence": "CONTROL + 3",
+    "enabled_while_spectating": true,
+    "order": "b-c"
+  },
+  {
+    "type": "custom-input",
+    "name": "se-pin-four",
+    "key_sequence": "CONTROL + 4",
+    "enabled_while_spectating": true,
+    "order": "b-d"
+  },
+  {
+    "type": "custom-input",
+    "name": "se-pin-five",
+    "key_sequence": "CONTROL + 5",
+    "enabled_while_spectating": true,
+    "order": "b-e"
+  },
+  {
+    "type": "custom-input",
+    "name": "se-pin-six",
+    "key_sequence": "CONTROL + 6",
+    "enabled_while_spectating": true,
+    "order": "b-f"
+  },
+  {
+    "type": "custom-input",
+    "name": "se-pin-seven",
+    "key_sequence": "CONTROL + 7",
+    "enabled_while_spectating": true,
+    "order": "b-g"
+  },
+  {
+    "type": "custom-input",
+    "name": "se-pin-eight",
+    "key_sequence": "CONTROL + 8",
+    "enabled_while_spectating": true,
+    "order": "b-h"
+  },
+  {
+    "type": "custom-input",
+    "name": "se-pin-nine",
+    "key_sequence": "CONTROL + 9",
+    "enabled_while_spectating": true,
+    "order": "b-i"
+  },
+  {
+    "type": "custom-input",
+    "name": "se-pin-zero",
+    "key_sequence": "CONTROL + 0",
+    "enabled_while_spectating": true,
+    "order": "b-j"
+  },
+  {
+    "type": "custom-input",
+    "name": "se-pin-set-one",
+    "key_sequence": "CONTROL + SHIFT + 1",
+    "enabled_while_spectating": true,
+    "order": "c-a"
+  },
+  {
+    "type": "custom-input",
+    "name": "se-pin-set-two",
+    "key_sequence": "CONTROL + SHIFT + 2",
+    "enabled_while_spectating": true,
+    "order": "c-b"
+  },
+  {
+    "type": "custom-input",
+    "name": "se-pin-set-three",
+    "key_sequence": "CONTROL + SHIFT + 3",
+    "enabled_while_spectating": true,
+    "order": "c-c"
+  },
+  {
+    "type": "custom-input",
+    "name": "se-pin-set-four",
+    "key_sequence": "CONTROL + SHIFT + 4",
+    "enabled_while_spectating": true,
+    "order": "c-d"
+  },
+  {
+    "type": "custom-input",
+    "name": "se-pin-set-five",
+    "key_sequence": "CONTROL + SHIFT + 5",
+    "enabled_while_spectating": true,
+    "order": "c-e"
+  },
+  {
+    "type": "custom-input",
+    "name": "se-pin-set-six",
+    "key_sequence": "CONTROL + SHIFT + 6",
+    "enabled_while_spectating": true,
+    "order": "c-f"
+  },
+  {
+    "type": "custom-input",
+    "name": "se-pin-set-seven",
+    "key_sequence": "CONTROL + SHIFT + 7",
+    "enabled_while_spectating": true,
+    "order": "c-g"
+  },
+  {
+    "type": "custom-input",
+    "name": "se-pin-set-eight",
+    "key_sequence": "CONTROL + SHIFT + 8",
+    "enabled_while_spectating": true,
+    "order": "c-h"
+  },
+  {
+    "type": "custom-input",
+    "name": "se-pin-set-nine",
+    "key_sequence": "CONTROL + SHIFT + 9",
+    "enabled_while_spectating": true,
+    "order": "c-i"
+  },
+  {
+    "type": "custom-input",
+    "name": "se-pin-set-zero",
+    "key_sequence": "CONTROL + SHIFT + 0",
+    "enabled_while_spectating": true,
+    "order": "c-j"
+  },
+  {
+    "type": "custom-input",
+    "name": "se--targeter",
+    "key_sequence": "",
+    "linked_game_control": "build"
+  },
+  {
+    "type": "custom-input",
+    "name": "se-focus-search",
+    "key_sequence": "",
+    "linked_game_control": "focus-search"
+  },
+  {
+    "type": "custom-input",
+    "name": "se-confirm",
+    "key_sequence": "",
+    "linked_game_control": "confirm-gui"
+  }
+]

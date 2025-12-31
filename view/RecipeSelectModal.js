@@ -2,6 +2,8 @@
  * RecipeSelectModal - 레시피 선택 모달 관리
  */
 
+import { ViewHelpers } from '../utils/ViewHelpers.js';
+
 // 카테고리 상수
 const CATEGORY = {
   RECIPE_GROUPS: 'recipegroup-recipes',
@@ -10,16 +12,20 @@ const CATEGORY = {
 };
 
 export class RecipeSelectModal {
-  constructor(view) {
+  constructor(view, onSelect = null) {
     this.view = view;
+    this.onSelect = onSelect; // 선택 시 호출될 콜백 함수
   }
 
   /**
    * 레시피 추가 모달 표시
    */
   show() {
-    const group = this.view.groups.get(this.view.selectedGroupId);
-    if (!group) return;
+    // RecipeGroupView에서 사용할 때만 그룹 체크
+    if (this.view.selectedGroupId !== null && this.view.selectedGroupId !== undefined) {
+      const group = this.view.groups.get(this.view.selectedGroupId);
+      if (!group) return;
+    }
 
     // 모달 HTML 생성
     let modalHtml = `
@@ -166,13 +172,13 @@ export class RecipeSelectModal {
         continue;
       }
       
-      html += `<div class="recipe-add-item" data-type="group" data-id="${group.id}" title="${this.escapeHtml(group.name)}">`;
-      const iconInfo = this.view.getIconInfo(firstResult.name);
-      if (iconInfo && iconInfo.path) {
-        html += `<img src="${iconInfo.path}" alt="${this.escapeHtml(group.name)}" class="recipe-add-icon" />`;
-      } else {
-        html += `<div class="recipe-add-icon-placeholder">?</div>`;
+      const tooltip = group.name || group.id || '';
+      if (!tooltip) {
+        console.warn('[RecipeSelectModal.renderRecipeGroupRecipes] Empty tooltip for group:', group.id);
       }
+      html += `<div class="recipe-add-item" data-type="group" data-id="${group.id}" data-tooltip="${this.escapeHtml(tooltip)}">`;
+      const iconInfo = this.view.getIconInfo(firstResult.name);
+      html += ViewHelpers.createIconHtml(iconInfo, { showBorder: false });
       html += `</div>`;
     }
     
@@ -187,12 +193,15 @@ export class RecipeSelectModal {
     const customRecipes = JSON.parse(localStorage.getItem('customRecipes') || '[]');
     
     for (const customRecipe of customRecipes) {
-      const recipeName = customRecipe.name || customRecipe.id;
-      if (searchText && !recipeName.toLowerCase().includes(searchText.toLowerCase())) {
+      const recipeName = customRecipe.name || customRecipe.id || '';
+      if (searchText && recipeName && !recipeName.toLowerCase().includes(searchText.toLowerCase())) {
         continue;
       }
       
-      html += `<div class="recipe-add-item" data-type="recipe" data-id="${customRecipe.id}" title="${this.escapeHtml(recipeName)}">`;
+      if (!recipeName) {
+        console.warn('[RecipeSelectModal.renderCustomRecipes] Empty tooltip for custom recipe:', customRecipe.id);
+      }
+      html += `<div class="recipe-add-item" data-type="recipe" data-id="${customRecipe.id}" data-tooltip="${this.escapeHtml(recipeName)}">`;
       const recipeIcons = this.view.getRecipeIcon(customRecipe);
       html += this.view.createRecipeIcon(recipeIcons);
       html += `</div>`;
@@ -270,9 +279,12 @@ export class RecipeSelectModal {
       
       // 해당 서브그룹의 레시피들 렌더링
       for (const { recipe } of subgroupRecipes) {
-        const recipeName = this.view.locale.recipeName(recipe.id);
+        const recipeName = this.view.locale.recipeName(recipe.id) || recipe.id || '';
         
-        html += `<div class="recipe-add-item" data-type="recipe" data-id="${recipe.id}" title="${this.escapeHtml(recipeName)}">`;
+        if (!recipeName) {
+          console.warn('[RecipeSelectModal.renderItemGroupRecipes] Empty tooltip for recipe:', recipe.id);
+        }
+        html += `<div class="recipe-add-item" data-type="recipe" data-id="${recipe.id}" data-tooltip="${this.escapeHtml(recipeName)}">`;
         const recipeIcons = this.view.getRecipeIcon(recipe);
         html += this.view.createRecipeIcon(recipeIcons);
         html += `</div>`;
@@ -359,13 +371,21 @@ export class RecipeSelectModal {
         const type = item.dataset.type;
         const id = item.dataset.id;
         
-        const group = this.view.groups.get(this.view.selectedGroupId);
-        if (group) {
-          group.addRecipe(id, 1, type);
-          this.view.saveToStorage();
-          this.view.render(document.getElementById('recipe-group-tab'));
+        // 콜백이 설정되어 있으면 콜백 실행
+        if (this.onSelect) {
+          this.onSelect(type, id);
           document.body.classList.remove('modal-open');
           modal.remove();
+        } else {
+          // 기본 동작: RecipeGroupView용
+          const group = this.view.groups.get(this.view.selectedGroupId);
+          if (group) {
+            group.addRecipe(id, 1, type);
+            this.view.saveToStorage();
+            this.view.render(document.getElementById('recipe-group-tab'));
+            document.body.classList.remove('modal-open');
+            modal.remove();
+          }
         }
       };
     });
@@ -375,6 +395,6 @@ export class RecipeSelectModal {
    * HTML 이스케이프
    */
   escapeHtml(text) {
-    return this.view.escapeHtml(text);
+    return ViewHelpers.escapeHtml(text);
   }
 }

@@ -128,7 +128,7 @@ export class RecipeGroupView {
     } else {
       for (const ingredient of io.ingredients) {
         const iconInfo = this.getIconInfo(ingredient.name, ingredient.type || 'item');
-        html += this.createItemIcon(iconInfo, ingredient.amount);
+        html += this.createItemIcon(iconInfo, ingredient.amount, true, ingredient.name, ingredient.type);
       }
     }
     html += '</div></div>';
@@ -417,7 +417,7 @@ export class RecipeGroupView {
       };
     }
     
-    console.warn('[RecipeGroupView.getIconInfo] Icon not found in data - itemId:', itemId, 'entries count:', this.loadedData.entries.length);
+    console.warn('[RecipeGroupView.getIconInfo] Icon not found in data - itemId:', itemId, 'entries count:', this.loadedData.entries.length, 'entry: ', entry, anyEntry);
     return {
       path: null,
       name: itemId,
@@ -508,6 +508,16 @@ export class RecipeGroupView {
 
     // 재료 클릭 -> 해당 재료를 생산하는 레시피 추가
     container.querySelectorAll('.group-recipe-ingredients .item-icon-slot[data-item-id], .group-recipe-ingredients .group-item-slot[data-item-id]').forEach(slot => {
+      slot.style.cursor = 'pointer';
+      slot.onclick = () => {
+        const itemId = slot.dataset.itemId;
+        const itemType = slot.dataset.itemType || 'item';
+        this.addRecipeForIngredient(itemId, itemType);
+      };
+    });
+
+    // 입력 섹션 아이템 클릭 -> 해당 재료를 생산하는 레시피 추가
+    container.querySelectorAll('.group-inputs .item-icon-slot[data-item-id]').forEach(slot => {
       slot.style.cursor = 'pointer';
       slot.onclick = () => {
         const itemId = slot.dataset.itemId;

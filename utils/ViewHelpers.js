@@ -68,6 +68,7 @@ export class ViewHelpers {
           name: itemId
         };
       }
+      console.warn('[ViewHelpers.getIconInfo] Icon not found in data - itemId:', itemId, 'type:', type, 'entry: ', entry );
     }
 
     // 타입 무관 검색 (fallback)
@@ -81,7 +82,7 @@ export class ViewHelpers {
       };
     }
 
-    console.warn('[ViewHelpers.getIconInfo] Icon not found in data - itemId:', itemId, 'type:', type, 'entries count:', loadedData.entries.length);
+    console.warn('[ViewHelpers.getIconInfo] Icon not found in data - itemId:', itemId, 'type:', type, 'entries count:', loadedData.entries.length,  'entry: ', anyEntry );
     return null;
   }
 

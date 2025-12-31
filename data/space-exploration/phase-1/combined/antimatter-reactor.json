@@ -355,5 +355,358 @@
         ]
       }
     }
+  },
+  {
+    "type": "item",
+    "name": "name",
+    "icon": null,
+    "icon_size": 64,
+    "order": "f[nuclear-energy]-b[heat-pipe]-n",
+    "subgroup": "energy",
+    "stack_size": 50,
+    "place_result": "name"
+  },
+  {
+    "type": "recipe",
+    "name": "name",
+    "results": [
+      {
+        "type": "item",
+        "name": "name",
+        "amount": 1
+      }
+    ],
+    "enabled": false,
+    "energy_required": 10,
+    "ingredients": [
+      {
+        "type": "item",
+        "name": "se-naquium-heat-pipe",
+        "amount": "math.ceil(length/2)"
+      }
+    ],
+    "requester_paste_multiplier": 1,
+    "always_show_made_in": true
+  },
+  {
+    "type": "boiler",
+    "name": "name",
+    "localised_name": [
+      "entity-name.",
+      "..data_util.mod_prefix..\"naquium-heat-pipe-long\"",
+      "display_name"
+    ],
+    "localised_description": [
+      "entity-description.",
+      "..data_util.mod_prefix..\"naquium-heat-pipe-long\"",
+      "display_name"
+    ],
+    "burning_cooldown": 20,
+    "collision_box": [
+      [
+        -0.3,
+        "-(length/2-0.2)"
+      ],
+      [
+        0.3,
+        "(length/2-0.2)"
+      ]
+    ],
+    "collision_mask": {
+      "layers": {
+        "item": true,
+        "floor": true,
+        "object": true,
+        "water_tile": true
+      }
+    },
+    "selection_box": [
+      [
+        -0.5,
+        "-length/2"
+      ],
+      [
+        0.5,
+        "length/2"
+      ]
+    ],
+    "order": "z",
+    "corpse": "heat-pipe-remnants",
+    "damaged_trigger_effect": {
+      "entity_name": "spark-explosion",
+      "offset_deviation": [
+        [
+          -0.5,
+          -0.5
+        ],
+        [
+          0.5,
+          0.5
+        ]
+      ],
+      "offsets": [
+        [
+          0,
+          1
+        ]
+      ],
+      "type": "create-entity"
+    },
+    "dying_explosion": "heat-exchanger-explosion",
+    "energy_consumption": "0.0000001W",
+    "energy_source": {
+      "connections": "connections",
+      "heat_glow": {
+        "east": {
+          "layers": "long_pipes_glow_horizontal"
+        },
+        "north": {
+          "layers": "long_pipes_glow_vertical"
+        },
+        "south": {
+          "layers": "long_pipes_glow_vertical"
+        },
+        "west": {
+          "layers": "long_pipes_glow_horizontal"
+        }
+      },
+      "heat_picture": {
+        "east": {
+          "layers": [
+            {
+              "layers": "long_pipes_heated_horizontal"
+            }
+          ]
+        },
+        "north": {
+          "layers": [
+            {
+              "layers": "long_pipes_heated_vertical"
+            }
+          ]
+        },
+        "south": {
+          "layers": [
+            {
+              "layers": "long_pipes_heated_vertical"
+            }
+          ]
+        },
+        "west": {
+          "layers": [
+            {
+              "layers": "long_pipes_heated_horizontal"
+            }
+          ]
+        }
+      },
+      "heat_pipe_covers": {
+        "east": {
+          "tint": "glow_tint",
+          "blend_mode": "additive",
+          "filename": "__base__/graphics/entity/heat-exchanger/heatex-endings-heated.png",
+          "frame_count": 1,
+          "height": 64,
+          "priority": "high",
+          "scale": 0.5,
+          "width": 64,
+          "x": 64,
+          "y": 0
+        },
+        "north": {
+          "tint": "glow_tint",
+          "blend_mode": "additive",
+          "filename": "__base__/graphics/entity/heat-exchanger/heatex-endings-heated.png",
+          "frame_count": 1,
+          "height": 64,
+          "priority": "high",
+          "scale": 0.5,
+          "width": 64,
+          "x": 0,
+          "y": 0
+        },
+        "south": {
+          "tint": "glow_tint",
+          "blend_mode": "additive",
+          "filename": "__base__/graphics/entity/heat-exchanger/heatex-endings-heated.png",
+          "frame_count": 1,
+          "height": 64,
+          "priority": "high",
+          "scale": 0.5,
+          "width": 64,
+          "x": 128,
+          "y": 0
+        },
+        "west": {
+          "tint": "glow_tint",
+          "blend_mode": "additive",
+          "filename": "__base__/graphics/entity/heat-exchanger/heatex-endings-heated.png",
+          "frame_count": 1,
+          "height": 64,
+          "priority": "high",
+          "scale": 0.5,
+          "width": 64,
+          "x": 192,
+          "y": 0
+        }
+      },
+      "max_temperature": "max_temperature",
+      "max_transfer": "max_transfer",
+      "min_working_temperature": "max_temperature",
+      "minimum_glow_temperature": 350,
+      "pipe_covers": {
+        "east": {
+          "tint": "pipe_tint",
+          "filename": "__base__/graphics/entity/heat-exchanger/heatex-endings.png",
+          "frame_count": 1,
+          "height": 64,
+          "priority": "high",
+          "scale": 0.5,
+          "width": 64,
+          "x": 64,
+          "y": 0
+        },
+        "north": {
+          "tint": "pipe_tint",
+          "filename": "__base__/graphics/entity/heat-exchanger/heatex-endings.png",
+          "frame_count": 1,
+          "height": 64,
+          "priority": "high",
+          "scale": 0.5,
+          "width": 64,
+          "shift": {
+            "x": "-1/64",
+            "y": 0
+          },
+          "x": 0,
+          "y": 0
+        },
+        "south": {
+          "tint": "pipe_tint",
+          "filename": "__base__/graphics/entity/heat-exchanger/heatex-endings.png",
+          "frame_count": 1,
+          "height": 64,
+          "priority": "high",
+          "scale": 0.5,
+          "width": 64,
+          "x": 128,
+          "y": 0
+        },
+        "west": {
+          "tint": "pipe_tint",
+          "filename": "__base__/graphics/entity/heat-exchanger/heatex-endings.png",
+          "frame_count": 1,
+          "height": 64,
+          "priority": "high",
+          "scale": 0.5,
+          "width": 64,
+          "x": 192,
+          "y": 0
+        }
+      },
+      "specific_heat": "specific_heat_pipe_long",
+      "type": "heat"
+    },
+    "fire": {},
+    "fire_glow": {},
+    "flags": [
+      "placeable-neutral",
+      "player-creation"
+    ],
+    "fluid_box": {
+      "volume": ".00001;\n        pipe_connections = { }"
+    },
+    "icon": null,
+    "icon_size": 64,
+    "max_health": 200,
+    "open_sound": null,
+    "close_sound": null,
+    "minable": {
+      "mining_time": 0.2,
+      "result": "name"
+    },
+    "mode": "output-to-separate-pipe",
+    "output_fluid_box": {
+      "volume": ".00001;\n        hide_connection_info = true",
+      "pipe_connections": [
+        {
+          "position": [
+            0.3,
+            0
+          ],
+          "direction": null
+        },
+        {
+          "position": [
+            -0.3,
+            0
+          ],
+          "direction": null
+        }
+      ]
+    },
+    "resistances": [
+      {
+        "percent": 90,
+        "type": "fire"
+      },
+      {
+        "percent": 30,
+        "type": "explosion"
+      },
+      {
+        "percent": 30,
+        "type": "impact"
+      }
+    ],
+    "pictures": {
+      "east": {
+        "structure": {
+          "layers": [
+            {
+              "layers": "long_pipes_horizontal"
+            }
+          ]
+        }
+      },
+      "north": {
+        "structure": {
+          "layers": [
+            {
+              "layers": "long_pipes_vertical"
+            }
+          ]
+        }
+      },
+      "south": {
+        "structure": {
+          "layers": [
+            {
+              "layers": "long_pipes_vertical"
+            }
+          ]
+        }
+      },
+      "west": {
+        "structure": {
+          "layers": [
+            {
+              "layers": "long_pipes_horizontal"
+            }
+          ]
+        }
+      }
+    },
+    "target_temperature": "max_temperature",
+    "impact_category": "metal",
+    "working_sound": {
+      "fade_in_ticks": 10,
+      "fade_out_ticks": 30,
+      "max_sounds_per_type": 3,
+      "sound": {
+        "filename": "__base__/sound/boiler.ogg",
+        "volume": 0.8
+      }
+    }
   }
 ]

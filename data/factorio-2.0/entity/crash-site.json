@@ -1117,5 +1117,30 @@
         }
       ]
     }
+  },
+  {
+    "type": "fire",
+    "name": "crash-site-fire-flame",
+    "flags": [
+      "placeable-off-grid",
+      "not-on-map"
+    ],
+    "hidden": true,
+    "damage_per_tick": {
+      "amount": "1 / 60",
+      "type": "fire"
+    },
+    "maximum_damage_multiplier": 1,
+    "damage_multiplier_increase_per_added_fuel": 0,
+    "damage_multiplier_decrease_per_tick": 0,
+    "spawn_entity": null,
+    "spread_delay": 300,
+    "spread_delay_deviation": 180,
+    "maximum_spread_count": 100,
+    "initial_lifetime": 300,
+    "lifetime_increase_by": 150,
+    "lifetime_increase_cooldown": 4,
+    "maximum_lifetime": 1800,
+    "delay_between_initial_flames": 10
   }
 ]

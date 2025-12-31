@@ -183,7 +183,7 @@ body.modal-open {
 .modal-content {
   background: #fff;
   border-radius: 8px;
-  padding: 24px;
+  padding: 10px;
   max-width: 600px;
   width: 90%;
   max-height: 80vh;
@@ -195,7 +195,6 @@ body.modal-open {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
 }
 
 .modal-title {
@@ -1414,6 +1413,16 @@ button {
   color: #333;
 }
 
+.compare-item-name.clickable {
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.compare-item-name.clickable:hover {
+  color: #4a9eff;
+  text-decoration: underline;
+}
+
 .compare-item-badge {
   padding: 4px 8px;
   border-radius: 4px;
@@ -1853,7 +1862,7 @@ button {
 }
 
 .modal-header {
-  padding: 16px 20px;
+  padding: 8px 12px;
   border-bottom: 1px solid #ddd;
   display: flex;
   justify-content: space-between;
@@ -1862,19 +1871,19 @@ button {
 
 .modal-title {
   margin: 0;
-  font-size: 18px;
+  font-size: 14px;
   font-weight: 600;
 }
 
 .modal-close-btn {
   background: none;
   border: none;
-  font-size: 28px;
+  font-size: 22px;
   color: #666;
   cursor: pointer;
   padding: 0;
-  width: 32px;
-  height: 32px;
+  width: 28px;
+  height: 28px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1888,7 +1897,7 @@ button {
 }
 
 .modal-body {
-  padding: 20px;
+  padding: 8px 16px 12px 16px;
   flex: 1;
   overflow: hidden;
   min-height: 0;
@@ -1899,18 +1908,19 @@ button {
 .recipe-add-modal {
   width: 800px;
   max-width: 90vw;
-  max-height: 80vh;
+  min-height: 70vh;
+  max-height: 85vh;
   display: flex;
   flex-direction: column;
 }
 
 .recipe-add-search {
-  margin-bottom: 16px;
+  margin-bottom: 10px;
 }
 
 .recipe-search-input {
   width: 100%;
-  padding: 10px;
+  padding: 8px 10px;
   border: 2px solid #ddd;
   border-radius: 4px;
   font-size: 14px;
@@ -1924,17 +1934,17 @@ button {
 .recipe-add-tabs {
   display: flex;
   gap: 4px;
-  margin-bottom: 16px;
+  margin-bottom: 10px;
   flex-wrap: wrap;
 }
 
 .recipe-tab-btn {
-  padding: 8px 16px;
+  padding: 6px 12px;
   background: #e0e0e0;
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  font-size: 13px;
+  font-size: 12px;
   transition: all 0.2s;
 }
 
@@ -1975,6 +1985,8 @@ button {
   transition: all 0.2s;
   width: 40px;
   height: 40px;
+  position: relative;
+  z-index: 1;
 }
 
 .recipe-add-item:hover {
@@ -1982,13 +1994,46 @@ button {
   border-color: #4a9eff;
   transform: translateY(-2px);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  z-index: 1001;
+}
+
+/* 커스텀 툴팁 (즉시 표시) - data-tooltip 속성이 있을 때만 */
+.recipe-add-item[data-tooltip]::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.9);
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  margin-top: 4px;
+  transition: opacity 0.1s;
+  z-index: 1000;
+}
+
+.recipe-add-item[data-tooltip]:hover::after {
+  opacity: 1;
+}
+
+/* data-tooltip이 비어있으면 툴팁 숨기기 */
+.recipe-add-item[data-tooltip=""]::after {
+  display: none;
 }
 
 /* 레시피 추가 모달의 아이콘은 테두리 없음 */
 .recipe-add-item .item-icon-slot,
+.recipe-add-item .item-icon-slot.no-border,
 .recipe-add-item .group-item-slot {
-  border: none;
-  background: none;
+  border: none !important;
+  background: none !important;
+  width: 32px;
+  height: 32px;
 }
 
 .recipe-add-icon-placeholder {

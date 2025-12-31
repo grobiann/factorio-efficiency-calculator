@@ -1,1 +1,102 @@
-[]
+[
+  {
+    "type": "item",
+    "name": "se-module-grease",
+    "icons": [
+      {
+        "icon": "__base__/graphics/icons/crude-oil-resource.png",
+        "tint": [
+          0.8,
+          0.8,
+          0.8
+        ]
+      }
+    ],
+    "stack_size": 10,
+    "auto_recycle": false
+  },
+  {
+    "type": "recipe",
+    "name": "se-module-grease",
+    "category": "chemistry",
+    "energy_required": 5,
+    "ingredients": [
+      {
+        "type": "fluid",
+        "name": "crude-oil",
+        "amount": 20
+      }
+    ],
+    "results": [
+      {
+        "type": "item",
+        "name": "se-module-grease",
+        "amount": 1
+      }
+    ],
+    "allow_productivity": true,
+    "allow_quality": false,
+    "subgroup": "oil",
+    "enabled": false,
+    "order": "b[fluid-chemistry]-d[se-module-grease]",
+    "crafting_machine_tint": {
+      "primary": {
+        "r": 0.283,
+        "g": 0.283,
+        "b": 0.283,
+        "a": 1.0
+      },
+      "secondary": {
+        "r": 0.283,
+        "g": 0.283,
+        "b": 0.283,
+        "a": 1.0
+      },
+      "tertiary": {
+        "r": 0.637,
+        "g": 0.637,
+        "b": 0.637,
+        "a": 1.0
+      },
+      "quaternary": {
+        "r": 0.283,
+        "g": 0.283,
+        "b": 0.283,
+        "a": 1.0
+      }
+    },
+    "auto_recycle": false
+  },
+  {
+    "type": "mod-data",
+    "name": "se-loses-quality-when-placed",
+    "data": {
+      "entities": [
+        {
+          "type": "assembling-machine",
+          "name": "fuel-processor"
+        },
+        {
+          "type": "assembling-machine",
+          "name": "se-electric-boiler"
+        },
+        {
+          "type": "electric-pole",
+          "name": "se-addon-power-pole"
+        },
+        {
+          "type": "furnace",
+          "name": "se-condenser-turbine"
+        },
+        {
+          "type": "furnace",
+          "name": "se-kr-advanced-condenser-turbine"
+        },
+        {
+          "type": "furnace",
+          "name": "se-big-turbine"
+        }
+      ]
+    }
+  }
+]

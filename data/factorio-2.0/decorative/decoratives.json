@@ -1,1 +1,574 @@
-[]
+[
+  {
+    "type": "noise-function",
+    "name": "rpi",
+    "parameters": [
+      "survival"
+    ],
+    "expression": "random_penalty{x = x, y = y, source = 1, amplitude = 1/survival} - 1"
+  },
+  {
+    "type": "noise-function",
+    "name": "decorative_mix_noise",
+    "parameters": [
+      "seed",
+      "input_scale"
+    ],
+    "expression": "-0.25\\z\n    + abs(multioctave_noise{x = x, y = y, persistence = 0.65, seed0 = map_seed, seed1 = seed + 500, octaves = 2, input_scale = input_scale, output_scale = 0.8, offset_y = seed})\\z\n    + basis_noise{x = x, y = y, seed0 = map_seed, seed1 = seed, input_scale = input_scale, output_scale = 0.1, offset_x = seed}\\z\n    + basis_noise{x = x, y = y, seed0 = map_seed, seed1 = seed, input_scale = input_scale / 2, output_scale = 0.15, offset_x = seed}\\z\n    + basis_noise{x = x, y = y, seed0 = map_seed, seed1 = seed, input_scale = input_scale / 4, output_scale = 0.2, offset_x = seed}"
+  },
+  {
+    "type": "noise-expression",
+    "name": "decorative_knockout",
+    "expression": "multioctave_noise{x = x, y = y, persistence = 0.7, seed0 = map_seed, seed1 = 1300000, octaves = 2, input_scale = 1/2.5}"
+  },
+  {
+    "type": "noise-expression",
+    "name": "grass_noise",
+    "expression": "decorative_mix_noise{seed = 1000, input_scale = 1/22}"
+  },
+  {
+    "type": "noise-expression",
+    "name": "pita_noise",
+    "expression": "decorative_mix_noise{seed = 2000, input_scale = 1/30}"
+  },
+  {
+    "type": "noise-expression",
+    "name": "croton_noise",
+    "expression": "decorative_mix_noise{seed = 3000, input_scale = 1/32}"
+  },
+  {
+    "type": "noise-expression",
+    "name": "garballo_noise",
+    "expression": "decorative_mix_noise{seed = 4000, input_scale = 1/26}"
+  },
+  {
+    "type": "noise-expression",
+    "name": "asterisk_noise",
+    "expression": "decorative_mix_noise{seed = 5000, input_scale = 1/28}"
+  },
+  {
+    "name": "brown-asterisk",
+    "type": "optimized-decorative",
+    "order": "b[decorative]-b[asterisk]-a[brown]",
+    "collision_box": [
+      [
+        -0.7,
+        -0.7
+      ],
+      [
+        0.7,
+        0.7
+      ]
+    ],
+    "render_layer": "decorative",
+    "walking_sound": null,
+    "trigger_effect": "decorative_trigger_effects.brown_asterisk()",
+    "autoplace": {
+      "order": "a[doodad]-g[asterisk]-a",
+      "probability_expression": "-1.5 + rpi(0.2) + asterisk_noise - min(0, decorative_knockout) + region_box",
+      "local_expressions": {
+        "region_box": "min(range_select{input = moisture, from = 0, to = 0.3, slope = 0.05, min = -10, max = 1},\\z\n                          range_select{input = aux, from = 0, to = 0.6, slope = 0.05, min = -10, max = 1},\\z\n                          range_select{input = temperature, from = 10, to = 15, slope = 0.5, min = -10, max = 1})"
+      }
+    },
+    "pictures": [
+      {
+        "filename": "__base__/graphics/decorative/brown-asterisk/brown-asterisk-00.png",
+        "priority": "base_decorative_sprite_priority",
+        "width": 119,
+        "height": 74,
+        "shift": "util.by_pixel(9.75, -6.5)",
+        "scale": 0.5
+      },
+      {
+        "filename": "__base__/graphics/decorative/brown-asterisk/brown-asterisk-01.png",
+        "priority": "base_decorative_sprite_priority",
+        "width": 113,
+        "height": 94,
+        "shift": "util.by_pixel(5.75, -8.5)",
+        "scale": 0.5
+      },
+      {
+        "filename": "__base__/graphics/decorative/brown-asterisk/brown-asterisk-02.png",
+        "priority": "base_decorative_sprite_priority",
+        "width": 94,
+        "height": 69,
+        "shift": "util.by_pixel(4.5, -2.75)",
+        "scale": 0.5
+      },
+      {
+        "filename": "__base__/graphics/decorative/brown-asterisk/brown-asterisk-03.png",
+        "priority": "base_decorative_sprite_priority",
+        "width": 106,
+        "height": 81,
+        "shift": "util.by_pixel(9.5, -8.25)",
+        "scale": 0.5
+      },
+      {
+        "filename": "__base__/graphics/decorative/brown-asterisk/brown-asterisk-04.png",
+        "priority": "base_decorative_sprite_priority",
+        "width": 94,
+        "height": 77,
+        "shift": "util.by_pixel(4, -8.25)",
+        "scale": 0.5
+      },
+      {
+        "filename": "__base__/graphics/decorative/brown-asterisk/brown-asterisk-05.png",
+        "priority": "base_decorative_sprite_priority",
+        "width": 77,
+        "height": 63,
+        "shift": "util.by_pixel(1.25, -5.75)",
+        "scale": 0.5
+      },
+      {
+        "filename": "__base__/graphics/decorative/brown-asterisk/brown-asterisk-06.png",
+        "priority": "base_decorative_sprite_priority",
+        "width": 112,
+        "height": 64,
+        "shift": "util.by_pixel(9.5, -1.5)",
+        "scale": 0.5
+      },
+      {
+        "filename": "__base__/graphics/decorative/brown-asterisk/brown-asterisk-07.png",
+        "priority": "base_decorative_sprite_priority",
+        "width": 97,
+        "height": 94,
+        "shift": "util.by_pixel(8.25, -8)",
+        "scale": 0.5
+      },
+      {
+        "filename": "__base__/graphics/decorative/brown-asterisk/brown-asterisk-08.png",
+        "priority": "base_decorative_sprite_priority",
+        "width": 107,
+        "height": 57,
+        "shift": "util.by_pixel(4.25, -3.25)",
+        "scale": 0.5
+      },
+      {
+        "filename": "__base__/graphics/decorative/brown-asterisk/brown-asterisk-09.png",
+        "priority": "base_decorative_sprite_priority",
+        "width": 115,
+        "height": 90,
+        "shift": "util.by_pixel(10.75, -3)",
+        "scale": 0.5
+      },
+      {
+        "filename": "__base__/graphics/decorative/brown-asterisk/brown-asterisk-10.png",
+        "priority": "base_decorative_sprite_priority",
+        "width": 110,
+        "height": 59,
+        "shift": "util.by_pixel(-4, 2.25)",
+        "scale": 0.5
+      },
+      {
+        "filename": "__base__/graphics/decorative/brown-asterisk/brown-asterisk-11.png",
+        "priority": "base_decorative_sprite_priority",
+        "width": 85,
+        "height": 74,
+        "shift": "util.by_pixel(11.75, -2)",
+        "scale": 0.5
+      },
+      {
+        "filename": "__base__/graphics/decorative/brown-asterisk/brown-asterisk-12.png",
+        "priority": "base_decorative_sprite_priority",
+        "width": 95,
+        "height": 62,
+        "shift": "util.by_pixel(8.25, -9.5)",
+        "scale": 0.5
+      },
+      {
+        "filename": "__base__/graphics/decorative/brown-asterisk/brown-asterisk-13.png",
+        "priority": "base_decorative_sprite_priority",
+        "width": 77,
+        "height": 80,
+        "shift": "util.by_pixel(6.75, -4)",
+        "scale": 0.5
+      },
+      {
+        "filename": "__base__/graphics/decorative/brown-asterisk/brown-asterisk-14.png",
+        "priority": "base_decorative_sprite_priority",
+        "width": 87,
+        "height": 49,
+        "shift": "util.by_pixel(5.25, -5.25)",
+        "scale": 0.5
+      },
+      {
+        "filename": "__base__/graphics/decorative/brown-asterisk/brown-asterisk-15.png",
+        "priority": "base_decorative_sprite_priority",
+        "width": 77,
+        "height": 61,
+        "shift": "util.by_pixel(3.25, -4.25)",
+        "scale": 0.5
+      },
+      {
+        "filename": "__base__/graphics/decorative/brown-asterisk/brown-asterisk-16.png",
+        "priority": "base_decorative_sprite_priority",
+        "width": 107,
+        "height": 66,
+        "shift": "util.by_pixel(7.25, -7)",
+        "scale": 0.5
+      },
+      {
+        "filename": "__base__/graphics/decorative/brown-asterisk/brown-asterisk-17.png",
+        "priority": "base_decorative_sprite_priority",
+        "width": 85,
+        "height": 60,
+        "shift": "util.by_pixel(4.75, -3.5)",
+        "scale": 0.5
+      },
+      {
+        "filename": "__base__/graphics/decorative/brown-asterisk/brown-asterisk-18.png",
+        "priority": "base_decorative_sprite_priority",
+        "width": 85,
+        "height": 59,
+        "shift": "util.by_pixel(7.25, -4.25)",
+        "scale": 0.5
+      },
+      {
+        "filename": "__base__/graphics/decorative/brown-asterisk/brown-asterisk-19.png",
+        "priority": "base_decorative_sprite_priority",
+        "width": 65,
+        "height": 52,
+        "shift": "util.by_pixel(4.75, -5)",
+        "scale": 0.5
+      }
+    ]
+  },
+  {
+    "name": "green-asterisk",
+    "type": "optimized-decorative",
+    "order": "b[decorative]-b[asterisk-mini]-b[green]",
+    "collision_box": [
+      [
+        -0.7,
+        -0.7
+      ],
+      [
+        0.7,
+        0.7
+      ]
+    ],
+    "render_layer": "decorative",
+    "walking_sound": null,
+    "trigger_effect": "decorative_trigger_effects.green_asterisk()",
+    "autoplace": {
+      "order": "a[doodad]-g[asterisk]-c",
+      "probability_expression": "-1.5 + rpi(0.2) + asterisk_noise - min(0, decorative_knockout) + region_box",
+      "local_expressions": {
+        "region_box": "min(range_select{input = moisture, from = 0.3, to = 0.6, slope = 0.05, min = -10, max = 1},\\z\n                          range_select{input = temperature, from = 10, to = 15, slope = 0.5, min = -10, max = 1})"
+      }
+    },
+    "pictures": [
+      {
+        "filename": "__base__/graphics/decorative/green-asterisk/green-asterisk-00.png",
+        "priority": "base_decorative_sprite_priority",
+        "width": 120,
+        "height": 80,
+        "shift": "util.by_pixel(5, -4)",
+        "scale": 0.5
+      },
+      {
+        "filename": "__base__/graphics/decorative/green-asterisk/green-asterisk-01.png",
+        "priority": "base_decorative_sprite_priority",
+        "width": 130,
+        "height": 95,
+        "shift": "util.by_pixel(1, -5.75)",
+        "scale": 0.5
+      },
+      {
+        "filename": "__base__/graphics/decorative/green-asterisk/green-asterisk-02.png",
+        "priority": "base_decorative_sprite_priority",
+        "width": 122,
+        "height": 76,
+        "shift": "util.by_pixel(0, 1)",
+        "scale": 0.5
+      },
+      {
+        "filename": "__base__/graphics/decorative/green-asterisk/green-asterisk-03.png",
+        "priority": "base_decorative_sprite_priority",
+        "width": 121,
+        "height": 75,
+        "shift": "util.by_pixel(5.75, -0.75)",
+        "scale": 0.5
+      },
+      {
+        "filename": "__base__/graphics/decorative/green-asterisk/green-asterisk-04.png",
+        "priority": "base_decorative_sprite_priority",
+        "width": 85,
+        "height": 77,
+        "shift": "util.by_pixel(3.75, -3.25)",
+        "scale": 0.5
+      },
+      {
+        "filename": "__base__/graphics/decorative/green-asterisk/green-asterisk-05.png",
+        "priority": "base_decorative_sprite_priority",
+        "width": 132,
+        "height": 77,
+        "shift": "util.by_pixel(-0.5, -1.25)",
+        "scale": 0.5
+      },
+      {
+        "filename": "__base__/graphics/decorative/green-asterisk/green-asterisk-06.png",
+        "priority": "base_decorative_sprite_priority",
+        "width": 84,
+        "height": 92,
+        "shift": "util.by_pixel(3, -4)",
+        "scale": 0.5
+      },
+      {
+        "filename": "__base__/graphics/decorative/green-asterisk/green-asterisk-07.png",
+        "priority": "base_decorative_sprite_priority",
+        "width": 118,
+        "height": 79,
+        "shift": "util.by_pixel(6, -2.75)",
+        "scale": 0.5
+      },
+      {
+        "filename": "__base__/graphics/decorative/green-asterisk/green-asterisk-08.png",
+        "priority": "base_decorative_sprite_priority",
+        "width": 104,
+        "height": 78,
+        "shift": "util.by_pixel(3.5, 0.5)",
+        "scale": 0.5
+      },
+      {
+        "filename": "__base__/graphics/decorative/green-asterisk/green-asterisk-09.png",
+        "priority": "base_decorative_sprite_priority",
+        "width": 88,
+        "height": 61,
+        "shift": "util.by_pixel(-1, -2.75)",
+        "scale": 0.5
+      },
+      {
+        "filename": "__base__/graphics/decorative/green-asterisk/green-asterisk-10.png",
+        "priority": "base_decorative_sprite_priority",
+        "width": 89,
+        "height": 63,
+        "shift": "util.by_pixel(2.75, -9.75)",
+        "scale": 0.5
+      },
+      {
+        "filename": "__base__/graphics/decorative/green-asterisk/green-asterisk-11.png",
+        "priority": "base_decorative_sprite_priority",
+        "width": 91,
+        "height": 58,
+        "shift": "util.by_pixel(13.75, -1)",
+        "scale": 0.5
+      },
+      {
+        "filename": "__base__/graphics/decorative/green-asterisk/green-asterisk-12.png",
+        "priority": "base_decorative_sprite_priority",
+        "width": 90,
+        "height": 64,
+        "shift": "util.by_pixel(-7.5, 2)",
+        "scale": 0.5
+      },
+      {
+        "filename": "__base__/graphics/decorative/green-asterisk/green-asterisk-13.png",
+        "priority": "base_decorative_sprite_priority",
+        "width": 89,
+        "height": 73,
+        "shift": "util.by_pixel(4.25, -4.75)",
+        "scale": 0.5
+      },
+      {
+        "filename": "__base__/graphics/decorative/green-asterisk/green-asterisk-14.png",
+        "priority": "base_decorative_sprite_priority",
+        "width": 78,
+        "height": 56,
+        "shift": "util.by_pixel(1, -3)",
+        "scale": 0.5
+      },
+      {
+        "filename": "__base__/graphics/decorative/green-asterisk/green-asterisk-15.png",
+        "priority": "base_decorative_sprite_priority",
+        "width": 85,
+        "height": 51,
+        "shift": "util.by_pixel(3.25, -0.75)",
+        "scale": 0.5
+      },
+      {
+        "filename": "__base__/graphics/decorative/green-asterisk/green-asterisk-16.png",
+        "priority": "base_decorative_sprite_priority",
+        "width": 92,
+        "height": 71,
+        "shift": "util.by_pixel(8, -1.75)",
+        "scale": 0.5
+      },
+      {
+        "filename": "__base__/graphics/decorative/green-asterisk/green-asterisk-17.png",
+        "priority": "base_decorative_sprite_priority",
+        "width": 90,
+        "height": 65,
+        "shift": "util.by_pixel(3, -0.25)",
+        "scale": 0.5
+      },
+      {
+        "filename": "__base__/graphics/decorative/green-asterisk/green-asterisk-18.png",
+        "priority": "base_decorative_sprite_priority",
+        "width": 117,
+        "height": 69,
+        "shift": "util.by_pixel(4.25, -4.75)",
+        "scale": 0.5
+      },
+      {
+        "filename": "__base__/graphics/decorative/green-asterisk/green-asterisk-19.png",
+        "priority": "base_decorative_sprite_priority",
+        "width": 82,
+        "height": 64,
+        "shift": "util.by_pixel(0.5, -2)",
+        "scale": 0.5
+      }
+    ]
+  },
+  {
+    "name": "green-asterisk-mini",
+    "type": "optimized-decorative",
+    "order": "b[decorative]-b[asterisk-mini]-c[green]",
+    "collision_box": [
+      [
+        -0.7,
+        -0.7
+      ],
+      [
+        0.7,
+        0.7
+      ]
+    ],
+    "render_layer": "decorative",
+    "walking_sound": null,
+    "trigger_effect": "decorative_trigger_effects.green_asterisk_mini()",
+    "autoplace": {
+      "order": "a[doodad]-h[leaves]-a",
+      "probability_expression": "-1.2 + rpi(0.2) + garballo_noise + max(0, decorative_knockout) + region_box",
+      "local_expressions": {
+        "region_box": "min(range_select{input = moisture, from = 0.7, to = 1, slope = 0.05, min = -10, max = 1},\\z\n                          range_select{input = temperature, from = 10, to = 14, slope = 0.5, min = -10, max = 1})"
+      }
+    },
+    "pictures": [
+      {
+        "filename": "__base__/graphics/decorative/green-asterisk-mini/green-asterisk-mini-00.png",
+        "priority": "base_decorative_sprite_priority",
+        "width": 42,
+        "height": 41,
+        "shift": "util.by_pixel(8.5, 1.25)",
+        "scale": 0.5
+      },
+      {
+        "filename": "__base__/graphics/decorative/green-asterisk-mini/green-asterisk-mini-01.png",
+        "priority": "base_decorative_sprite_priority",
+        "width": 31,
+        "height": 40,
+        "shift": "util.by_pixel(3.25, -1)",
+        "scale": 0.5
+      },
+      {
+        "filename": "__base__/graphics/decorative/green-asterisk-mini/green-asterisk-mini-02.png",
+        "priority": "base_decorative_sprite_priority",
+        "width": 49,
+        "height": 39,
+        "shift": "util.by_pixel(-1.25, 2.25)",
+        "scale": 0.5
+      },
+      {
+        "filename": "__base__/graphics/decorative/green-asterisk-mini/green-asterisk-mini-03.png",
+        "priority": "base_decorative_sprite_priority",
+        "width": 54,
+        "height": 32,
+        "shift": "util.by_pixel(-1.5, 0)",
+        "scale": 0.5
+      },
+      {
+        "filename": "__base__/graphics/decorative/green-asterisk-mini/green-asterisk-mini-04.png",
+        "priority": "base_decorative_sprite_priority",
+        "width": 41,
+        "height": 43,
+        "shift": "util.by_pixel(-6.75, -1.75)",
+        "scale": 0.5
+      },
+      {
+        "filename": "__base__/graphics/decorative/green-asterisk-mini/green-asterisk-mini-05.png",
+        "priority": "base_decorative_sprite_priority",
+        "width": 39,
+        "height": 39,
+        "shift": "util.by_pixel(-4.25, -1.75)",
+        "scale": 0.5
+      },
+      {
+        "filename": "__base__/graphics/decorative/green-asterisk-mini/green-asterisk-mini-06.png",
+        "priority": "base_decorative_sprite_priority",
+        "width": 31,
+        "height": 19,
+        "shift": "util.by_pixel(-0.25, 0.25)",
+        "scale": 0.5
+      },
+      {
+        "filename": "__base__/graphics/decorative/green-asterisk-mini/green-asterisk-mini-07.png",
+        "priority": "base_decorative_sprite_priority",
+        "width": 27,
+        "height": 20,
+        "shift": "util.by_pixel(0.25, 0.5)",
+        "scale": 0.5
+      },
+      {
+        "filename": "__base__/graphics/decorative/green-asterisk-mini/green-asterisk-mini-08.png",
+        "priority": "base_decorative_sprite_priority",
+        "width": 32,
+        "height": 20,
+        "shift": "util.by_pixel(-1.5, 0.5)",
+        "scale": 0.5
+      },
+      {
+        "filename": "__base__/graphics/decorative/green-asterisk-mini/green-asterisk-mini-09.png",
+        "priority": "base_decorative_sprite_priority",
+        "width": 26,
+        "height": 27,
+        "shift": "util.by_pixel(1, -1.25)",
+        "scale": 0.5
+      },
+      {
+        "filename": "__base__/graphics/decorative/green-asterisk-mini/green-asterisk-mini-10.png",
+        "priority": "base_decorative_sprite_priority",
+        "width": 37,
+        "height": 23,
+        "shift": "util.by_pixel(-0.25, 0.75)",
+        "scale": 0.5
+      },
+      {
+        "filename": "__base__/graphics/decorative/green-asterisk-mini/green-asterisk-mini-11.png",
+        "priority": "base_decorative_sprite_priority",
+        "width": 46,
+        "height": 33,
+        "shift": "util.by_pixel(-3.5, -2.75)",
+        "scale": 0.5
+      }
+    ]
+  },
+  {
+    "type": "explosion",
+    "name": "v.name .. \"-explosion\"",
+    "icon": "__core__/graphics/icons/category/decorative-editor.png",
+    "icon_size": 128,
+    "flags": [
+      "not-on-map"
+    ],
+    "subgroup": "decorative-explosions",
+    "order": "a-s-a",
+    "height": 0,
+    "animations": "util.empty_sprite()",
+    "light": {
+      "intensity": 1,
+      "size": 20
+    },
+    "smoke": "smoke-fast",
+    "smoke_count": 2,
+    "smoke_slow_down_factor": 1,
+    "sound": null,
+    "created_effect": {
+      "type": "direct",
+      "action_delivery": {
+        "type": "instant",
+        "target_effects": null
+      }
+    }
+  }
+]

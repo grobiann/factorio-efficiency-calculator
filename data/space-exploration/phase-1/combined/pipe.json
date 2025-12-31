@@ -520,5 +520,250 @@
     "disabled_visualization": null,
     "open_sound": "data.raw[\"pipe-to-ground\"][\"pipe-to-ground\"].open_sound",
     "close_sound": "data.raw[\"pipe-to-ground\"][\"pipe-to-ground\"].close_sound"
+  },
+  {
+    "icons": "icons",
+    "pictures": [
+      {
+        "filename": "version.junction\n        and \"__space-exploration-graphics__/graphics/icons/space-pipe-long-junction.png\"\n        or \"__space-exploration-graphics__/graphics/icons/space-pipe-long.png\"",
+        "scale": 0.25,
+        "size": 64
+      }
+    ],
+    "name": "name",
+    "order": "a[pipe]-s[space]-c[long]-",
+    "place_result": "name",
+    "stack_size": 50,
+    "subgroup": "pipe",
+    "type": "item"
+  },
+  {
+    "type": "recipe",
+    "name": "name",
+    "ingredients": [
+      {
+        "type": "item",
+        "name": "se-space-pipe",
+        "amount": "math.ceil(version.length/2)"
+      }
+    ],
+    "results": [
+      {
+        "type": "item",
+        "name": "name",
+        "amount": 1
+      }
+    ],
+    "energy_required": "0.25 + version.length/4",
+    "enabled": false,
+    "always_show_made_in": true
+  },
+  {
+    "type": "storage-tank",
+    "name": "name",
+    "localised_name": "version.junction\n        and {\"entity-name.\"..data_util.mod_prefix..\"space-pipe-long-junction\", tostring(version.length)}\n        or {\"entity-name.\"..data_util.mod_prefix..\"space-pipe-long-straight\", tostring(version.length)}",
+    "localised_description": "version.junction\n        and {\"entity-description.\"..data_util.mod_prefix..\"space-pipe-long-junction\", tostring(version.length)}\n        or {\"entity-description.\"..data_util.mod_prefix..\"space-pipe-long-straight\", tostring(version.length)}",
+    "minable": {
+      "mining_time": 0.2,
+      "result": "name"
+    },
+    "selection_box": [
+      [
+        -0.5,
+        "-version.length/2"
+      ],
+      [
+        0.5,
+        "version.length/2"
+      ]
+    ],
+    "collision_box": [
+      [
+        -0.3,
+        "-(version.length/2-0.2)"
+      ],
+      [
+        0.3,
+        "version.length/2-0.2"
+      ]
+    ],
+    "collision_mask": "collision_floor",
+    "icon_draw_specification": null,
+    "two_direction_only": true,
+    "circuit_wire_max_distance": 0,
+    "corpse": "storage-tank-remnants",
+    "order": "z",
+    "damaged_trigger_effect": {
+      "entity_name": "spark-explosion",
+      "offset_deviation": [
+        [
+          -0.5,
+          -0.5
+        ],
+        [
+          0.5,
+          0.5
+        ]
+      ],
+      "offsets": [
+        [
+          0,
+          1
+        ]
+      ],
+      "type": "create-entity"
+    },
+    "dying_explosion": "storage-tank-explosion",
+    "flags": [
+      "placeable-player",
+      "player-creation"
+    ],
+    "flow_length_in_ticks": 360,
+    "fluid_box": {
+      "volume": "100 * settings.startup[\"se-space-pipe-capacity\"].value/100",
+      "hide_connection_info": true,
+      "pipe_connections": "pipe_connections",
+      "pipe_covers": {
+        "east": {
+          "layers": [
+            {
+              "filename": "__base__/graphics/entity/pipe-covers/pipe-cover-east.png",
+              "height": 128,
+              "priority": "extra-high",
+              "scale": 0.5,
+              "width": 128
+            },
+            {
+              "draw_as_shadow": true,
+              "filename": "__base__/graphics/entity/pipe-covers/pipe-cover-east-shadow.png",
+              "height": 128,
+              "priority": "extra-high",
+              "scale": 0.5,
+              "width": 128
+            }
+          ]
+        },
+        "north": {
+          "layers": [
+            {
+              "filename": "__base__/graphics/entity/pipe-covers/pipe-cover-north.png",
+              "height": 128,
+              "priority": "extra-high",
+              "scale": 0.5,
+              "width": 128
+            },
+            {
+              "draw_as_shadow": true,
+              "filename": "__base__/graphics/entity/pipe-covers/pipe-cover-north-shadow.png",
+              "height": 128,
+              "priority": "extra-high",
+              "scale": 0.5,
+              "width": 128
+            }
+          ]
+        },
+        "south": {
+          "layers": [
+            {
+              "filename": "__base__/graphics/entity/pipe-covers/pipe-cover-south.png",
+              "height": 128,
+              "priority": "extra-high",
+              "scale": 0.5,
+              "width": 128
+            },
+            {
+              "draw_as_shadow": true,
+              "filename": "__base__/graphics/entity/pipe-covers/pipe-cover-south-shadow.png",
+              "height": 128,
+              "priority": "extra-high",
+              "scale": 0.5,
+              "width": 128
+            }
+          ]
+        },
+        "west": {
+          "layers": [
+            {
+              "filename": "__base__/graphics/entity/pipe-covers/pipe-cover-west.png",
+              "height": 128,
+              "priority": "extra-high",
+              "scale": 0.5,
+              "width": 128
+            },
+            {
+              "draw_as_shadow": true,
+              "filename": "__base__/graphics/entity/pipe-covers/pipe-cover-west-shadow.png",
+              "height": 128,
+              "priority": "extra-high",
+              "scale": 0.5,
+              "width": 128
+            }
+          ]
+        }
+      }
+    },
+    "icons": "icons",
+    "max_health": 500,
+    "pictures": {
+      "flow_sprite": {
+        "filename": "__base__/graphics/entity/pipe/fluid-flow-low-temperature.png",
+        "height": 20,
+        "priority": "extra-high",
+        "width": 160
+      },
+      "fluid_background": {
+        "filename": "__base__/graphics/entity/storage-tank/fluid-background.png",
+        "height": 15,
+        "priority": "extra-high",
+        "width": 16
+      },
+      "gas_flow": {
+        "animation_speed": 0.25,
+        "axially_symmetrical": false,
+        "direction_count": 1,
+        "filename": "__base__/graphics/entity/pipe/steam.png",
+        "frame_count": 60,
+        "height": 30,
+        "line_length": 10,
+        "priority": "extra-high",
+        "scale": 0.5,
+        "width": 48
+      },
+      "picture": {
+        "north": "long_vertical_sprites",
+        "south": "long_vertical_sprites",
+        "east": "long_horizontal_sprites",
+        "west": "long_horizontal_sprites"
+      },
+      "window_background": {
+        "filename": "__base__/graphics/entity/storage-tank/window-background.png",
+        "height": 24,
+        "priority": "extra-high",
+        "scale": 0.5,
+        "width": 34
+      }
+    },
+    "window_bounding_box": [
+      [
+        -0.1,
+        -0.5
+      ],
+      [
+        0.1,
+        -0.15
+      ]
+    ],
+    "impact_category": "metal",
+    "working_sound": {
+      "apparent_volume": 1.5,
+      "match_volume_to_activity": true,
+      "max_sounds_per_type": 3,
+      "sound": {
+        "filename": "__base__/sound/storage-tank.ogg",
+        "volume": 0.6
+      }
+    },
+    "open_sound": null,
+    "close_sound": null
   }
 ]

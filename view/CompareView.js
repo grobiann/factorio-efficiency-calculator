@@ -1,4 +1,5 @@
 import { ViewHelpers } from '../utils/ViewHelpers.js';
+import { RecipeSelectModal } from './RecipeSelectModal.js';
 import { 
   STORAGE_KEYS, 
   ENTRY_TYPES, 
@@ -13,17 +14,35 @@ import {
  * CompareView - 레시피 그룹과 레시피 비교
  */
 export class CompareView {
-  constructor(groups, customRecipeManager, allRecipes, locale, loadedData) {
+  constructor(groups, customRecipeManager, allRecipes, locale, loadedData, recipesByProduct, recipeGroupView) {
     this.groups = groups;
     this.customRecipeManager = customRecipeManager;
     this.allRecipes = allRecipes;
     this.locale = locale;
     this.loadedData = loadedData;
+    this.recipesByProduct = recipesByProduct;
+    this.recipeGroupView = recipeGroupView;
     
     // 비교 그룹 관리
     this.compareGroups = [];
     this.nextGroupId = 1;
     this.selectedGroupIndex = 0;
+    
+    // RecipeSelectModal 생성 (콜백 방식)
+    this.recipeSelectModal = new RecipeSelectModal(
+      {
+        groups: this.groups,
+        allRecipes: this.allRecipes,
+        recipesByProduct: this.recipesByProduct,
+        locale: this.locale,
+        loadedData: this.loadedData,
+        selectedGroupId: null,
+        getIconInfo: this.getIconInfo.bind(this),
+        getRecipeIcon: this.getRecipeIcon.bind(this),
+        createRecipeIcon: this.createRecipeIcon.bind(this)
+      },
+      (type, id) => this._onRecipeSelected(type, id)
+    );
     
     this._loadFromStorage();
   }
@@ -89,7 +108,10 @@ export class CompareView {
     if (this.compareGroups.length > 0) {
       html += this._buildGroupDetail(this.compareGroups[this.selectedGroupIndex]);
     } else {
-      html += '<p style="color: #999; text-align: center; padding: 40px;">비교그룹을 선택하세요.</p>';
+      html += '<div style="text-align: center; padding: 40px;">';
+      html += '<p style="color: #999; margin-bottom: 20px;">비교그룹이 없습니다.</p>';
+      html += '<p style="color: #666; margin-bottom: 20px;">왼쪽의 "새 비교그룹 추가" 버튼을 클릭하여 시작하세요.</p>';
+      html += '</div>';
     }
     
     html += '</div>';
@@ -169,7 +191,7 @@ export class CompareView {
     
     // 이름 셀
     html += '<td class="compare-name-cell">';
-    html += `<span class="compare-item-name">${ViewHelpers.escapeHtml(item.data.name)}</span>`;
+    html += `<span class="compare-item-name clickable" data-item-type="${item.type}" data-item-id="${item.id}">${ViewHelpers.escapeHtml(item.data.name)}</span>`;
     html += '</td>';
     
     // 출력 셀
@@ -232,28 +254,40 @@ export class CompareView {
    * @private
    */
   _showSelectionModal() {
-    const modal = document.createElement('div');
-    modal.className = 'compare-modal';
-    modal.innerHTML = `
-      <div class="compare-modal-content">
-        <div class="compare-modal-header">
-          <h3>항목 선택</h3>
-          <button class="compare-modal-close">✕</button>
-        </div>
-        <div class="compare-modal-body">
-          ${this._buildModalList()}
-        </div>
-      </div>
-    `;
+    console.log('[CompareView] 모달 열기 시작');
+    this.recipeSelectModal.show();
+  }
 
-    document.body.appendChild(modal);
-
-    // 이벤트 설정
-    const closeBtn = modal.querySelector('.compare-modal-close');
-    ViewHelpers.attachModalCloseEvents(modal, closeBtn);
-
-    // 항목 선택 이벤트
-    this._attachModalItemEvents(modal);
+  /**
+   * 레시피 선택 콜백
+   * @private
+   */
+  _onRecipeSelected(type, id) {
+    let data;
+    if (type === 'group') {
+      data = this.groups.get(id);
+    } else if (type === 'recipe') {
+      // 커스텀 레시피 찾기
+      const customRecipes = JSON.parse(localStorage.getItem('customRecipes') || '[]');
+      data = customRecipes.find(r => r.id === id);
+      if (!data) {
+        // 일반 레시피
+        data = this.allRecipes[id];
+      }
+    } else {
+      // 일반 레시피
+      data = this.allRecipes[id];
+    }
+    
+    if (data) {
+      this.compareGroups[this.selectedGroupIndex].items.push({ 
+        type: type === 'group' ? ENTRY_TYPES.GROUP : ENTRY_TYPES.RECIPE, 
+        id, 
+        data 
+      });
+      this._saveToStorage();
+      this.render(document);
+    }
   }
 
   /**
@@ -376,8 +410,12 @@ export class CompareView {
   _attachCompareEvents(container) {
     // 항목 추가
     const addBtn = container.querySelector('.compare-add-btn');
+    console.log('[CompareView] 항목 추가 버튼 찾기:', addBtn);
     if (addBtn) {
-      addBtn.addEventListener('click', () => this._showSelectionModal());
+      addBtn.addEventListener('click', () => {
+        console.log('[CompareView] 항목 추가 버튼 클릭됨');
+        this._showSelectionModal();
+      });
     }
 
     // 항목 제거
@@ -388,6 +426,63 @@ export class CompareView {
         this._removeItem(index);
       });
     });
+
+    // 이름 클릭 -> 레시피 그룹 탭으로 이동
+    const nameElements = container.querySelectorAll('.compare-item-name.clickable');
+    nameElements.forEach(nameEl => {
+      nameEl.addEventListener('click', () => {
+        const itemType = nameEl.dataset.itemType;
+        const itemId = nameEl.dataset.itemId;
+        this._navigateToRecipeGroup(itemType, itemId);
+      });
+    });
+  }
+
+  /**
+   * 레시피 그룹 탭으로 이동
+   * @private
+   */
+  _navigateToRecipeGroup(itemType, itemId) {
+    if (itemType === ENTRY_TYPES.GROUP) {
+      // 레시피 그룹인 경우 해당 그룹 선택
+      this.recipeGroupView.selectedGroupId = itemId;
+    } else {
+      // 일반 레시피인 경우 새 레시피 그룹 생성
+      const recipe = this.allRecipes[itemId];
+      if (recipe) {
+        this.recipeGroupView.addGroup();
+        const newGroupId = this.recipeGroupView.selectedGroupId;
+        const newGroup = this.recipeGroupView.groups.get(newGroupId);
+        if (newGroup) {
+          newGroup.name = `${recipe.name} 그룹`;
+          newGroup.addRecipe(itemId, 1, 'recipe');
+          this.recipeGroupView.saveToStorage();
+          
+          // 비교 항목에서 레시피를 새 레시피 그룹으로 교체
+          const currentGroup = this.compareGroups[this.selectedGroupIndex];
+          if (currentGroup) {
+            const itemIndex = currentGroup.items.findIndex(item => 
+              item.type === ENTRY_TYPES.RECIPE && item.id === itemId
+            );
+            if (itemIndex !== -1) {
+              // 레시피를 레시피 그룹으로 교체
+              currentGroup.items[itemIndex] = {
+                type: ENTRY_TYPES.GROUP,
+                id: newGroupId,
+                data: newGroup
+              };
+              this._saveToStorage();
+            }
+          }
+        }
+      }
+    }
+    
+    // 레시피 그룹 탭으로 전환
+    const recipeGroupTab = document.querySelector('.tab-btn[data-tab="recipe-group"]');
+    if (recipeGroupTab) {
+      recipeGroupTab.click();
+    }
   }
 
   /**
@@ -509,9 +604,13 @@ export class CompareView {
         id: g.id,
         name: g.name,
         items: g.items.map(item => {
-          const data = item.type === ENTRY_TYPES.GROUP
-            ? this.groups.get(item.id)
-            : this.customRecipeManager.getRecipe(item.id);
+          let data;
+          if (item.type === ENTRY_TYPES.GROUP) {
+            data = this.groups.get(item.id);
+          } else {
+            // 커스텀 레시피 또는 일반 레시피
+            data = this.customRecipeManager.getRecipe(item.id) || this.allRecipes[item.id];
+          }
           return data ? { type: item.type, id: item.id, data } : null;
         }).filter(Boolean)
       }));
@@ -524,5 +623,26 @@ export class CompareView {
     } catch (e) {
       console.error('Failed to load compare groups:', e);
     }
+  }
+
+  /**
+   * 아이콘 정보 가져오기 (RecipeSelectModal용)
+   */
+  getIconInfo(itemId, itemType = 'item') {
+    return ViewHelpers.getIconInfo(this.loadedData, itemId, itemType);
+  }
+
+  /**
+   * 레시피 아이콘 정보 가져오기 (RecipeSelectModal용)
+   */
+  getRecipeIcon(recipe) {
+    return ViewHelpers.getRecipeIcon(recipe, this.loadedData);
+  }
+
+  /**
+   * 레시피 아이콘 생성 (RecipeSelectModal용)
+   */
+  createRecipeIcon(icons) {
+    return ViewHelpers.createRecipeIconHtml(icons);
   }
 }
