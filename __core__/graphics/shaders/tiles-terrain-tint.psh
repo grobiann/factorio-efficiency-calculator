@@ -1,0 +1,106 @@
+cbuffer EffectUniforms : register(b0)
+{
+    float2 _27_pixelShift : packoffset(c0);
+    float2 _27_mapPosition : packoffset(c0.z);
+    float _27_zoom : packoffset(c1);
+    float _27_daytimeAlphaButDoNotUseIt : packoffset(c1.y);
+    float2 _27_renderResolution : packoffset(c1.z);
+    float4 _27_offset : packoffset(c2);
+    float4 _27_intensity : packoffset(c3);
+    float4 _27_scaleU : packoffset(c4);
+    float4 _27_scaleV : packoffset(c5);
+    float _27_globalIntensity : packoffset(c6);
+    float _27_globalScale : packoffset(c6.y);
+    float _27_zoomFactor : packoffset(c6.z);
+    float _27_zoomIntensity : packoffset(c6.w);
+};
+
+Texture2D<float4> noiseTexture : register(t0);
+SamplerState _noiseTexture_sampler : register(s0);
+
+static float4 gl_FragCoord;
+static float4 fragColor;
+
+struct SPIRV_Cross_Input
+{
+    float4 gl_FragCoord : SV_Position;
+};
+
+struct SPIRV_Cross_Output
+{
+    float4 fragColor : SV_Target0;
+};
+
+static float2 map_Position;
+static float2 adjustedUV;
+static float2 uv;
+
+float4 _textureOffset(Texture2D<float4> textureInput, SamplerState _textureInput_sampler, float2 uv_1, float offset, float scaleU, float scaleV)
+{
+    float4 outputTexture = textureInput.Sample(_textureInput_sampler, float2((uv_1.x + offset) * scaleU, (uv_1.y + offset) * scaleV));
+    return outputTexture;
+}
+
+void frag_main()
+{
+    map_Position = (_27_mapPosition + (gl_FragCoord.xy / (32.0f * _27_zoom).xx)) * 32.0f;
+    adjustedUV = map_Position / 1024.0f.xx;
+    uv = adjustedUV;
+    float2 param = uv;
+    float param_1 = _27_offset.x;
+    float param_2 = _27_scaleU.x * _27_globalScale;
+    float param_3 = _27_scaleV.x * _27_globalScale;
+    float redTint = clamp(_textureOffset(noiseTexture, _noiseTexture_sampler, param, param_1, param_2, param_3).x, 0.0f, 1.0f);
+    float2 param_4 = uv;
+    float param_5 = _27_offset.y;
+    float param_6 = _27_scaleU.y * _27_globalScale;
+    float param_7 = _27_scaleV.y * _27_globalScale;
+    float greenTint = clamp(_textureOffset(noiseTexture, _noiseTexture_sampler, param_4, param_5, param_6, param_7).y, 0.0f, 1.0f);
+    float2 param_8 = uv;
+    float param_9 = _27_offset.z;
+    float param_10 = _27_scaleU.z * _27_globalScale;
+    float param_11 = _27_scaleV.z * _27_globalScale;
+    float blueTint = clamp(_textureOffset(noiseTexture, _noiseTexture_sampler, param_8, param_9, param_10, param_11).z, 0.0f, 1.0f);
+    float2 param_12 = uv;
+    float param_13 = _27_offset.w;
+    float param_14 = _27_scaleU.w * _27_globalScale;
+    float param_15 = _27_scaleV.w * _27_globalScale;
+    float Tint = clamp(_textureOffset(noiseTexture, _noiseTexture_sampler, param_12, param_13, param_14, param_15).y, 0.0f, 1.0f);
+    float2 param_16 = uv;
+    float param_17 = _27_offset.x;
+    float param_18 = (_27_scaleU.x * _27_globalScale) * _27_zoomFactor;
+    float param_19 = (_27_scaleV.x * _27_globalScale) * _27_zoomFactor;
+    float redTint_half = clamp(_textureOffset(noiseTexture, _noiseTexture_sampler, param_16, param_17, param_18, param_19).x, 0.0f, 1.0f);
+    float2 param_20 = uv;
+    float param_21 = _27_offset.y;
+    float param_22 = (_27_scaleU.y * _27_globalScale) * _27_zoomFactor;
+    float param_23 = (_27_scaleV.y * _27_globalScale) * _27_zoomFactor;
+    float greenTint_half = clamp(_textureOffset(noiseTexture, _noiseTexture_sampler, param_20, param_21, param_22, param_23).y, 0.0f, 1.0f);
+    float2 param_24 = uv;
+    float param_25 = _27_offset.z;
+    float param_26 = (_27_scaleU.z * _27_globalScale) * _27_zoomFactor;
+    float param_27 = (_27_scaleV.z * _27_globalScale) * _27_zoomFactor;
+    float blueTint_half = clamp(_textureOffset(noiseTexture, _noiseTexture_sampler, param_24, param_25, param_26, param_27).z, 0.0f, 1.0f);
+    float2 param_28 = uv;
+    float param_29 = _27_offset.w;
+    float param_30 = (_27_scaleU.w * _27_globalScale) * _27_zoomFactor;
+    float param_31 = (_27_scaleV.w * _27_globalScale) * _27_zoomFactor;
+    float Tint_half = clamp(_textureOffset(noiseTexture, _noiseTexture_sampler, param_28, param_29, param_30, param_31).y, 0.0f, 1.0f);
+    float zoom_mult = clamp(_27_zoom * 1.0f, 0.0f, 1.0f);
+    blueTint = lerp((blueTint * _27_intensity.z) * _27_globalIntensity, ((blueTint_half * _27_intensity.z) * _27_globalIntensity) * _27_zoomIntensity, zoom_mult);
+    redTint = lerp((redTint * _27_intensity.x) * _27_globalIntensity, ((redTint_half * _27_intensity.x) * _27_globalIntensity) * _27_zoomIntensity, zoom_mult);
+    greenTint = lerp((greenTint * _27_intensity.y) * _27_globalIntensity, ((greenTint_half * _27_intensity.y) * _27_globalIntensity) * _27_zoomIntensity, zoom_mult);
+    Tint = lerp((Tint * _27_intensity.w) * _27_globalIntensity, ((Tint_half * _27_intensity.w) * _27_globalIntensity) * _27_zoomIntensity, zoom_mult);
+    float4 color = float4(1.0f - max(max(blueTint, greenTint), Tint), 1.0f - max(max(blueTint, redTint), Tint), 1.0f - max(max(greenTint, redTint), Tint), 1.0f);
+    fragColor = color;
+}
+
+SPIRV_Cross_Output main(SPIRV_Cross_Input stage_input)
+{
+    gl_FragCoord = stage_input.gl_FragCoord;
+    gl_FragCoord.w = 1.0 / gl_FragCoord.w;
+    frag_main();
+    SPIRV_Cross_Output stage_output;
+    stage_output.fragColor = fragColor;
+    return stage_output;
+}

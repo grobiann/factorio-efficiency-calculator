@@ -1,0 +1,273 @@
+struct CellUVs
+{
+    float2 uvs;
+    float2 randomValue;
+    float rotationAngle;
+    bool clamped;
+};
+
+cbuffer SpaceDustConstants : register(b0)
+{
+    float2 _185_letfTopMapPosition : packoffset(c0);
+    float2 _185_pixelShift : packoffset(c0.z);
+    float2 _185_backgroundCenter : packoffset(c1);
+    float2 _185_platformOffset : packoffset(c1.z);
+    float2 _185_resolution : packoffset(c2);
+    float _185_zoom : packoffset(c2.z);
+    float _185_daytimeAlpha : packoffset(c2.w);
+    float _185_time : packoffset(c3);
+    float _185_animationSpeed : packoffset(c3.y);
+    float _185_platformSpeed : packoffset(c3.z);
+    float _185_maxPlatformSpeedEstimate : packoffset(c3.w);
+};
+
+Texture2D<float4> asteroidTexture : register(t1);
+SamplerState _asteroidTexture_sampler : register(s1);
+Texture2D<float4> asteroidNormalTexture : register(t2);
+SamplerState _asteroidNormalTexture_sampler : register(s2);
+
+static float2 vUV;
+static float4 fragColor;
+
+struct SPIRV_Cross_Input
+{
+    float2 vUV : TEXCOORD0;
+};
+
+struct SPIRV_Cross_Output
+{
+    float4 fragColor : SV_Target0;
+};
+
+float4 createSamplingUvs(float2 uv)
+{
+    float2 integerUvs = floor(uv);
+    float2 repeatingUvs = uv - integerUvs;
+    return float4(repeatingUvs, integerUvs);
+}
+
+float2 random2(float2 st)
+{
+    float2 s = float2(dot(st, float2(12.345600128173828125f, 34.141498565673828125f)), dot(st, float2(42.21540069580078125f, 15.285400390625f)));
+    return frac(sin(s) * 45678.8984375f);
+}
+
+float2 rotateUV(float2 uv, float angle, float2 pivot)
+{
+    float2 offsetUv = uv - pivot;
+    float angleCos = cos(angle);
+    float angleSin = sin(angle);
+    return float2((offsetUv.x * angleCos) - (offsetUv.y * angleSin), (offsetUv.x * angleSin) + (offsetUv.y * angleCos)) + pivot;
+}
+
+float cheapContrast(float value, float threshold)
+{
+    return clamp((value - threshold) * (1.0f / threshold), 0.0f, 1.0f);
+}
+
+float2 scaleUvWithOffset(float2 uv, float scale, float2 offset)
+{
+    return ((uv - offset) * scale) + offset;
+}
+
+CellUVs offsetRandomUvs(float2 inputUv, float2 integerUv, float2 offset, float subUv, float scale, float rotSpeed)
+{
+    float2 modUv = integerUv + offset;
+    float2 param = modUv;
+    CellUVs result;
+    result.randomValue = random2(param);
+    float2 randomUvIndex = floor(result.randomValue * subUv);
+    float2 offsetUvs = (inputUv - offset) - result.randomValue;
+    float2 randomOffsetUvs = offsetUvs + randomUvIndex;
+    result.rotationAngle = (((_185_time / rotSpeed) * (result.randomValue.x - 0.25f)) * 2.0f) + result.randomValue.y;
+    float2 param_1 = randomOffsetUvs;
+    float param_2 = result.rotationAngle;
+    float2 param_3 = randomUvIndex + 0.5f.xx;
+    float2 rotatedUvs = rotateUV(param_1, param_2, param_3);
+    float param_4 = result.randomValue.y;
+    float param_5 = 0.699999988079071044921875f;
+    float scaleValue = (scale * 1.0f) / clamp(cheapContrast(param_4, param_5) * 4.0f, 9.9999997473787516355514526367188e-05f, 1.0f);
+    float2 param_6 = rotatedUvs;
+    float param_7 = scaleValue;
+    float2 param_8 = randomUvIndex + 0.5f.xx;
+    float2 scaleUvs = scaleUvWithOffset(param_6, param_7, param_8);
+    float2 clampWrappingUvs = clamp(scaleUvs, randomUvIndex, randomUvIndex + 1.0f.xx);
+    result.clamped = any(bool2(clampWrappingUvs.x != scaleUvs.x, clampWrappingUvs.y != scaleUvs.y));
+    result.uvs = clampWrappingUvs * (1.0f / subUv);
+    return result;
+}
+
+void sampleRandomCell(float2 inputUv, float2 integerUv, Texture2D<float4> image, SamplerState _image_sampler, float subUv, float scale, float rotSpeed, out float4 sampledTexture, out float rotationAngle, out float2 randomValue)
+{
+    float2 param = inputUv;
+    float2 param_1 = integerUv;
+    float2 param_2 = 0.0f.xx;
+    float param_3 = subUv;
+    float param_4 = scale;
+    float param_5 = rotSpeed;
+    CellUVs centerParams = offsetRandomUvs(param, param_1, param_2, param_3, param_4, param_5);
+    float2 param_6 = inputUv;
+    float2 param_7 = integerUv;
+    float2 param_8 = float2(0.0f, -1.0f);
+    float param_9 = subUv;
+    float param_10 = scale;
+    float param_11 = rotSpeed;
+    CellUVs aboveParams = offsetRandomUvs(param_6, param_7, param_8, param_9, param_10, param_11);
+    float2 param_12 = inputUv;
+    float2 param_13 = integerUv;
+    float2 param_14 = float2(-1.0f, 0.0f);
+    float param_15 = subUv;
+    float param_16 = scale;
+    float param_17 = rotSpeed;
+    CellUVs leftParams = offsetRandomUvs(param_12, param_13, param_14, param_15, param_16, param_17);
+    float2 param_18 = inputUv;
+    float2 param_19 = integerUv;
+    float2 param_20 = (-1.0f).xx;
+    float param_21 = subUv;
+    float param_22 = scale;
+    float param_23 = rotSpeed;
+    CellUVs aboveLeftParams = offsetRandomUvs(param_18, param_19, param_20, param_21, param_22, param_23);
+    float4 _322;
+    if (centerParams.clamped)
+    {
+        _322 = 0.0f.xxxx;
+    }
+    else
+    {
+        _322 = image.Sample(_image_sampler, centerParams.uvs);
+    }
+    float4 center = _322;
+    float4 _335;
+    if (aboveParams.clamped)
+    {
+        _335 = 0.0f.xxxx;
+    }
+    else
+    {
+        _335 = image.Sample(_image_sampler, aboveParams.uvs);
+    }
+    float4 above = _335;
+    float4 _347;
+    if (leftParams.clamped)
+    {
+        _347 = 0.0f.xxxx;
+    }
+    else
+    {
+        _347 = image.Sample(_image_sampler, leftParams.uvs);
+    }
+    float4 left = _347;
+    float4 _359;
+    if (aboveLeftParams.clamped)
+    {
+        _359 = 0.0f.xxxx;
+    }
+    else
+    {
+        _359 = image.Sample(_image_sampler, aboveLeftParams.uvs);
+    }
+    float4 aboveLeft = _359;
+    randomValue = lerp(lerp(lerp(centerParams.randomValue, aboveParams.randomValue, above.w.xx), leftParams.randomValue, left.w.xx), aboveLeftParams.randomValue, aboveLeft.w.xx);
+    rotationAngle = lerp(lerp(lerp(lerp(0.0f, centerParams.rotationAngle, center.w), aboveParams.rotationAngle, above.w), leftParams.rotationAngle, left.w), aboveLeftParams.rotationAngle, aboveLeft.w);
+    sampledTexture = float4(lerp(lerp(lerp(center.xyz, above.xyz, above.w.xxx), left.xyz, left.w.xxx), aboveLeft.xyz, aboveLeft.w.xxx), clamp(((center.w + left.w) + above.w) + aboveLeft.w, 0.0f, 1.0f));
+}
+
+void frag_main()
+{
+    float2 mapPosition = (_185_letfTopMapPosition + ((vUV * _185_resolution) / (32.0f * _185_zoom).xx)) * 32.0f;
+    mapPosition += _185_platformOffset;
+    float2 uv = mapPosition / 1536.0f.xx;
+    float2 vUV2 = vUV;
+    float2 vUV_1 = uv;
+    uv /= 2.0f.xx;
+    float subTileCount = 4.0f;
+    float asteroidScale = 4.400000095367431640625f;
+    float globalTiling = 2.0f;
+    float asteroidSpeed = 2.2999999523162841796875f;
+    float2 tileUvs = (vUV_1 * globalTiling) + min(float2(0.0f, (_185_platformOffset.y / ((subTileCount * asteroidSpeed) * asteroidScale)) - ((_185_time / asteroidSpeed) / 1000.0f)), (-0.00999999977648258209228515625f).xx);
+    tileUvs *= subTileCount;
+    float2 integerUvs = floor(tileUvs);
+    float2 repeatingUvs = tileUvs - integerUvs;
+    float rotation_speed = 250.0f;
+    float2 param = tileUvs + float2(0.0f, _185_time / 500.0f);
+    float4 bottomLayerUvs = createSamplingUvs(param);
+    float2 param_1 = repeatingUvs;
+    float2 param_2 = integerUvs;
+    float param_3 = subTileCount;
+    float param_4 = asteroidScale / globalTiling;
+    float param_5 = rotation_speed * 0.75f;
+    float4 param_6;
+    float param_7;
+    float2 param_8;
+    sampleRandomCell(param_1, param_2, asteroidTexture, _asteroidTexture_sampler, param_3, param_4, param_5, param_6, param_7, param_8);
+    float4 asteroidTopLayer = param_6;
+    float asteroidTopLayerRotation = param_7;
+    float2 asteroidTopLayerRandom = param_8;
+    float2 param_9 = bottomLayerUvs.xy;
+    float2 param_10 = bottomLayerUvs.zw;
+    float param_11 = subTileCount;
+    float param_12 = ((asteroidScale / 1.25f) * 2.0f) / globalTiling;
+    float param_13 = rotation_speed;
+    float4 param_14;
+    float param_15;
+    float2 param_16;
+    sampleRandomCell(param_9, param_10, asteroidTexture, _asteroidTexture_sampler, param_11, param_12, param_13, param_14, param_15, param_16);
+    float4 asteroidMidLayer = param_14;
+    float asteroidMidLayerRotation = param_15;
+    float2 asteroidMidLayerRandom = param_16;
+    float randomBrightness = max(0.4000000059604644775390625f, 0.5f + lerp(asteroidMidLayerRandom, asteroidTopLayerRandom, asteroidTopLayer.w.xx).x);
+    float2 param_17 = repeatingUvs;
+    float2 param_18 = integerUvs;
+    float param_19 = subTileCount;
+    float param_20 = asteroidScale / globalTiling;
+    float param_21 = rotation_speed * 0.75f;
+    float4 param_22;
+    float param_23;
+    float2 param_24;
+    sampleRandomCell(param_17, param_18, asteroidNormalTexture, _asteroidNormalTexture_sampler, param_19, param_20, param_21, param_22, param_23, param_24);
+    float4 asteroidTopLayerNormal = param_22;
+    float asteroidTopLayerNormalRotation = param_23;
+    float2 normalRandom_throwaway = param_24;
+    float2 param_25 = bottomLayerUvs.xy;
+    float2 param_26 = bottomLayerUvs.zw;
+    float param_27 = subTileCount;
+    float param_28 = ((asteroidScale / 1.25f) * 2.0f) / globalTiling;
+    float param_29 = rotation_speed;
+    float4 param_30;
+    float param_31;
+    float2 param_32;
+    sampleRandomCell(param_25, param_26, asteroidNormalTexture, _asteroidNormalTexture_sampler, param_27, param_28, param_29, param_30, param_31, param_32);
+    float4 asteroidMidLayerNormal = param_30;
+    float asteroidMidLayerNormalRotation = param_31;
+    normalRandom_throwaway = param_32;
+    float asteroidAlpha = clamp(asteroidMidLayer.w + (asteroidTopLayer.w * 10.0f), 0.0f, 1.0f);
+    float4 ambientLight = float4(lerp(asteroidMidLayer.xyz * 0.12999999523162841796875f, asteroidTopLayer.xyz * 0.23000000417232513427734375f, asteroidTopLayer.w.xxx) * randomBrightness, asteroidAlpha);
+    float4 litColour = float4(lerp(asteroidMidLayer.xyz * 0.17000000178813934326171875f, asteroidTopLayer.xyz * 0.2700000107288360595703125f, asteroidTopLayer.w.xxx) * randomBrightness, asteroidAlpha);
+    float4 normal_img = lerp(asteroidMidLayerNormal, asteroidTopLayerNormal, asteroidTopLayer.w.xxxx);
+    float normalRotation = lerp(asteroidMidLayerNormalRotation, asteroidTopLayerNormalRotation, asteroidTopLayer.w);
+    float normalStrength = 2.0f;
+    float lightWidth = 0.0f;
+    float3 normal = normalize((normal_img.xyz * float3(1.0f, 1.0f, 0.5f)) - float3(0.5f, 0.5f, 0.0f));
+    normal = normalize(float3(0.0f, 0.0f, 1.0f) + ((normal - float3(0.0f, 0.0f, 1.0f)) * normalStrength));
+    float3 rotated_normal = float3((normal.x * cos(normalRotation)) + (normal.y * sin(normalRotation)), ((-normal.x) * sin(normalRotation)) + (normal.y * cos(normalRotation)), normal.z);
+    float3 illumination = 0.0f.xxx;
+    float3 lights_diffuse = 0.0f.xxx;
+    float3 light_color = 1.0f.xxx;
+    float3 light_direction = float3(0.66564023494720458984375f, 0.4992301762104034423828125f, -0.554700195789337158203125f);
+    float lighting = max(0.0f, dot(rotated_normal, -light_direction) + lightWidth);
+    float3 light_diffuse = (light_color * lighting) * 1.0f;
+    illumination += (light_color * max(-1.0f, lighting));
+    lights_diffuse += light_diffuse;
+    lights_diffuse *= asteroidAlpha;
+    float4 finalColor = float4((lights_diffuse + ambientLight.xyz) * litColour.xyz, litColour.w) * 1.0f;
+    fragColor = finalColor;
+}
+
+SPIRV_Cross_Output main(SPIRV_Cross_Input stage_input)
+{
+    vUV = stage_input.vUV;
+    frag_main();
+    SPIRV_Cross_Output stage_output;
+    stage_output.fragColor = fragColor;
+    return stage_output;
+}

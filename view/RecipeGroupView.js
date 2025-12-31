@@ -396,28 +396,52 @@ export class RecipeGroupView {
     if (!this.loadedData || !this.loadedData.entries) return null;
     
     const searchTypes = ['item', 'module', 'fluid'];
-    
     for (const searchType of searchTypes) {
       const entry = this.loadedData.entries.find(e => e.name === itemId && e.type === searchType);
-      if (entry && entry.icon) {
+      if (entry) {
+        // icons 배열이 있으면 첫 번째 아이콘 사용
+        if (Array.isArray(entry.icons) && entry.icons.length > 0) {
+          const iconObj = entry.icons[0];
+          return {
+            path: iconObj.icon || iconObj.path,
+            name: itemId,
+            size: iconObj.icon_size || entry.icon_size || 64,
+            mipmaps: iconObj.icon_mipmaps || entry.icon_mipmaps || 0
+          };
+        }
+        // icon 단일값이 있으면 사용
+        if (entry.icon) {
+          return {
+            path: entry.icon,
+            name: itemId,
+            size: entry.icon_size || 64,
+            mipmaps: entry.icon_mipmaps || 0
+          };
+        }
+      }
+    }
+    // 타입 무시하고 name만 일치하는 entry도 icons 배열 우선
+    const anyEntry = this.loadedData.entries.find(e => e.name === itemId);
+    if (anyEntry) {
+      if (Array.isArray(anyEntry.icons) && anyEntry.icons.length > 0) {
+        const iconObj = anyEntry.icons[0];
         return {
-          path: entry.icon,
-          size: entry.icon_size || 64,
-          mipmaps: entry.mipmap_count || 0
+          path: iconObj.icon || iconObj.path,
+          name: itemId,
+          size: iconObj.icon_size || anyEntry.icon_size || 64,
+          mipmaps: iconObj.icon_mipmaps || anyEntry.icon_mipmaps || 0
+        };
+      }
+      if (anyEntry.icon) {
+        return {
+          path: anyEntry.icon,
+          name: itemId,
+          size: anyEntry.icon_size || 64,
+          mipmaps: anyEntry.icon_mipmaps || 0
         };
       }
     }
-    
-    const anyEntry = this.loadedData.entries.find(e => e.name === itemId);
-    if (anyEntry && anyEntry.icon) {
-      return {
-        path: anyEntry.icon,
-        size: anyEntry.icon_size || 64,
-        mipmaps: anyEntry.mipmap_count || 0
-      };
-    }
-    
-    console.warn('[RecipeGroupView.getIconInfo] Icon not found in data - itemId:', itemId, 'entries count:', this.loadedData.entries.length, 'entry: ', entry, anyEntry);
+    console.warn('[RecipeGroupView.getIconInfo] Icon not found in data - itemId:', itemId, 'entries count:', this.loadedData.entries.length, 'anyEntry:', anyEntry);
     return {
       path: null,
       name: itemId,

@@ -1,0 +1,35 @@
+Texture2D<float4> tex : register(t0);
+SamplerState _tex_sampler : register(s0);
+Texture2D<float4> lightTex : register(t1);
+SamplerState _lightTex_sampler : register(s1);
+
+static float4 fragColor;
+static float2 vUV;
+static float4 lightColor;
+
+struct SPIRV_Cross_Input
+{
+    float2 vUV : TEXCOORD0;
+};
+
+struct SPIRV_Cross_Output
+{
+    float4 fragColor : SV_Target0;
+    float4 lightColor : SV_Target1;
+};
+
+void frag_main()
+{
+    fragColor = tex.Sample(_tex_sampler, vUV);
+    lightColor = lightTex.Sample(_lightTex_sampler, vUV);
+}
+
+SPIRV_Cross_Output main(SPIRV_Cross_Input stage_input)
+{
+    vUV = stage_input.vUV;
+    frag_main();
+    SPIRV_Cross_Output stage_output;
+    stage_output.fragColor = fragColor;
+    stage_output.lightColor = lightColor;
+    return stage_output;
+}

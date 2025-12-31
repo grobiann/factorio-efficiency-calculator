@@ -1,0 +1,73 @@
+struct ParallaxLayerDef
+{
+    uint beginQuadID;
+    uint endQuadID;
+    float2 seed;
+    float2 gridTopLeftCellID;
+    float2 gridOffset;
+    float2 gridSize;
+    float2 starSize;
+    float2 cellBaseVector0;
+    float2 cellBaseVector1;
+};
+
+cbuffer StarfieldConstants : register(b0)
+{
+    row_major float4x4 ub_projection : packoffset(c0);
+    float2 ub_resolution : packoffset(c4);
+    float2 ub_backgroundOffset : packoffset(c4.z);
+    float ub_time : packoffset(c5);
+    float ub_timeRaw : packoffset(c5.y);
+    float ub_zoom : packoffset(c5.z);
+    float ub_starsPerCell : packoffset(c5.w);
+    float ub_starBrightness : packoffset(c6);
+    float ub_starShape : packoffset(c6.y);
+    float ub_starSaturation : packoffset(c6.z);
+    int ub_parallaxLayerCount : packoffset(c6.w);
+    ParallaxLayerDef ub_layers[4] : packoffset(c7);
+};
+
+
+static float3 vColor;
+static float2 vUV;
+static float4 fragColor;
+
+struct SPIRV_Cross_Input
+{
+    float2 vUV : TEXCOORD0;
+    nointerpolation float3 vColor : TEXCOORD1;
+};
+
+struct SPIRV_Cross_Output
+{
+    float4 fragColor : SV_Target0;
+};
+
+float minkowski_distance(float2 p1, float2 p2)
+{
+    float power = ub_starShape;
+    float minkowski = pow(pow(abs(p1.x - p2.x), power) + pow(abs(p1.y - p2.y), power), 1.0f / power);
+    return minkowski;
+}
+
+void frag_main()
+{
+    float3 starColor = vColor;
+    float BWStars = ((starColor.x + starColor.y) + starColor.z) / 3.0f;
+    starColor = (starColor * ub_starSaturation) + (BWStars * (1.0f - ub_starSaturation)).xxx;
+    float2 param = vUV;
+    float2 param_1 = 0.0f.xx;
+    float star_mask = minkowski_distance(param, param_1);
+    float brightness = pow(max(BWStars - star_mask, 0.0f), 5.0f);
+    fragColor = float4(((starColor * brightness) * ub_starBrightness) * 5.0f, 0.0f);
+}
+
+SPIRV_Cross_Output main(SPIRV_Cross_Input stage_input)
+{
+    vColor = stage_input.vColor;
+    vUV = stage_input.vUV;
+    frag_main();
+    SPIRV_Cross_Output stage_output;
+    stage_output.fragColor = fragColor;
+    return stage_output;
+}

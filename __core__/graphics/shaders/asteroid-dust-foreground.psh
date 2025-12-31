@@ -1,0 +1,151 @@
+cbuffer SpaceDustConstants : register(b0)
+{
+    float2 _66_letfTopMapPosition : packoffset(c0);
+    float2 _66_pixelShift : packoffset(c0.z);
+    float2 _66_backgroundCenter : packoffset(c1);
+    float2 _66_platformOffset : packoffset(c1.z);
+    float2 _66_resolution : packoffset(c2);
+    float _66_zoom : packoffset(c2.z);
+    float _66_daytimeAlpha : packoffset(c2.w);
+    float _66_time : packoffset(c3);
+    float _66_animationSpeed : packoffset(c3.y);
+    float _66_platformSpeed : packoffset(c3.z);
+    float _66_maxPlatformSpeedEstimate : packoffset(c3.w);
+};
+
+Texture2D<float4> noiseTexture : register(t0);
+SamplerState _noiseTexture_sampler : register(s0);
+
+static float2 vUV;
+static float4 fragColor;
+
+struct SPIRV_Cross_Input
+{
+    float2 vUV : TEXCOORD0;
+};
+
+struct SPIRV_Cross_Output
+{
+    float4 fragColor : SV_Target0;
+};
+
+static float debug;
+
+float2 PanningUV2(float2 uv, float speedX, float speedY, float time1)
+{
+    float2 uvDist = uv;
+    uvDist.x -= ((_66_time / 1000.0f) * speedX);
+    uvDist.y -= (time1 / 10.0f);
+    return frac(uvDist);
+}
+
+float2 PanningUV(float2 uv, float speedX, float speedY, float time1)
+{
+    float2 uvDist = uv;
+    uvDist.x -= frac((time1 / 1000.0f) * speedX);
+    uvDist.y -= frac((time1 / 1000.0f) * speedY);
+    return frac(uvDist);
+}
+
+float histogramSelect(float image, float position, float range)
+{
+    return 1.0f + (min(image - position, position - image) / range);
+}
+
+float histogramScan(float image, float position)
+{
+    return clamp(image - (1.0f - position), 0.0f, 1.0f);
+}
+
+void frag_main()
+{
+    float2 mapPosition = (_66_letfTopMapPosition + ((vUV * _66_resolution) / (32.0f * _66_zoom).xx)) * 32.0f;
+    mapPosition += _66_platformOffset;
+    float2 uv = mapPosition / 1536.0f.xx;
+    uv /= 5.0f.xx;
+    float maxSpeed = _66_maxPlatformSpeedEstimate;
+    float parralaxScale = 0.5f;
+    float2 platformOffset1 = _66_platformOffset / 3.0f.xx;
+    float normalizedSpeed = _66_platformSpeed;
+    float trueTime = 1.0f / (normalizedSpeed / (1.0f - _66_platformOffset.y));
+    platformOffset1 = float2(platformOffset1.x, platformOffset1.y - (_66_time / 1000.0f));
+    float speckSpeed = _66_platformOffset.y / parralaxScale;
+    float speedAsPercent = clamp(normalizedSpeed / maxSpeed, 0.0f, 1.0f);
+    float fadePeriod = 2.0f;
+    float2 closeUV = uv * 4.0f;
+    float2 midUV = (uv * 4.0f) / parralaxScale.xx;
+    float2 closeUVDust = uv;
+    float2 midUVDust = uv / parralaxScale.xx;
+    float2 param = midUV;
+    float param_1 = 0.0f;
+    float param_2 = speckSpeed * parralaxScale;
+    float param_3 = (-platformOffset1.y) * 4.0f;
+    midUV = PanningUV2(param, param_1, param_2, param_3);
+    float2 param_4 = closeUV;
+    float param_5 = 0.0f;
+    float param_6 = speckSpeed;
+    float param_7 = (-platformOffset1.y) * 4.0f;
+    float2 panningCloseUV = PanningUV2(param_4, param_5, param_6, param_7);
+    closeUV = panningCloseUV;
+    float2 param_8 = uv / 2.0f.xx;
+    float param_9 = 0.5f;
+    float param_10 = 5.0f;
+    float param_11 = _66_time - platformOffset1.y;
+    float2 highSpeedSpeckUV = PanningUV(param_8, param_9, param_10, param_11);
+    float3 highSpeedSpeck = noiseTexture.Sample(_noiseTexture_sampler, highSpeedSpeckUV).y.xxx * 0.0f;
+    float2 param_12 = midUVDust;
+    float param_13 = 0.0f;
+    float param_14 = normalizedSpeed * parralaxScale;
+    float param_15 = -platformOffset1.y;
+    midUVDust = PanningUV2(param_12, param_13, param_14, param_15);
+    float2 param_16 = closeUVDust;
+    float param_17 = 0.0f;
+    float param_18 = normalizedSpeed;
+    float param_19 = -platformOffset1.y;
+    closeUVDust = PanningUV2(param_16, param_17, param_18, param_19);
+    float speckMask = noiseTexture.Sample(_noiseTexture_sampler, closeUV).w;
+    float fadeMask = sin(platformOffset1.y / 2.0f);
+    float fadeTime = (fadeMask + 4.0f) / 8.0f;
+    float param_20 = speckMask;
+    float param_21 = fadeTime;
+    float param_22 = 0.0500000007450580596923828125f;
+    float randomSpeckMask = clamp(histogramSelect(param_20, param_21, param_22), 0.0f, 1.0f);
+    float param_23 = speckMask;
+    float param_24 = fadeTime;
+    float param_25 = 0.0500000007450580596923828125f;
+    float randomSpeckMask3 = clamp(histogramSelect(param_23, param_24, param_25), 0.0f, 1.0f);
+    float param_26 = speckMask;
+    float param_27 = fadeTime;
+    float param_28 = 0.004999999888241291046142578125f;
+    float randomSpeckMask2 = clamp(histogramSelect(param_26, param_27, param_28), 0.0f, 1.0f);
+    highSpeedSpeck = clamp(highSpeedSpeck * randomSpeckMask2, 0.0f.xxx, 1.0f.xxx) * 2.0f;
+    float closeDust = noiseTexture.Sample(_noiseTexture_sampler, closeUVDust).x * 0.5f;
+    float midDust = noiseTexture.Sample(_noiseTexture_sampler, midUVDust).x * 0.20000000298023223876953125f;
+    float param_29 = pow(noiseTexture.Sample(_noiseTexture_sampler, closeUV).y, 0.4544999897480010986328125f);
+    float param_30 = speedAsPercent;
+    float closeTrail = clamp(histogramScan(param_29, param_30), 0.0f, 1.0f);
+    float param_31 = pow(noiseTexture.Sample(_noiseTexture_sampler, midUV).y, 0.4544999897480010986328125f);
+    float param_32 = speedAsPercent * 0.75f;
+    float midTrail = histogramScan(param_31, param_32);
+    float closeSpeck = noiseTexture.Sample(_noiseTexture_sampler, closeUV).z;
+    float midSpeck = noiseTexture.Sample(_noiseTexture_sampler, midUV).z;
+    float3 mixDust = pow(clamp(lerp(closeDust.xxx * float3(0.968599975109100341796875f, 0.917599976062774658203125f, 0.749000012874603271484375f), midDust.xxx * float3(1.0f, 1.0f, 0.89999997615814208984375f), 0.5f.xxx) * 1.0f.xxx, 0.0f.xxx, 1.0f.xxx), 0.681749999523162841796875f.xxx);
+    mixDust *= ((float3(0.85490000247955322265625f, 0.8471000194549560546875f, 0.81959998607635498046875f) * min(_66_zoom / 2.0f, 0.5f)) * 3.0f);
+    float3 mixSpeck = (closeSpeck.xxx * float3(0.4783999919891357421875f, 0.46270000934600830078125f, 0.43529999256134033203125f)) * (0.5f + (speedAsPercent / 2.0f));
+    float3 trailColor = float3(0.894100010395050048828125f, 0.858799993991851806640625f, 0.780399978160858154296875f);
+    mixSpeck = clamp(lerp(mixSpeck, mixSpeck + (closeTrail.xxx * trailColor), 1.0f.xxx) * randomSpeckMask.xxx, 0.0f.xxx, 1.0f.xxx) * 0.5f;
+    float3 mixFarSpeck = (midSpeck.xxx * float3(0.4941000044345855712890625f, 0.474500000476837158203125f, 0.4471000134944915771484375f)) * (0.5f + (speedAsPercent / 2.0f));
+    mixFarSpeck = clamp(lerp(mixFarSpeck, mixFarSpeck + (midTrail.xxx * 1.0f.xxx), 1.0f.xxx) * randomSpeckMask3.xxx, 0.0f.xxx, 1.0f.xxx) * 0.5f;
+    fragColor = pow(float4(((((mixSpeck + mixFarSpeck) * 2.0f) + mixDust) + highSpeedSpeck) * clamp(_66_zoom * 2.0f, 0.300000011920928955078125f, 0.800000011920928955078125f), (clamp((mixSpeck + mixFarSpeck) + highSpeedSpeck, 0.0f.xxx, 1.0f.xxx) + (mixDust * 2.0f)).x), 1.0f.xxxx);
+    fragColor *= clamp(((1.0f - _66_zoom) * 2.0f) + 0.300000011920928955078125f, 0.300000011920928955078125f, 1.0f);
+    fragColor *= _66_daytimeAlpha;
+}
+
+SPIRV_Cross_Output main(SPIRV_Cross_Input stage_input)
+{
+    vUV = stage_input.vUV;
+    frag_main();
+    SPIRV_Cross_Output stage_output;
+    stage_output.fragColor = fragColor;
+    return stage_output;
+}

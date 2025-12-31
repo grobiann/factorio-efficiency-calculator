@@ -1,0 +1,314 @@
+cbuffer EffectUniforms : register(b0)
+{
+    float2 _56_resolution : packoffset(c0);
+    float2 _56_backgroundOffset : packoffset(c0.z);
+    float _56_padding_0 : packoffset(c1);
+    float _56_timeRaw : packoffset(c1.y);
+    float _56_uTime : packoffset(c1.z);
+    float _56_zoom : packoffset(c1.w);
+    float4 _56_uSpecularLightness : packoffset(c2);
+    float4 _56_uFoamColor : packoffset(c3);
+    float _56_animationSpeed : packoffset(c4);
+    float _56_animationScale : packoffset(c4.y);
+    float _56_darkThreshold : packoffset(c4.z);
+    float _56_reflectionThreshold : packoffset(c4.w);
+    float _56_specularThreshold : packoffset(c5);
+    float _56_daytimeAlpha : packoffset(c5.y);
+    uint _56_isPuddle : packoffset(c5.z);
+    float _56_lightmapAlpha : packoffset(c5.w);
+    int2 _56_noiseVariations : packoffset(c6);
+    int2 _56_imageVariations : packoffset(c6.z);
+};
+
+Texture2D<float4> noiseTexture : register(t3);
+SamplerState _noiseTexture_sampler : register(s3);
+Texture2D<float4> imageTexture : register(t4);
+SamplerState _imageTexture_sampler : register(s4);
+Texture2D<float4> waterMaskTexture : register(t2);
+SamplerState _waterMaskTexture_sampler : register(s2);
+Texture2D<float4> mask1Texture : register(t0);
+SamplerState _mask1Texture_sampler : register(s0);
+Texture2D<float4> mask2Texture : register(t1);
+SamplerState _mask2Texture_sampler : register(s1);
+
+static float4 gl_FragCoord;
+static float4 vColor;
+static float2 vUV;
+static float4 fragColor;
+static float4 maskUVs;
+static float4 lightColor;
+
+struct SPIRV_Cross_Input
+{
+    float2 vUV : TEXCOORD0;
+    float4 vColor : TEXCOORD1;
+    float4 maskUVs : TEXCOORD2;
+    float4 gl_FragCoord : SV_Position;
+};
+
+struct SPIRV_Cross_Output
+{
+    float4 fragColor : SV_Target0;
+    float4 lightColor : SV_Target1;
+};
+
+static float time;
+static float imageTexScale;
+static float4 waterColour;
+
+float2 random2(float2 st)
+{
+    float2 s = float2(dot(st, float2(12.345600128173828125f, 34.141498565673828125f)), dot(st, float2(42.21540069580078125f, 15.285400390625f)));
+    return frac(sin(s) * 45678.8984375f);
+}
+
+float2 getRandomVariationUV(float2 uv, float2 variations)
+{
+    float2 fUV = frac(uv);
+    float2 iUV = floor(uv);
+    float2 param = iUV;
+    float2 r = floor(random2(param) * variations);
+    float2 size = 1.0f.xx / variations;
+    float2 finalUV = (fUV * size) + (r * size);
+    return finalUV;
+}
+
+float4 PanningTexture(float2 uv, float speedX, float speedY, Texture2D<float4> textureInput, SamplerState _textureInput_sampler, float2 variations)
+{
+    float2 uvDist = uv;
+    uvDist.x += sin((time * 100.0f) / speedX);
+    uvDist.y += sin((time * 100.0f) / speedY);
+    float2 param = uvDist;
+    float2 param_1 = variations;
+    float4 pannerOut = noiseTexture.Sample(_noiseTexture_sampler, getRandomVariationUV(param, param_1));
+    return pannerOut;
+}
+
+float4 fetchImageTexture(float2 uvA, float2 uvB)
+{
+    float2 uv = lerp(uvA, uvB, 0.800000011920928955078125f.xx) * 1.75f;
+    float2 param = uv;
+    float2 param_1 = float2(_56_imageVariations);
+    return imageTexture.Sample(_imageTexture_sampler, getRandomVariationUV(param, param_1));
+}
+
+float2 SplatterUvs(float2 uv, float scale)
+{
+    float2 scalar = uv * scale;
+    float2 index = floor(scalar) - scalar;
+    float offset1 = index.x;
+    float offset2 = index.y + 3.0f;
+    float2 splatter = float2(offset1, offset2);
+    return splatter;
+}
+
+float fetchMaskTexture(Texture2D<float4> mask1Texture_1, SamplerState _mask1Texture_1_sampler, Texture2D<float4> mask2Texture_1, SamplerState _mask2Texture_1_sampler, float4 maskUVs_1, float time_1)
+{
+    float mask = 1.0f;
+    float2 mask1UV = maskUVs_1.xy;
+    float2 mask2UV = maskUVs_1.zw;
+    if (mask1UV.x > (-1.0f))
+    {
+        mask = mask1Texture_1.Sample(_mask1Texture_1_sampler, mask1UV).x;
+        if (mask2UV.x > (-1.0f))
+        {
+            mask *= mask2Texture_1.Sample(_mask2Texture_1_sampler, mask2UV).x;
+        }
+        else
+        {
+            if (mask2UV.x <= (-2.0f))
+            {
+                float timeScale = (-mask2UV.x) - 2.0f;
+                float wave = (sin((time_1 * timeScale) + mask2UV.y) + 1.0f) * 0.357142865657806396484375f;
+                mask = 1.0f - smoothstep(wave, wave + 0.300000011920928955078125f, 1.0f - mask);
+            }
+        }
+    }
+    return mask;
+}
+
+void frag_main()
+{
+    time = _56_uTime * 9.9999997473787516355514526367188e-06f;
+    imageTexScale = 5.0f;
+    waterColour = vColor;
+    float4 rawMask = waterMaskTexture.Load(int3(int2(gl_FragCoord.xy), 0));
+    float4 foamColor = _56_uFoamColor * 10.0f;
+    float4 specularLightness = _56_uSpecularLightness * 10.0f;
+    float depth = _56_animationScale;
+    float intensity = 0.89999997615814208984375f;
+    depth *= 0.89999997615814208984375f;
+    float2 uv = vUV;
+    float2 noise_uv = uv * _56_reflectionThreshold;
+    float speedbase = 10.0f * _56_animationSpeed;
+    float Udir = speedbase / foamColor.x;
+    float Vdir = speedbase / foamColor.y;
+    float2 param = noise_uv;
+    float param_1 = Udir;
+    float param_2 = Vdir;
+    float2 param_3 = float2(_56_noiseVariations);
+    float4 noise_1 = PanningTexture(param, param_1, param_2, noiseTexture, _noiseTexture_sampler, param_3);
+    float2 param_4 = gl_FragCoord.xy;
+    float param_5 = Udir;
+    float param_6 = Vdir;
+    float2 param_7 = float2(_56_noiseVariations);
+    float4 global_noise = PanningTexture(param_4, param_5, param_6, noiseTexture, _noiseTexture_sampler, param_7);
+    float Udir2 = speedbase / specularLightness.x;
+    float Vdir2 = speedbase / specularLightness.y;
+    float2 param_8 = noise_uv * 2.0f;
+    float param_9 = Udir2;
+    float param_10 = Vdir2;
+    float2 param_11 = float2(_56_noiseVariations);
+    float4 noise_2 = PanningTexture(param_8, param_9, param_10, noiseTexture, _noiseTexture_sampler, param_11);
+    float2 param_12 = noise_uv * 2.0f;
+    float param_13 = Udir2 / 3.0f;
+    float param_14 = Vdir2 / 3.0f;
+    float2 param_15 = float2(_56_noiseVariations);
+    float4 noise_4 = PanningTexture(param_12, param_13, param_14, noiseTexture, _noiseTexture_sampler, param_15);
+    float2 param_16 = gl_FragCoord.xy;
+    float param_17 = Udir2;
+    float param_18 = Vdir2;
+    float2 param_19 = float2(_56_noiseVariations);
+    float4 global_noise2 = PanningTexture(param_16, param_17, param_18, noiseTexture, _noiseTexture_sampler, param_19);
+    float2 param_20 = gl_FragCoord.xy;
+    float param_21 = Vdir2;
+    float param_22 = Udir2;
+    float2 param_23 = float2(_56_noiseVariations);
+    float4 global_noise3 = PanningTexture(param_20, param_21, param_22, noiseTexture, _noiseTexture_sampler, param_23);
+    float u = noise_1.x;
+    float v = noise_2.x;
+    float u2 = noise_1.y;
+    float v2 = noise_2.y;
+    float u3 = noise_4.x;
+    float v3 = noise_4.y;
+    float2 globaluv = lerp(float2(global_noise.x, global_noise2.y), gl_FragCoord.xy, 0.100000001490116119384765625f.xx);
+    float2 uv_1 = lerp(float2(u, v), uv, intensity.xx);
+    float2 uv_2 = lerp(uv_1, uv, 0.60000002384185791015625f.xx);
+    float2 uv_3 = lerp(uv_1, uv, 1.0f.xx);
+    float2 uv_5 = lerp(uv_1, uv, 0.89999997615814208984375f.xx);
+    float2 uv_4 = float2(v2, u2);
+    float4 noise_3 = noiseTexture.Sample(_noiseTexture_sampler, (uv_2 * 3.0f) + uv_4);
+    float4 noise_5 = noiseTexture.Sample(_noiseTexture_sampler, (float2(u3, v3) * 12.0f) + uv_4);
+    noise_3 *= noise_5;
+    float sinTime = sin(time * 500.0f) / 800.0f;
+    float cosTime = 1.0f;
+    float2 newTime = lerp(float2(Udir2, Vdir2), float2(Udir, Vdir), ((1.0f + sinTime) / 2.0f).xx);
+    float2 param_24 = uv;
+    float2 param_25 = uv;
+    float2 uv100 = lerp(uv_1, uv_2, clamp(fetchImageTexture(param_24, param_25).w, 0.0f, 1.0f).xx);
+    float2 param_26 = uv_2 * 5.0f;
+    float param_27 = 1.0f - newTime.x;
+    float param_28 = 1.0f - newTime.y;
+    float2 param_29 = float2(_56_noiseVariations);
+    float4 caustic_1 = PanningTexture(param_26, param_27, param_28, noiseTexture, _noiseTexture_sampler, param_29);
+    float2 param_30 = uv_2 * 10.0f;
+    float param_31 = (cosTime * 1.0f) - Udir2;
+    float param_32 = (cosTime * 1.0f) - Vdir2;
+    float2 param_33 = float2(_56_noiseVariations);
+    float4 caustic_2 = PanningTexture(param_30, param_31, param_32, noiseTexture, _noiseTexture_sampler, param_33);
+    float2 param_34 = uv_5 * 10.0f;
+    float param_35 = 1.0f - newTime.x;
+    float param_36 = 1.0f - newTime.y;
+    float2 param_37 = float2(_56_noiseVariations);
+    float4 wave_1 = PanningTexture(param_34, param_35, param_36, noiseTexture, _noiseTexture_sampler, param_37);
+    float2 param_38 = uv_3 * 15.0f;
+    float param_39 = newTime.x;
+    float param_40 = newTime.y;
+    float2 param_41 = float2(_56_noiseVariations);
+    float4 wave_2 = PanningTexture(param_38, param_39, param_40, noiseTexture, _noiseTexture_sampler, param_41);
+    float2 param_42 = uv_3 * 10.0f;
+    float param_43 = (1.0f - newTime.x) * 10.0f;
+    float param_44 = (1.0f - newTime.y) * 10.0f;
+    float2 param_45 = float2(_56_noiseVariations);
+    float2 param_46 = uv_1 * 15.0f;
+    float param_47 = newTime.x;
+    float param_48 = newTime.y;
+    float2 param_49 = float2(_56_noiseVariations);
+    float specular = PanningTexture(param_42, param_43, param_44, noiseTexture, _noiseTexture_sampler, param_45).w * PanningTexture(param_46, param_47, param_48, noiseTexture, _noiseTexture_sampler, param_49).y;
+    float2 param_50 = (uv_3 * 5.0f) - 0.5f.xx;
+    float param_51 = 1.0f - newTime.y;
+    float param_52 = 1.0f - newTime.x;
+    float2 param_53 = float2(_56_noiseVariations);
+    float2 param_54 = (uv_2 * 25.0f) - 0.5f.xx;
+    float param_55 = newTime.x;
+    float param_56 = newTime.y;
+    float2 param_57 = float2(_56_noiseVariations);
+    float darks = (PanningTexture(param_50, param_51, param_52, noiseTexture, _noiseTexture_sampler, param_53).w + 0.20000000298023223876953125f) * PanningTexture(param_54, param_55, param_56, noiseTexture, _noiseTexture_sampler, param_57).y;
+    float2 param_58 = uv;
+    float2 param_59 = uv;
+    caustic_1 = lerp(caustic_1, caustic_2, clamp(fetchImageTexture(param_58, param_59).w - 0.100000001490116119384765625f, 0.0f, 1.0f).xxxx);
+    float2 param_60 = vUV;
+    float param_61 = 2.0f;
+    float4 tex_1 = imageTexture.Sample(_imageTexture_sampler, SplatterUvs(param_60, param_61));
+    float2 param_62 = vUV;
+    float param_63 = 3.0f;
+    float4 tex_2 = imageTexture.Sample(_imageTexture_sampler, SplatterUvs(param_62, param_63));
+    float2 param_64 = uv_2 * 10.0f;
+    float param_65 = 1.0f - newTime.x;
+    float param_66 = 1.0f - newTime.y;
+    float2 param_67 = float2(_56_noiseVariations);
+    float2 param_68 = uv_5 * 10.0f;
+    float param_69 = newTime.y / 1.5f;
+    float param_70 = newTime.x / 1.5f;
+    float2 param_71 = float2(_56_noiseVariations);
+    float4 deepWater = max(float4(PanningTexture(param_64, param_65, param_66, noiseTexture, _noiseTexture_sampler, param_67).w.xxx / 8.0f.xxx, 0.0f), float4(PanningTexture(param_68, param_69, param_70, noiseTexture, _noiseTexture_sampler, param_71).w.xxx / 10.0f.xxx, 0.0f));
+    waterColour -= lerp(float4((noiseTexture.Sample(_noiseTexture_sampler, uv_2 * 10.0f).w / 8.0f).xxx, 0.0f), deepWater, clamp(depth - 0.5f, 0.0f, 1.0f).xxxx);
+    waterColour = lerp(waterColour, float4(float3(waterColour.x * (noiseTexture.Sample(_noiseTexture_sampler, vUV * 0.100000001490116119384765625f).w * 2.0f), waterColour.y * (noiseTexture.Sample(_noiseTexture_sampler, (vUV * 0.100000001490116119384765625f) + 0.5f.xx).w * 2.0f), waterColour.z * (noiseTexture.Sample(_noiseTexture_sampler, (vUV * (-0.100000001490116119384765625f)) + 0.5f.xx).w * 2.0f)), 1.0f), 0.100000001490116119384765625f.xxxx);
+    float2 param_72 = uv_3;
+    float2 param_73 = uv + 0.300000011920928955078125f.xx;
+    float2 param_74 = uv_3;
+    float2 param_75 = uv + 0.300000011920928955078125f.xx;
+    float4 staticuv = lerp(float4(fetchImageTexture(param_72, param_73).xyz, 1.0f), waterColour, (1.0f - clamp(fetchImageTexture(param_74, param_75).w / depth, 0.0f, 1.0f)).xxxx);
+    float2 param_76 = uv_1;
+    float2 param_77 = uv + 0.300000011920928955078125f.xx;
+    float2 param_78 = uv_1;
+    float2 param_79 = uv + 0.300000011920928955078125f.xx;
+    float4 finalimage = lerp(float4(fetchImageTexture(param_76, param_77).xyz, 1.0f), waterColour, (1.0f - clamp((fetchImageTexture(param_78, param_79).w - _56_darkThreshold) / (depth * 1.5f), 0.0f, 1.0f)).xxxx);
+    float4 caustics = float4((float3(0.9412000179290771484375f, 1.0f, 0.419600009918212890625f) * caustic_1.z.xxx) * clamp(1.0f - (depth * 0.5f), 0.0f, 1.0f), 1.0f);
+    float4 waves_breakup = max(float4(0.0f, 0.0f, 0.0f, 1.0f), float4(0.976499974727630615234375f, 1.0f, 0.627499997615814208984375f, 0.08200000226497650146484375f) * float4(wave_1.y.xxx * 0.189999997615814208984375f, 1.0f));
+    float4 waves = max(float4(0.0f, 0.0f, 0.0f, 1.0f), float4(0.976499974727630615234375f, 1.0f, 0.627499997615814208984375f, 0.08200000226497650146484375f) * float4(wave_1.y.xxx * clamp(1.0f - (depth * 0.949999988079071044921875f), 0.0f, 1.0f), 1.0f));
+    float4 spec = float4((float3(0.5724999904632568359375f, 0.91369998455047607421875f, 1.0f) * waterColour.xyz) * pow(smoothstep(0.0f, 0.800000011920928955078125f, (specular + 0.20000000298023223876953125f) - noise_5.x), 2.0f).xxx, 0.0f);
+    spec = max(spec, spec + float4(1.0f.xxx * pow(smoothstep(0.0f, 0.800000011920928955078125f, (specular + _56_specularThreshold) - noise_5.x) * 3.0f, 5.0f).xxx, 0.0f));
+    spec = max(spec - float4(0.02999999932944774627685546875f, 0.02999999932944774627685546875f, 0.02999999932944774627685546875f, 0.0f), 0.0f.xxxx);
+    spec = clamp(spec, 0.0f.xxxx, 1.0f.xxxx);
+    float4 dark = float4(0.278400003910064697265625f.xxx * pow(smoothstep(0.0f, 0.89999997615814208984375f, (darks + 0.25f) - noise_5.x), 2.0f).xxx, 0.0f);
+    float4 mask = rawMask - (specular * 6.0f).xxxx;
+    float waterShadow = smoothstep(0.85000002384185791015625f * rawMask.x, 0.89999997615814208984375f, rawMask.x - (waves_breakup.x * 2.0f));
+    float reflectionMask = smoothstep(0.449999988079071044921875f * rawMask.x, 0.699999988079071044921875f, rawMask.x - (waves_breakup.x * 4.0f));
+    float4 foamMask = float4(smoothstep(0.64999997615814208984375f.xxx, (2.0f - mask.z).xxx, mask.z.xxx), 0.0f);
+    foamMask += clamp((float4(smoothstep((0.5f * mask.z).xxx, (0.550000011920928955078125f - mask.z).xxx, mask.z.xxx) * (1.0f - (waves_breakup.x * 30.0f)), 0.0f) * 2.0f) * mask.z, 0.0f.xxxx, 1.0f.xxxx);
+    fragColor = lerp(float4(finalimage.xyz, 1.0f) + waves, (float4(finalimage.xyz, 1.0f) + caustics) + waves, clamp(_56_daytimeAlpha, 0.300000011920928955078125f, 1.0f).xxxx);
+    caustics = float4(pow(1.0f.xxx - caustics.xyz, 3.0f.xxx), 1.0f);
+    waves = float4(pow(1.0f.xxx - waves.xyz, 1.0f.xxx), 1.0f);
+    fragColor = lerp(float4(finalimage.xyz, 1.0f) / waves, (float4(finalimage.xyz, 1.0f) / caustics) / waves, clamp(_56_daytimeAlpha - waterShadow, 0.300000011920928955078125f, 1.0f).xxxx);
+    spec = float4(lerp(spec.xyz, spec.xyz * waterColour.xyz, 0.64999997615814208984375f.xxx), spec.w);
+    fragColor = float4(lerp(fragColor.xyz, fragColor.xyz + spec.xyz, (0.75f + (0.25f * _56_daytimeAlpha)).xxx), 1.0f);
+    if (_56_isPuddle != 0u)
+    {
+        float2 param_80 = uv_1;
+        float2 param_81 = uv + 0.300000011920928955078125f.xx;
+        fragColor *= (1.0f.xxxx - float4((((((waterColour.xyz * 0.800000011920928955078125f) * smoothstep(0.5f, 0.699999988079071044921875f, reflectionMask)) * 1.5f) * ((1.0f - fetchImageTexture(param_80, param_81).w) * 2.0f)) * 0.5f) * _56_daytimeAlpha, 0.0f));
+    }
+    if (!(_56_isPuddle != 0u))
+    {
+        fragColor += clamp(foamMask, 0.0f.xxxx, 0.300000011920928955078125f.xxxx);
+    }
+    float4 param_82 = maskUVs;
+    float param_83 = _56_timeRaw;
+    fragColor *= ((1.0f - rawMask.y) * fetchMaskTexture(mask1Texture, _mask1Texture_sampler, mask2Texture, _mask2Texture_sampler, param_82, param_83));
+    lightColor = float4(0.0f, 0.0f, 0.0f, fragColor.w * _56_lightmapAlpha);
+}
+
+SPIRV_Cross_Output main(SPIRV_Cross_Input stage_input)
+{
+    gl_FragCoord = stage_input.gl_FragCoord;
+    gl_FragCoord.w = 1.0 / gl_FragCoord.w;
+    vColor = stage_input.vColor;
+    vUV = stage_input.vUV;
+    maskUVs = stage_input.maskUVs;
+    frag_main();
+    SPIRV_Cross_Output stage_output;
+    stage_output.fragColor = fragColor;
+    stage_output.lightColor = lightColor;
+    return stage_output;
+}

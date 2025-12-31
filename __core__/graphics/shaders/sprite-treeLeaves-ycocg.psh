@@ -1,0 +1,163 @@
+cbuffer fsConstants : register(b0)
+{
+    float2 _139_invLeafTexSize : packoffset(c0);
+    float2 _139_strength : packoffset(c0.z);
+    float2 _139_distort : packoffset(c1);
+    float2 _139_speed : packoffset(c1.z);
+    float _139_time : packoffset(c2);
+    float _139_inverseExpectedUVDerivative : packoffset(c2.y);
+    uint _139_debug : packoffset(c2.z);
+};
+
+Texture2D<float4> texDistortion : register(t2);
+SamplerState _texDistortion_sampler : register(s2);
+Texture2D<float4> texYCoCg : register(t0);
+SamplerState _texYCoCg_sampler : register(s0);
+Texture2D<float4> texAlpha : register(t1);
+SamplerState _texAlpha_sampler : register(s1);
+
+static float2 vUVTexture;
+static float2 vUVDistortion;
+static float4 vTint;
+static float4 fragColor;
+static float4 lightColor;
+static uint vExtra;
+
+struct SPIRV_Cross_Input
+{
+    float4 vTint : TEXCOORD0;
+    float2 vUVTexture : TEXCOORD1;
+    float2 vUVDistortion : TEXCOORD2;
+    nointerpolation uint vExtra : TEXCOORD3;
+};
+
+struct SPIRV_Cross_Output
+{
+    float4 fragColor : SV_Target0;
+    float4 lightColor : SV_Target1;
+};
+
+uint2 spvTextureSize(Texture2D<float4> Tex, uint Level, out uint Param)
+{
+    uint2 ret;
+    Tex.GetDimensions(Level, ret.x, ret.y, Param);
+    return ret;
+}
+
+float4 YCoCgToRGB(float4 ycocg, float alpha)
+{
+    float Y = ycocg.w;
+    float scale = 1.0f / ((31.875f * ycocg.z) + 1.0f);
+    float Co = (ycocg.x - 0.501960813999176025390625f) * scale;
+    float Cg = (ycocg.y - 0.501960813999176025390625f) * scale;
+    float R = (Y + Co) - Cg;
+    float G = Y + Cg;
+    float B = (Y - Co) - Cg;
+    return float4(R, G, B, alpha);
+}
+
+float4 getLightColor(float4 color, uint extra)
+{
+    float4 _82;
+    if ((extra & 48u) != 0u)
+    {
+        _82 = float4(color.xyz, 0.0f);
+    }
+    else
+    {
+        _82 = float4(0.0f, 0.0f, 0.0f, color.w);
+    }
+    return _82;
+}
+
+float4 getFragColor(float4 color, uint extra)
+{
+    bool4 _107 = ((extra & 16u) != 0u).xxxx;
+    return float4(_107.x ? 0.0f.xxxx.x : color.x, _107.y ? 0.0f.xxxx.y : color.y, _107.z ? 0.0f.xxxx.z : color.z, _107.w ? 0.0f.xxxx.w : color.w);
+}
+
+void frag_main()
+{
+    float2 localUV = vUVTexture;
+    float2 distortion = 0.0f.xx;
+    float4 offset = 0.0f.xxxx;
+    if (any(bool2(vUVDistortion.x != (-1.0f).xx.x, vUVDistortion.y != (-1.0f).xx.y)))
+    {
+        offset = texDistortion.Sample(_texDistortion_sampler, vUVDistortion);
+        float localTime = _139_time + (((vTint.x + vTint.y) + vTint.z) * 5.0f);
+        distortion.x = offset.x * sin((offset.y * _139_distort.x) + (localTime * _139_speed.x));
+        distortion.y = offset.x * cos((offset.y * _139_distort.y) + (localTime * _139_speed.y));
+        uint _198_dummy_parameter;
+        float2 localPixelXY = localUV * float2(int2(spvTextureSize(texYCoCg, uint(0), _198_dummy_parameter)));
+        distortion *= (ddx(localPixelXY.x) * _139_inverseExpectedUVDerivative);
+        float2 copy = localPixelXY;
+        localUV = (floor(localPixelXY) + (distortion * _139_strength)) * _139_invLeafTexSize;
+        uint _227_dummy_parameter;
+        distortion = floor(localUV * float2(int2(spvTextureSize(texYCoCg, uint(0), _227_dummy_parameter)))) - floor(copy);
+        if (_139_debug != 0u)
+        {
+            fragColor = float4(0.5f + (0.20000000298023223876953125f * distortion.x), 0.5f + (0.20000000298023223876953125f * distortion.y), ddx(localPixelXY.x) * _139_inverseExpectedUVDerivative, 0.0f);
+        }
+    }
+    float2 dUVdx = ddx(localUV);
+    float2 dUVdy = ddy(localUV);
+    float alpha = texAlpha.SampleGrad(_texAlpha_sampler, localUV, dUVdx, dUVdy).x;
+    if (alpha <= 0.0f)
+    {
+        discard;
+    }
+    else
+    {
+        bool _284 = !(_139_debug != 0u);
+        bool _291;
+        if (!_284)
+        {
+            _291 = all(bool2(vUVDistortion.x == (-1.0f).xx.x, vUVDistortion.y == (-1.0f).xx.y));
+        }
+        else
+        {
+            _291 = _284;
+        }
+        if (_291)
+        {
+            float4 yCoCg = texYCoCg.SampleGrad(_texYCoCg_sampler, localUV, dUVdx, dUVdy);
+            float4 param = yCoCg;
+            float param_1 = alpha;
+            fragColor = YCoCgToRGB(param, param_1);
+            float3 grayscale = ((fragColor.xxx + fragColor.yyy) + fragColor.zzz) / 4.0f.xxx;
+            float4 _319 = fragColor;
+            float3 _327 = lerp(grayscale, _319.xyz, vTint.w.xxx) * vTint.xyz;
+            fragColor.x = _327.x;
+            fragColor.y = _327.y;
+            fragColor.z = _327.z;
+        }
+        else
+        {
+            float4 _337 = fragColor;
+            float3 _339 = _337.xyz * alpha;
+            fragColor.x = _339.x;
+            fragColor.y = _339.y;
+            fragColor.z = _339.z;
+            fragColor.w = alpha;
+        }
+    }
+    float4 param_2 = fragColor;
+    uint param_3 = vExtra;
+    lightColor = getLightColor(param_2, param_3);
+    float4 param_4 = fragColor;
+    uint param_5 = vExtra;
+    fragColor = getFragColor(param_4, param_5);
+}
+
+SPIRV_Cross_Output main(SPIRV_Cross_Input stage_input)
+{
+    vUVTexture = stage_input.vUVTexture;
+    vUVDistortion = stage_input.vUVDistortion;
+    vTint = stage_input.vTint;
+    vExtra = stage_input.vExtra;
+    frag_main();
+    SPIRV_Cross_Output stage_output;
+    stage_output.fragColor = fragColor;
+    stage_output.lightColor = lightColor;
+    return stage_output;
+}

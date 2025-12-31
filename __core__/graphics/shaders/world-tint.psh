@@ -1,0 +1,36 @@
+cbuffer EffectUniforms : register(b0)
+{
+    float4 _12_tintColorTop : packoffset(c0);
+    float4 _12_tintColorBottom : packoffset(c1);
+};
+
+
+static float4 fragColor;
+static float2 vUV;
+static float4 vColor;
+
+struct SPIRV_Cross_Input
+{
+    float2 vUV : TEXCOORD0;
+    float4 vColor : TEXCOORD1;
+};
+
+struct SPIRV_Cross_Output
+{
+    float4 fragColor : SV_Target0;
+};
+
+void frag_main()
+{
+    fragColor = lerp(_12_tintColorBottom, _12_tintColorTop, vUV.y.xxxx);
+}
+
+SPIRV_Cross_Output main(SPIRV_Cross_Input stage_input)
+{
+    vUV = stage_input.vUV;
+    vColor = stage_input.vColor;
+    frag_main();
+    SPIRV_Cross_Output stage_output;
+    stage_output.fragColor = fragColor;
+    return stage_output;
+}

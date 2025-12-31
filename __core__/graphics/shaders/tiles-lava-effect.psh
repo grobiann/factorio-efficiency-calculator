@@ -1,0 +1,213 @@
+cbuffer EffectUniforms : register(b0)
+{
+    float2 _54_resolution : packoffset(c0);
+    float2 _54_backgroundOffset : packoffset(c0.z);
+    float _54_padding_0 : packoffset(c1);
+    float _54_timeRaw : packoffset(c1.y);
+    float _54_uTime : packoffset(c1.z);
+    float _54_zoom : packoffset(c1.w);
+    float4 _54_uSpecularLightness : packoffset(c2);
+    float4 _54_uFoamColor : packoffset(c3);
+    float _54_animationSpeed : packoffset(c4);
+    float _54_animationScale : packoffset(c4.y);
+    float _54_darkThreshold : packoffset(c4.z);
+    float _54_reflectionThreshold : packoffset(c4.w);
+    float _54_specularThreshold : packoffset(c5);
+    float _54_daytimeAlpha : packoffset(c5.y);
+    uint _54_isPuddle : packoffset(c5.z);
+    float _54_lightmapAlpha : packoffset(c5.w);
+    int2 _54_noiseVariations : packoffset(c6);
+    int2 _54_imageVariations : packoffset(c6.z);
+};
+
+Texture2D<float4> imageTexture : register(t4);
+SamplerState _imageTexture_sampler : register(s4);
+Texture2D<float4> waterMaskTexture : register(t2);
+SamplerState _waterMaskTexture_sampler : register(s2);
+Texture2D<float4> noiseTexture : register(t3);
+SamplerState _noiseTexture_sampler : register(s3);
+Texture2D<float4> mask1Texture : register(t0);
+SamplerState _mask1Texture_sampler : register(s0);
+Texture2D<float4> mask2Texture : register(t1);
+SamplerState _mask2Texture_sampler : register(s1);
+
+static float4 gl_FragCoord;
+static float2 vUV;
+static float4 maskUVs;
+static float4 fragColor;
+static float4 lightColor;
+static float4 vColor;
+
+struct SPIRV_Cross_Input
+{
+    float2 vUV : TEXCOORD0;
+    float4 vColor : TEXCOORD1;
+    float4 maskUVs : TEXCOORD2;
+    float4 gl_FragCoord : SV_Position;
+};
+
+struct SPIRV_Cross_Output
+{
+    float4 fragColor : SV_Target0;
+    float4 lightColor : SV_Target1;
+};
+
+static float time;
+static float imageTexScale;
+
+float2 PanningUvs(float2 uv, float speedX, float speedY)
+{
+    float2 uvDist = uv;
+    uvDist.x += sin((time * 200.0f) / speedX);
+    uvDist.y += sin((time * 200.0f) / speedY);
+    uvDist = float2(uvDist.x, uvDist.y);
+    return uvDist;
+}
+
+float2 SplatterUvs(float2 uv, float scale)
+{
+    float2 scalar = uv * scale;
+    float2 index = floor(scalar) - scalar;
+    float offset1 = index.x;
+    float offset2 = index.y + 3.0f;
+    float2 splatter = float2(offset1, offset2);
+    return splatter;
+}
+
+float2 random2(float2 st)
+{
+    float2 s = float2(dot(st, float2(12.345600128173828125f, 34.141498565673828125f)), dot(st, float2(42.21540069580078125f, 15.285400390625f)));
+    return frac(sin(s) * 45678.8984375f);
+}
+
+float2 getRandomVariationUV(float2 uv, float2 variations)
+{
+    float2 fUV = frac(uv);
+    float2 iUV = floor(uv);
+    float2 param = iUV;
+    float2 r = floor(random2(param) * variations);
+    float2 size = 1.0f.xx / variations;
+    float2 finalUV = (fUV * size) + (r * size);
+    return finalUV;
+}
+
+float4 fetchImageTexture(float2 uvA, float2 uvB)
+{
+    float2 uv = lerp(uvA, uvB, _54_animationScale.xx) * 2.0f;
+    float2 param = uv;
+    float2 param_1 = float2(_54_imageVariations);
+    return imageTexture.Sample(_imageTexture_sampler, getRandomVariationUV(param, param_1));
+}
+
+float fetchMaskTexture(Texture2D<float4> mask1Texture_1, SamplerState _mask1Texture_1_sampler, Texture2D<float4> mask2Texture_1, SamplerState _mask2Texture_1_sampler, float4 maskUVs_1, float time_1)
+{
+    float mask = 1.0f;
+    float2 mask1UV = maskUVs_1.xy;
+    float2 mask2UV = maskUVs_1.zw;
+    if (mask1UV.x > (-1.0f))
+    {
+        mask = mask1Texture_1.Sample(_mask1Texture_1_sampler, mask1UV).x;
+        if (mask2UV.x > (-1.0f))
+        {
+            mask *= mask2Texture_1.Sample(_mask2Texture_1_sampler, mask2UV).x;
+        }
+        else
+        {
+            if (mask2UV.x <= (-2.0f))
+            {
+                float timeScale = (-mask2UV.x) - 2.0f;
+                float wave = (sin((time_1 * timeScale) + mask2UV.y) + 1.0f) * 0.357142865657806396484375f;
+                mask = 1.0f - smoothstep(wave, wave + 0.300000011920928955078125f, 1.0f - mask);
+            }
+        }
+    }
+    return mask;
+}
+
+void frag_main()
+{
+    time = _54_uTime * 9.9999997473787516355514526367188e-06f;
+    imageTexScale = 5.0f;
+    float3 effectMask = waterMaskTexture.Load(int3(int2(gl_FragCoord.xy), 0)).xyz;
+    float4 foamColor = _54_uFoamColor * 10.0f;
+    float4 specularLightness = _54_uSpecularLightness * 10.0f;
+    float intensity = _54_animationScale;
+    float2 uv = vUV * 1.0f;
+    float2 noise_uv = uv * _54_reflectionThreshold;
+    float speedbase = 10.0f * _54_animationSpeed;
+    float Udir2 = speedbase / specularLightness.x;
+    float Vdir2 = speedbase / specularLightness.y;
+    float Udir = speedbase / foamColor.x;
+    float Vdir = speedbase / foamColor.y;
+    float2 param = noise_uv;
+    float param_1 = Udir;
+    float param_2 = Vdir;
+    float2 warpUV1 = PanningUvs(param, param_1, param_2);
+    float2 param_3 = noise_uv;
+    float param_4 = Udir2;
+    float param_5 = Vdir2;
+    float2 warpUV2 = PanningUvs(param_3, param_4, param_5);
+    float2 param_6 = noise_uv;
+    float param_7 = Udir2 / 3.0f;
+    float param_8 = Vdir2 / 3.0f;
+    float2 warpUV3 = PanningUvs(param_6, param_7, param_8);
+    float4 noise_1 = noiseTexture.Sample(_noiseTexture_sampler, warpUV1);
+    float4 noise_2 = noiseTexture.Sample(_noiseTexture_sampler, warpUV2);
+    float4 noise_4 = noiseTexture.Sample(_noiseTexture_sampler, warpUV2);
+    float u = noise_1.x;
+    float v = noise_2.x;
+    float u2 = noise_1.y;
+    float v2 = noise_2.y;
+    float u3 = noise_4.x;
+    float v3 = noise_4.y;
+    float2 uv_1 = lerp(float2(u, v), uv, intensity.xx);
+    float2 uv_2 = lerp(float2(v, u), uv, intensity.xx);
+    float2 uv_3 = lerp(float2(v2, u), uv, intensity.xx);
+    float2 uv_4 = float2(v2, u2);
+    float4 noise_3 = noiseTexture.Sample(_noiseTexture_sampler, (uv_2 * 3.0f) + uv_4);
+    float3 debug = noise_3.z.xxx;
+    float4 noise_5 = noiseTexture.Sample(_noiseTexture_sampler, (float2(u3, v3) * 0.5f) + uv_4);
+    noise_3 *= noise_5;
+    float2 param_9 = vUV;
+    float param_10 = 2.0f;
+    float4 tex_1 = imageTexture.Sample(_imageTexture_sampler, SplatterUvs(param_9, param_10));
+    float2 param_11 = vUV;
+    float param_12 = 3.0f;
+    float4 tex_2 = imageTexture.Sample(_imageTexture_sampler, SplatterUvs(param_11, param_12));
+    float2 param_13 = uv_1;
+    float2 param_14 = uv + 0.300000011920928955078125f.xx;
+    float2 param_15 = uv_2;
+    float2 param_16 = uv;
+    float4 finalimage = lerp(fetchImageTexture(param_13, param_14), fetchImageTexture(param_15, param_16), clamp(noise_3.z, 0.0f, 1.0f).xxxx);
+    float4 colour = 0.0f.xxxx;
+    float2 _477 = (finalimage.xy * (0.75f * _54_specularThreshold)) * float2(2.0f * effectMask.z, effectMask.z);
+    colour.x = _477.x;
+    colour.y = _477.y;
+    float4 _493 = colour;
+    float2 _495 = _493.xy + (float2(effectMask.z, 0.5f * effectMask.z) * (0.75f * _54_darkThreshold));
+    colour.x = _495.x;
+    colour.y = _495.y;
+    colour += finalimage;
+    colour *= (1.0f - effectMask.y);
+    float4 param_17 = maskUVs;
+    float param_18 = _54_timeRaw;
+    float maskValue = fetchMaskTexture(mask1Texture, _mask1Texture_sampler, mask2Texture, _mask2Texture_sampler, param_17, param_18);
+    fragColor = colour * maskValue;
+    float light = max(colour.x, max(colour.y, colour.z));
+    light = clamp(light + ((colour.x + colour.y) + colour.z), 0.0f, 1.0f);
+    lightColor = float4(light, light * 0.699999988079071044921875f, light * 0.5f, _54_lightmapAlpha) * maskValue;
+}
+
+SPIRV_Cross_Output main(SPIRV_Cross_Input stage_input)
+{
+    gl_FragCoord = stage_input.gl_FragCoord;
+    gl_FragCoord.w = 1.0 / gl_FragCoord.w;
+    vUV = stage_input.vUV;
+    maskUVs = stage_input.maskUVs;
+    vColor = stage_input.vColor;
+    frag_main();
+    SPIRV_Cross_Output stage_output;
+    stage_output.fragColor = fragColor;
+    stage_output.lightColor = lightColor;
+    return stage_output;
+}

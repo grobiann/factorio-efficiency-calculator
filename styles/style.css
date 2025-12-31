@@ -1176,12 +1176,13 @@ button {
   position: absolute;
   top: 0;
   right: 0;
-  width: 16px !important;
-  height: 16px !important;
+  width: 32px !important;
+  height: 32px !important;
   object-fit: cover;
-  object-position: center;
+  object-position: left center;
   image-rendering: auto;
-  transform: scale(var(--icon-scale, 0.5));
+  transform: scale(0.5);
+  transform-origin: top right;
   z-index: 1;
   pointer-events: none;
 }

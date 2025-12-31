@@ -1,0 +1,122 @@
+cbuffer EffectUniforms : register(b0)
+{
+    float2 _93_resolution : packoffset(c0);
+    float2 _93_backgroundOffset : packoffset(c0.z);
+    float2 _93_padding_0 : packoffset(c1);
+    float _93_time : packoffset(c1.z);
+    float _93_zoom : packoffset(c1.w);
+    float _93_nebulaScale : packoffset(c2);
+    float _93_scrollFactor : packoffset(c2.y);
+    float _93_nebulaBrightness : packoffset(c2.z);
+    float _93_nebulaSaturation : packoffset(c2.w);
+    float2 _93_backgroundOffsetScaled : packoffset(c3);
+    float _93_unscaleFactor : packoffset(c3.z);
+    float _93_padding_01 : packoffset(c3.w);
+    int _93_debugOption : packoffset(c4);
+    float _93_padding_02 : packoffset(c4.y);
+    float2 _93_padding_03 : packoffset(c4.z);
+};
+
+
+static float4 gl_FragCoord;
+static float4 fragColor;
+
+struct SPIRV_Cross_Input
+{
+    float4 gl_FragCoord : SV_Position;
+};
+
+struct SPIRV_Cross_Output
+{
+    float4 fragColor : SV_Target0;
+};
+
+float random(float2 st)
+{
+    float s = dot(st, float2(12.345600128173828125f, 34.141498565673828125f));
+    return frac(sin(s) * 45678.8984375f);
+}
+
+float perlinNoise(float2 st)
+{
+    float2 cell = floor(st);
+    float2 cell2 = ceil(st);
+    float2 f = frac(st);
+    float2 param = cell;
+    float s00 = random(param);
+    float2 param_1 = float2(cell.x, cell2.y);
+    float s01 = random(param_1);
+    float2 param_2 = float2(cell2.x, cell.y);
+    float s10 = random(param_2);
+    float2 param_3 = cell2;
+    float s11 = random(param_3);
+    return lerp(lerp(s00, s10, f.x), lerp(s01, s11, f.x), f.y);
+}
+
+float3 generate_nebula()
+{
+    float2 uv = _93_backgroundOffsetScaled + ((gl_FragCoord.xy - (_93_resolution * 0.5f)) * _93_unscaleFactor);
+    float3 nebula = 0.0f.xxx;
+    float2 nebulaUV = uv * _93_nebulaScale;
+    float nebula_mask_sum = 0.0f;
+    float dark_nebula_g = 0.0f;
+    for (int i = 1; i <= 7; i++)
+    {
+        float iscale = float(1 << i);
+        float2 param = nebulaUV * iscale;
+        float2 param_1 = (nebulaUV * 5.0f) + 76.43399810791015625f.xx;
+        param.x += (perlinNoise(param_1) * 0.20000000298023223876953125f);
+        float2 param_2 = (nebulaUV * 5.0f) + 91.2570037841796875f.xx;
+        param.y += (perlinNoise(param_2) * 0.20000000298023223876953125f);
+        float angle = 0.4000000059604644775390625f;
+        param.x = (param.x * cos(angle)) - (param.y * sin(angle));
+        param.y = (param.x * sin(angle)) + (param.y * cos(angle));
+        float influence = 1.0f / pow(float(i), 2.0f);
+        float2 param_3 = param + 23.6529998779296875f.xx;
+        nebula.x += (perlinNoise(param_3) * influence);
+        float2 param_4 = param + 12.34500026702880859375f.xx;
+        nebula.y += (perlinNoise(param_4) * influence);
+        float2 param_5 = param + 34.14099884033203125f.xx;
+        nebula.z += (perlinNoise(param_5) * influence);
+        float2 param_6 = (param / 2.0f.xx) + 36.673999786376953125f.xx;
+        float2 param_7 = (param / 2.0f.xx) + 46.325000762939453125f.xx;
+        float2 param_8 = (param / 2.0f.xx) + 75.2350006103515625f.xx;
+        nebula_mask_sum += (((perlinNoise(param_6) * influence) + (perlinNoise(param_7) * influence)) + (perlinNoise(param_8) * influence));
+        float2 param_9 = (param * 2.0f) + 23.6529998779296875f.xx;
+        dark_nebula_g += (perlinNoise(param_9) * influence);
+    }
+    float mask = nebula_mask_sum / 3.0f;
+    mask = max((0.449999988079071044921875f * mask) - 0.300000011920928955078125f, 0.0f);
+    float BW_nebula = ((nebula.x + nebula.y) + nebula.z) / 3.0f;
+    nebula = (nebula * _93_nebulaSaturation) + (BW_nebula * (1.0f - _93_nebulaSaturation)).xxx;
+    nebula *= mask;
+    dark_nebula_g += BW_nebula;
+    dark_nebula_g = max(dark_nebula_g - 1.7999999523162841796875f, 0.0f) * 5.0f;
+    dark_nebula_g *= mask;
+    float3 dark_nebula_tint = float3(0.20000000298023223876953125f, 0.449999988079071044921875f, 0.449999988079071044921875f);
+    float3 dark_nebula = (dark_nebula_tint * (dark_nebula_g * _93_nebulaSaturation)) + (0.300000011920928955078125f * (dark_nebula_g * (1.0f - _93_nebulaSaturation))).xxx;
+    nebula = max(nebula - dark_nebula, 0.0f.xxx);
+    nebula *= _93_nebulaBrightness;
+    return nebula;
+}
+
+float4 MainPS()
+{
+    float3 nebula = generate_nebula();
+    return float4(nebula, 1.0f);
+}
+
+void frag_main()
+{
+    fragColor = MainPS();
+}
+
+SPIRV_Cross_Output main(SPIRV_Cross_Input stage_input)
+{
+    gl_FragCoord = stage_input.gl_FragCoord;
+    gl_FragCoord.w = 1.0 / gl_FragCoord.w;
+    frag_main();
+    SPIRV_Cross_Output stage_output;
+    stage_output.fragColor = fragColor;
+    return stage_output;
+}

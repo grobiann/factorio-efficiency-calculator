@@ -1,0 +1,111 @@
+cbuffer passParams : register(b1)
+{
+    float _167_passTime : packoffset(c0);
+};
+
+Texture2D<float4> mask1Texture : register(t1);
+SamplerState _mask1Texture_sampler : register(s1);
+Texture2D<float4> mask2Texture : register(t2);
+SamplerState _mask2Texture_sampler : register(s2);
+Texture2D<float4> atlasTexture : register(t0);
+SamplerState _atlasTexture_sampler : register(s0);
+
+static float4 maskUVs;
+static float2 vUV;
+static float4 fragColor;
+static float3 vTint;
+static uint vFlags;
+static float4 lightColor;
+
+struct SPIRV_Cross_Input
+{
+    float2 vUV : TEXCOORD0;
+    float4 maskUVs : TEXCOORD1;
+    nointerpolation uint vFlags : TEXCOORD2;
+    float3 vTint : TEXCOORD3;
+};
+
+struct SPIRV_Cross_Output
+{
+    float4 fragColor : SV_Target0;
+    float4 lightColor : SV_Target1;
+};
+
+float fetchMaskTexture(Texture2D<float4> mask1Texture_1, SamplerState _mask1Texture_1_sampler, Texture2D<float4> mask2Texture_1, SamplerState _mask2Texture_1_sampler, float4 maskUVs_1, float time)
+{
+    float mask = 1.0f;
+    float2 mask1UV = maskUVs_1.xy;
+    float2 mask2UV = maskUVs_1.zw;
+    if (mask1UV.x > (-1.0f))
+    {
+        mask = mask1Texture_1.Sample(_mask1Texture_1_sampler, mask1UV).x;
+        if (mask2UV.x > (-1.0f))
+        {
+            mask *= mask2Texture_1.Sample(_mask2Texture_1_sampler, mask2UV).x;
+        }
+        else
+        {
+            if (mask2UV.x <= (-2.0f))
+            {
+                float timeScale = (-mask2UV.x) - 2.0f;
+                float wave = (sin((time * timeScale) + mask2UV.y) + 1.0f) * 0.357142865657806396484375f;
+                mask = 1.0f - smoothstep(wave, wave + 0.300000011920928955078125f, 1.0f - mask);
+            }
+        }
+    }
+    return mask;
+}
+
+float4 getFragColor(float4 color, float3 tint, uint flags)
+{
+    float4 finalColor = float4(color.xyz * tint, color.w);
+    bool4 _58 = ((flags & 4u) != 0u).xxxx;
+    return float4(_58.x ? 0.0f.xxxx.x : finalColor.x, _58.y ? 0.0f.xxxx.y : finalColor.y, _58.z ? 0.0f.xxxx.z : finalColor.z, _58.w ? 0.0f.xxxx.w : finalColor.w);
+}
+
+float4 getLightColor(float4 color, float mask, uint flags)
+{
+    if ((flags & 36u) != 0u)
+    {
+        return float4(color.xyz * (mask * mask), 0.0f);
+    }
+    float _83;
+    if ((flags & 64u) == 0u)
+    {
+        _83 = color.w;
+    }
+    else
+    {
+        _83 = 0.0f;
+    }
+    return float4(0.0f, 0.0f, 0.0f, _83);
+}
+
+void frag_main()
+{
+    float4 param = maskUVs;
+    float param_1 = _167_passTime;
+    float mask = fetchMaskTexture(mask1Texture, _mask1Texture_sampler, mask2Texture, _mask2Texture_sampler, param, param_1);
+    float4 color = atlasTexture.Sample(_atlasTexture_sampler, vUV) * mask;
+    float4 param_2 = color;
+    float3 param_3 = vTint;
+    uint param_4 = vFlags;
+    fragColor = getFragColor(param_2, param_3, param_4);
+    float4 param_5 = color;
+    float param_6 = mask;
+    uint param_7 = vFlags;
+    lightColor = getLightColor(param_5, param_6, param_7);
+}
+
+SPIRV_Cross_Output main(SPIRV_Cross_Input stage_input)
+{
+    maskUVs = stage_input.maskUVs;
+    vUV = stage_input.vUV;
+    vTint = stage_input.vTint;
+    vFlags = stage_input.vFlags;
+    frag_main();
+    SPIRV_Cross_Output stage_output;
+    stage_output.fragColor = fragColor;
+    stage_output.lightColor = lightColor;
+    return stage_output;
+}

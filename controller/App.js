@@ -41,7 +41,6 @@ export async function startApp() {
         });
       }
     }
-    console.log("Built recipesByProduct map:", recipesByProduct);
     return recipesByProduct;
   }
 

@@ -1,0 +1,85 @@
+cbuffer EffectUniforms : register(b0)
+{
+    float _18_cloudMovementMultiplier : packoffset(c0);
+    float _18_debugValue : packoffset(c0.y);
+    uint _18_debugOption : packoffset(c0.z);
+    float _18_tick : packoffset(c0.w);
+    float2 _18_pixelShift : packoffset(c1);
+    float2 _18_mapPosition : packoffset(c1.z);
+    float _18_zoom : packoffset(c2);
+    float _18_daytimeAlpha : packoffset(c2.y);
+    float2 _18_renderResolution : packoffset(c2.z);
+    float2 _18_cloudsOffset : packoffset(c3);
+    float2 _18_windVector : packoffset(c3.z);
+    float2 _18_minWarpNoiseUV1 : packoffset(c4);
+    float2 _18_maxWarpNoiseUV1 : packoffset(c4.z);
+    float2 _18_minWarpNoiseUV2 : packoffset(c5);
+    float2 _18_maxWarpNoiseUV2 : packoffset(c5.z);
+    float2 _18_minShapeNoiseUV : packoffset(c6);
+    float2 _18_maxShapeNoiseUV : packoffset(c6.z);
+    float2 _18_minAdditionalDensityNoiseUV : packoffset(c7);
+    float2 _18_maxAdditionalDensityNoiseUV : packoffset(c7.z);
+    float2 _18_minDetailNoiseUV1 : packoffset(c8);
+    float2 _18_maxDetailNoiseUV1 : packoffset(c8.z);
+    float2 _18_minDetailNoiseUV2 : packoffset(c9);
+    float2 _18_maxDetailNoiseUV2 : packoffset(c9.z);
+    float2 _18_detailTextureRandomOffset0 : packoffset(c10);
+    float2 _18_detailTextureRandomOffset1 : packoffset(c10.z);
+    float _18_detailTextureRatio : packoffset(c11);
+    float _18_opacity : packoffset(c11.y);
+    float _18_warpStrength : packoffset(c11.z);
+    float _18_warpWeight : packoffset(c11.w);
+    float _18_detailFactor : packoffset(c12);
+    float _18_shapeFactor : packoffset(c12.y);
+    float _18_detailExponent : packoffset(c12.z);
+    float _18_density : packoffset(c12.w);
+};
+
+Texture2D<float4> noiseTexture : register(t0);
+SamplerState _noiseTexture_sampler : register(s0);
+Texture2D<float4> detailTexture : register(t1);
+SamplerState _detailTexture_sampler : register(s1);
+
+static float2 vUV;
+static float4 fragColor;
+
+struct SPIRV_Cross_Input
+{
+    float2 vUV : TEXCOORD0;
+};
+
+struct SPIRV_Cross_Output
+{
+    float4 fragColor : SV_Target0;
+};
+
+void frag_main()
+{
+    float warpX = noiseTexture.Sample(_noiseTexture_sampler, lerp(_18_minWarpNoiseUV1, _18_maxWarpNoiseUV1, vUV)).x;
+    float warpY = noiseTexture.Sample(_noiseTexture_sampler, lerp(_18_minWarpNoiseUV2, _18_maxWarpNoiseUV2, vUV)).y;
+    float2 warpUVs = float2(warpX, warpY) * _18_warpStrength;
+    float2 warpMix = (warpUVs * _18_warpWeight) + lerp(_18_minShapeNoiseUV, _18_maxShapeNoiseUV, vUV);
+    float dissolvedCloudsShape = noiseTexture.Sample(_noiseTexture_sampler, warpMix).z;
+    if (_18_density > 0.0f)
+    {
+        float2 warpMix2 = (warpUVs * _18_warpWeight) + lerp(_18_minAdditionalDensityNoiseUV, _18_maxAdditionalDensityNoiseUV, vUV);
+        float moreCloud = noiseTexture.Sample(_noiseTexture_sampler, warpMix2 + float2(1.70899999141693115234375f, 2.17899990081787109375f)).z;
+        float d = 1.0f - pow(abs(1.0f - _18_density), 3.0f);
+        dissolvedCloudsShape = min(dissolvedCloudsShape, lerp(1.0f, moreCloud, d));
+    }
+    float cloudDetail1 = detailTexture.Sample(_detailTexture_sampler, lerp(_18_minDetailNoiseUV1, _18_maxDetailNoiseUV1, vUV) + _18_detailTextureRandomOffset0).x;
+    float cloudDetail2 = detailTexture.Sample(_detailTexture_sampler, lerp(_18_minDetailNoiseUV2, _18_maxDetailNoiseUV2, vUV) + _18_detailTextureRandomOffset1).x;
+    float cloudDetail = lerp(cloudDetail1, cloudDetail2, _18_detailTextureRatio);
+    float softClouds = clamp((cloudDetail * _18_detailFactor) + (_18_shapeFactor * dissolvedCloudsShape), 0.0f, 1.0f);
+    float finalCloudOpacity = lerp(softClouds - pow(abs(cloudDetail), _18_detailExponent), softClouds, softClouds);
+    fragColor = float4(0.0f, 0.0f, 0.0f, finalCloudOpacity * _18_opacity);
+}
+
+SPIRV_Cross_Output main(SPIRV_Cross_Input stage_input)
+{
+    vUV = stage_input.vUV;
+    frag_main();
+    SPIRV_Cross_Output stage_output;
+    stage_output.fragColor = fragColor;
+    return stage_output;
+}

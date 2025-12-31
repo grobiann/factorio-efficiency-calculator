@@ -1,0 +1,40 @@
+cbuffer EffectUniforms : register(b0)
+{
+    float2 _22_resolution : packoffset(c0);
+    float2 _22_backgroundOffset : packoffset(c0.z);
+    float2 _22_padding_0 : packoffset(c1);
+    float _22_time : packoffset(c1.z);
+    float _22_zoom : packoffset(c1.w);
+    float _22_scaleFactor : packoffset(c2);
+};
+
+Texture2D<float4> tex : register(t0);
+SamplerState _tex_sampler : register(s0);
+
+static float4 gl_FragCoord;
+static float4 fragColor;
+
+struct SPIRV_Cross_Input
+{
+    float4 gl_FragCoord : SV_Position;
+};
+
+struct SPIRV_Cross_Output
+{
+    float4 fragColor : SV_Target0;
+};
+
+void frag_main()
+{
+    fragColor = tex.Sample(_tex_sampler, (gl_FragCoord.xy / _22_resolution) * _22_scaleFactor);
+}
+
+SPIRV_Cross_Output main(SPIRV_Cross_Input stage_input)
+{
+    gl_FragCoord = stage_input.gl_FragCoord;
+    gl_FragCoord.w = 1.0 / gl_FragCoord.w;
+    frag_main();
+    SPIRV_Cross_Output stage_output;
+    stage_output.fragColor = fragColor;
+    return stage_output;
+}

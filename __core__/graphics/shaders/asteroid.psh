@@ -1,0 +1,103 @@
+struct Light
+{
+    float4 color;
+    float4 direction;
+};
+
+cbuffer AsteroidConstants : register(b0)
+{
+    float _78_normalStrength : packoffset(c0);
+    float _78_lightWidth : packoffset(c0.y);
+    float _78_brightness : packoffset(c0.z);
+    float _78_specularStrength : packoffset(c0.w);
+    float _78_specPower : packoffset(c1);
+    float _78_specPurity : packoffset(c1.y);
+    float _78_SSSContrast : packoffset(c1.z);
+    float _78_SSSAmount : packoffset(c1.w);
+    Light _78_lights[4] : packoffset(c2);
+    float4 _78_ambientLight : packoffset(c10);
+    int _78_flags : packoffset(c11);
+};
+
+Texture2D<float4> diffuseMap : register(t0);
+SamplerState _diffuseMap_sampler : register(s0);
+Texture2D<float4> normalMap : register(t1);
+SamplerState _normalMap_sampler : register(s1);
+Texture2D<float4> roughnessMap : register(t2);
+SamplerState _roughnessMap_sampler : register(s2);
+
+static float2 vDiffuseUV;
+static float2 vNormalUV;
+static float2 vRoughnessUV;
+static float vAngle;
+static float4 fragColor;
+static float vOpacity;
+
+struct SPIRV_Cross_Input
+{
+    float2 vDiffuseUV : TEXCOORD0;
+    float2 vNormalUV : TEXCOORD1;
+    float2 vRoughnessUV : TEXCOORD2;
+    nointerpolation float vAngle : TEXCOORD3;
+    nointerpolation float vOpacity : TEXCOORD4;
+};
+
+struct SPIRV_Cross_Output
+{
+    float4 fragColor : SV_Target0;
+};
+
+void frag_main()
+{
+    float4 color = diffuseMap.Sample(_diffuseMap_sampler, vDiffuseUV);
+    float4 normal_img = normalMap.Sample(_normalMap_sampler, vNormalUV);
+    float4 roughness_img = roughnessMap.Sample(_roughnessMap_sampler, vRoughnessUV);
+    float3 SSSColor = roughness_img.xyz;
+    float roughness = roughness_img.w;
+    float3 normal = 0.0f.xxx;
+    float2 _52 = (normal_img.xy * 2.0f) - 1.0f.xx;
+    normal.x = _52.x;
+    normal.y = _52.y;
+    normal.z = sqrt(clamp(1.0f - dot(normal.xy, normal.xy), 0.0f, 1.0f));
+    normal = normalize(float3(0.0f, 0.0f, 1.0f) + ((normal - float3(0.0f, 0.0f, 1.0f)) * _78_normalStrength));
+    float3 rotated_normal = float3((normal.x * cos(-vAngle)) + (normal.y * sin(-vAngle)), ((-normal.x) * sin(-vAngle)) + (normal.y * cos(-vAngle)), normal.z);
+    float3 illumination = 0.0f.xxx;
+    float3 lights_diffuse = 0.0f.xxx;
+    float3 lights_spec = 0.0f.xxx;
+    for (int i = 0; i < 4; i++)
+    {
+        float3 light_color = _78_lights[i].color.xyz;
+        float3 light_direction = normalize(_78_lights[i].direction.xyz);
+        float lighting = max(0.0f, dot(rotated_normal, -light_direction) + _78_lightWidth);
+        float3 light_diffuse = (light_color * lighting) * _78_brightness;
+        float3 reflect_dir = reflect(rotated_normal, -light_direction);
+        float3 view_dir = float3(0.0f, 0.0f, -1.0f);
+        float spec = pow(max(0.0f, dot(reflect_dir, view_dir) + _78_lightWidth) * (1.0f - roughness), _78_specPower);
+        float3 specularColor = color.xyz + ((1.0f.xxx - color.xyz) * _78_specPurity);
+        float3 specLight = ((specularColor * spec) * _78_specularStrength) * light_color;
+        illumination += (light_color * max(-1.0f, dot(rotated_normal, -light_direction) + _78_lightWidth));
+        lights_diffuse += light_diffuse;
+        lights_spec += specLight;
+    }
+    float3 SSS = clamp((2.0f.xxx - illumination) - _78_SSSContrast.xxx, 0.0f.xxx, 1.0f.xxx) * _78_SSSAmount.xxx;
+    float4 finalColor = float4(((lights_spec + lights_diffuse) + _78_ambientLight.xyz) * color.xyz, color.w) * 1.0f;
+    fragColor = float4(finalColor.xyz + clamp(SSSColor * SSS, 0.0f.xxx, 1.0f.xxx), color.w) * clamp((color.w - 0.89999997615814208984375f) * 10.0f, 0.0f, 1.0f);
+    fragColor *= vOpacity;
+    if ((_78_flags & 16) != 0)
+    {
+        fragColor = float4(lights_spec * color.w, 1.0f);
+    }
+}
+
+SPIRV_Cross_Output main(SPIRV_Cross_Input stage_input)
+{
+    vDiffuseUV = stage_input.vDiffuseUV;
+    vNormalUV = stage_input.vNormalUV;
+    vRoughnessUV = stage_input.vRoughnessUV;
+    vAngle = stage_input.vAngle;
+    vOpacity = stage_input.vOpacity;
+    frag_main();
+    SPIRV_Cross_Output stage_output;
+    stage_output.fragColor = fragColor;
+    return stage_output;
+}

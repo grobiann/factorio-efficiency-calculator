@@ -46,9 +46,11 @@ export class RecipeSelectModal {
 
     // item-group 기반 버튼 추가 (레시피가 있는 그룹만)
     const itemGroups = this.getItemGroups();
+    console.log(`[RecipeSelectModal.show] Found ${itemGroups.length} item-groups`, itemGroups);
     for (const itemGroup of itemGroups) {
       // 레시피가 있는 item-group만 탭 버튼으로 추가
-      if (this.hasRecipesForItemGroup(itemGroup.name)) {
+      const hasRecipes = this.hasRecipesForItemGroup(itemGroup.name);
+      if (hasRecipes) {
         modalHtml += `<button class="recipe-tab-btn" data-category="${CATEGORY.ITEMGROUP_RECIPES_PREFIX}${this.escapeHtml(itemGroup.name)}">${this.escapeHtml(this.view.locale.itemName(itemGroup.name))}</button>`;
       }
     }
@@ -80,7 +82,20 @@ export class RecipeSelectModal {
    * item-group 목록 가져오기 (order 순서로 정렬)
    */
   getItemGroups() {
-    if (!this.view.loadedData || !this.view.loadedData.entries) return [];
+    // 통합 데이터 형식에서는 categories를 item-group으로 사용
+    if (this.view.loadedData && this.view.loadedData.categories) {
+      const groups = this.view.loadedData.categories.map(cat => ({
+        name: cat.id,
+        type: 'item-group',
+        order: cat.order || cat.id
+      })).sort((a, b) => a.order.localeCompare(b.order));
+      return groups;
+    }
+    
+    // 레거시 형식: entries에서 item-group 찾기
+    if (!this.view.loadedData || !this.view.loadedData.entries) {
+      return [];
+    }
     
     const itemGroups = this.view.loadedData.entries.filter(entry => entry.type === 'item-group');
     return itemGroups.sort((a, b) => {
@@ -96,39 +111,31 @@ export class RecipeSelectModal {
   getSubgroupsForItemGroup(itemGroupName) {
     if (!this.view.loadedData || !this.view.loadedData.entries) return [];
     
-    return this.view.loadedData.entries.filter(entry => 
+    // data.raw 형식: item-subgroup의 group 필드가 item-group을 가리킴
+    const subgroups = this.view.loadedData.entries.filter(entry => 
       entry.type === 'item-subgroup' && entry.group === itemGroupName
     );
+    return subgroups;
   }
 
   /**
    * item-group에 레시피가 있는지 확인
    */
   hasRecipesForItemGroup(itemGroupName) {
-    const subgroups = this.getSubgroupsForItemGroup(itemGroupName);
-    const subgroupNames = new Set(subgroups.map(sg => sg.name));
     
-    // 모든 레시피를 탐색하여 서브그룹에 맞는 레시피가 있는지 확인
-    for (const recipes of Object.values(this.view.recipesByProduct)) {
-      for (const recipe of recipes) {
-        if (recipe._isGroup) continue;
-        
-        // 레시피의 결과 아이템들을 확인
-        const results = recipe.results || [];
-        
-        for (const result of results) {
-          // 결과 아이템의 subgroup과 order 확인
-          const itemData = this.view.loadedData.entries.find(e => 
-            e.name === result.name && (e.type === 'item' || e.type === 'fluid')
-          );
-          
-          if (itemData && subgroupNames.has(itemData.subgroup)) {
-            return true;
-          }
-        }
+    // data.raw 형식: item-subgroup을 통해 레시피 확인
+    const subgroups = this.getSubgroupsForItemGroup(itemGroupName);
+    if (subgroups.length === 0) {
+      return false;
+    }
+    const subgroupIds = new Set(subgroups.map(sg => sg.id));
+    // loadedData.entries에서 type이 recipe인 것만 사용
+    const recipes = (this.view.loadedData?.entries || []).filter(e => e.type === 'recipe');
+    for (const recipe of recipes) {
+      if (recipe.subgroup && subgroupIds.has(recipe.subgroup)) {
+        return true;
       }
     }
-    
     return false;
   }
 
@@ -229,36 +236,29 @@ export class RecipeSelectModal {
     const recipesBySubgroup = new Map();
     
     for (const subgroup of subgroups) {
-      recipesBySubgroup.set(subgroup.name, []);
+      recipesBySubgroup.set(subgroup.id, []);
     }
     
     const seenRecipes = new Set();
+    let totalRecipesChecked = 0;
+    let recipesWithSubgroup = 0;
     
-    // 모든 레시피를 탐색하여 서브그룹별로 분류
-    for (const recipes of Object.values(this.view.recipesByProduct)) {
-      for (const recipe of recipes) {
-        if (recipe._isGroup || seenRecipes.has(recipe.id)) continue;
-        
-        // 레시피의 결과 아이템들을 확인
-        const results = recipe.results || [];
-        
-        for (const result of results) {
-          // 결과 아이템의 subgroup과 order 확인
-          const itemData = this.view.loadedData.entries.find(e => 
-            e.name === result.name && (e.type === 'item' || e.type === 'fluid')
-          );
-          
-          if (itemData && itemData.subgroup && recipesBySubgroup.has(itemData.subgroup)) {
-            const recipeName = this.view.locale.recipeName(recipe.id);
-            if (!searchText || recipeName.toLowerCase().includes(searchText.toLowerCase())) {
-              recipesBySubgroup.get(itemData.subgroup).push({
-                recipe: recipe,
-                order: itemData.order || ''
-              });
-              seenRecipes.add(recipe.id);
-            }
-            break;
-          }
+    // loadedData.entries에서 type이 recipe인 것만 사용
+    const recipes = (this.view.loadedData?.entries || []).filter(e => e.type === 'recipe');
+    for (const recipe of recipes) {
+      totalRecipesChecked++;
+      if (seenRecipes.has(recipe.id)) continue;
+      if (recipe.subgroup) {
+        recipesWithSubgroup++;
+      }
+      if (recipe.subgroup && recipesBySubgroup.has(recipe.subgroup)) {
+        const recipeName = this.view.locale.recipeName(recipe.id);
+        if (!searchText || recipeName.toLowerCase().includes(searchText.toLowerCase())) {
+          recipesBySubgroup.get(recipe.subgroup).push({
+            recipe: recipe,
+            order: recipe.order || ''
+          });
+          seenRecipes.add(recipe.id);
         }
       }
     }
@@ -268,7 +268,7 @@ export class RecipeSelectModal {
     
     // 서브그룹별로 order 순서대로 정렬 후 렌더링
     for (const subgroup of subgroups) {
-      const subgroupRecipes = recipesBySubgroup.get(subgroup.name);
+      const subgroupRecipes = recipesBySubgroup.get(subgroup.id);
       if (!subgroupRecipes || subgroupRecipes.length === 0) continue;
       
       // order로 정렬

@@ -1,0 +1,272 @@
+struct EffectData
+{
+    uint flags;
+    uint radius;
+    float2 shift;
+};
+
+cbuffer EffectUniforms : register(b0)
+{
+    float _61_opacity : packoffset(c0);
+    float _61_rotation : packoffset(c0.y);
+    float _61_zoom : packoffset(c0.z);
+    uint _61_flags : packoffset(c0.w);
+    float2 _61_cloudOffset : packoffset(c1);
+    float2 _61_podOffset : packoffset(c1.z);
+    float2 _61_spawnOffset : packoffset(c2);
+    float2 _61_texSize : packoffset(c2.z);
+    float2 _61_resolution : packoffset(c3);
+    float2 _61_distanceTravelled : packoffset(c3.z);
+    EffectData _61_effectData[2] : packoffset(c4);
+};
+
+Texture2D<float4> cloudLayerEffectMask : register(t2);
+SamplerState _cloudLayerEffectMask_sampler : register(s2);
+Texture2D<float4> cloudLayerTextureMask : register(t1);
+SamplerState _cloudLayerTextureMask_sampler : register(s1);
+Texture2D<float4> cloudLayerTexture : register(t0);
+SamplerState _cloudLayerTexture_sampler : register(s0);
+
+static float2 vUV;
+static float4 fragColor;
+static float4 vColor;
+
+struct SPIRV_Cross_Input
+{
+    float2 vUV : TEXCOORD0;
+    float4 vColor : TEXCOORD1;
+};
+
+struct SPIRV_Cross_Output
+{
+    float4 fragColor : SV_Target0;
+};
+
+static uint maskAdvFlag;
+static uint quadTexFlag;
+static uint textureOriginType;
+
+float2 shiftOrigin(float2 uv, uint originType)
+{
+    if (originType == 0u)
+    {
+        return uv + _61_podOffset;
+    }
+    if (originType == 2u)
+    {
+        return (uv + _61_podOffset) - _61_spawnOffset;
+    }
+    return uv;
+}
+
+float2 rotate(float2 uv)
+{
+    return mul(float2x2(float2(cos(_61_rotation), -sin(_61_rotation)), float2(sin(_61_rotation), cos(_61_rotation))), uv);
+}
+
+float2 unpack2x16(uint value)
+{
+    return float2(float(value & 65535u), float((value >> uint(16)) & 65535u)) * 0.001000000047497451305389404296875f;
+}
+
+bool isStripe(uint effectFlags)
+{
+    return effectFlags == 5u;
+}
+
+bool isEuclidian(uint effectFlags)
+{
+    return (effectFlags == 1u) || (effectFlags == 3u);
+}
+
+bool isOutside(uint effectFlags)
+{
+    return ((effectFlags == 3u) || (effectFlags == 4u)) || (effectFlags == 5u);
+}
+
+bool isEffect(uint effectFlags)
+{
+    return effectFlags >= 1u;
+}
+
+bool isTexture(uint effectFlags)
+{
+    return (effectFlags == 6u) || (effectFlags == 7u);
+}
+
+float computeEffect(uint effectIndex, float2 baseUV)
+{
+    uint effectFlags = _61_effectData[effectIndex].flags & 63u;
+    uint effectOriginType = (_61_effectData[effectIndex].flags >> uint(12)) & 15u;
+    uint param = _61_effectData[effectIndex].radius;
+    float2 effectRadiusUnpacked = unpack2x16(param);
+    float _278;
+    if (effectRadiusUnpacked.x < effectRadiusUnpacked.y)
+    {
+        _278 = effectRadiusUnpacked.x;
+    }
+    else
+    {
+        _278 = effectRadiusUnpacked.y;
+    }
+    float effectRadiusMin = _278;
+    float _293;
+    if (effectRadiusUnpacked.x < effectRadiusUnpacked.y)
+    {
+        _293 = effectRadiusUnpacked.y;
+    }
+    else
+    {
+        _293 = effectRadiusUnpacked.x;
+    }
+    float effectRadiusMax = _293;
+    float2 param_1 = baseUV;
+    uint param_2 = effectOriginType;
+    float2 effectUV = shiftOrigin(param_1, param_2) + _61_effectData[effectIndex].shift;
+    uint param_3 = effectFlags;
+    float _316;
+    if (isStripe(param_3))
+    {
+        _316 = effectUV.y;
+    }
+    else
+    {
+        _316 = effectUV.x;
+    }
+    effectUV.x = _316;
+    uint param_4 = effectFlags;
+    float _330;
+    if (isEuclidian(param_4))
+    {
+        _330 = (length(effectUV) - effectRadiusMin) / (effectRadiusMax - effectRadiusMin);
+    }
+    else
+    {
+        _330 = max((abs(effectUV.x) - effectRadiusMin) / (effectRadiusMax - effectRadiusMin), (abs(effectUV.y) - effectRadiusMin) / (effectRadiusMax - effectRadiusMin));
+    }
+    float effectDistance = _330;
+    effectDistance = clamp(effectDistance, 0.0f, 1.0f);
+    float localEffect = min(1.0f, effectDistance);
+    uint param_5 = effectFlags;
+    if (isOutside(param_5))
+    {
+        localEffect = 1.0f - localEffect;
+    }
+    uint param_6 = effectFlags;
+    if (!isEffect(param_6))
+    {
+        localEffect = 1.0f;
+    }
+    uint param_7 = effectFlags;
+    if (isTexture(param_7))
+    {
+        float2 effectTextureUV = (effectUV / effectRadiusMax.xx) + 0.5f.xx;
+        float4 maskTex = cloudLayerEffectMask.Sample(_cloudLayerEffectMask_sampler, effectTextureUV);
+        bool _406 = effectTextureUV.x >= 0.0f;
+        bool _412;
+        if (_406)
+        {
+            _412 = effectTextureUV.y >= 0.0f;
+        }
+        else
+        {
+            _412 = _406;
+        }
+        bool _418;
+        if (_412)
+        {
+            _418 = effectTextureUV.x <= 1.0f;
+        }
+        else
+        {
+            _418 = _412;
+        }
+        bool _424;
+        if (_418)
+        {
+            _424 = effectTextureUV.y <= 1.0f;
+        }
+        else
+        {
+            _424 = _418;
+        }
+        bool showTexture = _424;
+        float _426;
+        if (showTexture)
+        {
+            _426 = maskTex.x;
+        }
+        else
+        {
+            _426 = float(effectFlags == 7u);
+        }
+        localEffect = _426;
+    }
+    return localEffect;
+}
+
+bool isAdvancedOpacityMask()
+{
+    return maskAdvFlag != 0u;
+}
+
+bool isQuadTex()
+{
+    return quadTexFlag != 0u;
+}
+
+float2 randomQuad(float2 uv)
+{
+    float2 rand = floor(uv);
+    rand = (((float2(0.910000026226043701171875f, 0.23000000417232513427734375f) * log(1.0f.xx + (rand * rand))) - (float2(0.17000000178813934326171875f, 0.3499999940395355224609375f) * rand.yx)) + (float2(0.23000000417232513427734375f, 0.910000026226043701171875f) * log(1.0f.xx + (rand.yx * rand.yx)))) - (float2(0.3499999940395355224609375f, 0.17000000178813934326171875f) * rand);
+    rand = floor((rand - floor(rand)) * 2.0f) * 0.5f;
+    return ((uv - floor(uv)) * 0.5f) + rand;
+}
+
+void frag_main()
+{
+    maskAdvFlag = (_61_flags & 128u) >> uint(7);
+    quadTexFlag = (_61_flags & 64u) >> uint(6);
+    textureOriginType = (_61_flags >> uint(8)) & 15u;
+    float2 samplingScale = _61_resolution / _61_texSize;
+    float2 pixelShift = 0.5f.xx;
+    float2 baseUV = ((((vUV - pixelShift) * samplingScale) / (32.0f * _61_zoom).xx) * 32.0f) * 0.5f;
+    float2 param = baseUV;
+    uint param_1 = textureOriginType;
+    float2 param_2 = shiftOrigin(param, param_1);
+    float2 textureUV = rotate(param_2);
+    textureUV -= _61_distanceTravelled;
+    textureUV -= _61_cloudOffset;
+    uint param_3 = 0u;
+    float2 param_4 = baseUV;
+    uint param_5 = 1u;
+    float2 param_6 = baseUV;
+    float localEffect = min(computeEffect(param_3, param_4), computeEffect(param_5, param_6));
+    float opacityBonus = isAdvancedOpacityMask() ? localEffect : 1.0f;
+    float intensityMultiplier = isAdvancedOpacityMask() ? 1.0f : localEffect;
+    float2 _500;
+    if (isQuadTex())
+    {
+        float2 param_7 = textureUV;
+        _500 = randomQuad(param_7);
+    }
+    else
+    {
+        _500 = textureUV;
+    }
+    float2 texUV = _500;
+    float4 cloudMasks = cloudLayerTextureMask.Sample(_cloudLayerTextureMask_sampler, texUV);
+    float cloudIntensity = clamp((2.0f * ((_61_opacity + opacityBonus) - 1.0f)) - cloudMasks.x, 0.0f, 1.0f) * intensityMultiplier;
+    float4 cloudColor = cloudLayerTexture.Sample(_cloudLayerTexture_sampler, texUV);
+    fragColor = cloudColor * clamp(cloudIntensity, 0.0f, 1.0f);
+}
+
+SPIRV_Cross_Output main(SPIRV_Cross_Input stage_input)
+{
+    vUV = stage_input.vUV;
+    vColor = stage_input.vColor;
+    frag_main();
+    SPIRV_Cross_Output stage_output;
+    stage_output.fragColor = fragColor;
+    return stage_output;
+}

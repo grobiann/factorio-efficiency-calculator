@@ -1,0 +1,187 @@
+cbuffer LightningProperties : register(b0)
+{
+    row_major float4x4 _215_mvp : packoffset(c0);
+    float4 _215_initialColor : packoffset(c4);
+    float _215_distortion : packoffset(c5);
+    float _215_initialThickness : packoffset(c5.y);
+    float _215_power : packoffset(c5.z);
+    float _215_time : packoffset(c5.w);
+};
+
+
+static float2 vPosition;
+static float4 fragColor;
+static float vIntensity;
+static float2 vUV;
+
+struct SPIRV_Cross_Input
+{
+    float2 vPosition : TEXCOORD0;
+    float2 vUV : TEXCOORD1;
+    float vIntensity : TEXCOORD2;
+};
+
+struct SPIRV_Cross_Output
+{
+    float4 fragColor : SV_Target0;
+};
+
+float valueOverTime(float start, float end, float power)
+{
+    return pow((_215_time - start) / (end - start), power);
+}
+
+float valueOverTime(float start, float end)
+{
+    return (_215_time - start) / (end - start);
+}
+
+float random(float2 st)
+{
+    float s = dot(st, float2(12.345600128173828125f, 34.141498565673828125f));
+    return frac(sin(s) * 45678.8984375f);
+}
+
+float perlinNoise(float2 st)
+{
+    float2 cell = floor(st);
+    float2 cell2 = ceil(st);
+    float2 f = frac(st);
+    float2 param = cell;
+    float s00 = random(param);
+    float2 param_1 = float2(cell.x, cell2.y);
+    float s01 = random(param_1);
+    float2 param_2 = float2(cell2.x, cell.y);
+    float s10 = random(param_2);
+    float2 param_3 = cell2;
+    float s11 = random(param_3);
+    return lerp(lerp(s00, s10, f.x), lerp(s01, s11, f.x), f.y);
+}
+
+float3 noise3D()
+{
+    float3 _noise = 0.0f.xxx;
+    for (int i = 1; i <= 4; i++)
+    {
+        float iscale = pow(2.0f, float(i - 1));
+        float2 param = (vPosition * iscale) * 30.0f;
+        float2 param_1 = vPosition + 76.4499969482421875f.xx;
+        float2 param_2 = param_1;
+        param.x += (perlinNoise(param_2) * 0.20000000298023223876953125f);
+        float2 param_2_1 = vPosition + 91.0f.xx;
+        float2 param_3 = param_2_1;
+        param.y += (perlinNoise(param_3) * 0.20000000298023223876953125f);
+        float influence = 1.0f / pow(float(i), 2.0f);
+        float2 param_3_1 = param + 23.6499996185302734375f.xx;
+        float2 param_4 = param_3_1;
+        _noise.x += (perlinNoise(param_4) * influence);
+        float2 param_4_1 = param + 12.340000152587890625f.xx;
+        float2 param_5 = param_4_1;
+        _noise.y += (perlinNoise(param_5) * influence);
+        float2 param_5_1 = param + 82.339996337890625f.xx;
+        float2 param_6 = param_5_1;
+        _noise.z += (perlinNoise(param_6) * influence);
+    }
+    float3 _207 = _noise;
+    float3 _208 = _207 - 0.5f.xxx;
+    _noise = _208;
+    return _208;
+}
+
+void frag_main()
+{
+    float param = 0.0f;
+    float param_1 = 0.300000011920928955078125f;
+    float param_2 = 0.75f;
+    if ((length(vPosition) - 0.100000001490116119384765625f) > valueOverTime(param, param_1, param_2))
+    {
+        fragColor = 0.0f.xxxx;
+        return;
+    }
+    bool _262 = vIntensity != 1.0f;
+    bool _268;
+    if (_262)
+    {
+        _268 = vPosition.y < 0.20000000298023223876953125f;
+    }
+    else
+    {
+        _268 = _262;
+    }
+    bool isCloud = _268;
+    float growth;
+    if (isCloud)
+    {
+        float param_3 = 0.0f;
+        float param_4 = 0.20000000298023223876953125f;
+        growth = ((1.0f - length(vPosition)) - valueOverTime(param_3, param_4)) - 0.20000000298023223876953125f;
+    }
+    else
+    {
+        float param_5 = 0.0f;
+        float param_6 = 0.300000011920928955078125f;
+        float param_7 = 0.75f;
+        growth = length(vPosition) - valueOverTime(param_5, param_6, param_7);
+    }
+    growth = min(max(0.0500000007450580596923828125f - growth, 0.0f) * 50.0f, 1.0f);
+    float thickness = _215_initialThickness * growth;
+    float opacity = _215_initialColor.w;
+    float3 color = _215_initialColor.xyz;
+    float param_8 = 0.20000000298023223876953125f;
+    float param_9 = 0.300000011920928955078125f;
+    float bolt = length(vPosition) - valueOverTime(param_8, param_9);
+    if (isCloud)
+    {
+        float param_10 = 0.0f;
+        float param_11 = 0.300000011920928955078125f;
+        bolt = ((1.0f - length(vPosition)) - valueOverTime(param_10, param_11)) - 0.300000011920928955078125f;
+    }
+    bolt *= ((bolt > 0.0f) ? 4.0f : (-0.100000001490116119384765625f));
+    bolt = max(pow((0.1500000059604644775390625f - bolt) * 7.0f, 3.0f), 0.0f);
+    bolt = lerp(0.0f, bolt, pow(vIntensity, 1.5f));
+    bolt -= (max(vPosition.y - 0.949999988079071044921875f, 0.0f) * 20.0f);
+    if (bolt > 0.0f)
+    {
+        thickness = lerp(thickness, pow(thickness, 0.20000000298023223876953125f) * 5.0f, bolt * 0.5f);
+        color = lerp(color, float3(0.800000011920928955078125f, 0.0f, 0.0f) + color, pow(bolt, 0.5f).xxx);
+    }
+    float3 _noise = noise3D();
+    float gradient = clamp(2.0f * abs(vUV.x - 0.5f), 0.0f, 1.0f);
+    float2 distortedUV = vUV + (((_noise.xy * _215_distortion) * vIntensity) * max(1.0f - (bolt * 0.5f), 0.0f));
+    float distorted_bolt = clamp(2.0f * abs(distortedUV.x - 0.5f), 0.0f, 1.0f);
+    float distorted_opacity = lerp(opacity, opacity - _noise.x, _215_time);
+    distorted_opacity *= (1.0f - pow(gradient, 4.0f));
+    color = normalize(color);
+    color += ((1.0f.xxx * (1.0f - pow(gradient, 0.699999988079071044921875f))) * distorted_opacity);
+    color += ((_noise * 0.300000011920928955078125f) * (1.0f - pow(gradient, 4.0f)));
+    fragColor = max(thickness - distorted_bolt, 0.0f).xxxx;
+    float min_value = max(lerp(lerp(0.0500000007450580596923828125f, 0.0005000000237487256526947021484375f, opacity), 0.0f, bolt), 0.0f);
+    float factor = ((((-distorted_bolt) + 0.300000011920928955078125f) + (bolt * 0.5f)) + opacity) - 1.0f;
+    factor = pow(max(factor, 0.0f), 2.0f);
+    fragColor *= lerp(min_value, 1.0f, factor);
+    float4 _477 = fragColor;
+    float3 _479 = _477.xyz * color;
+    fragColor.x = _479.x;
+    fragColor.y = _479.y;
+    fragColor.z = _479.z;
+    fragColor = min(pow(fragColor, _215_power.xxxx), 1.0f.xxxx);
+    fragColor *= distorted_opacity;
+    float4 _502 = fragColor;
+    float3 _504 = _502.xyz * lerp(0.0f.xxx, color, (1.0f - distorted_bolt).xxx);
+    fragColor.x = _504.x;
+    fragColor.y = _504.y;
+    fragColor.z = _504.z;
+    fragColor *= (1.0f + min(bolt, 0.5f));
+    fragColor *= ((vPosition.y + 0.75f) / 1.75f);
+}
+
+SPIRV_Cross_Output main(SPIRV_Cross_Input stage_input)
+{
+    vPosition = stage_input.vPosition;
+    vIntensity = stage_input.vIntensity;
+    vUV = stage_input.vUV;
+    frag_main();
+    SPIRV_Cross_Output stage_output;
+    stage_output.fragColor = fragColor;
+    return stage_output;
+}

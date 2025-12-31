@@ -1,0 +1,144 @@
+cbuffer fsConstants : register(b0)
+{
+    float2 _85_invLeafTexSize : packoffset(c0);
+    float2 _85_strength : packoffset(c0.z);
+    float2 _85_distort : packoffset(c1);
+    float2 _85_speed : packoffset(c1.z);
+    float _85_time : packoffset(c2);
+    float _85_inverseExpectedUVDerivative : packoffset(c2.y);
+    uint _85_debug : packoffset(c2.z);
+};
+
+Texture2D<float4> texDistortion : register(t1);
+SamplerState _texDistortion_sampler : register(s1);
+Texture2D<float4> tex : register(t0);
+SamplerState _tex_sampler : register(s0);
+
+static float2 vUVTexture;
+static float2 vUVDistortion;
+static float4 vTint;
+static float4 fragColor;
+static float4 lightColor;
+static uint vExtra;
+
+struct SPIRV_Cross_Input
+{
+    float4 vTint : TEXCOORD0;
+    float2 vUVTexture : TEXCOORD1;
+    float2 vUVDistortion : TEXCOORD2;
+    nointerpolation uint vExtra : TEXCOORD3;
+};
+
+struct SPIRV_Cross_Output
+{
+    float4 fragColor : SV_Target0;
+    float4 lightColor : SV_Target1;
+};
+
+uint2 spvTextureSize(Texture2D<float4> Tex, uint Level, out uint Param)
+{
+    uint2 ret;
+    Tex.GetDimensions(Level, ret.x, ret.y, Param);
+    return ret;
+}
+
+float4 getLightColor(float4 color, uint extra)
+{
+    float4 _26;
+    if ((extra & 48u) != 0u)
+    {
+        _26 = float4(color.xyz, 0.0f);
+    }
+    else
+    {
+        _26 = float4(0.0f, 0.0f, 0.0f, color.w);
+    }
+    return _26;
+}
+
+float4 getFragColor(float4 color, uint extra)
+{
+    bool4 _53 = ((extra & 16u) != 0u).xxxx;
+    return float4(_53.x ? 0.0f.xxxx.x : color.x, _53.y ? 0.0f.xxxx.y : color.y, _53.z ? 0.0f.xxxx.z : color.z, _53.w ? 0.0f.xxxx.w : color.w);
+}
+
+void frag_main()
+{
+    float2 localUV = vUVTexture;
+    float2 distortion = 0.0f.xx;
+    float4 offset = 0.0f.xxxx;
+    if (any(bool2(vUVDistortion.x != (-1.0f).xx.x, vUVDistortion.y != (-1.0f).xx.y)))
+    {
+        offset = texDistortion.Sample(_texDistortion_sampler, vUVDistortion);
+        float localTime = _85_time + (((vTint.x + vTint.y) + vTint.z) * 5.0f);
+        distortion.x = offset.x * sin((offset.y * _85_distort.x) + (localTime * _85_speed.x));
+        distortion.y = offset.x * cos((offset.y * _85_distort.y) + (localTime * _85_speed.y));
+        uint _146_dummy_parameter;
+        float2 localPixelXY = localUV * float2(int2(spvTextureSize(tex, uint(0), _146_dummy_parameter)));
+        distortion *= (ddx(localPixelXY.x) * _85_inverseExpectedUVDerivative);
+        float2 copy = localPixelXY;
+        localUV = (floor(localPixelXY) + (distortion * _85_strength)) * _85_invLeafTexSize;
+        uint _175_dummy_parameter;
+        distortion = floor(localUV * float2(int2(spvTextureSize(tex, uint(0), _175_dummy_parameter)))) - floor(copy);
+        if (_85_debug != 0u)
+        {
+            fragColor = float4(0.5f + (0.20000000298023223876953125f * distortion.x), 0.5f + (0.20000000298023223876953125f * distortion.y), ddx(localPixelXY.x) * _85_inverseExpectedUVDerivative, 0.0f);
+        }
+    }
+    float4 sampledPixel = tex.Sample(_tex_sampler, localUV);
+    if (sampledPixel.w <= 0.0f)
+    {
+        discard;
+    }
+    else
+    {
+        bool _223 = !(_85_debug != 0u);
+        bool _230;
+        if (!_223)
+        {
+            _230 = all(bool2(vUVDistortion.x == (-1.0f).xx.x, vUVDistortion.y == (-1.0f).xx.y));
+        }
+        else
+        {
+            _230 = _223;
+        }
+        if (_230)
+        {
+            fragColor = sampledPixel;
+            float grayscale = ((fragColor.x + fragColor.y) + fragColor.z) / 4.0f;
+            float4 _248 = fragColor;
+            float3 _256 = lerp(grayscale.xxx, _248.xyz, vTint.w.xxx) * vTint.xyz;
+            fragColor.x = _256.x;
+            fragColor.y = _256.y;
+            fragColor.z = _256.z;
+        }
+        else
+        {
+            float4 _266 = fragColor;
+            float3 _268 = _266.xyz * sampledPixel.w;
+            fragColor.x = _268.x;
+            fragColor.y = _268.y;
+            fragColor.z = _268.z;
+            fragColor.w = sampledPixel.w;
+        }
+    }
+    float4 param = fragColor;
+    uint param_1 = vExtra;
+    lightColor = getLightColor(param, param_1);
+    float4 param_2 = fragColor;
+    uint param_3 = vExtra;
+    fragColor = getFragColor(param_2, param_3);
+}
+
+SPIRV_Cross_Output main(SPIRV_Cross_Input stage_input)
+{
+    vUVTexture = stage_input.vUVTexture;
+    vUVDistortion = stage_input.vUVDistortion;
+    vTint = stage_input.vTint;
+    vExtra = stage_input.vExtra;
+    frag_main();
+    SPIRV_Cross_Output stage_output;
+    stage_output.fragColor = fragColor;
+    stage_output.lightColor = lightColor;
+    return stage_output;
+}

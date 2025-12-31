@@ -1,0 +1,355 @@
+Texture2D<float4> tex : register(t0);
+SamplerState _tex_sampler : register(s0);
+
+static float vTime;
+static float vRandomSeed;
+static float2 vUV;
+static float2 vEffectSize;
+static uint vQuality;
+static float vThrustRatio;
+static float vFuelRatio;
+static float vOxidizerRatio;
+static float4 fragColor;
+static float4 lightColor;
+
+struct SPIRV_Cross_Input
+{
+    float2 vUV : TEXCOORD0;
+    nointerpolation uint vQuality : TEXCOORD1;
+    nointerpolation float vTime : TEXCOORD2;
+    nointerpolation float2 vEffectSize : TEXCOORD3;
+    nointerpolation float vThrustRatio : TEXCOORD4;
+    nointerpolation float vFuelRatio : TEXCOORD5;
+    nointerpolation float vOxidizerRatio : TEXCOORD6;
+    nointerpolation float vRandomSeed : TEXCOORD7;
+};
+
+struct SPIRV_Cross_Output
+{
+    float4 fragColor : SV_Target0;
+    float4 lightColor : SV_Target1;
+};
+
+float mod(float x, float y)
+{
+    return x - y * floor(x / y);
+}
+
+float2 mod(float2 x, float2 y)
+{
+    return x - y * floor(x / y);
+}
+
+float3 mod(float3 x, float3 y)
+{
+    return x - y * floor(x / y);
+}
+
+float4 mod(float4 x, float4 y)
+{
+    return x - y * floor(x / y);
+}
+
+float choke(inout float _coverage, float _speed)
+{
+    _coverage *= 0.699999988079071044921875f;
+    _coverage = pow(_coverage, 0.75f);
+    float x = (vTime + (vRandomSeed * 100.0f)) * _speed;
+    float rise = pow(frac(1.0f - x), 2.0f);
+    float _noise = frac(sin(floor(x)) * 10000.0f);
+    _noise *= 0.5f;
+    _noise += 0.5f;
+    _noise = lerp(0.0f, _noise, rise);
+    float sstep = step(frac(sin(floor(x + 10.0f)) * 10000.0f), _coverage);
+    _noise *= sstep;
+    return 1.0f - _noise;
+}
+
+float2 realityLoop(inout float2 _uv, float _modulo)
+{
+    _uv.x = lerp(mod(_uv.x, _modulo), mod(_modulo - _uv.x, _modulo), step(_modulo, mod(_uv.x, _modulo * 2.0f)));
+    _uv.y = lerp(mod(_uv.y, _modulo), mod(_modulo - _uv.y, _modulo), step(_modulo, mod(_uv.y, _modulo * 2.0f)));
+    return _uv;
+}
+
+float2 hash(inout float2 p)
+{
+    p = float2(dot(p, float2(127.09999847412109375f, 311.70001220703125f)), dot(p, float2(269.5f, 183.3000030517578125f)));
+    return (-1.0f).xx + (frac(sin(p) * 43758.546875f) * 2.0f);
+}
+
+float _noise(float2 p)
+{
+    float2 i = floor(p + ((p.x + p.y) * 0.3660254180431365966796875f).xx);
+    float2 a = (p - i) + ((i.x + i.y) * 0.211324870586395263671875f).xx;
+    float m = step(a.y, a.x);
+    float2 o = float2(m, 1.0f - m);
+    float2 b = (a - o) + 0.211324870586395263671875f.xx;
+    float2 c = (a - 1.0f.xx) + 0.42264974117279052734375f.xx;
+    float3 h = max(0.5f.xxx - float3(dot(a, a), dot(b, b), dot(c, c)), 0.0f.xxx);
+    float2 param = i + 0.0f.xx;
+    float2 _322 = hash(param);
+    float2 param_1 = i + o;
+    float2 _329 = hash(param_1);
+    float2 param_2 = i + 1.0f.xx;
+    float2 _336 = hash(param_2);
+    float3 n = (((h * h) * h) * h) * float3(dot(a, _322), dot(b, _329), dot(c, _336));
+    return dot(n, 70.0f.xxx);
+}
+
+float simplex2(inout float2 _uv, float _speed)
+{
+    _uv.y -= (100.0f * vRandomSeed);
+    _uv.x += (100.0f * vRandomSeed);
+    _uv.y *= 4.0f;
+    float modulo = 100.0f;
+    float constipatedTime = mod(vTime, modulo * 2.0f);
+    _uv.y -= (_speed * constipatedTime);
+    float2x2 m = float2x2(float2(2.0f, 1.0f), float2(-1.0f, 2.0f));
+    float2 param = _uv;
+    float param_1 = modulo;
+    float2 _387 = realityLoop(param, param_1);
+    float2 param_2 = _387;
+    float f = _noise(param_2);
+    _uv = mul(_uv, m);
+    _uv.y -= constipatedTime;
+    _uv.x += constipatedTime;
+    float2 param_3 = _uv;
+    float param_4 = modulo;
+    float2 _407 = realityLoop(param_3, param_4);
+    float2 param_5 = _407;
+    f += (0.5f * _noise(param_5));
+    _uv = mul(_uv, m);
+    _uv.y += constipatedTime;
+    _uv.x -= constipatedTime;
+    float2 param_6 = _uv;
+    float param_7 = modulo;
+    float2 _431 = realityLoop(param_6, param_7);
+    float2 param_8 = _431;
+    f += (0.25f * _noise(param_8));
+    _uv = mul(_uv, m);
+    _uv.y -= constipatedTime;
+    _uv.x += constipatedTime;
+    float2 param_9 = _uv;
+    float param_10 = modulo;
+    float2 _455 = realityLoop(param_9, param_10);
+    float2 param_11 = _455;
+    f += (0.125f * _noise(param_11));
+    return f;
+}
+
+float trdrp(float _n, inout float _x)
+{
+    _x -= 0.5f;
+    _x *= 2.0f;
+    return sin(acos(_x)) * pow(sin(acos(_x) / 2.0f), _n);
+}
+
+float crclDepth(float _X, float _r)
+{
+    float depth = sqrt(clamp(pow(_r, 2.0f) - pow(_X, 2.0f), 0.0f, 1.0f));
+    return depth;
+}
+
+float crclDensity(float _X, float _r, float _b)
+{
+    float param = _X;
+    float param_1 = _r;
+    float depth = crclDepth(param, param_1);
+    float dens = _b / (pow(_r, 1.5f) * 3.1400001049041748046875f);
+    return depth * dens;
+}
+
+float crclBorder(float _X, float _r, float _fac)
+{
+    float res = abs((0.89999997615814208984375f * _r) - abs(_X));
+    return pow(1.0f - res, _fac);
+}
+
+float sparksNoise(inout float2 _uv, float _s)
+{
+    _uv.y -= (100.0f * vRandomSeed);
+    _uv.x += (100.0f * vRandomSeed);
+    float modulo = 100.0f;
+    float constipatedTime = mod(vTime, modulo * 2.0f);
+    _uv.y -= (_s * constipatedTime);
+    float2 param = _uv;
+    float param_1 = modulo;
+    float2 _542 = realityLoop(param, param_1);
+    float2 param_2 = _542;
+    return _noise(param_2);
+}
+
+float starSimplex(inout float2 _uv, float _speed)
+{
+    _uv.y -= (100.0f * vRandomSeed);
+    _uv.x += (100.0f * vRandomSeed);
+    _uv.y *= 2.0f;
+    _uv.x *= 10.0f;
+    float modulo = 100.0f;
+    float constipatedTime = mod(vTime, modulo * 2.0f);
+    _uv.y -= ((_speed * constipatedTime) * 2.0f);
+    float2 param = _uv;
+    float param_1 = modulo;
+    float2 _503 = realityLoop(param, param_1);
+    float2 param_2 = _503;
+    float f = _noise(param_2);
+    f = smoothstep(0.4000000059604644775390625f, 0.800000011920928955078125f, f);
+    return f;
+}
+
+void frag_main()
+{
+    float4 color = tex.Sample(_tex_sampler, vUV);
+    float2 pixelatedUV = floor(vUV * vEffectSize) / vEffectSize;
+    float2 st = pixelatedUV;
+    st.x = (st.x - 0.5f) * 2.0f;
+    float rY = 1.0f - st.y;
+    float time = vTime + vRandomSeed;
+    time *= ((vRandomSeed * 0.300000011920928955078125f) + 0.699999988079071044921875f);
+    float loop = (sin(time) * 0.5f) + 0.5f;
+    float Q = float(vQuality) / 4.0f;
+    float THR = ((vThrustRatio * 0.699999988079071044921875f) + lerp(0.100000001490116119384765625f, 0.4000000059604644775390625f, loop)) - 0.100000001490116119384765625f;
+    float fuel = clamp((vFuelRatio - 0.100000001490116119384765625f) * 1.65999996662139892578125f, 0.0f, 1.0f);
+    float oxyd = clamp((vOxidizerRatio - 0.100000001490116119384765625f) * 1.65999996662139892578125f, 0.0f, 1.0f);
+    float param = 1.0f - vThrustRatio;
+    float param_1 = 1.0f;
+    float _626 = choke(param, param_1);
+    float choking = _626;
+    float2 param_2 = st * 2.0f;
+    float param_3 = 3.0f;
+    float _633 = simplex2(param_2, param_3);
+    float maskSimplex1 = _633;
+    float2 param_4 = float2(st.x, st.y * 0.5f);
+    float param_5 = 1.2000000476837158203125f;
+    float _644 = simplex2(param_4, param_5);
+    float maskSimplex2 = _644;
+    float maskSimplex = maskSimplex1 + maskSimplex2;
+    maskSimplex *= 0.25f;
+    maskSimplex += lerp(0.4000000059604644775390625f, 0.800000011920928955078125f, fuel);
+    maskSimplex = max(maskSimplex, 0.75f * rY);
+    float2 param_6 = st * 3.0f;
+    float param_7 = 8.0f;
+    float _665 = simplex2(param_6, param_7);
+    float warp = sin(_665);
+    st.x += (lerp(0.0500000007450580596923828125f, 0.75f, pow(st.y, 2.0f)) * warp);
+    st.x += (sin(maskSimplex2 - maskSimplex1) * lerp(0.100000001490116119384765625f, 0.0f, fuel));
+    float2 innerUV = st + (0.0500000007450580596923828125f * warp).xx;
+    float2 size = 1.0f.xx;
+    size.x = lerp(0.20000000298023223876953125f, 0.75f, THR) + (Q * 0.100000001490116119384765625f);
+    size.y = lerp(0.0500000007450580596923828125f, 0.4000000059604644775390625f, THR) + (Q * 0.0500000007450580596923828125f);
+    size *= lerp(0.75f, 1.0f, fuel);
+    float n = lerp(1.0f, 4.0f, THR);
+    float param_8 = n;
+    float param_9 = innerUV.y / size.y;
+    float _731 = trdrp(param_8, param_9);
+    float param_10 = innerUV.x / size.x;
+    float param_11 = _731;
+    float maskFl = crclDepth(param_10, param_11);
+    maskFl *= (smoothstep(0.0f, 1.2000000476837158203125f, maskFl) * 4.0f);
+    size.x = 0.800000011920928955078125f + (THR * 0.20000000298023223876953125f);
+    size.x *= lerp(0.75f, 1.0f, fuel);
+    size.y = lerp(2.0f, 1.0f, THR);
+    float sin_size = lerp(40.0f, 60.0f, loop);
+    float sin_freq = lerp(20.0f, 30.0f, loop);
+    float expand = lerp(3.0f, 1.0f, THR);
+    float exp_base = lerp(0.5f, 0.60000002384185791015625f, THR);
+    float exp_mult = lerp(0.4000000059604644775390625f, 0.60000002384185791015625f, loop);
+    float shaperSin = 0.60000002384185791015625f + (((2.0f + ((6.0f * st.y) * size.y)) * sin(((st.y * size.y) / ((st.y * size.y) + 1.0f)) * sin_freq)) / sin_size);
+    float shaperExpand = exp_base + (exp_mult * pow(st.y * size.y, expand));
+    float sin_start = 0.4000000059604644775390625f;
+    float exp_max = 0.800000011920928955078125f;
+    float shaperMix = smoothstep(sin_start, exp_max, st.y);
+    shaperMix = lerp(1.0f, shaperMix, oxyd);
+    float shaperFin = lerp(shaperSin, shaperExpand, shaperMix);
+    float param_12 = st.x / size.x;
+    float param_13 = shaperFin;
+    float param_14 = pow(rY, 0.5f);
+    float maskIn = crclDensity(param_12, param_13, param_14);
+    float param_15 = st.x / size.x;
+    float param_16 = shaperFin;
+    float param_17 = lerp(0.3499999940395355224609375f, 1.0f, oxyd) * lerp(0.0f, 25.0f, rY);
+    float maskBr = crclBorder(param_15, param_16, param_17);
+    float cutOffRange = (0.800000011920928955078125f - (fuel * 0.300000011920928955078125f)) - lerp(0.0f, 0.20000000298023223876953125f, loop);
+    cutOffRange += ((1.0f - THR) * 0.5f);
+    cutOffRange += (0.4000000059604644775390625f * abs(st.x));
+    cutOffRange *= sign(cutOffRange);
+    maskIn *= (smoothstep(0.0f, 0.125f, st.y) * smoothstep(0.0f, cutOffRange, rY));
+    maskBr *= (smoothstep(0.0f, 0.125f, st.y) * smoothstep(0.0f, cutOffRange, rY));
+    float2 sparkUV = pixelatedUV;
+    sparkUV.x -= 0.5f;
+    sparkUV.x *= 30.0f;
+    sparkUV.y *= 15.0f;
+    sparkUV.x *= lerp(1.0f, 0.25f, pixelatedUV.y);
+    float sparksRange = lerp(0.800000011920928955078125f, 0.999000012874603271484375f, 1.0f - THR);
+    float sparkSpeed = 12.0f;
+    float param_18 = st.x / size.x;
+    float param_19 = shaperFin + 0.1500000059604644775390625f;
+    float param_20 = pow(rY, 0.5f);
+    float maskSp = 4.0f * crclDensity(param_18, param_19, param_20);
+    maskSp *= (smoothstep(0.0f, 0.100000001490116119384765625f, st.y) * smoothstep(0.0f, cutOffRange * 0.75f, rY));
+    float2 param_21 = sparkUV;
+    float param_22 = sparkSpeed;
+    float _960 = sparksNoise(param_21, param_22);
+    float noiseSparks = _960;
+    float maskSparks = 1.0f - step(noiseSparks, sparksRange);
+    maskSparks += (0.75f * smoothstep(sparksRange * 0.75f, 1.0f, noiseSparks));
+    maskSparks += (0.5f * smoothstep(sparksRange * 0.5f, 1.0f, noiseSparks));
+    maskSparks *= clamp(maskSp, 0.0f, 1.0f);
+    maskSparks *= (1.0f - maskFl);
+    float colMix = lerp(2.0f, 1.0f, THR);
+    float oxyd_sharp = lerp(10.0f, 5.0f, oxyd) - Q;
+    float oxyd_offset = lerp(0.0f, 0.5f, oxyd) + (Q * 0.100000001490116119384765625f);
+    float oxyd_piramid = (abs(st.x) * 0.60000002384185791015625f) + 0.4000000059604644775390625f;
+    float colOxyd = (st.y * oxyd_sharp) - oxyd_offset;
+    colOxyd += (0.20000000298023223876953125f * warp);
+    colOxyd *= oxyd_piramid;
+    colOxyd = lerp(1.0f, colOxyd, smoothstep(0.0f, 0.20000000298023223876953125f, vOxidizerRatio));
+    float2 dUV = pixelatedUV + (0.032999999821186065673828125f * warp).xx;
+    dUV.x -= 0.5f;
+    dUV.x *= (rY * 2.0f);
+    float2 param_23 = dUV;
+    float param_24 = 3.0f;
+    float _1048 = starSimplex(param_23, param_24);
+    float dirt = _1048;
+    dirt = smoothstep(0.60000002384185791015625f, 1.0f, dirt);
+    dirt *= maskIn;
+    dirt = lerp(dirt * 2.0f, (dirt * maskSimplex1) + (dirt * maskSimplex2), fuel);
+    float4 colorDirt = tex.Sample(_tex_sampler, float2(pow(dirt, colMix), 1.0f));
+    float4 colorIn = tex.Sample(_tex_sampler, float2(pow(maskIn, colMix), colOxyd));
+    colorIn *= (maskIn.xxxx * lerp(2.0f, 3.0f, THR));
+    colorIn *= lerp(1.0f, 1.2000000476837158203125f, Q);
+    colorIn += (colorDirt * rY);
+    float4 colorBr = tex.Sample(_tex_sampler, float2(pow(maskBr, colMix), colOxyd));
+    colorBr *= ((maskBr.xxxx * (2.0f + Q)) * lerp(0.5f, 1.0f, THR));
+    colorBr *= lerp(1.0f, 1.2000000476837158203125f, Q);
+    color = colorIn + (colorBr * pow(rY, 4.0f));
+    color *= maskSimplex.xxxx;
+    float4 colorFl = tex.Sample(_tex_sampler, float2(pow(maskFl, 2.400000095367431640625f), 1.0f));
+    colorFl *= ((maskFl.xxxx * lerp(0.5f, 2.0f, (THR + fuel) * 0.5f)) * choking);
+    color *= (((1.0f - pow(maskSimplex2, 2.0f)) * 0.5f) + 0.5f);
+    float4 colorSp = tex.Sample(_tex_sampler, float2(pow(maskSparks, 2.400000095367431640625f), 1.0f));
+    colorSp *= maskSparks.xxxx;
+    color += (colorSp * 0.75f);
+    color = lerp(color, colorFl, pow(maskFl, 0.75f).xxxx);
+    color.w = 0.0f;
+    fragColor = color;
+    lightColor = float4(color.xyz, 0.0f);
+}
+
+SPIRV_Cross_Output main(SPIRV_Cross_Input stage_input)
+{
+    vTime = stage_input.vTime;
+    vRandomSeed = stage_input.vRandomSeed;
+    vUV = stage_input.vUV;
+    vEffectSize = stage_input.vEffectSize;
+    vQuality = stage_input.vQuality;
+    vThrustRatio = stage_input.vThrustRatio;
+    vFuelRatio = stage_input.vFuelRatio;
+    vOxidizerRatio = stage_input.vOxidizerRatio;
+    frag_main();
+    SPIRV_Cross_Output stage_output;
+    stage_output.fragColor = fragColor;
+    stage_output.lightColor = lightColor;
+    return stage_output;
+}

@@ -1,0 +1,66 @@
+cbuffer EffectUniforms : register(b0)
+{
+    float2 _14_pixelShift : packoffset(c0);
+    float2 _14_mapPosition : packoffset(c0.z);
+    float _14_zoom : packoffset(c1);
+    float _14_daytimeAlphaButDoNotUseIt : packoffset(c1.y);
+    float2 _14_renderResolution : packoffset(c1.z);
+    float4 _14_offset : packoffset(c2);
+    float4 _14_intensity : packoffset(c3);
+    float4 _14_scaleU : packoffset(c4);
+    float4 _14_scaleV : packoffset(c5);
+    float _14_globalIntensity : packoffset(c6);
+    float _14_globalScale : packoffset(c6.y);
+    float _14_zoomFactor : packoffset(c6.z);
+    float _14_zoomIntensity : packoffset(c6.w);
+};
+
+cbuffer passParams : register(b1)
+{
+    float _78_passTime : packoffset(c0);
+};
+
+Texture2D<float4> noiseTexture : register(t0);
+SamplerState _noiseTexture_sampler : register(s0);
+
+static float4 gl_FragCoord;
+static float4 fragColor;
+
+struct SPIRV_Cross_Input
+{
+    float4 gl_FragCoord : SV_Position;
+};
+
+struct SPIRV_Cross_Output
+{
+    float4 fragColor : SV_Target0;
+};
+
+static float2 map_Position;
+static float2 adjustedUV;
+static float2 uv;
+static float puddleWidth;
+static float puddleThreshold;
+static float puddleOpacity;
+
+void frag_main()
+{
+    map_Position = (_14_mapPosition + (gl_FragCoord.xy / (32.0f * _14_zoom).xx)) * 32.0f;
+    adjustedUV = map_Position / 1024.0f.xx;
+    uv = adjustedUV;
+    puddleWidth = 0.07500000298023223876953125f;
+    puddleThreshold = 0.550000011920928955078125f;
+    puddleOpacity = 0.60000002384185791015625f;
+    float puddle = noiseTexture.Sample(_noiseTexture_sampler, uv).y;
+    fragColor = float4(0.0f, 1.0f - (clamp(smoothstep(puddleThreshold - puddleWidth, puddleThreshold + puddleWidth, puddle), 0.0f, 1.0f) * puddleOpacity), 0.0f, 0.0f);
+}
+
+SPIRV_Cross_Output main(SPIRV_Cross_Input stage_input)
+{
+    gl_FragCoord = stage_input.gl_FragCoord;
+    gl_FragCoord.w = 1.0 / gl_FragCoord.w;
+    frag_main();
+    SPIRV_Cross_Output stage_output;
+    stage_output.fragColor = fragColor;
+    return stage_output;
+}

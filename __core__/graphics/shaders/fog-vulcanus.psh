@@ -1,0 +1,162 @@
+cbuffer FogEffectUniforms : register(b0)
+{
+    float2 _43_renderResolution : packoffset(c0);
+    float2 _43_unused_TexSize : packoffset(c0.z);
+    float2 _43_pixelShift : packoffset(c1);
+    float2 _43_mapPosition : packoffset(c1.z);
+    float _43_zoom : packoffset(c2);
+    uint _43_debugOption : packoffset(c2.y);
+    float2 _43_cloudsOffset : packoffset(c2.z);
+    float4 _43_color1 : packoffset(c3);
+    float4 _43_color2 : packoffset(c4);
+    float _43_animationSpeed : packoffset(c5);
+    float _43_animationScale : packoffset(c5.y);
+    float _43_sunLightIntensity : packoffset(c5.z);
+    float _43_renderScale : packoffset(c5.w);
+    uint _43_uTick : packoffset(c6);
+    float _43_tickFactor : packoffset(c6.y);
+    float2 _43_scaledTime : packoffset(c6.z);
+    float _43_timeBasedRandomValue : packoffset(c7);
+    float _43_fracScaledTime : packoffset(c7.y);
+    float2 _43_sinCosTimeHalf : packoffset(c7.z);
+};
+
+Texture2D<float4> noiseTexture : register(t0);
+SamplerState _noiseTexture_sampler : register(s0);
+Texture2D<float4> detailTexture : register(t1);
+SamplerState _detailTexture_sampler : register(s1);
+Texture2D<float4> lightmap : register(t2);
+SamplerState _lightmap_sampler : register(s2);
+Texture2D<float4> fogMask : register(t3);
+SamplerState _fogMask_sampler : register(s3);
+
+static float4 gl_FragCoord;
+static float2 vUV;
+static float4 fragColor;
+
+struct SPIRV_Cross_Input
+{
+    float2 vUV : TEXCOORD0;
+    float4 gl_FragCoord : SV_Position;
+};
+
+struct SPIRV_Cross_Output
+{
+    float4 fragColor : SV_Target0;
+};
+
+static float globalScale;
+static float noiseTexScale;
+static float detailTexScale;
+static float timeRandom;
+static float2 adjustedCloudsOffset;
+static float4 direction1;
+static float4 direction2;
+static float4 direction3;
+static float warpIntensity;
+static float panScale;
+static float2 adjustedMapPosition;
+static float2 adjustedUV;
+static float2 uv;
+static float2 noise_uv;
+static float speedbase;
+static float Udir;
+static float Vdir;
+static float Udir2;
+static float Vdir2;
+
+float4 PanningTexture(float2 uv_1, float speedX, float speedY, Texture2D<float4> textureInput, SamplerState _textureInput_sampler)
+{
+    float2 uvDist = ((uv_1 * 2.0f) + _43_fracScaledTime.xx) + (_43_sinCosTimeHalf.yx / float2(speedX, speedY));
+    float4 pannerOut = textureInput.Sample(_textureInput_sampler, uvDist);
+    return pannerOut;
+}
+
+float4 cloudsFunction(float2 offset, float speed)
+{
+    float globalSpeed = 1.0f * speed;
+    float noisePanSpeed = 4.0f * globalSpeed;
+    float globalPanSpeed = 30.0f * globalSpeed;
+    float detailPanSpeed = 5.0f / globalSpeed;
+    float2 param = (noise_uv * noiseTexScale) + offset;
+    float param_1 = Udir * noisePanSpeed;
+    float param_2 = Vdir * noisePanSpeed;
+    float4 noise_1 = PanningTexture(param, param_1, param_2, noiseTexture, _noiseTexture_sampler);
+    float2 param_3 = (noise_uv * noiseTexScale) + offset;
+    float param_4 = Udir2 * noisePanSpeed;
+    float param_5 = Vdir2 * noisePanSpeed;
+    float4 noise_2 = PanningTexture(param_3, param_4, param_5, noiseTexture, _noiseTexture_sampler);
+    float2 appendUvs = float2(noise_1.x, noise_2.y) * warpIntensity;
+    float2 warpMix = lerp(appendUvs, (adjustedUV * 0.4000000059604644775390625f) + offset, 0.4000000059604644775390625f.xx);
+    float2 param_6 = (warpMix * globalScale) + offset;
+    float param_7 = Udir2 * globalPanSpeed;
+    float param_8 = Vdir2 * globalPanSpeed;
+    float4 globalPan = PanningTexture(param_6, param_7, param_8, detailTexture, _detailTexture_sampler);
+    float2 param_9 = (noise_uv * detailTexScale) + offset;
+    float param_10 = Udir / (detailPanSpeed * detailTexScale);
+    float param_11 = Vdir / (detailPanSpeed * detailTexScale);
+    float4 noiseOverlay1 = PanningTexture(param_9, param_10, param_11, detailTexture, _detailTexture_sampler);
+    float2 param_12 = (noise_uv * detailTexScale) + offset;
+    float param_13 = Udir2 / (detailPanSpeed * detailTexScale);
+    float param_14 = Vdir2 / (detailPanSpeed * detailTexScale);
+    float4 noiseOverlay2 = PanningTexture(param_12, param_13, param_14, detailTexture, _detailTexture_sampler);
+    float4 noiseOverlay = lerp(noiseOverlay1, noiseOverlay2, 0.5f.xxxx);
+    float4 outputTexture = clamp((noiseOverlay * 0.800000011920928955078125f) * pow(globalPan.x, 8.0f), 0.0f.xxxx, 1.0f.xxxx);
+    return outputTexture;
+}
+
+float4 combineColorAndLight(float4 color, float4 light)
+{
+    return float4(clamp(color.xyz + max(light.xyz, 0.0f.xxx), 0.0f.xxx, 2.0f.xxx), 1.0f);
+}
+
+void frag_main()
+{
+    globalScale = 0.5f;
+    noiseTexScale = 0.1500000059604644775390625f;
+    detailTexScale = 0.20000000298023223876953125f;
+    timeRandom = _43_timeBasedRandomValue;
+    adjustedCloudsOffset = clamp(float2(_43_cloudsOffset.x, _43_cloudsOffset.y), (-3000.0f).xx, 2000.0f.xx);
+    direction1 = float4(adjustedCloudsOffset.x * 0.5f, adjustedCloudsOffset.y * 1.5f, 0.0f, 0.0f);
+    direction2 = float4(adjustedCloudsOffset.x, adjustedCloudsOffset.y, 0.0f, 0.0f);
+    direction3 = float4(0.03125f, 0.007610999979078769683837890625f, 0.02798300050199031829833984375f, 0.0f);
+    warpIntensity = 0.100000001490116119384765625f / globalScale;
+    panScale = 2.0f;
+    adjustedMapPosition = ((((vUV * _43_renderResolution) / _43_renderScale.xx) + _43_pixelShift) / (32.0f * _43_zoom).xx) * 32.0f;
+    adjustedUV = (adjustedMapPosition + adjustedCloudsOffset) / 1024.0f.xx;
+    uv = adjustedUV + 10.0f.xx;
+    noise_uv = uv * panScale;
+    speedbase = 10.0f * _43_animationSpeed;
+    Udir = speedbase / direction1.x;
+    Vdir = speedbase / direction1.y;
+    Udir2 = speedbase / direction2.x;
+    Vdir2 = speedbase / direction2.y;
+    float4 light = lightmap.Sample(_lightmap_sampler, vUV);
+    float intensity = clamp(0.5f * timeRandom, 0.300000011920928955078125f, 0.60000002384185791015625f);
+    float2 param = (-0.00999999977648258209228515625f).xx;
+    float param_1 = 1.0f;
+    float4 shadowTexture = (((float4(0.0f, 0.0f, 0.0f, clamp((1.0f.xxxx - light) * 10.0f, 0.0f.xxxx, 1.0f.xxxx).x) * pow(cloudsFunction(param, param_1).x, 1.0f)) * _43_sunLightIntensity) * intensity) * 1.89999997615814208984375f;
+    float4 param_2 = _43_color1;
+    float4 param_3 = light;
+    float2 param_4 = 0.0f.xx;
+    float param_5 = 1.0f;
+    float4 fogTexture1 = (combineColorAndLight(param_2, param_3) * cloudsFunction(param_4, param_5).x) * intensity;
+    float4 param_6 = _43_color2;
+    float4 param_7 = light;
+    float2 param_8 = 0.0500000007450580596923828125f.xx;
+    float param_9 = 0.25f;
+    float4 fogTexture2 = ((combineColorAndLight(param_6, param_7) * cloudsFunction(param_8, param_9).x) * intensity) * 0.5f;
+    float mask = 1.0f - fogMask.Sample(_fogMask_sampler, float2(gl_FragCoord.xy) / _43_renderResolution).w;
+    fragColor = ((shadowTexture + fogTexture1) + fogTexture2) * mask;
+}
+
+SPIRV_Cross_Output main(SPIRV_Cross_Input stage_input)
+{
+    gl_FragCoord = stage_input.gl_FragCoord;
+    gl_FragCoord.w = 1.0 / gl_FragCoord.w;
+    vUV = stage_input.vUV;
+    frag_main();
+    SPIRV_Cross_Output stage_output;
+    stage_output.fragColor = fragColor;
+    return stage_output;
+}

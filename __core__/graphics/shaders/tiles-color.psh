@@ -1,0 +1,30 @@
+static float4 fragColor;
+static float4 vColor;
+static float4 lightColor;
+
+struct SPIRV_Cross_Input
+{
+    float4 vColor : TEXCOORD0;
+};
+
+struct SPIRV_Cross_Output
+{
+    float4 fragColor : SV_Target0;
+    float4 lightColor : SV_Target1;
+};
+
+void frag_main()
+{
+    fragColor = vColor;
+    lightColor = float4(0.0f, 0.0f, 0.0f, 1.0f);
+}
+
+SPIRV_Cross_Output main(SPIRV_Cross_Input stage_input)
+{
+    vColor = stage_input.vColor;
+    frag_main();
+    SPIRV_Cross_Output stage_output;
+    stage_output.fragColor = fragColor;
+    stage_output.lightColor = lightColor;
+    return stage_output;
+}

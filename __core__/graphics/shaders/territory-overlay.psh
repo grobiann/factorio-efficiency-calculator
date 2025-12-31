@@ -1,0 +1,126 @@
+static const int _94[9] = { 0, 1, 2, 7, 8, 3, 6, 5, 4 };
+
+cbuffer territoryOverlayUniforms : register(b0)
+{
+    row_major float4x4 _228_projection : packoffset(c0);
+    float4 _228_stripeColor : packoffset(c4);
+    float4 _228_softBorderColor : packoffset(c5);
+    float4 _228_solidBorderColor : packoffset(c6);
+    float _228_stripeWidth : packoffset(c7);
+    float _228_softBorderWidth : packoffset(c7.y);
+    float _228_solidBorderWidth : packoffset(c7.z);
+    float _228_stripeShift : packoffset(c7.w);
+};
+
+
+static uint chunkData;
+static float2 vUV;
+static float4 fragColor;
+
+struct SPIRV_Cross_Input
+{
+    float2 vUV : TEXCOORD0;
+    nointerpolation uint chunkData : TEXCOORD1;
+};
+
+struct SPIRV_Cross_Output
+{
+    float4 fragColor : SV_Target0;
+};
+
+uint choose(uint choice, uint option0, uint option1)
+{
+    return ((1u - choice) * option0) + (choice * option1);
+}
+
+float circular_clamp(float value, uint cap)
+{
+    float s = sign(value);
+    uint is_negative = uint(trunc((-s) + 0.5f));
+    float floored = floor(value);
+    uint clamped = ((uint(abs(floored)) % cap) + cap) % cap;
+    uint param = is_negative;
+    uint param_1 = (cap - clamped) % cap;
+    uint param_2 = clamped;
+    uint adjusted = choose(param, param_1, param_2);
+    return value - (floored - float(adjusted));
+}
+
+float isBetween(float x, float min_, float max_)
+{
+    return step(min_, x) * (1.0f - step(max_, x));
+}
+
+float4 choose(uint choice, float4 option0, float4 option1)
+{
+    return (option0 * float(1u - choice)) + (option1 * float(choice));
+}
+
+uint isWithinBorder(float2 uv, float borderWidth)
+{
+    uint col = uint(step(borderWidth, uv.x) + step(1.0f - borderWidth, uv.x));
+    uint row = uint(step(borderWidth, uv.y) + step(1.0f - borderWidth, uv.y));
+    uint sector = clamp((row * 3u) + col, 0u, 8u);
+    return ((chunkData & 255u) >> uint(_94[sector])) & 1u;
+}
+
+void frag_main()
+{
+    float4 color = 0.0f.xxxx;
+    uint isInTerritory = (chunkData >> uint(8)) & 1u;
+    float param = vUV.x;
+    uint param_1 = 1u;
+    float param_2 = vUV.y;
+    uint param_3 = 1u;
+    float2 uv1 = float2(circular_clamp(param, param_1), circular_clamp(param_2, param_3));
+    float param_4 = vUV.x;
+    uint param_5 = 2u;
+    float param_6 = vUV.y;
+    uint param_7 = 2u;
+    float2 uv2 = float2(circular_clamp(param_4, param_5), circular_clamp(param_6, param_7));
+    float cellVariantShift = float((chunkData >> uint(9)) & 1u) * 1.0f;
+    float param_8 = (uv2.y + _228_stripeShift) + cellVariantShift;
+    uint param_9 = 2u;
+    float stripeX = circular_clamp(param_8, param_9);
+    float stripeXMin = stripeX - (_228_stripeWidth / 2.0f);
+    float stripeXMax = stripeX + (_228_stripeWidth / 2.0f);
+    float param_10 = uv2.x;
+    float param_11 = stripeXMin;
+    float param_12 = stripeXMax;
+    float param_13 = uv2.x + 2.0f;
+    float param_14 = stripeXMin;
+    float param_15 = stripeXMax;
+    float param_16 = uv2.x - 2.0f;
+    float param_17 = stripeXMin;
+    float param_18 = stripeXMax;
+    uint stripeC = isInTerritory * uint(trunc(clamp((isBetween(param_10, param_11, param_12) + isBetween(param_13, param_14, param_15)) + isBetween(param_16, param_17, param_18), 0.0f, 1.0f)));
+    uint param_19 = stripeC;
+    float4 param_20 = color;
+    float4 param_21 = _228_stripeColor;
+    color = choose(param_19, param_20, param_21);
+    float2 param_22 = uv1;
+    float param_23 = _228_softBorderWidth;
+    uint softBorderC = isInTerritory * isWithinBorder(param_22, param_23);
+    uint param_24 = softBorderC;
+    float4 param_25 = color;
+    float4 param_26 = _228_softBorderColor;
+    color = choose(param_24, param_25, param_26);
+    float2 param_27 = uv1;
+    float param_28 = _228_solidBorderWidth;
+    uint solidBorderC = isWithinBorder(param_27, param_28);
+    uint param_29 = solidBorderC;
+    float4 param_30 = color;
+    float4 param_31 = _228_solidBorderColor;
+    color = choose(param_29, param_30, param_31);
+    fragColor = color;
+}
+
+SPIRV_Cross_Output main(SPIRV_Cross_Input stage_input)
+{
+    chunkData = stage_input.chunkData;
+    vUV = stage_input.vUV;
+    frag_main();
+    SPIRV_Cross_Output stage_output;
+    stage_output.fragColor = fragColor;
+    return stage_output;
+}

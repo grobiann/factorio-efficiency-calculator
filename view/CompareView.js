@@ -410,10 +410,8 @@ export class CompareView {
   _attachCompareEvents(container) {
     // 항목 추가
     const addBtn = container.querySelector('.compare-add-btn');
-    console.log('[CompareView] 항목 추가 버튼 찾기:', addBtn);
     if (addBtn) {
       addBtn.addEventListener('click', () => {
-        console.log('[CompareView] 항목 추가 버튼 클릭됨');
         this._showSelectionModal();
       });
     }

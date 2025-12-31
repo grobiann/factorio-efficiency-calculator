@@ -1,0 +1,89 @@
+cbuffer fsConstants : register(b0)
+{
+    row_major float4x4 _137_colorMatrix : packoffset(c0);
+    float _137_brightness : packoffset(c4);
+    float _137_contrast : packoffset(c4.y);
+    float _137_saturation : packoffset(c4.z);
+    float _137_factor : packoffset(c4.w);
+    float _137_summand : packoffset(c5);
+};
+
+Texture2D<float4> source : register(t0);
+SamplerState _source_sampler : register(s0);
+
+static float2 vUV;
+static float4 fragColor;
+
+struct SPIRV_Cross_Input
+{
+    float2 vUV : TEXCOORD0;
+};
+
+struct SPIRV_Cross_Output
+{
+    float4 fragColor : SV_Target0;
+};
+
+float3x3 saturationMatrix(float saturation)
+{
+    float3 luminance = float3(0.308600008487701416015625f, 0.609399974346160888671875f, 0.08200000226497650146484375f);
+    float oneMinusSat = 1.0f - saturation;
+    float3 red = (luminance.x * oneMinusSat).xxx;
+    red.x += saturation;
+    float3 green = (luminance.y * oneMinusSat).xxx;
+    green.y += saturation;
+    float3 blue = (luminance.z * oneMinusSat).xxx;
+    blue.z += saturation;
+    return float3x3(float3(red), float3(green), float3(blue));
+}
+
+void brightnessAdjust(inout float4 color, float b)
+{
+    float4 _92 = color;
+    float3 _98 = pow(max(0.0f.xxx, _92.xyz), (1.0f - b).xxx);
+    color.x = _98.x;
+    color.y = _98.y;
+    color.z = _98.z;
+}
+
+void contrastAdjust(inout float4 color, float c)
+{
+    float t = 0.5f - (c * 0.5f);
+    float4 _110 = color;
+    float3 _116 = (_110.xyz * c) + t.xxx;
+    color.x = _116.x;
+    color.y = _116.y;
+    color.z = _116.z;
+}
+
+void frag_main()
+{
+    float4 color = source.Sample(_source_sampler, vUV);
+    if (_137_saturation != 1.0f)
+    {
+        float param = _137_saturation;
+        float4 _151 = color;
+        float3 _153 = mul(_151.xyz, saturationMatrix(param));
+        color.x = _153.x;
+        color.y = _153.y;
+        color.z = _153.z;
+    }
+    float4 param_1 = color;
+    float param_2 = _137_brightness;
+    brightnessAdjust(param_1, param_2);
+    color = param_1;
+    float4 param_3 = color;
+    float param_4 = _137_contrast;
+    contrastAdjust(param_3, param_4);
+    color = param_3;
+    fragColor = color;
+}
+
+SPIRV_Cross_Output main(SPIRV_Cross_Input stage_input)
+{
+    vUV = stage_input.vUV;
+    frag_main();
+    SPIRV_Cross_Output stage_output;
+    stage_output.fragColor = fragColor;
+    return stage_output;
+}

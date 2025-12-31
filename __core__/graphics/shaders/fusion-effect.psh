@@ -1,0 +1,115 @@
+Texture2D<float4> tex : register(t0);
+SamplerState _tex_sampler : register(s0);
+
+static float time;
+static float randomSeed;
+static float fusionPower;
+static float quality;
+static float plasmaLevel;
+static float4 color;
+static float2 vUV;
+static float4 fragColor;
+static float4 lightColor;
+
+struct SPIRV_Cross_Input
+{
+    float2 vUV : TEXCOORD0;
+    float4 color : TEXCOORD1;
+    nointerpolation float time : TEXCOORD2;
+    nointerpolation float fusionPower : TEXCOORD3;
+    nointerpolation float plasmaLevel : TEXCOORD4;
+    nointerpolation float quality : TEXCOORD5;
+    nointerpolation float randomSeed : TEXCOORD6;
+};
+
+struct SPIRV_Cross_Output
+{
+    float4 fragColor : SV_Target0;
+    float4 lightColor : SV_Target1;
+};
+
+uint2 spvTextureSize(Texture2D<float4> Tex, uint Level, out uint Param)
+{
+    uint2 ret;
+    Tex.GetDimensions(Level, ret.x, ret.y, Param);
+    return ret;
+}
+
+float random(float2 st)
+{
+    float s = dot(st, float2(12.345600128173828125f, 34.141498565673828125f));
+    return frac(sin(s) * 45678.8984375f);
+}
+
+float perlinNoise(float2 st)
+{
+    float2 cell = floor(st);
+    float2 cell2 = ceil(st);
+    float2 f = frac(st);
+    float2 param = cell;
+    float s00 = random(param);
+    float2 param_1 = float2(cell.x, cell2.y);
+    float s01 = random(param_1);
+    float2 param_2 = float2(cell2.x, cell.y);
+    float s10 = random(param_2);
+    float2 param_3 = cell2;
+    float s11 = random(param_3);
+    return lerp(lerp(s00, s10, f.x), lerp(s01, s11, f.x), f.y);
+}
+
+float2 getNoise(float2 coords)
+{
+    float2 param = float2(randomSeed + 0.2106563150882720947265625f, randomSeed + 0.87850248813629150390625f);
+    float2 param_1 = (coords + time.xx) + (random(param) * 100.0f).xx;
+    float noise_x = perlinNoise(param_1);
+    float2 param_2 = float2(randomSeed + 0.3071096837520599365234375f, randomSeed + 0.0619773231446743011474609375f);
+    float2 param_3 = (coords + time.xx) + (random(param_2) * 100.0f).xx;
+    float noise_y = perlinNoise(param_3);
+    return (float2(noise_x, noise_y) - 0.5f.xx) * 2.0f;
+}
+
+void frag_main()
+{
+    float plasma_power = fusionPower + (quality * 0.039999999105930328369140625f);
+    float bg_power = pow(plasmaLevel, 1.0f) + (quality * 0.039999999105930328369140625f);
+    bg_power = max(bg_power, plasma_power * 0.25f);
+    float4 background = color * pow(bg_power, 1.5f);
+    uint _178_dummy_parameter;
+    float2 texSize = float2(int2(spvTextureSize(tex, uint(0), _178_dummy_parameter)));
+    float2 pixelatedUV = floor(vUV * texSize) / texSize;
+    float2 param = pixelatedUV;
+    float whiteNoise = random(param);
+    float3 uv_effect_texture = tex.Sample(_tex_sampler, pixelatedUV).xyz;
+    float mask = uv_effect_texture.z;
+    mask = max(mask - (whiteNoise * 0.125f), 0.0f);
+    float2 effectUV = uv_effect_texture.xy;
+    effectUV.x *= 12.0f;
+    effectUV.x += (((time * 1.0f) * (quality + 1.0f)) * 2.0f);
+    float2 param_1 = effectUV;
+    effectUV += (getNoise(param_1) * 0.20000000298023223876953125f);
+    float gradient = 1.0f - abs(effectUV.y - 0.5f);
+    background = lerp(background * gradient, background, plasma_power.xxxx);
+    background *= mask;
+    float mid_gradient = (pow(gradient, 30.0f * min(bg_power, 1.0f)) * plasma_power) * 2.0f;
+    float plasma_line = (mid_gradient + ((pow(gradient, 30.0f) * plasma_power) * 2.0f)) * pow(mask, 0.5f);
+    plasma_line = lerp(plasma_line, 0.0f, mask * 0.5f);
+    float4 colored_plasma_line = lerp(plasma_line.xxxx * color, plasma_line.xxxx, (bg_power * mask).xxxx);
+    fragColor = background + colored_plasma_line;
+    lightColor = fragColor;
+}
+
+SPIRV_Cross_Output main(SPIRV_Cross_Input stage_input)
+{
+    time = stage_input.time;
+    randomSeed = stage_input.randomSeed;
+    fusionPower = stage_input.fusionPower;
+    quality = stage_input.quality;
+    plasmaLevel = stage_input.plasmaLevel;
+    color = stage_input.color;
+    vUV = stage_input.vUV;
+    frag_main();
+    SPIRV_Cross_Output stage_output;
+    stage_output.fragColor = fragColor;
+    stage_output.lightColor = lightColor;
+    return stage_output;
+}
