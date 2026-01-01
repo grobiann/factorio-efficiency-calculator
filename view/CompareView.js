@@ -263,6 +263,7 @@ export class CompareView {
    * @private
    */
   _onRecipeSelected(type, id) {
+    console.log('[CompareView] 선택된 항목:', type, id);
     let data;
     if (type === 'group') {
       data = this.groups.get(id);
@@ -441,12 +442,15 @@ export class CompareView {
    * @private
    */
   _navigateToRecipeGroup(itemType, itemId) {
+    console.log('[CompareView] 레시피 그룹 탭으로 이동:', itemType, itemId);
     if (itemType === ENTRY_TYPES.GROUP) {
       // 레시피 그룹인 경우 해당 그룹 선택
       this.recipeGroupView.selectedGroupId = itemId;
     } else {
-      // 일반 레시피인 경우 새 레시피 그룹 생성
-      const recipe = this.allRecipes[itemId];
+      // 일반 레시피 또는 커스텀 레시피인 경우 새 레시피 그룹 생성
+      // 커스텀 레시피 매니저에서 먼저 찾고, 없으면 allRecipes에서 찾음
+      const recipe = this.customRecipeManager.getRecipe(itemId) || this.allRecipes[itemId];
+      console.log('[CompareView] 새 레시피 그룹 생성용 레시피:', recipe);
       if (recipe) {
         this.recipeGroupView.addGroup();
         const newGroupId = this.recipeGroupView.selectedGroupId;

@@ -1,0 +1,38 @@
+/* ===== RecipeSelectModal Styles ===== */
+.recipe-selection-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.recipe-selection-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  background: #f9f9f9;
+  border: 2px solid #e0e0e0;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.recipe-selection-item:hover {
+  background: #e8f4ff;
+  border-color: #4a9eff;
+}
+
+.recipe-selection-icon {
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
+}
+
+.recipe-selection-name {
+  flex: 1;
+  font-size: 14px;
+  font-weight: 500;
+    color: #333;
+}

@@ -6,6 +6,7 @@ import { DatasetManager } from "../model/DatasetManager.js";
 import { DatasetConfigView } from "../view/DatasetConfigView.js";
 import { RecipeGroupView } from "../view/RecipeGroupView.js";
 import { CustomRecipeView } from "../view/CustomRecipeView.js";
+import { CustomRecipeManager } from "../model/CustomRecipe.js";
 import { CompareView } from "../view/CompareView.js";
 
 export async function startApp() {
@@ -253,11 +254,13 @@ export async function startApp() {
   
   await loadSampleData();
   
-  const recipeGroupView = new RecipeGroupView(allRecipes, recipesByProduct, locale, loadedData);
+  const customRecipeManager = new CustomRecipeManager();
+      
+  const recipeGroupView = new RecipeGroupView(allRecipes, recipesByProduct, locale, loadedData, customRecipeManager);
   recipeGroupView.render(document.getElementById('recipe-group-tab'));
 
   // Initialize custom recipe view
-  const customRecipeView = new CustomRecipeView(loadedData, locale);
+  const customRecipeView = new CustomRecipeView(loadedData, locale, customRecipeManager);
   customRecipeView.render(document.getElementById('custom-recipe-tab'));
 
   // Initialize compare view

@@ -1,14 +1,17 @@
 import { CustomRecipe, CustomRecipeManager } from "../model/CustomRecipe.js";
+import { ItemSelectModal } from "./ItemSelectModal.js";
+import { ViewHelpers } from "../utils/ViewHelpers.js";
 
 /**
  * CustomRecipeView - 커스텀 레시피 관리 UI
  */
 export class CustomRecipeView {
-  constructor(loadedData, locale) {
-    this.manager = new CustomRecipeManager();
+  constructor(loadedData, locale, manager) {
+    this.manager = manager;
     this.loadedData = loadedData;
     this.locale = locale;
     this.selectedRecipeId = null;
+    this.itemSelectModal = new ItemSelectModal(this);
   }
 
   /**
@@ -232,16 +235,15 @@ export class CustomRecipeView {
   /**
    * 아이템 행 렌더링
    */
-  renderItemRow(item, index, type) {
-    const typeLabel = type === 'ingredient' ? '재료' : '결과물';
+  renderItemRow(item, index, rowType) {
+    console.log('Rendering item row:', item, index);
+    const iconInfo = ViewHelpers.getIconInfo(this.loadedData, item.name, item.type || 'item');
+    const iconHtml = ViewHelpers.createItemIconHtml(iconInfo, null);
     return `
-      <div class="recipe-item-row" data-index="${index}" data-type="${type}">
-        <input type="text" class="item-name-input" value="${this.escapeHtml(item.name)}" placeholder="아이템 ID">
+      <div class="recipe-item-row" data-index="${index}" data-type="${rowType}">
+        <span class="item-icon-cell">${iconHtml}</span>
+        <span class="item-name-cell">${this.escapeHtml(item.name)}</span>
         <input type="number" class="item-amount-input" value="${item.amount}" step="0.1" min="0.1">
-        <select class="item-type-select">
-          <option value="item" ${item.type === 'item' ? 'selected' : ''}>Item</option>
-          <option value="fluid" ${item.type === 'fluid' ? 'selected' : ''}>Fluid</option>
-        </select>
         <button class="btn-danger remove-item-btn">✕</button>
       </div>
     `;
@@ -316,27 +318,33 @@ export class CustomRecipeView {
     // 재료 추가 버튼
     const addIngredientBtn = container.querySelector('.add-ingredient-btn');
     if (addIngredientBtn) {
-      addIngredientBtn.addEventListener('click', () => {
+      addIngredientBtn.onclick = () => {
+        this.showItemSelectModal();
+        this.itemSelectModal.onSelect = (itemId, itemType) => {
         const recipe = this.manager.getRecipe(this.selectedRecipeId);
         if (recipe) {
-          recipe.addIngredient('iron-plate', 1, 'item');
+          recipe.addIngredient(itemId, 1, itemType);
           this.manager.saveToStorage();
           this.render(container);
         }
-      });
+        }
+      }
     }
 
     // 결과물 추가 버튼
     const addResultBtn = container.querySelector('.add-result-btn');
     if (addResultBtn) {
-      addResultBtn.addEventListener('click', () => {
+      addResultBtn.onclick = () => {
+        this.showItemSelectModal();
+        this.itemSelectModal.onSelect = (itemId, itemType) => {
         const recipe = this.manager.getRecipe(this.selectedRecipeId);
         if (recipe) {
-          recipe.addResult('iron-plate', 1, 'item');
+          recipe.addResult(itemId, 1, itemType);
           this.manager.saveToStorage();
           this.render(container);
         }
-      });
+        }
+      }
     }
 
     // 아이템 행 이벤트들
@@ -347,51 +355,39 @@ export class CustomRecipeView {
       const recipe = this.manager.getRecipe(this.selectedRecipeId);
       if (!recipe) return;
 
-      // 아이템 이름 변경
-      const nameInput = row.querySelector('.item-name-input');
-      nameInput.addEventListener('input', () => {
-        if (type === 'ingredient') {
-          recipe.updateIngredient(index, { name: nameInput.value });
-        } else {
-          recipe.updateResult(index, { name: nameInput.value });
-        }
-        this.manager.saveToStorage();
-      });
+      // 아이템 이름(읽기전용)이므로 이벤트 바인딩 생략
+      // const nameInput = row.querySelector('.item-name-input');
+      // if (nameInput) {
+      //   nameInput.addEventListener('input', ...);
+      // }
 
       // 수량 변경
       const amountInput = row.querySelector('.item-amount-input');
-      amountInput.addEventListener('input', () => {
-        const amount = parseFloat(amountInput.value) || 1;
-        if (type === 'ingredient') {
-          recipe.updateIngredient(index, { amount });
-        } else {
-          recipe.updateResult(index, { amount });
-        }
-        this.manager.saveToStorage();
-      });
-
-      // 타입 변경
-      const typeSelect = row.querySelector('.item-type-select');
-      typeSelect.addEventListener('change', () => {
-        if (type === 'ingredient') {
-          recipe.updateIngredient(index, { type: typeSelect.value });
-        } else {
-          recipe.updateResult(index, { type: typeSelect.value });
-        }
-        this.manager.saveToStorage();
-      });
+      if (amountInput) {
+        amountInput.addEventListener('input', () => {
+          const amount = parseFloat(amountInput.value) || 1;
+          if (type === 'ingredient') {
+            recipe.updateIngredient(index, { amount });
+          } else {
+            recipe.updateResult(index, { amount });
+          }
+          this.manager.saveToStorage();
+        });
+      }
 
       // 삭제 버튼
       const removeBtn = row.querySelector('.remove-item-btn');
-      removeBtn.addEventListener('click', () => {
-        if (type === 'ingredient') {
-          recipe.removeIngredient(index);
-        } else {
-          recipe.removeResult(index);
-        }
-        this.manager.saveToStorage();
-        this.render(container);
-      });
+      if (removeBtn) {
+        removeBtn.addEventListener('click', () => {
+          if (type === 'ingredient') {
+            recipe.removeIngredient(index);
+          } else {
+            recipe.removeResult(index);
+          }
+          this.manager.saveToStorage();
+          this.render(container);
+        });
+      }
     });
   }
 
@@ -459,6 +455,13 @@ export class CustomRecipeView {
     this.selectedRecipeId = recipes.length > 0 ? recipes[0].id : null;
     this.render(document.getElementById('custom-recipe-tab'));
     window.dispatchEvent(new Event('custom-content-updated'));
+  }
+
+  /**
+   * 아이템 선택 모달 표시
+   */
+  showItemSelectModal() {
+    this.itemSelectModal.show();
   }
 
   /**

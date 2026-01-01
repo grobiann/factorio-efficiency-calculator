@@ -1,0 +1,40 @@
+/* ===== CustomRecipeView Styles ===== */
+.custom-recipe-list {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.recipe-item {
+  padding: 16px;
+  background: #f9f9f9;
+  border-radius: 6px;
+  border: 1px solid #e0e0e0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.recipe-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.recipe-name {
+  font-size: 16px;
+  font-weight: 600;
+  color: #4a9eff;
+}
+
+.recipe-details {
+  font-size: 13px;
+  color: #666;
+}
+
+.recipe-actions {
+  display: flex;
+  gap: 8px;
+}

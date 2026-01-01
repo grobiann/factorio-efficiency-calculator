@@ -117,30 +117,13 @@ export class DatasetManager {
         // Process recipes
         if (dataRaw['recipe']) {
           console.log(`  Processing recipe: ${Object.keys(dataRaw['recipe']).length} entries`);
-          const recipes = Object.entries(dataRaw['recipe']).map(([id, data]) => {
-            // subgroup이 없으면 결과 아이템의 subgroup을 찾아서 보정
-            let subgroup = data.subgroup;
-            if (!subgroup && data.results && Array.isArray(data.results) && data.results.length > 0) {
-              // 첫 번째 결과 아이템의 subgroup을 찾아본다
-              const resultName = data.results[0].name || data.results[0][0];
-              // allEntries에는 아직 아이템이 다 안 들어왔을 수 있으니 dataRaw에서 직접 찾음
-              let found = null;
-              for (const itemType of ['item', 'tool', 'ammo', 'capsule', 'module', 'armor', 'gun', 'rail-planner', 'spidertron-remote', 'selection-tool', 'fluid']) {
-                if (dataRaw[itemType] && dataRaw[itemType][resultName]) {
-                  found = dataRaw[itemType][resultName];
-                  break;
-                }
-              }
-              if (found && found.subgroup) subgroup = found.subgroup;
-            }
-            return {
-              ...data,
-              id: id,
-              type: 'recipe',
-              name: data.name || id,
-              subgroup: subgroup
-            };
-          });
+          const recipes = Object.entries(dataRaw['recipe']).map(([id, data]) => ({
+            ...data,
+            id: id,
+            type: 'recipe',
+            name: data.name || id,
+            subgroup: data.subgroup // subgroup 필드 명시적으로 복사
+          }));
           allEntries.push(...recipes);
           recipesObjects.push({ recipes: recipes });
           totalRecipes = recipes.length;

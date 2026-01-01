@@ -52,6 +52,25 @@ export class ViewHelpers {
   static getIconInfo(loadedData, itemId, type = 'item') {
     if (!loadedData || !loadedData.entries) return null;
 
+    // icons 배열이 있는 경우 (여러 아이콘 지원)
+    const entryWithIcons = loadedData.entries.find(e => e.name === itemId && Array.isArray(e.icons) && e.icons.length > 0);
+    if (entryWithIcons) {
+      // icons 배열을 icon 객체 배열로 변환
+      return entryWithIcons.icons.map(iconData => {
+        if (typeof iconData === 'string') {
+          // 문자열이면 기존 방식으로 아이콘 정보 반환
+          return ViewHelpers.getIconInfo(loadedData, iconData, type);
+        }
+        // 객체면 icon, icon_size 등 정보 사용
+        return {
+          path: iconData.icon,
+          size: iconData.icon_size || 64,
+          mipmaps: iconData.icon_mipmaps || 0,
+          name: itemId
+        };
+      });
+    }
+
     const searchTypes = type === 'fluid' 
       ? ['fluid', 'item', 'module'] 
       : ['item', 'module', 'fluid'];

@@ -6,13 +6,14 @@ import { ViewHelpers } from "../utils/ViewHelpers.js";
  * RecipeGroupView - 레시피 그룹 관리 UI
  */
 export class RecipeGroupView {
-  constructor(allRecipes, recipesByProduct, locale, loadedData) {
+  constructor(allRecipes, recipesByProduct, locale, loadedData, customRecipeManager) {
     this.groups = new Map();
     this.allRecipes = allRecipes; // { recipeId: Recipe } 형태
     this.recipesByProduct = recipesByProduct;
     this.locale = locale;
     this.loadedData = loadedData;
     this.selectedGroupId = null;
+    this.customRecipeManager = customRecipeManager;
     this.recipeSelectModal = new RecipeSelectModal(this);
     this.loadFromStorage();
   }
@@ -160,16 +161,13 @@ export class RecipeGroupView {
   renderRecipeRow(group, index) {
     const recipeEntry = group.recipes[index];
     let recipe, ingredients, results;
-    
     if (recipeEntry.type === 'group') {
       // 레시피 그룹인 경우
       const subGroup = this.groups.get(recipeEntry.recipeId);
       if (!subGroup) {
         return `<div class="group-recipe-row">레시피 그룹을 찾을 수 없습니다: ${recipeEntry.recipeId}</div>`;
       }
-      
       const subIO = subGroup.calculateIO(this.allRecipes, this.groups);
-      
       // 레시피 그룹을 레시피처럼 표현
       recipe = {
         id: subGroup.id,
@@ -181,13 +179,20 @@ export class RecipeGroupView {
       ingredients = subIO.ingredients;
       results = subIO.results;
     } else {
-      // 일반 레시피인 경우
-      recipe = this.allRecipes[recipeEntry.recipeId];
-      
+      // 일반 레시피 또는 커스텀 레시피인 경우
+      console.log('[RecipeGroupView.renderRecipeRow] 레시피 불러오기 - recipeId:', recipeEntry.recipeId);
+      console.log(this.customRecipeManager);
+      let foundRecipe = null;
+      if (this.customRecipeManager && typeof this.customRecipeManager.getRecipe === 'function') {
+        foundRecipe = this.customRecipeManager.getRecipe(recipeEntry.recipeId);
+      }
+      if (!foundRecipe) {
+        foundRecipe = this.allRecipes[recipeEntry.recipeId];
+      }
+      recipe = foundRecipe;
       if (!recipe) {
         return `<div class="group-recipe-row">레시피를 찾을 수 없습니다: ${recipeEntry.recipeId}</div>`;
       }
-      
       ingredients = recipe.ingredients || [];
       results = recipe.results || [];
     }
