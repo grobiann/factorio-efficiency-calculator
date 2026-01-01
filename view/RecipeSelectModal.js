@@ -3,18 +3,12 @@
  */
 
 import { ViewHelpers } from '../utils/ViewHelpers.js';
+import { MODAL_CATEGORIES, MODAL_CONFIG } from '../utils/Constants.js';
+import { BaseModalView } from './BaseModalView.js';
 
-// 카테고리 상수
-const CATEGORY = {
-  RECIPE_GROUPS: 'recipegroup-recipes',
-  CUSTOM_RECIPES: 'custom-recipes',
-  ITEMGROUP_RECIPES_PREFIX: 'itemgroup-recipes'
-};
-
-export class RecipeSelectModal {
+export class RecipeSelectModal extends BaseModalView {
   constructor(view, onSelect = null) {
-    this.view = view;
-    this.onSelect = onSelect; // 선택 시 호출될 콜백 함수
+    super(view, onSelect);
   }
 
   /**
@@ -29,19 +23,17 @@ export class RecipeSelectModal {
 
     // 모달 HTML 생성
     let modalHtml = `
-      <div class="modal-overlay" id="recipeAddModal">
-        <div class="modal-content recipe-add-modal">
+      <div class="modal-overlay" id="recipeSelectModal">
+        <div class="modal-content recipe-select-modal">
           <div class="modal-header">
             <h3 class="modal-title">레시피 추가</h3>
             <button class="modal-close-btn">&times;</button>
           </div>
           <div class="modal-body">
-            <div class="recipe-add-search">
-              <input type="text" class="recipe-search-input" placeholder="검색..." />
+            <div class="modal-search">
+              <input type="text" class="modal-search-input" placeholder="검색..." />
             </div>
-            <div class="recipe-add-tabs">
-              <button class="recipe-tab-btn active" data-category="${CATEGORY.RECIPE_GROUPS}">레시피 그룹</button>
-              <button class="recipe-tab-btn" data-category="${CATEGORY.CUSTOM_RECIPES}">커스텀 레시피</button>
+            <div class="modal-tabs">
     `;
 
     // item-group 기반 버튼 추가 (레시피가 있는 그룹만)
@@ -49,19 +41,25 @@ export class RecipeSelectModal {
     console.log(`[RecipeSelectModal.show] Found ${itemGroups.length} item-groups`, itemGroups);
     for (const itemGroup of itemGroups) {
       // 레시피가 있는 item-group만 탭 버튼으로 추가
-      const hasRecipes = this.hasRecipesForItemGroup(itemGroup.name);
+      const hasRecipes = this.hasEntriesForItemGroup(itemGroup.name, 'recipe');
       if (hasRecipes) {
-        modalHtml += `<button class="recipe-tab-btn" data-category="${CATEGORY.ITEMGROUP_RECIPES_PREFIX}${this.escapeHtml(itemGroup.name)}">${this.escapeHtml(this.view.locale.itemName(itemGroup.name))}</button>`;
+        modalHtml += `<button class="modal-tab-btn" data-category="${MODAL_CATEGORIES.ITEMGROUP_RECIPES_PREFIX}${this.escapeHtml(itemGroup.name)}">${this.escapeHtml(this.view.locale.itemName(itemGroup.name))}</button>`;
       }
     }
 
+    // 레시피 그룹과 커스텀 레시피는 맨 뒤에 추가 (특별한 색깔)
+    modalHtml += `
+              <button class="modal-tab-btn modal-tab-special active" data-category="${MODAL_CATEGORIES.RECIPE_GROUPS}">레시피 그룹</button>
+              <button class="modal-tab-btn modal-tab-special" data-category="${MODAL_CATEGORIES.CUSTOM_RECIPES}">커스텀 레시피</button>
+    `;
+
     modalHtml += `
             </div>
-            <div class="recipe-add-items" id="recipeAddItems">
+            <div class="recipe-select-content" id="recipeSelectContent">
     `;
 
     // 기본으로 레시피 그룹 표시
-    modalHtml += this.renderTabContent(CATEGORY.RECIPE_GROUPS, '');
+    modalHtml += this.renderTabContent(MODAL_CATEGORIES.RECIPE_GROUPS, '');
 
     modalHtml += `
             </div>
@@ -79,89 +77,42 @@ export class RecipeSelectModal {
   }
 
   /**
-   * item-group 목록 가져오기 (order 순서로 정렬)
-   */
-  getItemGroups() {
-    // 통합 데이터 형식에서는 categories를 item-group으로 사용
-    if (this.view.loadedData && this.view.loadedData.categories) {
-      const groups = this.view.loadedData.categories.map(cat => ({
-        name: cat.id,
-        type: 'item-group',
-        order: cat.order || cat.id
-      })).sort((a, b) => a.order.localeCompare(b.order));
-      return groups;
-    }
-    
-    // 레거시 형식: entries에서 item-group 찾기
-    if (!this.view.loadedData || !this.view.loadedData.entries) {
-      return [];
-    }
-    
-    const itemGroups = this.view.loadedData.entries.filter(entry => entry.type === 'item-group');
-    return itemGroups.sort((a, b) => {
-      const orderA = a.order || '';
-      const orderB = b.order || '';
-      return orderA.localeCompare(orderB);
-    });
-  }
-
-  /**
-   * 특정 item-group에 속한 item-subgroup들 가져오기
-   */
-  getSubgroupsForItemGroup(itemGroupName) {
-    if (!this.view.loadedData || !this.view.loadedData.entries) return [];
-    
-    // data.raw 형식: item-subgroup의 group 필드가 item-group을 가리킴
-    const subgroups = this.view.loadedData.entries.filter(entry => 
-      entry.type === 'item-subgroup' && entry.group === itemGroupName
-    );
-    return subgroups;
-  }
-
-  /**
-   * item-group에 레시피가 있는지 확인
-   */
-  hasRecipesForItemGroup(itemGroupName) {
-    
-    // data.raw 형식: item-subgroup을 통해 레시피 확인
-    const subgroups = this.getSubgroupsForItemGroup(itemGroupName);
-    if (subgroups.length === 0) {
-      return false;
-    }
-    const subgroupIds = new Set(subgroups.map(sg => sg.id));
-    // loadedData.entries에서 type이 recipe인 것만 사용
-    const recipes = (this.view.loadedData?.entries || []).filter(e => e.type === 'recipe');
-    for (const recipe of recipes) {
-      if (recipe.subgroup && subgroupIds.has(recipe.subgroup)) {
-        return true;
-      }
-    }
-    return false;
-  }
-
-  /**
    * 탭 컨텐츠 렌더링 (선택된 탭에 해당하는 레시피 목록 표시)
    */
   renderTabContent(category, searchText) {
-    let html = '<div class="recipe-add-grid">';
-
-    if (category === CATEGORY.RECIPE_GROUPS) {
-      html += this.renderRecipeGroupRecipes(searchText);
-    } else if (category === CATEGORY.CUSTOM_RECIPES) {
-      html += this.renderCustomRecipes(searchText);
-    } else if (category.startsWith(CATEGORY.ITEMGROUP_RECIPES_PREFIX)) {
-      html += this.renderItemGroupRecipes(category, searchText);
+    console.log(`[RecipeSelectModal.renderTabContent] Category: ${category}`);
+    const itemsData = this.getItemsData(category, searchText);
+    
+    // 각 서브그룹의 아이템들 로그 출력
+    for (const subgroup of itemsData.subgroups) {
+      console.log(`[RecipeSelectModal.renderTabContent] Subgroup: ${subgroup.id}`);
+      for (const item of subgroup.items) {
+        //console.log(`  - Item name: ${item.id}, tooltip: ${item.tooltip}`, item);
+      }
     }
-
-    html += '</div>';
-    return html;
+    
+    return this.renderItemsGrid(itemsData);
   }
 
   /**
-   * 레시피 그룹 렌더링
+   * 카테고리에 따른 아이템 데이터 수집
    */
-  renderRecipeGroupRecipes(searchText) {
-    let html = '';
+  getItemsData(category, searchText) {
+    if (category === MODAL_CATEGORIES.RECIPE_GROUPS) {
+      return this.getRecipeGroupsData(searchText);
+    } else if (category === MODAL_CATEGORIES.CUSTOM_RECIPES) {
+      return this.getCustomRecipesData(searchText);
+    } else if (category.startsWith(MODAL_CATEGORIES.ITEMGROUP_RECIPES_PREFIX)) {
+      return this.getItemGroupRecipesData(category, searchText);
+    }
+    return { subgroups: [] };
+  }
+
+  /**
+   * 레시피 그룹 데이터 수집
+   */
+  getRecipeGroupsData(searchText) {
+    const items = [];
     
     for (const group of this.view.groups.values()) {
       // 현재 선택된 그룹은 제외
@@ -171,6 +122,8 @@ export class RecipeSelectModal {
       if (searchText && !group.name.toLowerCase().includes(searchText.toLowerCase())) {
         continue;
       }
+
+      console.log('[RecipeSelectModal.getRecipeGroupsData]', this.view.allRecipes);
       const io = group.calculateIO(this.view.allRecipes, this.view.groups);
       const firstResult = io.results && io.results.length > 0 ? io.results[0] : null;
       
@@ -180,23 +133,31 @@ export class RecipeSelectModal {
       }
       
       const tooltip = group.name || group.id || '';
-      if (!tooltip) {
-        console.warn('[RecipeSelectModal.renderRecipeGroupRecipes] Empty tooltip for group:', group.id);
-      }
-      html += `<div class="recipe-add-item" data-type="group" data-id="${group.id}" data-tooltip="${this.escapeHtml(tooltip)}">`;
       const iconInfo = this.view.getIconInfo(firstResult.name);
-      html += ViewHelpers.createIconHtml(iconInfo, { showBorder: false });
-      html += `</div>`;
+      const iconHtml = ViewHelpers.createIconHtml(iconInfo);
+      
+      items.push({
+        type: 'group',
+        id: group.id,
+        tooltip: tooltip,
+        iconHtml: iconHtml,
+        order: ''
+      });
     }
     
-    return html;
+    return {
+      subgroups: [{
+        id: 'default',
+        items: items
+      }]
+    };
   }
 
   /**
-   * 커스텀 레시피 렌더링
+   * 커스텀 레시피 데이터 수집
    */
-  renderCustomRecipes(searchText) {
-    let html = '';
+  getCustomRecipesData(searchText) {
+    const items = [];
     const customRecipes = JSON.parse(localStorage.getItem('customRecipes') || '[]');
     
     for (const customRecipe of customRecipes) {
@@ -205,24 +166,31 @@ export class RecipeSelectModal {
         continue;
       }
       
-      if (!recipeName) {
-        console.warn('[RecipeSelectModal.renderCustomRecipes] Empty tooltip for custom recipe:', customRecipe.id);
-      }
-      html += `<div class="recipe-add-item" data-type="recipe" data-id="${customRecipe.id}" data-tooltip="${this.escapeHtml(recipeName)}">`;
       const recipeIcons = this.view.getRecipeIcon(customRecipe);
-      html += this.view.createRecipeIcon(recipeIcons);
-      html += `</div>`;
+      const iconHtml = this.view.createRecipeIcon(recipeIcons);
+      
+      items.push({
+        type: 'recipe',
+        id: customRecipe.id,
+        tooltip: recipeName,
+        iconHtml: iconHtml,
+        order: ''
+      });
     }
     
-    return html;
+    return {
+      subgroups: [{
+        id: 'default',
+        items: items
+      }]
+    };
   }
 
   /**
-   * item-group 기반 레시피 렌더링
+   * item-group 기반 레시피 데이터 수집
    */
-  renderItemGroupRecipes(category, searchText) {
-    let html = '';
-    const itemGroupName = category.substring(CATEGORY.ITEMGROUP_RECIPES_PREFIX.length);
+  getItemGroupRecipesData(category, searchText) {
+    const itemGroupName = category.substring(MODAL_CATEGORIES.ITEMGROUP_RECIPES_PREFIX.length);
     const subgroups = this.getSubgroupsForItemGroup(itemGroupName);
     
     // 서브그룹을 order 순으로 정렬
@@ -240,161 +208,86 @@ export class RecipeSelectModal {
     }
     
     const seenRecipes = new Set();
-    let totalRecipesChecked = 0;
-    let recipesWithSubgroup = 0;
-    
-    // loadedData.entries에서 type이 recipe인 것만 사용
     const recipes = (this.view.loadedData?.entries || []).filter(e => e.type === 'recipe');
-    for (const recipe of recipes) {
-      totalRecipesChecked++;
-      if (seenRecipes.has(recipe.id)) continue;
-      if (recipe.subgroup) {
-        recipesWithSubgroup++;
+    const items = (this.view.loadedData?.entries || []).filter(e => e.type === 'item' || e.type === 'fluid');
+    
+    // 아이템 ID -> 서브그룹, order 매핑
+    const itemSubgroupMap = new Map();
+    const itemOrderMap = new Map();
+    for (const item of items) {
+      if (item.subgroup) {
+        itemSubgroupMap.set(item.id, item.subgroup);
       }
-      if (recipe.subgroup && recipesBySubgroup.has(recipe.subgroup)) {
+      if (item.order) {
+        itemOrderMap.set(item.id, item.order);
+      }
+    }
+    
+    for (const recipe of recipes) {
+      if (seenRecipes.has(recipe.id)) continue;
+      
+      // 레시피의 서브그룹 결정 (공통 메서드 사용)
+      const itemSubgroup = this.getRecipeSubgroup(recipe, itemSubgroupMap);
+      const itemOrder = recipe.main_product 
+        ? itemOrderMap.get(recipe.main_product) || ''
+        : (recipe.results && recipe.results.length > 0 
+            ? itemOrderMap.get(recipe.results[0].name) || ''
+            : '');
+      
+      if (itemSubgroup && recipesBySubgroup.has(itemSubgroup)) {
         const recipeName = this.view.locale.recipeName(recipe.id);
         if (!searchText || recipeName.toLowerCase().includes(searchText.toLowerCase())) {
-          recipesBySubgroup.get(recipe.subgroup).push({
-            recipe: recipe,
-            order: recipe.order || ''
+          const recipeIcons = this.view.getRecipeIcon(recipe);
+          const iconHtml = this.view.createRecipeIcon(recipeIcons);
+          
+          console.log('[RecipeSelectModal.getItemGroupRecipesData] Adding recipe', recipe.id, 'to subgroup', itemSubgroup);
+          recipesBySubgroup.get(itemSubgroup).push({
+            type: 'recipe',
+            id: recipe.id,
+            tooltip: recipeName || recipe.id || '',
+            iconHtml: iconHtml,
+            order: itemOrder
           });
           seenRecipes.add(recipe.id);
         }
       }
     }
     
-    // 첫 번째 그리드 닫기
-    html += '</div>';
-    
-    // 서브그룹별로 order 순서대로 정렬 후 렌더링
+    // 서브그룹별로 order 순서대로 정렬
+    const result = [];
     for (const subgroup of subgroups) {
-      const subgroupRecipes = recipesBySubgroup.get(subgroup.id);
-      if (!subgroupRecipes || subgroupRecipes.length === 0) continue;
+      const items = recipesBySubgroup.get(subgroup.id);
+      if (!items || items.length === 0) continue;
       
-      // order로 정렬
-      subgroupRecipes.sort((a, b) => a.order.localeCompare(b.order));
+      // order로 정렬 (자연스러운 정렬 사용)
+      items.sort((a, b) => ViewHelpers.compareOrder(a.order, b.order));
       
-      // 각 서브그룹마다 별도의 그리드 생성
-      html += '<div class="recipe-add-grid recipe-subgroup-grid">';
-      
-      // 해당 서브그룹의 레시피들 렌더링
-      for (const { recipe } of subgroupRecipes) {
-        const recipeName = this.view.locale.recipeName(recipe.id) || recipe.id || '';
-        
-        if (!recipeName) {
-          console.warn('[RecipeSelectModal.renderItemGroupRecipes] Empty tooltip for recipe:', recipe.id);
-        }
-        html += `<div class="recipe-add-item" data-type="recipe" data-id="${recipe.id}" data-tooltip="${this.escapeHtml(recipeName)}">`;
-        const recipeIcons = this.view.getRecipeIcon(recipe);
-        html += this.view.createRecipeIcon(recipeIcons);
-        html += `</div>`;
-      }
-      
-      html += '</div>'; // recipe-subgroup-grid 닫기
+      result.push({
+        id: subgroup.id,
+        items: items
+      });
     }
     
-    // 마지막에 빈 그리드 열기 (다음 카테고리를 위해)
-    html += '<div class="recipe-add-grid">';
-    
-    return html;
+    return { subgroups: result };
   }
 
   /**
    * 이벤트 리스너 연결
    */
   attachListeners() {
-    const modal = document.getElementById('recipeAddModal');
-    if (!modal) return;
-
-    const closeBtn = modal.querySelector('.modal-close-btn');
-    const overlay = modal;
-    const searchInput = modal.querySelector('.recipe-search-input');
-    const tabBtns = modal.querySelectorAll('.recipe-tab-btn');
-    const itemsContainer = modal.querySelector('#recipeAddItems');
-
-    // 닫기 버튼
-    closeBtn.onclick = () => {
-      document.body.classList.remove('modal-open');
-      modal.remove();
-    };
-
-    // 오버레이 클릭
-    overlay.onclick = (e) => {
-      if (e.target === overlay) {
-        document.body.classList.remove('modal-open');
-        modal.remove();
-      }
-    };
-
-    // ESC 키
-    const escHandler = (e) => {
-      if (e.key === 'Escape') {
-        document.body.classList.remove('modal-open');
-        modal.remove();
-        document.removeEventListener('keydown', escHandler);
-      }
-    };
-    document.addEventListener('keydown', escHandler);
-
-    // 탭 버튼
-    let currentCategory = CATEGORY.RECIPE_GROUPS;
-    tabBtns.forEach(btn => {
-      btn.onclick = () => {
-        tabBtns.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        currentCategory = btn.dataset.category;
-        itemsContainer.innerHTML = this.renderTabContent(currentCategory, searchInput.value);
-        this.attachItemListeners();
-      };
-    });
-
-    // 검색
-    searchInput.oninput = () => {
-      itemsContainer.innerHTML = this.renderTabContent(currentCategory, searchInput.value);
-      this.attachItemListeners();
-    };
-
-    // 아이템 클릭 리스너
-    this.attachItemListeners();
+    super.attachListeners('recipeSelectModal', 'recipeSelectContent', MODAL_CATEGORIES.RECIPE_GROUPS);
   }
 
   /**
-   * 레시피 아이템 클릭 리스너
+   * 기본 아이템 선택 동작 (RecipeGroupView용)
    */
-  attachItemListeners() {
-    const modal = document.getElementById('recipeAddModal');
-    if (!modal) return;
-
-    const items = modal.querySelectorAll('.recipe-add-item');
-    items.forEach(item => {
-      item.onclick = () => {
-        const type = item.dataset.type;
-        const id = item.dataset.id;
-        
-        // 콜백이 설정되어 있으면 콜백 실행
-        if (this.onSelect) {
-          this.onSelect(type, id);
-          document.body.classList.remove('modal-open');
-          modal.remove();
-        } else {
-          // 기본 동작: RecipeGroupView용
-          const group = this.view.groups.get(this.view.selectedGroupId);
-          if (group) {
-            group.addRecipe(id, 1, type);
-            this.view.saveToStorage();
-            this.view.render(document.getElementById('recipe-group-tab'));
-            document.body.classList.remove('modal-open');
-            modal.remove();
-          }
-        }
-      };
-    });
-  }
-
-  /**
-   * HTML 이스케이프
-   */
-  escapeHtml(text) {
-    return ViewHelpers.escapeHtml(text);
+  onDefaultItemSelect(type, id, modalId) {
+    const group = this.view.groups.get(this.view.selectedGroupId);
+    if (group) {
+      group.addRecipe(id, 1, type);
+      this.view.saveToStorage();
+      this.view.render(document.getElementById('recipe-group-tab'));
+      this.close(modalId);
+    }
   }
 }

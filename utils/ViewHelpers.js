@@ -15,6 +15,23 @@ export class ViewHelpers {
   }
 
   /**
+   * Factorio order 문자열 비교 (유니코드 순서)
+   * @param {string} a - 첫 번째 order 문자열
+   * @param {string} b - 두 번째 order 문자열
+   * @returns {number} 비교 결과 (-1, 0, 1)
+   */
+  static compareOrder(a, b) {
+    if (!a && !b) return 0;
+    if (!a) return 1;
+    if (!b) return -1;
+    
+    // 유니코드 값으로 직접 비교
+    if (a < b) return -1;
+    if (a > b) return 1;
+    return 0;
+  }
+
+  /**
    * 숫자 포맷팅 (비교 뷰용 - 소수점 정밀도 높음)
    * @param {number} num - 포맷할 숫자
    * @returns {string} 포맷된 문자열
@@ -106,7 +123,7 @@ export class ViewHelpers {
   }
 
   /**
-   * 통합 아이콘 HTML 생성 (단일 또는 이중 아이콘 지원)
+   * 통합 아이콘 HTML 생성 (단일 또는 다중 레이어 아이콘 지원)
    * @param {Array|Object} icons - 아이콘 정보 배열 또는 단일 객체
    * @param {Object} options - 옵션 { amount, showBorder, formatFn, dataAttrs }
    * @returns {string} 아이콘 HTML
@@ -126,36 +143,79 @@ export class ViewHelpers {
     let html = `<div class="item-icon-slot ${showBorder ? 'with-border' : 'no-border'} ${hasAmount ? 'with-amount' : ''}" ${dataAttrs}>`;
     html += '<div class="item-icon-container">';
     
+    var targetName = ["se-kr-cat-ammonia", "kr-ammonia"];
+    if(targetName.includes(iconArray[0].name))
+    {
+      console.log('iconArray:', iconArray);
+    }
+
     if (iconArray.length > 0 && iconArray[0]) {
-      const mainIcon = iconArray[0];
-      
-      // 메인 아이콘
-      if (mainIcon.path) {
-        const iconSize = mainIcon.size || 64;
-        const mipmaps = mainIcon.mipmaps || 0;
+      // 모든 아이콘 레이어 렌더링
+      for (let i = 0; i < iconArray.length; i++) {
+        const icon = iconArray[i];
+        if (!icon || !icon.path) continue;
         
+        const iconSize = icon.size || 32;
+        const mipmaps = icon.mipmaps || 0;
+        let scale = icon.scale !== undefined ? icon.scale : 1;
+        const tint = icon.tint;
+        
+        // shift 처리: 첫 번째 아이콘은 기본 (0, 0), 두 번째 이후는 shift 값이 있으면 사용, 없으면 우상단
+        let shift;
+        if (i === 0) {
+          shift = icon.shift || { x: 0, y: 0 };
+          scale = 1;
+        } else {
+          if (icon.shift && (icon.shift.x !== 0 || icon.shift.y !== 0)) {
+            shift = icon.shift;
+            scale = icon.scale !== undefined ? icon.scale : 0.5;
+          } else {
+            shift = { x: 0.5, y: -0.5 };
+            scale = icon.scale !== undefined ? icon.scale : 0.5;
+          }
+        }
+
+        // mipmap을 고려한 총 너비 계산
         let totalWidth = iconSize;
-        for (let i = 1; i < mipmaps; i++) {
-          totalWidth += iconSize / Math.pow(2, i);
+        for (let j = 1; j < mipmaps; j++) {
+          totalWidth += iconSize / Math.pow(2, j);
         }
         
-        const scale = 32 / iconSize;
-        const imgWidth = totalWidth * scale;
-        const imgHeight = iconSize * scale;
-        const offsetX = mipmaps > 0 ? -iconSize * scale : 0;
+        // 32px 기준으로 스케일 조정
+        const baseScale = 32 / iconSize;
+        const finalScale = baseScale * scale;
+        const imgWidth = totalWidth * finalScale;
+        const imgHeight = iconSize * finalScale;
         
-        html += `<img src="${mainIcon.path}" alt="${mainIcon.name || ''}" class="item-icon-main" style="width: ${imgWidth}px; height: ${imgHeight}px;">`;
-      } else {
-        // 아이콘이 없을 때
-        console.warn('[ViewHelpers.createIconHtml] Rendering "No Image" for item:', mainIcon.name || 'unknown', '| Icon object:', JSON.stringify(mainIcon));
-        html += '<div class="item-icon-no-image">No<br>Image</div>';
+        // shift는 픽셀 단위로 적용 (Factorio는 아이콘 크기 기준 비율)
+        const shiftX = (shift.x || 0) * 32;
+        const shiftY = (shift.y || 0) * 32;
+        
+        // tint 처리
+        let filterStyle = '';
+        if (tint) {
+          const r = (tint.r !== undefined ? tint.r : 1) * 255;
+          const g = (tint.g !== undefined ? tint.g : 1) * 255;
+          const b = (tint.b !== undefined ? tint.b : 1) * 255;
+          const a = tint.a !== undefined ? tint.a : 1;
+          filterStyle = `filter: drop-shadow(0 0 0 rgba(${r},${g},${b},${a}));`;
+        }
+
+
+
+        if(targetName.includes(iconArray[0].name))
+    {
+      console.log('[ViewHelpers.createIconHtml] Rendering icon:', icon.path, 'size:', iconSize, 'mipmaps:', mipmaps, 'finalScale:', finalScale, 'imgWidth:', imgWidth, 'imgHeight:', imgHeight, 'shiftX:', shiftX, 'shiftY:', shiftY, 'filterStyle:', filterStyle, 'baseScale:', baseScale, 'finalScale:', finalScale);
+    }
+        
+        const layerClass = i === 0 ? 'item-icon-main' : 'item-icon-layer';
+        html += `<img src="${icon.path}" alt="${icon.name || ''}" class="${layerClass}" style="width: ${imgWidth}px; height: ${imgHeight}px; transform: translate(${shiftX}px, ${shiftY}px) ${filterStyle}">`;
       }
       
-      // 오버레이 아이콘 (두 번째 아이콘)
-      if (iconArray.length > 1 && iconArray[1] && iconArray[1].path) {
-        const overlayIcon = iconArray[1];
-        const scale = overlayIcon.scale || 0.5;
-        html += `<img src="${overlayIcon.path}" alt="${overlayIcon.name || ''}" class="item-icon-overlay" style="--icon-scale: ${scale};">`;
+      // 아이콘이 하나도 없는 경우
+      if (iconArray.filter(icon => icon && icon.path).length === 0) {
+        console.warn('[ViewHelpers.createIconHtml] Rendering "No Image" for item:', iconArray[0]?.name || 'unknown');
+        html += '<div class="item-icon-no-image">No<br>Image</div>';
       }
     }
     
@@ -331,7 +391,7 @@ export class ViewHelpers {
           // iconInfo가 null인 경우 기본 아이콘 사용
           if (!iconInfo || !iconInfo.path) {
             return {
-              path: '__base__/graphics/icons/signal/signal_info.png',
+              path: '__base__/graphics/icons/signal/signal-question-mark.png',
               name: iconData,
               scale: 1,
               shift: { x: 0, y: 0 },
@@ -385,7 +445,7 @@ export class ViewHelpers {
     
     // 둘 다 없으면 기본 아이콘
     return [{
-      path: '__base__/graphics/icons/signal/signal_info.png',
+      path: '__base__/graphics/icons/signal/signal-question-mark.png',
       name: recipe.name,
       scale: 1,
       shift: { x: 0, y: 0 },
@@ -402,7 +462,7 @@ export class ViewHelpers {
   static createRecipeIconHtml(icons, containerClass = '') {
     return ViewHelpers.createIconHtml(icons, {
       amount: null,
-      showBorder: false
+      showBorder: true
     });
   }
 }

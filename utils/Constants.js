@@ -30,7 +30,7 @@ export const DISPLAY_MODES = {
 };
 
 // 기본 아이콘 경로
-export const DEFAULT_ICON_PATH = '__base__/graphics/icons/signal/signal_info.png';
+export const DEFAULT_ICON_PATH = '__base__/graphics/icons/signal/signal-question-mark.png';
 
 // 아이콘 크기
 export const ICON_CONFIG = {
@@ -79,4 +79,18 @@ export const IO_SECTION_TYPES = {
 export const IO_SECTION_TITLES = {
   OUTPUTS: '출력',
   INPUTS: '입력'
+};
+
+// 모달 카테고리
+export const MODAL_CATEGORIES = {
+  RECIPE_GROUPS: 'recipegroup-recipes',
+  CUSTOM_RECIPES: 'custom-recipes',
+  ITEMGROUP_RECIPES_PREFIX: 'itemgroup-recipes',
+  ITEM_GROUPS: 'item-groups'
+};
+
+// 모달 설정
+export const MODAL_CONFIG = {
+  MAX_ICONS_IN_SIDEBAR: 1,
+  SEARCH_DEBOUNCE_MS: 150
 };

@@ -14,8 +14,19 @@ export class CustomRecipe {
 
   /**
    * 재료 추가
+   * @param {string} itemId - 아이템 ID
+   * @param {number} amount - 수량
+   * @param {string} itemType - 아이템 타입
+   * @throws {Error} 잘못된 파라미터인 경우
    */
   addIngredient(itemId, amount, itemType = 'item') {
+    if (!itemId || typeof itemId !== 'string') {
+      throw new Error('Invalid itemId: must be a non-empty string');
+    }
+    if (typeof amount !== 'number' || amount <= 0) {
+      throw new Error('Invalid amount: must be a positive number');
+    }
+    
     this.ingredients.push({
       type: itemType,
       name: itemId,
@@ -25,24 +36,40 @@ export class CustomRecipe {
 
   /**
    * 재료 제거
+   * @param {number} index - 제거할 인덱스
    */
   removeIngredient(index) {
-    this.ingredients.splice(index, 1);
+    if (index >= 0 && index < this.ingredients.length) {
+      this.ingredients.splice(index, 1);
+    }
   }
 
   /**
    * 재료 업데이트
+   * @param {number} index - 업데이트할 인덱스
+   * @param {Object} updates - 업데이트할 필드
    */
   updateIngredient(index, updates) {
-    if (this.ingredients[index]) {
+    if (index >= 0 && index < this.ingredients.length) {
       Object.assign(this.ingredients[index], updates);
     }
   }
 
   /**
    * 결과물 추가
+   * @param {string} itemId - 아이템 ID
+   * @param {number} amount - 수량
+   * @param {string} itemType - 아이템 타입
+   * @throws {Error} 잘못된 파라미터인 경우
    */
   addResult(itemId, amount, itemType = 'item') {
+    if (!itemId || typeof itemId !== 'string') {
+      throw new Error('Invalid itemId: must be a non-empty string');
+    }
+    if (typeof amount !== 'number' || amount <= 0) {
+      throw new Error('Invalid amount: must be a positive number');
+    }
+    
     this.results.push({
       type: itemType,
       name: itemId,
@@ -52,16 +79,21 @@ export class CustomRecipe {
 
   /**
    * 결과물 제거
+   * @param {number} index - 제거할 인덱스
    */
   removeResult(index) {
-    this.results.splice(index, 1);
+    if (index >= 0 && index < this.results.length) {
+      this.results.splice(index, 1);
+    }
   }
 
   /**
    * 결과물 업데이트
+   * @param {number} index - 업데이트할 인덱스
+   * @param {Object} updates - 업데이트할 필드
    */
   updateResult(index, updates) {
-    if (this.results[index]) {
+    if (index >= 0 && index < this.results.length) {
       Object.assign(this.results[index], updates);
     }
   }

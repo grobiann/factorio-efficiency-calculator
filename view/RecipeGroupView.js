@@ -241,7 +241,7 @@ export class RecipeGroupView {
    */
   renderRecipeSelector() {
     let html = '<div class="recipe-selector">';
-    html += '<button class="btn-primary recipe-add-modal-btn">레시피 추가</button>';
+    html += '<button class="btn-primary recipe-select-modal-btn">레시피 추가</button>';
     html += '</div>';
     
     return html;
@@ -528,10 +528,10 @@ export class RecipeGroupView {
     });
 
     // 레시피 추가 버튼 클릭
-    const recipeAddModalBtn = container.querySelector('.recipe-add-modal-btn');
-    if (recipeAddModalBtn) {
-      recipeAddModalBtn.onclick = () => {
-        this.showRecipeAddModal();
+    const recipeSelectModalBtn = container.querySelector('.recipe-select-modal-btn');
+    if (recipeSelectModalBtn) {
+      recipeSelectModalBtn.onclick = () => {
+        this.showRecipeSelectModal();
       };
     }
 
@@ -559,7 +559,7 @@ export class RecipeGroupView {
   /**
    * 레시피 선택 모달 표시
    */
-  showRecipeAddModal() {
+  showRecipeSelectModal() {
     this.recipeSelectModal.show();
   }
 

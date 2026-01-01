@@ -76,6 +76,7 @@ export class DatasetManager {
       try {
         const filePath = Array.isArray(dataset.files) ? dataset.files[0] : dataset.files;
         const dataRaw = await fetch(`data/${filePath}`).then(r => r.json());
+        console.log(`Loaded dataset ${dataset.id} from ${filePath}`, dataRaw);
         
         // Process each type in data.raw
         let totalItems = 0;
@@ -83,19 +84,21 @@ export class DatasetManager {
         let totalCategories = 0;
         
         // Process items (item, tool, ammo, capsule, module, etc.)
-        const itemTypes = ['item', 'tool', 'ammo', 'capsule', 'module', 'armor', 'gun', 
-                          'rail-planner', 'spidertron-remote', 'selection-tool'];
+        const itemTypes = ['item',  'module', 'armor'];
+                          // 'tool', 'ammo', 'capsule', 'gun',  'rail-planner', 'spidertron-remote', 'selection-tool'
         for (const itemType of itemTypes) {
           if (dataRaw[itemType]) {
             const itemCount = Object.keys(dataRaw[itemType]).length;
             console.log(`  Processing ${itemType}: ${itemCount} entries`);
-            const items = Object.entries(dataRaw[itemType]).map(([id, data]) => ({
-              ...data,
-              id: id,
-              type: 'item',
-              originalType: itemType,
-              name: data.name || id
-            }));
+            const items = Object.entries(dataRaw[itemType])
+              .filter(([id, data]) => data.always_show_products !== false && data.hidden !== true) // always_show_products = false 또는 hidden = true인 항목 제외
+              .map(([id, data]) => ({
+                ...data,
+                id: id,
+                type: 'item',
+                originalType: itemType,
+                name: data.name || id
+              }));
             allEntries.push(...items);
             totalItems += items.length;
           }
@@ -104,12 +107,14 @@ export class DatasetManager {
         // Process fluids
         if (dataRaw['fluid']) {
           console.log(`  Processing fluid: ${Object.keys(dataRaw['fluid']).length} entries`);
-          const fluids = Object.entries(dataRaw['fluid']).map(([id, data]) => ({
-            ...data,
-            id: id,
-            type: 'fluid',
-            name: data.name || id
-          }));
+          const fluids = Object.entries(dataRaw['fluid'])
+            .filter(([id, data]) => data.always_show_products !== false && data.hidden !== true) // always_show_products = false 또는 hidden = true인 항목 제외
+            .map(([id, data]) => ({
+              ...data,
+              id: id,
+              type: 'fluid',
+              name: data.name || id
+            }));
           allEntries.push(...fluids);
           totalItems += fluids.length;
         }
@@ -117,13 +122,15 @@ export class DatasetManager {
         // Process recipes
         if (dataRaw['recipe']) {
           console.log(`  Processing recipe: ${Object.keys(dataRaw['recipe']).length} entries`);
-          const recipes = Object.entries(dataRaw['recipe']).map(([id, data]) => ({
-            ...data,
-            id: id,
-            type: 'recipe',
-            name: data.name || id,
-            subgroup: data.subgroup // subgroup 필드 명시적으로 복사
-          }));
+          const recipes = Object.entries(dataRaw['recipe'])
+            .filter(([id, data]) => data.always_show_products !== false && data.hidden !== true) // always_show_products = false 또는 hidden = true인 항목 제외
+            .map(([id, data]) => ({
+              ...data,
+              id: id,
+              type: 'recipe',
+              name: data.name || id,
+              subgroup: data.subgroup // subgroup 필드 명시적으로 복사
+            }));
           allEntries.push(...recipes);
           recipesObjects.push({ recipes: recipes });
           totalRecipes = recipes.length;
@@ -132,36 +139,42 @@ export class DatasetManager {
         // Process categories (item-group, item-subgroup, recipe-category)
         if (dataRaw['item-group']) {
           console.log(`  Processing item-group: ${Object.keys(dataRaw['item-group']).length} entries`);
-          const groups = Object.entries(dataRaw['item-group']).map(([id, data]) => ({
-            ...data,
-            id: id,
-            type: 'item-group',
-            name: data.name || id
-          }));
+          const groups = Object.entries(dataRaw['item-group'])
+            .filter(([id, data]) => data.enabled !== false) // enabled = false인 항목 제외
+            .map(([id, data]) => ({
+              ...data,
+              id: id,
+              type: 'item-group',
+              name: data.name || id
+            }));
           allEntries.push(...groups);
           allCategories.push(...groups);
           totalCategories += groups.length;
         }
         
         if (dataRaw['item-subgroup']) {
-          const subgroups = Object.entries(dataRaw['item-subgroup']).map(([id, data]) => ({
-            ...data,
-            id: id,
-            type: 'item-subgroup',
-            name: data.name || id
-          }));
+          const subgroups = Object.entries(dataRaw['item-subgroup'])
+            .filter(([id, data]) => data.enabled !== false) // enabled = false인 항목 제외
+            .map(([id, data]) => ({
+              ...data,
+              id: id,
+              type: 'item-subgroup',
+              name: data.name || id
+            }));
           allEntries.push(...subgroups);
           totalCategories += subgroups.length;
         }
         
         if (dataRaw['recipe-category']) {
           console.log(`  Processing recipe-category: ${Object.keys(dataRaw['recipe-category']).length} entries`);
-          const recipeCategories = Object.entries(dataRaw['recipe-category']).map(([id, data]) => ({
-            ...data,
-            id: id,
-            type: 'recipe-category',
-            name: data.name || id
-          }));
+          const recipeCategories = Object.entries(dataRaw['recipe-category'])
+            .filter(([id, data]) => data.enabled !== false) // enabled = false인 항목 제외
+            .map(([id, data]) => ({
+              ...data,
+              id: id,
+              type: 'recipe-category',
+              name: data.name || id
+            }));
           allEntries.push(...recipeCategories);
           totalCategories += recipeCategories.length;
         }

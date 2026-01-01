@@ -1,6 +1,8 @@
+/* Import common modal styles */
+@import url('./views/Modal.css');
+
 /* Import view-specific styles */
 @import url('./views/CustomRecipeView.css');
-@import url('./views/ItemSelectModal.css');
 @import url('./views/RecipeSelectModal.css');
 @import url('./views/RecipeGroupView.css');
 @import url('./views/CompareView.css');
@@ -930,7 +932,7 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
+  overflow: visible;
   position: relative;
   flex-shrink: 0;
 }
@@ -951,10 +953,13 @@ button {
   padding: 2px;
 }
 
-.item-icon-main {
+.item-icon-main,
+.item-icon-layer {
+  position: absolute;
   image-rendering: auto;
-   object-fit: cover;
-   object-position: left center;
+  object-fit: cover;
+  object-position: left center;
+  pointer-events: none;
 }
 
 .item-icon-overlay {
@@ -1565,7 +1570,8 @@ button {
 }
 
 .recipe-subgroup-grid {
-  margin-bottom: 2px;
+  display: flex;
+  margin-bottom: 4px;
 }
 
 .recipe-add-item {

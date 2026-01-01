@@ -1,4 +1,22 @@
-/* ===== RecipeSelectModal Styles ===== */
+/* ===== RecipeSelectModal Specific Styles ===== */
+.recipe-select-modal {
+  width: 900px;
+  max-width: 95vw;
+  max-height: 90vh;
+}
+
+.recipe-select-content {
+  overflow-y: auto;
+  max-height: 100%;
+}
+
+.recipe-select-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+/* Recipe Selection List (for ingredient selection modal) */
 .recipe-selection-list {
   display: flex;
   flex-direction: column;
@@ -34,5 +52,5 @@
   flex: 1;
   font-size: 14px;
   font-weight: 500;
-    color: #333;
+  color: #333;
 }
