@@ -87,7 +87,6 @@ export class RecipeSelectModal extends BaseModalView {
     for (const subgroup of itemsData.subgroups) {
       console.log(`[RecipeSelectModal.renderTabContent] Subgroup: ${subgroup.id}`);
       for (const item of subgroup.items) {
-        //console.log(`  - Item name: ${item.id}, tooltip: ${item.tooltip}`, item);
       }
     }
     
@@ -284,7 +283,7 @@ export class RecipeSelectModal extends BaseModalView {
   onDefaultItemSelect(type, id, modalId) {
     const group = this.view.groups.get(this.view.selectedGroupId);
     if (group) {
-      group.addRecipe(id, 1, type);
+      group.addRecipe(id, 1, type, this.view.allRecipes, this.view.groups);
       this.view.saveToStorage();
       this.view.render(document.getElementById('recipe-group-tab'));
       this.close(modalId);

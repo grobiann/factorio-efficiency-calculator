@@ -99,6 +99,36 @@ export class CustomRecipe {
   }
 
   /**
+   * 재료를 맵 형태로 반환 { itemId: amount }
+   */
+  getIngredientsMap() {
+    if (!Array.isArray(this.ingredients) || this.ingredients.length === 0) return {};
+    const map = {};
+    for (const entry of this.ingredients) {
+      if (!entry || !entry.name) continue;
+      const amount = entry.amount || 0;
+      if (amount <= 0) continue;
+      map[entry.name] = (map[entry.name] || 0) + amount;
+    }
+    return map;
+  }
+
+  /**
+   * 결과물을 맵 형태로 반환 { itemId: amount }
+   */
+  getResultsMap() {
+    if (!Array.isArray(this.results) || this.results.length === 0) return {};
+    const map = {};
+    for (const entry of this.results) {
+      if (!entry || !entry.name) continue;
+      const amount = entry.amount || 0;
+      if (amount <= 0) continue;
+      map[entry.name] = (map[entry.name] || 0) + amount;
+    }
+    return map;
+  }
+
+  /**
    * JSON 직렬화
    */
   toJSON() {

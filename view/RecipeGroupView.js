@@ -43,7 +43,7 @@ export class RecipeGroupView {
     } else {
       for (const group of this.groups.values()) {
         const isSelected = group.id === this.selectedGroupId;
-        const io = group.calculateIO(this.allRecipes, this.groups);
+        const io = group.calculateIO(this.allRecipes, this.groups, new Set(), this.customRecipeManager);
         const results = io.results || [];
         
         // 결과물 아이콘 HTML 생성
@@ -94,7 +94,10 @@ export class RecipeGroupView {
    * 레시피 그룹 상세 정보 렌더링
    */
   renderGroupDetail(group) {
-    const io = group.calculateIO(this.allRecipes, this.groups);
+
+    console.log('[RecipeGroupView.renderGroupDetail] Rendering detail for group:', group);
+    const io = group.calculateIO(this.allRecipes, this.groups, new Set(), this.customRecipeManager);
+    console.log('[RecipeGroupView.renderGroupDetail] Rendering detail for group:', io);
 
     let html = '<div class="group-detail">';
     
@@ -116,7 +119,8 @@ export class RecipeGroupView {
     } else {
       for (const result of io.results) {
         const iconInfo = this.getIconInfo(result.name, result.type || 'item');
-        html += this.createItemIcon(iconInfo, result.amount);
+        const amount = this.getExpectedAmount(result);
+        html += this.createItemIcon(iconInfo, amount);
       }
     }
     html += '</div></div>';
@@ -141,13 +145,15 @@ export class RecipeGroupView {
     if (group.recipes.length === 0) {
       html += '<div class="group-no-recipes">';
       html += '<p>레시피가 없습니다. 레시피를 선택하세요.</p>';
-      html += this.renderRecipeSelector();
       html += '</div>';
     } else {
       for (let i = 0; i < group.recipes.length; i++) {
         html += this.renderRecipeRow(group, i);
       }
     }
+    
+    // 항상 레시피 추가 버튼 표시
+    html += this.renderRecipeSelector();
     
     html += '</div>'; // group-recipes-container
     html += '</div>'; // group-detail
@@ -167,7 +173,7 @@ export class RecipeGroupView {
       if (!subGroup) {
         return `<div class="group-recipe-row">레시피 그룹을 찾을 수 없습니다: ${recipeEntry.recipeId}</div>`;
       }
-      const subIO = subGroup.calculateIO(this.allRecipes, this.groups);
+      const subIO = subGroup.calculateIO(this.allRecipes, this.groups, new Set(), this.customRecipeManager);
       // 레시피 그룹을 레시피처럼 표현
       recipe = {
         id: subGroup.id,
@@ -217,7 +223,7 @@ export class RecipeGroupView {
     html += '<div class="group-recipe-results">';
     for (const result of results) {
       const iconInfo = this.getIconInfo(result.name, result.type || 'item');
-      const amount = result.amount * (recipeEntry.multiplier || 1);
+      const amount = this.getExpectedAmount(result) * (recipeEntry.multiplier || 1);
       html += this.createItemIcon(iconInfo, amount, true);
     }
     html += '</div>';
@@ -226,9 +232,15 @@ export class RecipeGroupView {
     html += '<div class="group-recipe-ingredients">';
     for (const ingredient of ingredients) {
       const iconInfo = this.getIconInfo(ingredient.name, ingredient.type || 'item');
-      const amount = ingredient.amount * (recipeEntry.multiplier || 1);
+      const amount = this.getExpectedAmount(ingredient) * (recipeEntry.multiplier || 1);
       html += this.createItemIcon(iconInfo, amount, true, ingredient.name, ingredient.type);
     }
+    html += '</div>';
+
+    // 배수 입력
+    html += '<div class="group-recipe-multiplier">';
+    html += `<span class="multiplier-label">×</span>`;
+    html += `<input type="number" class="multiplier-input" data-index="${index}" value="${recipeEntry.multiplier || 1}" min="0.01" step="0.1" />`;
     html += '</div>';
 
     html += '</div>'; // group-recipe-row
@@ -318,9 +330,19 @@ export class RecipeGroupView {
       }];
     }
     
-    // 없으면 첫 번째 생산품 아이콘 사용
+    // 없으면 생산품 아이콘 사용 (main_product 우선, 없으면 첫 번째 생산품)
     if (recipe.results && recipe.results.length > 0) {
-      const iconInfo = this.getIconInfo(recipe.results[0].name, recipe.results[0].type || 'item');
+      let productToUse = recipe.results[0]; // 기본값: 첫 번째 생산품
+      
+      // main_product가 있다면 해당 생산품을 찾음
+      if (recipe.main_product) {
+        const mainProduct = recipe.results.find(r => r.name === recipe.main_product);
+        if (mainProduct) {
+          productToUse = mainProduct;
+        }
+      }
+      
+      const iconInfo = this.getIconInfo(productToUse.name, productToUse.type || 'item');
       if (iconInfo && iconInfo.path) {
         return [{
           path: iconInfo.path,
@@ -373,9 +395,37 @@ export class RecipeGroupView {
   }
 
   /**
+   * 결과물/재료의 기댓값 계산
+   * amount, amount_min, amount_max, probability를 고려
+   */
+  getExpectedAmount(entry) {
+    if (!entry) return 0;
+
+    const probability = entry.probability === undefined ? 1 : Number(entry.probability);
+    if (!Number.isFinite(probability) || probability <= 0) return 0;
+
+    const amount = entry.amount !== undefined ? Number(entry.amount) : NaN;
+    if (Number.isFinite(amount)) return amount * probability;
+
+    const amountMin = entry.amount_min !== undefined ? Number(entry.amount_min) : NaN;
+    const amountMax = entry.amount_max !== undefined ? Number(entry.amount_max) : NaN;
+    if (Number.isFinite(amountMin) && Number.isFinite(amountMax)) {
+      return ((amountMin + amountMax) / 2) * probability;
+    }
+
+    if (Number.isFinite(amountMin)) return amountMin * probability;
+    if (Number.isFinite(amountMax)) return amountMax * probability;
+
+    return 0;
+  }
+
+  /**
    * 수량 포맷팅
    */
   formatAmount(amount) {
+    if (amount >= 1000000) {
+      return (amount / 1000000).toFixed(1) + 'm';
+    }
     if (amount >= 1000) {
       return (amount / 1000).toFixed(1) + 'k';
     }
@@ -510,18 +560,48 @@ export class RecipeGroupView {
         switch (action) {
           case 'up':
             group.moveRecipeUp(index);
+            // 이동된 레시피와 그 위치의 배수 재계산
+            group.calculateMultiplier(index - 1, this.allRecipes, this.groups);
+            group.calculateMultiplier(index, this.allRecipes, this.groups);
             break;
           case 'down':
             group.moveRecipeDown(index);
+            // 이동된 레시피와 그 위치의 배수 재계산
+            group.calculateMultiplier(index, this.allRecipes, this.groups);
+            group.calculateMultiplier(index + 1, this.allRecipes, this.groups);
             break;
           case 'copy':
             group.copyRecipe(index);
             break;
           case 'remove':
             group.removeRecipe(index);
+            // 제거 후 이후 레시피들 배수 재계산
+            for (let i = index; i < group.recipes.length; i++) {
+              group.calculateMultiplier(i, this.allRecipes, this.groups);
+            }
             break;
         }
 
+        this.saveToStorage();
+        this.render(this.currentContainer);
+      };
+    });
+
+    // 배수 입력 필드
+    container.querySelectorAll('.multiplier-input').forEach(input => {
+      input.onchange = () => {
+        const index = parseInt(input.dataset.index);
+        const value = parseFloat(input.value);
+        const group = this.groups.get(this.selectedGroupId);
+        if (!group || isNaN(value) || value <= 0) return;
+
+        group.updateRecipe(index, { multiplier: value });
+        
+        // 이후 레시피들의 배수 재계산
+        for (let i = index + 1; i < group.recipes.length; i++) {
+          group.calculateMultiplier(i, this.allRecipes, this.groups);
+        }
+        
         this.saveToStorage();
         this.render(this.currentContainer);
       };
@@ -700,7 +780,7 @@ export class RecipeGroupView {
       if (recipeEntry.type === 'group') {
         const subGroup = this.groups.get(recipeEntry.recipeId);
         if (!subGroup) continue;
-        const subIO = subGroup.calculateIO(this.allRecipes, this.groups);
+        const subIO = subGroup.calculateIO(this.allRecipes, this.groups, new Set(), this.customRecipeManager);
         ingredientsMap = {};
         for (const ing of subIO.ingredients) {
           ingredientsMap[ing.name] = ing.amount;
@@ -722,7 +802,7 @@ export class RecipeGroupView {
       // 레시피 그룹인 경우
       const results = recipe.results || [];
       const result = results.find(r => r.name === itemId);
-      producedAmount = result ? result.amount : 1;
+      producedAmount = result ? this.getExpectedAmount(result) : 1;
     } else {
       // 일반 레시피인 경우
       const resultsMap = recipe.getResultsMap();

@@ -50,6 +50,9 @@ export class ViewHelpers {
    * @returns {string} 포맷된 문자열
    */
   static formatAmount(amount) {
+    if (amount >= 1000000) {
+      return (amount / 1000000).toFixed(1) + 'm';
+    }
     if (amount >= 1000) {
       return (amount / 1000).toFixed(1) + 'k';
     }
@@ -429,9 +432,19 @@ export class ViewHelpers {
       }];
     }
     
-    // 없으면 첫 번째 생산품 아이콘 사용
+    // 없으면 생산품 아이콘 사용 (main_product 우선, 없으면 첫 번째 생산품)
     if (recipe.results && recipe.results.length > 0) {
-      const iconInfo = ViewHelpers.getIconInfo(loadedData, recipe.results[0].name, recipe.results[0].type || 'item');
+      let productToUse = recipe.results[0]; // 기본값: 첫 번째 생산품
+      
+      // main_product가 있다면 해당 생산품을 찾음
+      if (recipe.main_product) {
+        const mainProduct = recipe.results.find(r => r.name === recipe.main_product);
+        if (mainProduct) {
+          productToUse = mainProduct;
+        }
+      }
+      
+      const iconInfo = ViewHelpers.getIconInfo(loadedData, productToUse.name, productToUse.type || 'item');
       if (iconInfo && iconInfo.path) {
         return [{
           path: iconInfo.path,

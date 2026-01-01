@@ -23,9 +23,10 @@ export class RecipeGroup {
    * @param {Object} allRecipes - Map of recipeId -> Recipe
    * @param {Map} allGroups - Map of groupId -> RecipeGroup
    * @param {Set} visited - 이미 방문한 그룹 ID Set (순환 참조 방지)
+   * @param {Object} customRecipeManager - 커스텀 레시피 매니저 (선택사항)
    * @returns {Object} { ingredients: [...], results: [...] }
    */
-  calculateIO(allRecipes, allGroups = new Map(), visited = new Set()) {
+  calculateIO(allRecipes, allGroups = new Map(), visited = new Set(), customRecipeManager = null) {
     // 순환 참조 감지
     if (visited.has(this.id)) {
       console.warn(`순환 참조 감지: ${this.id}`);
@@ -48,7 +49,7 @@ export class RecipeGroup {
         const group = allGroups.get(recipeEntry.recipeId);
         if (!group) continue;
         
-        const groupIO = group.calculateIO(allRecipes, allGroups, visited);
+        const groupIO = group.calculateIO(allRecipes, allGroups, visited, customRecipeManager);
         
         // 레시피 그룹의 입출력을 맵으로 변환
         ingredientsMap = {};
@@ -61,13 +62,27 @@ export class RecipeGroup {
           resultsMap[res.name] = res.amount;
         }
       } else {
-        // 일반 레시피인 경우
-        const recipe = allRecipes[recipeEntry.recipeId];
+        // 일반 레시피 또는 커스텀 레시피인 경우
+        let recipe = null;
+        
+        // 커스텀 레시피 먼저 확인
+        if (customRecipeManager && typeof customRecipeManager.getRecipe === 'function') {
+          recipe = customRecipeManager.getRecipe(recipeEntry.recipeId);
+        }
+        
+        // 일반 레시피 확인
+        if (!recipe) {
+          recipe = allRecipes[recipeEntry.recipeId];
+        }
+        
         if (!recipe) continue;
         
         ingredientsMap = recipe.getIngredientsMap();
         resultsMap = recipe.getResultsMap();
       }
+
+      console.log(`[RecipeGroupView.renderGroupDetail] Processing ${recipeEntry.type} '${recipeEntry.recipeId}' with multiplier ${multiplier}`);
+      console.log(`[RecipeGroupView.renderGroupDetail] Processing`, ingredientsMap, resultsMap);
       
       // 입력 누적
       for (const [itemId, amount] of Object.entries(ingredientsMap)) {
@@ -141,9 +156,19 @@ export class RecipeGroup {
 
   /**
    * 레시피 또는 레시피 그룹 추가
+   * @param {string} recipeId - 레시피 ID
+   * @param {number} multiplier - 초기 배수 (기본값 1)
+   * @param {string} type - 타입 ('recipe' 또는 'group')
+   * @param {Object} allRecipes - 모든 레시피 (배수 자동 계산용, 선택사항)
+   * @param {Map} allGroups - 모든 그룹 (배수 자동 계산용, 선택사항)
    */
-  addRecipe(recipeId, multiplier = 1, type = 'recipe') {
+  addRecipe(recipeId, multiplier = 1, type = 'recipe', allRecipes = null, allGroups = null) {
     this.recipes.push({ recipeId, multiplier, type });
+    
+    // 추가 후 배수 자동 계산
+    if (allRecipes && allGroups) {
+      this.calculateMultiplier(this.recipes.length - 1, allRecipes, allGroups);
+    }
   }
 
   /**
@@ -191,6 +216,87 @@ export class RecipeGroup {
     if (this.recipes[index]) {
       const copy = { ...this.recipes[index] };
       this.recipes.splice(index + 1, 0, copy);
+    }
+  }
+
+  /**
+   * 특정 레시피의 배수 자동 계산
+   * @param {number} index - 레시피 인덱스
+   * @param {Object} allRecipes - 모든 레시피 맵
+   * @param {Map} allGroups - 모든 그룹 맵
+   */
+  calculateMultiplier(index, allRecipes, allGroups) {
+    if (index < 0 || index >= this.recipes.length) return;
+    
+    const recipeEntry = this.recipes[index];
+    
+    // 현재 레시피의 메인 결과물 찾기
+    let mainProduct = null;
+    let mainProductAmount = 0;
+    
+    if (recipeEntry.type === 'group') {
+      const group = allGroups.get(recipeEntry.recipeId);
+      if (!group) return;
+      const groupIO = group.calculateIO(allRecipes, allGroups);
+      if (groupIO.results.length > 0) {
+        mainProduct = groupIO.results[0].name;
+        mainProductAmount = groupIO.results[0].amount;
+      }
+    } else {
+      const recipe = allRecipes[recipeEntry.recipeId];
+      if (!recipe) return;
+      const results = recipe.results || [];
+      if (results.length > 0) {
+        mainProduct = results[0].name;
+        mainProductAmount = results[0].amount;
+      }
+    }
+    
+    if (!mainProduct || mainProductAmount === 0) return;
+    
+    // 상위 레시피들에서 필요한 이 제품의 총량 계산
+    let totalNeeded = 0;
+    
+    for (let i = 0; i < index; i++) {
+      const upperRecipeEntry = this.recipes[i];
+      const upperMultiplier = upperRecipeEntry.multiplier || 1;
+      
+      if (upperRecipeEntry.type === 'group') {
+        const group = allGroups.get(upperRecipeEntry.recipeId);
+        if (!group) continue;
+        const groupIO = group.calculateIO(allRecipes, allGroups);
+        for (const ingredient of groupIO.ingredients) {
+          if (ingredient.name === mainProduct) {
+            totalNeeded += ingredient.amount * upperMultiplier;
+          }
+        }
+      } else {
+        const recipe = allRecipes[upperRecipeEntry.recipeId];
+        if (!recipe) continue;
+        const ingredients = recipe.ingredients || [];
+        for (const ingredient of ingredients) {
+          if (ingredient.name === mainProduct) {
+            totalNeeded += ingredient.amount * upperMultiplier;
+          }
+        }
+      }
+    }
+    
+    // 필요량이 있으면 배수 계산
+    if (totalNeeded > 0) {
+      const newMultiplier = totalNeeded / mainProductAmount;
+      this.recipes[index].multiplier = Math.ceil(newMultiplier * 100) / 100; // 소수점 2자리로 반올림
+    }
+  }
+
+  /**
+   * 모든 레시피의 배수 재계산
+   * @param {Object} allRecipes - 모든 레시피 맵
+   * @param {Map} allGroups - 모든 그룹 맵
+   */
+  recalculateAllMultipliers(allRecipes, allGroups) {
+    for (let i = 0; i < this.recipes.length; i++) {
+      this.calculateMultiplier(i, allRecipes, allGroups);
     }
   }
 

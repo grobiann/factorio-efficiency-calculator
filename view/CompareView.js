@@ -225,7 +225,7 @@ export class CompareView {
     let html = '<div class="compare-io-icons">';
     for (const item of items) {
       const iconInfo = ViewHelpers.getIconInfo(this.loadedData, item.name, item.type || 'item');
-      html += ViewHelpers.createItemIconHtml(iconInfo, item.amount, ViewHelpers.formatNumber);
+      html += ViewHelpers.createItemIconHtml(iconInfo, item.amount, ViewHelpers.formatAmount);
     }
     html += '</div>';
     return html;

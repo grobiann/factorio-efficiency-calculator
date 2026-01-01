@@ -14,6 +14,9 @@ export class Recipe {
     this.results = data.results ? 
       (Array.isArray(data.results) ? data.results : [data.results]) : [];
     
+    // Main product (for recipes with multiple products)
+    this.main_product = data.main_product;
+    
     // Icon data preservation
     this.icon = data.icon;
     this.icon_size = data.icon_size;
