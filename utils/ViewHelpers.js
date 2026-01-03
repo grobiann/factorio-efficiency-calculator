@@ -3,6 +3,20 @@
  */
 export class ViewHelpers {
   /**
+   * 에셋 경로 해석 (상대경로를 절대경로로 변환)
+   * @param {string} path - 에셋 경로
+   * @returns {string} 해석된 절대 경로
+   */
+  static resolveAssetPath(path) {
+    // 이미 절대경로면 그대로 사용
+    if (path.startsWith('http') || path.startsWith('/')) {
+      return path;
+    }
+
+    return `${window.location.origin}/${path}`;
+  }
+
+  /**
    * HTML 이스케이프
    * @param {string} text - 이스케이프할 텍스트
    * @returns {string} 이스케이프된 HTML
@@ -212,7 +226,7 @@ export class ViewHelpers {
     }
         
         const layerClass = i === 0 ? 'item-icon-main' : 'item-icon-layer';
-        html += `<img src="${icon.path}" alt="${icon.name || ''}" class="${layerClass}" style="width: ${imgWidth}px; height: ${imgHeight}px; transform: translate(${shiftX}px, ${shiftY}px) ${filterStyle}">`;
+        html += `<img src="${ViewHelpers.resolveAssetPath(icon.path)}" alt="${icon.name || ''}" class="${layerClass}" style="width: ${imgWidth}px; height: ${imgHeight}px; transform: translate(${shiftX}px, ${shiftY}px) ${filterStyle}">`;
       }
       
       // 아이콘이 하나도 없는 경우

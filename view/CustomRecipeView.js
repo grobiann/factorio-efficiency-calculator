@@ -31,9 +31,9 @@ export class CustomRecipeView {
     // 아이콘 정보 가져오기
     const iconInfo = this.getIconInfo(itemId);
     if (iconInfo && iconInfo.path) {
-      icon.src = iconInfo.path;
+      icon.src = ViewHelpers.resolveAssetPath(iconInfo.path);
     } else {
-      icon.src = 'data/default-icon.svg';
+      icon.src = ViewHelpers.resolveAssetPath('data/default-icon.svg');
       icon.style.cssText = 'width: 32px; height: 32px; object-fit: contain;';
     }
     
