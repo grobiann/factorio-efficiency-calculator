@@ -13,7 +13,9 @@ export class ViewHelpers {
       return path;
     }
 
-    return `${window.location.origin}/${path}`;
+    // GitHub raw base URL
+    const GITHUB_RAW_BASE = "https://raw.githubusercontent.com/grobiann/factorio-efficiency-calculator/main/";
+    return `${GITHUB_RAW_BASE}${path}`;
   }
 
   /**
