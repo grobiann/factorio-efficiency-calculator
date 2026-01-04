@@ -52,9 +52,10 @@ export class RecipeGroupView {
         const displayResults = results.slice(0, maxIcons);
         
         for (const result of displayResults) {
-          const iconInfo = this.getIconInfo(result.name);
+          const iconInfo = ViewHelpers.getIconInfo(this.loadedData, result.name, result.type || 'item');
           if (iconInfo && iconInfo.path) {
-            iconsHtml += `<img src="${iconInfo.path}" alt="${this.escapeHtml(this.locale.itemName(result.name))}" class="list-item-icon" />`;
+            const iconPath = ViewHelpers.resolveAssetPath(iconInfo.path);
+            iconsHtml += `<img src="${iconPath}" alt="${this.escapeHtml(this.locale.itemName(result.name))}" class="list-item-icon" />`;
           }
         }
         
