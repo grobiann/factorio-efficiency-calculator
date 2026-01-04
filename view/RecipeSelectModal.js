@@ -68,12 +68,21 @@ export class RecipeSelectModal extends BaseModalView {
       </div>
     `;
 
+    console.log('[RecipeSelectModal.show] 모달 HTML 생성 완료, DOM에 추가 시작');
     // 모달 추가
-    document.body.insertAdjacentHTML('beforeend', modalHtml);
-    document.body.classList.add('modal-open');
+    try {
+      document.body.insertAdjacentHTML('beforeend', modalHtml);
+      document.body.classList.add('modal-open');
+      console.log('[RecipeSelectModal.show] 모달이 DOM에 추가됨');
+    } catch (error) {
+      console.error('[RecipeSelectModal.show] 모달 추가 중 오류:', error);
+      return;
+    }
 
     // 이벤트 리스너 등록
+    console.log('[RecipeSelectModal.show] 이벤트 리스너 등록 시작');
     this.attachListeners();
+    console.log('[RecipeSelectModal.show] 모달 표시 완료');
   }
 
   /**
@@ -132,7 +141,11 @@ export class RecipeSelectModal extends BaseModalView {
       }
       
       const tooltip = group.name || group.id || '';
-      const iconInfo = this.view.getIconInfo(firstResult.name);
+      const iconInfo = this.view.getIconInfo(firstResult.name, firstResult.type || 'item');
+      if (!iconInfo) {
+        console.warn('[RecipeSelectModal.getRecipeGroupsData] iconInfo is null for:', firstResult.name);
+        continue;
+      }
       const iconHtml = ViewHelpers.createIconHtml(iconInfo);
       
       items.push({

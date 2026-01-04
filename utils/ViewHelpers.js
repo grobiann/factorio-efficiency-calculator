@@ -163,7 +163,7 @@ export class ViewHelpers {
     html += '<div class="item-icon-container">';
     
     var targetName = ["se-kr-cat-ammonia", "kr-ammonia"];
-    if(targetName.includes(iconArray[0].name))
+    if(iconArray[0] && targetName.includes(iconArray[0].name))
     {
       console.log('iconArray:', iconArray);
     }
