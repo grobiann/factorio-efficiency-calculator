@@ -159,7 +159,7 @@ export class ViewHelpers {
     let html = `<div class="item-icon-slot ${showBorder ? 'with-border' : 'no-border'} ${hasAmount ? 'with-amount' : ''}" ${dataAttrs}>`;
     html += '<div class="item-icon-container">';
     
-    var targetName = ["se-space-water-decontamination"];
+    var targetName = ["se-bio-sludge-crude-oil"];
     if(iconArray.length > 1 && targetName.includes(iconArray[1].name))
     {
       console.log('선택된 아이콘:', iconArray);
@@ -196,28 +196,12 @@ export class ViewHelpers {
         
         const iconSize = icon.size || 32;
 
-    if(iconArray.length > 1 && targetName.includes(iconArray[1].name))
-    {
-      console.log('선택된 아이콘 스케일:', icon.scale);
-    }
-
-
         let scale = icon.scale !== undefined ? icon.scale : 0.5;
         const tint = icon.tint;
         const shift = icon.shift || { x: 0, y: 0 };
 
-        if(iconArray.length > 1 && targetName.includes(iconArray[1].name))
-    {
-      console.log('선택된 아이콘 스케일2:', scale);
-    }
-
         // 최대 scale을 기준으로 정규화
         scale = scale / maxScale;
-
-        if(iconArray.length > 1 && targetName.includes(iconArray[1].name))
-    {
-      console.log('선택된 아이콘 스케일3:', scale, 'maxScale:', maxScale);
-    }
 
         let totalWidth = iconSize;
         

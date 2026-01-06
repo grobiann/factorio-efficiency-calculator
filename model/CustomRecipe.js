@@ -157,7 +157,93 @@ export class CustomRecipe {
 export class CustomRecipeManager {
   constructor() {
     this.recipes = new Map();
+    this.fixedRecipeIds = new Set(); // 고정 레시피 ID 추적
+    this.settings = this.loadSettings(); // 설정 로드
     this.loadFromStorage();
+    this.initializeFixedRecipes(); // 고정 레시피 초기화
+  }
+
+  /**
+   * 설정 로드
+   */
+  loadSettings() {
+    try {
+      const data = localStorage.getItem('fixedRecipeSettings');
+      if (data) {
+        return JSON.parse(data);
+      }
+    } catch (e) {
+      console.error('Failed to load fixed recipe settings:', e);
+    }
+    // 기본 설정
+    return {
+      cargoRocketPartLossRate: 40, // 화물로켓부품 손실률 (0~100%)
+      rocketFuelConsumption: 50000, // 로켓 발사 연료소모량 (0~999k)
+      supplyViaCargoRocket: false // 연료 및 화물로켓 부품을 화물로켓을 통해 공급
+    };
+  }
+
+  /**
+   * 설정 저장
+   */
+  saveSettings() {
+    try {
+      localStorage.setItem('fixedRecipeSettings', JSON.stringify(this.settings));
+    } catch (e) {
+      console.error('Failed to save fixed recipe settings:', e);
+    }
+  }
+
+  /**
+   * 설정 업데이트
+   */
+  updateSettings(newSettings) {
+    this.settings = { ...this.settings, ...newSettings };
+    this.saveSettings();
+    // 고정 레시피 재초기화
+    this.initializeFixedRecipes();
+  }
+
+  /**
+   * 고정 레시피 초기화
+   */
+  initializeFixedRecipes() {
+    // 우주 화물 로켓 발사 레시피
+    const spaceCargoRocketLaunchId = 'space_cargo_rocket_launch';
+    
+    // 입력: 화물로켓부품 100개 고정
+    let cargoRocketPartsInput = 100;
+    let rocketFuel = this.settings.rocketFuelConsumption ?? 50000;
+    
+    // 출력: 손실률을 반영 (손실률 40%면 100개 입력 -> 60개 출력)
+    const lossRate = this.settings.cargoRocketPartLossRate ?? 40;
+    const cargoRocketPartsOutput = Math.floor(cargoRocketPartsInput * (100 - lossRate) / 100);
+    
+    // 화물로켓을 통해 공급하는 경우 입력 수량 #배
+    const supplyViaCargoRocket = this.settings.supplyViaCargoRocket ?? false;
+    if (supplyViaCargoRocket) {
+      let rocketFuelSlots = (rocketFuel / 100) / 10; // 1슬롯당 10연료
+      let cargoRocketPartsSlots = (cargoRocketPartsInput - cargoRocketPartsOutput) / 5; // 1슬롯당 5개 부품
+      let supplyMultiplier = 500 / (500 - rocketFuelSlots - cargoRocketPartsSlots);
+      cargoRocketPartsInput = cargoRocketPartsInput * supplyMultiplier;
+      rocketFuel = rocketFuel * supplyMultiplier;
+    }
+    
+    const rocketLaunchRecipe = new CustomRecipe({
+      id: spaceCargoRocketLaunchId,
+      name: '우주 화물 로켓 발사',
+      energy_required: 1,
+      ingredients: [
+        { type: 'item', name: 'rocket-fuel', amount: rocketFuel },
+        { type: 'item', name: 'se-cargo-rocket-section', amount: cargoRocketPartsInput }
+      ],
+      results: [
+        { type: 'item', name: 'se-cargo-rocket-section', amount: cargoRocketPartsOutput }
+      ],
+      category: 'rocket-launch'
+    });
+    this.recipes.set(spaceCargoRocketLaunchId, rocketLaunchRecipe);
+    this.fixedRecipeIds.add(spaceCargoRocketLaunchId);
   }
 
   /**
@@ -197,15 +283,31 @@ export class CustomRecipeManager {
    * 레시피 삭제
    */
   deleteRecipe(id) {
+    // 고정 레시피는 삭제 불가
+    if (this.fixedRecipeIds.has(id)) {
+      console.warn(`Cannot delete fixed recipe: ${id}`);
+      return false;
+    }
     this.recipes.delete(id);
     this.saveToStorage();
+    return true;
+  }
+
+  /**
+   * 레시피가 고정 레시피인지 확인
+   */
+  isFixedRecipe(id) {
+    return this.fixedRecipeIds.has(id);
   }
 
   /**
    * localStorage에 저장
    */
   saveToStorage() {
-    const data = Array.from(this.recipes.values()).map(r => r.toJSON());
+    // 고정 레시피는 저장하지 않음 (항상 초기화에서 생성됨)
+    const data = Array.from(this.recipes.values())
+      .filter(r => !this.fixedRecipeIds.has(r.id))
+      .map(r => r.toJSON());
     localStorage.setItem('customRecipes', JSON.stringify(data));
   }
 
