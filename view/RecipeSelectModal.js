@@ -141,7 +141,7 @@ export class RecipeSelectModal extends BaseModalView {
       }
       
       const tooltip = group.name || group.id || '';
-      const iconInfo = this.view.getIconInfo(firstResult.name, firstResult.type || 'item');
+      const iconInfo = ViewHelpers.getIconInfo(this.view.loadedData, firstResult.name, firstResult.type || 'item');
       if (!iconInfo) {
         console.warn('[RecipeSelectModal.getRecipeGroupsData] iconInfo is null for:', firstResult.name);
         continue;
@@ -178,8 +178,8 @@ export class RecipeSelectModal extends BaseModalView {
         continue;
       }
       
-      const recipeIcons = this.view.getRecipeIcon(customRecipe);
-      const iconHtml = this.view.createRecipeIcon(recipeIcons);
+      const recipeIcons = ViewHelpers.getRecipeIcon(customRecipe, this.view.loadedData);
+      const iconHtml = ViewHelpers.createRecipeIconHtml(recipeIcons);
       
       items.push({
         type: 'recipe',
@@ -249,8 +249,8 @@ export class RecipeSelectModal extends BaseModalView {
       if (itemSubgroup && recipesBySubgroup.has(itemSubgroup)) {
         const recipeName = this.view.locale.recipeName(recipe.id);
         if (!searchText || recipeName.toLowerCase().includes(searchText.toLowerCase())) {
-          const recipeIcons = this.view.getRecipeIcon(recipe);
-          const iconHtml = this.view.createRecipeIcon(recipeIcons);
+          const recipeIcons = ViewHelpers.getRecipeIcon(recipe, this.view.loadedData);
+          const iconHtml = ViewHelpers.createRecipeIconHtml(recipeIcons);
           
           console.log('[RecipeSelectModal.getItemGroupRecipesData] Adding recipe', recipe.id, 'to subgroup', itemSubgroup);
           recipesBySubgroup.get(itemSubgroup).push({

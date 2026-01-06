@@ -81,9 +81,6 @@ export class RecipeGroup {
         resultsMap = recipe.getResultsMap();
       }
 
-      console.log(`[RecipeGroupView.renderGroupDetail] Processing ${recipeEntry.type} '${recipeEntry.recipeId}' with multiplier ${multiplier}`);
-      console.log(`[RecipeGroupView.renderGroupDetail] Processing`, ingredientsMap, resultsMap);
-      
       // 입력 누적
       for (const [itemId, amount] of Object.entries(ingredientsMap)) {
         allInputs[itemId] = (allInputs[itemId] || 0) + (amount * multiplier);

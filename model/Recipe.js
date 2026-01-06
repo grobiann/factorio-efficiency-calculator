@@ -20,7 +20,6 @@ export class Recipe {
     // Icon data preservation
     this.icon = data.icon;
     this.icon_size = data.icon_size;
-    this.icon_mipmaps = data.icon_mipmaps;
     this.icons = data.icons;
   }
 

@@ -29,7 +29,7 @@ export class CustomRecipeView {
     icon.title = this.locale.itemName(itemId);
     
     // 아이콘 정보 가져오기
-    const iconInfo = this.getIconInfo(itemId);
+    const iconInfo = ViewHelpers.getIconInfo(this.loadedData, itemId);
     if (iconInfo && iconInfo.path) {
       icon.src = ViewHelpers.resolveAssetPath(iconInfo.path);
     } else {
@@ -47,37 +47,6 @@ export class CustomRecipeView {
     wrapper.appendChild(amountLabel);
     
     return wrapper;
-  }
-
-  /**
-   * 아이콘 정보 가져오기
-   */
-  getIconInfo(itemId) {
-    if (!this.loadedData || !this.loadedData.entries) return null;
-    
-    const searchTypes = ['item', 'module', 'fluid'];
-    
-    for (const searchType of searchTypes) {
-      const entry = this.loadedData.entries.find(e => e.name === itemId && e.type === searchType);
-      if (entry && entry.icon) {
-        return {
-          path: entry.icon,
-          size: entry.icon_size || 64,
-          mipmaps: entry.mipmap_count || 0
-        };
-      }
-    }
-    
-    const anyEntry = this.loadedData.entries.find(e => e.name === itemId);
-    if (anyEntry) {
-      return {
-        path: anyEntry.icon || null,
-        size: anyEntry.icon_size || 64,
-        mipmaps: anyEntry.mipmap_count || 0
-      };
-    }
-    
-    return null;
   }
 
   /**
@@ -113,7 +82,7 @@ export class CustomRecipeView {
         const displayResults = results.slice(0, maxIcons);
         
         for (const result of displayResults) {
-          const iconInfo = this.getIconInfo(result.name);
+          const iconInfo = ViewHelpers.getIconInfo(this.loadedData, result.name, result.type || 'item');
           if (iconInfo && iconInfo.path) {
             iconsHtml += `<img src="${iconInfo.path}" alt="${this.escapeHtml(this.locale.itemName(result.name))}" class="list-item-icon" />`;
           }

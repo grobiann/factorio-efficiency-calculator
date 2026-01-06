@@ -123,7 +123,7 @@ export class RecipeGroupView {
       html += '<span style="color: #999;">없음</span>';
     } else {
       for (const result of io.results) {
-        const iconInfo = this.getIconInfo(result.name, result.type || 'item');
+        const iconInfo = ViewHelpers.getIconInfo(this.loadedData, result.name, result.type || 'item');
         const amount = this.getExpectedAmount(result);
         html += this.createItemIcon(iconInfo, amount);
       }
@@ -137,7 +137,7 @@ export class RecipeGroupView {
       html += '<span style="color: #999;">없음</span>';
     } else {
       for (const ingredient of io.ingredients) {
-        const iconInfo = this.getIconInfo(ingredient.name, ingredient.type || 'item');
+        const iconInfo = ViewHelpers.getIconInfo(this.loadedData, ingredient.name, ingredient.type || 'item');
         html += this.createItemIcon(iconInfo, ingredient.amount, true, ingredient.name, ingredient.type);
       }
     }
@@ -191,8 +191,6 @@ export class RecipeGroupView {
       results = subIO.results;
     } else {
       // 일반 레시피 또는 커스텀 레시피인 경우
-      console.log('[RecipeGroupView.renderRecipeRow] 레시피 불러오기 - recipeId:', recipeEntry.recipeId);
-      console.log(this.customRecipeManager);
       let foundRecipe = null;
       if (this.customRecipeManager && typeof this.customRecipeManager.getRecipe === 'function') {
         foundRecipe = this.customRecipeManager.getRecipe(recipeEntry.recipeId);
@@ -204,6 +202,7 @@ export class RecipeGroupView {
       if (!recipe) {
         return `<div class="group-recipe-row">레시피를 찾을 수 없습니다: ${recipeEntry.recipeId}</div>`;
       }
+
       ingredients = recipe.ingredients || [];
       results = recipe.results || [];
     }
@@ -219,26 +218,31 @@ export class RecipeGroupView {
     html += '</div>';
 
     // 제작법 아이콘
+    console.log("===== 제작법 아이콘 =====");
     html += '<div class="group-recipe-icon">';
     const recipeIcons = this.getRecipeIcon(recipe);
     html += this.createRecipeIcon(recipeIcons);
     html += '</div>';
 
     // 생산품
+    console.log("===== 생산품 아이콘 =====");
     html += '<div class="group-recipe-results">';
     for (const result of results) {
-      const iconInfo = this.getIconInfo(result.name, result.type || 'item');
+      const iconInfo = ViewHelpers.getIconInfo(this.loadedData, result.name, result.type || 'item');
       const amount = this.getExpectedAmount(result) * (recipeEntry.multiplier || 1);
       html += this.createItemIcon(iconInfo, amount, true);
+      console.log('[RecipeGroupView.renderRecipeRow] 결과물 렌더링:', result.name, amount, iconInfo);
     }
     html += '</div>';
 
     // 재료
+    console.log("===== 재료 아이콘 =====");
     html += '<div class="group-recipe-ingredients">';
     for (const ingredient of ingredients) {
-      const iconInfo = this.getIconInfo(ingredient.name, ingredient.type || 'item');
+      const iconInfo = ViewHelpers.getIconInfo(this.loadedData, ingredient.name, ingredient.type || 'item');
       const amount = this.getExpectedAmount(ingredient) * (recipeEntry.multiplier || 1);
       html += this.createItemIcon(iconInfo, amount, true, ingredient.name, ingredient.type);
+      console.log('[RecipeGroupView.renderRecipeRow] 재료 렌더링:', ingredient.name, amount, iconInfo);
     }
     html += '</div>';
 
@@ -288,115 +292,7 @@ export class RecipeGroupView {
    * 레시피 아이콘 정보 가져오기
    */
   getRecipeIcon(recipe) {
-    // 레시피에 icons 배열이 있으면 사용
-    if (recipe.icons && Array.isArray(recipe.icons) && recipe.icons.length > 0) {
-      return recipe.icons.map(iconData => {
-        // 문자열인 경우 (아이템 이름)
-        if (typeof iconData === 'string') {
-          const iconInfo = this.getIconInfo(iconData);
-          // iconInfo가 null인 경우 아이콘 없음 표시
-          if (!iconInfo || !iconInfo.path) {
-            return {
-              path: null,
-              name: iconData,
-              scale: 1,
-              shift: { x: 0, y: 0 },
-              hasMipmap: false
-            };
-          }
-          return {
-            path: iconInfo.path,
-            name: iconInfo.name || iconData,
-            scale: 1,
-            shift: { x: 0, y: 0 },
-            hasMipmap: iconInfo.hasMipmap || false
-          };
-        }
-        // 객체인 경우
-        return {
-          path: iconData.icon,
-          name: recipe.name,
-          scale: iconData.scale || 1,
-          shift: iconData.shift || { x: 0, y: 0 },
-          tint: iconData.tint,
-          hasMipmap: iconData.icon_size > 0
-        };
-      });
-    }
-    
-    // 레시피 자체 단일 아이콘이 있으면 사용
-    if (recipe.icon) {
-      return [{
-        path: recipe.icon,
-        name: recipe.name,
-        scale: 1,
-        shift: { x: 0, y: 0 },
-        hasMipmap: recipe.icon_mipmaps > 0
-      }];
-    }
-    
-    // 없으면 생산품 아이콘 사용 (main_product 우선, 없으면 첫 번째 생산품)
-    if (recipe.results && recipe.results.length > 0) {
-      let productToUse = recipe.results[0]; // 기본값: 첫 번째 생산품
-      
-      // main_product가 있다면 해당 생산품을 찾음
-      if (recipe.main_product) {
-        const mainProduct = recipe.results.find(r => r.name === recipe.main_product);
-        if (mainProduct) {
-          productToUse = mainProduct;
-        }
-      }
-      
-      const iconInfo = this.getIconInfo(productToUse.name, productToUse.type || 'item');
-      if (iconInfo && iconInfo.path) {
-        return [{
-          path: iconInfo.path,
-          name: iconInfo.name,
-          scale: 1,
-          shift: { x: 0, y: 0 },
-          hasMipmap: iconInfo.hasMipmap || false
-        }];
-      }
-    }
-    
-    // 둘 다 없으면 아이콘 없음 표시
-    return [{
-      path: null,
-      name: recipe.name,
-      scale: 1,
-      shift: { x: 0, y: 0 },
-      hasMipmap: false
-    }];
-  }
-
-  /**
-   * 아이템/유체 아이콘 정보 가져오기
-   */
-  getIconInfo(itemId, itemType = 'item') {
-    const entries = this.loadedData.entries || [];
-    
-    // 타입별 우선순위
-    const typeOrder = itemType === 'fluid' ? ['fluid', 'item', 'module'] : ['item', 'module', 'fluid'];
-    
-    for (const type of typeOrder) {
-      const entry = entries.find(e => e.name === itemId && e.type === type);
-      if (entry && entry.icon) {
-        return {
-          path: entry.icon,
-          name: itemId,
-          size: entry.icon_size || 64,
-          mipmaps: entry.icon_mipmaps || 0
-        };
-      }
-    }
-    
-    console.log('[RecipeGroupView.getIconInfo] Icon not found in data - itemId:', itemId, 'itemType:', itemType, 'entries count:', entries.length);
-    return {
-      path: null,
-      name: itemId,
-      size: 64,
-      mipmaps: 0
-    };
+    return ViewHelpers.getRecipeIcon(recipe, this.loadedData);
   }
 
   /**
@@ -447,67 +343,6 @@ export class RecipeGroupView {
     const div = document.createElement('div');
     div.textContent = text;
     return div.innerHTML;
-  }
-
-  /**
-   * 아이콘 정보 가져오기
-   */
-  getIconInfo(itemId) {
-    if (!this.loadedData || !this.loadedData.entries) return null;
-    
-    const searchTypes = ['item', 'module', 'fluid'];
-    for (const searchType of searchTypes) {
-      const entry = this.loadedData.entries.find(e => e.name === itemId && e.type === searchType);
-      if (entry) {
-        // icons 배열이 있으면 첫 번째 아이콘 사용
-        if (Array.isArray(entry.icons) && entry.icons.length > 0) {
-          const iconObj = entry.icons[0];
-          return {
-            path: iconObj.icon || iconObj.path,
-            name: itemId,
-            size: iconObj.icon_size || entry.icon_size || 64,
-            mipmaps: iconObj.icon_mipmaps || entry.icon_mipmaps || 0
-          };
-        }
-        // icon 단일값이 있으면 사용
-        if (entry.icon) {
-          return {
-            path: entry.icon,
-            name: itemId,
-            size: entry.icon_size || 64,
-            mipmaps: entry.icon_mipmaps || 0
-          };
-        }
-      }
-    }
-    // 타입 무시하고 name만 일치하는 entry도 icons 배열 우선
-    const anyEntry = this.loadedData.entries.find(e => e.name === itemId);
-    if (anyEntry) {
-      if (Array.isArray(anyEntry.icons) && anyEntry.icons.length > 0) {
-        const iconObj = anyEntry.icons[0];
-        return {
-          path: iconObj.icon || iconObj.path,
-          name: itemId,
-          size: iconObj.icon_size || anyEntry.icon_size || 64,
-          mipmaps: iconObj.icon_mipmaps || anyEntry.icon_mipmaps || 0
-        };
-      }
-      if (anyEntry.icon) {
-        return {
-          path: anyEntry.icon,
-          name: itemId,
-          size: anyEntry.icon_size || 64,
-          mipmaps: anyEntry.icon_mipmaps || 0
-        };
-      }
-    }
-    console.warn('[RecipeGroupView.getIconInfo] Icon not found in data - itemId:', itemId, 'entries count:', this.loadedData.entries.length, 'anyEntry:', anyEntry);
-    return {
-      path: null,
-      name: itemId,
-      size: 64,
-      mipmaps: 0
-    };
   }
 
   /**

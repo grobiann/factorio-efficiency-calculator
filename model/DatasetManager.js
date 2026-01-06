@@ -89,7 +89,6 @@ export class DatasetManager {
         for (const itemType of itemTypes) {
           if (dataRaw[itemType]) {
             const itemCount = Object.keys(dataRaw[itemType]).length;
-            console.log(`  Processing ${itemType}: ${itemCount} entries`);
             const items = Object.entries(dataRaw[itemType])
               .filter(([id, data]) => data.always_show_products !== false && data.hidden !== true) // always_show_products = false 또는 hidden = true인 항목 제외
               .map(([id, data]) => ({
@@ -106,7 +105,6 @@ export class DatasetManager {
         
         // Process fluids
         if (dataRaw['fluid']) {
-          console.log(`  Processing fluid: ${Object.keys(dataRaw['fluid']).length} entries`);
           const fluids = Object.entries(dataRaw['fluid'])
             .filter(([id, data]) => data.always_show_products !== false && data.hidden !== true) // always_show_products = false 또는 hidden = true인 항목 제외
             .map(([id, data]) => ({
@@ -121,7 +119,6 @@ export class DatasetManager {
         
         // Process recipes
         if (dataRaw['recipe']) {
-          console.log(`  Processing recipe: ${Object.keys(dataRaw['recipe']).length} entries`);
           const recipes = Object.entries(dataRaw['recipe'])
             .filter(([id, data]) => data.always_show_products !== false && data.hidden !== true) // always_show_products = false 또는 hidden = true인 항목 제외
             .map(([id, data]) => ({
@@ -138,7 +135,6 @@ export class DatasetManager {
         
         // Process categories (item-group, item-subgroup, recipe-category)
         if (dataRaw['item-group']) {
-          console.log(`  Processing item-group: ${Object.keys(dataRaw['item-group']).length} entries`);
           const groups = Object.entries(dataRaw['item-group'])
             .filter(([id, data]) => data.enabled !== false) // enabled = false인 항목 제외
             .map(([id, data]) => ({
@@ -166,7 +162,6 @@ export class DatasetManager {
         }
         
         if (dataRaw['recipe-category']) {
-          console.log(`  Processing recipe-category: ${Object.keys(dataRaw['recipe-category']).length} entries`);
           const recipeCategories = Object.entries(dataRaw['recipe-category'])
             .filter(([id, data]) => data.enabled !== false) // enabled = false인 항목 제외
             .map(([id, data]) => ({

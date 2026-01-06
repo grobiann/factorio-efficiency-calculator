@@ -101,7 +101,6 @@ export class ViewHelpers {
         return {
           path: iconData.icon,
           size: iconData.icon_size || 64,
-          mipmaps: iconData.icon_mipmaps || 0,
           name: itemId
         };
       });
@@ -119,7 +118,6 @@ export class ViewHelpers {
         return {
           path: entry.icon,
           size: entry.icon_size || 64,
-          mipmaps: entry.mipmap_count || 0,
           name: itemId
         };
       }
@@ -132,7 +130,6 @@ export class ViewHelpers {
       return {
         path: anyEntry.icon,
         size: anyEntry.icon_size || 64,
-        mipmaps: anyEntry.mipmap_count || 0,
         name: itemId
       };
     }
@@ -162,43 +159,67 @@ export class ViewHelpers {
     let html = `<div class="item-icon-slot ${showBorder ? 'with-border' : 'no-border'} ${hasAmount ? 'with-amount' : ''}" ${dataAttrs}>`;
     html += '<div class="item-icon-container">';
     
-    var targetName = ["se-kr-cat-ammonia", "kr-ammonia"];
-    if(iconArray[0] && targetName.includes(iconArray[0].name))
+    var targetName = ["se-space-water-decontamination"];
+    if(iconArray.length > 1 && targetName.includes(iconArray[1].name))
     {
-      console.log('iconArray:', iconArray);
+      console.log('선택된 아이콘:', iconArray);
     }
 
     if (iconArray.length > 0 && iconArray[0]) {
+      // 먼저 최대 scale 값을 찾기
+      let maxScale = 0;
+      for (let i = 0; i < iconArray.length; i++) {
+        const icon = iconArray[i];
+        if (!icon || !icon.path) continue;
+        if (icon.path && icon.path.toLowerCase().includes('blank')) continue;
+        
+        const scale = icon.scale !== undefined ? icon.scale : 0.5;
+        if (scale > maxScale) {
+          maxScale = scale;
+        }
+      }
+      
+      // maxScale이 0이면 1로 설정 (나눗셈 오류 방지)
+      if (maxScale === 0) maxScale = 1;
+      
       // 모든 아이콘 레이어 렌더링
+      let renderedCount = 0; // 실제로 렌더링된 아이콘 수
+      
       for (let i = 0; i < iconArray.length; i++) {
         const icon = iconArray[i];
         if (!icon || !icon.path) continue;
         
-        const iconSize = icon.size || 32;
-        const mipmaps = icon.mipmaps || 0;
-        let scale = icon.scale !== undefined ? icon.scale : 1;
-        const tint = icon.tint;
+        // blank 아이콘은 무시
+        if (icon.path && icon.path.toLowerCase().includes('blank')) {
+          continue;
+        }
         
-        // shift 처리: 첫 번째 아이콘은 기본 (0, 0), 두 번째 이후는 shift 값이 있으면 사용, 없으면 우상단
-        let shift;
-        if (i === 0) {
-          shift = icon.shift || { x: 0, y: 0 };
-          scale = 1;
-        } else {
-          if (icon.shift && (icon.shift.x !== 0 || icon.shift.y !== 0)) {
-            shift = icon.shift;
-            scale = icon.scale !== undefined ? icon.scale : 0.5;
-          } else {
-            shift = { x: 0.5, y: -0.5 };
-            scale = icon.scale !== undefined ? icon.scale : 0.5;
-          }
-        }
+        const iconSize = icon.size || 32;
 
-        // mipmap을 고려한 총 너비 계산
+    if(iconArray.length > 1 && targetName.includes(iconArray[1].name))
+    {
+      console.log('선택된 아이콘 스케일:', icon.scale);
+    }
+
+
+        let scale = icon.scale !== undefined ? icon.scale : 0.5;
+        const tint = icon.tint;
+        const shift = icon.shift || { x: 0, y: 0 };
+
+        if(iconArray.length > 1 && targetName.includes(iconArray[1].name))
+    {
+      console.log('선택된 아이콘 스케일2:', scale);
+    }
+
+        // 최대 scale을 기준으로 정규화
+        scale = scale / maxScale;
+
+        if(iconArray.length > 1 && targetName.includes(iconArray[1].name))
+    {
+      console.log('선택된 아이콘 스케일3:', scale, 'maxScale:', maxScale);
+    }
+
         let totalWidth = iconSize;
-        for (let j = 1; j < mipmaps; j++) {
-          totalWidth += iconSize / Math.pow(2, j);
-        }
         
         // 32px 기준으로 스케일 조정
         const baseScale = 32 / iconSize;
@@ -207,8 +228,8 @@ export class ViewHelpers {
         const imgHeight = iconSize * finalScale;
         
         // shift는 픽셀 단위로 적용 (Factorio는 아이콘 크기 기준 비율)
-        const shiftX = (shift.x || 0) * 32;
-        const shiftY = (shift.y || 0) * 32;
+        const shiftX = (shift[0] || 0) * baseScale;
+        const shiftY = (shift[1] || 0) * baseScale;
         
         // tint 처리
         let filterStyle = '';
@@ -220,15 +241,14 @@ export class ViewHelpers {
           filterStyle = `filter: drop-shadow(0 0 0 rgba(${r},${g},${b},${a}));`;
         }
 
-
-
-        if(targetName.includes(iconArray[0].name))
-    {
-      console.log('[ViewHelpers.createIconHtml] Rendering icon:', icon.path, 'size:', iconSize, 'mipmaps:', mipmaps, 'finalScale:', finalScale, 'imgWidth:', imgWidth, 'imgHeight:', imgHeight, 'shiftX:', shiftX, 'shiftY:', shiftY, 'filterStyle:', filterStyle, 'baseScale:', baseScale, 'finalScale:', finalScale);
-    }
+        if(iconArray.length > 1 && targetName.includes(iconArray[1].name))
+        {
+          console.log('선택된 아이콘: icon:', icon.path, 'size:', iconSize, 'finalScale:', finalScale, 'imgWidth:', imgWidth, 'imgHeight:', imgHeight, 'shiftX:', shiftX, 'shiftY:', shiftY, 'filterStyle:', filterStyle, 'baseScale:', baseScale, 'finalScale:', finalScale);
+        }
         
-        const layerClass = i === 0 ? 'item-icon-main' : 'item-icon-layer';
-        html += `<img src="${ViewHelpers.resolveAssetPath(icon.path)}" alt="${icon.name || ''}" class="${layerClass}" style="width: ${imgWidth}px; height: ${imgHeight}px; transform: translate(${shiftX}px, ${shiftY}px) ${filterStyle}">`;
+        const layerClass = renderedCount === 0 ? 'item-icon-main' : 'item-icon-layer';
+        html += `<img src="${ViewHelpers.resolveAssetPath(icon.path)}" alt="${icon.name || ''}" class="${layerClass}" style="width: ${imgWidth}px; height: ${imgHeight}px; transform: translate(${shiftX}px, ${shiftY}px); ${filterStyle}">`;
+        renderedCount++;
       }
       
       // 아이콘이 하나도 없는 경우
@@ -412,27 +432,22 @@ export class ViewHelpers {
             return {
               path: '__base__/graphics/icons/signal/signal-question-mark.png',
               name: iconData,
-              scale: 1,
               shift: { x: 0, y: 0 },
-              hasMipmap: false
             };
           }
           return {
             path: iconInfo.path,
             name: iconInfo.name || iconData,
-            scale: 1,
             shift: { x: 0, y: 0 },
-            hasMipmap: iconInfo.hasMipmap || false
           };
         }
         // 객체인 경우
         return {
           path: iconData.icon,
           name: recipe.name,
-          scale: iconData.scale || 1,
+          scale: iconData.scale,
           shift: iconData.shift || { x: 0, y: 0 },
           tint: iconData.tint,
-          hasMipmap: iconData.icon_size > 0
         };
       });
     }
@@ -442,9 +457,7 @@ export class ViewHelpers {
       return [{
         path: recipe.icon,
         name: recipe.name,
-        scale: 1,
         shift: { x: 0, y: 0 },
-        hasMipmap: recipe.icon_mipmaps > 0
       }];
     }
     
@@ -465,9 +478,7 @@ export class ViewHelpers {
         return [{
           path: iconInfo.path,
           name: iconInfo.name,
-          scale: 1,
           shift: { x: 0, y: 0 },
-          hasMipmap: iconInfo.hasMipmap || false
         }];
       }
     }
@@ -476,9 +487,7 @@ export class ViewHelpers {
     return [{
       path: '__base__/graphics/icons/signal/signal-question-mark.png',
       name: recipe.name,
-      scale: 1,
       shift: { x: 0, y: 0 },
-      hasMipmap: false
     }];
   }
 
