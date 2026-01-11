@@ -208,3 +208,124 @@
   padding: 12px;
   text-align: center;
 }
+
+/* ===== Tree View Styles ===== */
+.tree-folder {
+  margin: 0;
+}
+
+.tree-folder-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 8px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background 0.15s;
+  user-select: none;
+}
+
+.tree-folder-header:hover {
+  background: #f0f0f0;
+}
+
+.tree-folder-icon {
+  font-size: 10px;
+  color: #666;
+  width: 12px;
+  transition: transform 0.2s;
+}
+
+.tree-folder-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: #444;
+}
+
+.tree-folder-content {
+  overflow: hidden;
+  transition: max-height 0.3s ease-out;
+}
+
+.tree-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4px 8px;
+  margin: 0;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: all 0.15s;
+  background: #fafafa;
+  border-left: 2px solid transparent;
+}
+
+.tree-item:hover {
+  background: #f0f0f0;
+  border-left-color: #4a9eff;
+}
+
+.tree-item.selected {
+  background: #e3f2fd;
+  border-left-color: #2196F3;
+}
+
+.tree-item-name {
+  font-size: 13px;
+  color: #333;
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.tree-item-icons {
+  display: flex;
+  gap: 2px;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.tree-item-icon-wrapper {
+  width: 24px;
+  height: 24px;
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+.tree-item-icon-wrapper .item-icon-slot {
+  width: 24px !important;
+  height: 24px !important;
+  min-width: 24px !important;
+  min-height: 24px !important;
+}
+
+.tree-item-icon-wrapper .item-icon-container {
+  width: 24px !important;
+  height: 24px !important;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tree-item-icon-wrapper .item-icon {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain;
+}
+
+.tree-item-icon {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+  border-radius: 2px;
+  border: 1px solid #ddd;
+  background: #fff;
+}
+
+.tree-item-more {
+  font-size: 10px;
+  color: #999;
+  margin-left: 2px;
+}

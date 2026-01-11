@@ -27,6 +27,7 @@ export class CompareView {
     this.compareGroups = [];
     this.nextGroupId = 1;
     this.selectedGroupIndex = 0;
+    this.expandedFolders = new Set(); // 펼쳐진 폴더 상태 저장
     
     // RecipeSelectModal 생성 (콜백 방식)
     this.recipeSelectModal = new RecipeSelectModal(
@@ -82,19 +83,117 @@ export class CompareView {
     if (this.compareGroups.length === 0) {
       html += '<p style="color: #999; text-align: center; padding: 20px;">비교그룹이 없습니다.</p>';
     } else {
-      for (let i = 0; i < this.compareGroups.length; i++) {
-        const group = this.compareGroups[i];
-        const isActive = i === this.selectedGroupIndex;
-        html += `
-          <div class="list-item ${isActive ? 'selected' : ''}" data-index="${i}">
-            <span class="list-item-name">${ViewHelpers.escapeHtml(group.name)}</span>
-            <span class="list-item-count">(${group.items.length})</span>
-          </div>
-        `;
-      }
+      html += this._buildGroupTree();
     }
     
     html += '</div></div>';
+    return html;
+  }
+
+  /**
+   * 그룹 트리 구조 렌더링
+   * @private
+   */
+  _buildGroupTree() {
+    const tree = this._buildTree();
+    return this._renderTreeNode(tree, 0, '');
+  }
+
+  /**
+   * 트리 구조 생성
+   * @private
+   */
+  _buildTree() {
+    const root = { children: {}, items: [] };
+    
+    for (let i = 0; i < this.compareGroups.length; i++) {
+      const group = this.compareGroups[i];
+      const parts = group.name.split('/');
+      let current = root;
+      
+      for (let j = 0; j < parts.length - 1; j++) {
+        const part = parts[j].trim();
+        if (!current.children[part]) {
+          current.children[part] = { children: {}, items: [] };
+        }
+        current = current.children[part];
+      }
+      
+      const lastName = parts[parts.length - 1].trim();
+      current.items.push({ name: lastName, fullName: group.name, index: i, group });
+    }
+    
+    return root;
+  }
+
+  /**
+   * 트리 노드를 HTML로 렌더링
+   * @private
+   */
+  _renderTreeNode(node, depth, path = '') {
+    let html = '';
+    
+    const folders = Object.keys(node.children).sort();
+    for (const folderName of folders) {
+      const folder = node.children[folderName];
+      const folderPath = path ? `${path}/${folderName}` : folderName;
+      // base64 인코딩으로 안전한 ID 생성
+      const folderId = 'folder-' + btoa(encodeURIComponent(folderPath)).replace(/[^a-zA-Z0-9]/g, '_');
+      const isExpanded = this.expandedFolders.has(folderId);
+      
+      html += `
+        <div class="tree-folder" style="padding-left: ${depth * 16}px;">
+          <div class="tree-folder-header" data-folder-id="${folderId}">
+            <span class="tree-folder-icon">${isExpanded ? '▼' : '▶'}</span>
+            <span class="tree-folder-name">${ViewHelpers.escapeHtml(folderName)}</span>
+          </div>
+          <div class="tree-folder-content" id="${folderId}" style="display: ${isExpanded ? 'block' : 'none'};">
+            ${this._renderTreeNode(folder, depth + 1, folderPath)}
+          </div>
+        </div>
+      `;
+    }
+    
+    const sortedItems = node.items.sort((a, b) => a.name.localeCompare(b.name));
+    for (const item of sortedItems) {
+      const isActive = item.index === this.selectedGroupIndex;
+      const group = item.group;
+      
+      // 그룹의 아이템들로부터 아이콘 생성 (최대 3개)
+      let iconsHtml = '';
+      const maxIcons = 3;
+      const displayItems = group.items.slice(0, maxIcons);
+      
+      for (const groupItem of displayItems) {
+        // 각 아이템의 결과물 첫 번째 아이콘 가져오기
+        const io = this._calculateIO(groupItem);
+        const results = io.results || [];
+        if (results.length > 0) {
+          const result = results[0];
+          const iconInfo = ViewHelpers.getIconInfo(this.loadedData, result.name, result.type || 'item');
+          if (iconInfo) {
+            const iconHtml = ViewHelpers.createIconHtml(iconInfo, { 
+              showBorder: true,
+              targetSize: 24
+            });
+            iconsHtml += `<span class="tree-item-icon-wrapper">${iconHtml}</span>`;
+            break; // 첫 번째 아이콘만
+          }
+        }
+      }
+      
+      if (group.items.length > maxIcons) {
+        iconsHtml += `<span class="tree-item-more">+${group.items.length - maxIcons}</span>`;
+      }
+      
+      html += `
+        <div class="tree-item ${isActive ? 'selected' : ''}" data-index="${item.index}" style="padding-left: ${depth * 16}px;">
+          <span class="tree-item-name">${ViewHelpers.escapeHtml(item.name)}</span>
+          <div class="tree-item-icons">${iconsHtml}</div>
+        </div>
+      `;
+    }
+    
     return html;
   }
 
@@ -222,8 +321,9 @@ export class CompareView {
       return '<span class="compare-io-empty">-</span>';
     }
     
-    // 수량이 0.5 이하인 항목 필터링
-    const visibleItems = items.filter(item => item.amount > 0.1);
+    // 수량이 0.5 이하인 항목 필터링 및 이름순 정렬
+    const visibleItems = items.filter(item => item.amount > 0.5)
+      .sort((a, b) => a.name.localeCompare(b.name));
     
     if (visibleItems.length === 0) {
       return '<span class="compare-io-empty">-</span>';
@@ -261,7 +361,6 @@ export class CompareView {
    * @private
    */
   _showSelectionModal() {
-    console.log('[CompareView] 모달 열기 시작');
     this.recipeSelectModal.show();
   }
 
@@ -270,7 +369,6 @@ export class CompareView {
    * @private
    */
   _onRecipeSelected(type, id) {
-    console.log('[CompareView] 선택된 항목:', type, id);
     let data;
     if (type === 'group') {
       data = this.groups.get(id);
@@ -383,7 +481,34 @@ export class CompareView {
       addGroupBtn.addEventListener('click', () => this._addGroup());
     }
 
-    // 그룹 선택
+    // 폴더 토글
+    container.querySelectorAll('.tree-folder-header').forEach(header => {
+      header.addEventListener('click', () => {
+        const folderId = header.dataset.folderId;
+        const content = header.parentElement.querySelector('.tree-folder-content');
+        const icon = header.querySelector('.tree-folder-icon');
+        
+        if (content && content.style.display === 'none') {
+          content.style.display = 'block';
+          icon.textContent = '▼';
+          this.expandedFolders.add(folderId);
+        } else if (content) {
+          content.style.display = 'none';
+          icon.textContent = '▶';
+          this.expandedFolders.delete(folderId);
+        }
+      });
+    });
+
+    // 그룹 선택 (tree-item)
+    container.querySelectorAll('.tree-item').forEach(item => {
+      item.addEventListener('click', () => {
+        this.selectedGroupIndex = parseInt(item.dataset.index);
+        this.render(document);
+      });
+    });
+
+    // 기존 list-item도 지원 (호환성)
     const groupItems = container.querySelectorAll('.list-item');
     groupItems.forEach(item => {
       item.addEventListener('click', () => {
@@ -449,7 +574,6 @@ export class CompareView {
    * @private
    */
   _navigateToRecipeGroup(itemType, itemId) {
-    console.log('[CompareView] 레시피 그룹 탭으로 이동:', itemType, itemId);
     if (itemType === ENTRY_TYPES.GROUP) {
       // 레시피 그룹인 경우 해당 그룹 선택
       this.recipeGroupView.selectedGroupId = itemId;
@@ -457,7 +581,6 @@ export class CompareView {
       // 일반 레시피 또는 커스텀 레시피인 경우 새 레시피 그룹 생성
       // 커스텀 레시피 매니저에서 먼저 찾고, 없으면 allRecipes에서 찾음
       const recipe = this.customRecipeManager.getRecipe(itemId) || this.allRecipes[itemId];
-      console.log('[CompareView] 새 레시피 그룹 생성용 레시피:', recipe);
       if (recipe) {
         this.recipeGroupView.addGroup();
         const newGroupId = this.recipeGroupView.selectedGroupId;
@@ -539,21 +662,37 @@ export class CompareView {
     const sidebar = container.querySelector('.list-container');
     if (!sidebar) return;
 
+    // 폴더 구조로 렌더링
     let html = '';
-    for (let i = 0; i < this.compareGroups.length; i++) {
-      const group = this.compareGroups[i];
-      const isActive = i === this.selectedGroupIndex;
-      html += `
-        <div class="list-item ${isActive ? 'selected' : ''}" data-index="${i}">
-          <span class="list-item-name">${ViewHelpers.escapeHtml(group.name)}</span>
-          <span class="list-item-count">(${group.items.length})</span>
-        </div>
-      `;
+    if (this.compareGroups.length === 0) {
+      html = '<p style="color: #999; text-align: center; padding: 20px;">비교그룹이 없습니다.</p>';
+    } else {
+      html = this._buildGroupTree();
     }
     sidebar.innerHTML = html;
     
     // 이벤트 재등록
-    const groupItems = sidebar.querySelectorAll('.list-item');
+    // 폴더 토글 이벤트
+    sidebar.querySelectorAll('.tree-folder-header').forEach(header => {
+      header.addEventListener('click', () => {
+        const folderId = header.dataset.folderId;
+        const content = header.parentElement.querySelector('.tree-folder-content');
+        const icon = header.querySelector('.tree-folder-icon');
+        
+        if (content && content.style.display === 'none') {
+          content.style.display = 'block';
+          icon.textContent = '▼';
+          this.expandedFolders.add(folderId);
+        } else if (content) {
+          content.style.display = 'none';
+          icon.textContent = '▶';
+          this.expandedFolders.delete(folderId);
+        }
+      });
+    });
+    
+    // 그룹 선택 이벤트
+    const groupItems = sidebar.querySelectorAll('.tree-item');
     groupItems.forEach(item => {
       item.addEventListener('click', () => {
         this.selectedGroupIndex = parseInt(item.dataset.index);
@@ -593,7 +732,7 @@ export class CompareView {
       };
       localStorage.setItem(STORAGE_KEYS.COMPARE_GROUPS, JSON.stringify(data));
     } catch (e) {
-      console.error('Failed to save compare groups:', e);
+      // 저장 실패 시 무시
     }
   }
 
@@ -630,7 +769,7 @@ export class CompareView {
         this.compareGroups.length - 1
       );
     } catch (e) {
-      console.error('Failed to load compare groups:', e);
+      // 로드 실패 시 무시
     }
   }
 

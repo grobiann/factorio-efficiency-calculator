@@ -27,14 +27,14 @@ export class RecipeGroup {
    * @returns {Object} { ingredients: [...], results: [...] }
    */
   calculateIO(allRecipes, allGroups = new Map(), visited = new Set(), customRecipeManager = null) {
-    // 순환 참조 감지
+    // 순환 참조 감지 (현재 호출 스택에 이미 있는 경우)
     if (visited.has(this.id)) {
-      console.warn(`순환 참조 감지: ${this.id}`);
       return { ingredients: [], results: [] };
     }
     
-    // 현재 그룹을 방문 목록에 추가
-    visited.add(this.id);
+    // 현재 그룹을 방문 목록에 추가 (호출 스택 추적용)
+    const newVisited = new Set(visited);
+    newVisited.add(this.id);
     
     const allInputs = {}; // item -> total amount needed
     const allOutputs = {}; // item -> total amount produced
@@ -49,7 +49,7 @@ export class RecipeGroup {
         const group = allGroups.get(recipeEntry.recipeId);
         if (!group) continue;
         
-        const groupIO = group.calculateIO(allRecipes, allGroups, visited, customRecipeManager);
+        const groupIO = group.calculateIO(allRecipes, allGroups, newVisited, customRecipeManager);
         
         // 레시피 그룹의 입출력을 맵으로 변환
         ingredientsMap = {};
@@ -160,11 +160,25 @@ export class RecipeGroup {
    * @param {Map} allGroups - 모든 그룹 (배수 자동 계산용, 선택사항)
    */
   addRecipe(recipeId, multiplier = 1, type = 'recipe', allRecipes = null, allGroups = null) {
-    this.recipes.push({ recipeId, multiplier, type });
+    // 같은 레시피가 이미 있는지 확인
+    const existingIndex = this.recipes.findIndex(r => r.recipeId === recipeId && r.type === type);
     
-    // 추가 후 배수 자동 계산
-    if (allRecipes && allGroups) {
-      this.calculateMultiplier(this.recipes.length - 1, allRecipes, allGroups);
+    if (existingIndex >= 0) {
+      // 같은 레시피가 있으면 multiplier를 합산
+      this.recipes[existingIndex].multiplier += multiplier;
+      
+      // 배수 자동 계산
+      if (allRecipes && allGroups) {
+        this.calculateMultiplier(existingIndex, allRecipes, allGroups);
+      }
+    } else {
+      // 새 레시피 추가
+      this.recipes.push({ recipeId, multiplier, type });
+      
+      // 추가 후 배수 자동 계산
+      if (allRecipes && allGroups) {
+        this.calculateMultiplier(this.recipes.length - 1, allRecipes, allGroups);
+      }
     }
   }
 

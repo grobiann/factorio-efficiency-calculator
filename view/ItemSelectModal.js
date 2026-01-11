@@ -29,7 +29,6 @@ export class ItemSelectModal extends BaseModalView {
     // item-group 기반 버튼 추가 (레시피가 있는 그룹만)
     const itemGroups = this.getItemGroups();
     let firstGroupWithItems = null;
-    console.log(`[ItemSelectModal.show] Found ${itemGroups.length} item-groups`, itemGroups);
     for (const itemGroup of itemGroups) {
       // 아이템이 있는 item-group만 탭 버튼으로 추가
       const hasItems = this.hasEntriesForItemGroup(itemGroup.name, 'item');

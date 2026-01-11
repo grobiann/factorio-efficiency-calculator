@@ -57,7 +57,6 @@ export class DatasetConfigView {
           applyButton.disabled = false;
         }, 1500);
       } catch (error) {
-        console.error("Failed to apply dataset changes:", error);
         applyButton.textContent = "오류 발생";
         setTimeout(() => {
           applyButton.textContent = "데이터 적용";

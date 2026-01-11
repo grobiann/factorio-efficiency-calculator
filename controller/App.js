@@ -224,7 +224,6 @@ export async function startApp() {
       const zonesArray = existingZones ? JSON.parse(existingZones) : null;
       if (samples.recipeGroups && (!zonesArray || zonesArray.length === 0)) {
         localStorage.setItem('recipeGroups', JSON.stringify(samples.recipeGroups));
-        console.log('Loaded sample recipe groups:', samples.recipeGroups);
       }
       
       // Load sample custom recipes
@@ -232,7 +231,6 @@ export async function startApp() {
       const recipesArray = existingRecipes ? JSON.parse(existingRecipes) : null;
       if (samples.customRecipes && (!recipesArray || recipesArray.length === 0)) {
         localStorage.setItem('customRecipes', JSON.stringify(samples.customRecipes));
-        console.log('Loaded sample custom recipes:', samples.customRecipes);
       }
       
       // Load sample compare groups
@@ -245,10 +243,9 @@ export async function startApp() {
           selectedIndex: 0
         };
         localStorage.setItem('compareGroups', JSON.stringify(newGroupsData));
-        console.log('Loaded sample compare groups:', samples.compareGroups);
       }
     } catch (e) {
-      console.error('Failed to load sample data:', e);
+      // 샘플 데이터 로드 실패 시 무시
     }
   }
   

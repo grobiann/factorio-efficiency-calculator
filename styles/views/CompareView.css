@@ -186,3 +186,10 @@
 .compare-add-btn:hover .compare-plus-icon {
   transform: rotate(90deg);
 }
+
+/* ===== Tree View Styles for CompareView ===== */
+.tree-item-count {
+  font-size: 11px;
+  color: #999;
+  margin-left: 4px;
+}

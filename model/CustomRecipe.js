@@ -173,7 +173,7 @@ export class CustomRecipeManager {
         return JSON.parse(data);
       }
     } catch (e) {
-      console.error('Failed to load fixed recipe settings:', e);
+      // 로드 실패 시 기본값 사용
     }
     // 기본 설정
     return {
@@ -190,7 +190,7 @@ export class CustomRecipeManager {
     try {
       localStorage.setItem('fixedRecipeSettings', JSON.stringify(this.settings));
     } catch (e) {
-      console.error('Failed to save fixed recipe settings:', e);
+      // 저장 실패 시 무시
     }
   }
 
@@ -285,7 +285,6 @@ export class CustomRecipeManager {
   deleteRecipe(id) {
     // 고정 레시피는 삭제 불가
     if (this.fixedRecipeIds.has(id)) {
-      console.warn(`Cannot delete fixed recipe: ${id}`);
       return false;
     }
     this.recipes.delete(id);
@@ -325,7 +324,7 @@ export class CustomRecipeManager {
         });
       }
     } catch (e) {
-      console.error('Failed to load custom recipes:', e);
+      // 로드 실패 시 무시
     }
   }
 

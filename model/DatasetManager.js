@@ -24,12 +24,8 @@ export class DatasetManager {
         }
       });
 
-      console.log("Load dataset config:\ndatasets:", this.datasets);
-      console.log("Load dataset config:\nenabledDatasets:", this.enabledDatasets);
-
       return this.datasets;
     } catch (error) {
-      console.error("Failed to load dataset config:", error);
       return [];
     }
   }
@@ -76,7 +72,6 @@ export class DatasetManager {
       try {
         const filePath = Array.isArray(dataset.files) ? dataset.files[0] : dataset.files;
         const dataRaw = await fetch(`data/${filePath}`).then(r => r.json());
-        console.log(`Loaded dataset ${dataset.id} from ${filePath}`, dataRaw);
         
         // Process each type in data.raw
         let totalItems = 0;
@@ -174,7 +169,7 @@ export class DatasetManager {
           totalCategories += recipeCategories.length;
         }
       } catch (error) {
-        console.error(`Failed to load dataset ${dataset.id}:`, error);
+        // 데이터셋 로드 실패 시 무시
       }
     }
 
@@ -249,7 +244,6 @@ export class DatasetManager {
       others: others
     };
     
-    console.log("Loaded data:", this.loadedData);
     return this.loadedData;
   }
 

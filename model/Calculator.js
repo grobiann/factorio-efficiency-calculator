@@ -2,7 +2,6 @@ export class Calculator {
   static calculateBaseCost(recipe, productId, targetPerSecond) {
     const producedPerSecond = recipe.outputPerSecond(productId);
     if (!producedPerSecond) {
-      console.warn(`Recipe ${recipe.id} does not produce ${productId} (or has zero output); skipping.`);
       return {};
     }
     const scale = targetPerSecond / producedPerSecond;
@@ -23,7 +22,6 @@ export class Calculator {
    */
   static calculateRecursivePerItem(productId, recipe, targetCount, recipesByProduct, visited = new Set()) {
     if (visited.has(productId)) {
-      //console.warn(`Cycle detected while expanding ${productId}; stopping recursion.`);
       return {};
     }
     const nextVisited = new Set(visited);
@@ -33,7 +31,6 @@ export class Calculator {
     const resultsMap = recipe.getResultsMap();
     const producedPerCraft = resultsMap[productId] || 0;
     if (!producedPerCraft) {
-      console.warn(`Recipe ${recipe.id} does not produce ${productId} (or zero output); skipping per-item expansion.`);
       return {};
     }
 

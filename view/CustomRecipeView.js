@@ -11,6 +11,7 @@ export class CustomRecipeView {
     this.loadedData = loadedData;
     this.locale = locale;
     this.selectedRecipeId = null;
+    this.expandedFolders = new Set(); // 펼쳐진 폴더 상태 저장
     this.itemSelectModal = new ItemSelectModal(this);
   }
 
@@ -72,46 +73,7 @@ export class CustomRecipeView {
     if (recipes.length === 0) {
       html += '<p style="color: #999; text-align: center; padding: 20px;">커스텀 레시피가 없습니다.</p>';
     } else {
-      // 고정 레시피를 먼저, 일반 레시피를 나중에 정렬
-      const sortedRecipes = [...recipes].sort((a, b) => {
-        const aFixed = this.manager.isFixedRecipe(a.id);
-        const bFixed = this.manager.isFixedRecipe(b.id);
-        if (aFixed && !bFixed) return -1;
-        if (!aFixed && bFixed) return 1;
-        return 0;
-      });
-      
-      for (const recipe of sortedRecipes) {
-        const isSelected = recipe.id === this.selectedRecipeId;
-        const isFixed = this.manager.isFixedRecipe(recipe.id);
-        const results = recipe.results || [];
-        
-        // 결과물 아이콘 HTML 생성
-        let iconsHtml = '';
-        const maxIcons = 1;
-        const displayResults = results.slice(0, maxIcons);
-        
-        for (const result of displayResults) {
-          const iconInfo = ViewHelpers.getIconInfo(this.loadedData, result.name, result.type || 'item');
-          if (iconInfo && iconInfo.path) {
-            const iconPath = ViewHelpers.resolveAssetPath(iconInfo.path);
-            iconsHtml += `<img src="${iconPath}" alt="${this.escapeHtml(this.locale.itemName(result.name))}" class="list-item-icon" />`;
-          }
-        }
-        
-        if (results.length > maxIcons) {
-          iconsHtml += `<span class="list-item-more">+${results.length - maxIcons}</span>`;
-        }
-        
-        const displayName = isFixed ? `[고정] ${recipe.name}` : recipe.name;
-        
-        html += `
-          <div class="list-item ${isSelected ? 'selected' : ''}" data-recipe-id="${recipe.id}">
-            <span class="list-item-name">${this.escapeHtml(displayName)}</span>
-            <div class="list-item-icons">${iconsHtml}</div>
-          </div>
-        `;
-      }
+      html += this.renderRecipeTree(recipes);
     }
     
     html += '</div></div>';
@@ -136,6 +98,113 @@ export class CustomRecipeView {
 
     // 이벤트 리스너 등록
     this.attachEventListeners(container);
+  }
+
+  /**
+   * 레시피 트리 구조 렌더링
+   */
+  renderRecipeTree(recipes) {
+    // 고정 레시피를 먼저, 일반 레시피를 나중에 정렬
+    const sortedRecipes = [...recipes].sort((a, b) => {
+      const aFixed = this.manager.isFixedRecipe(a.id);
+      const bFixed = this.manager.isFixedRecipe(b.id);
+      if (aFixed && !bFixed) return -1;
+      if (!aFixed && bFixed) return 1;
+      return 0;
+    });
+    
+    const tree = this.buildRecipeTree(sortedRecipes);
+    return this.renderTreeNode(tree, 0, '');
+  }
+
+  /**
+   * 레시피 트리 구조 생성
+   */
+  buildRecipeTree(recipes) {
+    const root = { children: {}, recipes: [] };
+    
+    for (const recipe of recipes) {
+      const isFixed = this.manager.isFixedRecipe(recipe.id);
+      const displayName = isFixed ? `[고정] ${recipe.name}` : recipe.name;
+      const parts = displayName.split('/');
+      let current = root;
+      
+      for (let i = 0; i < parts.length - 1; i++) {
+        const part = parts[i].trim();
+        if (!current.children[part]) {
+          current.children[part] = { children: {}, recipes: [] };
+        }
+        current = current.children[part];
+      }
+      
+      const lastName = parts[parts.length - 1].trim();
+      current.recipes.push({ name: lastName, fullName: displayName, recipe });
+    }
+    
+    return root;
+  }
+
+  /**
+   * 트리 노드를 HTML로 렌더링
+   */
+  renderTreeNode(node, depth, path = '') {
+    let html = '';
+    
+    const folders = Object.keys(node.children).sort();
+    for (const folderName of folders) {
+      const folder = node.children[folderName];
+      const folderPath = path ? `${path}/${folderName}` : folderName;
+      // base64 인코딩으로 안전한 ID 생성
+      const folderId = 'folder-' + btoa(encodeURIComponent(folderPath)).replace(/[^a-zA-Z0-9]/g, '_');
+      const isExpanded = this.expandedFolders.has(folderId);
+      
+      html += `
+        <div class="tree-folder" style="padding-left: ${depth * 16}px;">
+          <div class="tree-folder-header" data-folder-id="${folderId}">
+            <span class="tree-folder-icon">${isExpanded ? '▼' : '▶'}</span>
+            <span class="tree-folder-name">${this.escapeHtml(folderName)}</span>
+          </div>
+          <div class="tree-folder-content" id="${folderId}" style="display: ${isExpanded ? 'block' : 'none'};">
+            ${this.renderTreeNode(folder, depth + 1, folderPath)}
+          </div>
+        </div>
+      `;
+    }
+    
+    const sortedRecipes = node.recipes.sort((a, b) => a.name.localeCompare(b.name));
+    for (const { name, recipe } of sortedRecipes) {
+      const isSelected = recipe.id === this.selectedRecipeId;
+      const results = recipe.results || [];
+      
+      // 결과물 아이콘 (ViewHelpers 사용)
+      let iconsHtml = '';
+      const maxIcons = 3;
+      const displayResults = results.slice(0, maxIcons);
+      
+      for (const result of displayResults) {
+        const iconInfo = ViewHelpers.getIconInfo(this.loadedData, result.name, result.type || 'item');
+        if (iconInfo) {
+          const iconHtml = ViewHelpers.createIconHtml(iconInfo, { 
+            showBorder: true,
+            targetSize: 24
+          });
+          iconsHtml += `<span class="tree-item-icon-wrapper">${iconHtml}</span>`;
+        }
+      }
+      
+      if (results.length > maxIcons) {
+        iconsHtml += `<span class="tree-item-more">+${results.length - maxIcons}</span>`;
+      }
+      
+      html += `
+        <div class="tree-item ${isSelected ? 'selected' : ''}" data-recipe-id="${recipe.id}" style="padding-left: ${depth * 16}px;">
+          <span class="tree-item-name">${this.escapeHtml(name)}</span>
+          <div class="tree-item-icons">${iconsHtml}</div>
+        </div>
+      `;
+    }
+    
+    return html;
   }
 
   /**
@@ -250,7 +319,6 @@ export class CustomRecipeView {
    * 아이템 행 렌더링
    */
   renderItemRow(item, index, rowType, isFixed = false) {
-    console.log('Rendering item row:', item, index);
     const iconInfo = ViewHelpers.getIconInfo(this.loadedData, item.name, item.type || 'item');
     const iconHtml = ViewHelpers.createItemIconHtml(iconInfo, null);
     return `
@@ -267,7 +335,34 @@ export class CustomRecipeView {
    * 이벤트 리스너 연결
    */
   attachEventListeners(container) {
-    // 레시피 목록 아이템 클릭
+    // 폴더 토글
+    container.querySelectorAll('.tree-folder-header').forEach(header => {
+      header.addEventListener('click', () => {
+        const folderId = header.dataset.folderId;
+        const content = header.parentElement.querySelector('.tree-folder-content');
+        const icon = header.querySelector('.tree-folder-icon');
+        
+        if (content && content.style.display === 'none') {
+          content.style.display = 'block';
+          icon.textContent = '▼';
+          this.expandedFolders.add(folderId);
+        } else if (content) {
+          content.style.display = 'none';
+          icon.textContent = '▶';
+          this.expandedFolders.delete(folderId);
+        }
+      });
+    });
+
+    // 레시피 목록 아이템 클릭 (tree-item)
+    container.querySelectorAll('.tree-item').forEach(item => {
+      item.addEventListener('click', () => {
+        this.selectedRecipeId = item.dataset.recipeId;
+        this.render(container);
+      });
+    });
+
+    // 기존 list-item도 지원 (호환성)
     const listItems = container.querySelectorAll('.list-item');
     listItems.forEach(item => {
       item.addEventListener('click', () => {
@@ -476,50 +571,41 @@ export class CustomRecipeView {
     if (recipes.length === 0) {
       html = '<p style="color: #999; text-align: center; padding: 20px;">커스텀 레시피가 없습니다.</p>';
     } else {
-      // 고정 레시피를 먼저, 일반 레시피를 나중에 정렬
-      const sortedRecipes = [...recipes].sort((a, b) => {
-        const aFixed = this.manager.isFixedRecipe(a.id);
-        const bFixed = this.manager.isFixedRecipe(b.id);
-        if (aFixed && !bFixed) return -1;
-        if (!aFixed && bFixed) return 1;
-        return 0;
-      });
-      
-      for (const recipe of sortedRecipes) {
-        const isSelected = recipe.id === this.selectedRecipeId;
-        const isFixed = this.manager.isFixedRecipe(recipe.id);
-        const results = recipe.results || [];
-        
-        // 결과물 아이콘 HTML 생성
-        let iconsHtml = '';
-        const maxIcons = 1;
-        const displayResults = results.slice(0, maxIcons);
-        
-        for (const result of displayResults) {
-          const iconInfo = ViewHelpers.getIconInfo(this.loadedData, result.name, result.type || 'item');
-          if (iconInfo && iconInfo.path) {
-            iconsHtml += `<img src="${ViewHelpers.resolveAssetPath(iconInfo.path)}" alt="${this.escapeHtml(this.locale.itemName(result.name))}" class="list-item-icon" />`;
-          }
-        }
-        
-        if (results.length > maxIcons) {
-          iconsHtml += `<span class="list-item-more">+${results.length - maxIcons}</span>`;
-        }
-        
-        const displayName = isFixed ? `[고정] ${recipe.name}` : recipe.name;
-        
-        html += `
-          <div class="list-item ${isSelected ? 'selected' : ''}" data-recipe-id="${recipe.id}">
-            <span class="list-item-name">${this.escapeHtml(displayName)}</span>
-            <div class="list-item-icons">${iconsHtml}</div>
-          </div>
-        `;
-      }
+      html = this.renderRecipeTree(recipes);
     }
     
     listContainer.innerHTML = html;
 
     // 이벤트 재등록
+    // 폴더 토글
+    listContainer.querySelectorAll('.tree-folder-header').forEach(header => {
+      header.addEventListener('click', () => {
+        const folderId = header.dataset.folderId;
+        const content = header.parentElement.querySelector('.tree-folder-content');
+        const icon = header.querySelector('.tree-folder-icon');
+        
+        if (content && content.style.display === 'none') {
+          content.style.display = 'block';
+          icon.textContent = '▼';
+          this.expandedFolders.add(folderId);
+        } else if (content) {
+          content.style.display = 'none';
+          icon.textContent = '▶';
+          this.expandedFolders.delete(folderId);
+        }
+      });
+    });
+
+    // 레시피 아이템 클릭
+    const treeItems = listContainer.querySelectorAll('.tree-item');
+    treeItems.forEach(item => {
+      item.addEventListener('click', () => {
+        this.selectedRecipeId = item.dataset.recipeId;
+        this.render(container);
+      });
+    });
+
+    // 기존 list-item도 지원
     const listItems = listContainer.querySelectorAll('.list-item');
     listItems.forEach(item => {
       item.addEventListener('click', () => {

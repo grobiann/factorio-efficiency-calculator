@@ -121,7 +121,6 @@ export class ViewHelpers {
           name: itemId
         };
       }
-      console.warn('[ViewHelpers.getIconInfo] Icon not found in data - itemId:', itemId, 'type:', type, 'entry: ', entry );
     }
 
     // 타입 무관 검색 (fallback)
@@ -134,7 +133,6 @@ export class ViewHelpers {
       };
     }
 
-    console.warn('[ViewHelpers.getIconInfo] Icon not found in data - itemId:', itemId, 'type:', type, 'entries count:', loadedData.entries.length,  'entry: ', anyEntry );
     return null;
   }
 
@@ -149,7 +147,8 @@ export class ViewHelpers {
       amount = null,
       showBorder = true,
       formatFn = ViewHelpers.formatNumber,
-      dataAttrs = ''
+      dataAttrs = '',
+      targetSize = null // 원하는 최종 아이콘 크기
     } = options;
 
     // 단일 객체를 배열로 변환
@@ -158,12 +157,6 @@ export class ViewHelpers {
     
     let html = `<div class="item-icon-slot ${showBorder ? 'with-border' : 'no-border'} ${hasAmount ? 'with-amount' : ''}" ${dataAttrs}>`;
     html += '<div class="item-icon-container">';
-    
-    var targetName = ["se-bio-sludge-crude-oil"];
-    if(iconArray.length > 1 && targetName.includes(iconArray[1].name))
-    {
-      console.log('선택된 아이콘:', iconArray);
-    }
 
     if (iconArray.length > 0 && iconArray[0]) {
       // 먼저 최대 scale 값을 찾기
@@ -205,8 +198,9 @@ export class ViewHelpers {
 
         let totalWidth = iconSize;
         
-        // 32px 기준으로 스케일 조정
-        const baseScale = 32 / iconSize;
+        // targetSize가 지정되면 해당 크기를 기준으로, 아니면 32px 기준으로 스케일 조정
+        const baseSize = targetSize || 32;
+        const baseScale = baseSize / iconSize;
         const finalScale = baseScale * scale;
         const imgWidth = totalWidth * finalScale;
         const imgHeight = iconSize * finalScale;
@@ -214,7 +208,7 @@ export class ViewHelpers {
         // shift는 픽셀 단위로 적용 (Factorio는 아이콘 크기 기준 비율)
         const shiftX = (shift[0] || 0) * baseScale;
         const shiftY = (shift[1] || 0) * baseScale;
-        
+
         // tint 처리
         let filterStyle = '';
         if (tint) {
@@ -224,11 +218,6 @@ export class ViewHelpers {
           const a = tint.a !== undefined ? tint.a : 1;
           filterStyle = `filter: drop-shadow(0 0 0 rgba(${r},${g},${b},${a}));`;
         }
-
-        if(iconArray.length > 1 && targetName.includes(iconArray[1].name))
-        {
-          console.log('선택된 아이콘: icon:', icon.path, 'size:', iconSize, 'finalScale:', finalScale, 'imgWidth:', imgWidth, 'imgHeight:', imgHeight, 'shiftX:', shiftX, 'shiftY:', shiftY, 'filterStyle:', filterStyle, 'baseScale:', baseScale, 'finalScale:', finalScale);
-        }
         
         const layerClass = renderedCount === 0 ? 'item-icon-main' : 'item-icon-layer';
         html += `<img src="${ViewHelpers.resolveAssetPath(icon.path)}" alt="${icon.name || ''}" class="${layerClass}" style="width: ${imgWidth}px; height: ${imgHeight}px; transform: translate(${shiftX}px, ${shiftY}px); ${filterStyle}">`;
@@ -237,7 +226,6 @@ export class ViewHelpers {
       
       // 아이콘이 하나도 없는 경우
       if (iconArray.filter(icon => icon && icon.path).length === 0) {
-        console.warn('[ViewHelpers.createIconHtml] Rendering "No Image" for item:', iconArray[0]?.name || 'unknown');
         html += '<div class="item-icon-no-image">No<br>Image</div>';
       }
     }

@@ -38,7 +38,6 @@ export class RecipeSelectModal extends BaseModalView {
 
     // item-group 기반 버튼 추가 (레시피가 있는 그룹만)
     const itemGroups = this.getItemGroups();
-    console.log(`[RecipeSelectModal.show] Found ${itemGroups.length} item-groups`, itemGroups);
     for (const itemGroup of itemGroups) {
       // 레시피가 있는 item-group만 탭 버튼으로 추가
       const hasRecipes = this.hasEntriesForItemGroup(itemGroup.name, 'recipe');
@@ -68,36 +67,23 @@ export class RecipeSelectModal extends BaseModalView {
       </div>
     `;
 
-    console.log('[RecipeSelectModal.show] 모달 HTML 생성 완료, DOM에 추가 시작');
     // 모달 추가
     try {
       document.body.insertAdjacentHTML('beforeend', modalHtml);
       document.body.classList.add('modal-open');
-      console.log('[RecipeSelectModal.show] 모달이 DOM에 추가됨');
     } catch (error) {
-      console.error('[RecipeSelectModal.show] 모달 추가 중 오류:', error);
       return;
     }
 
     // 이벤트 리스너 등록
-    console.log('[RecipeSelectModal.show] 이벤트 리스너 등록 시작');
     this.attachListeners();
-    console.log('[RecipeSelectModal.show] 모달 표시 완료');
   }
 
   /**
    * 탭 컨텐츠 렌더링 (선택된 탭에 해당하는 레시피 목록 표시)
    */
   renderTabContent(category, searchText) {
-    console.log(`[RecipeSelectModal.renderTabContent] Category: ${category}`);
     const itemsData = this.getItemsData(category, searchText);
-    
-    // 각 서브그룹의 아이템들 로그 출력
-    for (const subgroup of itemsData.subgroups) {
-      console.log(`[RecipeSelectModal.renderTabContent] Subgroup: ${subgroup.id}`);
-      for (const item of subgroup.items) {
-      }
-    }
     
     return this.renderItemsGrid(itemsData);
   }
@@ -131,7 +117,6 @@ export class RecipeSelectModal extends BaseModalView {
         continue;
       }
 
-      console.log('[RecipeSelectModal.getRecipeGroupsData]', this.view.allRecipes);
       const io = group.calculateIO(this.view.allRecipes, this.view.groups);
       const firstResult = io.results && io.results.length > 0 ? io.results[0] : null;
       
@@ -143,7 +128,6 @@ export class RecipeSelectModal extends BaseModalView {
       const tooltip = group.name || group.id || '';
       const iconInfo = ViewHelpers.getIconInfo(this.view.loadedData, firstResult.name, firstResult.type || 'item');
       if (!iconInfo) {
-        console.warn('[RecipeSelectModal.getRecipeGroupsData] iconInfo is null for:', firstResult.name);
         continue;
       }
       const iconHtml = ViewHelpers.createIconHtml(iconInfo);
@@ -268,7 +252,6 @@ export class RecipeSelectModal extends BaseModalView {
           const recipeIcons = ViewHelpers.getRecipeIcon(recipe, this.view.loadedData);
           const iconHtml = ViewHelpers.createRecipeIconHtml(recipeIcons);
           
-          console.log('[RecipeSelectModal.getItemGroupRecipesData] Adding recipe', recipe.id, 'to subgroup', itemSubgroup);
           recipesBySubgroup.get(itemSubgroup).push({
             type: 'recipe',
             id: recipe.id,

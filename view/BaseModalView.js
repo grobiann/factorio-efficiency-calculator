@@ -204,7 +204,6 @@ export class BaseModalView {
    */
   hasEntriesForItemGroup(itemGroupName, entryType) {
     const subgroups = this.getSubgroupsForItemGroup(itemGroupName);
-    console.log(`[BaseModalView.hasEntriesForItemGroup] Checking entries of type '${entryType}' in item-group '${itemGroupName}' with ${subgroups.length} subgroups.`);
     if (subgroups.length === 0) {
       return false;
     }

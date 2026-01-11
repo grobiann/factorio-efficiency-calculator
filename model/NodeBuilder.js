@@ -5,7 +5,6 @@ export function buildSingleRecipeNode(recipe, productId, targetCount, recipesByP
     const resultsMap = recipe.getResultsMap();
     const producedPerCraft = resultsMap[productId] || 0;
     if (!producedPerCraft) {
-        console.warn(`Recipe ${recipe.id} does not produce ${productId} (or has zero output); skipping.`);
         return { recipeId: recipe.id, name: recipe.name, outputs: {}, inputs: {}, cost: {} };
     }
 
