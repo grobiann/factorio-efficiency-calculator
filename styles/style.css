@@ -275,7 +275,6 @@ h1 {
   top: 24px;
   right: 24px;
   display: flex;
-  gap: 8px;
   align-items: center;
 }
 
@@ -316,7 +315,6 @@ h1 {
   display: block;
   width: 20px;
   height: 20px;
-  margin-top: -10px;
 }
 
 .settings-panel {
