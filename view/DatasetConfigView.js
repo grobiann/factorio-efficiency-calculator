@@ -66,6 +66,57 @@ export class DatasetConfigView {
     };
     section.appendChild(applyButton);
 
+    // 저장된 데이터 모두 제거 버튼
+    const clearDataSection = document.createElement("div");
+    clearDataSection.style.marginTop = "30px";
+    clearDataSection.style.paddingTop = "20px";
+    clearDataSection.style.borderTop = "1px solid #ddd";
+    
+    const clearTitle = document.createElement("h3");
+    clearTitle.textContent = "데이터 초기화";
+    clearTitle.style.marginTop = "0";
+    clearTitle.style.marginBottom = "10px";
+    clearTitle.style.color = "#d32f2f";
+    clearDataSection.appendChild(clearTitle);
+
+    const clearDescription = document.createElement("p");
+    clearDescription.textContent = "모든 레시피 그룹, 커스텀 레시피, 비교 데이터를 삭제합니다. 이 작업은 되돌릴 수 없습니다.";
+    clearDescription.style.fontSize = "0.9em";
+    clearDescription.style.color = "#666";
+    clearDescription.style.marginBottom = "10px";
+    clearDataSection.appendChild(clearDescription);
+
+    const clearButton = document.createElement("button");
+    clearButton.textContent = "모든 저장 데이터 제거";
+    clearButton.style.padding = "8px 16px";
+    clearButton.style.cursor = "pointer";
+    clearButton.style.backgroundColor = "#d32f2f";
+    clearButton.style.color = "white";
+    clearButton.style.border = "none";
+    clearButton.style.borderRadius = "4px";
+    clearButton.onclick = () => {
+      if (confirm("정말로 모든 저장된 데이터를 삭제하시겠습니까?\n\n삭제될 데이터:\n- 모든 레시피 그룹\n- 모든 커스텀 레시피\n- 모든 비교 그룹\n\n이 작업은 되돌릴 수 없습니다.")) {
+        // localStorage에서 모든 데이터 제거
+        localStorage.removeItem('recipeGroups');
+        localStorage.removeItem('customRecipes');
+        localStorage.removeItem('fixedRecipeSettings');
+        localStorage.removeItem('compareGroups');
+        
+        clearButton.textContent = "삭제 완료!";
+        clearButton.style.backgroundColor = "#388e3c";
+        
+        setTimeout(() => {
+          clearButton.textContent = "모든 저장 데이터 제거";
+          clearButton.style.backgroundColor = "#d32f2f";
+          // 페이지 새로고침하여 샘플 데이터 로드
+          window.location.reload();
+        }, 1500);
+      }
+    };
+    clearDataSection.appendChild(clearButton);
+    
+    section.appendChild(clearDataSection);
+
     container.appendChild(section);
     return section;
   }
