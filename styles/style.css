@@ -6,6 +6,7 @@
 @import url('./views/RecipeSelectModal.css');
 @import url('./views/RecipeGroupView.css');
 @import url('./views/CompareView.css');
+@import url('./views/FactoryConfigView.css');
 
 /* ===== 기본 리셋 ===== */
 * {

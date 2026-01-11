@@ -14,7 +14,7 @@ import {
  * CompareView - 레시피 그룹과 레시피 비교
  */
 export class CompareView {
-  constructor(groups, customRecipeManager, allRecipes, locale, loadedData, recipesByProduct, recipeGroupView) {
+  constructor(groups, customRecipeManager, allRecipes, locale, loadedData, recipesByProduct, recipeGroupView, factoryConfigView) {
     this.groups = groups;
     this.customRecipeManager = customRecipeManager;
     this.allRecipes = allRecipes;
@@ -22,6 +22,7 @@ export class CompareView {
     this.loadedData = loadedData;
     this.recipesByProduct = recipesByProduct;
     this.recipeGroupView = recipeGroupView;
+    this.factoryConfigView = factoryConfigView;
     
     // 비교 그룹 관리
     this.compareGroups = [];
@@ -707,7 +708,7 @@ export class CompareView {
    */
   _calculateIO(item) {
     if (item.type === ENTRY_TYPES.GROUP) {
-      return item.data.calculateIO(this.allRecipes, this.groups, new Set(), this.customRecipeManager);
+      return item.data.calculateIO(this.allRecipes, this.groups, new Set(), this.customRecipeManager, this.factoryConfigView, this.loadedData);
     }
     return {
       ingredients: item.data.ingredients || [],

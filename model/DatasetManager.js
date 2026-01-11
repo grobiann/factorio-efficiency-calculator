@@ -79,7 +79,7 @@ export class DatasetManager {
         let totalCategories = 0;
         
         // Process items (item, tool, ammo, capsule, module, etc.)
-        const itemTypes = ['item',  'module', 'armor'];
+        const itemTypes = ['item', 'armor'];
                           // 'tool', 'ammo', 'capsule', 'gun',  'rail-planner', 'spidertron-remote', 'selection-tool'
         for (const itemType of itemTypes) {
           if (dataRaw[itemType]) {
@@ -96,6 +96,21 @@ export class DatasetManager {
             allEntries.push(...items);
             totalItems += items.length;
           }
+        }
+        
+        // Process modules separately to maintain type
+        if (dataRaw['module']) {
+          const modules = Object.entries(dataRaw['module'])
+            .filter(([id, data]) => data.always_show_products !== false && data.hidden !== true)
+            .map(([id, data]) => ({
+              ...data,
+              id: id,
+              type: 'module',
+              originalType: 'module',
+              name: data.name || id
+            }));
+          allEntries.push(...modules);
+          totalItems += modules.length;
         }
         
         // Process fluids
@@ -126,6 +141,19 @@ export class DatasetManager {
           allEntries.push(...recipes);
           recipesObjects.push({ recipes: recipes });
           totalRecipes = recipes.length;
+        }
+        
+        // Process assembling machines
+        if (dataRaw['assembling-machine']) {
+          const machines = Object.entries(dataRaw['assembling-machine'])
+            .filter(([id, data]) => data.hidden !== true)
+            .map(([id, data]) => ({
+              ...data,
+              id: id,
+              type: 'assembling-machine',
+              name: data.name || id
+            }));
+          allEntries.push(...machines);
         }
         
         // Process categories (item-group, item-subgroup, recipe-category)
@@ -178,6 +206,7 @@ export class DatasetManager {
 
     // 타입별로 데이터 분류
     const items = [];
+    const machines = [];
     const fluids = [];
     const modules = [];
     const itemGroups = [];

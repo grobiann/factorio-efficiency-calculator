@@ -8,6 +8,7 @@ import { RecipeGroupView } from "../view/RecipeGroupView.js";
 import { CustomRecipeView } from "../view/CustomRecipeView.js";
 import { CustomRecipeManager } from "../model/CustomRecipe.js";
 import { CompareView } from "../view/CompareView.js";
+import { FactoryConfigView } from "../view/FactoryConfigView.js";
 
 export async function startApp() {
   // Initialize dataset manager
@@ -260,9 +261,16 @@ export async function startApp() {
   const customRecipeView = new CustomRecipeView(loadedData, locale, customRecipeManager);
   customRecipeView.render(document.getElementById('custom-recipe-tab'));
 
-  // Initialize compare view
-  const compareView = new CompareView(recipeGroupView.groups, customRecipeView.manager, allRecipes, locale, loadedData, recipesByProduct, recipeGroupView);
+  // Initialize factory config view
+  const factoryConfigView = new FactoryConfigView(loadedData, locale);
+  factoryConfigView.render(document.getElementById('factory-config-tab'));
+
+  // Initialize compare view (needs factoryConfigView for productivity bonus)
+  const compareView = new CompareView(recipeGroupView.groups, customRecipeView.manager, allRecipes, locale, loadedData, recipesByProduct, recipeGroupView, factoryConfigView);
   compareView.render(document);
+
+  // RecipeGroupView에 factoryConfigView 참조 전달
+  recipeGroupView.factoryConfigView = factoryConfigView;
 
   // Export/Import data functionality
   const exportDataBtn = document.getElementById('exportDataBtn');
@@ -350,6 +358,8 @@ export async function startApp() {
         customRecipeView.render(document.getElementById('custom-recipe-tab'));
       } else if (targetTab === 'compare') {
         compareView.render(document);
+      } else if (targetTab === 'factory-config') {
+        factoryConfigView.render(document.getElementById('factory-config-tab'));
       }
     });
   });

@@ -172,8 +172,10 @@ export class RecipeGroupView {
    * 레시피 그룹 상세 정보 렌더링
    */
   renderGroupDetail(group) {
+    // 자동 배율 조정 실행 (forceMultiplier가 false인 레시피들에 대해)
+    group.autoAdjustMultipliers(this.allRecipes, this.groups, this.customRecipeManager, this.factoryConfigView, this.loadedData);
 
-    const io = group.calculateIO(this.allRecipes, this.groups, new Set(), this.customRecipeManager);
+    const io = group.calculateIO(this.allRecipes, this.groups, new Set(), this.customRecipeManager, this.factoryConfigView, this.loadedData);
 
     let html = '<div class="group-detail">';
     
@@ -190,10 +192,7 @@ export class RecipeGroupView {
     html += '<div class="group-io-section group-outputs">';
     html += '<h4>출력</h4>';
     html += '<div class="group-io-items">';
-    const visibleResults = io.results.filter(result => {
-      const amount = this.getExpectedAmount(result);
-      return amount > 0.5;
-    }).sort((a, b) => a.name.localeCompare(b.name)); // 이름순 정렬
+    const visibleResults = io.results.sort((a, b) => a.name.localeCompare(b.name)); // 이름순 정렬
     if (visibleResults.length === 0) {
       html += '<span style="color: #999;">없음</span>';
     } else {
@@ -208,8 +207,7 @@ export class RecipeGroupView {
     html += '<div class="group-io-section group-inputs">';
     html += '<h4>입력</h4>';
     html += '<div class="group-io-items">';
-    const visibleIngredients = io.ingredients.filter(ingredient => ingredient.amount > 0.5)
-      .sort((a, b) => a.name.localeCompare(b.name)); // 이름순 정렬
+    const visibleIngredients = io.ingredients.sort((a, b) => a.name.localeCompare(b.name)); // 이름순 정렬
     if (visibleIngredients.length === 0) {
       html += '<span style="color: #999;">없음</span>';
     } else {
@@ -255,14 +253,26 @@ export class RecipeGroupView {
       if (!subGroup) {
         return `<div class="group-recipe-row">레시피 그룹을 찾을 수 없습니다: ${recipeEntry.recipeId}</div>`;
       }
-      const subIO = subGroup.calculateIO(this.allRecipes, this.groups, new Set(), this.customRecipeManager);
+      const subIO = subGroup.calculateIO(this.allRecipes, this.groups, new Set(), this.customRecipeManager, this.factoryConfigView, this.loadedData);
+      
+      // 레시피 그룹의 첫 번째 레시피의 allow_productivity 확인
+      let groupAllowProductivity = false;
+      if (subGroup.recipes.length > 0) {
+        const firstRecipeEntry = subGroup.recipes[0];
+        const firstRecipe = this.getRecipeObject(firstRecipeEntry);
+        if (firstRecipe && !firstRecipe._isGroup) {
+          groupAllowProductivity = firstRecipe.allow_productivity === true;
+        }
+      }
+      
       // 레시피 그룹을 레시피처럼 표현
       recipe = {
         id: subGroup.id,
         name: subGroup.name,
         ingredients: subIO.ingredients,
         results: subIO.results,
-        _isGroup: true
+        _isGroup: true,
+        allow_productivity: groupAllowProductivity
       };
       ingredients = subIO.ingredients;
       results = subIO.results;
@@ -300,11 +310,72 @@ export class RecipeGroupView {
     html += this.createRecipeIcon(recipeIcons);
     html += '</div>';
 
-    // 생산품
+    // 기계 및 모듈 영역 (연두색 배경)
+    // 선택된 모듈이 productivity 모듈인지 확인
+    let isProductivityModule = false;
+    if (this.factoryConfigView && this.factoryConfigView.selectedModule) {
+      const moduleData = this.loadedData?.modules?.find(m => m.id === this.factoryConfigView.selectedModule);
+      isProductivityModule = moduleData?.effect?.productivity !== undefined;
+    }
+    const productivityDisabled = recipe.allow_productivity === false && isProductivityModule;
+    html += `<div class="group-recipe-machine-modules ${productivityDisabled ? 'productivity-disabled' : ''}">`;
+    
+    // 기계 아이콘
+    const machine = this.getMachineForRecipe(recipe);
+    if (machine) {
+      const machineIcon = ViewHelpers.getIconInfo(this.loadedData, machine.id, 'assembling-machine');
+      html += ViewHelpers.createIconHtml(machineIcon, { targetSize: 24 });
+      
+      // 모듈 표시 (기계가 있을 때만 표시 - 별도 컨테이너로 감싸서 비활성 스타일 적용)
+      if (this.factoryConfigView && this.factoryConfigView.selectedModule) {
+        html += '<div class="module-content">';
+        const moduleIcon = ViewHelpers.getIconInfo(this.loadedData, this.factoryConfigView.selectedModule, 'module');
+        html += ViewHelpers.createIconHtml(moduleIcon, { targetSize: 24 });
+        // 모듈 개수 표시 (기계의 슬롯 수 확인)
+        if (machine.module_slots) {
+          html += `<span class="module-count">×${machine.module_slots}</span>`;
+        }
+        html += '</div>';
+      }
+    } else {
+      // 건물이 없는 경우 (커스텀 레시피 등) - 동일한 구조로 빈 아이콘 표시
+      const noMachineIcon = {
+        type: 'item',
+        name: 'no-machine',
+        icons: null,
+        icon: null
+      };
+      html += ViewHelpers.createIconHtml(noMachineIcon, { targetSize: 24, placeholder: '🏭' });
+      
+      // 모듈도 없음 표시
+      html += '<div class="module-content">';
+      const noModuleIcon = {
+        type: 'item',
+        name: 'no-module',
+        icons: null,
+        icon: null
+      };
+      html += ViewHelpers.createIconHtml(noModuleIcon, { targetSize: 24, placeholder: '❌' });
+      html += '</div>';
+    }
+    
+    html += '</div>';
+
+    // 생산품 (productivity 보너스 적용)
     html += '<div class="group-recipe-results">';
     for (const result of results) {
       const iconInfo = ViewHelpers.getIconInfo(this.loadedData, result.name, result.type || 'item');
-      const amount = this.getExpectedAmount(result) * (recipeEntry.multiplier || 1);
+      let amount = this.getExpectedAmount(result);
+      
+      // productivity 보너스 계산 (allow_productivity가 true인 경우만)
+      if (!recipe._isGroup && recipe.allow_productivity === true && machine) {
+        const productivityBonus = this.getProductivityBonus(machine);
+        if (productivityBonus > 0) {
+          amount *= (1 + productivityBonus);
+        }
+      }
+      
+      amount *= (recipeEntry.multiplier || 1);
       html += this.createItemIcon(iconInfo, amount, true);
     }
     html += '</div>';
@@ -318,10 +389,22 @@ export class RecipeGroupView {
     }
     html += '</div>';
 
-    // 배수 입력
+    // 배수 입력 (소수점 3자리까지 표시)
+    const displayMultiplier = parseFloat((recipeEntry.multiplier || 1).toFixed(3));
     html += '<div class="group-recipe-multiplier">';
     html += `<span class="multiplier-label">×</span>`;
-    html += `<input type="number" class="multiplier-input" data-index="${index}" value="${recipeEntry.multiplier || 1}" min="0.01" step="0.1" />`;
+    html += `<input type="number" class="multiplier-input" data-index="${index}" value="${displayMultiplier}" min="0.01" step="0.1" />`;
+    html += '</div>';
+    
+    // 자동 배율 조정 토글 (첫 번째 레시피는 항상 manual, disabled)
+    const isAuto = recipeEntry.forceMultiplier !== true;
+    const isFirstRecipe = index === 0;
+    html += '<div class="group-recipe-auto-multiplier">';
+    html += `<label class="toggle-auto-multiplier ${isFirstRecipe ? 'disabled' : ''}" title="${isFirstRecipe ? '첫 번째 레시피는 항상 수동 모드' : (isAuto ? '자동 배율 적용 중' : '수동 배율 고정')}">`;
+    html += `<input type="checkbox" class="toggle-checkbox" data-index="${index}" ${isAuto ? 'checked' : ''} ${isFirstRecipe ? 'disabled' : ''}>`;
+    html += '<span class="toggle-slider"></span>';
+    html += `<span class="toggle-label">${isAuto ? 'AUTO' : 'MANUAL'}</span>`;
+    html += '</label>';
     html += '</div>';
 
     html += '</div>'; // group-recipe-row
@@ -390,6 +473,80 @@ export class RecipeGroupView {
     if (Number.isFinite(amountMax)) return amountMax * probability;
 
     return 0;
+  }
+
+  /**
+   * 레시피 객체 가져오기 (헬퍼 메서드)
+   */
+  getRecipeObject(recipeEntry) {
+    if (recipeEntry.type === 'group') {
+      return this.groups.get(recipeEntry.recipeId);
+    } else {
+      let foundRecipe = null;
+      if (this.customRecipeManager && typeof this.customRecipeManager.getRecipe === 'function') {
+        foundRecipe = this.customRecipeManager.getRecipe(recipeEntry.recipeId);
+      }
+      if (!foundRecipe) {
+        foundRecipe = this.allRecipes[recipeEntry.recipeId];
+      }
+      return foundRecipe;
+    }
+  }
+
+  /**
+   * 레시피에 맞는 기계 찾기
+   */
+  getMachineForRecipe(recipe) {
+    if (!recipe || !this.loadedData || !this.loadedData.entities) {
+      return null;
+    }
+
+    const recipeCategory = recipe.category || 'crafting';
+
+    // assembling-machine 타입의 엔티티에서 crafting_categories가 일치하는 기계들 찾기
+    const machines = this.loadedData.entities.filter(entity => {
+      // type이 assembling-machine인지 확인
+      if (entity.type !== 'assembling-machine') return false;
+      
+      // crafting_categories가 배열이고 비어있지 않은지 확인
+      if (!Array.isArray(entity.crafting_categories) || entity.crafting_categories.length === 0) return false;
+      
+      // 레시피 카테고리가 포함되어 있는지 확인
+      return entity.crafting_categories.includes(recipeCategory);
+    });
+
+    if (machines.length === 0) {
+      return null;
+    }
+
+    // factoryConfigView가 있으면 선호 기계 확인
+    if (this.factoryConfigView) {
+      return this.factoryConfigView.getPreferredMachineForRecipe(recipe, machines);
+    }
+
+    // 없으면 첫 번째 기계 반환
+    return machines[0];
+  }
+
+  /**
+   * 모듈에서 productivity 보너스 계산
+   */
+  getProductivityBonus(machine) {
+    if (!this.factoryConfigView || !this.factoryConfigView.selectedModule || !machine || !machine.module_slots) {
+      return 0;
+    }
+
+    // 선택된 모듈 데이터 찾기
+    const moduleData = this.loadedData?.modules?.find(m => m.id === this.factoryConfigView.selectedModule);
+    if (!moduleData || !moduleData.effect || !moduleData.effect.productivity) {
+      return 0;
+    }
+
+    // productivity 효과 * 모듈 슬롯 수
+    const productivityPerModule = moduleData.effect.productivity;
+    const totalBonus = productivityPerModule * machine.module_slots;
+    
+    return totalBonus;
   }
 
   /**
@@ -534,11 +691,34 @@ export class RecipeGroupView {
         const group = this.groups.get(this.selectedGroupId);
         if (!group || isNaN(value) || value <= 0) return;
 
-        group.updateRecipe(index, { multiplier: value });
+        // 배율 수정 시 자동 배율 모드 끄기
+        const recipeEntry = group.recipes[index];
+        if (recipeEntry) {
+          recipeEntry.multiplier = value;
+          recipeEntry.forceMultiplier = true;
+        }
         
-        // 이후 레시피들의 배수 재계산
-        for (let i = index + 1; i < group.recipes.length; i++) {
-          group.calculateMultiplier(i, this.allRecipes, this.groups);
+        this.saveToStorage();
+        this.render(this.currentContainer);
+      };
+    });
+    
+    // 자동 배율 조정 토글
+    container.querySelectorAll('.toggle-checkbox').forEach(checkbox => {
+      checkbox.onchange = () => {
+        const index = parseInt(checkbox.dataset.index);
+        const group = this.groups.get(this.selectedGroupId);
+        if (!group) return;
+        
+        const recipeEntry = group.recipes[index];
+        if (!recipeEntry) return;
+        
+        // forceMultiplier 토글 (체크되면 auto = true, 즉 forceMultiplier = false)
+        recipeEntry.forceMultiplier = !checkbox.checked;
+        
+        // 자동 모드로 전환 시 즉시 배율 재계산
+        if (checkbox.checked) {
+          group.autoAdjustMultipliers(this.allRecipes, this.groups, this.customRecipeManager, this.factoryConfigView, this.loadedData);
         }
         
         this.saveToStorage();

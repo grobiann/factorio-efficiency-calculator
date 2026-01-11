@@ -4,6 +4,8 @@ export class Recipe {
     this.name = data.name;
     this.type = data.type || "recipe";
     this.time = data.energy_required;
+    this.category = data.category || "crafting";  // Preserve recipe category
+    this.allow_productivity = data.allow_productivity === true;  // Default false, only true if explicitly set
 
     // Factorio-style schema support:
     // - ingredients: [ { type: "item"|"fluid", name: "id", amount: n }, ... ] or single object
