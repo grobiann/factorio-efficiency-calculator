@@ -119,10 +119,14 @@ export class RecipeGroupView {
     html += '<div class="group-io-section group-outputs">';
     html += '<h4>출력</h4>';
     html += '<div class="group-io-items">';
-    if (io.results.length === 0) {
+    const visibleResults = io.results.filter(result => {
+      const amount = this.getExpectedAmount(result);
+      return amount > 0.5;
+    });
+    if (visibleResults.length === 0) {
       html += '<span style="color: #999;">없음</span>';
     } else {
-      for (const result of io.results) {
+      for (const result of visibleResults) {
         const iconInfo = ViewHelpers.getIconInfo(this.loadedData, result.name, result.type || 'item');
         const amount = this.getExpectedAmount(result);
         html += this.createItemIcon(iconInfo, amount);
@@ -133,10 +137,11 @@ export class RecipeGroupView {
     html += '<div class="group-io-section group-inputs">';
     html += '<h4>입력</h4>';
     html += '<div class="group-io-items">';
-    if (io.ingredients.length === 0) {
+    const visibleIngredients = io.ingredients.filter(ingredient => ingredient.amount > 0.5);
+    if (visibleIngredients.length === 0) {
       html += '<span style="color: #999;">없음</span>';
     } else {
-      for (const ingredient of io.ingredients) {
+      for (const ingredient of visibleIngredients) {
         const iconInfo = ViewHelpers.getIconInfo(this.loadedData, ingredient.name, ingredient.type || 'item');
         html += this.createItemIcon(iconInfo, ingredient.amount, true, ingredient.name, ingredient.type);
       }

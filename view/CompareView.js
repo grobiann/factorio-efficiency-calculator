@@ -222,8 +222,15 @@ export class CompareView {
       return '<span class="compare-io-empty">-</span>';
     }
     
+    // 수량이 0.5 이하인 항목 필터링
+    const visibleItems = items.filter(item => item.amount > 0.1);
+    
+    if (visibleItems.length === 0) {
+      return '<span class="compare-io-empty">-</span>';
+    }
+    
     let html = '<div class="compare-io-icons">';
-    for (const item of items) {
+    for (const item of visibleItems) {
       const iconInfo = ViewHelpers.getIconInfo(this.loadedData, item.name, item.type || 'item');
       html += ViewHelpers.createItemIconHtml(iconInfo, item.amount, ViewHelpers.formatAmount);
     }
@@ -561,7 +568,7 @@ export class CompareView {
    */
   _calculateIO(item) {
     if (item.type === ENTRY_TYPES.GROUP) {
-      return item.data.calculateIO(this.allRecipes, this.groups);
+      return item.data.calculateIO(this.allRecipes, this.groups, new Set(), this.customRecipeManager);
     }
     return {
       ingredients: item.data.ingredients || [],

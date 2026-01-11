@@ -94,7 +94,8 @@ export class CustomRecipeView {
         for (const result of displayResults) {
           const iconInfo = ViewHelpers.getIconInfo(this.loadedData, result.name, result.type || 'item');
           if (iconInfo && iconInfo.path) {
-            iconsHtml += `<img src="${iconInfo.path}" alt="${this.escapeHtml(this.locale.itemName(result.name))}" class="list-item-icon" />`;
+            const iconPath = ViewHelpers.resolveAssetPath(iconInfo.path);
+            iconsHtml += `<img src="${iconPath}" alt="${this.escapeHtml(this.locale.itemName(result.name))}" class="list-item-icon" />`;
           }
         }
         

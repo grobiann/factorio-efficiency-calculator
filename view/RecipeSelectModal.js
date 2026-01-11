@@ -170,9 +170,25 @@ export class RecipeSelectModal extends BaseModalView {
    */
   getCustomRecipesData(searchText) {
     const items = [];
-    const customRecipes = JSON.parse(localStorage.getItem('customRecipes') || '[]');
+    // customRecipeManager를 통해 모든 레시피 가져오기 (고정 레시피 포함)
+    let customRecipes = [];
+    if (this.view.customRecipeManager && typeof this.view.customRecipeManager.getAllRecipes === 'function') {
+      customRecipes = this.view.customRecipeManager.getAllRecipes();
+    } else {
+      // fallback: localStorage에서 직접 가져오기 (고정 레시피는 제외됨)
+      customRecipes = JSON.parse(localStorage.getItem('customRecipes') || '[]');
+    }
     
-    for (const customRecipe of customRecipes) {
+    // 고정 레시피를 먼저, 일반 레시피를 나중에 정렬
+    const sortedRecipes = [...customRecipes].sort((a, b) => {
+      const aFixed = this.view.customRecipeManager?.isFixedRecipe(a.id) ?? false;
+      const bFixed = this.view.customRecipeManager?.isFixedRecipe(b.id) ?? false;
+      if (aFixed && !bFixed) return -1;
+      if (!aFixed && bFixed) return 1;
+      return 0;
+    });
+    
+    for (const customRecipe of sortedRecipes) {
       const recipeName = customRecipe.name || customRecipe.id || '';
       if (searchText && recipeName && !recipeName.toLowerCase().includes(searchText.toLowerCase())) {
         continue;
