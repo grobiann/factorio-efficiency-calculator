@@ -56,6 +56,11 @@ export class CompareView {
     const compareTab = container.querySelector('#compare-tab');
     if (!compareTab) return;
 
+    // 렌더링 전에 모든 레시피 그룹의 배율 자동 조정
+    console.log('[CompareView] render 시작 - autoAdjustAllGroups 호출');
+    this._autoAdjustAllGroups();
+    console.log('[CompareView] autoAdjustAllGroups 완료');
+
     compareTab.innerHTML = this._buildHtml();
     this._attachEvents(compareTab);
   }
@@ -700,6 +705,26 @@ export class CompareView {
         this.render(document);
       });
     });
+  }
+
+  /**
+   * 모든 레시피 그룹의 배율 자동 조정
+   * @private
+   */
+  _autoAdjustAllGroups() {
+    // 먼저 groups Map의 모든 레시피 그룹의 배율을 조정
+    for (const group of this.groups.values()) {
+      group.autoAdjustMultipliers(this.allRecipes, this.groups, this.customRecipeManager, this.factoryConfigView, this.loadedData);
+    }
+    
+    // 비교 그룹에 포함된 모든 레시피 그룹의 배율 조정 (중복이지만 확실하게)
+    for (const compareGroup of this.compareGroups) {
+      for (const item of compareGroup.items) {
+        if (item.type === ENTRY_TYPES.GROUP && item.data) {
+          item.data.autoAdjustMultipliers(this.allRecipes, this.groups, this.customRecipeManager, this.factoryConfigView, this.loadedData);
+        }
+      }
+    }
   }
 
   /**

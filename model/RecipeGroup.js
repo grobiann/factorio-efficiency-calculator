@@ -182,100 +182,146 @@ export class RecipeGroup {
       const recipe = this.getRecipeOrGroup(recipeEntry, allRecipes, allGroups, customRecipeManager);
       if (!recipe) continue;
       
-      // 레시피의 첫 번째 생산품 가져오기
-      let firstProduct = null;
-      let productAmount = 0;
+      // 레시피의 생산품 목록 가져오기
+      let results = [];
+      let mainProductName = null;
       
       if (recipeEntry.type === 'group') {
         const groupIO = recipe.calculateIO(allRecipes, allGroups, visited, customRecipeManager, factoryConfigView, loadedData);
-        if (groupIO.results && groupIO.results.length > 0) {
-          firstProduct = groupIO.results[0].name;
-          productAmount = groupIO.results[0].amount || 1;
-        }
+        results = groupIO.results || [];
       } else {
-        const results = recipe.results;
-        if (results && results.length > 0) {
-          firstProduct = results[0].name;
-          productAmount = this._getExpectedAmount(results[0]);
+        results = recipe.results || [];
+        mainProductName = recipe.main_product;
+      }
+      
+      if (results.length === 0) continue;
+      
+      // 우선순위에 따라 생산품 선택 및 배율 계산
+      let selectedProduct = null;
+      let productAmount = 0;
+      let netNeed = 0;
+      
+      // 헬퍼 함수: 특정 생산품에 대한 순수 필요량 계산
+      const calculateNetNeed = (productName, baseAmount) => {
+        let totalInput = 0;  // 다른 레시피들이 소비하는 양
+        let totalOutput = 0; // 다른 레시피들이 생산하는 양
+        
+        for (let j = 0; j < this.recipes.length; j++) {
+          if (i === j) continue; // 자기 자신은 제외
+          
+          const otherEntry = this.recipes[j];
+          const otherRecipe = this.getRecipeOrGroup(otherEntry, allRecipes, allGroups, customRecipeManager);
+          if (!otherRecipe) continue;
+          
+          const otherMultiplier = otherEntry.multiplier || 1;
+          
+          if (otherEntry.type === 'group') {
+            const otherIO = otherRecipe.calculateIO(allRecipes, allGroups, visited, customRecipeManager, factoryConfigView, loadedData);
+
+            // 입력 계산
+            for (const ingredient of otherIO.ingredients || []) {
+              if (ingredient.name === productName) {
+                totalInput += (ingredient.amount || 0) * otherMultiplier;
+              }
+            }
+            
+            // 출력 계산
+            for (const result of otherIO.results || []) {
+              if (result.name === productName) {
+                totalOutput += (result.amount || 0) * otherMultiplier;
+              }
+            }
+          } else {
+            // 입력 계산
+            const ingredients = otherRecipe.ingredients || [];
+            for (const ingredient of ingredients) {
+              if (ingredient.name === productName) {
+                totalInput += this._getExpectedAmount(ingredient) * otherMultiplier;
+              }
+            }
+            
+            // 출력 계산
+            const results = otherRecipe.results || [];
+            for (const result of results) {
+              if (result.name === productName) {
+                let resultAmount = this._getExpectedAmount(result);
+                
+                // productivity 보너스 적용
+                if (otherRecipe.allow_productivity === true && factoryConfigView && loadedData) {
+                  const productivityBonus = this._calculateProductivityBonus(otherRecipe, factoryConfigView, loadedData);
+                  if (productivityBonus > 0) {
+                    resultAmount *= (1 + productivityBonus);
+                  }
+                }
+                
+                totalOutput += resultAmount * otherMultiplier;
+              }
+            }
+          }
+        }
+        
+        return totalInput - totalOutput;
+      };
+      
+      // 1순위: main_product 확인 (일반 레시피만 해당)
+      if (mainProductName) {
+        const mainProductResult = results.find(r => r.name === mainProductName);
+        if (mainProductResult) {
+          let amount = this._getExpectedAmount(mainProductResult);
           
           // productivity 보너스 적용
           if (recipe.allow_productivity === true && factoryConfigView && loadedData) {
             const productivityBonus = this._calculateProductivityBonus(recipe, factoryConfigView, loadedData);
             if (productivityBonus > 0) {
-              productAmount *= (1 + productivityBonus);
+              amount *= (1 + productivityBonus);
             }
+          }
+          
+          const need = calculateNetNeed(mainProductName, amount);
+          if (need > 0) {
+            selectedProduct = mainProductName;
+            productAmount = amount;
+            netNeed = need;
           }
         }
       }
       
-      if (!firstProduct || productAmount <= 0) continue;
-      
-      // 그룹 내 다른 레시피들의 입출력을 계산하여 순수 필요량 계산 (입력 - 출력)
-      let totalInput = 0;  // 다른 레시피들이 소비하는 양
-      let totalOutput = 0; // 다른 레시피들이 생산하는 양
-      for (let j = 0; j < this.recipes.length; j++) {
-        if (i === j) continue; // 자기 자신은 제외
-        
-        const otherEntry = this.recipes[j];
-        const otherRecipe = this.getRecipeOrGroup(otherEntry, allRecipes, allGroups, customRecipeManager);
-        if (!otherRecipe) continue;
-        
-        const otherMultiplier = otherEntry.multiplier || 1;
-        
-        if (otherEntry.type === 'group') {
-          const otherIO = otherRecipe.calculateIO(allRecipes, allGroups, visited, customRecipeManager, factoryConfigView, loadedData);
-
-          // 입력 계산
-          for (const ingredient of otherIO.ingredients || []) {
-            if (ingredient.name === firstProduct) {
-              totalInput += (ingredient.amount || 0) * otherMultiplier;
-            }
-          }
+      // 2순위 이상: 결과물을 순서대로 확인
+      if (!selectedProduct) {
+        for (const result of results) {
+          const productName = result.name;
+          let amount = 0;
           
-          // 출력 계산
-          for (const result of otherIO.results || []) {
-            if (result.name === firstProduct) {
-              totalOutput += (result.amount || 0) * otherMultiplier;
-            }
-          }
-        } else {
-          // 입력 계산
-          const ingredients = otherRecipe.ingredients || [];
-          for (const ingredient of ingredients) {
-            if (ingredient.name === firstProduct) {
-              totalInput += this._getExpectedAmount(ingredient) * otherMultiplier;
-            }
-          }
-          
-          // 출력 계산
-          const results = otherRecipe.results || [];
-          for (const result of results) {
-            if (result.name === firstProduct) {
-              let resultAmount = this._getExpectedAmount(result);
-              
-              // productivity 보너스 적용
-              if (otherRecipe.allow_productivity === true && factoryConfigView && loadedData) {
-                const productivityBonus = this._calculateProductivityBonus(otherRecipe, factoryConfigView, loadedData);
-                if (productivityBonus > 0) {
-                  resultAmount *= (1 + productivityBonus);
-                }
+          if (recipeEntry.type === 'group') {
+            amount = result.amount || 1;
+          } else {
+            amount = this._getExpectedAmount(result);
+            
+            // productivity 보너스 적용
+            if (recipe.allow_productivity === true && factoryConfigView && loadedData) {
+              const productivityBonus = this._calculateProductivityBonus(recipe, factoryConfigView, loadedData);
+              if (productivityBonus > 0) {
+                amount *= (1 + productivityBonus);
               }
-              
-              totalOutput += resultAmount * otherMultiplier;
             }
+          }
+          
+          const need = calculateNetNeed(productName, amount);
+          if (need > 0) {
+            selectedProduct = productName;
+            productAmount = amount;
+            netNeed = need;
+            break;
           }
         }
       }
-      
-      // 순수 필요량 계산 (입력 - 출력)
-      const netNeed = totalInput - totalOutput;
 
       // 필요한 배율 계산 및 적용
-      if (netNeed > 0 && productAmount > 0) {
+      if (selectedProduct && netNeed > 0 && productAmount > 0) {
         const requiredMultiplier = netNeed / productAmount;
         recipeEntry.multiplier = Math.max(0.01, requiredMultiplier); // 최소 0.01
-      } else if (netNeed <= 0) {
-        // 필요량이 0 이하면 최소 배율로 설정
+      } else {
+        // 순수 필요량이 0 이하면 최소 배율로 설정
         recipeEntry.multiplier = 0.01;
       }
     }
