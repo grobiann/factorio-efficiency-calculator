@@ -7,6 +7,8 @@ export class DatasetConfigView {
   constructor(datasetManager, onDatasetChange) {
     this.datasetManager = datasetManager;
     this.onDatasetChange = onDatasetChange;
+    // Store references to UI elements for language updates
+    this.elements = {};
   }
 
   /**
@@ -25,6 +27,7 @@ export class DatasetConfigView {
     title.style.marginTop = "15px";
     title.style.marginBottom = "10px";
     section.appendChild(title);
+    this.elements.datasetTitle = title;
 
     const description = document.createElement("p");
     description.textContent = getTranslation('settingsDatasetDescription');
@@ -32,6 +35,7 @@ export class DatasetConfigView {
     description.style.color = "#666";
     description.style.marginBottom = "10px";
     section.appendChild(description);
+    this.elements.datasetDescription = description;
 
     const list = document.createElement("div");
     list.className = "dataset-list";
@@ -42,31 +46,6 @@ export class DatasetConfigView {
     });
 
     section.appendChild(list);
-
-    const applyButton = document.createElement("button");
-    applyButton.textContent = getTranslation('settingsDatasetApply');
-    applyButton.style.marginTop = "10px";
-    applyButton.style.padding = "8px 16px";
-    applyButton.style.cursor = "pointer";
-    applyButton.onclick = async () => {
-      applyButton.disabled = true;
-      applyButton.textContent = getTranslation('settingsDatasetLoading');
-      try {
-        await this.onDatasetChange();
-        applyButton.textContent = getTranslation('settingsDatasetApplied');
-        setTimeout(() => {
-          applyButton.textContent = getTranslation('settingsDatasetApply');
-          applyButton.disabled = false;
-        }, 1500);
-      } catch (error) {
-        applyButton.textContent = getTranslation('settingsDatasetError');
-        setTimeout(() => {
-          applyButton.textContent = getTranslation('settingsDatasetApply');
-          applyButton.disabled = false;
-        }, 1500);
-      }
-    };
-    section.appendChild(applyButton);
 
     // 저장된 데이터 모두 제거 버튼
     const clearDataSection = document.createElement("div");
@@ -80,6 +59,7 @@ export class DatasetConfigView {
     clearTitle.style.marginBottom = "10px";
     clearTitle.style.color = "#d32f2f";
     clearDataSection.appendChild(clearTitle);
+    this.elements.clearTitle = clearTitle;
 
     const clearDescription = document.createElement("p");
     clearDescription.textContent = getTranslation('settingsClearDataDescription');
@@ -87,9 +67,11 @@ export class DatasetConfigView {
     clearDescription.style.color = "#666";
     clearDescription.style.marginBottom = "10px";
     clearDataSection.appendChild(clearDescription);
+    this.elements.clearDescription = clearDescription;
 
     const clearButton = document.createElement("button");
     clearButton.textContent = getTranslation('settingsClearDataButton');
+    this.elements.clearButton = clearButton;
     clearButton.style.padding = "8px 16px";
     clearButton.style.cursor = "pointer";
     clearButton.style.backgroundColor = "#d32f2f";
@@ -186,5 +168,26 @@ export class DatasetConfigView {
         checkbox.checked = this.datasetManager.isEnabled(datasets[index].id);
       }
     });
+  }
+
+  /**
+   * Update UI language
+   */
+  updateLanguage() {
+    if (this.elements.datasetTitle) {
+      this.elements.datasetTitle.textContent = getTranslation('settingsDatasetTitle');
+    }
+    if (this.elements.datasetDescription) {
+      this.elements.datasetDescription.textContent = getTranslation('settingsDatasetDescription');
+    }
+    if (this.elements.clearTitle) {
+      this.elements.clearTitle.textContent = getTranslation('settingsClearDataTitle');
+    }
+    if (this.elements.clearDescription) {
+      this.elements.clearDescription.textContent = getTranslation('settingsClearDataDescription');
+    }
+    if (this.elements.clearButton) {
+      this.elements.clearButton.textContent = getTranslation('settingsClearDataButton');
+    }
   }
 }

@@ -109,6 +109,11 @@ export async function startApp() {
       // Update UI language
       updateUILanguage(locale.lang);
       
+      // Update DatasetConfigView language
+      if (datasetConfigView) {
+        datasetConfigView.updateLanguage();
+      }
+      
       // Refresh views
       buildProductOptions();
       updateTitle();
@@ -185,6 +190,7 @@ export async function startApp() {
   }
 
   // Toggle settings panel
+  let datasetConfigView = null;
   if (settingsBtn && settingsPanel) {
     settingsBtn.onclick = () => {
       const opened = settingsPanel.classList.toggle("open");
@@ -192,7 +198,7 @@ export async function startApp() {
     };
     
     // Add dataset configuration UI to settings panel
-    const datasetConfigView = new DatasetConfigView(datasetManager, reloadDatasets);
+    datasetConfigView = new DatasetConfigView(datasetManager, reloadDatasets);
     datasetConfigView.render(settingsPanel);
   }
 
