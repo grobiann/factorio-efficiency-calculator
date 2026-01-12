@@ -27,28 +27,665 @@
         {
           "recipeId": "se-cargo-rocket-section",
           "multiplier": 1,
-          "type": "recipe"
+          "type": "recipe",
+          "forceMultiplier": true
         },
         {
           "recipeId": "group_1768131073246",
-          "multiplier": 4,
-          "type": "group"
+          "multiplier": 3.7037037037037033,
+          "type": "group",
+          "forceMultiplier": false
         },
         {
           "recipeId": "group_1768131067955",
-          "multiplier": 4,
-          "type": "group"
+          "multiplier": 3.7037037037037033,
+          "type": "group",
+          "forceMultiplier": false
         },
         {
           "recipeId": "rocket-control-unit",
-          "multiplier": 4,
+          "multiplier": 3.7037037037037033,
           "type": "recipe"
         },
         {
           "recipeId": "group_1768131172892",
-          "multiplier": 2,
+          "multiplier": 1.7146776406035662,
           "type": "group"
         },
+        {
+          "recipeId": "speed-module",
+          "multiplier": 3.7037037037037033,
+          "type": "recipe"
+        },
+        {
+          "recipeId": "se-cargo-rocket-fuel-tank",
+          "multiplier": 0.9259259259259258,
+          "type": "recipe"
+        },
+        {
+          "recipeId": "se-cargo-rocket-cargo-pod",
+          "multiplier": 0.9259259259259258,
+          "type": "recipe"
+        },
+        {
+          "recipeId": "iron-chest",
+          "multiplier": 3.7037037037037033,
+          "type": "recipe"
+        },
+        {
+          "recipeId": "pump",
+          "multiplier": 0.9259259259259258,
+          "type": "recipe"
+        },
+        {
+          "recipeId": "storage-tank",
+          "multiplier": 0.9259259259259258,
+          "type": "recipe"
+        },
+        {
+          "recipeId": "pipe",
+          "multiplier": 3.7037037037037033,
+          "type": "recipe"
+        },
+        {
+          "recipeId": "fast-inserter",
+          "multiplier": 1.8518518518518516,
+          "type": "recipe"
+        },
+        {
+          "recipeId": "kr-iron-beam",
+          "multiplier": 4.286694101508916,
+          "type": "recipe"
+        },
+        {
+          "recipeId": "inserter",
+          "multiplier": 1.8518518518518516,
+          "type": "recipe"
+        },
+        {
+          "recipeId": "burner-inserter",
+          "multiplier": 1.8518518518518516,
+          "type": "recipe"
+        },
+        {
+          "recipeId": "motor",
+          "multiplier": 1.7146776406035662,
+          "type": "recipe"
+        },
+        {
+          "recipeId": "kr-inserter-parts",
+          "multiplier": 1.7146776406035662,
+          "type": "recipe"
+        },
+        {
+          "recipeId": "kr-automation-core",
+          "multiplier": 0.8573388203017831,
+          "type": "recipe"
+        },
+        {
+          "recipeId": "iron-stick",
+          "multiplier": 3.175328964080678,
+          "type": "recipe"
+        },
+        {
+          "recipeId": "electric-motor",
+          "multiplier": 3.4293552812071324,
+          "type": "recipe"
+        },
+        {
+          "recipeId": "iron-gear-wheel",
+          "multiplier": 11.113651374282375,
+          "type": "recipe"
+        },
+        {
+          "recipeId": "copper-cable",
+          "multiplier": 9.525986892242033,
+          "type": "recipe"
+        },
+        {
+          "recipeId": "solid-fuel-from-light-oil",
+          "multiplier": 33.06878306878306,
+          "type": "recipe"
+        },
+        {
+          "recipeId": "group_1768130677030",
+          "multiplier": 36.008230452674894,
+          "type": "group"
+        },
+        {
+          "recipeId": "group_1768130737376",
+          "multiplier": 2.5720164609053495,
+          "type": "group"
+        },
+        {
+          "recipeId": "group_1768130855869",
+          "multiplier": 4.357962596036059,
+          "type": "group"
+        },
+        {
+          "recipeId": "group_1768130886805",
+          "multiplier": 1.5432098765432096,
+          "type": "group"
+        },
+        {
+          "recipeId": "group_1768130859512",
+          "multiplier": 0.9055567786452301,
+          "type": "group"
+        },
+        {
+          "recipeId": "stone-brick",
+          "multiplier": 0.01,
+          "type": "recipe"
+        },
+        {
+          "recipeId": "kr-coke",
+          "multiplier": 0.01,
+          "type": "recipe"
+        }
+      ]
+    },
+    {
+      "id": "group_1767237976651",
+      "name": "크탐모 샘플/화물로켓 심층벌카 운송",
+      "recipes": [
+        {
+          "recipeId": "se-vulcanite-enriched",
+          "multiplier": 1000,
+          "type": "recipe",
+          "forceMultiplier": true
+        },
+        {
+          "recipeId": "se-vulcanite-crushed",
+          "multiplier": 1632.1839080459772,
+          "type": "recipe"
+        },
+        {
+          "recipeId": "se-core-fragment-se-vulcanite",
+          "multiplier": 329.77853745541023,
+          "type": "recipe",
+          "forceMultiplier": false
+        },
+        {
+          "recipeId": "custom_1768128704671",
+          "multiplier": 0.6595570749108205,
+          "type": "recipe",
+          "forceMultiplier": true
+        },
+        {
+          "recipeId": "space_cargo_rocket_launch",
+          "multiplier": 0.66,
+          "type": "recipe",
+          "forceMultiplier": true
+        },
+        {
+          "recipeId": "group_1767190857923",
+          "multiplier": 24.444444444444443,
+          "type": "group",
+          "forceMultiplier": false
+        },
+        {
+          "recipeId": "group_1768130039116",
+          "multiplier": 29464.28571428571,
+          "type": "group"
+        },
+        {
+          "recipeId": "sulfur",
+          "multiplier": 446.4285714285714,
+          "type": "recipe"
+        }
+      ]
+    },
+    {
+      "id": "group_1767255547242",
+      "name": "크탐모 샘플/화물로켓 분쇄벌카 운송",
+      "recipes": [
+        {
+          "recipeId": "se-vulcanite-enriched",
+          "multiplier": 1000,
+          "type": "recipe",
+          "forceMultiplier": true
+        },
+        {
+          "recipeId": "custom_1768129231492",
+          "multiplier": 0.2272,
+          "type": "recipe",
+          "forceMultiplier": true
+        },
+        {
+          "recipeId": "space_cargo_rocket_launch",
+          "multiplier": 0.227,
+          "type": "recipe",
+          "forceMultiplier": true
+        },
+        {
+          "recipeId": "group_1767190857923",
+          "multiplier": 8.407407407407405,
+          "type": "group"
+        },
+        {
+          "recipeId": "group_1768130039116",
+          "multiplier": 10133.92857142857,
+          "type": "group"
+        },
+        {
+          "recipeId": "sulfur",
+          "multiplier": 446.4285714285714,
+          "type": "recipe"
+        }
+      ]
+    },
+    {
+      "id": "group_1767255564327",
+      "name": "크탐모 샘플/배달대포 분쇄벌카 운송",
+      "recipes": [
+        {
+          "recipeId": "se-vulcanite-enriched",
+          "multiplier": 1000,
+          "type": "recipe",
+          "forceMultiplier": true
+        },
+        {
+          "recipeId": "custom_1768129332514",
+          "multiplier": 397.6,
+          "type": "recipe",
+          "forceMultiplier": false
+        },
+        {
+          "recipeId": "group_1768129968597",
+          "multiplier": 397.6,
+          "type": "group"
+        },
+        {
+          "recipeId": "sulfur",
+          "multiplier": 1562.4999999999998,
+          "type": "recipe"
+        }
+      ]
+    },
+    {
+      "id": "group_1768129968597",
+      "name": "원재료/배달대포",
+      "recipes": [
+        {
+          "recipeId": "se-delivery-cannon-capsule",
+          "multiplier": 1,
+          "type": "recipe",
+          "forceMultiplier": true
+        },
+        {
+          "recipeId": "group_1768131067955",
+          "multiplier": 0.9259259259259258,
+          "type": "group"
+        },
+        {
+          "recipeId": "group_1768131073246",
+          "multiplier": 0.9259259259259258,
+          "type": "group"
+        },
+        {
+          "recipeId": "explosives",
+          "multiplier": 2.2321428571428568,
+          "type": "recipe"
+        },
+        {
+          "recipeId": "copper-cable",
+          "multiplier": 4.62962962962963,
+          "type": "recipe"
+        },
+        {
+          "recipeId": "sulfur",
+          "multiplier": 0.9964923469387752,
+          "type": "recipe"
+        },
+        {
+          "recipeId": "group_1768130859512",
+          "multiplier": 0.28577960676726105,
+          "type": "group"
+        }
+      ]
+    },
+    {
+      "id": "group_1768130039116",
+      "name": "원재료/로켓연료",
+      "recipes": [
+        {
+          "recipeId": "rocket-fuel",
+          "multiplier": 1,
+          "type": "recipe",
+          "forceMultiplier": true
+        },
+        {
+          "recipeId": "group_1768130855869",
+          "multiplier": 0.061728395061728385,
+          "type": "group"
+        }
+      ]
+    },
+    {
+      "id": "group_1768130677030",
+      "name": "원재료/녹칩",
+      "recipes": [
+        {
+          "recipeId": "electronic-circuit",
+          "multiplier": 1,
+          "type": "recipe",
+          "forceMultiplier": true
+        },
+        {
+          "recipeId": "stone-tablet",
+          "multiplier": 0.23148148148148145,
+          "type": "recipe"
+        },
+        {
+          "recipeId": "group_1768130855869",
+          "multiplier": 0.061728395061728385,
+          "type": "group"
+        },
+        {
+          "recipeId": "copper-cable",
+          "multiplier": 1.8518518518518516,
+          "type": "recipe"
+        },
+        {
+          "recipeId": "group_1768130859512",
+          "multiplier": 0.1143118427069044,
+          "type": "group"
+        },
+        {
+          "recipeId": "stone-brick",
+          "multiplier": 0.21433470507544577,
+          "type": "recipe"
+        }
+      ]
+    },
+    {
+      "id": "group_1768130737376",
+      "name": "원재료/빨칩",
+      "recipes": [
+        {
+          "recipeId": "advanced-circuit",
+          "multiplier": 1,
+          "type": "recipe",
+          "forceMultiplier": true
+        },
+        {
+          "recipeId": "group_1768130677030",
+          "multiplier": 1.8518518518518516,
+          "type": "group"
+        },
+        {
+          "recipeId": "group_1768130759583",
+          "multiplier": 0.4629629629629629,
+          "type": "group"
+        },
+        {
+          "recipeId": "copper-cable",
+          "multiplier": 1.8518518518518516,
+          "type": "recipe"
+        },
+        {
+          "recipeId": "group_1768130859512",
+          "multiplier": 0.1143118427069044,
+          "type": "group"
+        }
+      ]
+    },
+    {
+      "id": "group_1768130759583",
+      "name": "원재료/전자부품",
+      "recipes": [
+        {
+          "recipeId": "kr-electronic-components",
+          "multiplier": 1,
+          "type": "recipe",
+          "forceMultiplier": true
+        },
+        {
+          "recipeId": "kr-silicon",
+          "multiplier": 0.19157088122605365,
+          "type": "recipe"
+        },
+        {
+          "recipeId": "plastic-bar",
+          "multiplier": 0.8928571428571428,
+          "type": "recipe"
+        },
+        {
+          "recipeId": "glass",
+          "multiplier": 1.8518518518518516,
+          "type": "recipe"
+        },
+        {
+          "recipeId": "kr-quartz",
+          "multiplier": 0.5321413367390379,
+          "type": "recipe"
+        },
+        {
+          "recipeId": "sand",
+          "multiplier": 5.4865606787921495,
+          "type": "recipe"
+        }
+      ]
+    },
+    {
+      "id": "group_1768130855869",
+      "name": "원재료/철판",
+      "recipes": [
+        {
+          "recipeId": "iron-plate",
+          "multiplier": 1,
+          "type": "recipe",
+          "forceMultiplier": true
+        }
+      ]
+    },
+    {
+      "id": "group_1768130859512",
+      "name": "원재료/구리판",
+      "recipes": [
+        {
+          "recipeId": "copper-plate",
+          "multiplier": 1,
+          "type": "recipe",
+          "forceMultiplier": true
+        }
+      ]
+    },
+    {
+      "id": "group_1768130886805",
+      "name": "원재료/강철판",
+      "recipes": [
+        {
+          "recipeId": "steel-plate",
+          "multiplier": 1,
+          "type": "recipe",
+          "forceMultiplier": true
+        },
+        {
+          "recipeId": "group_1768130855869",
+          "multiplier": 0.9259259259259257,
+          "type": "group",
+          "forceMultiplier": false
+        },
+        {
+          "recipeId": "kr-coke",
+          "multiplier": 0.4310344827586208,
+          "type": "recipe"
+        }
+      ]
+    },
+    {
+      "id": "group_1768131067955",
+      "name": "원재료/저밀도",
+      "recipes": [
+        {
+          "recipeId": "low-density-structure",
+          "multiplier": 1,
+          "type": "recipe",
+          "forceMultiplier": true
+        },
+        {
+          "recipeId": "group_1768130886805",
+          "multiplier": 0.37037037037037035,
+          "type": "group",
+          "forceMultiplier": false
+        },
+        {
+          "recipeId": "group_1768130859512",
+          "multiplier": 0.6172839506172838,
+          "type": "group"
+        },
+        {
+          "recipeId": "plastic-bar",
+          "multiplier": 2.2321428571428568,
+          "type": "recipe"
+        }
+      ]
+    },
+    {
+      "id": "group_1768131073246",
+      "name": "원재료/단열재",
+      "recipes": [
+        {
+          "recipeId": "se-heat-shielding",
+          "multiplier": 1,
+          "type": "recipe",
+          "forceMultiplier": true
+        },
+        {
+          "recipeId": "stone-tablet",
+          "multiplier": 4.62962962962963,
+          "type": "recipe"
+        },
+        {
+          "recipeId": "stone-brick",
+          "multiplier": 4.286694101508916,
+          "type": "recipe"
+        },
+        {
+          "recipeId": "group_1768130886805",
+          "multiplier": 0.37037037037037035,
+          "type": "group"
+        },
+        {
+          "recipeId": "sulfur",
+          "multiplier": 3.571428571428571,
+          "type": "recipe"
+        }
+      ]
+    },
+    {
+      "id": "group_1768131172892",
+      "name": "원재료/파칩",
+      "recipes": [
+        {
+          "recipeId": "processing-unit",
+          "multiplier": 1,
+          "type": "recipe",
+          "forceMultiplier": true
+        },
+        {
+          "recipeId": "group_1768130737376",
+          "multiplier": 2.7777777777777777,
+          "type": "group"
+        },
+        {
+          "recipeId": "kr-rare-metals",
+          "multiplier": 0.5555555555555555,
+          "type": "recipe"
+        },
+        {
+          "recipeId": "sulfuric-acid",
+          "multiplier": 0.17857142857142855,
+          "type": "recipe"
+        },
+        {
+          "recipeId": "sulfur",
+          "multiplier": 0.3985969387755101,
+          "type": "recipe"
+        },
+        {
+          "recipeId": "stone-brick",
+          "multiplier": 0.01,
+          "type": "recipe"
+        },
+        {
+          "recipeId": "group_1768130855869",
+          "multiplier": 0.011022927689594352,
+          "type": "group"
+        }
+      ]
+    }
+  ],
+  "customRecipes": [
+    {
+      "id": "custom_1768128704671",
+      "name": "크탐모 샘플/화물로켓 벌카나이트심층 500칸",
+      "type": "custom-recipe",
+      "energy_required": 1,
+      "ingredients": [],
+      "results": [
+        {
+          "type": "item",
+          "name": "se-core-fragment-se-vulcanite",
+          "amount": 10000
+        }
+      ],
+      "category": "custom"
+    },
+    {
+      "id": "custom_1768129231492",
+      "name": "크탐모 샘플/화물로켓 분쇄벌카 500칸",
+      "type": "custom-recipe",
+      "energy_required": 1,
+      "ingredients": [],
+      "results": [
+        {
+          "type": "item",
+          "name": "se-vulcanite-crushed",
+          "amount": 25000
+        }
+      ],
+      "category": "custom"
+    },
+    {
+      "id": "custom_1768129332514",
+      "name": "크탐모 샘플/배달대포 분쇄벌카 1발",
+      "type": "custom-recipe",
+      "energy_required": 1,
+      "ingredients": [
+        {
+          "type": "item",
+          "name": "se-delivery-cannon-capsule",
+          "amount": 1
+        }
+      ],
+      "results": [
+        {
+          "type": "item",
+          "name": "se-vulcanite-crushed",
+          "amount": 50
+        }
+      ],
+      "category": "custom"
+    }
+  ],
+  "factoryConfig": {
+    "preferredMachines": [
+      {
+        "machineId": "electric-furnace"
+      },
+      {
+        "machineId": "assembling-machine-2"
+      },
+      {
+        "machineId": "chemical-plant"
+      }
+    ],
+    "selectedModule": "productivity-module"
+  }
+}
+
         {
           "recipeId": "speed-module",
           "multiplier": 4,

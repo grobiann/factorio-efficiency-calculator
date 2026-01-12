@@ -1,3 +1,5 @@
+import { getTranslation } from '../utils/Translations.js';
+
 /**
  * DatasetConfigView - UI for selecting which datasets to enable/disable
  */
@@ -19,13 +21,13 @@ export class DatasetConfigView {
     section.className = "dataset-config-section";
     
     const title = document.createElement("h3");
-    title.textContent = "데이터 소스 선택";
+    title.textContent = getTranslation('settingsDatasetTitle');
     title.style.marginTop = "15px";
     title.style.marginBottom = "10px";
     section.appendChild(title);
 
     const description = document.createElement("p");
-    description.textContent = "사용할 모드/버전 데이터를 선택하세요:";
+    description.textContent = getTranslation('settingsDatasetDescription');
     description.style.fontSize = "0.9em";
     description.style.color = "#666";
     description.style.marginBottom = "10px";
@@ -42,24 +44,24 @@ export class DatasetConfigView {
     section.appendChild(list);
 
     const applyButton = document.createElement("button");
-    applyButton.textContent = "데이터 적용";
+    applyButton.textContent = getTranslation('settingsDatasetApply');
     applyButton.style.marginTop = "10px";
     applyButton.style.padding = "8px 16px";
     applyButton.style.cursor = "pointer";
     applyButton.onclick = async () => {
       applyButton.disabled = true;
-      applyButton.textContent = "로딩 중...";
+      applyButton.textContent = getTranslation('settingsDatasetLoading');
       try {
         await this.onDatasetChange();
-        applyButton.textContent = "적용 완료!";
+        applyButton.textContent = getTranslation('settingsDatasetApplied');
         setTimeout(() => {
-          applyButton.textContent = "데이터 적용";
+          applyButton.textContent = getTranslation('settingsDatasetApply');
           applyButton.disabled = false;
         }, 1500);
       } catch (error) {
-        applyButton.textContent = "오류 발생";
+        applyButton.textContent = getTranslation('settingsDatasetError');
         setTimeout(() => {
-          applyButton.textContent = "데이터 적용";
+          applyButton.textContent = getTranslation('settingsDatasetApply');
           applyButton.disabled = false;
         }, 1500);
       }
@@ -73,21 +75,21 @@ export class DatasetConfigView {
     clearDataSection.style.borderTop = "1px solid #ddd";
     
     const clearTitle = document.createElement("h3");
-    clearTitle.textContent = "데이터 초기화";
+    clearTitle.textContent = getTranslation('settingsClearDataTitle');
     clearTitle.style.marginTop = "0";
     clearTitle.style.marginBottom = "10px";
     clearTitle.style.color = "#d32f2f";
     clearDataSection.appendChild(clearTitle);
 
     const clearDescription = document.createElement("p");
-    clearDescription.textContent = "모든 레시피 그룹, 커스텀 레시피, 비교 데이터를 삭제합니다. 이 작업은 되돌릴 수 없습니다.";
+    clearDescription.textContent = getTranslation('settingsClearDataDescription');
     clearDescription.style.fontSize = "0.9em";
     clearDescription.style.color = "#666";
     clearDescription.style.marginBottom = "10px";
     clearDataSection.appendChild(clearDescription);
 
     const clearButton = document.createElement("button");
-    clearButton.textContent = "모든 저장 데이터 제거";
+    clearButton.textContent = getTranslation('settingsClearDataButton');
     clearButton.style.padding = "8px 16px";
     clearButton.style.cursor = "pointer";
     clearButton.style.backgroundColor = "#d32f2f";
@@ -95,18 +97,18 @@ export class DatasetConfigView {
     clearButton.style.border = "none";
     clearButton.style.borderRadius = "4px";
     clearButton.onclick = () => {
-      if (confirm("정말로 모든 저장된 데이터를 삭제하시겠습니까?\n\n삭제될 데이터:\n- 모든 레시피 그룹\n- 모든 커스텀 레시피\n- 모든 비교 그룹\n\n이 작업은 되돌릴 수 없습니다.")) {
+      if (confirm(getTranslation('settingsClearDataConfirm'))) {
         // localStorage에서 모든 데이터 제거
         localStorage.removeItem('recipeGroups');
         localStorage.removeItem('customRecipes');
         localStorage.removeItem('fixedRecipeSettings');
         localStorage.removeItem('compareGroups');
         
-        clearButton.textContent = "삭제 완료!";
+        clearButton.textContent = getTranslation('settingsClearDataSuccess');
         clearButton.style.backgroundColor = "#388e3c";
         
         setTimeout(() => {
-          clearButton.textContent = "모든 저장 데이터 제거";
+          clearButton.textContent = getTranslation('settingsClearDataButton');
           clearButton.style.backgroundColor = "#d32f2f";
           // 페이지 새로고침하여 샘플 데이터 로드
           window.location.reload();

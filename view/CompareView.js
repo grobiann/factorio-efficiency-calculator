@@ -9,6 +9,7 @@ import {
   UI_CONFIG,
   CSS_CLASSES
 } from '../utils/Constants.js';
+import { getTranslation } from '../utils/Translations.js';
 
 /**
  * CompareView - 레시피 그룹과 레시피 비교
@@ -48,6 +49,13 @@ export class CompareView {
     
     this._loadFromStorage();
   }
+  
+  /**
+   * Get translation helper
+   */
+  _t(key) {
+    return getTranslation(key);
+  }
 
   /**
    * 뷰 렌더링
@@ -57,9 +65,7 @@ export class CompareView {
     if (!compareTab) return;
 
     // 렌더링 전에 모든 레시피 그룹의 배율 자동 조정
-    console.log('[CompareView] render 시작 - autoAdjustAllGroups 호출');
     this._autoAdjustAllGroups();
-    console.log('[CompareView] autoAdjustAllGroups 완료');
 
     compareTab.innerHTML = this._buildHtml();
     this._attachEvents(compareTab);
@@ -83,11 +89,11 @@ export class CompareView {
    */
   _buildSidebar() {
     let html = '<div class="sidebar-container">';
-    html += `<button class="${CSS_CLASSES.PRIMARY}">새 비교그룹 추가</button>`;
+    html += `<button class="${CSS_CLASSES.PRIMARY}">${this._t('btnAddCompareGroup')}</button>`;
     html += '<div class="list-container">';
     
     if (this.compareGroups.length === 0) {
-      html += '<p style="color: #999; text-align: center; padding: 20px;">비교그룹이 없습니다.</p>';
+      html += `<p style="color: #999; text-align: center; padding: 20px;">${this._t('cmpDetailNoGroups')}</p>`;
     } else {
       html += this._buildGroupTree();
     }
@@ -214,8 +220,8 @@ export class CompareView {
       html += this._buildGroupDetail(this.compareGroups[this.selectedGroupIndex]);
     } else {
       html += '<div style="text-align: center; padding: 40px;">';
-      html += '<p style="color: #999; margin-bottom: 20px;">비교그룹이 없습니다.</p>';
-      html += '<p style="color: #666; margin-bottom: 20px;">왼쪽의 "새 비교그룹 추가" 버튼을 클릭하여 시작하세요.</p>';
+      html += `<p style="color: #999; margin-bottom: 20px;">${this._t('cmpDetailNoGroups')}</p>`;
+      html += `<p style="color: #666; margin-bottom: 20px;">${this._t('cmpDetailNoGroupsHint')}</p>`;
       html += '</div>';
     }
     
@@ -246,8 +252,8 @@ export class CompareView {
    */
   _buildGroupHeader(group) {
     let html = '<div class="compare-group-header">';
-    html += `<input type="text" class="compare-group-name-input" value="${ViewHelpers.escapeHtml(group.name)}" placeholder="비교 그룹 이름">`;
-    html += `<button class="${CSS_CLASSES.DANGER} delete-compare-group-btn">그룹 삭제</button>`;
+    html += `<input type="text" class="compare-group-name-input" value="${ViewHelpers.escapeHtml(group.name)}" placeholder="${this._t('cmpDetailGroupName')}">`;
+    html += `<button class="${CSS_CLASSES.DANGER} delete-compare-group-btn">${this._t('cmpDetailDeleteGroup')}</button>`;
     html += '</div>';
     return html;
   }
@@ -263,9 +269,9 @@ export class CompareView {
     // 헤더 행
     html += '<thead>';
     html += '<tr>';
-    html += '<th class="compare-name-col">레시피 그룹</th>';
-    html += '<th class="compare-output-col">출력</th>'
-    html += '<th class="compare-input-col">입력</th>';
+    html += `<th class="compare-name-col">${this._t('cmpDetailRecipeGroup')}</th>`;
+    html += `<th class="compare-output-col">${this._t('cmpDetailOutput')}</th>`
+    html += `<th class="compare-input-col">${this._t('cmpDetailInput')}</th>`;
     html += '<th class="compare-action-col"></th>';
     html += '</tr>';
     html += '</thead>';
@@ -355,7 +361,7 @@ export class CompareView {
     html += '<svg class="compare-plus-icon" viewBox="0 0 24 24" width="20" height="20">';
     html += '<path fill="currentColor" d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z"/>';
     html += '</svg>';
-    html += '<span>항목 추가</span>';
+    html += `<span>${this._t('cmpDetailAddItem')}</span>`;
     html += '</button>';
     html += '</td>';
     html += '</tr>';
@@ -671,7 +677,7 @@ export class CompareView {
     // 폴더 구조로 렌더링
     let html = '';
     if (this.compareGroups.length === 0) {
-      html = '<p style="color: #999; text-align: center; padding: 20px;">비교그룹이 없습니다.</p>';
+      html = `<p style="color: #999; text-align: center; padding: 20px;">${this._t('cmpDetailNoGroups')}</p>`;
     } else {
       html = this._buildGroupTree();
     }

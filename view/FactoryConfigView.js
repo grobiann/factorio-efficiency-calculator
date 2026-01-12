@@ -1,4 +1,5 @@
 import { ViewHelpers } from "../utils/ViewHelpers.js";
+import { getTranslation } from "../utils/Translations.js";
 
 /**
  * FactoryConfigView - 공장 설정 (Preferred Machines) 관리 UI
@@ -10,6 +11,11 @@ export class FactoryConfigView {
     this.preferredMachines = [];
     this.selectedModule = null;
     this.loadFromStorage();
+  }
+
+  // Translation helper
+  _t(key) {
+    return getTranslation(key);
   }
 
   /**
@@ -24,19 +30,19 @@ export class FactoryConfigView {
     
     // 제목 및 설명
     html += '<div class="factory-config-header">';
-    html += '<h2>공장 설정</h2>';
-    html += '<p class="factory-config-description">선호하는 기계와 모듈 설정을 관리합니다. 레시피 그룹에서 이 설정을 우선적으로 사용합니다.</p>';
+    html += `<h2>${this._t('fcDetailTitle')}</h2>`;
+    html += `<p class="factory-config-description">${this._t('fcDetailDescription')}</p>`;
     html += '</div>';
 
     // Preferred Machines 섹션
     html += '<div class="preferred-machines-section">';
     html += '<div class="section-header">';
-    html += '<h3>Preferred Machines</h3>';
-    html += '<button id="addPreferredMachineBtn" class="btn-primary">기계 추가</button>';
+    html += `<h3>${this._t('fcDetailPreferredMachines')}</h3>`;
+    html += `<button id="addPreferredMachineBtn" class="btn-primary">${this._t('fcDetailAddMachine')}</button>`;
     html += '</div>';
 
     if (this.preferredMachines.length === 0) {
-      html += '<p class="no-machines-message">설정된 선호 기계가 없습니다.</p>';
+      html += `<p class="no-machines-message">${this._t('fcDetailNoMachines')}</p>`;
     } else {
       html += '<div class="preferred-machines-list">';
       this.preferredMachines.forEach((machine, index) => {
@@ -50,7 +56,7 @@ export class FactoryConfigView {
     // Preferred Module 섹션
     html += '<div class="preferred-module-section">';
     html += '<div class="section-header">';
-    html += '<h3>Preferred Module</h3>';
+    html += `<h3>${this._t('fcDetailPreferredModule')}</h3>`;
     html += '</div>';
     html += '<div class="module-selection-grid">';
     
@@ -104,7 +110,7 @@ export class FactoryConfigView {
 
     // 기계 삭제 버튼
     html += '<div class="machine-actions-compact">';
-    html += `<button class="btn-danger remove-machine-compact-btn" data-index="${index}" title="기계 삭제">✕</button>`;
+    html += `<button class="btn-danger remove-machine-compact-btn" data-index="${index}" title="${this._t('fcDetailDelete')}">✕</button>`;
     html += '</div>';
 
     html += '</div>'; // machine-card-compact

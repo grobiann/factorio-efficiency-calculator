@@ -9,6 +9,7 @@ import { CustomRecipeView } from "../view/CustomRecipeView.js";
 import { CustomRecipeManager } from "../model/CustomRecipe.js";
 import { CompareView } from "../view/CompareView.js";
 import { FactoryConfigView } from "../view/FactoryConfigView.js";
+import { updateUILanguage } from "../utils/Translations.js";
 
 export async function startApp() {
   // Initialize dataset manager
@@ -92,31 +93,36 @@ export async function startApp() {
   let inputTimeout = null;
 
   // Initialize language select
+  const savedLang = localStorage.getItem('uiLanguage') || 'ko';
+  locale.lang = savedLang;
+  
   if (langSelect) {
-    langSelect.value = locale.lang;
+    langSelect.value = savedLang;
+    updateUILanguage(savedLang);
+    
     langSelect.onchange = async () => {
       locale.lang = langSelect.value;
       const next = await loadLocale(locale.lang);
       locale.setItemNames(next.items);
       locale.setRecipeNames(next.recipes);
-      // Refresh product labels and re-render results in the new language
+      
+      // Update UI language
+      updateUILanguage(locale.lang);
+      
+      // Refresh views
       buildProductOptions();
       updateTitle();
+      
+      // Re-render all views
+      recipeGroupView.render(document.getElementById('recipe-group-tab'));
+      customRecipeView.render(document.getElementById('custom-recipe-tab'));
+      factoryConfigView.render(document.getElementById('factory-config-tab'));
+      compareView.render(document);
+      
       if (lastResults !== null) {
         // Re-run the current calculation to reflect locale changes
         performCalculation(lastRate);
       }
-    };
-  }
-
-  // Removed separate time unit control; display mode now covers per-second vs per-minute
-  const displayModeSelect = document.getElementById("displayModeSelect");
-  let displayMode = displayModeSelect ? displayModeSelect.value : "per_sec";
-  if (displayModeSelect) {
-    displayModeSelect.value = displayMode;
-    displayModeSelect.onchange = () => {
-      displayMode = displayModeSelect.value;
-      if (lastRate !== null) performCalculation(lastRate);
     };
   }
   const productSelect = document.getElementById("productSelect");
@@ -150,18 +156,14 @@ export async function startApp() {
 
     lastRate = target;
 
-    // Compute per-recipe results and also build recursive recipe columns
-    let results, multiplier;
-    // displayMode selects whether the user's input is per-second or per-minute
-    const ratePerSecond = (displayMode === "per_min") ? (target / 60) : target;
-    results = Resolver.compare(currentProductRecipes, currentProduct, ratePerSecond, recipesByProduct, "per_sec");
-    multiplier = (displayMode === "per_min") ? 60 : 1;
+    // Compute per-recipe results (always per-second)
+    const results = Resolver.compare(currentProductRecipes, currentProduct, target, recipesByProduct, "per_sec");
+    const multiplier = 1;
 
     lastResults = results;
 
     // Render summary table
-    const targetCount = (displayMode === "per_min") ? (target / 60) : target;
-    renderSummaryTable(currentProductRecipes, currentProduct, targetCount, recipesByProduct, locale, multiplier);
+    renderSummaryTable(currentProductRecipes, currentProduct, target, recipesByProduct, locale, multiplier);
   }
 
   // (Column-building moved into the view layer: renderRecipeTable)
@@ -245,6 +247,20 @@ export async function startApp() {
         };
         localStorage.setItem('compareGroups', JSON.stringify(newGroupsData));
       }
+      
+      // Load sample factory config
+      if (samples.factoryConfig) {
+        const existingMachines = localStorage.getItem('preferredMachines');
+        const existingModule = localStorage.getItem('selectedModule');
+        
+        if (samples.factoryConfig.preferredMachines && (!existingMachines || JSON.parse(existingMachines).length === 0)) {
+          localStorage.setItem('preferredMachines', JSON.stringify(samples.factoryConfig.preferredMachines));
+        }
+        
+        if (samples.factoryConfig.selectedModule && !existingModule) {
+          localStorage.setItem('selectedModule', samples.factoryConfig.selectedModule);
+        }
+      }
     } catch (e) {
       // 샘플 데이터 로드 실패 시 무시
     }
@@ -282,7 +298,11 @@ export async function startApp() {
       const exportData = {
         compareGroups: JSON.parse(localStorage.getItem('compareGroups') || '{"groups":[],"nextGroupId":1,"selectedIndex":0}').groups,
         recipeGroups: JSON.parse(localStorage.getItem('recipeGroups') || '[]'),
-        customRecipes: JSON.parse(localStorage.getItem('customRecipes') || '[]')
+        customRecipes: JSON.parse(localStorage.getItem('customRecipes') || '[]'),
+        factoryConfig: {
+          preferredMachines: JSON.parse(localStorage.getItem('preferredMachines') || '[]'),
+          selectedModule: localStorage.getItem('selectedModule') || ''
+        }
       };
       
       const dataStr = JSON.stringify(exportData, null, 2);
@@ -324,11 +344,23 @@ export async function startApp() {
           };
           localStorage.setItem('compareGroups', JSON.stringify(groupsData));
         }
+        if (importData.factoryConfig) {
+          if (importData.factoryConfig.preferredMachines) {
+            localStorage.setItem('preferredMachines', JSON.stringify(importData.factoryConfig.preferredMachines));
+          }
+          if (importData.factoryConfig.selectedModule !== undefined) {
+            localStorage.setItem('selectedModule', importData.factoryConfig.selectedModule);
+          }
+        }
 
-        alert('데이터를 성공적으로 가져왔습니다. 페이지를 새로고침합니다.');
+        const { getTranslation } = await import('../utils/Translations.js');
+        const t = (key) => getTranslation(locale.lang, key);
+        alert(t('msgImportSuccess'));
         location.reload();
       } catch (err) {
-        alert('데이터 가져오기 실패: ' + err.message);
+        const { getTranslation } = await import('../utils/Translations.js');
+        const t = (key) => getTranslation(locale.lang, key);
+        alert(t('msgImportError') + err.message);
       }
 
       // Reset file input

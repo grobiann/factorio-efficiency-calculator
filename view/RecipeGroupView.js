@@ -1,6 +1,7 @@
 import { RecipeGroup } from "../model/RecipeGroup.js";
 import { RecipeSelectModal } from "./RecipeSelectModal.js";
 import { ViewHelpers } from "../utils/ViewHelpers.js";
+import { getTranslation } from "../utils/Translations.js";
 
 /**
  * RecipeGroupView - 레시피 그룹 관리 UI
@@ -17,6 +18,11 @@ export class RecipeGroupView {
     this.recipeSelectModal = new RecipeSelectModal(this);
     this.expandedFolders = new Set(); // 펼쳐진 폴더 상태 저장
     this.loadFromStorage();
+  }
+
+  // Translation helper
+  _t(key) {
+    return getTranslation(key);
   }
 
   /**
@@ -36,11 +42,11 @@ export class RecipeGroupView {
     
     // 왼쪽: 레시피 그룹 목록
     html += '<div class="sidebar-container">';
-    html += '<button id="addGroupBtn" class="btn-primary">새 레시피 그룹 추가</button>';
+    html += `<button id="addGroupBtn" class="btn-primary">${this._t('btnAddRecipeGroup')}</button>`;
     html += '<div class="list-container">';
     
     if (this.groups.size === 0) {
-      html += '<p style="color: #999; text-align: center; padding: 20px;">레시피 그룹이 없습니다.</p>';
+      html += `<p style="color: #999; text-align: center; padding: 20px;">${this._t('msgNoRecipeGroups')}</p>`;
     } else {
       html += this.renderGroupTree();
     }
@@ -52,7 +58,7 @@ export class RecipeGroupView {
     if (this.selectedGroupId && this.groups.has(this.selectedGroupId)) {
       html += this.renderGroupDetail(this.groups.get(this.selectedGroupId));
     } else {
-      html += '<p style="color: #999; text-align: center; padding: 40px;">레시피 그룹을 선택하세요.</p>';
+      html += `<p style="color: #999; text-align: center; padding: 40px;">${this._t('rgDetailSelectGroup')}</p>`;
     }
     html += '</div>';
     
@@ -182,19 +188,19 @@ export class RecipeGroupView {
     // 이름 편집
     html += `
       <div class="group-name-edit">
-        <input type="text" class="group-name-input" value="${this.escapeHtml(group.name)}" placeholder="레시피 그룹 이름">
-        <button class="btn-danger group-delete-btn">레시피 그룹 삭제</button>
+        <input type="text" class="group-name-input" value="${this.escapeHtml(group.name)}" placeholder="${this._t('rgDetailGroupName')}">
+        <button class="btn-danger group-delete-btn">${this._t('rgDetailDeleteGroup')}</button>
       </div>
     `;
 
     // 출력/입력 요약
     html += '<div class="group-io-summary">';
     html += '<div class="group-io-section group-outputs">';
-    html += '<h4>출력</h4>';
+    html += `<h4>${this._t('rgDetailOutputs')}</h4>`;
     html += '<div class="group-io-items">';
     const visibleResults = io.results.sort((a, b) => a.name.localeCompare(b.name)); // 이름순 정렬
     if (visibleResults.length === 0) {
-      html += '<span style="color: #999;">없음</span>';
+      html += `<span style="color: #999;">${this._t('rgDetailNone')}</span>`;
     } else {
       for (const result of visibleResults) {
         const iconInfo = ViewHelpers.getIconInfo(this.loadedData, result.name, result.type || 'item');
@@ -205,11 +211,11 @@ export class RecipeGroupView {
     html += '</div></div>';
 
     html += '<div class="group-io-section group-inputs">';
-    html += '<h4>입력</h4>';
+    html += `<h4>${this._t('rgDetailInputs')}</h4>`;
     html += '<div class="group-io-items">';
     const visibleIngredients = io.ingredients.sort((a, b) => a.name.localeCompare(b.name)); // 이름순 정렬
     if (visibleIngredients.length === 0) {
-      html += '<span style="color: #999;">없음</span>';
+      html += `<span style="color: #999;">${this._t('rgDetailNone')}</span>`;
     } else {
       for (const ingredient of visibleIngredients) {
         const iconInfo = ViewHelpers.getIconInfo(this.loadedData, ingredient.name, ingredient.type || 'item');
@@ -224,7 +230,7 @@ export class RecipeGroupView {
     
     if (group.recipes.length === 0) {
       html += '<div class="group-no-recipes">';
-      html += '<p>레시피가 없습니다. 레시피를 선택하세요.</p>';
+      html += `<p>${this._t('rgDetailSelectRecipe')}</p>`;
       html += '</div>';
     } else {
       for (let i = 0; i < group.recipes.length; i++) {
@@ -400,10 +406,11 @@ export class RecipeGroupView {
     const isAuto = recipeEntry.forceMultiplier !== true;
     const isFirstRecipe = index === 0;
     html += '<div class="group-recipe-auto-multiplier">';
-    html += `<label class="toggle-auto-multiplier ${isFirstRecipe ? 'disabled' : ''}" title="${isFirstRecipe ? '첫 번째 레시피는 항상 수동 모드' : (isAuto ? '자동 배율 적용 중' : '수동 배율 고정')}">`;
+    const autoTitle = isFirstRecipe ? 'First recipe is always manual mode' : (isAuto ? 'Auto multiplier applied' : 'Manual multiplier fixed');
+    html += `<label class="toggle-auto-multiplier ${isFirstRecipe ? 'disabled' : ''}" title="${autoTitle}">`;
     html += `<input type="checkbox" class="toggle-checkbox" data-index="${index}" ${isAuto ? 'checked' : ''} ${isFirstRecipe ? 'disabled' : ''}>`;
     html += '<span class="toggle-slider"></span>';
-    html += `<span class="toggle-label">${isAuto ? 'AUTO' : 'MANUAL'}</span>`;
+    html += `<span class="toggle-label">${isAuto ? this._t('rgDetailAuto') : this._t('rgDetailManual')}</span>`;
     html += '</label>';
     html += '</div>';
 
@@ -417,7 +424,7 @@ export class RecipeGroupView {
    */
   renderRecipeSelector() {
     let html = '<div class="recipe-selector">';
-    html += '<button class="btn-primary recipe-select-modal-btn">레시피 추가</button>';
+    html += `<button class="btn-primary recipe-select-modal-btn">${this._t('rgDetailAddRecipe')}</button>`;
     html += '</div>';
     
     return html;

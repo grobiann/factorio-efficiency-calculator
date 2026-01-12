@@ -1,6 +1,7 @@
 import { CustomRecipe, CustomRecipeManager } from "../model/CustomRecipe.js";
 import { ItemSelectModal } from "./ItemSelectModal.js";
 import { ViewHelpers } from "../utils/ViewHelpers.js";
+import { getTranslation } from "../utils/Translations.js";
 
 /**
  * CustomRecipeView - 커스텀 레시피 관리 UI
@@ -13,6 +14,11 @@ export class CustomRecipeView {
     this.selectedRecipeId = null;
     this.expandedFolders = new Set(); // 펼쳐진 폴더 상태 저장
     this.itemSelectModal = new ItemSelectModal(this);
+  }
+
+  // Translation helper
+  _t(key) {
+    return getTranslation(key);
   }
 
   /**
@@ -67,11 +73,11 @@ export class CustomRecipeView {
     
     // 왼쪽: 레시피 목록 사이드바
     html += '<div class="sidebar-container">';
-    html += '<button id="addCustomRecipeBtn" class="btn-primary">새 레시피 추가</button>';
+    html += `<button id="addCustomRecipeBtn" class="btn-primary">${this._t('btnAddCustomRecipe')}</button>`;
     html += '<div class="list-container">';
     
     if (recipes.length === 0) {
-      html += '<p style="color: #999; text-align: center; padding: 20px;">커스텀 레시피가 없습니다.</p>';
+      html += `<p style="color: #999; text-align: center; padding: 20px;">${this._t('msgNoCustomRecipes')}</p>`;
     } else {
       html += this.renderRecipeTree(recipes);
     }
@@ -85,10 +91,10 @@ export class CustomRecipeView {
       if (selectedRecipe) {
         html += this.renderRecipeDetail(selectedRecipe);
       } else {
-        html += '<p style="color: #999; text-align: center; padding: 40px;">레시피를 선택하세요.</p>';
+        html += `<p style="color: #999; text-align: center; padding: 40px;">${this._t('msgSelectRecipe')}</p>`;
       }
     } else {
-      html += '<p style="color: #999; text-align: center; padding: 40px;">레시피를 선택하세요.</p>';
+      html += `<p style="color: #999; text-align: center; padding: 40px;">${this._t('msgSelectRecipe')}</p>`;
     }
     html += '</div>';
     
@@ -227,8 +233,8 @@ export class CustomRecipeView {
     // 이름 편집 및 삭제 버튼
     html += `
       <div class="recipe-name-edit">
-        <input type="text" class="recipe-name-input" value="${this.escapeHtml(recipe.name)}" placeholder="레시피 이름" ${isFixed ? 'readonly' : ''}>
-        ${isFixed ? '' : '<button class="btn-danger recipe-delete-btn">레시피 삭제</button>'}
+        <input type="text" class="recipe-name-input" value="${this.escapeHtml(recipe.name)}" placeholder="${this._t('crDetailName')}" ${isFixed ? 'readonly' : ''}>
+        ${isFixed ? '' : `<button class="btn-danger recipe-delete-btn">${this._t('crDetailDelete')}</button>`}
       </div>
     `;
 
@@ -236,12 +242,12 @@ export class CustomRecipeView {
     html += '<div class="recipe-basic-info">';
     html += `
       <label>
-        제작 시간:
+        ${this._t('crDetailTime')}:
         <input type="number" class="recipe-energy-input" value="${recipe.energy_required || 1}" step="0.1" min="0.1" ${isFixed ? 'readonly' : ''}>
-        초
+        ${this._t('unitSeconds')}
       </label>
       <label>
-        카테고리:
+        ${this._t('lblCategory')}:
         <input type="text" class="recipe-category-input" value="${this.escapeHtml(recipe.category || 'crafting')}" placeholder="crafting" ${isFixed ? 'readonly' : ''}>
       </label>
     `;
@@ -249,7 +255,7 @@ export class CustomRecipeView {
 
     // 재료 섹션
     html += '<div class="recipe-section">';
-    html += '<h3>재료 (Ingredients)</h3>';
+    html += `<h3>${this._t('crDetailIngredients')}</h3>`;
     html += '<div class="recipe-items-list" id="ingredientsList">';
     
     if (recipe.ingredients && recipe.ingredients.length > 0) {
@@ -257,18 +263,18 @@ export class CustomRecipeView {
         html += this.renderItemRow(ing, index, 'ingredient', isFixed);
       });
     } else {
-      html += '<p style="color: #999;">재료가 없습니다.</p>';
+      html += `<p style="color: #999;">${this._t('msgNoIngredients')}</p>`;
     }
     
     html += '</div>';
     if (!isFixed) {
-      html += '<button class="btn-secondary add-ingredient-btn">재료 추가</button>';
+      html += `<button class="btn-secondary add-ingredient-btn">${this._t('crDetailAddIngredient')}</button>`;
     }
     html += '</div>';
 
     // 결과물 섹션
     html += '<div class="recipe-section">';
-    html += '<h3>결과물 (Results)</h3>';
+    html += `<h3>${this._t('crDetailResults')}</h3>`;
     html += '<div class="recipe-items-list" id="resultsList">';
     
     if (recipe.results && recipe.results.length > 0) {
@@ -276,12 +282,12 @@ export class CustomRecipeView {
         html += this.renderItemRow(res, index, 'result', isFixed);
       });
     } else {
-      html += '<p style="color: #999;">결과물이 없습니다.</p>';
+      html += `<p style="color: #999;">${this._t('msgNoResults')}</p>`;
     }
     
     html += '</div>';
     if (!isFixed) {
-      html += '<button class="btn-secondary add-result-btn">결과물 추가</button>';
+      html += `<button class="btn-secondary add-result-btn">${this._t('crDetailAddResult')}</button>`;
     }
     html += '</div>';
 

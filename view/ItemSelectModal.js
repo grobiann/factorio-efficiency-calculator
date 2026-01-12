@@ -1,5 +1,6 @@
 import { ViewHelpers } from '../utils/ViewHelpers.js';
 import { BaseModalView } from './BaseModalView.js';
+import { getTranslation } from '../utils/Translations.js';
 
 export class ItemSelectModal extends BaseModalView {
   constructor(view, onSelect = null) {
@@ -15,12 +16,12 @@ export class ItemSelectModal extends BaseModalView {
       <div class="modal-overlay" id="itemSelectModal">
         <div class="modal-content recipe-select-modal">
           <div class="modal-header">
-            <h3 class="modal-title">아이템 선택</h3>
+            <h3 class="modal-title">${getTranslation('cmpDetailSelectItem')}</h3>
             <button class="modal-close-btn">&times;</button>
           </div>
           <div class="modal-body">
             <div class="modal-search">
-              <input type="text" class="modal-search-input" placeholder="검색..." />
+              <input type="text" class="modal-search-input" placeholder="${getTranslation('lblSearch')}..." />
             </div>
             <div class="modal-tabs">
             `;
