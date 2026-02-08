@@ -13,12 +13,13 @@
 
 ## <a name="korean"></a>🇰🇷 한국어
 
-### 📖 소개
-
+### 소개
 Factorio Efficiency Calculator는 팩토리오의 복잡한 생산 체인을 분석하고 최적화하는 웹 기반 도구입니다.
 
-### ✨ 주요 기능
+### URL
+https://grobiann.github.io/factorio-efficiency-calculator/
 
+### 주요 기능
 - **🔄 레시피 비교** - 동일 아이템을 생산하는 여러 레시피의 효율 비교
 - **📊 자원 추적** - 원자재부터 최종 제품까지 전체 생산 체인 시각화
 - **🎯 커스텀 레시피** - 사용자 정의 레시피 생성 및 관리
